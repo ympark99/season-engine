@@ -1,0 +1,10 @@
+{
+  "name": "season-engine",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "build": "node scripts/build-master.mjs",
+    "dev": "node test/dev-server.mjs"
+  }
+}
