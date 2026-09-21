@@ -22,16 +22,22 @@ async function get(name) {
   return dec.decode(unzipFirst(Buffer.from(await r.arrayBuffer())));
 }
 
-// 국내 .mst: 행 = [단축코드 9][표준코드 12][한글명 …][고정폭 영역 228(코스피)/222(코스닥)], 고정폭 앞 2자리 = 그룹코드(ST=주권)
-function parseKR(text, tail) {
+// 국내 .mst: 행 = [단축코드 9][표준코드 12][한글명 …][고정폭 영역]. 고정폭 앞 2자리 = 그룹코드.
+// KIS 샘플은 줄바꿈 포함 길이로 228(코스피)/222(코스닥)을 자르므로 실제 고정폭은 1자 짧음 → 두 값 다 시도해서 ST 가 더 많이 잡히는 쪽 사용.
+const KR_GROUPS = { ST: '', EF: 'ETF', EN: 'ETN', RT: '리츠', FS: '외국주', DR: 'DR' };
+function parseKRWith(text, tail) {
   const out = [];
   for (const row of text.split(/\r?\n/)) {
     if (row.length <= tail + 21) continue;
     const head = row.slice(0, row.length - tail), grp = row.slice(row.length - tail, row.length - tail + 2);
     const code = head.slice(0, 9).trim(), name = head.slice(21).trim();
-    if (grp === 'ST' && /^[0-9A-Z]{6}$/.test(code)) out.push(['KR', code, name, null]);
+    if (grp in KR_GROUPS && /^[0-9A-Z]{6}$/.test(code)) out.push(['KR', code, name, null, KR_GROUPS[grp]]);
   }
   return out;
+}
+function parseKR(text, tail) {
+  const tries = [tail - 1, tail, tail - 2, tail + 1].map(t => parseKRWith(text, t));
+  return tries.sort((a, b) => b.filter(x => !x[4]).length - a.filter(x => !x[4]).length)[0];
 }
 // 해외 .cod: 탭 구분 — [4]심볼 [6]한글명 [7]영문명 [8]종류(2=주식, 3=ETF)
 function parseUS(text, excd) {
@@ -54,12 +60,10 @@ for (const [file, fn] of [['kospi_code.mst.zip', t => parseKR(t, 228)], ['kosdaq
 fs.mkdirSync(new URL('../public/data/', import.meta.url), { recursive: true });
 const seen = new Set();
 const uniq = all.filter(x => { const k = x[0] + ':' + x[1]; if (seen.has(k)) return false; seen.add(k); return true; });
-all.length = 0; all.push(...uniq);
-const kr = all.filter(x => x[0] === 'KR').length, us = all.length - kr;
-if (kr < 1000 || us < 1000) {
-  fs.writeFileSync(OUT, JSON.stringify({ source: 'fallback', at: new Date().toISOString(), rows: fallback.map(x => [x.m, x.code, x.name, x.excd || null]) }));
-  console.log(`[master] 대체 목록 사용 (${fallback.length}) — ${log.join(' · ')}`);
-} else {
-  fs.writeFileSync(OUT, JSON.stringify({ source: 'KIS master', at: new Date().toISOString(), rows: all }));
-  console.log(`[master] 한국 ${kr} · 미국 ${us} — ${log.join(' · ')}`);
-}
+const fb = m => fallback.filter(x => x.m === m).map(x => [x.m, x.code, x.name, x.excd || null]);
+const krRows = uniq.filter(x => x[0] === 'KR'), usRows = uniq.filter(x => x[0] === 'US');
+// 시장별로 따로 대체 — 한쪽이 실패해도 다른 쪽은 전체 목록 유지
+const rows = [...(krRows.length >= 1000 ? krRows : fb('KR')), ...(usRows.length >= 1000 ? usRows : fb('US'))];
+const src = { KR: krRows.length >= 1000 ? `KIS ${krRows.length}` : `대체 ${fb('KR').length}`, US: usRows.length >= 1000 ? `KIS ${usRows.length}` : `대체 ${fb('US').length}` };
+fs.writeFileSync(OUT, JSON.stringify({ source: src, at: new Date().toISOString(), log, rows }));
+console.log(`[master] 한국 ${src.KR} · 미국 ${src.US} — ${log.join(' · ')}`);
