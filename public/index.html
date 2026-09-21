@@ -308,7 +308,7 @@ body{margin:0}
     </details>
 
     <details class="sec" open>
-      <summary><span class="ico"><i>2</i></span><div><h2>종목 국면</h2><p>검색해서 추가하면 그 자리에서 KIS 2년치 일봉을 조회·판정 · 비중은 칸을 눌러 입력(이 브라우저에만 저장)</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>2</i></span><div><h2>종목 국면</h2><p>검색해서 추가하면 KIS 2년치 일봉을 바로 조회·판정 · Action은 네가 입력한 목표·현재비중 기준 (현재비중 &gt; 0 = 보유, 이 브라우저에만 저장)</p></div><span class="chev">▾</span></summary>
       <div class="body">
         <div class="tools">
           <div class="tools-l">
@@ -424,7 +424,7 @@ Vercel Cron  평일 16:10 KST /api/cron?m=KR · 화~토 07:10 KST /api/cron?m=US
     <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
-      <button class="pbtn" data-y="1">1년</button><button class="pbtn" data-y="2">2년</button>
+      <button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button>
       <button class="pbtn ta" id="d-ta" aria-pressed="false"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><rect x="2" y="4" width="4" height="9" rx="1" style="fill:var(--gold)"/><line x1="4" y1="1" x2="4" y2="17" style="stroke:var(--gold);stroke-width:1.6"/><rect x="10" y="6" width="4" height="7" rx="1" style="fill:none;stroke:var(--gold);stroke-width:1.6"/><line x1="12" y1="2" x2="12" y2="16" style="stroke:var(--gold);stroke-width:1.6"/></svg>기술적 분석 열기</button>
       <button class="pbtn x" id="d-x" aria-label="닫기">✕</button>
     </div>
@@ -466,8 +466,8 @@ async function api(path,opt={}){
 }
 const post=(p,b)=>api(p,{method:'POST',body:JSON.stringify(b)});
 
-const state={m:'US',filter:'전체',years:2,ta:false,cur:null,series:null,busy:new Set()};
-let D=null,MACRO=null,DS=null,MASTER=null,BYKEY={};
+const state={m:'US',filter:'전체',years:'1y',ta:false,cur:null,series:null,busy:new Set()};
+let D=null,MACRO=null,DS=null,MASTER=null,MASTER_SRC=null,BYKEY={};
 const K=s=>`${s.m}:${s.code}`;
 
 function actionOf(S){
@@ -519,18 +519,23 @@ function mini(S){
 }
 function renderFilters(){
   const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
-  $('filters').innerHTML=['전체',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${f==='전체'?'':`<span class="dot" style="background:${col(f)}"></span>`}${f} <span class="num muted">${f==='전체'?visible().length:cnt(f)}</span></button>`).join('');
-  $('filters').querySelectorAll('button').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
+  const held=visible().filter(s=>W(s.code).cur>0).length;
+  $('filters').innerHTML=['전체','보유',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='보유'?held:cnt(f)}</span></button>`).join('')
+    +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${COLS.filter(c=>c.k).map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
+    +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`;
+  $('sortk').onchange=e=>{const c=COLS.find(x=>x.k===e.target.value);PREF.sort={k:c.k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()};
+  $('sortd').onclick=()=>{PREF.sort={...PREF.sort,d:-PREF.sort.d};savePrefs();renderFilters();renderHead();renderRows()};
+  $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
 }
 function renderHead(){
   const so=PREF.sort;
   $('thead').innerHTML='<tr>'+COLS.map(c=>{if(!c.k)return `<th>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
     return `<th class="${c.r?'r':''}" aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
-  $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderHead();renderRows()});
+  $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()});
 }
 function renderRows(flash){
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m);
-  let list=visible().filter(s=>state.filter==='전체'||s.season===state.filter);
+  let list=visible().filter(s=>state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS[9],d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
@@ -592,7 +597,7 @@ async function seed(){
 /* 검색 — KIS 종목 마스터(빌드 때 생성) */
 const q=$('q'),dd=$('dd');let hl=-1,res=[];
 const norm=s=>s.toLowerCase().replace(/\s+/g,'');
-async function loadMaster(){if(MASTER)return;try{const j=await (await fetch('data/master.json')).json();MASTER=j.rows.map(r=>({m:r[0],code:r[1],name:r[2],excd:r[3],ko:r[4]||''}))}catch(e){MASTER=[]}}
+async function loadMaster(){if(MASTER)return;try{const j=await (await fetch('data/master.json')).json();MASTER_SRC=j.source;MASTER=j.rows.map(r=>r[0]==='KR'?{m:'KR',code:r[1],name:r[2],excd:null,ko:'',tag:r[4]||''}:{m:'US',code:r[1],name:r[2],excd:r[3],ko:r[4]||'',tag:''})}catch(e){MASTER=[]}}
 async function showDD(){
   await loadMaster();
   const raw=q.value.trim(),s=norm(raw);if(!s){dd.hidden=true;return}
@@ -605,8 +610,10 @@ async function showDD(){
   }
   const inList=c=>!!BYKEY[`${c.m}:${c.code}`];
   hl=res.findIndex(r=>!inList(r));
-  dd.innerHTML=res.length?res.map((c,i)=>{const got=inList(c);return `<button type="button" role="option" data-i="${i}" ${got?'disabled':''} class="${i===hl?'hl':''}"><b>${esc(c.code)}</b><span>${c.manual?'<span class="muted">코드로 직접 조회</span>':esc(c.name)}${c.ko&&c.ko!==c.name?` <span class="muted">${esc(c.ko)}</span>`:''} <span class="muted">· ${c.m==='US'?'미국'+(c.excd?' '+c.excd:''):'한국'}</span></span><span class="add">${got?'추가됨':'조회+추가'}</span></button>`}).join('')
+  dd.innerHTML=res.length?res.map((c,i)=>{const got=inList(c);return `<button type="button" role="option" data-i="${i}" ${got?'disabled':''} class="${i===hl?'hl':''}"><b>${esc(c.code)}</b><span>${c.manual?'<span class="muted">코드로 직접 조회</span>':esc(c.name)}${c.ko&&c.ko!==c.name?` <span class="muted">${esc(c.ko)}</span>`:''}${c.tag?` <span class="tag t-mid">${esc(c.tag)}</span>`:''} <span class="muted">· ${c.m==='US'?'미국'+(c.excd?' '+c.excd:''):'한국'}</span></span><span class="add">${got?'추가됨':'조회+추가'}</span></button>`}).join('')
     :`<div class="empty">‘${esc(raw)}’ 없음</div>`;
+  const src=MASTER_SRC&&typeof MASTER_SRC==='object'?MASTER_SRC:null;
+  dd.innerHTML+=`<div class="empty" style="border-top:1px solid var(--line);padding:6px 14px;font-size:11.5px">검색 목록 — 한국 ${esc(src?.KR||'?')} · 미국 ${esc(src?.US||'?')}${src&&/대체/.test(src.KR+src.US)?' <span class="warn">(KIS 마스터 다운로드 실패 — 재배포하면 다시 시도)</span>':''}</div>`;
   dd.hidden=false;dd.querySelectorAll('button:not(:disabled)').forEach(b=>b.onclick=()=>pick(res[+b.dataset.i]));
 }
 function pick(c){q.value='';dd.hidden=true;addItems([{m:c.m,code:c.code,name:c.name,excd:c.excd}])}
@@ -707,11 +714,11 @@ async function runTrain(){
 }
 
 /* ---------- 상세 ---------- */
-const WIN={1:252,2:520};
+const WIN={'1m':21,'3m':63,'6m':126,'1y':252,'2y':520};
 function niceStep(r){const p=Math.pow(10,Math.floor(Math.log10(r)));const f=r/p;return (f<1.5?1:f<3?2:f<7?5:10)*p}
 function sma(a,k){const o=new Array(a.length);let s=0;for(let i=0;i<a.length;i++){s+=a[i];if(i>=k)s-=a[i-k];o[i]=s/Math.min(i+1,k)}return o}
 async function openDetail(key){
-  const S=BYKEY[key];state.cur=S;state.years=2;state.ta=false;state.series=null;
+  const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
   $('d-eye').textContent=`국면 확률 · ${S.code}`;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
@@ -734,7 +741,7 @@ async function openDetail(key){
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 function drawDetail(){
   const S=state.cur,J=state.series;if(!J)return;
-  document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.y===state.years)));
+  document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.y===state.years)));
   $('d-ta').setAttribute('aria-pressed',String(state.ta));$('d-ta').lastChild.textContent=state.ta?'기술적 분석 닫기':'기술적 분석 열기';
   const N=J.d.length,A=N-1,win=Math.min(N,WIN[state.years]),i0=N-win;
   const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]){runs.push({s:J.s[a],a,b:t-1});a=t}}
@@ -753,7 +760,7 @@ function drawDetail(){
   const H2=190,mt2=34,mb2=30,ph2=H2-mt2-mb2,y2=v=>mt2+(100-v)/100*ph2;
   let d=`M${x(i0).toFixed(1)},${y2(J.h[i0]).toFixed(1)}`;for(let t=i0+1;t<N;t++)d+=`H${x(t).toFixed(1)}V${y2(J.h[t]).toFixed(1)}`;
   let g2='';for(const v of [0,50,100])g2+=`<line x1="${ml}" x2="${ml+pw}" y1="${y2(v)}" y2="${y2(v)}" style="stroke:var(--line)"/><text x="${ml-8}" y="${y2(v)+4}" text-anchor="end" class="t-muted num" style="font-size:12px">${v}%</text>`;
-  let xl='';for(let k=0;k<5;k++){const i=Math.round(i0+k*(win-1)/4.6);xl+=`<text x="${x(i).toFixed(1)}" y="${H2-8}" text-anchor="middle" class="t-muted num" style="font-size:12px">${J.d[i].slice(0,7)}</text>`}
+  let xl='';for(let k=0;k<5;k++){const i=Math.round(i0+k*(win-1)/4.6);xl+=`<text x="${x(i).toFixed(1)}" y="${H2-8}" text-anchor="middle" class="t-muted num" style="font-size:12px">${win<=130?J.d[i].slice(5):J.d[i].slice(0,7)}</text>`}
   $('c-prob').innerHTML=`<svg viewBox="0 0 ${Wd} ${H2}" role="img" aria-label="국면 확률 추이"><text x="${ml}" y="18" class="clab">국면 확률</text>${bands(mt2-6,H2-mb2,false)}${g2}<path d="${d}V${y2(0)}H${x(i0).toFixed(1)}Z" style="fill:var(--gold);fill-opacity:.14"/><path d="${d}" style="fill:none;stroke:var(--gold);stroke-width:2"/>${xl}</svg>`;
   $('d-seg').innerHTML=runs.filter(r=>r.b>=i0).map(r=>{const a=Math.max(r.a,i0);return `<span title="${r.s} ${J.d[a]}~${J.d[r.b]}" style="flex:${r.b-a+1} 0 0;background:${col(r.s)}"></span>`}).join('');
 }
@@ -778,7 +785,7 @@ document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.
 let engDone=false;
 [['tab-dash','dash'],['tab-eng','eng']].forEach(([t,p],_,all)=>$(t).onclick=()=>{all.forEach(([t2,p2])=>{$(t2).setAttribute('aria-pressed',String(t2===t));$(p2).hidden=p2!==p});
   $('mktseg').style.visibility=p==='dash'?'visible':'hidden';if(p==='eng'&&!engDone){engDone=true;renderEngine()}});
-document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.onclick=()=>{state.years=+b.dataset.y;drawDetail()});
+document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.onclick=()=>{state.years=b.dataset.y;drawDetail()});
 $('d-ta').onclick=()=>{state.ta=!state.ta;drawDetail()};
 $('d-x').onclick=closeDetail;$('ov').onclick=e=>{if(e.target.id==='ov')closeDetail()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)closeDetail();$('keyov').hidden=true}});
