@@ -3,6 +3,7 @@ import * as store from '../lib/store.js';
 import { engineState, KEEP, send } from '../lib/service.js';
 import { analyze } from '../lib/engine.js';
 import { indexParams } from '../lib/market.js';
+import { historyOf } from '../lib/history.js';
 
 export default async function handler(req, res) {
   try {
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
     const [bars, eng] = await Promise.all([store.getBars(m, code), engineState()]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
     const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값
-    const { summary, series, history } = analyze(bars, P, eng.cal, KEEP);
+    const A = analyze(bars, P, eng.cal, KEEP), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
     send(res, 200, { summary, series, history, cal: eng.cal, src: bars.src || null });
   } catch (e) { send(res, 500, { error: e.message }); }
 }

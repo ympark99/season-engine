@@ -4,6 +4,7 @@ import * as store from '../lib/store.js';
 import { engineState, KEEP, send } from '../lib/service.js';
 import { analyze } from '../lib/engine.js';
 import { INDICES, refreshIndex, indexParams } from '../lib/market.js';
+import { historyOf } from '../lib/history.js';
 
 export default async function handler(req, res) {
   try {
@@ -21,7 +22,7 @@ export default async function handler(req, res) {
     const out = INDICES.map((ix, i) => {
       const b = bars[i], base = { m: 'IX', code: ix.code, name: ix.name, grp: ix.grp };
       if (!b?.d?.length || b.d.length < 80) return { ...base, error: errs[ix.code] || '아직 데이터 없음' };
-      const ip = indexParams(b, eng.params), { summary, history } = analyze(b, ip.P, eng.cal, KEEP);
+      const ip = indexParams(b, eng.params), A = analyze(b, ip.P, eng.cal, KEEP), { summary } = A, history = historyOf(A, eng.cal, KEEP);
       delete summary.events;
       const done = history.filter(h => !h.ongoing);
       const stats = Object.fromEntries(['봄', '여름', '가을', '겨울'].map(s => {
