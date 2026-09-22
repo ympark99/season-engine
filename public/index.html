@@ -250,6 +250,16 @@ th.r .sb{flex-direction:row}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--card);border-radius:12px;padding:10px 12px 10px 16px;display:flex;gap:14px;align-items:center;font-size:13px;z-index:30;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
 .toast button{border:0;background:none;color:var(--gold);font-weight:700}
 .warn{color:var(--autumn-ink)}
+table{min-width:1080px}
+.sig{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.sig-thaw{background:var(--spring-pill);color:var(--spring-ink)}.sig-weak{background:var(--autumn-pill);color:var(--autumn-ink)}.sig-up{background:var(--summer-pill);color:var(--summer-ink)}
+.catb{display:inline-flex;gap:5px;align-items:center;font-size:12px;white-space:nowrap}
+.catb .n{color:var(--ink2);font-weight:600}
+.explain{display:grid;grid-template-columns:52px 110px 1fr;gap:8px 12px;font-size:13px;margin-top:6px}
+.explain b{color:var(--gold-ink)}
+@media (max-width:640px){.explain{grid-template-columns:44px 1fr}.explain .dsc{grid-column:1/-1;margin-bottom:6px}}
+.movelist{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:12.5px;margin-top:10px}
+.movelist dt{color:var(--muted)}.movelist dd{margin:0}
 </style>
 <style>
 body{margin:0}
@@ -308,7 +318,7 @@ body{margin:0}
     </details>
 
     <details class="sec" open>
-      <summary><span class="ico"><i>2</i></span><div><h2>종목 국면</h2><p>검색해서 추가하면 KIS 2년치 일봉을 바로 조회·판정 · Action은 네가 입력한 목표·현재비중 기준 (현재비중 &gt; 0 = 보유, 이 브라우저에만 저장)</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>2</i></span><div><h2>종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · Action은 네가 입력한 목표·현재비중 기준 (현재비중 &gt; 0 = 보유, 이 브라우저에만 저장)</p></div><span class="chev">▾</span></summary>
       <div class="body">
         <div class="tools">
           <div class="tools-l">
@@ -400,9 +410,9 @@ P_s = σ(a_s + b_s · z_s) × 100</pre>
       </section>
       <section class="card"><h2>구조 (Vercel)</h2>
 <pre>브라우저 ── /api/list · /api/stock ──▶ Vercel 함수 ── Upstash Redis (일봉·목록·엔진 파라미터)
-        └─ /api/add (관리자) ────────▶ KIS 일봉 즉시 조회 (2년 + 워밍업 150일) → 저장 → 판정
+        └─ /api/add (관리자) ────────▶ KIS 일봉 즉시 조회 (5년 + 워밍업 150일) → 저장 → 판정
 Vercel Cron  평일 16:10 KST /api/cron?m=KR · 화~토 07:10 KST /api/cron?m=US — 목록 종목 새 봉만 덧쓰기
-학습        엔진 탭 [학습 실행] → 라벨 종목 41개 준비 → DS 판정 재현 탐색 → 파라미터·Ps 보정 저장
+학습        엔진 탭 [학습 실행] → 라벨 종목 55개 준비 → DS 판정 재현 탐색 → 파라미터·Ps 보정 저장
 정적 파일    public/data/macro.json · ds.json (Claude 가 검색·코멘트로 갱신) · master.json (빌드 때 KIS 종목 마스터)</pre>
       </section>
       <div class="doc" id="engdyn"><div class="loading">불러오는 중…</div></div>
@@ -424,7 +434,7 @@ Vercel Cron  평일 16:10 KST /api/cron?m=KR · 화~토 07:10 KST /api/cron?m=US
     <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
-      <button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button>
+      <button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
       <button class="pbtn ta" id="d-ta" aria-pressed="false"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><rect x="2" y="4" width="4" height="9" rx="1" style="fill:var(--gold)"/><line x1="4" y1="1" x2="4" y2="17" style="stroke:var(--gold);stroke-width:1.6"/><rect x="10" y="6" width="4" height="7" rx="1" style="fill:none;stroke:var(--gold);stroke-width:1.6"/><line x1="12" y1="2" x2="12" y2="16" style="stroke:var(--gold);stroke-width:1.6"/></svg>기술적 분석 열기</button>
       <button class="pbtn x" id="d-x" aria-label="닫기">✕</button>
     </div>
@@ -433,7 +443,8 @@ Vercel Cron  평일 16:10 KST /api/cron?m=KR · 화~토 07:10 KST /api/cron?m=US
     <div class="legend"><div class="items"><span><i style="background:var(--spring)"></i>봄</span><span><i style="background:var(--summer)"></i>여름</span><span><i style="background:var(--autumn)"></i>가을</span><span><i style="background:var(--winter)"></i>겨울</span></div><span class="muted">확률 출처: lib/engine.js psOf</span></div>
     <h4 style="margin:0 0 8px;font-size:15px">국면 구간 (길이 = 기간)</h4>
     <div class="segbar" id="d-seg"></div>
-    <div class="why"><h4>엔진 근거</h4><dl id="d-why"></dl></div>
+    <div class="why"><h4>엔진 근거</h4><dl id="d-why"></dl>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label class="sub" for="d-cat">현금흐름 범주</label><select id="d-cat"></select><span class="sub" id="d-catv"></span></div></div>
   </div>
 </div>
 
@@ -451,10 +462,14 @@ const kst=iso=>new Date(new Date(iso).getTime()+9*3600e3).toISOString().slice(5,
 
 /* ---------- 이 브라우저에만 저장: 관리자 키, 비중, 정렬 ---------- */
 const LS='swss-vercel-v1';
-let PREF={key:'',w:{},sort:{k:'tgt',d:-1}};
+let PREF={key:'',w:{},sort:{k:'tgt',d:-1},cat:{}};
 try{PREF=Object.assign(PREF,JSON.parse(localStorage.getItem(LS)||'{}'))}catch(e){}
 const savePrefs=()=>{try{localStorage.setItem(LS,JSON.stringify(PREF))}catch(e){}};
 const W=code=>PREF.w[code]||{tgt:0,cur:0};
+const catKey=S=>(PREF.cat||{})[`${S.m}:${S.code}`]??CATS.map[`${S.m}:${S.code}`]??'';
+const catOf=S=>{const k=catKey(S);return k?(MACRO?.categories||[]).find(c=>c.key===k)||{key:k,name:k,view:'?'}:null};
+const SHORT={cf1_contract:'CF1 계약',cf1_ai:'CF1 AI발주',cf1_rate:'CF1 은행',cf1_oil:'CF1 유가',cf2:'CF2 내년발주',cf3:'CF3 다음사이클',cf4:'CF4 메모리',others_money:'남의 돈',own_money:'내 돈',cf5:'CF5 AI수익'};
+const shortCat=c=>c?(SHORT[c.key]||c.name):'';
 
 /* ---------- API ---------- */
 async function api(path,opt={}){
@@ -467,10 +482,17 @@ async function api(path,opt={}){
 const post=(p,b)=>api(p,{method:'POST',body:JSON.stringify(b)});
 
 const state={m:'US',filter:'전체',years:'1y',ta:false,cur:null,series:null,busy:new Set()};
-let D=null,MACRO=null,DS=null,MASTER=null,MASTER_SRC=null,BYKEY={};
+let D=null,MACRO=null,DS=null,MASTER=null,MASTER_SRC=null,BYKEY={},CATS={map:{}};
 const K=s=>`${s.m}:${s.code}`;
+const vcls=v=>v==='Over'?'v-Over':v==='Equal'?'v-Equal':v==='Under'?'v-Under':'v-etc';
 
 function actionOf(S){
+  const a=baseAction(S),c=catOf(S);
+  // 국면은 진입 허가, 범주 뷰가 선택 — Under 범주면 신규·추가 매수를 보류
+  if(c&&c.view==='Under'&&['추가 매수','매수','신규 매수','진입 검토'].includes(a[0]))return ['보류 · 범주 Under','a-wait'];
+  return a;
+}
+function baseAction(S){
   const {tgt,cur}=W(S.code),s=S.season;
   if(s==='봄')return tgt>0?(cur<tgt-0.5?['신규 매수','a-new']:['보유','a-hold']):['진입 검토','a-new'];
   if(s==='여름')return cur>0?(tgt>cur+0.5?['추가 매수','a-buy']:['보유','a-hold']):(tgt>0?['매수','a-buy']:['보유 후보','a-hold']);
@@ -503,11 +525,11 @@ function renderRegime(){
 
 /* ② */
 const SEASON_ORD={봄:0,여름:1,가을:2,겨울:3};
-const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입 검토':4,'보유 후보':5,'비중 축소':6,'대기':7,'관망':8,'전량 정리':9};
+const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입 검토':4,'보유 후보':5,'보류 · 범주 Under':6,'비중 축소':7,'대기':8,'관망':9,'전량 정리':10};
 const COLS=[
   {k:'code',t:'종목코드',v:S=>S.code,str:1},{k:'name',t:'종목명',v:S=>S.name,str:1},{k:null,t:''},
-  {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
-  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]:99},
+  {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
+  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},{k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1},{k:null,t:''}
 ];
 function mini(S){
@@ -536,21 +558,24 @@ function renderHead(){
 function renderRows(flash){
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m);
   let list=visible().filter(s=>state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter));
-  const c=COLS.find(x=>x.k===PREF.sort.k)||COLS[9],d=PREF.sort.d;
+  const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
   const rm=S=>`<td><button class="rm" data-m="${S.m}" data-rm="${esc(S.code)}" aria-label="${esc(S.name)} 삭제" title="목록에서 삭제">✕</button></td>`;
-  const html=busy.map(b=>`<tr><td class="code">${esc(b.code)}</td><td class="name">${esc(b.name)}</td><td colspan="10" class="muted">KIS에서 2년치 일봉 조회·판정 중…</td></tr>`).join('')+
+  const html=busy.map(b=>`<tr><td class="code">${esc(b.code)}</td><td class="name">${esc(b.name)}</td><td colspan="12" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
     list.map(S=>{
-      if(!ok(S))return `<tr><td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td colspan="9" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
+      if(!ok(S))return `<tr><td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td colspan="11" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S);return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>
       <td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td><button class="open">열기 ›</button></td>
       <td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>
-      <td class="r num wt">${S.prob}%</td><td class="r num">${S.age}d</td><td>${mini(S)}</td>
+      <td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>
+      <td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>
+      <td class="r num">${S.age}d</td><td>${mini(S)}</td>
       <td class="r num" style="color:${S.dd<-15?'var(--neg)':'var(--ink2)'}">${S.dd>-0.5?'신고가':sgn(S.dd)+'%'}</td>
+      <td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td>
       <td><span class="act ${A[1]}">${A[0]}</span></td><td class="r">${wi(S.code,'tgt')}</td><td class="r">${wi(S.code,'cur')}</td>${rm(S)}</tr>`}).join('');
-  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="12" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
-    :`<tr><td colspan="12" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
+  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="14" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
+    :`<tr><td colspan="14" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
   $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm'))return;openDetail(tr.dataset.k)});
   $('rows').querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();removeStock(b.dataset.m,b.dataset.rm)});
   $('rows').querySelectorAll('.wt-in').forEach(inp=>{inp.onclick=e=>e.stopPropagation();
@@ -644,9 +669,10 @@ function renderMacro(){
   $('macro-sub').textContent=`값 기준 ${M.asof} · 갱신 ${M.updatedAt} · ${M.updatedBy}`;
   $('macro').innerHTML=`<div class="macro-grid">${M.watch.map(w=>`<div class="mcard"><div class="k"><span>${esc(w.name)}</span><span class="tag t-mid">${esc(w.status)}</span></div>
       <div class="v num">${w.value==null?'—':(w.unit==='$'?'$':'')+w.value+(w.unit&&w.unit!=='$'?`<small>${esc(w.unit)}</small>`:'')} <small>${esc(w.chg||'')}</small></div>
-      <div class="c">${esc(w.check)}</div>${w.if?`<div class="if">→ ${esc(w.if)}</div>`:''}</div>`).join('')}</div>
+      <div class="c">${esc(w.check)}</div>${w.if?`<div class="if">→ ${esc(w.if)}</div>`:''}<div class="if num">기준 ${esc(w.asof||'')}</div></div>`).join('')}</div>
+    ${M.explain?`<div class="box" style="margin-top:14px"><h3>${esc(M.explain.title)}</h3><div class="explain">${M.explain.body.map(([n,t,d])=>`<b>${esc(n)}</b><span><b style="color:var(--ink)">${esc(t)}</b></span><span class="dsc">${esc(d)}</span>`).join('')}</div><div class="sub" style="margin-top:8px">${esc(M.explain.caveat)}</div></div>`:''}
     <div class="two" style="margin-top:14px">
-      <div class="box"><h3>현금흐름 범주 뷰</h3>${M.categories.map(c=>`<div class="cat"><span><b>${esc(c.name)}</b></span><span class="tag ${vc(c.view)}">${esc(c.view)}${c.chg&&c.chg!=='유지'?' · '+esc(c.chg):''}</span><span class="eg">${esc(c.eg)}</span></div>`).join('')}</div>
+      <div class="box"><h3>현금흐름 범주 뷰</h3>${M.categories.map(c=>`<div class="cat"><span><b>${esc(c.name)}</b> <span class="muted">· 내 목록 ${visible().filter(x=>catKey(x)===c.key).length}종목</span></span><span class="tag ${vc(c.view)}">${esc(c.view)}${c.chg&&c.chg!=='유지'?' · '+esc(c.chg):''}</span><span class="eg">${esc(c.eg)}</span></div>`).join('')}</div>
       <div class="box"><h3>정책 · 시나리오</h3><dl class="presc" style="margin-top:0;padding-top:0;border-top:0">
           <dt>연방기금금리</dt><dd class="num">${esc(M.policy.fed.rate)} · ${esc(M.policy.fed.last)}</dd>
           <dt>점도표</dt><dd class="num">${Object.entries(M.policy.fed.dots).map(([y,v])=>`${y} ${v}% <span class="muted">(${M.policy.fed.dotsPrev[y]}%)</span>`).join(' · ')}</dd>
@@ -668,6 +694,10 @@ function renderDS(){
         <div class="row"><span>기저</span><div class="track"><div style="height:100%;width:${R.base/40*100}%;background:var(--muted)"></div></div><span>${R.base}%</span></div></div>
       <div class="sub" style="margin-top:6px">차이 ${(R.p8-R.base).toFixed(1)}%p${R.topSector?` · 섹터 경보 1위 ${esc(R.topSector)} (선행률 ${R.topSectorLead}%)`:''}${R.leaderStress?` · 대장주 스트레스 ${R.leaderStress}`:''}</div></div></div>
   <div class="tiles">${tile('기술적 공학 점수',T.score,esc(T.label))}${tile('상승 확률',T.up!=null?T.up.toFixed(1)+'%':null,'시총가중')}${tile('순노출',T.net!=null?sgn(T.net)+'%':null,'강세 − 약세 시총')}${tile('폭',T.br!=null?sgn(T.br)+'%':null,T.bull?`강세 ${T.bull} · 약세 ${T.bear}`:'종목 수 기준')}</div>
+  ${X.regime?`<div class="box" style="margin-top:14px"><h3>DS 유니버스 ${X.regime.n}종목 국면 분포 (${esc(X.regime.asof)}) — 강세폭 ${X.regime.bull}% <span class="muted">(${esc(X.regime.bullPrev||'')})</span></h3>
+    <div class="stack" aria-hidden="true">${SEASONS.map(s=>`<span style="width:${X.regime.pct[s]}%;background:${col(s)}"></span>`).join('')}</div>
+    <div class="stack-lbl num">${SEASONS.map(s=>`<span>${HAN[s]} ${s} ${X.regime.pct[s]}% · ${X.regime.cnt[s]}</span>`).join('')}</div>
+    ${X.moves?`<dl class="movelist">${X.moves.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`:''}</div>`:''}
   <div class="verdict">${esc(X.verdict)}</div><div class="sub" style="margin-top:6px">${esc(DS.asof)} · ${esc(DS.note)}</div>`;
 }
 
@@ -681,18 +711,19 @@ async function renderEngine(){
   const rows=M.report||[],bySrc={};rows.forEach(r=>{bySrc[r.src]=bySrc[r.src]||{n:0,s:0};bySrc[r.src].n++;bySrc[r.src].s+=r.score});
   $('engdyn').innerHTML=`
   <section class="card"><h2>학습된 임계값</h2>
-    <p class="lead">${M.trainedAt?`${kst(M.trainedAt)} 학습 — DS 판정 재현 적중률 <b>${(fit.train*100).toFixed(1)}%</b> (교차검증 ${(fit.cvMean*100).toFixed(1)}% ±${(fit.cvStd*100).toFixed(1)}, 초기값 ${(fit.initial*100).toFixed(1)}%). 교차검증이 학습 점수보다 많이 낮으면 과적합.`:'아직 학습 전 — 초기값 사용 중. 아래 [학습 실행]을 누르면 라벨 종목 41개의 2년치 일봉을 받아 학습해 (1~2분).'}</p>
+    <p class="lead">${M.trainedAt?`${kst(M.trainedAt)} 학습 — DS 판정 재현 적중률 <b>${(fit.train*100).toFixed(1)}%</b> (교차검증 ${(fit.cvMean*100).toFixed(1)}% ±${(fit.cvStd*100).toFixed(1)}, 초기값 ${(fit.initial*100).toFixed(1)}%). 교차검증이 학습 점수보다 많이 낮으면 과적합.`:'아직 학습 전 — 초기값 사용 중. 아래 [학습 실행]을 누르면 라벨 종목 55개의 5년치 일봉을 받아 학습해 (2~3분).'}</p>
     <div class="btns"><button class="pbtn" id="trainbtn" aria-pressed="true">학습 실행</button><span class="sub" id="trainmsg" style="align-self:center"></span></div>
     <div class="tbl-wrap"><table style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">값</th></tr></thead><tbody>
     ${pr.map(([k,n,u])=>`<tr><td><code>${k}</code></td><td>${n}</td><td class="r num wt">${fv(k,u)}</td></tr>`).join('')}</tbody></table></div></section>
-  <section class="card"><h2>국면 확률 P<sub>s</sub> 보정 — 스크린샷 앵커</h2>
-    <p class="lead">규칙 판정 국면이 스크린샷과 같을 때만 앵커로 씀. 같은 국면 앵커 2개의 기울기가 음수면 b=1.2 고정으로 평균에 맞춰서 둘 다 정확히는 못 맞춰.</p>
-    ${M.anchors?.length?`<div class="tbl-wrap"><table><thead><tr><th>종목</th><th>날짜</th><th class="r">종가</th><th>스크린샷</th><th>규칙 판정</th><th class="r">z</th><th class="r">모델 P<sub>s</sub></th><th class="r">목표</th><th>상태</th></tr></thead><tbody>
-    ${M.anchors.map(a=>{const hit=a.ok&&a.modelPs!=null&&Math.round(a.modelPs)===Math.round(a.target);return `<tr><td><b>${esc(a.code)}</b></td><td class="num">${a.d}</td><td class="r num">${a.close!=null?fmtP(a.close,a.m):'—'}</td><td><span class="pill p-${a.season}">${a.season}</span></td>
+  <section class="card"><h2>국면 확률 P<sub>s</sub> 보정 — DS 공개 확률 앵커</h2>
+    <p class="lead">스크린샷(9/17)과 9/22 코멘트에 나온 DS 확률 ${M.anchors?.length||0}개로 국면별 식의 가중치를 다시 맞춰. 기존 식을 기준값으로 두고 앵커만큼만 움직이는 ridge 회귀라, 앵커가 적은 국면은 기존 식에 가깝게 남아. 우리 규칙 판정 국면이 DS와 다른 날은 앵커에서 빠져.</p>
+    ${M.anchors?.length?`<div class="tbl-wrap"><table><thead><tr><th>종목</th><th>날짜</th><th class="r">종가</th><th>DS</th><th>규칙 판정</th><th class="r">z</th><th class="r">모델 P<sub>s</sub></th><th class="r">목표</th><th>상태</th></tr></thead><tbody>
+    ${M.anchors.map(a=>{return `<tr><td><b>${esc(a.code)}</b></td><td class="num">${a.d}</td><td class="r num">${a.close!=null?fmtP(a.close,a.m):'—'}</td><td><span class="pill p-${a.season}">${a.season}</span></td>
       <td>${a.pred?`<span class="pill p-${a.pred}">${a.pred}</span>`:'—'}</td><td class="r num">${a.z!=null?a.z.toFixed(3):'—'}</td><td class="r num wt">${a.modelPs!=null?a.modelPs.toFixed(1)+'%':'—'}</td><td class="r num">${a.target}%</td>
-      <td class="${hit?'hit':'miss'}">${a.ok?(hit?'✓ 일치':'근사'):esc(a.why)}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}
-    <div class="tbl-wrap" style="margin-top:10px"><table style="min-width:420px"><thead><tr><th>국면</th><th class="r">a</th><th class="r">b</th><th>방식</th></tr></thead><tbody>
-    ${SEASONS.map(s=>`<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="r num">${M.cal[s].a.toFixed(3)}</td><td class="r num">${M.cal[s].b.toFixed(3)}</td><td>${esc(M.cal[s].how)}</td></tr>`).join('')}</tbody></table></div></section>
+      <td class="${a.ok&&Math.abs(a.modelPs-a.target)<=10?'hit':'miss'}">${a.ok?(Math.abs(a.modelPs-a.target)<=3?'✓ 일치':`차이 ${(a.modelPs-a.target>0?'+':'')+(a.modelPs-a.target).toFixed(0)}p`):esc(a.why)}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}
+    <div class="tbl-wrap" style="margin-top:10px"><table style="min-width:520px"><thead><tr><th>국면</th><th>logit(P<sub>s</sub>) = θ₀ + Σ θᵢ·항</th><th class="r">앵커</th><th class="r">평균 오차</th><th>방식</th></tr></thead><tbody>
+    ${SEASONS.map(s=>{const c=M.cal[s];if(!c.theta)return `<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="num">a ${(+c.a).toFixed(2)} · b ${(+c.b).toFixed(2)}</td><td class="r">—</td><td class="r">—</td><td>${esc(c.how)}</td></tr>`;
+      return `<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="num" style="font-size:12px">${c.theta[0].toFixed(2)} ${c.theta.slice(1).map((t,i)=>`${t>=0?'+':'−'} ${Math.abs(t).toFixed(2)}·<span class="muted">${esc(c.terms?.[i]||'g'+(i+1))}</span>`).join(' ')}</td><td class="r num">${c.n??0}</td><td class="r num">${c.mae!=null?c.mae+'p':'—'}</td><td>${esc(c.how)}</td></tr>`}).join('')}</tbody></table></div></section>
   <section class="card"><h2>DS 판정 재현표</h2>
     <p class="lead">리포트·스크린샷 속 DS 판정(정답) 대비 우리 엔진 판정. entry는 진입일 ±3거래일 안에 전이하면 부분 점수.${M.missing?.length?` 데이터 없는 라벨 종목: ${M.missing.join(', ')}`:''}</p>
     ${rows.length?`<div class="sub" style="margin-bottom:8px">${Object.entries(bySrc).map(([k,v])=>`${k} ${(v.s/v.n*100).toFixed(0)}% (${v.n}건)`).join(' · ')}</div>
@@ -714,7 +745,7 @@ async function runTrain(){
 }
 
 /* ---------- 상세 ---------- */
-const WIN={'1m':21,'3m':63,'6m':126,'1y':252,'2y':520};
+const WIN={'1m':21,'3m':63,'6m':126,'1y':252,'2y':504,'3y':756,'5y':1265};
 function niceStep(r){const p=Math.pow(10,Math.floor(Math.log10(r)));const f=r/p;return (f<1.5?1:f<3?2:f<7?5:10)*p}
 function sma(a,k){const o=new Array(a.length);let s=0;for(let i=0;i<a.length;i++){s+=a[i];if(i>=k)s-=a[i-k];o[i]=s/Math.min(i+1,k)}return o}
 async function openDetail(key){
@@ -726,12 +757,15 @@ async function openDetail(key){
   const f=d=>d.slice(2).replace(/-/g,'.');
   $('d-prev').textContent=`· 직전 국면 ${S.prev.s} (${f(S.prev.a)}~${S.prev.b.slice(5).replace('-','.')})`;
   $('c-price').innerHTML='<div class="loading">차트 불러오는 중…</div>';$('c-prob').innerHTML='';$('d-seg').innerHTML='';$('d-why').innerHTML='';
+  const cats=MACRO?.categories||[],cur=catKey(S);
+  $('d-cat').innerHTML=`<option value="">미분류</option>`+cats.map(c=>`<option value="${c.key}" ${c.key===cur?'selected':''}>${esc(c.name)} · ${esc(c.view)}</option>`).join('');
+  $('d-catv').textContent=(PREF.cat||{})[K(S)]!=null?'직접 지정':(CATS.map[K(S)]?'기본 태그(추정)':'');
+  $('d-cat').onchange=e=>{PREF.cat=PREF.cat||{};PREF.cat[K(S)]=e.target.value;savePrefs();$('d-catv').textContent='직접 지정';renderRows();renderMacro()};
   $('d-x').focus();
   try{const j=await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}`);if(state.cur!==S)return;
-    const c=j.cal[S.season];
     $('d-why').innerHTML=[['종가 ('+S.lastDate.slice(5)+')',fmtP(S.last,S.m)],['국면 진입 후',sgn(S.sinceEntry)+'%'],['국면 내 정점 대비',sgn(S.fromPeak)+'%'],
       ['이평(5·20·60)',S.align===1?'정배열':S.align===-1?'역배열':'혼조'],['52주 고점 대비',S.dd>-0.5?'신고가':sgn(S.dd)+'%'],['데이터',`${S.firstDate.slice(0,7)}~ · ${S.bars}봉`],
-      ['z<sub>'+S.season+'</sub>',S.z.toFixed(2)],['a + b·z',(c.a+c.b*S.z).toFixed(2)],['P<sub>s</sub> = σ(a+b·z)',S.psRaw.toFixed(1)+'%']]
+      ['z<sub>'+S.season+'</sub> (기존 식)',S.z.toFixed(2)],['logit (보정 식)',S.logit!=null?S.logit.toFixed(2):'—'],['P<sub>s</sub> · 5일 변화',S.psRaw.toFixed(1)+'%'+(S.ps5!=null?` · ${S.ps5>0?'+':''}${S.ps5.toFixed(0)}p`:'')]]
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
@@ -793,7 +827,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)
 (async()=>{
   syncMkt();
   try{
-    [MACRO,DS]=await Promise.all([fetch('data/macro.json').then(r=>r.json()).catch(()=>null),fetch('data/ds.json').then(r=>r.json()).catch(()=>null)]);
+    let C;[MACRO,DS,C]=await Promise.all(['macro','ds','categories'].map(n=>fetch(`data/${n}.json`,{cache:'no-store'}).then(r=>r.json()).catch(()=>null)));
+    if(C)CATS=C;
     await reload();
   }catch(e){$('asofline').innerHTML=`<span class="warn">서버에 연결 못 했어: ${esc(e.message)}</span> — /api/health 로 설정을 확인해줘`}
 })();
