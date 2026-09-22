@@ -2,13 +2,15 @@
 import * as store from '../lib/store.js';
 import { engineState, KEEP, send } from '../lib/service.js';
 import { analyze } from '../lib/engine.js';
+import { indexParams } from '../lib/market.js';
 
 export default async function handler(req, res) {
   try {
     const { m, code } = req.query;
     const [bars, eng] = await Promise.all([store.getBars(m, code), engineState()]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
-    const { summary, series } = analyze(bars, eng.params, eng.cal, KEEP);
-    send(res, 200, { summary, series, cal: eng.cal });
+    const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값
+    const { summary, series, history } = analyze(bars, P, eng.cal, KEEP);
+    send(res, 200, { summary, series, history, cal: eng.cal, src: bars.src || null });
   } catch (e) { send(res, 500, { error: e.message }); }
 }
