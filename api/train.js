@@ -2,7 +2,7 @@
 //   {step:'fetch', offset}  라벨 종목 일봉을 6종목씩 준비 (화면이 반복 호출)
 //   {step:'fit', samples}   리포트·스크린샷 속 DS 판정을 재현하도록 임계값 학습 → engine 저장
 import * as store from '../lib/store.js';
-import { refresh, isAdmin, send, body } from '../lib/service.js';
+import { refresh, isAdmin, send, body, needFrom } from '../lib/service.js';
 import { train } from '../lib/engine.js';
 import L from '../lib/labels.js';
 
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       const cur = await store.mgetBars(batch);
       for (let i = 0; i < batch.length; i++) {
         const it = batch[i];
-        if (cur[i]?.d?.length && cur[i].d[cur[i].d.length - 1] >= fresh) { done.push(it.code); continue; }
+        if (cur[i]?.d?.length && cur[i].d[cur[i].d.length - 1] >= fresh && (cur[i].full || cur[i].d[0] <= needFrom())) { done.push(it.code); continue; }
         try { await refresh(it); done.push(it.code); } catch (e) { failed.push({ code: it.code, error: e.message.slice(0, 160) }); }
       }
       const next = off + batch.length;

@@ -1,0 +1,16 @@
+{
+ "note": "종목 → 현금흐름 범주 태그. 양형모 코멘트 용례로 추정한 기본값이고, 화면(종목 상세)에서 바꾸면 그 브라우저에서는 그 값이 우선.",
+ "map": {
+  "US:VLO": "cf1_contract", "US:MPC": "cf1_contract", "US:PSX": "cf1_contract", "US:TRGP": "cf1_contract", "US:OKE": "cf1_contract",
+  "US:AMD": "cf1_ai", "US:INTC": "cf1_ai", "US:DELL": "cf1_ai", "US:MRVL": "cf1_ai", "US:ANET": "cf1_ai", "US:QCOM": "cf1_ai", "US:CIEN": "cf1_ai",
+  "US:GLW": "cf1_ai", "US:APH": "cf1_ai", "US:COHR": "cf1_ai", "US:LITE": "cf1_ai", "US:SMCI": "cf1_ai", "US:GEV": "cf1_ai", "US:VRT": "cf1_ai", "US:ETN": "cf1_ai",
+  "KR:000660": "cf1_ai",
+  "US:JPM": "cf1_rate", "US:BAC": "cf1_rate", "US:GS": "cf1_rate", "US:C": "cf1_rate", "US:WFC": "cf1_rate", "US:USB": "cf1_rate", "US:FITB": "cf1_rate", "US:HBAN": "cf1_rate",
+  "KR:055550": "cf1_rate", "KR:086790": "cf1_rate", "KR:105560": "cf1_rate", "KR:316140": "cf1_rate",
+  "US:XOM": "cf1_oil", "US:CVX": "cf1_oil", "US:OXY": "cf1_oil", "US:COP": "cf1_oil", "US:DVN": "cf1_oil", "US:FANG": "cf1_oil", "US:EOG": "cf1_oil",
+  "US:AMAT": "cf3", "US:LRCX": "cf3", "US:KLAC": "cf3", "US:TER": "cf3", "US:ASML": "cf3", "KR:042700": "cf3", "KR:240810": "cf3", "KR:319660": "cf3", "KR:095610": "cf3",
+  "US:MU": "cf4", "US:SNDK": "cf4", "US:STX": "cf4", "US:WDC": "cf4", "KR:005930": "cf4",
+  "US:ORCL": "others_money", "US:CRWV": "others_money",
+  "US:META": "own_money", "US:MSFT": "own_money", "US:AMZN": "own_money", "US:GOOGL": "own_money"
+ }
+}
