@@ -2,6 +2,7 @@
 import * as store from '../lib/store.js';
 import { refresh, send, isAdmin } from '../lib/service.js';
 import { INDICES, refreshIndex } from '../lib/market.js';
+import { chain } from '../lib/universe.js';
 
 
 export default async function handler(req, res) {
@@ -19,6 +20,7 @@ export default async function handler(req, res) {
     catch (e) { failed.push({ code: it.code, error: e.message.slice(0, 160) }); }
   }
   const rep = { at: new Date().toISOString(), m, ok: ok.length, failed, skipped, ms: Date.now() - t0 };
+  rep.universe = await chain(m);                                  // 유니버스(지수 구성종목) 전종목 스캔 시작 — 배치가 스스로 이어서 댅
   await store.set(`cron:${m}`, rep);
   send(res, 200, rep);
 }
