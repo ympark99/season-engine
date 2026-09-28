@@ -803,7 +803,7 @@ function renderDS(){
 async function renderEngine(){
   $('engdyn').innerHTML='<div class="loading">불러오는 중…</div>';
   let M;try{M=await api('/api/meta')}catch(e){$('engdyn').innerHTML=`<div class="warn">${esc(e.message)}</div>`;return}
-  const [BT,UV]=await Promise.all([api('/api/backtest').catch(()=>null),api('/api/universe').catch(()=>null)]);
+  const [BT,UV,FD]=await Promise.all([api('/api/backtest').catch(()=>null),api('/api/universe').catch(()=>null),api('/api/fundamentals').catch(()=>null)]);
   const P=M.params,fit=M.fit;
   const pr=[['W','돌파 창 길이','봉'],['b','돌파 인정폭','%'],['u','旺 승격 상승폭','%'],['d1','衰 전이 낙폭 (정점 대비)','%'],['d2','死 전이 낙폭 (정점 대비)','%'],['TF','衰 장기화 한도','봉'],['TC','死 숙려기간','봉'],['vr','돌파 거래량 배수','배']];
   const fv=(k,u)=>u==='%'?(P[k]*100).toFixed(1)+'%':u==='배'?(+P[k]).toFixed(2)+'배':P[k]+'봉';
@@ -829,9 +829,10 @@ async function renderEngine(){
     <div class="tbl-wrap"><table><thead><tr><th>구분</th><th>종목</th><th>정답</th><th>날짜</th><th>엔진</th><th class="r">점수</th><th>출처</th></tr></thead><tbody>
     ${rows.map(r=>`<tr><td>${r.kind}</td><td><b>${esc(r.code)}</b></td><td>${esc(r.ph||(r.phs||[]).join('/'))}</td><td class="num">${esc(r.d||`${r.a}~${r.b}`)}</td>
       <td>${r.pred?esc(r.pred):''}${r.predEntry?` <span class="muted">(진입 ${r.predEntry.slice(5)})</span>`:''}</td><td class="r num ${r.score>=.5?'hit':'miss'}">${r.score}</td><td>${esc(r.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}</details></section>`
-  +univOpsCard(UV)+accCard(BT)+tuneCard(BT);
+  +univOpsCard(UV)+fundCard(FD)+accCard(BT)+tuneCard(BT);
   $('trainbtn').onclick=runTrain;
   $('scanUS').onclick=()=>runScan('US');$('scanKR').onclick=()=>runScan('KR');$('memBtn').onclick=runMembers;
+  if($('fundBtn'))$('fundBtn').onclick=runFund;if($('fundScore'))$('fundScore').onclick=runFundScore;
   $('accBtn').onclick=()=>runAcc(false);if($('accReset'))$('accReset').onclick=()=>runAcc(true);$('tuneBtn').onclick=runTune;if($('applyBtn'))$('applyBtn').onclick=applyTune;
 }
 const pn=v=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'pos':v<0?'neg':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
@@ -847,6 +848,25 @@ function univOpsCard(UV){
       <button class="pbtn" id="memBtn">구성종목 갱신</button><span class="sub" id="scanmsg"></span></div>
     <div class="sub">${line('US')}<br>${line('KR')}</div>
     <div class="sub" style="margin-top:8px">처음 한 번은 5년치 일봉을 받느라 오래 걸려 (미국 30~40분, 한국 15~20분). 끝나면 매일 새 봉만 받아서 몇 분이면 끝나고, Vercel Cron이 알아서 이어 돌려.</div></section>`;
+}
+function fundCard(FD){
+  const S=FD&&FD.summary, st=FD&&FD.state;
+  const head=`<section class="card"><h2>펀더멘털 — 대장 엔진 재료 (미국)</h2>
+    <p class="lead">Finviz 분기 재무(손익·현금흐름·재무상태) 12분기를 유니버스 전종목에 대해 모아서, <b>이익 증가율의 변화(가속도)</b>·마진·현금흐름·자기 과거 대비 밸류로 점수를 매겨.
+      컨센서스(선행 EPS)는 이 자료에 없어서 '이익 정점'은 실제 실적의 가속도로 대신 잡아. 공시 지연을 감안해 분기말 +45일이 지난 분기만 써.</p>
+    <div class="ops"><button class="pbtn" id="fundBtn" aria-pressed="true">수집 한 조각</button><button class="pbtn" id="fundScore">점수 재계산</button>
+      <span class="sub">${st?`진행 ${st.i}/${st.codes?st.codes.length:'?'}${st.done?' <b>완료</b>':''}${st.failed&&st.failed.length?` · <span class="warn">실패 ${st.failed.length}</span>`:''} · ${kst(st.updatedAt||'')}`:'수집 기록 없음'}</span>
+      <span class="sub" id="fundmsg"></span></div>`;
+  if(!S)return head+'<div class="muted">아직 점수 없음 — 수집을 한 바퀴 돌리면 표가 생겨.</div></section>';
+  const row=r=>`<tr><td><b>${esc(r.code)}</b></td><td class="name">${esc(r.name||'')}</td><td class="r num wt">${r.score}</td>
+    <td class="r num">${r.p.accel??'—'}</td><td class="r num">${r.gRev==null?'—':r.gRev+'%'}</td><td class="r num">${r.dOm==null?'—':(r.dOm>0?'+':'')+r.dOm}</td>
+    <td class="r num">${r.fcfM==null?'—':r.fcfM+'%'}</td><td class="r num">${r.zPs==null?'—':r.zPs}</td><td>${esc(r.funding||'')}</td>
+    <td style="font-size:11.5px">${r.flags.map(f=>`<span class="sig ${f.includes('정점')||f.includes('비쌈')||f.includes('희석')?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</td></tr>`;
+  const tbl=(rows,t)=>`<h3 style="margin:14px 0 6px;font-size:14px">${t}</h3><div class="tbl-wrap"><table class="acc" style="min-width:820px"><thead><tr><th>코드</th><th>이름</th><th class="r">점수</th><th class="r">가속 %ile</th><th class="r">매출 YoY</th><th class="r">영업마진 변화</th><th class="r">FCF 마진</th><th class="r">P/S z</th><th>재원</th><th>플래그</th></tr></thead><tbody>${rows.map(row).join('')}</tbody></table></div>`;
+  return head+`<div class="sub">${S.n}종목 · 이익 정점 경계 <b>${S.peak}</b>종목 · 재원 ${Object.entries(S.funding).map(([k,v])=>`${k} ${v}`).join(' · ')} · ${kst(S.at)}</div>
+    ${tbl(S.rows.slice(0,12),'상위 12')}
+    <details style="margin-top:8px"><summary class="fold"><b style="font-size:14px">하위 12 — 이익 정점·마진 훼손 쪽</b></summary>${tbl((S.bottom||[]).slice(0,12),'')}</details>
+    <div class="sub" style="margin-top:8px">점수 = 가속 30% + 성장 15% + 마진 15% + 현금 15% + 질(ROIC) 10% + 밸류 10% + 위험 5%의 백분위 가중합. 아직 <b>검증 전</b>이라 참고용이야 — 오늘부터 점수를 쌓아 3~6개월 뒤 초과수익으로 검증할 수 있어.</div></section>`;
 }
 function accCard(BT){
   const A=BT&&BT.accuracy, pg=BT&&BT.progress;
@@ -917,6 +937,18 @@ async function runScan(m){
 async function runMembers(){
   const msg=$('scanmsg');msg.textContent='구성종목 받는 중…';
   try{const r=await post('/api/universe',{step:'members',force:true});msg.textContent=`구성종목 ${Object.entries(r.counts).map(([k,v])=>`${k} ${v}`).join(' · ')}${r.errors.length?' · '+r.errors.join(' / '):''}`}
+  catch(e){msg.textContent='실패: '+e.message}
+}
+async function runFund(){
+  const msg=$('fundmsg'),b=$('fundBtn');b.disabled=true;msg.textContent='수집 중…';
+  try{for(let i=0;i<30;i++){const r=await post('/api/fundamentals',{m:'US',step:'collect'});
+      msg.textContent=`${r.i}/${r.total} (새로 ${r.got}, 건너뜀 ${r.skipped}${r.failed?`, 실패 ${r.failed}`:''})`;
+      if(r.done)break}
+    await renderEngine()}catch(e){msg.textContent='실패: '+e.message}finally{b.disabled=false}
+}
+async function runFundScore(){
+  const msg=$('fundmsg');msg.textContent='점수 계산 중…';
+  try{const r=await post('/api/fundamentals',{m:'US',step:'score'});msg.textContent=`완료 — ${r.n}종목`;await renderEngine()}
   catch(e){msg.textContent='실패: '+e.message}
 }
 async function runAcc(reset){
@@ -1027,7 +1059,7 @@ $('k-save').onclick=async()=>{PREF.key=$('k-in').value.trim();savePrefs();
 
 /* ---------- wiring ---------- */
 function syncMkt(){document.querySelectorAll('#mktseg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.m===state.m)));q.placeholder=`종목 검색·추가 — ${state.m==='US'?'티커·영문명 (예: AMD, Tesla)':'종목명·코드 (예: 한미반도체, 042700)'}`}
-function renderAll(){renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderDS()}
+function renderAll(){if(!D){renderUniv();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderDS()}
 async function reload(flash){D=await api('/api/list');BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll()});
 let engDone=false;
