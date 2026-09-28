@@ -1,117 +1,164 @@
-// POST /api/backtest (관리자·cron)
-//   {step:'run',   m, sample}      → 현재 파라미터의 국면 신뢰도(BM 대비 초과수익) 측정 → engine:accuracy 저장
-//   {step:'tune',  m, sample, n}   → 학습기간에서 旺−死 초과수익 간격을 넓히는 임계값 탐색 → engine:tuned 저장 (검증기간 성적도 같이)
-//   {step:'apply'}                 → engine:tuned 의 파라미터를 엔진에 적용 (확률 보정도 DS 앵커로 다시 계산)
+// /api/backtest — 국면 신뢰도 측정과 임계값 보정. 큰 데이터를 한 번에 돌리지 않고 여러 번에 나눠서 진행한다.
+//   GET                     → 저장된 신뢰도·보정 상태 (화면 표시용)
+//   GET ?auto=US&secret=..  → 오늘 남은 일감 한 조각 실행 후 스스로 다음 조각 호출 (cron 체이닝)
+//   POST {step:'run'}       → 신뢰도 측정 한 조각 (수동)
+//   POST {step:'tune'}      → 보정 한 판 (수동)
+//   POST {step:'apply'}     → 후보 파라미터를 엔진에 적용
+//   POST {step:'reset'}     → 진행 상태 초기화
 import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body } from '../lib/service.js';
 import { classify, score, Series, calibrateFromLabels } from '../lib/engine.js';
-import { prep, evaluate, spreadOf, snapshotDist, distGap, objective, DS_DIST, HORIZONS } from '../lib/backtest.js';
-import { members, listOf } from '../lib/universe.js';
+import { prep, mktChunk, statChunk, meansOf, newCells, finalizeCells, spreadOf, distGap, DS_DIST, HORIZONS } from '../lib/backtest.js';
+import { tuneRound, readyToApply } from '../lib/tuner.js';
+import { members, listOf, kstDate } from '../lib/universe.js';
 import L from '../lib/labels.js';
 
-const SPACE = { W: [10, 60, 1], b: [0, 0.08], u: [0.03, 0.4], d1: [0.03, 0.15], gap: [0.03, 0.3], TF: [3, 45, 1], TC: [3, 40, 1], vr: [1, 2] };
-const toP = x => ({ W: x.W, b: x.b, u: x.u, d1: x.d1, d2: x.d1 + x.gap, TF: x.TF, TC: x.TC, vr: x.vr });
-const fromP = P => ({ W: P.W, b: P.b, u: P.u, d1: P.d1, gap: Math.max(0.03, P.d2 - P.d1), TF: P.TF, TC: P.TC, vr: P.vr });
-const rng = seed => { let a = seed >>> 0; return () => { a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
-const gauss = r => { let u = 0; while (!u) u = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * r()); };
-const pick = r => { const x = {}; for (const [k, [lo, hi, int]] of Object.entries(SPACE)) { const v = lo + r() * (hi - lo); x[k] = int ? Math.round(v) : v; } return x; };
-const near = (x, r, sc) => { const y = {}; for (const [k, [lo, hi, int]] of Object.entries(SPACE)) { const v = Math.min(hi, Math.max(lo, x[k] + gauss(r) * (hi - lo) * sc)); y[k] = int ? Math.round(v) : v; } return y; };
-const round = P => Object.fromEntries(Object.entries(P).map(([k, v]) => [k, Number.isInteger(v) ? v : +v.toFixed(5)]));
+const S_STATE = 'bt:state', S_ACC = 'bt:acc', S_CELLS = 'bt:cells', S_TUNER = 'engine:tuner';
+const CHUNK_MS = 30000;                       // 한 조각에 쓸 시간 (함수 제한 60초 안쪽)
+const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query?.secret === process.env.CRON_SECRET);
 
-/** 유니버스에서 표본을 고르고 저장된 일봉을 가져옴 (없는 종목은 건너뜀) */
-async function loadSample(m, want) {
+/** 유니버스에서 표본 종목 코드 (stride 로 고르게) */
+async function sampleCodes(m, want) {
   const mem = await members(), list = listOf(m, mem);
   if (!list.length) throw new Error('구성종목이 없어 — 먼저 유니버스 스캔을 돌려줘');
   const stride = Math.max(1, Math.floor(list.length / want));
-  const picked = list.filter((_, i) => i % stride === 0).slice(0, want);
+  return { codes: list.filter((_, i) => i % stride === 0).slice(0, want).map(x => x.code), universe: list.length };
+}
+/** 저장된 일봉 묶음 로드 */
+async function loadBars(m, codes) {
   const bars = {};
-  for (let i = 0; i < picked.length; i += 25) {
-    const chunk = picked.slice(i, i + 25);
-    const got = await store.mget(chunk.map(x => store.barsKey(m, x.code)));
-    got.forEach((b, j) => { if (b?.d?.length) bars[chunk[j].code] = b; });
+  for (let i = 0; i < codes.length; i += 25) {
+    const chunk = codes.slice(i, i + 25), got = await store.mget(chunk.map(c => store.barsKey(m, c)));
+    got.forEach((b, j) => { if (b?.d?.length) bars[chunk[j]] = b; });
   }
-  return { bars, asked: picked.length, got: Object.keys(bars).length, universe: list.length };
+  return bars;
 }
-
-/** DS 라벨(리포트·스크린샷 판정) 재현율 — 엔진 탭의 학습 점수와 같은 지표. 한 번 읽어 여러 파라미터로 재사용 */
+/** DS 라벨 재현율 (파라미터별로 다시 계산 가능한 클로저) */
 async function dsLabels() {
-  const bars = await store.mgetBars(L.stocks), series = {}, byKey = {};
-  L.stocks.forEach((s, i) => { const b = bars[i]; if (b?.d?.length > 200) { series[`${s.m}:${s.code}`] = new Series(b.d, b.c, b.v); byKey[`${s.m}:${s.code}`] = b; } });
-  const acc = P => { const preds = {}; for (const k in series) preds[k] = classify(series[k], P); return +score(L, series, preds).toFixed(4); };
-  return { acc, stocks: Object.keys(series).length, byKey };
+  const bars = await store.mgetBars(L.stocks), series = {};
+  L.stocks.forEach((s, i) => { const b = bars[i]; if (b?.d?.length > 200) series[`${s.m}:${s.code}`] = new Series(b.d, b.c, b.v); });
+  return P => { const preds = {}; for (const k in series) preds[k] = classify(series[k], P); return +score(L, series, preds).toFixed(4); };
+}
+const cutOf = (a, b) => new Date(Date.parse(a) + (Date.parse(b) - Date.parse(a)) * 0.7).toISOString().slice(0, 10);
+
+/* ------------------------- 신뢰도 측정 (조각 단위) ------------------------- */
+async function runChunk(m, { sample = 250, reset = false } = {}) {
+  const today = kstDate();
+  let st = await store.get(S_STATE);
+  if (reset || !st || st.date !== today || st.m !== m) {
+    const { codes, universe } = await sampleCodes(m, sample);
+    st = { m, date: today, phase: 'mkt', i: 0, codes, universe, horizons: HORIZONS, startedAt: new Date().toISOString() };
+    await store.set(S_ACC, {}); await store.set(S_CELLS, null);
+  }
+  if (st.phase === 'done') return { m, date: today, phase: 'done', i: st.codes.length, total: st.codes.length, scanned: 0, done: true, note: '오늘 측정은 이미 끝났어' };
+
+  const eng = await engineState(), t0 = Date.now();
+  let n = 0;
+  if (st.phase === 'mkt') {
+    const acc = (await store.get(S_ACC)) || {};
+    while (st.i < st.codes.length && Date.now() - t0 < CHUNK_MS) {
+      const slice = st.codes.slice(st.i, st.i + 20);
+      mktChunk(prep(await loadBars(m, slice)), st.horizons, acc);
+      st.i += slice.length; n += slice.length;
+    }
+    await store.set(S_ACC, acc);
+    if (st.i >= st.codes.length) { st.phase = 'stat'; st.i = 0; }
+  } else if (st.phase === 'stat') {
+    const acc = (await store.get(S_ACC)) || {}, means = meansOf(acc, st.horizons);
+    let cells = await store.get(S_CELLS);
+    if (!cells) cells = newCells(st.horizons);
+    while (st.i < st.codes.length && Date.now() - t0 < CHUNK_MS) {
+      const slice = st.codes.slice(st.i, st.i + 20);
+      statChunk(prep(await loadBars(m, slice)), eng.params, eng.cal, means, cells);
+      st.i += slice.length; n += slice.length;
+    }
+    await store.set(S_CELLS, cells);
+    if (st.i >= st.codes.length) {
+      const all = finalizeCells(cells);
+      const target = m === 'US' ? DS_DIST : null;
+      const rec = { at: new Date().toISOString(), m, date: today, params: eng.params,
+        sample: { got: cells.nSym, asked: st.codes.length, universe: st.universe },
+        cut: all.span.a && all.span.b ? cutOf(all.span.a, all.span.b) : null,
+        all, snapshot: { dist: all.snapshot, target, gap: target ? distGap(all.snapshot, target) : null },
+        spread: { all: spreadOf(all) }, horizons: st.horizons };
+      await store.set('engine:accuracy', rec);
+      st.phase = 'done';
+    }
+  }
+  st.updatedAt = new Date().toISOString();
+  await store.set(S_STATE, st);
+  return { m, date: today, phase: st.phase, i: st.i, total: st.codes.length, scanned: n, done: st.phase === 'done' };
 }
 
-const cutOf = (a, b) => {                       // 학습 70% / 검증 30% 로 날짜를 자름
-  const t0 = Date.parse(a), t1 = Date.parse(b);
-  return new Date(t0 + (t1 - t0) * 0.7).toISOString().slice(0, 10);
-};
+/* ------------------------------ 보정 한 판 ------------------------------ */
+async function tuneOnce(m, { sample = 80, budgetMs = 32000 } = {}) {
+  const eng = await engineState();
+  const prev = await store.get(S_TUNER);
+  const { codes, universe } = await sampleCodes(m, sample * 4);
+  const off = ((prev?.off || 0) + sample) % Math.max(1, codes.length);       // 판마다 다른 표본
+  const rotated = [...codes.slice(off), ...codes.slice(0, off)];
+  const bars = {};                                                           // 일봉이 있는 종목만 sample 개 모을 때까지
+  for (let i = 0; i < rotated.length && Object.keys(bars).length < sample; i += 25) {
+    Object.assign(bars, await loadBars(m, rotated.slice(i, i + 25)));
+  }
+  const items = prep(bars).slice(0, sample);
+  if (items.length < 25) throw new Error(`일봉이 있는 종목이 ${items.length}개뿐이야 — 유니버스 스캔을 먼저 끝내줘`);
+  const span = items.reduce((a, it) => ({ a: !a.a || it.s.d[0] < a.a ? it.s.d[0] : a.a, b: it.s.d[it.s.d.length - 1] > a.b ? it.s.d[it.s.d.length - 1] : a.b }), { a: null, b: '' });
+  const dsAccOf = await dsLabels();
+  const st = tuneRound(items, dsAccOf, prev, { budgetMs, target: m === 'US' ? DS_DIST : null, curParams: eng.params, cut: cutOf(span.a, span.b) });
+  st.m = m; st.off = off; st.sample = { got: items.length, universe }; st.span = span;
+  st.ready = readyToApply(st);
+  await store.set(S_TUNER, st);
+  return st;
+}
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') {                       // 저장된 신뢰도·보정 결과 읽기 (화면 표시용)
-    const [acc, tuned] = await store.mget(['engine:accuracy', 'engine:tuned']);
-    return send(res, 200, { accuracy: acc || null, tuned: tuned || null });
-  }
-  if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
-  const cron = process.env.CRON_SECRET && req.headers.authorization === `Bearer ${process.env.CRON_SECRET}`;
-  if (!isAdmin(req) && !cron) return send(res, 401, { error: '관리자 키가 필요해' });
   try {
-    const b = await body(req), m = b.m === 'KR' ? 'KR' : 'US', eng = await engineState();
+    const admin = isAdmin(req), cron = okCron(req);
+    if (req.method === 'GET' && (req.query.auto === 'US' || req.query.auto === 'KR')) {
+      if (!cron && !admin) return send(res, 401, { error: 'cron 전용' });
+      const m = req.query.auto, today = kstDate();
+      const st = await store.get(S_STATE), tuner = await store.get(S_TUNER);
+      let did = null;
+      if (!st || st.date !== today || st.m !== m || st.phase !== 'done') did = { kind: 'run', r: await runChunk(m) };
+      else if (!tuner || tuner.at?.slice(0, 10) !== new Date().toISOString().slice(0, 10) || (tuner.todayRounds || 0) < 4) {
+        const t = await tuneOnce(m);
+        t.todayRounds = (tuner?.at?.slice(0, 10) === new Date().toISOString().slice(0, 10) ? (tuner.todayRounds || 0) : 0) + 1;
+        await store.set(S_TUNER, t);
+        did = { kind: 'tune', round: t.round, todayRounds: t.todayRounds, best: t.pool[0]?.avg, cur: t.cur.avg };
+      }
+      let chained = false;
+      const more = did ? (did.kind === 'run' ? true : did.todayRounds < 4) : false;   // 측정이 끝나면 다음 호출이 보정을 이어서 함
+      const host = process.env.PUBLIC_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null);
+      if (more && host && process.env.CRON_SECRET) {
+        try { await fetch(`${host}/api/backtest?auto=${m}&secret=${encodeURIComponent(process.env.CRON_SECRET)}`, { signal: AbortSignal.timeout(1500) }); chained = true; }
+        catch (e) { chained = e.name === 'TimeoutError' || e.name === 'AbortError'; }
+      }
+      return send(res, 200, { m, did, chained });
+    }
 
+    if (req.method === 'GET') {
+      const [acc, tuner, st] = await store.mget(['engine:accuracy', S_TUNER, S_STATE]);
+      return send(res, 200, { accuracy: acc || null, tuner: tuner || null, progress: st || null });
+    }
+
+    if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
+    if (!admin && !cron) return send(res, 401, { error: '관리자 키가 필요해' });
+    const b = await body(req), m = b.m === 'KR' ? 'KR' : 'US';
+
+    if (b.step === 'reset') { await store.del(S_STATE, S_ACC, S_CELLS); return send(res, 200, { reset: true }); }
+    if (b.step === 'run') return send(res, 200, await runChunk(m, { sample: Math.min(500, Math.max(40, +b.sample || 250)), reset: !!b.reset }));
+    if (b.step === 'tune') return send(res, 200, await tuneOnce(m, { sample: Math.min(200, Math.max(30, +b.sample || 80)), budgetMs: Math.min(40000, +b.budgetMs || 32000) }));
     if (b.step === 'apply') {
-      const tuned = await store.get('engine:tuned');
-      if (!tuned?.params) return send(res, 400, { error: '적용할 보정 결과가 없어 — 먼저 tune 을 돌려줘' });
-      const cur = (await store.get('engine')) || {};
-      const barsByKey = {}, bars = await store.mgetBars(L.stocks);
-      L.stocks.forEach((s, i) => { if (bars[i]) barsByKey[`${s.m}:${s.code}`] = bars[i]; });
-      const { cal, anchors } = calibrateFromLabels(L, barsByKey, tuned.params);
-      await store.set('engine', { ...cur, params: tuned.params, cal, anchors, tunedAt: new Date().toISOString(), tunedFrom: tuned.from || null });
-      return send(res, 200, { applied: tuned.params, anchors: anchors.length });
+      const t = await store.get(S_TUNER), P = b.params || t?.candidate?.P || t?.pool?.[0]?.P;
+      if (!P) return send(res, 400, { error: '적용할 후보가 없어 — 먼저 보정을 돌려줘' });
+      const cur = (await store.get('engine')) || {}, bars = await store.mgetBars(L.stocks), byKey = {};
+      L.stocks.forEach((s, i) => { if (bars[i]) byKey[`${s.m}:${s.code}`] = bars[i]; });
+      const { cal, anchors } = calibrateFromLabels(L, byKey, P);
+      await store.set('engine', { ...cur, params: P, cal, anchors, tunedAt: new Date().toISOString(), tunedFrom: cur.params || null });
+      await store.del(S_STATE, S_ACC, S_CELLS);                       // 파라미터가 바뀜으니 신뢰도는 다시 측정
+      return send(res, 200, { applied: P, anchors: anchors.length });
     }
-
-    const want = Math.min(400, Math.max(40, +b.sample || 250));
-    const { bars, asked, got, universe } = await loadSample(m, want);
-    if (got < 30) return send(res, 400, { error: `저장된 일봉이 ${got}종목뿐이야 — 유니버스 스캔을 먼저 끝내줘 (대상 ${universe}종목)` });
-    const items = prep(bars);
-    const span = items.reduce((a, it) => ({ a: a.a && a.a < it.s.d[0] ? a.a : it.s.d[0], b: a.b > it.s.d[it.s.d.length - 1] ? a.b : it.s.d[it.s.d.length - 1] }), { a: null, b: '' });
-    const cut = cutOf(span.a, span.b);
-
-    const target = b.target || (m === 'US' ? DS_DIST : null);
-
-    if (b.step === 'run') {
-      const all = evaluate(items, eng.params, { cal: eng.cal });
-      const test = evaluate(items, eng.params, { cal: eng.cal, from: cut });
-      const snap = snapshotDist(items, eng.params);
-      const rec = { at: new Date().toISOString(), m, sample: { asked, got, universe }, params: eng.params, cut,
-        all, test, snapshot: { dist: snap, target, gap: target ? distGap(snap, target) : null },
-        spread: { all: spreadOf(all), test: spreadOf(test) }, horizons: HORIZONS };
-      await store.set('engine:accuracy', rec);
-      return send(res, 200, rec);
-    }
-
-    if (b.step === 'tune') {
-      const t0 = Date.now(), budget = Math.min(48000, +b.budgetMs || 40000), r = rng(+b.seed || 11);
-      const ds = await dsLabels();                                     // DS 라벨 재현율도 목적함수에 넣음 (55종목, 가벼움)
-      const wDist = b.wDist ?? 0.06, wDs = b.wDs ?? 5;
-      const fit = P => {                                               // 학습 구간(70%)에서만 최적화
-        const ev = evaluate(items, P, { horizons: [20], to: cut });
-        return objective(ev, { dist: snapshotDist(items, P), target, dsAcc: ds.acc(P), wDist, wDs });
-      };
-      let best = fromP(eng.params), bo = fit(eng.params), tried = 1;
-      while (Date.now() - t0 < budget * 0.55) { const x = pick(r), o = fit(toP(x)); tried++; if (o.score > bo.score) { best = x; bo = o; } }
-      while (Date.now() - t0 < budget) { const x = near(best, r, 0.10), o = fit(toP(x)); tried++; if (o.score >= bo.score) { best = x; bo = o; } }
-      const P = round(toP(best));
-      const view = Q => {
-        const all = evaluate(items, Q, { cal: eng.cal }), test = evaluate(items, Q, { cal: eng.cal, from: cut });
-        const snap = snapshotDist(items, Q);
-        return { params: Q, dist: all.dist, snapshot: snap, gap: target ? distGap(snap, target) : null, dsAcc: ds.acc(Q),
-          spread: { train: spreadOf(evaluate(items, Q, { to: cut })), test: spreadOf(test), all: spreadOf(all) },
-          daily: all.daily, entry: all.entry, prob: all.prob, testDaily: test.daily };
-      };
-      const rec = { at: new Date().toISOString(), m, cut, tried, sample: { asked, got, universe }, target, weights: { wDist, wDs },
-        params: P, from: eng.params, objective: bo, cur: view(eng.params), tuned: view(P) };
-      await store.set('engine:tuned', rec);
-      return send(res, 200, rec);
-    }
-    send(res, 400, { error: "step 은 run | tune | apply" });
+    send(res, 400, { error: 'step 은 run | tune | apply | reset' });
   } catch (e) { send(res, 500, { error: e.message }); }
 }
