@@ -251,6 +251,11 @@ th.r .sb{flex-direction:row}
 .toast button{border:0;background:none;color:var(--gold);font-weight:700}
 .warn{color:var(--autumn-ink)}
 table{min-width:1080px}
+summary.fold{cursor:pointer;list-style:none;margin-bottom:6px}
+summary.fold::-webkit-details-marker{display:none}
+summary.fold::after{content:' ▾';color:var(--muted)}
+details[open]>summary.fold::after{content:' ▴'}
+.lead-sm{font-size:12.5px;color:var(--ink2);margin:0 0 8px}
 .uvhead{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;margin-bottom:10px}
 .uvhead .big{font-size:22px;font-weight:700}
 .chg{display:grid;grid-template-columns:auto auto 1fr auto;gap:6px 10px;align-items:center;font-size:13px;max-height:320px;overflow-y:auto}
@@ -809,7 +814,7 @@ async function renderEngine(){
     <div class="btns"><button class="pbtn" id="trainbtn" aria-pressed="true">학습 실행</button><span class="sub" id="trainmsg" style="align-self:center"></span></div>
     <div class="tbl-wrap"><table style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">값</th></tr></thead><tbody>
     ${pr.map(([k,n,u])=>`<tr><td><code>${k}</code></td><td>${n}</td><td class="r num wt">${fv(k,u)}</td></tr>`).join('')}</tbody></table></div></section>
-  <section class="card"><h2>국면 확률 P<sub>s</sub> 보정 — DS 공개 확률 앵커</h2>
+  <section class="card"><details><summary class="fold"><h2 style="display:inline">국면 확률 P<sub>s</sub> 보정 — DS 공개 확률 앵커</h2> <span class="sub">펼치기</span></summary>
     <p class="lead">스크린샷(9/17)과 9/22 코멘트에 나온 DS 확률 ${M.anchors?.length||0}개로 국면별 식의 가중치를 다시 맞춰. 기존 식을 기준값으로 두고 앵커만큼만 움직이는 ridge 회귀라, 앵커가 적은 국면은 기존 식에 가깝게 남아. 우리 규칙 판정 국면이 DS와 다른 날은 앵커에서 빠져.</p>
     ${M.anchors?.length?`<div class="tbl-wrap"><table><thead><tr><th>종목</th><th>날짜</th><th class="r">종가</th><th>DS</th><th>규칙 판정</th><th class="r">z</th><th class="r">모델 P<sub>s</sub></th><th class="r">목표</th><th>상태</th></tr></thead><tbody>
     ${M.anchors.map(a=>{return `<tr><td><b>${esc(a.code)}</b></td><td class="num">${a.d}</td><td class="r num">${a.close!=null?fmtP(a.close,a.m):'—'}</td><td><span class="pill p-${a.season}">${a.season}</span></td>
@@ -817,17 +822,17 @@ async function renderEngine(){
       <td class="${a.ok&&Math.abs(a.modelPs-a.target)<=10?'hit':'miss'}">${a.ok?(Math.abs(a.modelPs-a.target)<=3?'✓ 일치':`차이 ${(a.modelPs-a.target>0?'+':'')+(a.modelPs-a.target).toFixed(0)}p`):esc(a.why)}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}
     <div class="tbl-wrap" style="margin-top:10px"><table style="min-width:520px"><thead><tr><th>국면</th><th>logit(P<sub>s</sub>) = θ₀ + Σ θᵢ·항</th><th class="r">앵커</th><th class="r">평균 오차</th><th>방식</th></tr></thead><tbody>
     ${SEASONS.map(s=>{const c=M.cal[s];if(!c.theta)return `<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="num">a ${(+c.a).toFixed(2)} · b ${(+c.b).toFixed(2)}</td><td class="r">—</td><td class="r">—</td><td>${esc(c.how)}</td></tr>`;
-      return `<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="num" style="font-size:12px">${c.theta[0].toFixed(2)} ${c.theta.slice(1).map((t,i)=>`${t>=0?'+':'−'} ${Math.abs(t).toFixed(2)}·<span class="muted">${esc(c.terms?.[i]||'g'+(i+1))}</span>`).join(' ')}</td><td class="r num">${c.n??0}</td><td class="r num">${c.mae!=null?c.mae+'p':'—'}</td><td>${esc(c.how)}</td></tr>`}).join('')}</tbody></table></div></section>
-  <section class="card"><h2>DS 판정 재현표</h2>
+      return `<tr><td><span class="pill p-${s}">${HAN[s]} ${s}</span></td><td class="num" style="font-size:12px">${c.theta[0].toFixed(2)} ${c.theta.slice(1).map((t,i)=>`${t>=0?'+':'−'} ${Math.abs(t).toFixed(2)}·<span class="muted">${esc(c.terms?.[i]||'g'+(i+1))}</span>`).join(' ')}</td><td class="r num">${c.n??0}</td><td class="r num">${c.mae!=null?c.mae+'p':'—'}</td><td>${esc(c.how)}</td></tr>`}).join('')}</tbody></table></div></details></section>
+  <section class="card"><details><summary class="fold"><h2 style="display:inline">DS 판정 재현표</h2> <span class="sub">펼치기 — ${rows.length}건</span></summary>
     <p class="lead">리포트·스크린샷 속 DS 판정(정답) 대비 우리 엔진 판정. entry는 진입일 ±3거래일 안에 전이하면 부분 점수.${M.missing?.length?` 데이터 없는 라벨 종목: ${M.missing.join(', ')}`:''}</p>
     ${rows.length?`<div class="sub" style="margin-bottom:8px">${Object.entries(bySrc).map(([k,v])=>`${k} ${(v.s/v.n*100).toFixed(0)}% (${v.n}건)`).join(' · ')}</div>
     <div class="tbl-wrap"><table><thead><tr><th>구분</th><th>종목</th><th>정답</th><th>날짜</th><th>엔진</th><th class="r">점수</th><th>출처</th></tr></thead><tbody>
     ${rows.map(r=>`<tr><td>${r.kind}</td><td><b>${esc(r.code)}</b></td><td>${esc(r.ph||(r.phs||[]).join('/'))}</td><td class="num">${esc(r.d||`${r.a}~${r.b}`)}</td>
-      <td>${r.pred?esc(r.pred):''}${r.predEntry?` <span class="muted">(진입 ${r.predEntry.slice(5)})</span>`:''}</td><td class="r num ${r.score>=.5?'hit':'miss'}">${r.score}</td><td>${esc(r.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}</section>`
+      <td>${r.pred?esc(r.pred):''}${r.predEntry?` <span class="muted">(진입 ${r.predEntry.slice(5)})</span>`:''}</td><td class="r num ${r.score>=.5?'hit':'miss'}">${r.score}</td><td>${esc(r.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}</details></section>`
   +univOpsCard(UV)+accCard(BT)+tuneCard(BT);
   $('trainbtn').onclick=runTrain;
   $('scanUS').onclick=()=>runScan('US');$('scanKR').onclick=()=>runScan('KR');$('memBtn').onclick=runMembers;
-  $('accBtn').onclick=runAcc;$('tuneBtn').onclick=runTune;if($('applyBtn'))$('applyBtn').onclick=applyTune;
+  $('accBtn').onclick=()=>runAcc(false);if($('accReset'))$('accReset').onclick=()=>runAcc(true);$('tuneBtn').onclick=runTune;if($('applyBtn'))$('applyBtn').onclick=applyTune;
 }
 const pn=v=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'pos':v<0?'neg':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
 function univOpsCard(UV){
@@ -844,45 +849,62 @@ function univOpsCard(UV){
     <div class="sub" style="margin-top:8px">처음 한 번은 5년치 일봉을 받느라 오래 걸려 (미국 30~40분, 한국 15~20분). 끝나면 매일 새 봉만 받아서 몇 분이면 끝나고, Vercel Cron이 알아서 이어 돌려.</div></section>`;
 }
 function accCard(BT){
-  const A=BT&&BT.accuracy;
+  const A=BT&&BT.accuracy, pg=BT&&BT.progress;
+  const prog=pg?`<span class="sub">진행 ${pg.phase==='done'?'<b>오늘 측정 완료</b>':`${pg.phase==='mkt'?'1단계 시장평균':'2단계 국면집계'} ${pg.i}/${pg.codes?pg.codes.length:'?'}`} · ${kst(pg.updatedAt||pg.startedAt)}</span>`:'';
   const head=`<section class="card"><h2>국면 신뢰도 — BM 대비 초과수익</h2>
     <p class="lead">국면이 맞았는지는 절대 수익률이 아니라 <b>같은 날 유니버스 평균 대비 초과수익</b>으로 봐야 해. 강세장에선 死 종목도 오르니까 절대 수익률만 보면 국면이 쓸모없어 보여.
-      아래 숫자는 그 국면에 있던 모든 종목·모든 날의 N거래일 선행수익률에서 같은 날 시장 평균을 뺀 값이야.</p>
-    <div class="ops"><button class="pbtn" id="accBtn" aria-pressed="true">신뢰도 측정</button><span class="sub" id="accmsg"></span></div>`;
-  if(!A)return head+'<div class="muted">아직 측정 전 — 유니버스 스캔을 끝낸 뒤 눌러줘.</div></section>';
+      전종목을 한 번에 돌리면 함수 시간 제한에 걸려서 <b>조각으로 나눠</b> 돌아 — 매일 자동으로 이어지고, 아래 버튼으로 수동 진행도 돼.</p>
+    <div class="ops"><button class="pbtn" id="accBtn" aria-pressed="true">측정 한 조각</button><button class="pbtn" id="accReset">처음부터</button>${prog}<span class="sub" id="accmsg"></span></div>`;
+  if(!A)return head+'<div class="muted">아직 측정 결과 없음 — 유니버스 스캔을 끝낸 뒤 조각을 몇 번 돌리면 표가 채워져.</div></section>';
   const H=A.horizons||[5,20,60];
   const tbl=(o,t)=>`<h3 style="margin:14px 0 6px;font-size:14px">${t}</h3><div class="tbl-wrap"><table class="acc" style="min-width:560px"><thead><tr><th>국면</th>${H.map(h=>`<th class="r">${h}일 초과</th><th class="r">${h}일 적중</th>`).join('')}<th class="r">표본</th></tr></thead><tbody>
     ${SEASONS.map(s2=>{const r=o[s2];return `<tr><td><span class="pill p-${s2}">${HAN[s2]} ${s2}</span></td>${H.map(h=>`<td class="r num">${pn(r[h].exc)}</td><td class="r num">${r[h].hit==null?'—':r[h].hit+'%'}</td>`).join('')}<td class="r num muted">${(r[H[1]]||r[H[0]]).n.toLocaleString()}</td></tr>`}).join('')}</tbody></table></div>`;
   const prob=o=>`<div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:460px"><thead><tr><th>확률 구간</th><th class="r">旺 20일 초과</th><th class="r">표본</th><th class="r">死 20일 초과</th><th class="r">표본</th></tr></thead><tbody>
-    ${o['여름'].map((b,i)=>{const w=o['겨울'][i];return `<tr><td class="num">${b.range}</td><td class="r num">${pn(b.h[20].exc)}</td><td class="r num muted">${b.h[20].n}</td><td class="r num">${pn(w.h[20].exc)}</td><td class="r num muted">${w.h[20].n}</td></tr>`}).join('')}</tbody></table></div>`;
+    ${o['여름'].map((b2,i)=>{const w=o['겨울'][i];return `<tr><td class="num">${b2.range}</td><td class="r num">${pn(b2.h[20].exc)}</td><td class="r num muted">${b2.h[20].n}</td><td class="r num">${pn(w.h[20].exc)}</td><td class="r num muted">${w.h[20].n}</td></tr>`}).join('')}</tbody></table></div>`;
   const sn=A.snapshot;
   return head+`<div class="sub">${A.m} 표본 ${A.sample.got}/${A.sample.universe}종목 · 기간 ${A.all.span.a}~${A.all.span.b} · 관측 ${A.all.obs.toLocaleString()}건 · 측정 ${kst(A.at)}</div>
-    <div class="sub">旺−死 간격(20일 초과수익 기준) 전체 <b>${A.spread.all}</b> · 검증구간(${A.cut} 이후) <b>${A.spread.test}</b> — 클수록 국면이 종목을 잘 갈라.</div>
-    ${sn?`<div class="sub">오늘 분포 ${SEASONS.map(s2=>`${s2} ${sn.dist[s2]}%`).join(' · ')}${sn.target?` · DS 공개 분포와의 차이 합계 <b>${sn.gap}%p</b>`:''}</div>`:''}
+    <div class="sub">旺−死 간격(20일 초과수익) <b>${A.spread.all}</b> — 클수록 국면이 종목을 잘 갈라.${sn&&sn.gap!=null?` · 오늘 분포와 DS 공개 분포의 차이 <b>${sn.gap}%p</b>`:''}</div>
+    ${sn?`<div class="sub">오늘 분포 ${SEASONS.map(s2=>`${s2} ${sn.dist[s2]}%`).join(' · ')}</div>`:''}
     ${tbl(A.all.daily,'국면을 보유 신호로 볼 때 (그 국면에 있던 모든 날)')}
-    ${tbl(A.all.entry,'국면을 매매 신호로 볼 때 (국면이 바뀐 날만)')}
-    <h3 style="margin:14px 0 6px;font-size:14px">확률이 정보를 담고 있나 (국면 안에서 확률 구간별 20일 초과수익)</h3>${prob(A.all.prob)}
-    <div class="sub" style="margin-top:8px">旺은 확률이 높을수록 초과수익이 커야 하고, 死는 확률이 높을수록 더 나빠야 해. 그렇지 않으면 P<sub>s</sub>가 잡음이라는 뜻이야.</div></section>`;
+    <details style="margin-top:10px"><summary class="fold"><b style="font-size:14px">국면을 매매 신호로 볼 때 (국면이 바뀐 날만)</b></summary>${tbl(A.all.entry,'')}</details>
+    <details style="margin-top:6px"><summary class="fold"><b style="font-size:14px">확률이 정보를 담고 있나 (국면 안에서 확률 구간별 20일 초과수익)</b></summary>${prob(A.all.prob)}
+      <div class="sub" style="margin-top:8px">旺은 확률이 높을수록 초과수익이 커야 하고, 死는 확률이 높을수록 더 나빠야 해. 아니면 P<sub>s</sub>가 잡음이라는 뜻이야.</div></details></section>`;
 }
 function tuneCard(BT){
-  const T=BT&&BT.tuned;
-  const head=`<section class="card"><h2>임계값 보정 — 신뢰도 기준</h2>
-    <p class="lead">DS 판정 재현만으로 맞추면 국면이 한쪽으로 쏠려. 그래서 ①旺−死 초과수익 간격, ②DS가 공개한 유니버스 분포(生29.8 旺33.8 衰11.8 死24.6)와의 거리, ③DS 라벨 재현율 셋을 같이 보는 점수로 임계값을 다시 찾아. 앞 70% 기간에서만 찾고 뒤 30%로 검증해.</p>
-    <div class="ops"><button class="pbtn" id="tuneBtn" aria-pressed="true">보정 탐색</button>${T?'<button class="pbtn" id="applyBtn">이 값으로 적용</button>':''}<span class="sub" id="tunemsg"></span></div>`;
-  if(!T)return head+'<div class="muted">아직 보정 전.</div></section>';
-  const row=(k,f)=>`<tr><td>${k}</td><td class="r num">${f(T.cur)}</td><td class="r num wt">${f(T.tuned)}</td></tr>`;
+  const T=BT&&BT.tuner;
+  const head=`<section class="card"><h2>임계값 보정 — 매일 한 판씩</h2>
+    <p class="lead">한 번에 다 돌리는 대신 <b>매일 표본을 바꿔가며 한 판씩</b> 후보를 채점하고, 여러 판 평균으로 후보 풀을 갱신해. 점수 = 旺−死 초과수익 간격 − DS 공개 분포와의 거리 + DS 라벨 재현율.
+      한 표본에서만 잘 나온 후보는 뒤로 밀리고, 3판 이상 검증돼야 적용 후보가 돼.</p>
+    <div class="ops"><button class="pbtn" id="tuneBtn" aria-pressed="true">보정 한 판</button>${T&&T.ready&&T.ready.ok?'<button class="pbtn" id="applyBtn">검증된 후보 적용</button>':''}<span class="sub" id="tunemsg"></span></div>`;
+  if(!T||!T.pool||!T.pool.length)return head+'<div class="muted">아직 보정 판이 없어.</div></section>';
   const pr=[['W','돌파 창','봉'],['b','돌파 인정폭','%'],['u','旺 승격 상승폭','%'],['d1','衰 낙폭','%'],['d2','死 낙폭','%'],['TF','衰 체류 한도','봉'],['TC','재진입 쿨다운','봉'],['vr','거래량 배수','배']];
   const fv=(P,k,u)=>u==='%'?(P[k]*100).toFixed(1)+'%':u==='배'?(+P[k]).toFixed(2)+'배':P[k]+'봉';
-  return head+`<div class="sub">${T.m} 표본 ${T.sample.got}종목 · 후보 ${T.tried.toLocaleString()}개 · 학습/검증 경계 ${T.cut} · ${kst(T.at)}</div>
-    <div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:520px"><thead><tr><th>지표</th><th class="r">지금</th><th class="r">보정안</th></tr></thead><tbody>
-      ${row('旺−死 간격 (학습구간)',v=>v.spread.train)}${row('旺−死 간격 (검증구간)',v=>v.spread.test)}
-      ${row('DS 분포와의 차이 합계',v=>v.gap==null?'—':v.gap+'%p')}${row('DS 라벨 재현율',v=>(v.dsAcc*100).toFixed(1)+'%')}
-      ${row('오늘 분포 生/旺/衰/死',v=>SEASONS.map(s2=>v.snapshot[s2]).join(' / '))}
-      ${row('旺 20일 초과수익',v=>v.daily['여름'][20].exc+'%')}${row('死 20일 초과수익',v=>v.daily['겨울'][20].exc+'%')}
+  const C=T.candidate;
+  return head+`<div class="sub">${T.m} · ${T.round}판째 · 이번 판 표본 ${T.sample?T.sample.got:'?'}종목 (판마다 교체) · 후보 ${T.tried}개 채점 · ${kst(T.at)}</div>
+    <div class="sub">현재 엔진 점수 <b>${T.cur.avg}</b> (${T.cur.n}판) · 적용 가능 여부 <b>${T.ready?esc(T.ready.why):'—'}</b></div>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:600px"><thead><tr><th>순위</th><th class="r">평균 점수</th><th class="r">검증 판수</th><th class="r">旺−死 간격</th><th class="r">DS 분포 차이</th><th class="r">DS 라벨</th><th>파라미터</th></tr></thead><tbody>
+      ${T.pool.slice(0,6).map((e,i)=>`<tr${C&&e.avg===C.avg&&e.n===C.n?' style="background:var(--gold-soft)"':''}><td class="num">${i+1}${C&&e.avg===C.avg&&e.n===C.n?' ★':''}</td><td class="r num wt">${e.avg}</td><td class="r num">${e.n}</td>
+        <td class="r num">${e.last&&e.last.spread!=null?e.last.spread:'—'}</td><td class="r num">${e.last&&e.last.gap!=null?e.last.gap+'%p':'—'}</td><td class="r num">${e.last&&e.last.dsAcc!=null?(e.last.dsAcc*100).toFixed(1)+'%':'—'}</td>
+        <td class="num" style="font-size:11.5px">W${e.P.W} b${(e.P.b*100).toFixed(1)} u${(e.P.u*100).toFixed(0)} d1${(e.P.d1*100).toFixed(0)} d2${(e.P.d2*100).toFixed(0)} TF${e.P.TF} TC${e.P.TC} vr${(+e.P.vr).toFixed(2)}</td></tr>`).join('')}
+      <tr><td>현재</td><td class="r num">${T.cur.avg}</td><td class="r num">${T.cur.n}</td><td class="r num">${T.cur.last&&T.cur.last.spread!=null?T.cur.last.spread:'—'}</td><td class="r num">${T.cur.last&&T.cur.last.gap!=null?T.cur.last.gap+'%p':'—'}</td><td class="r num">${T.cur.last&&T.cur.last.dsAcc!=null?(T.cur.last.dsAcc*100).toFixed(1)+'%':'—'}</td>
+        <td class="num" style="font-size:11.5px">W${T.cur.P.W} b${(T.cur.P.b*100).toFixed(1)} u${(T.cur.P.u*100).toFixed(0)} d1${(T.cur.P.d1*100).toFixed(0)} d2${(T.cur.P.d2*100).toFixed(0)} TF${T.cur.P.TF} TC${T.cur.P.TC} vr${(+T.cur.P.vr).toFixed(2)}</td></tr>
     </tbody></table></div>
-    <div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">지금</th><th class="r">보정안</th></tr></thead><tbody>
-      ${pr.map(([k,n,u])=>`<tr><td><code>${k}</code></td><td>${n}</td><td class="r num">${fv(T.from,k,u)}</td><td class="r num wt">${fv(T.params,k,u)}</td></tr>`).join('')}</tbody></table></div>
-    <div class="sub" style="margin-top:8px">적용하면 목록·유니버스의 국면 판정이 전부 이 임계값으로 바뀌고, 확률 보정(P<sub>s</sub>)도 DS 앵커로 다시 계산돼. 되돌리려면 엔진 탭에서 [학습 실행]을 다시 눌러.</div></section>`;
+    ${C?`<details style="margin-top:10px"><summary class="fold"><b style="font-size:14px">적용 후보 상세 (${C.n}판 평균 ${C.avg})</b></summary>
+      <div class="tbl-wrap" style="margin-top:8px"><table class="acc" style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">지금</th><th class="r">후보</th></tr></thead><tbody>
+      ${pr.map(([k,n,u])=>`<tr><td><code>${k}</code></td><td>${n}</td><td class="r num">${fv(T.cur.P,k,u)}</td><td class="r num wt">${fv(C.P,k,u)}</td></tr>`).join('')}</tbody></table></div></details>`:''}
+    ${T.history&&T.history.length>1?`<div class="sub" style="margin-top:8px">판별 추이 — ${T.history.slice(-8).map(h=>`${h.round}판 ${h.best}`).join(' · ')}</div>`:''}
+    <div class="sub" style="margin-top:6px">적용하면 목록·유니버스 판정이 모두 이 임계값으로 바뀌고, 확률 보정(P<sub>s</sub>)도 DS 앵커로 다시 계산돼. 신뢰도 측정은 자동으로 초기화돼서 새 값으로 다시 재.</div></section>`;
+}
+async function runTrain(){
+  const msg=$('trainmsg'),btn=$('trainbtn');btn.disabled=true;
+  try{
+    let off=0,fails=[];
+    for(;;){const r=await post('/api/train',{step:'fetch',offset:off});fails.push(...r.failed);msg.textContent=`라벨 종목 일봉 준비 ${r.next}/${r.total}${fails.length?` · 실패 ${fails.length}`:''}`;if(r.finished)break;off=r.next}
+    msg.textContent='DS 판정 재현 탐색 중… (최대 1분)';
+    const r=await post('/api/train',{step:'fit',samples:2500});
+    msg.textContent=`완료 — 적중률 ${(r.fit.train*100).toFixed(1)}% (교차검증 ${(r.fit.cvMean*100).toFixed(1)}%)`;
+    await reload();await renderEngine();
+  }catch(e){msg.textContent='실패: '+e.message}finally{btn.disabled=false}
 }
 async function runScan(m){
   const msg=$('scanmsg'),b1=$('scanUS'),b2=$('scanKR');b1.disabled=b2.disabled=true;
@@ -897,33 +919,25 @@ async function runMembers(){
   try{const r=await post('/api/universe',{step:'members',force:true});msg.textContent=`구성종목 ${Object.entries(r.counts).map(([k,v])=>`${k} ${v}`).join(' · ')}${r.errors.length?' · '+r.errors.join(' / '):''}`}
   catch(e){msg.textContent='실패: '+e.message}
 }
-async function runAcc(){
-  const msg=$('accmsg'),b=$('accBtn');b.disabled=true;msg.textContent='측정 중… (30초쯤)';
-  try{const r=await post('/api/backtest',{m:state.m,step:'run',sample:250});msg.textContent=`완료 — 旺−死 간격 ${r.spread.all} (검증 ${r.spread.test})`;await renderEngine()}
-  catch(e){msg.textContent='실패: '+e.message}finally{b.disabled=false}
+async function runAcc(reset){
+  const msg=$('accmsg'),btn=$('accBtn');btn.disabled=true;msg.textContent='측정 중…';
+  try{for(let i=0;i<40;i++){
+      const r=await post('/api/backtest',{m:state.m,step:'run',sample:250,reset:reset&&i===0});
+      msg.textContent=`${r.phase==='mkt'?'1단계 시장평균':r.phase==='stat'?'2단계 국면집계':'완료'} ${r.i}/${r.total}`;
+      if(r.done)break;
+    }await renderEngine()}catch(e){msg.textContent='실패: '+e.message}finally{btn.disabled=false}
 }
 async function runTune(){
-  const msg=$('tunemsg'),b=$('tuneBtn');b.disabled=true;msg.textContent='임계값 탐색 중… (1분쯤)';
-  try{const r=await post('/api/backtest',{m:state.m,step:'tune',sample:250,budgetMs:40000});msg.textContent=`탐색 완료 — 검증구간 간격 ${r.cur.spread.test} → ${r.tuned.spread.test}`;await renderEngine()}
+  const msg=$('tunemsg'),b=$('tuneBtn');b.disabled=true;msg.textContent='한 판 채점 중… (40초쯤)';
+  try{const r=await post('/api/backtest',{m:state.m,step:'tune',sample:80,budgetMs:32000});
+    msg.textContent=`${r.round}판 완료 — 최고 ${r.pool[0].avg} / 현재 ${r.cur.avg}`;await renderEngine()}
   catch(e){msg.textContent='실패: '+e.message}finally{b.disabled=false}
 }
 async function applyTune(){
-  const msg=$('tunemsg');if(!confirm('보정안을 엔진에 적용할까? 목록·유니버스 판정이 모두 바뀐다.'))return;
+  const msg=$('tunemsg');if(!confirm('검증된 후보를 엔진에 적용할까? 목록·유니버스 판정이 모두 바뀐다.'))return;
   try{await post('/api/backtest',{step:'apply'});msg.textContent='적용 완료 — 다시 계산 중…';await reload();await renderEngine()}
   catch(e){msg.textContent='실패: '+e.message}
 }
-async function runTrain(){
-  const msg=$('trainmsg'),btn=$('trainbtn');btn.disabled=true;
-  try{
-    let off=0,fails=[];
-    for(;;){const r=await post('/api/train',{step:'fetch',offset:off});fails.push(...r.failed);msg.textContent=`라벨 종목 일봉 준비 ${r.next}/${r.total}${fails.length?` · 실패 ${fails.length}`:''}`;if(r.finished)break;off=r.next}
-    msg.textContent='DS 판정 재현 탐색 중… (최대 1분)';
-    const r=await post('/api/train',{step:'fit',samples:2500});
-    msg.textContent=`완료 — 적중률 ${(r.fit.train*100).toFixed(1)}% (교차검증 ${(r.fit.cvMean*100).toFixed(1)}%)`;
-    await reload();await renderEngine();
-  }catch(e){msg.textContent='실패: '+e.message}finally{btn.disabled=false}
-}
-
 /* ---------- 상세 ---------- */
 const WIN={'1m':21,'3m':63,'6m':126,'1y':252,'2y':504,'3y':756,'5y':1265};
 function niceStep(r){const p=Math.pow(10,Math.floor(Math.log10(r)));const f=r/p;return (f<1.5?1:f<3?2:f<7?5:10)*p}
