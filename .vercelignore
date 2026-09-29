@@ -1,0 +1,9 @@
+# Hobby 플랜은 api/ 안의 파일 하나당 서버리스 함수 1개로 세고 상한이 12개다.
+# 아래 네 엔드포인트는 다른 함수로 합쳤고(vercel.json rewrites), 주소는 그대로 동작한다.
+#   /api/add, /api/remove  →  api/list.js   (?op=add / ?op=remove)
+#   /api/meta, /api/health →  api/cron.js   (?op=meta / ?op=health)
+# 저장소에 파일이 남아 있어도 배포에는 올라가지 않게 해서 함수 수를 줄인다.
+api/add.js
+api/remove.js
+api/meta.js
+api/health.js

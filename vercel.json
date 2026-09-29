@@ -5,6 +5,12 @@
   "functions": {
     "api/*.js": { "maxDuration": 60 }
   },
+  "rewrites": [
+    { "source": "/api/add", "destination": "/api/list?op=add" },
+    { "source": "/api/remove", "destination": "/api/list?op=remove" },
+    { "source": "/api/meta", "destination": "/api/cron?op=meta" },
+    { "source": "/api/health", "destination": "/api/cron?op=health" }
+  ],
   "crons": [
     { "path": "/api/cron?m=KR", "schedule": "10 7 * * 1-5" },
     { "path": "/api/cron?m=US", "schedule": "10 22 * * 1-5" }
