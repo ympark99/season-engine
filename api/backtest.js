@@ -7,8 +7,10 @@
 //   POST {step:'reset'}     → 진행 상태 초기화
 import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body } from '../lib/service.js';
-import { classify, score, Series, calibrateFromLabels } from '../lib/engine.js';
+import { score, Series } from '../lib/engine.js';
+import { classifyOf, calibrateFromLabelsV2 as calibrateFromLabels } from '../lib/engine2.js';
 import { prep, mktChunk, statChunk, meansOf, newCells, finalizeCells, spreadOf, distGap, DS_DIST, HORIZONS } from '../lib/backtest.js';
+import { semantics } from '../lib/semantics.js';
 import { tuneRound, readyToApply } from '../lib/tuner.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
 import L from '../lib/labels.js';
@@ -33,11 +35,11 @@ async function loadBars(m, codes) {
   }
   return bars;
 }
-/** DS 라벨 재현율 (파라미터별로 다시 계산 가능한 클로저) */
+/** DS 라벨 재현율 (보조 지표) */
 async function dsLabels() {
   const bars = await store.mgetBars(L.stocks), series = {};
   L.stocks.forEach((s, i) => { const b = bars[i]; if (b?.d?.length > 200) series[`${s.m}:${s.code}`] = new Series(b.d, b.c, b.v); });
-  return P => { const preds = {}; for (const k in series) preds[k] = classify(series[k], P); return +score(L, series, preds).toFixed(4); };
+  return P => { const preds = {}; for (const k in series) preds[k] = classifyOf(series[k], P); return +score(L, series, preds).toFixed(4); };
 }
 const cutOf = (a, b) => new Date(Date.parse(a) + (Date.parse(b) - Date.parse(a)) * 0.7).toISOString().slice(0, 10);
 
@@ -76,7 +78,8 @@ async function runChunk(m, { sample = 250, reset = false } = {}) {
     if (st.i >= st.codes.length) {
       const all = finalizeCells(cells);
       const target = m === 'US' ? DS_DIST : null;
-      const rec = { at: new Date().toISOString(), m, date: today, params: eng.params,
+      const sem = semantics(prep(await loadBars(m, st.codes.slice(0, 120))), eng.params, { cal: eng.cal });
+      const rec = { at: new Date().toISOString(), m, date: today, params: eng.params, sem,
         sample: { got: cells.nSym, asked: st.codes.length, universe: st.universe },
         cut: all.span.a && all.span.b ? cutOf(all.span.a, all.span.b) : null,
         all, snapshot: { dist: all.snapshot, target, gap: target ? distGap(all.snapshot, target) : null },
