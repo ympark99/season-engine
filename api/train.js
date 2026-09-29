@@ -3,7 +3,8 @@
 //   {step:'fit'}            현재 임계값에 맞춰 확률 Ps 를 보정 (임계값 자체는 신뢰도 기준으로 api/backtest 에서 정함)
 import * as store from '../lib/store.js';
 import { refresh, isAdmin, send, body, needFrom, engineState } from '../lib/service.js';
-import { calibrateFromLabels, classifyOf, score, Series } from '../lib/engine.js';
+import { score, Series } from '../lib/engine.js';
+import { classifyOf, calibrateFromLabelsV2 as calibrateFromLabels } from '../lib/engine2.js';
 import L from '../lib/labels.js';
 
 
