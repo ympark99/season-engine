@@ -111,6 +111,20 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .p-여름{background:var(--summer-pill);color:var(--summer-ink)}
 .p-가을{background:var(--autumn-pill);color:var(--autumn-ink)}
 .p-겨울{background:var(--winter-pill);color:var(--winter-ink)}
+.pfrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.pfcol{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card)}
+.pfcol h3{margin:0;font-size:14px}
+.pfbig{font-size:26px;font-weight:750;letter-spacing:-.02em;margin:8px 0 2px}
+.pfst{margin-top:10px;width:100%}
+.pfst th{font-weight:500;color:var(--muted);font-size:11.5px;text-align:left;padding:3px 0}
+.pftab[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.stance{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11.5px;font-weight:650;white-space:nowrap;border:1px solid transparent}
+.stance.s-buy{background:#e7f5ec;color:#186a3b;border-color:#bfe3cd}
+.stance.s-hold{background:#f2f4f7;color:#4a5568;border-color:#dde2ea}
+.stance.s-trim{background:#fdeeea;color:#9c3b1c;border-color:#f6cdbf}
+.stance.s-trade{background:#eaf1fd;color:#1b4b9c;border-color:#c6d8f7}
+.stance.s-watch{background:#fdf6e3;color:#8a6116;border-color:#f0e0b0}
+.stance.s-avoid{background:#f6e9ea;color:#8a1f2b;border-color:#e8c7cb}
 .act{display:inline-block;border-radius:999px;padding:3px 11px;font-size:12.5px;font-weight:700}
 .a-buy{background:var(--summer-pill);color:var(--summer-ink)}
 .a-new{background:var(--spring-pill);color:var(--spring-ink)}
@@ -393,6 +407,11 @@ body{margin:0}
       <summary><span class="ico"><i>6</i></span><div><h2>DS 시장 지표 3종</h2><p>탑&amp;바텀 레벨 · 기술적 공학 · 리스크 시그널 — DS 전체 유니버스 기준, 코멘트 수치</p></div><span class="chev">▾</span></summary>
       <div class="body" id="ds"></div>
     </details>
+
+    <details class="sec">
+      <summary><span class="ico"><i>7</i></span><div><h2>전략실 — 예시 포트폴리오</h2><p id="pf-sub">엔진이 시킨 대로만 사고팔았을 때의 성과. 진입·청산 모두 신호일 <b>종가</b>, 동일비중, 왕복비용 0.3% 반영</p></div><span class="chev">▾</span></summary>
+      <div class="body" id="pf"></div>
+    </details>
   </main>
 
   <main id="eng" hidden>
@@ -627,7 +646,7 @@ const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입
 const COLS=[
   {k:'code',t:'종목코드',v:S=>S.code,str:1},{k:'name',t:'종목명',v:S=>S.name,str:1},{k:null,t:''},
   {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
-  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
+  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'trend',t:'추세',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},{k:'stance',t:'종합 의견',v:S=>S.view?.combined??-1,r:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1},{k:null,t:''}
 ];
 function mini(S){
@@ -636,6 +655,19 @@ function mini(S){
   const p=S.spark,lo=Math.min(...p),hi=Math.max(...p);
   const d=p.map((v,i)=>`${i?'L':'M'}${i},${(26-(v-lo)/(hi-lo||1)*9).toFixed(1)}`).join('');
   return `<svg width="120" height="28" viewBox="0 0 ${n} 28" preserveAspectRatio="none" aria-hidden="true">${out}<path d="${d}" style="fill:none;stroke:var(--navy);stroke-width:1.2" vector-effect="non-scaling-stroke"/></svg>`;
+}
+/* 국면엔진(추세) · 대장엔진(가치) 점수와 종합 의견 — /api/list 의 view */
+const TONE={buy:'good',hold:'warn',trim:'bad',trade:'info',watch:'warn',avoid:'bad'};
+function sc(x){return x==null?'<span class="muted">—</span>':`<b>${x}</b>`}
+function vcells(S){
+  const v=S.view;
+  if(!v)return '<td class="r num muted">—</td><td class="r num muted">—</td><td class="muted">—</td>';
+  const t=v.trend||{},a=v.value||{};
+  const tip=(v.why||[]).join(' · ');
+  const vv=a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':`${sc(a.score)}<span class="sub"> ${a.grade}</span>`;
+  return `<td class="r num">${sc(t.score)}<span class="sub"> ${t.grade}</span></td>
+    <td class="r num">${vv}</td>
+    <td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`;
 }
 function renderFilters(){
   const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
@@ -660,9 +692,9 @@ function renderRows(flash){
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
   const rm=S=>`<td><button class="rm" data-m="${S.m}" data-rm="${esc(S.code)}" aria-label="${esc(S.name)} 삭제" title="목록에서 삭제">✕</button></td>`;
-  const html=busy.map(b=>`<tr><td class="code">${esc(b.code)}</td><td class="name">${esc(b.name)}</td><td colspan="12" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
+  const html=busy.map(b=>`<tr><td class="code">${esc(b.code)}</td><td class="name">${esc(b.name)}</td><td colspan="15" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
     list.map(S=>{
-      if(!ok(S))return `<tr><td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td colspan="11" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
+      if(!ok(S))return `<tr><td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td colspan="14" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S);return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>
       <td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td><button class="open">열기 ›</button></td>
       <td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>
@@ -671,9 +703,10 @@ function renderRows(flash){
       <td class="r num">${S.age}d</td><td>${mini(S)}</td>
       <td class="r num" style="color:${S.dd<-15?'var(--neg)':'var(--ink2)'}">${S.dd>-0.5?'신고가':sgn(S.dd)+'%'}</td>
       <td><span class="act ${A[1]}">${A[0]}</span></td>
+      ${vcells(S)}
       <td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td><td class="r">${wi(S.code,'tgt')}</td><td class="r">${wi(S.code,'cur')}</td>${rm(S)}</tr>`}).join('');
-  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="14" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
-    :`<tr><td colspan="14" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
+  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="17" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
+    :`<tr><td colspan="17" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
   $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm'))return;openDetail(tr.dataset.k)});
   $('rows').querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();removeStock(b.dataset.m,b.dataset.rm)});
   $('rows').querySelectorAll('.wt-in').forEach(inp=>{inp.onclick=e=>e.stopPropagation();
@@ -803,13 +836,14 @@ function renderDS(){
 async function renderEngine(){
   $('engdyn').innerHTML='<div class="loading">불러오는 중…</div>';
   let M;try{M=await api('/api/meta')}catch(e){$('engdyn').innerHTML=`<div class="warn">${esc(e.message)}</div>`;return}
-  const [BT,UV,FD]=await Promise.all([api('/api/backtest').catch(()=>null),api('/api/universe').catch(()=>null),api('/api/fundamentals').catch(()=>null)]);
+  const [BT,UV,FD,PFD]=await Promise.all([api('/api/backtest').catch(()=>null),api('/api/universe').catch(()=>null),api('/api/fundamentals?m='+state.m).catch(()=>null),api('/api/portfolio?m='+state.m).catch(()=>null)]);
   const P=M.params,fit=M.fit;
-  const pr=[['W','돌파 창 길이','봉'],['b','돌파 인정폭','%'],['u','旺 승격 상승폭','%'],['d1','衰 전이 낙폭 (정점 대비)','%'],['d2','死 전이 낙폭 (정점 대비)','%'],['TF','衰 장기화 한도','봉'],['TC','死 숙려기간','봉'],['vr','돌파 거래량 배수','배']];
-  const fv=(k,u)=>u==='%'?(P[k]*100).toFixed(1)+'%':u==='배'?(+P[k]).toFixed(2)+'배':P[k]+'봉';
+  const pr=[['W','돌파 창 길이','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 전이 낙폭','σ'],['d2','겨울 전이 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','전환 후 최소 유지','봉'],['hyst','연속 확인일','일'],['lowGate','52주 저점 대비 최소 상승','%'],['slopeWin','기울기 측정 창','봉']];
+  const fv=(k,u)=>P[k]==null?'—':u==='%'?(P[k]*100).toFixed(0)+'%':u==='σ'?(+P[k]).toFixed(2)+'σ':u==='일'?P[k]+'일':P[k]+'봉';
   const rows=M.report||[],bySrc={};rows.forEach(r=>{bySrc[r.src]=bySrc[r.src]||{n:0,s:0};bySrc[r.src].n++;bySrc[r.src].s+=r.score});
   $('engdyn').innerHTML=`
-  <section class="card"><h2>학습된 임계값</h2>
+  <section class="card"><h2>임계값</h2>
+    <p class="lead" style="margin-bottom:6px">b·u·d1·d2 는 %가 아니라 <b>그 종목 20일 변동성(σ)의 배수</b>야. 지수처럼 덜 움직이는 것과 고변동 성장주에 같은 값이 통하게 하려고 v2에서 바꿨어. [학습 실행]은 이제 임계값을 찾지 않고 <b>확률 P<sub>s</sub> 보정만</b> 해 — 임계값은 아래 신뢰도 기준으로 정해.</p>
     <p class="lead">${M.trainedAt?`${kst(M.trainedAt)} 학습 — DS 판정 재현 적중률 <b>${(fit.train*100).toFixed(1)}%</b> (교차검증 ${(fit.cvMean*100).toFixed(1)}% ±${(fit.cvStd*100).toFixed(1)}, 초기값 ${(fit.initial*100).toFixed(1)}%). 교차검증이 학습 점수보다 많이 낮으면 과적합.`:'아직 학습 전 — 초기값 사용 중. 아래 [학습 실행]을 누르면 라벨 종목 55개의 5년치 일봉을 받아 학습해 (2~3분).'}</p>
     <div class="btns"><button class="pbtn" id="trainbtn" aria-pressed="true">학습 실행</button><span class="sub" id="trainmsg" style="align-self:center"></span></div>
     <div class="tbl-wrap"><table style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">값</th></tr></thead><tbody>
@@ -829,10 +863,11 @@ async function renderEngine(){
     <div class="tbl-wrap"><table><thead><tr><th>구분</th><th>종목</th><th>정답</th><th>날짜</th><th>엔진</th><th class="r">점수</th><th>출처</th></tr></thead><tbody>
     ${rows.map(r=>`<tr><td>${r.kind}</td><td><b>${esc(r.code)}</b></td><td>${esc(r.ph||(r.phs||[]).join('/'))}</td><td class="num">${esc(r.d||`${r.a}~${r.b}`)}</td>
       <td>${r.pred?esc(r.pred):''}${r.predEntry?` <span class="muted">(진입 ${r.predEntry.slice(5)})</span>`:''}</td><td class="r num ${r.score>=.5?'hit':'miss'}">${r.score}</td><td>${esc(r.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">학습 후 표시</div>'}</details></section>`
-  +univOpsCard(UV)+fundCard(FD)+accCard(BT)+tuneCard(BT);
+  +univOpsCard(UV)+fundCard(FD)+pfCard(PFD)+accCard(BT)+tuneCard(BT);
   $('trainbtn').onclick=runTrain;
   $('scanUS').onclick=()=>runScan('US');$('scanKR').onclick=()=>runScan('KR');$('memBtn').onclick=runMembers;
   if($('fundBtn'))$('fundBtn').onclick=runFund;if($('fundScore'))$('fundScore').onclick=runFundScore;
+  if($('pfBtn'))$('pfBtn').onclick=runPf;
   $('accBtn').onclick=()=>runAcc(false);if($('accReset'))$('accReset').onclick=()=>runAcc(true);$('tuneBtn').onclick=runTune;if($('applyBtn'))$('applyBtn').onclick=applyTune;
 }
 const pn=v=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'pos':v<0?'neg':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
@@ -851,22 +886,63 @@ function univOpsCard(UV){
 }
 function fundCard(FD){
   const S=FD&&FD.summary, st=FD&&FD.state;
-  const head=`<section class="card"><h2>펀더멘털 — 대장 엔진 재료 (미국)</h2>
-    <p class="lead">Finviz 분기 재무(손익·현금흐름·재무상태) 12분기를 유니버스 전종목에 대해 모아서, <b>이익 증가율의 변화(가속도)</b>·마진·현금흐름·자기 과거 대비 밸류로 점수를 매겨.
-      컨센서스(선행 EPS)는 이 자료에 없어서 '이익 정점'은 실제 실적의 가속도로 대신 잡아. 공시 지연을 감안해 분기말 +45일이 지난 분기만 써.</p>
+  const KR=state.m==='KR';
+  const head=`<section class="card"><h2>펀더멘털 — 대장 엔진 재료 (${KR?'한국':'미국'})</h2>
+    <p class="lead">${KR
+      ?`국내는 <b>컨센서스 추정치</b>를 쓴다 — 올해·내년 추정 EPS와 선행 PER, 최근 90일 추정 변경 이력(상향/하향), 추정 ROE. 점수 축은 미국과 같아서 두 시장을 같은 자로 비교할 수 있어.
+         '이익 정점'은 여기서 <b>추정 상향이 멈추거나 하향으로 도는 것</b>으로 잡아.`
+      :`Finviz 분기 재무(손익·현금흐름·재무상태) 12분기에 <b>종목 페이지의 선행 지표</b>(EPS next Y·Forward P/E)를 얹어서, 이익 증가율의 변화(가속도)·마진·현금흐름·밸류로 점수를 매겨.
+         분기 재무만으로는 컨센서스를 못 봐서 선행 EPS를 따로 붙였어. 공시 지연을 감안해 분기말 +45일이 지난 분기만 써.`}</p>
     <div class="ops"><button class="pbtn" id="fundBtn" aria-pressed="true">수집 한 조각</button><button class="pbtn" id="fundScore">점수 재계산</button>
       <span class="sub">${st?`진행 ${st.i}/${st.codes?st.codes.length:'?'}${st.done?' <b>완료</b>':''}${st.failed&&st.failed.length?` · <span class="warn">실패 ${st.failed.length}</span>`:''} · ${kst(st.updatedAt||'')}`:'수집 기록 없음'}</span>
       <span class="sub" id="fundmsg"></span></div>`;
   if(!S)return head+'<div class="muted">아직 점수 없음 — 수집을 한 바퀴 돌리면 표가 생겨.</div></section>';
   const row=r=>`<tr><td><b>${esc(r.code)}</b></td><td class="name">${esc(r.name||'')}</td><td class="r num wt">${r.score}</td>
     <td class="r num">${r.p.accel??'—'}</td><td class="r num">${r.gRev==null?'—':r.gRev+'%'}</td><td class="r num">${r.dOm==null?'—':(r.dOm>0?'+':'')+r.dOm}</td>
-    <td class="r num">${r.fcfM==null?'—':r.fcfM+'%'}</td><td class="r num">${r.zPs==null?'—':r.zPs}</td><td>${esc(r.funding||'')}</td>
+    <td class="r num">${r.fcfM==null?'—':r.fcfM+'%'}</td><td class="r num">${r.fwdPe==null?'—':r.fwdPe}</td><td class="r num">${r.gEpsFwd==null?'—':(r.gEpsFwd>0?'+':'')+r.gEpsFwd+'%'}</td><td>${esc(r.funding||(r.revUp==null?'':(r.revUp>0?'상향 +':'하향 ')+r.revUp+'%'))}</td>
     <td style="font-size:11.5px">${r.flags.map(f=>`<span class="sig ${f.includes('정점')||f.includes('비쌈')||f.includes('희석')?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</td></tr>`;
-  const tbl=(rows,t)=>`<h3 style="margin:14px 0 6px;font-size:14px">${t}</h3><div class="tbl-wrap"><table class="acc" style="min-width:820px"><thead><tr><th>코드</th><th>이름</th><th class="r">점수</th><th class="r">가속 %ile</th><th class="r">매출 YoY</th><th class="r">영업마진 변화</th><th class="r">FCF 마진</th><th class="r">P/S z</th><th>재원</th><th>플래그</th></tr></thead><tbody>${rows.map(row).join('')}</tbody></table></div>`;
+  const tbl=(rows,t)=>`<h3 style="margin:14px 0 6px;font-size:14px">${t}</h3><div class="tbl-wrap"><table class="acc" style="min-width:820px"><thead><tr><th>코드</th><th>이름</th><th class="r">점수</th><th class="r">가속 %ile</th><th class="r">매출 YoY</th><th class="r">영업마진 변화</th><th class="r">FCF 마진</th><th class="r">선행 PER</th><th class="r">선행 EPS 성장</th><th>재원 / 추정 변화</th><th>플래그</th></tr></thead><tbody>${rows.map(row).join('')}</tbody></table></div>`;
   return head+`<div class="sub">${S.n}종목 · 이익 정점 경계 <b>${S.peak}</b>종목 · 재원 ${Object.entries(S.funding).map(([k,v])=>`${k} ${v}`).join(' · ')} · ${kst(S.at)}</div>
     ${tbl(S.rows.slice(0,12),'상위 12')}
     <details style="margin-top:8px"><summary class="fold"><b style="font-size:14px">하위 12 — 이익 정점·마진 훼손 쪽</b></summary>${tbl((S.bottom||[]).slice(0,12),'')}</details>
     <div class="sub" style="margin-top:8px">점수 = 가속 30% + 성장 15% + 마진 15% + 현금 15% + 질(ROIC) 10% + 밸류 10% + 위험 5%의 백분위 가중합. 아직 <b>검증 전</b>이라 참고용이야 — 오늘부터 점수를 쌓아 3~6개월 뒤 초과수익으로 검증할 수 있어.</div></section>`;
+}
+function semBlock(S){
+  const b=S.base||{},row=(k,extra)=>{const c=S[k]||{};return `<tr><td><span class="pill p-${k}">${HAN[k]} ${k}</span></td>
+    <td class="r num">${c.n??'—'}</td><td class="r num wt">${c.hit10==null?'—':c.hit10+'%'}</td><td class="r num">${pn(c.exc)}</td>
+    <td class="r num">${c.up==null?'—':'+'+c.up+'%'}</td><td class="r num">${c.mdd==null?'—':c.mdd+'%'}</td><td class="sub">${extra||''}</td></tr>`};
+  return `<h3 style="margin:14px 0 6px;font-size:14px">계절의 뜻이 실제로 맞는가 <span class="sub">— 국면이 바뀐 날 기준 이후 ${S.H}거래일</span></h3>
+  <div class="tbl-wrap"><table class="acc" style="min-width:680px"><thead><tr><th>국면</th><th class="r">진입 표본</th><th class="r">+10% 도달률</th><th class="r">${S.H}일 초과수익</th><th class="r">평균 최고</th><th class="r">평균 최저</th><th>확인 항목</th></tr></thead><tbody>
+    ${row('봄',`60일 안에 여름 전환 <b>${S['봄'].toSummer??'—'}%</b>`)}${row('여름','폭발 시작 — 도달률이 기저보다 높아야 함')}
+    ${row('가을','추세 훼손 — 초과수익이 음수여야 함')}${row('겨울',`이후 3개월 횡보 <b>${S['겨울'].sideways??'—'}%</b>`)}
+    <tr><td class="muted">기저(모든 날)</td><td class="r num">${b.n??'—'}</td><td class="r num">${b.hit10==null?'—':b.hit10+'%'}</td><td class="r num">${pn(b.exc)}</td><td class="r num">${b.up==null?'—':'+'+b.up+'%'}</td><td class="r num">${b.mdd==null?'—':b.mdd+'%'}</td><td class="sub">비교 기준</td></tr>
+  </tbody></table></div>
+  <div class="sub" style="margin-top:6px">여름 도달률이 기저보다 높고, 겨울 초과수익이 음수이고, 봄의 여름 전환율이 높아야 국면이 쓸모 있어. 이 셋이 임계값 보정의 목표야.</div>`;
+}
+function pfCard(P){
+  const head=`<section class="card"><h2>예시 포트폴리오 — 엔진 수익률 증명</h2>
+    <p class="lead">규칙만 그대로 과거에 적용해 본 결과야. <b>진입·청산 모두 신호가 뜬 날 종가</b>, 최대 10종목 동일비중, 5거래일마다 리밸런스, 왕복비용 0.3%, -15% 손절.
+      국면 전략은 가격만 쓰니 미래 정보가 섞일 여지가 없고, 대장 전략은 <b>그 시점에 이미 공시돼 있던 분기</b>만 써서 점수를 그날 기준으로 다시 계산해.</p>
+    <div class="ops"><button class="pbtn" id="pfBtn" aria-pressed="true">예시 포트폴리오 돌리기</button><span class="sub" id="pfmsg">${P&&!P.empty?`${P.from} ~ ${P.to} · 표본 ${P.n}종목 · 실적 있는 종목 ${P.fundCovered??0}개 · ${kst(P.at)}`:'아직 돌린 적 없음'}</span></div>`;
+  if(!P||P.empty)return head+'<div class="muted">유니버스 스캔과 펀더멘털 수집이 끝난 뒤에 돌려줘.</div></section>';
+  const S=P.strategies||{};
+  const r=(k)=>{const t=(S[k]||{}).stats||{};return `<tr><td><b>${k}</b></td>
+    <td class="r num wt" style="color:${t.cum>0?'var(--pos)':'var(--neg)'}">${t.cum==null?'—':(t.cum>0?'+':'')+t.cum+'%'}</td>
+    <td class="r num">${t.cagr==null?'—':t.cagr+'%'}</td><td class="r num">${t.mdd==null?'—':t.mdd+'%'}</td>
+    <td class="r num">${t.trades??0}</td><td class="r num">${t.win==null?'—':t.win+'%'}</td>
+    <td class="r num">${t.avgRet==null?'—':(t.avgRet>0?'+':'')+t.avgRet+'%'}</td><td class="r num">${t.avgDays??'—'}일</td>
+    <td class="r num wt">${t.hit10==null?'—':t.hit10+'%'}</td></tr>`};
+  return head+`<div class="tbl-wrap"><table class="acc" style="min-width:720px"><thead><tr><th>전략</th><th class="r">누적손익</th><th class="r">연환산</th><th class="r">MDD</th><th class="r">편출</th><th class="r">승률</th><th class="r">평균 손익</th><th class="r">평균 보유</th><th class="r">+10% 달성</th></tr></thead><tbody>
+    ${['국면','대장','국면+대장'].map(r).join('')}
+    <tr><td class="muted">기준선 — 표본 전체 보유</td><td class="r num">${P.benchmark?.ret==null?'—':(P.benchmark.ret>0?'+':'')+P.benchmark.ret+'%'}</td><td colspan="7" class="sub">같은 기간 동일비중 바이앤홀드</td></tr>
+  </tbody></table></div>
+  <div class="sub" style="margin-top:8px">+10% 달성 = 편출된 거래 중 손익이 10% 이상이었던 비율. 목표(1~2개월 내 10%)가 규칙으로 얼마나 잡히는지 보는 칸이야. 표본·기간이 바뀌면 숫자도 바뀌니 추세만 봐.</div></section>`;
+}
+async function runPf(){
+  const msg=$('pfmsg'),btn=$('pfBtn');btn.disabled=true;msg.textContent='돌리는 중… (1분 정도)';
+  try{const r=await post('/api/portfolio',{m:state.m,step:'run',hold:10,everyN:5,years:3,sample:150});
+    msg.textContent=`${r.from} ~ ${r.to} · 표본 ${r.n}종목`;PF_M=null;await loadPf();await renderEngine();
+  }catch(e){msg.textContent='실패: '+e.message}finally{btn.disabled=false}
 }
 function accCard(BT){
   const A=BT&&BT.accuracy, pg=BT&&BT.progress;
@@ -885,6 +961,7 @@ function accCard(BT){
   return head+`<div class="sub">${A.m} 표본 ${A.sample.got}/${A.sample.universe}종목 · 기간 ${A.all.span.a}~${A.all.span.b} · 관측 ${A.all.obs.toLocaleString()}건 · 측정 ${kst(A.at)}</div>
     <div class="sub">旺−死 간격(20일 초과수익) <b>${A.spread.all}</b> — 클수록 국면이 종목을 잘 갈라.${sn&&sn.gap!=null?` · 오늘 분포와 DS 공개 분포의 차이 <b>${sn.gap}%p</b>`:''}</div>
     ${sn?`<div class="sub">오늘 분포 ${SEASONS.map(s2=>`${s2} ${sn.dist[s2]}%`).join(' · ')}</div>`:''}
+    ${A.sem?semBlock(A.sem):''}
     ${tbl(A.all.daily,'국면을 보유 신호로 볼 때 (그 국면에 있던 모든 날)')}
     <details style="margin-top:10px"><summary class="fold"><b style="font-size:14px">국면을 매매 신호로 볼 때 (국면이 바뀐 날만)</b></summary>${tbl(A.all.entry,'')}</details>
     <details style="margin-top:6px"><summary class="fold"><b style="font-size:14px">확률이 정보를 담고 있나 (국면 안에서 확률 구간별 20일 초과수익)</b></summary>${prob(A.all.prob)}
@@ -893,21 +970,21 @@ function accCard(BT){
 function tuneCard(BT){
   const T=BT&&BT.tuner;
   const head=`<section class="card"><h2>임계값 보정 — 매일 한 판씩</h2>
-    <p class="lead">한 번에 다 돌리는 대신 <b>매일 표본을 바꿔가며 한 판씩</b> 후보를 채점하고, 여러 판 평균으로 후보 풀을 갱신해. 점수 = 旺−死 초과수익 간격 − DS 공개 분포와의 거리 + DS 라벨 재현율.
+    <p class="lead">한 번에 다 돌리는 대신 <b>매일 표본을 바꿔가며 한 판씩</b> 후보를 채점하고, 여러 판 평균으로 후보 풀을 갱신해. 점수는 <b>계절의 뜻이 맞는지</b>로 매겨 — 여름 진입 후 +10% 도달률(기저 대비), 여름·겨울 20일 초과수익, 봄→여름 전환율. DS 분포·라벨은 보조항이야.
       한 표본에서만 잘 나온 후보는 뒤로 밀리고, 3판 이상 검증돼야 적용 후보가 돼.</p>
     <div class="ops"><button class="pbtn" id="tuneBtn" aria-pressed="true">보정 한 판</button>${T&&T.ready&&T.ready.ok?'<button class="pbtn" id="applyBtn">검증된 후보 적용</button>':''}<span class="sub" id="tunemsg"></span></div>`;
   if(!T||!T.pool||!T.pool.length)return head+'<div class="muted">아직 보정 판이 없어.</div></section>';
-  const pr=[['W','돌파 창','봉'],['b','돌파 인정폭','%'],['u','旺 승격 상승폭','%'],['d1','衰 낙폭','%'],['d2','死 낙폭','%'],['TF','衰 체류 한도','봉'],['TC','재진입 쿨다운','봉'],['vr','거래량 배수','배']];
-  const fv=(P,k,u)=>u==='%'?(P[k]*100).toFixed(1)+'%':u==='배'?(+P[k]).toFixed(2)+'배':P[k]+'봉';
+  const pr=[['W','돌파 창','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 낙폭','σ'],['d2','겨울 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','최소 유지','봉'],['hyst','연속 확인일','일'],['lowGate','52주 저점 대비','%']];
+  const fv=(P,k,u)=>P[k]==null?'—':u==='%'?(P[k]*100).toFixed(0)+'%':u==='σ'?(+P[k]).toFixed(2)+'σ':P[k]+'봉';
   const C=T.candidate;
   return head+`<div class="sub">${T.m} · ${T.round}판째 · 이번 판 표본 ${T.sample?T.sample.got:'?'}종목 (판마다 교체) · 후보 ${T.tried}개 채점 · ${kst(T.at)}</div>
     <div class="sub">현재 엔진 점수 <b>${T.cur.avg}</b> (${T.cur.n}판) · 적용 가능 여부 <b>${T.ready?esc(T.ready.why):'—'}</b></div>
-    <div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:600px"><thead><tr><th>순위</th><th class="r">평균 점수</th><th class="r">검증 판수</th><th class="r">旺−死 간격</th><th class="r">DS 분포 차이</th><th class="r">DS 라벨</th><th>파라미터</th></tr></thead><tbody>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="acc" style="min-width:600px"><thead><tr><th>순위</th><th class="r">평균 점수</th><th class="r">검증 판수</th><th class="r">여름 +10%</th><th class="r">여름 초과</th><th class="r">겨울 초과</th><th class="r">봄→여름</th><th>파라미터</th></tr></thead><tbody>
       ${T.pool.slice(0,6).map((e,i)=>`<tr${C&&e.avg===C.avg&&e.n===C.n?' style="background:var(--gold-soft)"':''}><td class="num">${i+1}${C&&e.avg===C.avg&&e.n===C.n?' ★':''}</td><td class="r num wt">${e.avg}</td><td class="r num">${e.n}</td>
-        <td class="r num">${e.last&&e.last.spread!=null?e.last.spread:'—'}</td><td class="r num">${e.last&&e.last.gap!=null?e.last.gap+'%p':'—'}</td><td class="r num">${e.last&&e.last.dsAcc!=null?(e.last.dsAcc*100).toFixed(1)+'%':'—'}</td>
-        <td class="num" style="font-size:11.5px">W${e.P.W} b${(e.P.b*100).toFixed(1)} u${(e.P.u*100).toFixed(0)} d1${(e.P.d1*100).toFixed(0)} d2${(e.P.d2*100).toFixed(0)} TF${e.P.TF} TC${e.P.TC} vr${(+e.P.vr).toFixed(2)}</td></tr>`).join('')}
-      <tr><td>현재</td><td class="r num">${T.cur.avg}</td><td class="r num">${T.cur.n}</td><td class="r num">${T.cur.last&&T.cur.last.spread!=null?T.cur.last.spread:'—'}</td><td class="r num">${T.cur.last&&T.cur.last.gap!=null?T.cur.last.gap+'%p':'—'}</td><td class="r num">${T.cur.last&&T.cur.last.dsAcc!=null?(T.cur.last.dsAcc*100).toFixed(1)+'%':'—'}</td>
-        <td class="num" style="font-size:11.5px">W${T.cur.P.W} b${(T.cur.P.b*100).toFixed(1)} u${(T.cur.P.u*100).toFixed(0)} d1${(T.cur.P.d1*100).toFixed(0)} d2${(T.cur.P.d2*100).toFixed(0)} TF${T.cur.P.TF} TC${T.cur.P.TC} vr${(+T.cur.P.vr).toFixed(2)}</td></tr>
+${(x=>`<td class="r num">${x.summerHit==null?'—':x.summerHit+'%'}</td><td class="r num">${x.summerExc==null?'—':x.summerExc+'%'}</td><td class="r num">${x.winterExc==null?'—':x.winterExc+'%'}</td><td class="r num">${x.springToSummer==null?'—':x.springToSummer+'%'}</td>`)((e.last&&e.last.sem)||{})}
+        <td class="num" style="font-size:11.5px">W${e.P.W} b${(+e.P.b).toFixed(2)}σ u${(+e.P.u).toFixed(2)}σ d1${(+e.P.d1).toFixed(2)}σ d2${(+e.P.d2).toFixed(2)}σ TF${e.P.TF} TC${e.P.TC}</td></tr>`).join('')}
+      <tr><td>현재</td><td class="r num">${T.cur.avg}</td><td class="r num">${T.cur.n}</td>${(x=>`<td class="r num">${x.summerHit==null?'—':x.summerHit+'%'}</td><td class="r num">${x.summerExc==null?'—':x.summerExc+'%'}</td><td class="r num">${x.winterExc==null?'—':x.winterExc+'%'}</td><td class="r num">${x.springToSummer==null?'—':x.springToSummer+'%'}</td>`)((T.cur.last&&T.cur.last.sem)||{})}
+        <td class="num" style="font-size:11.5px">W${T.cur.P.W} b${(+T.cur.P.b).toFixed(2)}σ u${(+T.cur.P.u).toFixed(2)}σ d1${(+T.cur.P.d1).toFixed(2)}σ d2${(+T.cur.P.d2).toFixed(2)}σ TF${T.cur.P.TF} TC${T.cur.P.TC}</td></tr>
     </tbody></table></div>
     ${C?`<details style="margin-top:10px"><summary class="fold"><b style="font-size:14px">적용 후보 상세 (${C.n}판 평균 ${C.avg})</b></summary>
       <div class="tbl-wrap" style="margin-top:8px"><table class="acc" style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">지금</th><th class="r">후보</th></tr></thead><tbody>
@@ -1059,7 +1136,54 @@ $('k-save').onclick=async()=>{PREF.key=$('k-in').value.trim();savePrefs();
 
 /* ---------- wiring ---------- */
 function syncMkt(){document.querySelectorAll('#mktseg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.m===state.m)));q.placeholder=`종목 검색·추가 — ${state.m==='US'?'티커·영문명 (예: AMD, Tesla)':'종목명·코드 (예: 한미반도체, 042700)'}`}
-function renderAll(){if(!D){renderUniv();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderDS()}
+/* ---- 전략실: 예시 포트폴리오 (/api/portfolio) ---- */
+let PF=null,PF_M=null;
+async function loadPf(){
+  if(PF_M===state.m)return;
+  PF_M=state.m;PF=null;renderPf();
+  try{PF=await api('/api/portfolio?m='+state.m)}catch(e){PF={err:e.message}}
+  renderPf();
+}
+function pfPct(x,d){return x==null?'—':(x>0?'+':'')+x.toFixed(d??2)+'%'}
+function pfCol(x){return x==null?'var(--muted)':x<0?'var(--neg)':'var(--pos)'}
+function renderPf(){
+  const el=$('pf');if(!el)return;
+  if(!PF){el.innerHTML='<div class="muted">불러오는 중…</div>';return}
+  if(PF.err){el.innerHTML=`<div class="warn">${esc(PF.err)}</div>`;return}
+  if(PF.empty){el.innerHTML='<div class="muted">아직 돌린 적 없어. 엔진 탭 → <b>예시 포트폴리오 돌리기</b>를 한 번 누르면 이후 매일 자동으로 갱신돼.</div>';return}
+  const S=PF.strategies||{},keys=['국면','대장','국면+대장'];
+  const DESC={'국면':'추세추종 — 봄 전환·여름 종목만 보유, 가을·겨울 되면 청산','대장':'가치·실적 — 그 시점에 공시돼 있던 분기 실적으로 점수 상위만 보유','국면+대장':'교집합 — 실적 상위이면서 봄·여름인 것만'};
+  const stat=(k)=>{
+    const o=S[k]; if(!o)return '';
+    const t=o.stats||{},has=t.trades>0||t.open>0;
+    return `<div class="pfcol">
+      <h3>${k}</h3><p class="sub">${DESC[k]}</p>
+      ${has?`<div class="pfbig" style="color:${pfCol(t.cum)}">${pfPct(t.cum)}</div>
+      <div class="sub">누적손익 · 연환산 ${t.cagr==null?'—':pfPct(t.cagr)} · MDD ${t.mdd==null?'—':t.mdd.toFixed(1)+'%'}</div>
+      <table class="acc pfst"><tbody>
+        <tr><th>편출 횟수</th><td class="r num">${t.trades}건</td><th>승률</th><td class="r num">${t.win==null?'—':t.win+'%'}</td></tr>
+        <tr><th>평균 손익</th><td class="r num" style="color:${pfCol(t.avgRet)}">${pfPct(t.avgRet)}</td><th>평균 보유</th><td class="r num">${t.avgDays??'—'}일</td></tr>
+        <tr><th>+10% 달성</th><td class="r num">${t.hit10==null?'—':t.hit10+'%'}</td><th>현재 보유</th><td class="r num">${t.open}종목</td></tr>
+      </tbody></table>`:'<div class="muted" style="padding:14px 0">데이터 부족 — 펀더멘털 수집이 끝나야 채워져</div>'}
+    </div>`;
+  };
+  const tabs=keys.map((k,i)=>`<button class="chip pftab" data-s="${k}" aria-pressed="${(state.pfs||'국면')===k}">${k}</button>`).join('');
+  const cur=state.pfs||'국면',o=S[cur]||{open:[],closed:[]};
+  const openT=(o.open||[]).length?`<table class="acc" style="min-width:600px"><thead><tr><th>종목</th><th>편입일</th><th class="r">편입가</th><th class="r">현재가</th><th class="r">손익률</th><th class="r">보유일</th><th>국면</th></tr></thead><tbody>
+    ${o.open.map(x=>`<tr><td>${esc(x.name)} <span class="sub">${esc(x.code)}</span></td><td class="num">${x.in}</td><td class="r num">${x.entry}</td><td class="r num">${x.last}</td><td class="r num" style="color:${pfCol(x.ret)}">${pfPct(x.ret)}</td><td class="r num">${x.days}일</td><td>${x.season?`<span class="pill p-${x.season}"><span class="han">${HAN[x.season]}</span>${x.season}</span>`:'—'}</td></tr>`).join('')}
+    </tbody></table>`:'<div class="muted">보유 중인 종목 없음</div>';
+  const clT=(o.closed||[]).length?`<table class="acc" style="min-width:640px"><thead><tr><th>종목</th><th>편입일</th><th>편출일</th><th class="r">편입가</th><th class="r">편출가</th><th class="r">손익률</th><th class="r">보유일</th><th>편출 사유</th></tr></thead><tbody>
+    ${o.closed.map(x=>`<tr><td>${esc(x.name)} <span class="sub">${esc(x.code)}</span></td><td class="num">${x.in}</td><td class="num">${x.out}</td><td class="r num">${x.entry}</td><td class="r num">${x.exit}</td><td class="r num" style="color:${pfCol(x.ret)}">${pfPct(x.ret)}</td><td class="r num">${x.days}일</td><td class="sub">${esc(x.why)}</td></tr>`).join('')}
+    </tbody></table>`:'<div class="muted">편출 내역 없음</div>';
+  $('pf-sub').innerHTML=`${PF.from} ~ ${PF.to} · 표본 ${PF.n}종목 · 최대 ${PF.hold}종목 동일비중 · ${PF.everyN}거래일마다 리밸런스 · 진입·청산 모두 종가${PF.benchmark?.ret!=null?` · <b>기준선(표본 전체 보유) ${pfPct(PF.benchmark.ret)}</b>`:''}`;
+  el.innerHTML=`<div class="pfrow">${keys.map(stat).join('')}</div>
+    <div class="chips" style="margin:14px 0 8px">${tabs}</div>
+    <h3 style="margin:10px 0 6px;font-size:14px">보유 중 — ${esc(cur)}</h3><div class="tbl-wrap">${openT}</div>
+    <h3 style="margin:16px 0 6px;font-size:14px">편출 내역 — ${esc(cur)} <span class="sub">최근 ${(o.closed||[]).length}건</span></h3><div class="tbl-wrap" style="max-height:420px;overflow-y:auto">${clT}</div>
+    <p class="sub" style="margin-top:10px">과거 데이터로 규칙을 그대로 돌린 결과이고 실제 체결·슬리피지·세금은 반영돼 있지 않아. 미래 수익을 보장하지 않아.</p>`;
+  el.querySelectorAll('.pftab').forEach(b=>b.onclick=()=>{state.pfs=b.dataset.s;renderPf()});
+}
+function renderAll(){loadPf();if(!D){renderUniv();renderPf();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderDS();renderPf()}
 async function reload(flash){D=await api('/api/list');BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll()});
 let engDone=false;
