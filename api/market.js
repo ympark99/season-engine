@@ -2,7 +2,7 @@
 // 저장된 일봉이 없거나 4일 넘게 묵었으면 그 자리에서 KIS 로 받아옴 (동시 요청은 잠금으로 1번만)
 import * as store from '../lib/store.js';
 import { engineState, KEEP, send } from '../lib/service.js';
-import { analyze } from '../lib/engine.js';
+import { analyzeV2 as analyze } from '../lib/engine2.js';
 import { INDICES, refreshIndex, indexParams } from '../lib/market.js';
 import { historyOf } from '../lib/history.js';
 
