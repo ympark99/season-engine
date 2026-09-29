@@ -134,7 +134,7 @@ export default async function handler(req, res) {
       const more = did ? (did.kind === 'run' ? true : did.todayRounds < 4) : false;   // 측정이 끝나면 다음 호출이 보정을 이어서 함
       const host = process.env.PUBLIC_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null);
       if (host && process.env.CRON_SECRET) {
-        next = more ? `/api/backtest?auto=${m}` : (m === 'US' ? '/api/fundamentals?auto=US' : null);   // 다 끝나면 펀더멘털 수집으로 넘김
+        next = more ? `/api/backtest?auto=${m}` : `/api/fundamentals?auto=${m}`;   // 다 끝나면 펀더멘털 수집으로 넘김
         if (next) {
           try { await fetch(`${host}${next}&secret=${encodeURIComponent(process.env.CRON_SECRET)}`, { signal: AbortSignal.timeout(1500) }); chained = true; }
           catch (e) { chained = e.name === 'TimeoutError' || e.name === 'AbortError'; }
@@ -162,7 +162,7 @@ export default async function handler(req, res) {
       L.stocks.forEach((s, i) => { if (bars[i]) byKey[`${s.m}:${s.code}`] = bars[i]; });
       const { cal, anchors } = calibrateFromLabels(L, byKey, P);
       await store.set('engine', { ...cur, params: P, cal, anchors, tunedAt: new Date().toISOString(), tunedFrom: cur.params || null });
-      await store.del(S_STATE, S_ACC, S_CELLS);                       // 파라미터가 바뀜으니 신뢰도는 다시 측정
+      await store.del(S_STATE, S_ACC, S_CELLS);                       // 파라미터가 바뀌었으니 신뢰도는 다시 측정
       return send(res, 200, { applied: P, anchors: anchors.length });
     }
     send(res, 400, { error: 'step 은 run | tune | apply | reset' });
