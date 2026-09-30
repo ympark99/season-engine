@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "functions": { "api/*.js": { "maxDuration": 60 } },
+  "functions": { "api/*.js": { "maxDuration": 300 } },
   "rewrites": [
     { "source": "/api/add", "destination": "/api/list?op=add" },
     { "source": "/api/remove", "destination": "/api/list?op=remove" },

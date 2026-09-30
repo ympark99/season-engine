@@ -1,5 +1,5 @@
 // GET /api/cron?m=KR|US         — Vercel Cron 이 매일 호출 (vercel.json). 자동 갱신 파이프라인 한 조각
-// GET /api/cron?op=step&m=KR     — 같은 일. 파이프라인이 스스로 이어 부르거나 예비 크론이 부름
+// GET /api/cron?op=step&m=KR     — 같은 일. 예비 크론이 부르거나 화면에서 수동 진행(&budget=초)
 // GET /api/meta                  — 엔진 탭: 학습된 파라미터·보정·라벨 재현표 (rewrite → ?op=meta)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
@@ -34,7 +34,8 @@ export default async function handler(req, res) {
       await store.set('cron:denied', { at: new Date().toISOString(), m, hasSecret: !!sec, hasAuthHeader: !!req.headers.authorization, ua: String(req.headers['user-agent'] || '').slice(0, 40) }).catch(() => {});
       return send(res, 401, { error: 'cron 전용' });
     }
-    const from = op === 'step' ? (req.query.bk ? `예비 크론 ${req.query.bk}` : '이어받기') : (isAdmin(req) && !okCron ? '수동' : '크론');
-    send(res, 200, await step(m, { from }));
+    const from = isAdmin(req) && !okCron ? '수동' : req.query.bk ? `예비 크론 ${req.query.bk}` : '크론';
+    const budgetMs = Math.min(240, Math.max(30, +req.query.budget || 240)) * 1000;   // 화면 버튼은 짧게, 크론은 최대 4분
+    send(res, 200, await step(m, { from, budgetMs }));
   } catch (e) { send(res, 500, { error: e.message }); }
 }
