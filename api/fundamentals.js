@@ -10,20 +10,25 @@ import * as store from '../lib/store.js';
 import { isAdmin, send, body } from '../lib/service.js';
 import { fetchStatement, normalize, metricsAt, rawScores } from '../lib/fundamentals.js';
 import { fetchForward, blendForward } from '../lib/forward.js';
-import { fetchKrInfo, normalizeKr, krMetrics, krRawScores } from '../lib/krfund.js';
+import { fetchKrInfo, normalizeKr, krMetrics, krRawScores, epsSnapshot } from '../lib/krfund.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
 const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 350), STALE_DAYS = 7;
+const staleDays = m => (m === 'KR' ? 3 : STALE_DAYS);    // 국내는 추정 변화 기록을 촘촘히 쌓으려고 3일마다
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query?.secret === process.env.CRON_SECRET);
 
-/** 한 종목 — 미국은 분기 재무 3회 + 선행 지표 1회, 국내는 추정실적 1회 */
+/** 한 종목 — 미국은 분기 재무 3회 + 선행 지표 1회, 국내는 컨센서스 연간·분기 2회 */
 export async function collectOne(m, code) {
   if (m === 'KR') {
+    const [prev, bars] = await store.mget([KEY(m, code), store.barsKey('KR', code)]);
     const norm = normalizeKr(await fetchKrInfo(code));
-    const metrics = krMetrics(norm);
-    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, metrics };
+    const snap = epsSnapshot(norm);
+    const hist = [...(prev?.hist || []).filter(h => h.d !== snap.d), snap].slice(-60);        // 추정 EPS 기록 (추정 상향/하향 계산용)
+    const price = bars?.c?.length ? bars.c[bars.c.length - 1] : null;
+    const metrics = krMetrics(norm, { price, hist });
+    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, hist, metrics };
     await store.set(KEY(m, code), rec);
     return rec;
   }
@@ -45,14 +50,14 @@ export async function collectOne(m, code) {
 export async function collectChunk(m, { reset = false } = {}) {
   const t0 = Date.now(), today = kstDate();
   let st = await store.get(S_STATE(m));
-  const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : STALE_DAYS * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
+  const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
   if (st?.done && !reset && !cycleOld) return { m, i: st.i, total: st.codes.length, got: 0, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: 0 };
   if (reset || !st || !st.codes?.length || st.done) {
     const mem = await members(), list = listOf(m, mem);
     if (!list.length) throw new Error('구성종목이 없어 — 유니버스 스캔을 먼저 돌려줘');
     st = { m, started: today, i: 0, codes: list.map(x => x.code), failed: [], done: false, prevN: st?.collected ?? null };
   }
-  const fresh = new Date(Date.now() - STALE_DAYS * 864e5).toISOString();
+  const fresh = new Date(Date.now() - staleDays(m) * 864e5).toISOString();
   let got = 0, skipped = 0;
   while (st.i < st.codes.length && Date.now() - t0 < CHUNK_MS) {
     const code = st.codes[st.i];
@@ -80,7 +85,10 @@ const pct = (v, sorted) => {                       // 유니버스 내 백분위
   if (v == null) return null;
   let lo = 0, hi = sorted.length;
   while (lo < hi) { const mid = (lo + hi) >> 1; if (sorted[mid] < v) lo = mid + 1; else hi = mid; }
-  return Math.round(100 * lo / Math.max(1, sorted.length - 1));
+  let up = lo;
+  while (up < sorted.length && sorted[up] === v) up++;                              // 같은 값은 가운데 순위 (동점이 전부 0%가 되지 않게)
+  const rank = up > lo ? (lo + up - 1) / 2 : lo;
+  return Math.round(100 * rank / Math.max(1, sorted.length - 1));
 };
 
 /** 저장된 지표를 유니버스 백분위로 환산해 대장 점수 산출 */
@@ -109,12 +117,14 @@ export async function scoreAll(m) {
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
     if ((M.revUp ?? 0) > 3) flags.push('추정 상향');
     if ((M.revUp ?? 0) < -3) flags.push('추정 하향');
-    if ((M.coverage ?? 9) < 3) flags.push('추정 기관 적음');
+    if ((M.surOp ?? 0) >= 5) flags.push('어닝 서프라이즈');
+    if ((M.surOp ?? 0) <= -5) flags.push('어닝 쇼크');
     return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), score, p, flags, funding: M.funding,
       q: M.q, asOf: M.asOf, gRev: M.gRev, gEps: M.gEps, accelEps: M.accelEps, accelRev: M.accelRev,
       om: M.om, dOm: M.dOm, fcfM: M.fcfM, roic: M.roic ?? M.roeFwd, zPs: M.zPs, lev: M.levEbitda, dilution: M.dilution, noisy: M.noisy,
       fwdEps: M.fwdEps ?? F?.epsNextY ?? null, fwdPe: M.fwdPe ?? F?.fwdPe ?? null,
       gEpsFwd: M.gEpsFwd ?? F?.gEpsNextY ?? null, revUp: M.revUp ?? null, rs: M.rs ?? null,
+      surOp: M.surOp ?? null, surQ: M.surQ ?? null, gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
       target: F?.target ?? null, upside: F?.upside ?? null };
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
   const sum = { m, at: new Date().toISOString(), n: rows.length, weights: W,
@@ -134,7 +144,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET' && req.query.probe) {                                        // 원응답 확인 (스키마 점검용)
       if (!admin) return send(res, 401, { error: '관리자 키가 필요해' });
       const code = String(req.query.probe);
-      if ((req.query.m || 'KR') === 'KR') { const j = await fetchKrInfo(code); return send(res, 200, { keys: Object.keys(j?.data || j || {}), norm: normalizeKr(j), metrics: krMetrics(normalizeKr(j)) }); }
+      if ((req.query.m || 'KR') === 'KR') { const n = normalizeKr(await fetchKrInfo(code)); return send(res, 200, { norm: n, metrics: krMetrics(n) }); }
       return send(res, 200, await fetchForward(code.toUpperCase()));
     }
     if (req.method === 'GET' && req.query.code) {
@@ -148,7 +158,7 @@ export default async function handler(req, res) {
       const [sum, st] = await store.mget([S_SUM(m), S_STATE(m)]);
       const state = st ? { i: st.i, total: st.codes?.length ?? null, done: st.done, started: st.started, updatedAt: st.updatedAt, finishedAt: st.finishedAt || null,
         collected: st.collected ?? null, failedN: st.failed?.length || 0, failed: (st.failed || []).slice(-5), blocked: st.blocked || null,
-        next: st.finishedAt ? new Date(Date.parse(st.finishedAt) + (st.blocked ? 864e5 : STALE_DAYS * 864e5)).toISOString().slice(0, 10) : null } : null;
+        next: st.finishedAt ? new Date(Date.parse(st.finishedAt) + (st.blocked ? 864e5 : staleDays(m) * 864e5)).toISOString().slice(0, 10) : null } : null;
       if (req.query.all) return send(res, 200, { summary: sum || null, state, m });
       const top = sum ? { ...sum, rows: sum.rows.slice(0, 25), bottom: sum.rows.slice(-15).reverse() } : null;
       return send(res, 200, { summary: top, state, m });
