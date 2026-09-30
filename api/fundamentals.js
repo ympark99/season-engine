@@ -119,12 +119,15 @@ export async function scoreAll(m) {
     if ((M.revUp ?? 0) < -3) flags.push('추정 하향');
     if ((M.surOp ?? 0) >= 5) flags.push('어닝 서프라이즈');
     if ((M.surOp ?? 0) <= -5) flags.push('어닝 쇼크');
+    if (M.basis === 'trailing') flags.push('추정치 없음 · 실적 기준');
+    if (M.loss) flags.push('적자(PER 없음)');
+    if (M.consol === 'P') flags.push('별도 기준');
     return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), score, p, flags, funding: M.funding,
       q: M.q, asOf: M.asOf, gRev: M.gRev, gEps: M.gEps, accelEps: M.accelEps, accelRev: M.accelRev,
       om: M.om, dOm: M.dOm, fcfM: M.fcfM, roic: M.roic ?? M.roeFwd, zPs: M.zPs, lev: M.levEbitda, dilution: M.dilution, noisy: M.noisy,
       fwdEps: M.fwdEps ?? F?.epsNextY ?? null, fwdPe: M.fwdPe ?? F?.fwdPe ?? null,
       gEpsFwd: M.gEpsFwd ?? F?.gEpsNextY ?? null, revUp: M.revUp ?? null, rs: M.rs ?? null,
-      surOp: M.surOp ?? null, surQ: M.surQ ?? null, gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
+      surOp: M.surOp ?? null, surQ: M.surQ ?? null, peBasis: M.basis ?? null, gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
       target: F?.target ?? null, upside: F?.upside ?? null };
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
   const sum = { m, at: new Date().toISOString(), n: rows.length, weights: W,
