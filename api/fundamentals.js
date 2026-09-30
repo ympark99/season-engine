@@ -1,10 +1,11 @@
 // /api/fundamentals — 대장 엔진 재료. 유니버스 전종목 재무·추정치를 주 1회 조각내서 모으고 점수화한다.
 //   GET                      → 수집 상태 + 점수 요약 (공개)
 //   GET ?code=BE             → 한 종목 지표·분기 원자료
-//   GET ?auto=US|KR&secret=.. → 남은 수집 한 조각 실행 후 스스로 체이닝 (cron)
+//   GET ?all=1&m=US          → 점수 전체 목록 (대시보드 표)
+//   GET ?auto=US|KR&secret=.. → 남은 수집 한 조각 실행 (파이프라인이 부름)
 //   GET ?probe=CODE&m=KR      → 원응답 스키마 확인 (관리자)
 //   POST {step:'collect'|'score'|'one', m, code, reset}   (관리자)
-// 미국은 Finviz(분기 재무 + 선행 EPS/PER), 국내는 별도 제공처의 추정실적을 쓴다 — 점수 축은 동일.
+// 미국은 분기 재무 + 선행 EPS/PER, 국내는 추정실적을 쓴다 — 점수 축은 동일. 제공처 이름은 코드·화면에 쓰지 않는다.
 import * as store from '../lib/store.js';
 import { isAdmin, send, body } from '../lib/service.js';
 import { fetchStatement, normalize, metricsAt, rawScores } from '../lib/fundamentals.js';
@@ -13,7 +14,7 @@ import { fetchKrInfo, normalizeKr, krMetrics, krRawScores } from '../lib/krfund.
 import { members, listOf, kstDate } from '../lib/universe.js';
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
-const CHUNK_MS = 40000, GAP_MS = +(process.env.FINVIZ_GAP ?? 350), STALE_DAYS = 7;
+const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 350), STALE_DAYS = 7;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query?.secret === process.env.CRON_SECRET);
 
@@ -38,31 +39,41 @@ export async function collectOne(m, code) {
   return rec;
 }
 
-/** 수집 한 조각 — 오래된 종목부터 */
-async function collectChunk(m, { reset = false } = {}) {
+/** 수집 한 조각 — 오래된 종목부터.
+ *  한 바퀴가 끝나면 STALE_DAYS 가 지나기 전에는 다시 돌지 않는다.
+ *  (예전엔 끝나자마자 다음 호출에서 진행 0/N 으로 새 바퀴를 시작해서, 화면에선 수집한 게 날아간 것처럼 보였다) */
+export async function collectChunk(m, { reset = false } = {}) {
   const t0 = Date.now(), today = kstDate();
   let st = await store.get(S_STATE(m));
+  const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : STALE_DAYS * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
+  if (st?.done && !reset && !cycleOld) return { m, i: st.i, total: st.codes.length, got: 0, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: 0 };
   if (reset || !st || !st.codes?.length || st.done) {
     const mem = await members(), list = listOf(m, mem);
     if (!list.length) throw new Error('구성종목이 없어 — 유니버스 스캔을 먼저 돌려줘');
-    st = { m, started: today, i: 0, codes: list.map(x => x.code), failed: [], done: false };
+    st = { m, started: today, i: 0, codes: list.map(x => x.code), failed: [], done: false, prevN: st?.collected ?? null };
   }
   const fresh = new Date(Date.now() - STALE_DAYS * 864e5).toISOString();
   let got = 0, skipped = 0;
   while (st.i < st.codes.length && Date.now() - t0 < CHUNK_MS) {
     const code = st.codes[st.i];
     const cur = await store.get(KEY(m, code));
-    if (cur?.at > fresh) { skipped++; st.i++; continue; }
+    if (cur?.at > fresh && !reset) { skipped++; st.i++; continue; }
     try { await collectOne(m, code); got++; }
-    catch (e) { st.failed.push({ code, error: e.message.slice(0, 100) }); if (st.failed.length > 300) st.failed = st.failed.slice(-300); }
+    catch (e) { st.failed.push({ code, error: e.message.slice(0, 140) }); if (st.failed.length > 300) st.failed = st.failed.slice(-300); }
     st.i++;
     await sleep(GAP_MS);
+    // 국내 제공처가 통째로 막힌 경우 — 첫 10종목이 전부 같은 이유로 실패하면 그 바퀴를 멈추고 이유를 남긴다
+    if (m === 'KR' && st.i === 10 && st.failed.length >= 10) { st.blocked = st.failed[0].error; break; }
   }
-  st.done = st.i >= st.codes.length;
+  st.done = st.i >= st.codes.length || !!st.blocked;
   st.updatedAt = new Date().toISOString();
+  if (st.done) {
+    st.finishedAt = st.updatedAt;
+    const sum = await scoreAll(m);
+    st.collected = sum.n;
+  }
   await store.set(S_STATE(m), st);
-  if (st.done) await scoreAll(m);
-  return { m, i: st.i, total: st.codes.length, got, skipped, failed: st.failed.length, done: st.done, ms: Date.now() - t0 };
+  return { m, i: st.i, total: st.codes.length, got, skipped, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
 }
 
 const pct = (v, sorted) => {                       // 유니버스 내 백분위 (0~100)
@@ -80,7 +91,7 @@ export async function scoreAll(m) {
     const got = await store.mget(chunk.map(x => KEY(m, x.code)));
     got.forEach((r, j) => { if (r?.metrics?.ok) recs.push({ ...r, name: chunk[j].name, tags: chunk[j].tags }); });
   }
-  if (!recs.length) return { m, n: 0, at: new Date().toISOString(), rows: [] };
+  if (!recs.length) { const prev = await store.get(S_SUM(m)); return prev || { m, n: 0, at: new Date().toISOString(), rows: [] }; }   // 수집이 전부 실패해도 이전 점수는 지우지 않음
   const raw = recs.map(r => ({ r, s: m === 'KR' ? krRawScores(r.metrics) : blendForward(rawScores(r.metrics), r.fwd) })).filter(x => x.s);
   const keys = ['accel', 'growth', 'margin', 'cash', 'quality', 'value', 'risk'];
   const sorted = Object.fromEntries(keys.map(k => [k, raw.map(x => x.s[k]).filter(v => v != null).sort((a, b) => a - b)]));
@@ -94,7 +105,7 @@ export async function scoreAll(m) {
     if (p.accel != null && p.accel < 20 && (M.dOm ?? 0) < 0) flags.push('이익 정점 경계');      // 정유 매도를 설명하는 규칙
     if (M.funding === '남의 돈' && (M.levEbitda ?? 0) > 3) flags.push('남의 돈 · 레버리지');
     if ((M.dilution ?? 0) > 10) flags.push('희석 10%+');
-    if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비쌈');
+    if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비썈');
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
     if ((M.revUp ?? 0) > 3) flags.push('추정 상향');
     if ((M.revUp ?? 0) < -3) flags.push('추정 하향');
@@ -118,15 +129,7 @@ export default async function handler(req, res) {
     const admin = isAdmin(req), cron = okCron(req);
     if (req.method === 'GET' && (req.query.auto === 'US' || req.query.auto === 'KR')) {
       if (!cron && !admin) return send(res, 401, { error: 'cron 전용' });
-      const m = req.query.auto, r = await collectChunk(m);
-      let chained = false, next = null;
-      const host = process.env.PUBLIC_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null);
-      if (host && process.env.CRON_SECRET) {
-        next = !r.done ? `/api/fundamentals?auto=${m}` : `/api/portfolio?auto=${m}`;      // 수집이 끝나면 예시 포트폴리오 갱신
-        try { await fetch(`${host}${next}&secret=${encodeURIComponent(process.env.CRON_SECRET)}`, { signal: AbortSignal.timeout(1500) }); chained = true; }
-        catch (e) { chained = e.name === 'TimeoutError' || e.name === 'AbortError'; }
-      }
-      return send(res, 200, { ...r, chained, next });
+      return send(res, 200, await collectChunk(req.query.auto));
     }
     if (req.method === 'GET' && req.query.probe) {                                        // 원응답 확인 (스키마 점검용)
       if (!admin) return send(res, 401, { error: '관리자 키가 필요해' });
@@ -135,15 +138,20 @@ export default async function handler(req, res) {
       return send(res, 200, await fetchForward(code.toUpperCase()));
     }
     if (req.method === 'GET' && req.query.code) {
-      const m = req.query.m === 'KR' ? 'KR' : 'US';
-      const rec = await store.get(KEY(m, m === 'KR' ? String(req.query.code) : String(req.query.code).toUpperCase()));
-      return rec ? send(res, 200, rec) : send(res, 404, { error: '아직 수집 안 된 종목' });
+      const m = req.query.m === 'KR' ? 'KR' : 'US', code = m === 'KR' ? String(req.query.code) : String(req.query.code).toUpperCase();
+      const [rec, sum] = await store.mget([KEY(m, code), S_SUM(m)]);
+      const scored = sum?.rows?.find(r => r.code === code) || null;
+      return rec || scored ? send(res, 200, { ...(rec || {}), scored, rank: scored ? sum.rows.indexOf(scored) + 1 : null, of: sum?.n ?? null }) : send(res, 404, { error: '아직 수집 안 된 종목' });
     }
     if (req.method === 'GET') {
       const m = req.query.m === 'KR' ? 'KR' : 'US';
       const [sum, st] = await store.mget([S_SUM(m), S_STATE(m)]);
+      const state = st ? { i: st.i, total: st.codes?.length ?? null, done: st.done, started: st.started, updatedAt: st.updatedAt, finishedAt: st.finishedAt || null,
+        collected: st.collected ?? null, failedN: st.failed?.length || 0, failed: (st.failed || []).slice(-5), blocked: st.blocked || null,
+        next: st.finishedAt ? new Date(Date.parse(st.finishedAt) + (st.blocked ? 864e5 : STALE_DAYS * 864e5)).toISOString().slice(0, 10) : null } : null;
+      if (req.query.all) return send(res, 200, { summary: sum || null, state, m });
       const top = sum ? { ...sum, rows: sum.rows.slice(0, 25), bottom: sum.rows.slice(-15).reverse() } : null;
-      return send(res, 200, { summary: top, state: st || null, m });
+      return send(res, 200, { summary: top, state, m });
     }
 
     if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });

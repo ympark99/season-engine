@@ -1,6 +1,6 @@
 // /api/backtest — 국면 신뢰도 측정과 임계값 보정. 큰 데이터를 한 번에 돌리지 않고 여러 번에 나눠서 진행한다.
 //   GET                     → 저장된 신뢰도·보정 상태 (화면 표시용)
-//   GET ?auto=US&secret=..  → 오늘 남은 일감 한 조각 실행 후 스스로 다음 조각 호출 (cron 체이닝)
+//   GET ?auto=US&secret=..  → 오늘 남은 일감 한 조각 실행 (매일 이어 돌리는 건 /api/cron 파이프라인)
 //   POST {step:'run'}       → 신뢰도 측정 한 조각 (수동)
 //   POST {step:'tune'}      → 보정 한 판 (수동)
 //   POST {step:'apply'}     → 후보 파라미터를 엔진에 적용
@@ -93,6 +93,23 @@ async function runChunk(m, { sample = 250, reset = false } = {}) {
   return { m, date: today, phase: st.phase, i: st.i, total: st.codes.length, scanned: n, done: st.phase === 'done' };
 }
 
+/** 자동 진행 한 조각 — 오늘 신뢰도 측정이 안 끝났으면 측정, 끝났으면 보정(하루 4판). more=false 면 오늘 일 끝 */
+export async function autoStep(m) {
+  const today = kstDate();
+  const st = await store.get(S_STATE), tuner = await store.get(S_TUNER);
+  const utcDay = new Date().toISOString().slice(0, 10);
+  let did = null;
+  if (!st || st.date !== today || st.m !== m || st.phase !== 'done') did = { kind: 'run', r: await runChunk(m) };
+  else if (!tuner || tuner.at?.slice(0, 10) !== utcDay || (tuner.todayRounds || 0) < 4) {
+    const t = await tuneOnce(m);
+    t.todayRounds = (tuner?.at?.slice(0, 10) === utcDay ? (tuner.todayRounds || 0) : 0) + 1;
+    await store.set(S_TUNER, t);
+    did = { kind: 'tune', round: t.round, todayRounds: t.todayRounds, best: t.pool[0]?.avg, cur: t.cur.avg };
+  }
+  const more = did ? (did.kind === 'run' ? true : did.todayRounds < 4) : false;
+  return { m, did, more };
+}
+
 /* ------------------------------ 보정 한 판 ------------------------------ */
 async function tuneOnce(m, { sample = 80, budgetMs = 32000 } = {}) {
   const eng = await engineState();
@@ -120,27 +137,7 @@ export default async function handler(req, res) {
     const admin = isAdmin(req), cron = okCron(req);
     if (req.method === 'GET' && (req.query.auto === 'US' || req.query.auto === 'KR')) {
       if (!cron && !admin) return send(res, 401, { error: 'cron 전용' });
-      const m = req.query.auto, today = kstDate();
-      const st = await store.get(S_STATE), tuner = await store.get(S_TUNER);
-      let did = null;
-      if (!st || st.date !== today || st.m !== m || st.phase !== 'done') did = { kind: 'run', r: await runChunk(m) };
-      else if (!tuner || tuner.at?.slice(0, 10) !== new Date().toISOString().slice(0, 10) || (tuner.todayRounds || 0) < 4) {
-        const t = await tuneOnce(m);
-        t.todayRounds = (tuner?.at?.slice(0, 10) === new Date().toISOString().slice(0, 10) ? (tuner.todayRounds || 0) : 0) + 1;
-        await store.set(S_TUNER, t);
-        did = { kind: 'tune', round: t.round, todayRounds: t.todayRounds, best: t.pool[0]?.avg, cur: t.cur.avg };
-      }
-      let chained = false, next = null;
-      const more = did ? (did.kind === 'run' ? true : did.todayRounds < 4) : false;   // 측정이 끝나면 다음 호출이 보정을 이어서 함
-      const host = process.env.PUBLIC_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null);
-      if (host && process.env.CRON_SECRET) {
-        next = more ? `/api/backtest?auto=${m}` : `/api/fundamentals?auto=${m}`;   // 다 끝나면 펀더멘털 수집으로 넘김
-        if (next) {
-          try { await fetch(`${host}${next}&secret=${encodeURIComponent(process.env.CRON_SECRET)}`, { signal: AbortSignal.timeout(1500) }); chained = true; }
-          catch (e) { chained = e.name === 'TimeoutError' || e.name === 'AbortError'; }
-        }
-      }
-      return send(res, 200, { m, did, chained, next });
+      return send(res, 200, await autoStep(req.query.auto));
     }
 
     if (req.method === 'GET') {
