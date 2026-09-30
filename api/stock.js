@@ -10,13 +10,14 @@ import { opinion, volumeSignal } from '../lib/opinion.js';
 export default async function handler(req, res) {
   try {
     const { m, code } = req.query;
-    const [bars, eng, sum] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`)]);
+    const [bars, eng, sum, rec] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
     const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값 (v2 는 그대로)
     const A = analyze(bars, P, eng.cal, KEEP), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
     send(res, 200, { summary, series, history, cal: eng.cal, src: bars.src || null,
-      fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view });
+      fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
+      est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
   } catch (e) { send(res, 500, { error: e.message }); }
 }
