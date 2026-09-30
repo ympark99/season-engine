@@ -944,23 +944,25 @@ function pipeCard(H){
     const at=order.indexOf(p.stage);
     return `<dt>${m==='US'?'미국':'한국'}</dt><dd><div class="stg">${order.map((k,i)=>`<span class="${i===at?'on':i<at?'ok':''}">${i<at?'✓ ':''}${STG[k]}</span>`).join('')}</div>
       <div class="sub">${esc(p.date)} · 마지막 ${kst(p.updatedAt)}${p.log&&p.log[0]?` · ${esc(p.log[0].from)}: ${esc(p.log[0].note)}`:''}</div></dd>`};
-  const ch=(H.chain||[]).slice(0,6);
-  const bad=ch.filter(c=>!c.ok);
   const warn=[];
   if(!H.cronSecret)warn.push('CRON_SECRET 환경변수가 없어 — 크론이 인증에 막혀. Vercel → Settings → Environment Variables 에 CRON_SECRET(아무 긴 문자열)을 넣고 재배포해줘.');
   if(H.cronDenied)warn.push(`크론 호출이 인증에 막힌 기록이 있어 (${kst(H.cronDenied.at)}, ${H.cronDenied.m}${H.cronDenied.hasSecret?'':' · 서버에 CRON_SECRET 없음'}).`);
-  if(bad.length)warn.push(`스스로 이어 부르기 실패 ${bad.length}건 — 최근: ${esc(String(bad[0].status))} (${esc(bad[0].host||'')}). 401이면 Vercel → Settings → Deployment Protection 을 끄거나 'Protection Bypass for Automation'을 켜줘. 예비 크론이 대신 이어받긴 해.`);
   return `<section class="card"><h2>자동 갱신 상태</h2>
-    <p class="lead">매일 시장 마감 뒤 크론이 <b>목록·지수 → 유니버스 스캔 → 신뢰도·보정 → 펀더멘털 → 예시 포트폴리오</b>를 한 조각씩 이어서 돌려. 한 조각이 끝나면 다음 조각을 스스로 부르고, 그게 끊겨도 몇 시간 동안 예비 크론이 같은 자리에서 이어받아.
+    <p class="lead">매일 시장 마감 뒤 크론이 <b>목록·지수 → 유니버스 스캔 → 신뢰도·보정 → 펀더멘털 → 예시 포트폴리오</b>를 순서대로 돌려. 한 번 호출에 최대 4분씩 여러 조각을 몰아서 처리하고, 못 끝낸 일은 몇 시간 동안 30분 간격의 예비 크론이 같은 자리에서 이어받아.
       <span class="sub">(한국 16:10 시작 · 미국 07:10 시작, KST. Vercel 무료 플랜은 크론 시각이 최대 1시간 늦을 수 있어)</span></p>
     <dl class="pipe">${line('US')}${line('KR')}</dl>
     ${warn.length?`<div class="warn" style="margin-top:10px;font-size:13px">${warn.map(w=>`<div>• ${w}</div>`).join('')}</div>`:''}
     <div class="ops" style="margin-top:10px"><button class="pbtn" id="pipeBtn" aria-pressed="true">지금 한 조각 진행 (${state.m==='US'?'미국':'한국'})</button><span class="sub" id="pipemsg"></span></div>
-    ${ch.length?`<details style="margin-top:8px"><summary class="fold"><span class="sub">최근 이어 부르기 기록</span></summary><div class="sub num">${ch.map(c=>`${kst(c.at)} ${c.ok?'✓':'✕'} ${esc(String(c.status))} ${esc(c.path)}`).join('<br>')}</div></details>`:''}</section>`;
+    ${logOf(H)}</section>`;
+}
+function logOf(H){
+  const L=[...((H.pipeline||{}).US?.log||[]).map(x=>({...x,m:'미국'})),...((H.pipeline||{}).KR?.log||[]).map(x=>({...x,m:'한국'}))].sort((a,b)=>a.at<b.at?1:-1).slice(0,20);
+  return L.length?`<details style="margin-top:8px"><summary class="fold"><span class="sub">최근 진행 기록</span></summary><div class="sub num">${L.map(x=>`${kst(x.at)} ${x.m} · ${esc(STG[x.stage]||x.stage)} · ${esc(x.from)} — ${esc(x.note)}`).join('<br>')}</div></details>`:'';
 }
 async function runPipe(){
   const msg=$('pipemsg'),b=$('pipeBtn');b.disabled=true;msg.textContent='진행 중…';
-  try{const r=await api(`/api/cron?op=step&m=${state.m}`);msg.textContent=r.busy?'다른 조각이 돌고 있어 — 잠시 뒤 다시':`${STG[r.stage]||r.stage}: ${r.note} → 다음 ${STG[r.now]||r.now}`;setTimeout(renderEngine,800)}
+  msg.textContent='진행 중… (최대 1분)';
+  try{const r=await api(`/api/cron?op=step&m=${state.m}&budget=60`);msg.textContent=r.busy?'다른 호출이 돌고 있어 — 잠시 뒤 다시':`${(r.steps||[]).join(' / ')||r.note} → 지금 단계: ${STG[r.now]||r.now}`;setTimeout(renderEngine,800)}
   catch(e){msg.textContent='실패: '+e.message}finally{b.disabled=false}
 }
 
