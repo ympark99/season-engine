@@ -2,9 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "functions": {
-    "api/*.js": { "maxDuration": 60 }
-  },
+  "functions": { "api/*.js": { "maxDuration": 60 } },
   "rewrites": [
     { "source": "/api/add", "destination": "/api/list?op=add" },
     { "source": "/api/remove", "destination": "/api/list?op=remove" },
@@ -13,6 +11,30 @@
   ],
   "crons": [
     { "path": "/api/cron?m=KR", "schedule": "10 7 * * 1-5" },
-    { "path": "/api/cron?m=US", "schedule": "10 22 * * 1-5" }
+    { "path": "/api/cron?m=US", "schedule": "10 22 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=1", "schedule": "5 8 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=2", "schedule": "35 8 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=3", "schedule": "5 9 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=4", "schedule": "35 9 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=5", "schedule": "5 10 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=6", "schedule": "35 10 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=7", "schedule": "5 11 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=8", "schedule": "35 11 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=9", "schedule": "5 12 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=10", "schedule": "35 12 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=11", "schedule": "5 13 * * 1-5" },
+    { "path": "/api/cron?op=step&m=KR&bk=12", "schedule": "35 13 * * 1-5" },
+    { "path": "/api/cron?op=step&m=US&bk=1", "schedule": "5 23 * * 1-5" },
+    { "path": "/api/cron?op=step&m=US&bk=2", "schedule": "35 23 * * 1-5" },
+    { "path": "/api/cron?op=step&m=US&bk=3", "schedule": "5 0 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=4", "schedule": "35 0 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=5", "schedule": "5 1 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=6", "schedule": "35 1 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=7", "schedule": "5 2 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=8", "schedule": "35 2 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=9", "schedule": "5 3 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=10", "schedule": "35 3 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=11", "schedule": "5 4 * * 2-6" },
+    { "path": "/api/cron?op=step&m=US&bk=12", "schedule": "35 4 * * 2-6" }
   ]
 }

@@ -1,6 +1,6 @@
 // /api/portfolio — 예시 포트폴리오(엔진 수익률 증명). 진입·청산 모두 종가.
 //   GET                      → 저장된 결과
-//   GET ?auto=US&secret=..   → 다시 돌려서 저장 (cron 체이닝 끝단)
+//   GET ?auto=US&secret=..   → 다시 돌려서 저장 (파이프라인 끝단)
 //   POST {step:'run', m, hold, everyN, years, sample}  (관리자)
 import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body } from '../lib/service.js';
@@ -17,7 +17,7 @@ async function loadMany(keys) {
   return out;
 }
 
-async function run(m, { hold = 10, everyN = 5, years = 3, sample = 150 } = {}) {
+export async function run(m, { hold = 10, everyN = 5, years = 3, sample = 150 } = {}) {
   const mem = await members(), list = listOf(m, mem);
   if (!list.length) throw new Error('구성종목이 없어 — 유니버스 스캔을 먼저 돌려줘');
   const stride = Math.max(1, Math.floor(list.length / sample));

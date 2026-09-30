@@ -1,19 +1,24 @@
-// GET /api/cron?m=KR|US — Vercel Cron 이 매일 호출 (vercel.json). 목록 종목의 새 일봉만 받아 덧씀
-// GET /api/meta          — 엔진 탭: 학습된 파라미터·보정·라벨 재현표 (rewrite → ?op=meta)
-// GET /api/health        — 설정 점검, 값은 노출하지 않고 있는지만 (rewrite → ?op=health)
-// Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
+// GET /api/cron?m=KR|US         — Vercel Cron 이 매일 호출 (vercel.json). 자동 갱신 파이프라인 한 조각
+// GET /api/cron?op=step&m=KR     — 같은 일. 파이프라인이 스스로 이어 부르거나 예비 크론이 부름
+// GET /api/meta                  — 엔진 탭: 학습된 파라미터·보정·라벨 재현표 (rewrite → ?op=meta)
+// GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
+// Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
-import { refresh, send, isAdmin, engineState } from '../lib/service.js';
-import { INDICES, refreshIndex } from '../lib/market.js';
-import { chain } from '../lib/universe.js';
+import { send, isAdmin, engineState } from '../lib/service.js';
+import { step, pipeState } from '../lib/pipeline.js';
+import { selfBase, chainLog } from '../lib/selfcall.js';
 
 export default async function handler(req, res) {
   try {
     const op = req.query.op;
     if (op === 'health') {
+      const [pipe, chain, auth] = await Promise.all([pipeState(), chainLog(), store.get('cron:denied')]);
       return send(res, 200, {
         redis: await store.ping(), kisKey: !!process.env.KIS_APP_KEY, kisSecret: !!process.env.KIS_APP_SECRET,
         adminToken: !!process.env.ADMIN_TOKEN, cronSecret: !!process.env.CRON_SECRET, youAreAdmin: isAdmin(req),
+        selfHost: (selfBase() || '').replace(/^https:\/\//, '') || null, protectionBypass: !!process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+        krFundHeaders: !!process.env.KR_FUND_HEADERS,
+        pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null,
       });
     }
     if (op === 'meta') {
@@ -21,22 +26,15 @@ export default async function handler(req, res) {
       return send(res, 200, { ...eng, report: rep?.report || [], missing: rep?.missing || [] });
     }
 
-    const okCron = process.env.CRON_SECRET && req.headers.authorization === `Bearer ${process.env.CRON_SECRET}`;
-    if (!okCron && !isAdmin(req)) return send(res, 401, { error: 'cron 전용' });
-    const m = req.query.m === 'US' ? 'US' : 'KR', t0 = Date.now();
-    const items = (await store.listAll()).filter(x => x.m === m);
-    const ok = [], failed = [], skipped = [];
-    for (const ix of INDICES.filter(x => x.grp === m)) {           // 시장 지수 먼저
-      try { const r = await refreshIndex(ix); ok.push(`${ix.code}+${r.added}`); } catch (e) { failed.push({ code: ix.code, error: e.message.slice(0, 160) }); }
+    const sec = process.env.CRON_SECRET;
+    const okCron = sec && (req.headers.authorization === `Bearer ${sec}` || req.query.secret === sec);
+    const m = req.query.m === 'US' ? 'US' : 'KR';
+    if (!okCron && !isAdmin(req)) {
+      // 크론이 인증에 막히는 경우(CRON_SECRET 미설정 등)를 화면에서 알 수 있게 남긴다
+      await store.set('cron:denied', { at: new Date().toISOString(), m, hasSecret: !!sec, hasAuthHeader: !!req.headers.authorization, ua: String(req.headers['user-agent'] || '').slice(0, 40) }).catch(() => {});
+      return send(res, 401, { error: 'cron 전용' });
     }
-    for (const it of items) {
-      if (Date.now() - t0 > 50_000) { skipped.push(it.code); continue; }   // 시간 초과 전에 멈춤 → 다음 날 이어서
-      try { const r = await refresh(it); ok.push(`${it.code}+${r.added}`); if (r.excd && r.excd !== it.excd) await store.listPut({ ...it, excd: r.excd }); }
-      catch (e) { failed.push({ code: it.code, error: e.message.slice(0, 160) }); }
-    }
-    const rep = { at: new Date().toISOString(), m, ok: ok.length, failed, skipped, ms: Date.now() - t0 };
-    rep.universe = await chain(m);                                  // 유니버스(지수 구성종목) 전종목 스캔 시작 — 배치가 스스로 이어서 돎
-    await store.set(`cron:${m}`, rep);
-    send(res, 200, rep);
+    const from = op === 'step' ? (req.query.bk ? `예비 크론 ${req.query.bk}` : '이어받기') : (isAdmin(req) && !okCron ? '수동' : '크론');
+    send(res, 200, await step(m, { from }));
   } catch (e) { send(res, 500, { error: e.message }); }
 }
