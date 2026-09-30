@@ -105,7 +105,7 @@ export async function scoreAll(m) {
     if (p.accel != null && p.accel < 20 && (M.dOm ?? 0) < 0) flags.push('이익 정점 경계');      // 정유 매도를 설명하는 규칙
     if (M.funding === '남의 돈' && (M.levEbitda ?? 0) > 3) flags.push('남의 돈 · 레버리지');
     if ((M.dilution ?? 0) > 10) flags.push('희석 10%+');
-    if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비썈');
+    if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비쌈');
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
     if ((M.revUp ?? 0) > 3) flags.push('추정 상향');
     if ((M.revUp ?? 0) < -3) flags.push('추정 하향');
