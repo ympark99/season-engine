@@ -979,7 +979,7 @@ function renderFund(){
   if(!FD){el.innerHTML='<div class="muted">불러오는 중…</div>';return}
   if(FD.err){el.innerHTML=`<div class="warn">${esc(FD.err)}</div>`;return}
   const S=FD.summary,st=FD.state;
-  $('fund-sub').textContent=KR?'국내 — 컨센서스 추정치(올해·내년 EPS, 선행 PER, 최근 90일 추정 변경, 추정 ROE)로 점수':'미국 — 분기 재무 12분기 + 선행 EPS·선행 PER로 점수';
+  $('fund-sub').textContent=KR?'국내 — 컨센서스(연간 3년 추정·다음 2분기 추정), 12개월 선행 PER, 직전 분기 서프라이즈, 추정 EPS 변화(3일마다 자체 기록)로 점수':'미국 — 분기 재무 12분기 + 선행 EPS·선행 PER로 점수';
   const prog=st?(st.blocked?`<span class="warn">수집이 막혔어 — ${esc(st.blocked)}</span>`
       :st.done?`수집 완료 ${st.collected??S?.n??'?'}종목 · ${kst(st.finishedAt||st.updatedAt)} · 다음 갱신 ${esc(st.next||'—')}`
       :`수집 중 ${st.i}/${st.total}${st.collected!=null?` (지난 주기 ${st.collected}종목 점수는 그대로 표시)`:''} · ${kst(st.updatedAt||'')}`)
@@ -996,16 +996,16 @@ function renderFund(){
   const pc=v=>v==null?'—':(v>0?'+':'')+v+'%';
   const row=r=>`<tr><td class="num muted">${S.rows.indexOf(r)+1}</td><td><b>${esc(r.code)}</b></td><td><span class="lnk" ${openAttr(state.m,r.code,r.name)}>${esc(r.name||r.code)}</span></td>
     <td class="r num wt">${r.score??'—'}</td><td class="r num">${r.p?.accel??'—'}</td><td class="r num">${r.p?.value??'—'}</td>
-    ${KR?`<td class="r num">${pc(r.gEpsFwd)}</td><td class="r num">${r.revUp==null?'—':pc(r.revUp)}</td>`:`<td class="r num">${pc(r.gRev)}</td><td class="r num">${r.dOm==null?'—':(r.dOm>0?'+':'')+r.dOm}</td><td class="r num">${pc(r.fcfM)}</td>`}
+    ${KR?`<td class="r num">${pc(r.gEpsFwd)}</td><td class="r num">${r.surOp==null?'—':pc(r.surOp)}${r.surQ?` <span class="muted" style="font-size:11px">${esc(r.surQ.slice(2))}</span>`:''}</td><td class="r num">${r.revUp==null?'<span class="muted">기록 중</span>':pc(r.revUp)}</td>`:`<td class="r num">${pc(r.gRev)}</td><td class="r num">${r.dOm==null?'—':(r.dOm>0?'+':'')+r.dOm}</td><td class="r num">${pc(r.fcfM)}</td>`}
     <td class="r num">${r.fwdPe??'—'}</td>${KR?'':`<td class="r num">${pc(r.gEpsFwd)}</td>`}
-    <td style="font-size:11.5px">${(r.flags||[]).map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</td></tr>`;
+    <td style="font-size:11.5px">${(r.flags||[]).map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지|쇼크/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</td></tr>`;
   const head=`<tr><th>#</th><th>코드</th><th>종목</th>${th('score','점수')}${th('accel','가속 %ile')}${th('value','싼 정도 %ile')}
-    ${KR?`${th('gEpsFwd','내년 EPS 성장')}${th('revUp','90일 추정 변화')}`:`${th('gRev','매출 YoY')}${th('dOm','영업마진 변화')}${th('fcfM','FCF 마진')}`}${th('fwdPe','선행 PER')}${KR?'':th('gEpsFwd','선행 EPS 성장')}<th>플래그</th></tr>`;
+    ${KR?`${th('gEpsFwd','내년 EPS 성장')}${th('surOp','직전 분기 서프라이즈')}${th('revUp','추정 EPS 변화')}`:`${th('gRev','매출 YoY')}${th('dOm','영업마진 변화')}${th('fcfM','FCF 마진')}`}${th('fwdPe','선행 PER')}${KR?'':th('gEpsFwd','선행 EPS 성장')}<th>플래그</th></tr>`;
   el.innerHTML=ops+`<div class="sub">${S.n}종목 · 이익 정점 경계 <b>${S.peak}</b>종목${S.funding&&!KR?` · 재원 ${Object.entries(S.funding).map(([k,v])=>`${esc(k)} ${v}`).join(' · ')}`:''} · 점수 계산 ${kst(S.at)}</div>
     <div class="fd-tools"><input id="fq" type="search" placeholder="종목·코드·플래그 검색" value="${esc(state.fq||'')}" aria-label="펀더멘털 표 검색"><span class="sub">${rows.length}종목 · 이름을 누르면 상세</span></div>
     <div class="tbl-wrap" style="max-height:560px;overflow-y:auto"><table class="acc" style="min-width:860px"><thead>${head}</thead><tbody>${rows.slice(0,lim).map(row).join('')}</tbody></table></div>
     ${rows.length>lim?`<div style="margin-top:8px"><button class="pbtn" id="fmore">${Math.min(50,rows.length-lim)}개 더 보기</button></div>`:''}
-    <div class="sub" style="margin-top:8px">점수 = 가속 30% + 성장 15% + 마진 15% + 현금 15% + 질 10% + 밸류 10% + 위험 5%의 유니버스 백분위 가중합. 싼 정도 %ile 은 높을수록 싸다는 뜻. 아직 <b>검증 전</b>이라 참고용이야.</div>`;
+    <div class="sub" style="margin-top:8px">점수 = 가속 30% + 성장 15% + 마진 15% + 현금 15% + 질 10% + 밸류 10% + 위험 5%의 유니버스 백분위 가중합 (값이 없는 축은 빼고 나머지로 다시 나눔). 싼 정도 %ile 은 높을수록 싸다는 뜻.${KR?' 국내 가속 = 추정 EPS 변화(기록이 20일 이상 쌓이기 전엔 내년·올해 성장률 차이) + 직전 분기 영업이익 서프라이즈의 절반. 현금 축은 컨센서스 표에 없어서 빠져.':''} 아직 <b>검증 전</b>이라 참고용이야.</div>`;
   bindFund();
 }
 function bindFund(){
@@ -1179,9 +1179,23 @@ function drawFundBlock(j,S){
       <div class="sub" style="margin-bottom:10px">${(V.why||[]).map(esc).join(' · ')}${V.volume?` · 거래량 1일 ${V.volume.vr1}배 / 5일 ${V.volume.vr5}배`:''}</div>`:''}
     ${F?`<h4>대장 엔진 <span class="sub">점수 ${F.score} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}</span></h4>
       <div class="bars">${Object.keys(NM).map(k=>`<span>${NM[k]}</span><span class="bar"><i style="width:${P[k]??0}%"></i></span><span class="num">${P[k]??'—'}</span>`).join('')}</div>
-      <div class="sub" style="margin-top:8px">선행 PER ${F.fwdPe??'—'} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}`:` · 90일 추정 변화 ${pc(F.revUp)}`}</div>
+      <div class="sub" style="margin-top:8px">선행 PER ${F.fwdPe??'—'} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='KR'?` · 직전 분기(${esc(F.surQ||'—')}) 영업이익 서프라이즈 ${pc(F.surOp)} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}${F.debtRatio!=null?' · 부채비율 '+F.debtRatio+'%':''}`:''}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}`:''}</div>
       ${(F.flags||[]).length?`<div style="margin-top:6px">${F.flags.map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</div>`:''}`
-    :'<div class="sub">대장 엔진 점수 없음 — 펀더멘털 수집 대상이 아니거나 아직 수집 전</div>'}`;
+    :'<div class="sub">대장 엔진 점수 없음 — 펀더멘털 수집 대상이 아니거나 아직 수집 전</div>'}${estTable(j&&j.est)}`;
+}
+/* 국내 컨센서스 표 — 연간(실적·추정)과 분기(실적·다음 추정). 금액은 억원 */
+function estTable(E){
+  if(!E||(!E.yearly?.length&&!E.quarterly?.length))return '';
+  const eok=v=>v==null?'—':Math.round(v).toLocaleString('ko-KR'),pc=v=>v==null?'—':`<span class="${v>0?'up':v<0?'dn':''}">${v>0?'+':''}${(+v).toFixed(1)}%</span>`;
+  const tb=(rows,t,q)=>rows.length?`<h4 style="margin:14px 0 6px;font-size:14px">${t}</h4><div class="tbl-wrap"><table class="acc" style="min-width:${q?560:520}px"><thead><tr><th></th>${rows.map(r=>`<th class="r">${esc(r.p)}${r.est?' <span class="muted">E</span>':''}</th>`).join('')}</tr></thead><tbody>
+    <tr><td>매출액</td>${rows.map(r=>`<td class="r num">${eok(r.rev)}</td>`).join('')}</tr>
+    <tr><td>영업이익</td>${rows.map(r=>`<td class="r num${r.est?' muted':''}">${eok(r.op)}</td>`).join('')}</tr>
+    <tr><td class="sub">영업이익 YoY</td>${rows.map(r=>`<td class="r num">${pc(r.yoy?.op)}</td>`).join('')}</tr>
+    ${q?`<tr><td class="sub">서프라이즈</td>${rows.map(r=>`<td class="r num">${r.est?'<span class="muted">—</span>':pc(r.sur?.op)}</td>`).join('')}</tr>`:''}
+    <tr><td>EPS(원)</td>${rows.map(r=>`<td class="r num">${eok(r.eps)}</td>`).join('')}</tr>
+    ${q?'':`<tr><td>PER</td>${rows.map(r=>`<td class="r num">${r.per??'—'}</td>`).join('')}</tr>`}
+  </tbody></table></div>`:'';
+  return tb(E.yearly||[],'연간 실적·컨센서스 <span class="sub" style="font-weight:400">억원 · E = 추정</span>',false)+tb(E.quarterly||[],'분기 실적·다음 추정',true);
 }
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
