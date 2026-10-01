@@ -316,6 +316,16 @@ details[open]>summary.fold::after{content:' ▴'}
 .hist tbody tr{cursor:default}
 .hist tbody tr:hover{background:transparent}
 .hist .ong td{background:var(--gold-soft)}
+.fxt{font-size:12px;font-weight:700;color:var(--gold-ink);margin:14px 0 7px}
+.fxg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fxc{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.fxc.hi{border-color:var(--pos)}
+.fxc .k{font-size:12px;color:var(--ink2);line-height:1.4}.fxc .k .muted{display:block;font-size:11px}
+.fxc .v{font-size:21px;font-weight:800;margin-top:3px}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.fxbar{display:inline-block;width:56px;height:6px;border-radius:3px;position:relative;overflow:hidden;vertical-align:middle;margin-left:7px;background:var(--line)}
+.fxbar i{position:absolute;top:0;bottom:0}
+.hist .nx{color:var(--ink2)}.hist .nx b{color:var(--ink)}
+@media (max-width:760px){.fxg{grid-template-columns:1fr 1fr}}
 .up{color:var(--pos)}.dn{color:var(--neg)}
 @media (max-width:760px){.ixgrid,.ixgrid.two{grid-template-columns:1fr}}
 .sig{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:1px}
@@ -1262,7 +1272,7 @@ function estTable(E){
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
-  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';state.hist=null;$('d-name').textContent=S.name;
+  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
   $('d-prob').textContent=S.prob+'%';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
@@ -1282,28 +1292,41 @@ async function openDetail(key){
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
-    J.h=h;state.series=J;drawDetail();state.hist=j.history||[];drawHist();
+    J.h=h;state.series=J;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawHist();
   }catch(e){$('c-price').innerHTML=`<div class="loading">차트 데이터를 못 불러왔어 (${esc(e.message)})</div>`}
 }
-/* 국면 변경 내역 — 진입일 종가 기준. N일 후 = 국면이 중간에 바뀌어도 N거래일 뒤 종가, 전환까지 = 다음 국면이 판정된 날 종가 */
-const HN=[5,10,20,60,120];
+/* 국면 변경 내역 → 국면 효과 — 'N일 후'는 회귀가 섞여 국면 효과를 가린다. 국면에 머문 동안의 속도·위아래 폭·다음 국면으로 보여준다 */
 function drawHist(){
-  const H=state.hist,S=state.cur;if(!H)return;
-  const N=state.histN||20,f=d=>d.slice(2).replace(/-/g,'.'),rc=v=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'up':v<0?'dn':''}">${sgn(v)}%</span>`;
-  const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
-  const stat=SEASONS.map(s=>{const xs=H.filter(h=>h.s===s),done=xs.filter(h=>!h.ongoing),rn=xs.map(h=>h.r[N]).filter(v=>v!=null),re=done.map(h=>h.rEnd);
-    return {s,n:xs.length,rn:avg(rn),wn:rn.length?Math.round(100*rn.filter(v=>v>0).length/rn.length):null,nn:rn.length,re:avg(re),we:re.length?Math.round(100*re.filter(v=>v>0).length/re.length):null,ne:re.length,d:avg(done.map(h=>h.days))}});
-  $('d-hist').innerHTML=`<div class="hh"><h4>국면 변경 내역 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4>
-    <label class="chip" style="gap:6px">N = <select id="d-hn" aria-label="진입 후 N거래일">${HN.map(n=>`<option value="${n}" ${n===N?'selected':''}>${n}일</option>`).join('')}</select></label></div>
-    <div class="tbl-wrap" style="margin-bottom:10px"><table style="min-width:560px"><thead><tr><th>국면</th><th class="r">횟수</th><th class="r">${N}일 후 평균</th><th class="r">${N}일 상승 비율</th><th class="r">전환까지 평균</th><th class="r">전환까지 상승 비율</th><th class="r">평균 기간</th></tr></thead><tbody>
-    ${stat.map(t=>`<tr><td><span class="pill p-${t.s}"><span class="han">${HAN[t.s]}</span>${t.s}</span></td><td class="r num">${t.n}</td><td class="r num">${rc(t.rn==null?null:+t.rn.toFixed(2))}</td><td class="r num">${t.wn==null?'—':t.wn+'%'} <span class="muted">(${t.nn})</span></td>
-      <td class="r num">${rc(t.re==null?null:+t.re.toFixed(2))}</td><td class="r num">${t.we==null?'—':t.we+'%'} <span class="muted">(${t.ne})</span></td><td class="r num">${t.d==null?'—':Math.round(t.d)+'일'}</td></tr>`).join('')}</tbody></table></div>
-    <div class="tbl-wrap" style="max-height:380px;overflow-y:auto"><table><thead><tr><th>국면</th><th>진입일</th><th>전환일</th><th class="r">기간</th><th class="r">진입 확률</th><th class="r">${N}일 후</th><th class="r">전환까지</th><th class="r">국면 중 최저 / 최고</th></tr></thead><tbody>
-    ${H.map(h=>`<tr class="${h.ongoing?'ong':''}"><td><span class="pill p-${h.s}"><span class="han">${HAN[h.s]}</span>${h.s}</span>${h.from?` <span class="muted" style="font-size:11.5px">← ${h.from}</span>`:''}</td>
+  const H=state.hist,S=state.cur,E=state.eff;if(!H)return;
+  const f=d=>d.slice(2).replace(/-/g,'.'),rc=(v,u='%')=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'up':v<0?'dn':''}">${sgn(v)}${u}</span>`;
+  const pill=s=>`<span class="pill p-${s}"><span class="han">${HAN[s]}</span>${s}</span>`;
+  const ss=E?.seasons||{},F=E?.follow,U=E?.univ?.seasons||null;
+  const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
+    return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
+  const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
+  const card=(k,v,sub,hi)=>`<div class="fxc${hi?' hi':''}"><div class="k">${k}</div><div class="v num">${v}</div><div class="s">${sub}</div></div>`;
+  const cards=F?`<div class="fxt">① 엔진대로 들고 있었다면 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)} · 판정일 종가에 매매 · 거래비용 ${F.cost}%</span></div>
+    <div class="fxg">${card('봄·여름만 보유, 가을·겨울엔 현금',rc(F.ss.cum),`최대낙폭 ${sgn(F.ss.mdd)}% · 보유 기간 ${F.ss.expo}%`,F.ss.cum>F.hold.cum)}
+      ${card(`단계 매매 <span class="muted">봄 ${Math.round(F.stage.spring*100)}% 진입 → 여름 +${Math.round(F.stage.add*100)}% → 가을 보유분 ${Math.round((F.stage.sell??0.8)*100)}% 매도 → 겨울 전량 매도</span>`,rc(F.staged.cum),`최대낙폭 ${sgn(F.staged.mdd)}% · 평균 비중 ${F.staged.expo}%`,F.staged.cum>F.hold.cum)}
+      ${card('계속 보유',rc(F.hold.cum),`최대낙폭 ${sgn(F.hold.mdd)}% · 보유 기간 100%`)}
+      ${card('겨울 동안 들고 있었다면',rc(F.winter.r),F.winter.n?`겨울 ${F.winter.n}번 중 ${F.winter.down}번 하락 · ${F.winter.days}거래일`:'끝난 겨울 없음')}</div>`:'';
+  const sum=`<div class="fxt">② 계절별 요약</div>
+    <div class="tbl-wrap" style="margin-bottom:6px"><table style="min-width:720px"><thead><tr><th>국면</th><th class="r">횟수</th><th class="r">평균 기간</th><th class="r">국면 중 수익률<br><span class="muted" style="font-weight:500">중앙값</span></th><th class="r">월 환산</th><th class="r">상승 마감</th><th>평균 최대상승 / 최대낙폭</th><th>다음 국면</th>${U?'<th class="r">유니버스 같은 계절<br><span class="muted" style="font-weight:500">월 환산 · 상승 마감</span></th>':''}</tr></thead><tbody>
+    ${SEASONS.map(s=>{const t=ss[s]||{},u=U?.[s];return `<tr><td>${pill(s)}</td><td class="r num">${t.n??0}</td><td class="r num">${t.days==null?'—':t.days+'일'}</td><td class="r num">${rc(t.med)}</td><td class="r num"><b>${rc(t.mo)}</b></td>
+      <td class="r num">${t.up==null?'—':t.up+'%'} <span class="muted">(${t.done??0})</span></td>
+      <td class="num">${rc(t.mx)} / ${rc(t.mdd)}${bar(t.mx,t.mdd)}</td><td class="nx">${nxt(t.next)}</td>
+      ${U?`<td class="r num">${u?`${rc(u.mo)} · ${u.up??'—'}%`:'—'}</td>`:''}</tr>`}).join('')}</tbody></table></div>
+    <div class="sub">월 환산 = 그 계절에 머문 날들을 이어 붙여 20거래일(한 달) 평균 몇 % 속도로 움직였나 (복리). 막대는 국면 안에서 평균적으로 위로 열린 폭(빨강)과 아래로 빠진 폭(파랑) — 여름은 빨강, 겨울은 파랑이 길어야 엔진이 맞는 거야. 다음 국면은 그 계절이 끝나고 어디로 갔나${U?` · 유니버스는 ${E.univ.n}종목 같은 기간 기준`:''}.</div>`;
+  const rows=`<div class="fxt">③ 구간별 내역</div>
+    <div class="tbl-wrap" style="max-height:380px;overflow-y:auto"><table style="min-width:820px"><thead><tr><th>국면</th><th>진입일</th><th>전환일</th><th class="r">기간</th><th class="r">진입 확률</th><th class="r">국면 중 수익률</th><th class="r">월 환산</th>${E?.ix?`<th class="r">지수 대비</th>`:''}<th class="r">국면 중 최저 / 최고</th><th>다음 국면</th></tr></thead><tbody>
+    ${H.map(h=>`<tr class="${h.ongoing?'ong':''}"><td>${pill(h.s)}${h.from?` <span class="muted" style="font-size:11.5px">← ${h.from}</span>`:''}</td>
       <td class="num">${f(h.a)}</td><td class="num">${h.ongoing?'<b style="color:var(--gold-ink)">진행 중</b>':f(h.x)}</td><td class="r num">${h.days}일</td><td class="r num">${Math.round(h.ps0)}%</td>
-      <td class="r num">${rc(h.r[N])}</td><td class="r num">${rc(h.rEnd)}${h.ongoing?' <span class="muted">(현재)</span>':''}</td><td class="r num">${rc(h.mdd)} / ${rc(h.mx)}</td></tr>`).join('')||'<tr><td colspan="8" class="muted">5년 안에 판정된 국면 구간이 없어</td></tr>'}</tbody></table></div>
-    <div class="sub" style="margin-top:8px">${N}일 후 = 진입일 종가 → ${N}거래일 뒤 종가 (그사이 국면이 바뀌어도 그대로 계산, 아직 ${N}일이 안 지났으면 —). 전환까지 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 최저·최고는 국면 기간 중 종가 기준. 상승 비율 옆 괄호는 표본 수.</div>`;
-  $('d-hn').onchange=e=>{state.histN=+e.target.value;drawHist()};
+      <td class="r num">${rc(h.rEnd)}${h.ongoing?' <span class="muted">(현재)</span>':''}</td>
+      <td class="r num">${h.mo!=null?rc(h.mo):`<span class="muted">${h.ongoing?'진행 중':'10일 미만'}</span>`}</td>
+      ${E?.ix?`<td class="r num">${rc(h.ex,'%p')}</td>`:''}
+      <td class="r num">${rc(h.mdd)} / ${rc(h.mx)}</td><td>${h.next||'<span class="muted">—</span>'}</td></tr>`).join('')||'<tr><td colspan="10" class="muted">5년 안에 판정된 국면 구간이 없어</td></tr>'}</tbody></table></div>
+    <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
+  $('d-hist').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${cards}${sum}${rows}`;
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 function drawDetail(){
