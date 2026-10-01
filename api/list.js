@@ -6,7 +6,7 @@ import * as store from '../lib/store.js';
 import { engineState, row, send, refresh, isAdmin, body } from '../lib/service.js';
 import { SEASONS } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
-import L from '../lib/labels.js';
+import { sectorOf } from '../lib/sectors.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -26,11 +26,13 @@ async function add(req, res) {
   send(res, 200, { stocks: out });
 }
 
-/** POST /api/remove {m, code} — 목록에서 빼고 매일 갱신도 멈춤. 학습 라벨 종목이면 일봉은 남긴다 */
+/** POST /api/remove {m, code} — 목록에서 빼고 매일 갱신도 멈춤. 유니버스 종목이면 일봉은 남긴다 (매일 스캔이 계속 씀) */
 async function remove(req, res) {
   const { m, code } = await body(req);
   await store.listDel(m, code);
-  if (!L.stocks.some(s => s.m === m && s.code === code)) await store.del(store.barsKey(m, code));
+  const mem = await store.get('univ:members');
+  const inUniv = Object.values(mem?.sets || {}).some(xs => xs.some(x => x.code === code));
+  if (!inUniv) await store.del(store.barsKey(m, code));
   send(res, 200, { ok: true });
 }
 
@@ -43,7 +45,9 @@ async function list(req, res) {
 
   const stocks = items.map((it, i) => {
     const r = row(it, bars[i], eng);
-    if (!r.error) r.view = opinion(r, fund[`${it.m}:${it.code}`] || null, volumeSignal(bars[i]));
+    const f = fund[`${it.m}:${it.code}`] || null;
+    if (!r.error) r.view = opinion(r, f, volumeSignal(bars[i]));
+    r.sector = f?.sector || sectorOf(it.m, it.code, { name: it.name });
     return r;
   });
   const regime = {}, events = [];
@@ -55,7 +59,7 @@ async function list(req, res) {
   for (const s of stocks) for (const e of s.events || []) events.push({ m: s.m, code: s.code, name: s.name, ...e });
   stocks.forEach(s => delete s.events);
   events.sort((a, b) => (a.d < b.d ? 1 : -1));
-  send(res, 200, { now: new Date().toISOString(), engine: { trainedAt: eng.trainedAt, fit: eng.fit }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
+  send(res, 200, { now: new Date().toISOString(), engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
     fund: { US: fUS ? { at: fUS.at, n: fUS.n } : null, KR: fKR ? { at: fKR.at, n: fKR.n } : null } });
 }
 

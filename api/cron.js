@@ -1,6 +1,6 @@
 // GET /api/cron?m=KR|US         — Vercel Cron 이 매일 호출 (vercel.json). 자동 갱신 파이프라인 한 조각
 // GET /api/cron?op=step&m=KR     — 같은 일. 예비 크론이 부르거나 화면에서 수동 진행(&budget=초)
-// GET /api/meta                  — 엔진 탭: 학습된 파라미터·보정·라벨 재현표 (rewrite → ?op=meta)
+// GET /api/meta                  — 엔진 탭: 현재 파라미터·확률 보정 (rewrite → ?op=meta)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
@@ -22,8 +22,7 @@ export default async function handler(req, res) {
       });
     }
     if (op === 'meta') {
-      const [eng, rep] = await Promise.all([engineState(), store.get('train:report')]);
-      return send(res, 200, { ...eng, report: rep?.report || [], missing: rep?.missing || [] });
+      return send(res, 200, await engineState());
     }
 
     const sec = process.env.CRON_SECRET;

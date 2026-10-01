@@ -1,4 +1,5 @@
-// /api/backtest — 국면 신뢰도 측정과 임계값 보정. 큰 데이터를 한 번에 돌리지 않고 여러 번에 나눠서 진행한다.
+// /api/backtest — 국면 신뢰도 측정(사후 정답 대비 정확도 + BM 대비 초과수익)과 임계값 보정. 큰 데이터를 여러 번에 나눠서 진행한다.
+//   측정이 끝나면 확률 Ps 도 그 결과로 다시 맞춘다 ('이 판정이 사후에 맞을 확률').
 //   GET                     → 저장된 신뢰도·보정 상태 (화면 표시용)
 //   GET ?auto=US&secret=..  → 오늘 남은 일감 한 조각 실행 (매일 이어 돌리는 건 /api/cron 파이프라인)
 //   POST {step:'run'}       → 신뢰도 측정 한 조각 (수동)
@@ -7,13 +8,11 @@
 //   POST {step:'reset'}     → 진행 상태 초기화
 import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body } from '../lib/service.js';
-import { score, Series } from '../lib/engine.js';
-import { classifyOf, calibrateFromLabelsV2 as calibrateFromLabels } from '../lib/engine2.js';
-import { prep, mktChunk, statChunk, meansOf, newCells, finalizeCells, spreadOf, distGap, DS_DIST, HORIZONS } from '../lib/backtest.js';
+import { prep, mktChunk, statChunk, meansOf, newCells, finalizeCells, spreadOf, HORIZONS } from '../lib/backtest.js';
 import { semantics } from '../lib/semantics.js';
 import { tuneRound, readyToApply } from '../lib/tuner.js';
+import { fitCal } from '../lib/truth.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
-import L from '../lib/labels.js';
 
 const S_STATE = 'bt:state', S_ACC = 'bt:acc', S_CELLS = 'bt:cells', S_TUNER = 'engine:tuner';
 const CHUNK_MS = 30000;                       // 한 조각에 쓸 시간 (함수 제한 60초 안쪽)
@@ -34,12 +33,6 @@ async function loadBars(m, codes) {
     got.forEach((b, j) => { if (b?.d?.length) bars[chunk[j]] = b; });
   }
   return bars;
-}
-/** DS 라벨 재현율 (보조 지표) */
-async function dsLabels() {
-  const bars = await store.mgetBars(L.stocks), series = {};
-  L.stocks.forEach((s, i) => { const b = bars[i]; if (b?.d?.length > 200) series[`${s.m}:${s.code}`] = new Series(b.d, b.c, b.v); });
-  return P => { const preds = {}; for (const k in series) preds[k] = classifyOf(series[k], P); return +score(L, series, preds).toFixed(4); };
 }
 const cutOf = (a, b) => new Date(Date.parse(a) + (Date.parse(b) - Date.parse(a)) * 0.7).toISOString().slice(0, 10);
 
@@ -77,14 +70,18 @@ async function runChunk(m, { sample = 250, reset = false } = {}) {
     await store.set(S_CELLS, cells);
     if (st.i >= st.codes.length) {
       const all = finalizeCells(cells);
-      const target = m === 'US' ? DS_DIST : null;
       const sem = semantics(prep(await loadBars(m, st.codes.slice(0, 120))), eng.params, { cal: eng.cal });
-      const rec = { at: new Date().toISOString(), m, date: today, params: eng.params, sem,
+      // 확률 Ps 를 사후 정답 대비 실측으로 다시 맞춘다 (시장별로 따로 저장하지 않고 마지막 측정값을 쓴다)
+      const cal = { ...fitCal(cells.calb), src: 'truth', m, at: new Date().toISOString() };
+      const engRec = (await store.get('engine')) || {};
+      await store.set('engine', { ...engRec, cal, calAt: cal.at });
+      const rec = { at: new Date().toISOString(), m, date: today, params: eng.params, sem, cal,
         sample: { got: cells.nSym, asked: st.codes.length, universe: st.universe },
         cut: all.span.a && all.span.b ? cutOf(all.span.a, all.span.b) : null,
-        all, snapshot: { dist: all.snapshot, target, gap: target ? distGap(all.snapshot, target) : null },
+        all, acc: all.acc, snapshot: { dist: all.snapshot },
         spread: { all: spreadOf(all) }, horizons: st.horizons };
       await store.set('engine:accuracy', rec);
+      await store.set(`engine:accuracy:${m}`, rec);
       st.phase = 'done';
     }
   }
@@ -124,8 +121,7 @@ async function tuneOnce(m, { sample = 80, budgetMs = 32000 } = {}) {
   const items = prep(bars).slice(0, sample);
   if (items.length < 25) throw new Error(`일봉이 있는 종목이 ${items.length}개뿐이야 — 유니버스 스캔을 먼저 끝내줘`);
   const span = items.reduce((a, it) => ({ a: !a.a || it.s.d[0] < a.a ? it.s.d[0] : a.a, b: it.s.d[it.s.d.length - 1] > a.b ? it.s.d[it.s.d.length - 1] : a.b }), { a: null, b: '' });
-  const dsAccOf = await dsLabels();
-  const st = tuneRound(items, dsAccOf, prev, { budgetMs, target: m === 'US' ? DS_DIST : null, curParams: eng.params, cut: cutOf(span.a, span.b) });
+  const st = tuneRound(items, prev, { budgetMs, curParams: eng.params, cut: cutOf(span.a, span.b) });
   st.m = m; st.off = off; st.sample = { got: items.length, universe }; st.span = span;
   st.ready = readyToApply(st);
   await store.set(S_TUNER, st);
@@ -141,8 +137,9 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'GET') {
-      const [acc, tuner, st] = await store.mget(['engine:accuracy', S_TUNER, S_STATE]);
-      return send(res, 200, { accuracy: acc || null, tuner: tuner || null, progress: st || null });
+      const m = req.query.m === 'KR' ? 'KR' : req.query.m === 'US' ? 'US' : null;
+      const [acc, accM, tuner, st] = await store.mget(['engine:accuracy', m ? `engine:accuracy:${m}` : 'engine:accuracy', S_TUNER, S_STATE]);
+      return send(res, 200, { accuracy: accM || acc || null, tuner: tuner || null, progress: st || null });
     }
 
     if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
@@ -155,12 +152,10 @@ export default async function handler(req, res) {
     if (b.step === 'apply') {
       const t = await store.get(S_TUNER), P = b.params || t?.candidate?.P || t?.pool?.[0]?.P;
       if (!P) return send(res, 400, { error: '적용할 후보가 없어 — 먼저 보정을 돌려줘' });
-      const cur = (await store.get('engine')) || {}, bars = await store.mgetBars(L.stocks), byKey = {};
-      L.stocks.forEach((s, i) => { if (bars[i]) byKey[`${s.m}:${s.code}`] = bars[i]; });
-      const { cal, anchors } = calibrateFromLabels(L, byKey, P);
-      await store.set('engine', { ...cur, params: P, cal, anchors, tunedAt: new Date().toISOString(), tunedFrom: cur.params || null });
-      await store.del(S_STATE, S_ACC, S_CELLS);                       // 파라미터가 바뀌었으니 신뢰도는 다시 측정
-      return send(res, 200, { applied: P, anchors: anchors.length });
+      const cur = (await store.get('engine')) || {};
+      await store.set('engine', { ...cur, params: P, tunedAt: new Date().toISOString(), tunedFrom: cur.params || null });
+      await store.del(S_STATE, S_ACC, S_CELLS);                       // 파라미터가 바뀌었으니 신뢰도·확률 보정은 다시 측정
+      return send(res, 200, { applied: P });
     }
     send(res, 400, { error: 'step 은 run | tune | apply | reset' });
   } catch (e) { send(res, 500, { error: e.message }); }

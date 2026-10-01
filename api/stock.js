@@ -6,6 +6,7 @@ import { analyzeV2 as analyze } from '../lib/engine2.js';
 import { indexParams } from '../lib/market.js';
 import { historyOf } from '../lib/history.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
+import { sectorOf } from '../lib/sectors.js';
 
 export default async function handler(req, res) {
   try {
@@ -16,7 +17,8 @@ export default async function handler(req, res) {
     const A = analyze(bars, P, eng.cal, KEEP), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
-    send(res, 200, { summary, series, history, cal: eng.cal, src: bars.src || null,
+    const sector = m === 'IX' ? null : fund?.sector || sectorOf(m, code, { name: req.query.name || null });
+    send(res, 200, { summary, series, history, cal: eng.cal, src: bars.src || null, sector,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
       est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
   } catch (e) { send(res, 500, { error: e.message }); }

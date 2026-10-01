@@ -5,7 +5,7 @@
 //   POST {m, step:'scan'}    → 배치 스캔 1회 (화면에서 수동 진행), {step:'members', force} → 구성종목 갱신
 import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
-import { scanBatch, scanState, members, UNIV_SETS, SET_NAME } from '../lib/universe.js';
+import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap } from '../lib/universe.js';
 
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query.secret === process.env.CRON_SECRET);
 
@@ -21,7 +21,9 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET' && (req.query.rows === 'US' || req.query.rows === 'KR')) {
       const m = req.query.rows, prev = await store.get(`univ:prev:${m}`);   // 마지막으로 끝난 스캔의 전종목
-      return send(res, 200, { m, date: prev?.date || null, rows: prev?.rows || {} });
+      const rows = prev?.rows || {}, sec = await sectorMap(m, Object.fromEntries(Object.entries(rows).map(([c, r]) => [c, r.n])));
+      for (const [c, r] of Object.entries(rows)) r.sec = sec[c] || null;
+      return send(res, 200, { m, date: prev?.date || null, rows });
     }
 
     if (req.method === 'POST') {
@@ -36,12 +38,12 @@ export default async function handler(req, res) {
       return send(res, 400, { error: "step 은 scan | members" });
     }
 
-    const [us, kr, mem, acc] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy')]);
+    const [us, kr, mem, acc, indUS, indKR] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy'), store.get('mkt:ind:US'), store.get('mkt:ind:KR')]);
     const counts = Object.fromEntries(Object.entries(mem?.sets || {}).map(([k, v]) => [k, v.length]));
     send(res, 200, {
       now: new Date().toISOString(), sets: UNIV_SETS, setName: SET_NAME,
       members: { at: mem?.at || null, counts, errors: mem?.errors || [] },
-      US: us, KR: kr, accuracy: acc || null,
+      US: { ...us, ind: indUS || null }, KR: { ...kr, ind: indKR || null }, accuracy: acc ? { at: acc.at, m: acc.m, acc: acc.acc, dwell: acc.acc?.by ? Object.fromEntries(Object.entries(acc.acc.by).map(([k, v]) => [k, v.dwell])) : null } : null,
     });
   } catch (e) { send(res, 500, { error: e.message }); }
 }
