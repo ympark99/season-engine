@@ -747,11 +747,16 @@ async function loadMarket(){
 const SEASON_ORD={봄:0,여름:1,가을:2,겨울:3};
 const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입 검토':4,'보유 후보':5,'보류 · 범주 Under':6,'비중 축소':7,'대기':8,'관망':9,'전량 정리':10};
 const COLS=[
-  {k:'code',t:'종목코드',v:S=>S.code,str:1},{k:'name',t:'종목명',v:S=>S.name,str:1},{k:'sector',t:'섹터',v:S=>S.sector||'힣',str:1},{k:null,t:''},
+  {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>S.sector||'힣',str:1},
   {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
-  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'trend',t:'추세',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},{k:'stance',t:'종합 의견',v:S=>S.view?.combined??-1,r:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
+  {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'trend',t:'추세',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},{k:'stance',t:'종합 의견',v:S=>S.view?.combined??-1,r:1},
+  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1},{k:null,t:''}
 ];
+/* 종목 표시 — 미국은 티커만, 한국은 종목명만 (다른 쪽은 마우스를 올리면 보임) */
+const idOf=S=>S.m==='KR'?(S.name||S.code):S.code;
+const idCell=S=>S.m==='KR'?`<td class="name" title="${esc(S.code)}">${esc(S.name||S.code)}</td>`:`<td class="code" title="${esc(S.name||'')}">${esc(S.code)}</td>`;
+function normSort(){if(PREF.sort&&(PREF.sort.k==='code'||PREF.sort.k==='name'))PREF.sort={k:'id',d:1}}
 function mini(S){
   const n=S.ribbon.length;let out='',a=0;
   for(let t=1;t<=n;t++){if(t===n||S.ribbon[t]!==S.ribbon[a]){out+=`<rect x="${a}" y="0" width="${t-a}" height="14" style="fill:${col(SEASONS[+S.ribbon[a]])}"/>`;a=t}}
@@ -773,6 +778,7 @@ function vcells(S){
     <td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`;
 }
 function renderFilters(){
+  normSort();
   const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
   const held=visible().filter(s=>W(s.code).cur>0).length;
   $('filters').innerHTML=['전체','보유',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='보유'?held:cnt(f)}</span></button>`).join('')
@@ -783,33 +789,35 @@ function renderFilters(){
   $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
 }
 function renderHead(){
-  const so=PREF.sort;
+  normSort();const so=PREF.sort;
   $('thead').innerHTML='<tr>'+COLS.map(c=>{if(!c.k)return `<th>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
     return `<th class="${c.r?'r':''}" aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
   $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()});
 }
 function renderRows(flash){
+  normSort();
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m);
   let list=visible().filter(s=>state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
   const rm=S=>`<td><button class="rm" data-m="${S.m}" data-rm="${esc(S.code)}" aria-label="${esc(S.name)} 삭제" title="목록에서 삭제">✕</button></td>`;
-  const html=busy.map(b=>`<tr><td class="code">${esc(b.code)}</td><td class="name">${esc(b.name)}</td><td colspan="16" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
+  const html=busy.map(b=>`<tr>${idCell(b)}<td colspan="15" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
     list.map(S=>{
-      if(!ok(S))return `<tr><td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td colspan="15" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
+      if(!ok(S))return `<tr>${idCell(S)}<td colspan="14" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S);return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>
-      <td class="code">${esc(S.code)}</td><td class="name">${esc(S.name)}</td><td class="sub">${esc(S.sector||'—')}</td><td><button class="open">열기 ›</button></td>
+      ${idCell(S)}<td class="sub">${esc(S.sector||'—')}</td>
       <td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>
       <td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>
       <td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>
-      <td class="r num">${S.age}d</td><td>${mini(S)}</td>
-      <td class="r num" style="color:${S.dd<-15?'var(--neg)':'var(--ink2)'}">${S.dd>-0.5?'신고가':sgn(S.dd)+'%'}</td>
+      <td class="r num">${S.age}d</td>
       <td><span class="act ${A[1]}">${A[0]}</span></td>
       ${vcells(S)}
+      <td>${mini(S)}</td>
+      <td class="r num" style="color:${S.dd<-15?'var(--neg)':'var(--ink2)'}">${S.dd>-0.5?'신고가':sgn(S.dd)+'%'}</td>
       <td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td><td class="r">${wi(S.code,'tgt')}</td><td class="r">${wi(S.code,'cur')}</td>${rm(S)}</tr>`}).join('');
-  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="18" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
-    :`<tr><td colspan="18" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
+  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="16" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
+    :`<tr><td colspan="16" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
   $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm'))return;openDetail(tr.dataset.k)});
   $('rows').querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();removeStock(b.dataset.m,b.dataset.rm)});
   $('rows').querySelectorAll('.wt-in').forEach(inp=>{inp.onclick=e=>e.stopPropagation();
