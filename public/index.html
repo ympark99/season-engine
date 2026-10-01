@@ -317,6 +317,8 @@ details[open]>summary.fold::after{content:' ▴'}
 .hist tbody tr:hover{background:transparent}
 .hist .ong td{background:var(--gold-soft)}
 .fxt{font-size:12px;font-weight:700;color:var(--gold-ink);margin:14px 0 7px}
+.fxh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.fxper{display:flex;flex-wrap:wrap;gap:4px}.fxper .pbtn{padding:3px 9px;font-size:11.5px}
 .fxg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .fxc{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .fxc.hi{border-color:var(--pos)}
@@ -589,9 +591,9 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
     <h4 style="margin:0 0 8px;font-size:15px">국면 구간 (길이 = 기간)</h4>
     <div class="segbar" id="d-seg"></div>
     <div class="dfund" id="d-fund" hidden></div>
+    <div class="hist" id="d-hist"></div>
     <div class="why"><h4>엔진 근거</h4><dl id="d-why"></dl>
       <div id="d-catrow" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label class="sub" for="d-cat">현금흐름 범주</label><select id="d-cat"></select><span class="sub" id="d-catv"></span></div></div>
-    <div class="hist" id="d-hist"></div>
   </div>
 </div>
 
@@ -1300,16 +1302,19 @@ function drawHist(){
   const H=state.hist,S=state.cur,E=state.eff;if(!H)return;
   const f=d=>d.slice(2).replace(/-/g,'.'),rc=(v,u='%')=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'up':v<0?'dn':''}">${sgn(v)}${u}</span>`;
   const pill=s=>`<span class="pill p-${s}"><span class="han">${HAN[s]}</span>${s}</span>`;
-  const ss=E?.seasons||{},F=E?.follow,U=E?.univ?.seasons||null;
+  const ss=E?.seasons||{},U=E?.univ?.seasons||null;
+  const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
+  const F=E?.follows?{...E.follows[FP],stage:E.stage,cost:E.cost}:E?.follow;
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
   const card=(k,v,sub,hi)=>`<div class="fxc${hi?' hi':''}"><div class="k">${k}</div><div class="v num">${v}</div><div class="s">${sub}</div></div>`;
-  const cards=F?`<div class="fxt">① 엔진대로 들고 있었다면 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)} · 판정일 종가에 매매 · 거래비용 ${F.cost}%</span></div>
+  const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
+  const cards=F?`<div class="fxt fxh"><span>① 엔진대로 들고 있었다면 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)}${F.days?` · ${F.days}거래일`:''} · 판정일 종가에 매매 · 거래비용 ${F.cost}%</span></span>${psel}</div>
     <div class="fxg">${card('봄·여름만 보유, 가을·겨울엔 현금',rc(F.ss.cum),`최대낙폭 ${sgn(F.ss.mdd)}% · 보유 기간 ${F.ss.expo}%`,F.ss.cum>F.hold.cum)}
       ${card(`단계 매매 <span class="muted">봄 ${Math.round(F.stage.spring*100)}% 진입 → 여름 +${Math.round(F.stage.add*100)}% → 가을 보유분 ${Math.round((F.stage.sell??0.8)*100)}% 매도 → 겨울 전량 매도</span>`,rc(F.staged.cum),`최대낙폭 ${sgn(F.staged.mdd)}% · 평균 비중 ${F.staged.expo}%`,F.staged.cum>F.hold.cum)}
       ${card('계속 보유',rc(F.hold.cum),`최대낙폭 ${sgn(F.hold.mdd)}% · 보유 기간 100%`)}
-      ${card('겨울 동안 들고 있었다면',rc(F.winter.r),F.winter.n?`겨울 ${F.winter.n}번 중 ${F.winter.down}번 하락 · ${F.winter.days}거래일`:'끝난 겨울 없음')}</div>`:'';
+      ${card('겨울 동안 들고 있었다면',rc(F.winter.r),F.winter.days?`${F.winter.n?`이 기간 끝난 겨울 ${F.winter.n}번 중 ${F.winter.down}번 하락 · `:''}겨울 ${F.winter.days}거래일`:'이 기간엔 겨울이 없었어')}</div>`:'';
   const sum=`<div class="fxt">② 계절별 요약</div>
     <div class="tbl-wrap" style="margin-bottom:6px"><table style="min-width:720px"><thead><tr><th>국면</th><th class="r">횟수</th><th class="r">평균 기간</th><th class="r">국면 중 수익률<br><span class="muted" style="font-weight:500">중앙값</span></th><th class="r">월 환산</th><th class="r">상승 마감</th><th>평균 최대상승 / 최대낙폭</th><th>다음 국면</th>${U?'<th class="r">유니버스 같은 계절<br><span class="muted" style="font-weight:500">월 환산 · 상승 마감</span></th>':''}</tr></thead><tbody>
     ${SEASONS.map(s=>{const t=ss[s]||{},u=U?.[s];return `<tr><td>${pill(s)}</td><td class="r num">${t.n??0}</td><td class="r num">${t.days==null?'—':t.days+'일'}</td><td class="r num">${rc(t.med)}</td><td class="r num"><b>${rc(t.mo)}</b></td>
@@ -1327,6 +1332,7 @@ function drawHist(){
       <td class="r num">${rc(h.mdd)} / ${rc(h.mx)}</td><td>${h.next||'<span class="muted">—</span>'}</td></tr>`).join('')||'<tr><td colspan="10" class="muted">5년 안에 판정된 국면 구간이 없어</td></tr>'}</tbody></table></div>
     <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
   $('d-hist').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${cards}${sum}${rows}`;
+  $('d-hist').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist()});
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 function drawDetail(){
