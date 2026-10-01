@@ -383,6 +383,16 @@ body{margin:0}
 .mcard .v small{font-size:12px;color:var(--muted);font-weight:500;margin-left:4px}
 .mcard .c{font-size:12px;color:var(--ink2)}
 .mcard .if{font-size:12px;color:var(--muted)}
+.mflag{font-size:11px;font-weight:700;padding:1px 6px;border-radius:999px;background:var(--line);color:var(--ink2);flex:0 0 auto}
+.mflag.GL{opacity:.75}
+.thes{padding:11px 0;border-top:1px solid var(--line)}.thes:first-of-type{border-top:0}
+.thes .h{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:13.5px;line-height:1.5}
+.thes .tr{display:grid;grid-template-columns:62px 1fr;gap:4px 10px;font-size:12.5px;margin-top:5px;color:var(--ink2)}
+.thes .tr>span:first-child{color:var(--muted);font-weight:600}
+@media (max-width:520px){.thes .tr{grid-template-columns:1fr}.thes .tr>span:first-child{margin-top:4px}}
+.mseg{display:flex;gap:6px;margin:10px 0 2px}
+.mseg button{font:inherit;font-size:12.5px;padding:4px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.mseg button[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
 .cat{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
 .cat:first-child{border-top:0}
 .cat .eg{grid-column:1/-1;font-size:12px;color:var(--muted)}
@@ -608,7 +618,7 @@ async function api(path,opt={}){
 }
 const post=(p,b)=>api(p,{method:'POST',body:JSON.stringify(b)});
 
-const state={m:'US',filter:'전체',years:'1y',ta:false,cur:null,series:null,busy:new Set()};
+const state={m:'US',filter:'전체',years:'1y',ta:false,cur:null,series:null,mflag:'ALL',busy:new Set()};
 let UNIV=null,MKT=null,MKT_ERR='',D=null,MACRO=null,MASTER=null,MASTER_SRC=null,BYKEY={},CATS={map:{}};
 const K=s=>`${s.m}:${s.code}`;
 const vcls=v=>v==='Over'?'v-Over':v==='Equal'?'v-Equal':v==='Under'?'v-Under':'v-etc';
@@ -893,7 +903,13 @@ function renderMacro(){
   if(!MACRO){$('macro').innerHTML='<div class="muted">macro.json 없음</div>';return}
   const M=MACRO,vc=v=>v==='Over'?'v-Over':v==='Equal'?'v-Equal':v==='Under'?'v-Under':'v-etc';
   $('macro-sub').textContent=`값 기준 ${M.asof} · 갱신 ${M.updatedAt} · ${M.updatedBy}`;
-  $('macro').innerHTML=`<div class="macro-grid">${M.watch.map(w=>`<div class="mcard"><div class="k"><span>${esc(w.name)}</span><span class="tag t-mid">${esc(w.status)}</span></div>
+  const MF=state.mflag||'ALL',mlbl={US:'미국',KR:'한국',GL:'양쪽'},mof=x=>(x&&x.m)||'GL';
+  const nUS=M.watch.filter(w=>mof(w)==='US').length,nKR=M.watch.filter(w=>mof(w)==='KR').length;
+  const pick=a=>MF==='ALL'?a:a.filter(x=>mof(x)===MF||mof(x)==='GL');
+  const seg=`<div class="mseg">${[['ALL',`전체 ${M.watch.length}`],['US',`미국 ${nUS}`],['KR',`한국 ${nKR}`]].map(([k,t])=>
+    `<button type="button" data-mflag="${k}" aria-pressed="${MF===k}">${t}</button>`).join('')}</div>`;
+  const flag=x=>`<span class="mflag ${mof(x)}">${mlbl[mof(x)]}</span>`;
+  $('macro').innerHTML=`${seg}<div class="macro-grid">${pick(M.watch).map(w=>`<div class="mcard"><div class="k"><span>${flag(w)} ${esc(w.name)}</span><span class="tag t-mid">${esc(w.status)}</span></div>
       <div class="v num">${w.value==null?'—':(w.unit==='$'?'$':'')+w.value+(w.unit&&w.unit!=='$'?`<small>${esc(w.unit)}</small>`:'')} <small>${esc(w.chg||'')}</small></div>
       <div class="c">${esc(w.check)}</div>${w.if?`<div class="if">→ ${esc(w.if)}</div>`:''}${w.why?`<div class="if">왜 보나: ${esc(w.why)}</div>`:''}<div class="if num">기준 ${esc(w.asof||'')}${w.since?` · ${esc(w.since)}부터 감시`:''}</div></div>`).join('')}</div>
     ${(M.retired||[]).length?`<div class="retired">최근 감시에서 뺀 지표 — ${M.retired.slice(0,6).map(r=>`${esc(r.name)} <span class="num">(${esc(r.d||'')})</span>: ${esc(r.why||'')}`).join(' · ')}</div>`:''}
@@ -901,11 +917,23 @@ function renderMacro(){
     <div class="two" style="margin-top:14px">
       <div class="box"><h3>현금흐름 범주 뷰</h3>${M.categories.map(c=>`<div class="cat"><span><b>${esc(c.name)}</b> <span class="muted">· 내 목록 ${visible().filter(x=>catKey(x)===c.key).length}종목</span></span><span class="tag ${vc(c.view)}">${esc(c.view)}${c.chg&&c.chg!=='유지'?' · '+esc(c.chg):''}</span><span class="eg">${esc(c.eg)}</span></div>`).join('')}</div>
       <div class="box"><h3>정책 · 시나리오</h3><dl class="presc" style="margin-top:0;padding-top:0;border-top:0">
-          <dt>연방기금금리</dt><dd class="num">${esc(M.policy.fed.rate)} · ${esc(M.policy.fed.last)}</dd>
+          ${MF!=='KR'?`<dt>연방기금금리</dt><dd class="num">${esc(M.policy.fed.rate)} · ${esc(M.policy.fed.last)}${M.policy.fed.next?` <span class="muted">· 다음 ${esc(M.policy.fed.next)}</span>`:''}</dd>
           <dt>점도표</dt><dd class="num">${Object.entries(M.policy.fed.dots).map(([y,v])=>`${y} ${v}% <span class="muted">(${M.policy.fed.dotsPrev[y]}%)</span>`).join(' · ')}</dd>
-          <dt>PCE 2% 복귀</dt><dd>${esc(M.policy.fed.pceTo2pct)}</dd>
-          ${M.risk?`<dt>위험도</dt><dd><span class="num">미국 ${M.risk.US>0?'+':''}${M.risk.US} · 한국 ${M.risk.KR>0?'+':''}${M.risk.KR}</span> <span class="muted">(${esc(M.risk.scale||'')})</span><br>${esc(M.risk.why||'')}</dd>`:''}<dt>시나리오</dt><dd>${esc(M.policy.scenario)}</dd><dt>대응</dt><dd>${esc(M.policy.stance)}</dd>
-          ${(M.events||[]).map(e=>`<dt class="num">${e.d.slice(5)}</dt><dd>${esc(e.what)}</dd>`).join('')}</dl></div></div>`;
+          <dt>PCE 2% 복귀</dt><dd>${esc(M.policy.fed.pceTo2pct)}</dd>`:''}
+          ${M.policy.bok&&MF!=='US'?`<dt>한국 기준금리</dt><dd class="num">${esc(M.policy.bok.rate)} · ${esc(M.policy.bok.last)}${M.policy.bok.next?` <span class="muted">· 다음 ${esc(M.policy.bok.next)}</span>`:''}${M.policy.bok.note?`<br><span style="font-weight:400">${esc(M.policy.bok.note)}</span>`:''}</dd>`:''}
+          ${M.risk?`<dt>위험도</dt><dd><span class="num">미국 ${M.risk.US>0?'+':''}${M.risk.US} · 한국 ${M.risk.KR>0?'+':''}${M.risk.KR}</span> <span class="muted">(${esc(M.risk.scale||'')})</span><br><span style="font-weight:400">${esc(M.risk.why||'')}</span></dd>`:''}
+          ${[['US','미국'],['KR','한국']].filter(([k])=>(M.policy[k])&&(MF==='ALL'||MF===k)).map(([k,lbl])=>
+            `<dt>${lbl} 시나리오</dt><dd style="font-weight:400">${esc(M.policy[k].scenario)}</dd><dt>${lbl} 대응</dt><dd style="font-weight:400">${esc(M.policy[k].stance)}</dd>`).join('')}
+          ${!M.policy.US&&M.policy.scenario?`<dt>시나리오</dt><dd>${esc(M.policy.scenario)}</dd><dt>대응</dt><dd>${esc(M.policy.stance)}</dd>`:''}
+          ${pick(M.events||[]).map(e=>`<dt class="num">${e.d.slice(5)}</dt><dd>${flag(e)} ${esc(e.what)}</dd>`).join('')}</dl></div></div>
+    ${(M.theses||[]).length?`<div class="box" style="margin-top:14px"><h3>지금 쓰는 판단 — 확인 조건과 반증 조건</h3>
+      <div class="sub" style="margin-bottom:10px">이 사이트가 직접 세운 판단이야. 반증 조건이 나오면 판단을 버리는 게 원칙이고, 확인은 우리 엔진 숫자로 해.</div>
+      ${pick(M.theses).map(t=>`<div class="thes"><div class="h">${flag(t)} <b>${esc(t.claim)}</b><span class="tag ${/폐기|틀림/.test(t.status||'')?'t-crit':/흔들|관찰/.test(t.status||'')?'t-warn':'t-mid'}">${esc(t.status||'')}</span></div>
+        <div class="tr"><span>근거</span><span>${esc(t.because||'')}</span></div>
+        <div class="tr"><span>맞으면</span><span>${esc(t.confirm||'')}</span></div>
+        <div class="tr"><span>틀리면</span><span>${esc(t.deny||'')}</span></div>
+        ${t.check?`<div class="tr"><span>확인 위치</span><span class="muted">${esc(t.check)}${t.since?` · ${esc(t.since)}부터`:''}</span></div>`:''}</div>`).join('')}</div>`:''}`;
+  $('macro').querySelectorAll('.mseg button').forEach(b=>b.onclick=()=>{state.mflag=b.dataset.mflag;renderMacro()});
 }
 
 /* ⑦ 시장 지표 3종 — 우리 엔진 */
