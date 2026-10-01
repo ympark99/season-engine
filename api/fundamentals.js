@@ -12,6 +12,8 @@ import { fetchStatement, normalize, metricsAt, rawScores } from '../lib/fundamen
 import { fetchForward, blendForward } from '../lib/forward.js';
 import { fetchKrInfo, normalizeKr, krMetrics, krRawScores, epsSnapshot } from '../lib/krfund.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
+import { sectorOf } from '../lib/sectors.js';
+import { krStockInfo } from '../lib/kis.js';
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
 const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 350), STALE_DAYS = 7;
@@ -28,7 +30,11 @@ export async function collectOne(m, code) {
     const hist = [...(prev?.hist || []).filter(h => h.d !== snap.d), snap].slice(-60);        // 추정 EPS 기록 (추정 상향/하향 계산용)
     const price = bars?.c?.length ? bars.c[bars.c.length - 1] : null;
     const metrics = krMetrics(norm, { price, hist });
-    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, hist, metrics };
+    let secRaw = prev?.secRaw || null, secAt = prev?.secAt || null;            // 업종명은 60일에 한 번만 KIS 에서 받는다
+    if (!secAt || Date.now() - Date.parse(secAt) > 60 * 864e5) {
+      try { const si = await krStockInfo(code); secRaw = si.std || si.idx || secRaw; secAt = new Date().toISOString(); } catch { /* 섹터는 없어도 진행 */ }
+    }
+    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, hist, metrics, secRaw, secAt };
     await store.set(KEY(m, code), rec);
     return rec;
   }
@@ -122,7 +128,8 @@ export async function scoreAll(m) {
     if (M.basis === 'trailing') flags.push('추정치 없음 · 실적 기준');
     if (M.loss) flags.push('적자(PER 없음)');
     if (M.consol === 'P') flags.push('별도 기준');
-    return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), score, p, flags, funding: M.funding,
+    const sector = sectorOf(m, r.code, { name: r.name, collected: m === 'KR' ? r.secRaw : r.fwd?.industry });
+    return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), sector, score, p, flags, funding: M.funding,
       q: M.q, asOf: M.asOf, gRev: M.gRev, gEps: M.gEps, accelEps: M.accelEps, accelRev: M.accelRev,
       om: M.om, dOm: M.dOm, fcfM: M.fcfM, roic: M.roic ?? M.roeFwd, zPs: M.zPs, lev: M.levEbitda, dilution: M.dilution, noisy: M.noisy,
       fwdEps: M.fwdEps ?? F?.epsNextY ?? null, fwdPe: M.fwdPe ?? F?.fwdPe ?? null,
