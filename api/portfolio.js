@@ -2,13 +2,14 @@
 //   GET ?m=US                → 전략 5개 요약 + 벤치마크 + 장세
 //   GET ?m=US&s=S1           → 전략 하나 상세 (보유·매매 내역 전체·일별 평가금액·벤치마크 곡선)
 //   POST {step:'run', m, reset}  (관리자) — 지금 이어 돌리기 / reset 이면 장부를 지우고 오늘(최근 거래일)부터 다시 시작
-// 시장 지표 3종(mkt:ind:{m})도 같은 데이터로 여기서 계산한다.
+// 시장 지표 3종(mkt:ind:{m})과 국면 효과 유니버스 기준선(mkt:eff:{m})도 같은 데이터로 여기서 계산한다.
 import * as store from '../lib/store.js';
-import { engineState, isAdmin, send, body } from '../lib/service.js';
+import { engineState, isAdmin, send, body, KEEP } from '../lib/service.js';
 import { Series } from '../lib/engine.js';
 import { classifyOf } from '../lib/engine2.js';
 import { STRATS, CAPITAL, prepItem, runDays, summaryOf, periodsOf } from '../lib/portfolio.js';
 import { marketIndicators } from '../lib/indicators.js';
+import { universeEffect } from '../lib/effect.js';
 import { members, listOf, kstDate, sectorMap } from '../lib/universe.js';
 
 const SUM = m => `strat:${m}`, BOOK = (m, id) => `strat:${m}:${id}`;
@@ -107,8 +108,10 @@ export async function run(m, { reset = false } = {}) {
   await store.set(SUM(m), out);
   // 시장 지표 3종 — 하루 한 번
   try {
-    const cur = await store.get(`mkt:ind:${m}`);
+    const [cur, eff] = await store.mget([`mkt:ind:${m}`, `mkt:eff:${m}`]);
     if (!cur || cur.asof !== data.lastBar || reset) { const ind = marketIndicators(data.items, data.sectors); if (ind) await store.set(`mkt:ind:${m}`, { ...ind, at: new Date().toISOString() }); }
+    if (!eff || eff.asof !== data.lastBar || reset)      // 국면 효과 유니버스 기준선
+      await store.set(`mkt:eff:${m}`, { ...universeEffect(data.items, KEEP), asof: data.lastBar, at: new Date().toISOString() });
   } catch { /* 지표 실패는 전략 결과에 영향 없음 */ }
   return { ...out, strategies: out.strategies.map(s => ({ id: s.id, cum: s.cum, nHold: s.nHold })) };
 }
