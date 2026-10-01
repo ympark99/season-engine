@@ -1,5 +1,5 @@
 {
- "note": "종목 → 현금흐름 범주 태그. 양형모 코멘트 용례로 추정한 기본값이고, 화면(종목 상세)에서 바꾸면 그 브라우저에서는 그 값이 우선.",
+ "note": "종목 → 현금흐름 범주 태그 기본값(추정). 화면(종목 상세)에서 바꾸면 그 브라우저에서는 그 값이 우선.",
  "map": {
   "US:VLO": "cf1_contract", "US:MPC": "cf1_contract", "US:PSX": "cf1_contract", "US:TRGP": "cf1_contract", "US:OKE": "cf1_contract",
   "US:AMD": "cf1_ai", "US:INTC": "cf1_ai", "US:DELL": "cf1_ai", "US:MRVL": "cf1_ai", "US:ANET": "cf1_ai", "US:QCOM": "cf1_ai", "US:CIEN": "cf1_ai",
