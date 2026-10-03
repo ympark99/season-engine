@@ -1,12 +1,15 @@
 // GET  /api/list         — 목록 전체를 판정해서 반환 (가격은 저장된 일봉, 계산은 요청 때마다)
 // POST /api/add          — 종목 추가 (관리자). vercel.json rewrite 로 ?op=add 로 들어옴
 // POST /api/remove       — 종목 삭제 (관리자). ?op=remove
+// GET  /api/list?op=mcap — 시가총액 재료 (상장주식수·환율)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
 import { engineState, row, send, refresh, isAdmin, body } from '../lib/service.js';
 import { SEASONS } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
+import { mcapOf, sharesOf } from '../lib/mcap.js';
+import { krQuote, usQuote } from '../lib/kis.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -39,7 +42,8 @@ async function remove(req, res) {
 async function list(req, res) {
   const [items, eng, cron] = await Promise.all([store.listAll(), engineState(), store.mget(['cron:KR', 'cron:US'])]);
   const bars = await store.mgetBars(items);
-  const [fUS, fKR] = await store.mget(['fund:sum:US', 'fund:sum:KR']);
+  const [fUS, fKR, shUS, shKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR']);
+  const SH = { US: shUS, KR: shKR };
   const fund = {};
   for (const s of [fUS, fKR]) for (const r of s?.rows || []) fund[`${s.m}:${r.code}`] = r;
 
@@ -48,6 +52,8 @@ async function list(req, res) {
     const f = fund[`${it.m}:${it.code}`] || null;
     if (!r.error) r.view = opinion(r, f, volumeSignal(bars[i]));
     r.sector = f?.sector || sectorOf(it.m, it.code, { name: it.name });
+    const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
+    if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     return r;
   });
   const regime = {}, events = [];
@@ -60,12 +66,27 @@ async function list(req, res) {
   stocks.forEach(s => delete s.events);
   events.sort((a, b) => (a.d < b.d ? 1 : -1));
   send(res, 200, { now: new Date().toISOString(), engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
-    fund: { US: fUS ? { at: fUS.at, n: fUS.n } : null, KR: fKR ? { at: fKR.at, n: fKR.n } : null } });
+    fund: { US: fUS ? { at: fUS.at, n: fUS.n } : null, KR: fKR ? { at: fKR.at, n: fKR.n } : null },
+    mcap: { US: shUS ? { fx: shUS.fx, fxAt: shUS.fxAt, at: shUS.at } : null, KR: shKR ? { at: shKR.at } : null } });
+}
+
+/** GET /api/list?op=mcap&m=US — 펀더멘털 표용 상장주식수·환율·최근 종가. ?code=CRWD 를 붙이면 KIS 원응답 일부로 조회 확인 (공개 시세 정보만) */
+async function mcap(req, res) {
+  const m = req.query.m === 'KR' ? 'KR' : 'US';
+  if (req.query.code) {
+    const code = String(req.query.code).toUpperCase();
+    return send(res, 200, { m, code, q: m === 'KR' ? await krQuote(code) : await usQuote(code, req.query.excd || null) });
+  }
+  const [sh, univ] = await Promise.all([sharesOf(m), store.get(`univ:res:${m}`)]);
+  const out = { m, fx: sh?.fx ?? null, fxAt: sh?.fxAt ?? null, at: sh?.at ?? null, sh: {}, px: {} };
+  for (const [code, r] of Object.entries(sh?.rows || {})) if (r[0] > 0) { out.sh[code] = r[0]; const c = univ?.rows?.[code]?.c; if (c) out.px[code] = c; }
+  send(res, 200, out);
 }
 
 export default async function handler(req, res) {
   try {
     const op = req.query.op;
+    if (op === 'mcap') return await mcap(req, res);
     if (op === 'add' || op === 'remove') {
       if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
       if (!isAdmin(req)) return send(res, 401, { error: '관리자 키가 필요해' });
