@@ -7,9 +7,10 @@ import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body, KEEP } from '../lib/service.js';
 import { Series } from '../lib/engine.js';
 import { classifyOf } from '../lib/engine2.js';
-import { STRATS, CAPITAL, prepItem, runDays, summaryOf, periodsOf } from '../lib/portfolio.js';
+import { STRATS, CAPITAL, prepItem, runDays, summaryOf, periodsOf, newBook } from '../lib/portfolio.js';
 import { marketIndicators } from '../lib/indicators.js';
-import { universeEffect } from '../lib/effect.js';
+import { universeEffect, effectOf } from '../lib/effect.js';
+import { historyOf } from '../lib/history.js';
 import { members, listOf, kstDate, sectorMap } from '../lib/universe.js';
 
 const SUM = m => `strat:${m}`, BOOK = (m, id) => `strat:${m}:${id}`;
@@ -54,6 +55,9 @@ async function build(m, books) {
     if (!b?.d?.length || b.d.length < 300) return;
     items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null }, eng.params, eng.cal));
   });
+  for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 6호 대상 선정
+    try { const A = { s: x.s, season: x.season }; x.fit = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; } catch { x.fit = null; }
+  }
   if (items.length < 30) throw new Error(`일봉이 있는 종목이 ${items.length}개뿐이야 — 유니버스 스캔이 끝난 뒤 돌려줘`);
   // 거래일 축 — 종목의 절반 이상이 봉을 가진 날만 (휴장일·한두 종목만 있는 날 제외). 장부가 없으면 최근 거래일 하루만(= 오늘 시작)
   const cnt = new Map(); for (const x of items) for (const d of x.s.d.slice(-30)) cnt.set(d, (cnt.get(d) || 0) + 1);
@@ -90,6 +94,7 @@ export async function run(m, { reset = false } = {}) {
   }
   const data = await build(m, books);
   const done = runDays(data, books);
+  for (const st of STRATS) if (!books[st.id]) books[st.id] = newBook(null);    // 오늘 새로 추가된 전략 — 다음 거래일부터 합류 (빈 장부로 저장)
   for (const st of STRATS) await store.set(BOOK(m, st.id), books[st.id]);
 
   // 벤치마크 — 전략과 같은 날짜로 맞춘 1,000만원 곡선
