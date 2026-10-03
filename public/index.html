@@ -325,11 +325,13 @@ details[open]>summary.fold::after{content:' ▴'}
 .fxb{font-size:10.5px;font-weight:800;border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:3px}
 .fxm{display:grid;grid-template-columns:auto auto;gap:6px}
 .fxm span{background:var(--card);border-radius:8px;padding:4px 8px;display:flex;flex-direction:column;gap:0;min-width:74px}
-.fxm i{font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap}.fxm b{font-size:14.5px;font-weight:800}
+.fxm i{font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap}.fxm b{font-size:13.5px;font-weight:800;white-space:nowrap}.fxm em{font-style:normal;font-size:11.5px;color:var(--ink2)}
+.fxa{display:block;font-size:11.5px;color:var(--ink2);margin-top:3px}.fxr{display:block;font-size:12px;font-weight:600;margin-top:1px}.fxr .muted{font-weight:500}
+.pret{font-size:13px;color:var(--ink2);margin:2px 0 6px}.pret b{font-size:15px}
 .fitrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 8px}.fitrow .why{flex-basis:100%;font-size:12px;color:var(--muted)}
 .fitrow .tag{font-size:12.5px}.t-good{background:var(--summer-pill,var(--spring-pill));color:var(--summer-ink,var(--spring-ink))}
 .fxc .k{font-size:12px;color:var(--ink2);line-height:1.4}.fxc .k .muted{display:block;font-size:11px}
-.fxc .v{font-size:20px;font-weight:800;text-align:right;min-width:80px}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.fxc .v{font-size:18px;font-weight:800;text-align:right;min-width:110px;white-space:nowrap}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
 .fxbar{display:inline-block;width:56px;height:6px;border-radius:3px;position:relative;overflow:hidden;vertical-align:middle;margin-left:7px;background:var(--line)}
 .fxbar i{position:absolute;top:0;bottom:0}
 .hist .nx{color:var(--ink2)}.hist .nx b{color:var(--ink)}
@@ -585,13 +587,14 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
     <div class="eyebrow" id="d-eye"></div>
     <h2 id="d-name"></h2>
     <div class="fitrow" id="d-fit"></div>
-    <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
+    <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span><span class="meta num" id="d-px"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
       <button class="pbtn" data-y="ytd">연초</button><button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
       <button class="pbtn ta" id="d-ta" aria-pressed="false"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><rect x="2" y="4" width="4" height="9" rx="1" style="fill:var(--gold)"/><line x1="4" y1="1" x2="4" y2="17" style="stroke:var(--gold);stroke-width:1.6"/><rect x="10" y="6" width="4" height="7" rx="1" style="fill:none;stroke:var(--gold);stroke-width:1.6"/><line x1="12" y1="2" x2="12" y2="16" style="stroke:var(--gold);stroke-width:1.6"/></svg>기술적 분석 열기</button>
       <button class="pbtn x" id="d-x" aria-label="닫기">✕</button>
     </div>
+    <div class="pret num" id="d-pret"></div>
     <div class="chart" id="c-price"><div class="loading">차트 불러오는 중…</div></div>
     <div class="chart" id="c-prob"></div>
     <div class="legend"><div class="items"><span><i style="background:var(--spring)"></i>봄</span><span><i style="background:var(--summer)"></i>여름</span><span><i style="background:var(--autumn)"></i>가을</span><span><i style="background:var(--winter)"></i>겨울</span></div><span class="muted">확률 출처: lib/engine.js psOf</span></div>
@@ -1283,7 +1286,7 @@ async function openDetail(key){
   $('ov').hidden=false;document.body.style.overflow='hidden';
   const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';$('d-fit').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
-  $('d-prob').textContent=S.prob+'%';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
+  $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
   $('d-prev').textContent=`· 직전 국면 ${S.prev.s} (${f(S.prev.a)}~${S.prev.b.slice(5).replace('-','.')})`;
   $('c-price').innerHTML='<div class="loading">차트 불러오는 중…</div>';$('c-prob').innerHTML='';$('d-seg').innerHTML='';$('d-why').innerHTML='';
@@ -1321,14 +1324,16 @@ function drawHist(){
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  const cums=STS.map(x=>F[x.id].cum).filter(v=>v!=null),best=Math.max(...cums),worst=Math.min(...cums);
-  const card=x=>{const o=F[x.id],cls=cums.length>1&&best!==worst?(o.cum===best?' best':o.cum===worst?' worst':''):'';
-    return `<div class="fxc${cls}" title="${esc(x.desc)}"><div class="k"><b>${esc(x.name)}</b>${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.short||x.desc)}</span></div>
-      <div class="v num">${rc(o.cum)}</div>
-      <div class="fxm"><span><i>최대수익률</i><b class="num up">${o.maxRet==null?'—':sgn(o.maxRet)+'%'}</b></span><span><i>최대손실률</i><b class="num dn">${o.maxLoss==null?'—':sgn(o.maxLoss)+'%'}</b></span></div></div>`};
-  const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)} · ${F.days}거래일 · 판정일 종가에 매매 · 거래비용 ${E.cost}%</span></span>${psel}</div>
+  const pnls=STS.map(x=>F[x.id].pnl).filter(v=>v!=null),best=Math.max(...pnls),worst=Math.min(...pnls);
+  const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
+  const card=x=>{const o=F[x.id],cls=pnls.length>1&&best!==worst?(o.pnl===best?' best':o.pnl===worst?' worst':''):'';
+    return `<div class="fxc${cls}" title="${esc(x.desc)}"><div class="k"><b>${esc(x.name)}</b>${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.short||x.desc)}</span>
+      <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회</span></div>
+      <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
+      <div class="fxm"><span title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
+  const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
     <div class="fxg">${STS.map(card).join('')}</div>
-    <div class="sub" style="margin-top:6px">빨간 테두리 = 이 기간 수익률 최고, 파란 테두리 = 최저. 최대수익률 = 기간 중 가장 많이 올랐을 때(시작 대비), 최대손실률 = 기간 중 고점에서 가장 크게 빠졌을 때. 장부는 5년 전부터 규칙대로 돌리고 선택한 시작일에서 잘라 봐서, 그날 이미 들고 있던 상태를 그대로 이어받아. 레버리지 전략의 차입 비용은 넣지 않았어.</div>`:'';
+    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 빨간 테두리 = 수익금 최고, 파란 테두리 = 최저. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -1358,6 +1363,10 @@ function drawDetail(){
   $('d-ta').setAttribute('aria-pressed',String(state.ta));$('d-ta').lastChild.textContent=state.ta?'기술적 분석 닫기':'기술적 분석 열기';
   const N=J.d.length,A=N-1,win=Math.min(N,state.years==='ytd'?Math.max(2,N-J.d.findIndex(d=>d>=J.d[A].slice(0,4)+'-01-01')+1):WIN[state.years]),i0=N-win;
   const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]){runs.push({s:J.s[a],a,b:t-1});a=t}}
+  const dd=d=>d.slice(2).replace(/-/g,'.'),pcs=v=>`<span class="${v>0?'up':v<0?'dn':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
+  if(A>0){const c0=J.c[A-1],ch=(J.c[A]/c0-1)*100;$('d-px').innerHTML=`· 종가 <b>${fmtP(J.c[A],S.m)}</b> · 전일 종가 ${fmtP(c0,S.m)} (${pcs(ch)})`}
+  const PL={ytd:'연초 이후',['1m']:'1개월',['3m']:'3개월',['6m']:'6개월',['1y']:'1년',['2y']:'2년',['3y']:'3년',['5y']:'5년'};
+  $('d-pret').innerHTML=`${PL[state.years]||''} 수익률 <b>${pcs((J.c[A]/J.c[i0]-1)*100)}</b> <span class="muted">${dd(J.d[i0])} 종가 ${fmtP(J.c[i0],S.m)} → ${dd(J.d[A])} 종가 ${fmtP(J.c[A],S.m)}</span>`;
   const Wd=640,ml=62,mr=18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
   const bands=(top,bot,label)=>{let o='',lb='';for(const r of runs){if(r.b<i0)continue;const a=Math.max(r.a,i0),b=r.b;
     const x0=a===i0?ml:(x(a-1)+x(a))/2,x1=b===A?ml+pw:(x(b)+x(b+1))/2;
