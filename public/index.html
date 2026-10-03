@@ -326,7 +326,13 @@ details[open]>summary.fold::after{content:' ▴'}
 .fxm{display:grid;grid-template-columns:auto auto;gap:6px}
 .fxm span{background:var(--card);border-radius:8px;padding:4px 8px;display:flex;flex-direction:column;gap:0;min-width:74px}
 .fxm i{font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap}.fxm b{font-size:13.5px;font-weight:800;white-space:nowrap}.fxm em{font-style:normal;font-size:11.5px;color:var(--ink2)}
+.lv2{font:inherit;font-size:11px;font-weight:800;padding:1px 8px;margin-left:4px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;vertical-align:1px}
+.lv2[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
 .fxa{display:block;font-size:11.5px;color:var(--ink2);margin-top:3px}.fxr{display:block;font-size:12px;font-weight:600;margin-top:1px}.fxr .muted{font-weight:500}
+.nmrow{display:flex;align-items:flex-start;justify-content:space-between;gap:10px 18px;flex-wrap:wrap}.nmrow h2{margin-right:auto}
+.pxbox{text-align:right;line-height:1.25}.pxbox .px{display:flex;align-items:baseline;gap:8px;justify-content:flex-end;flex-wrap:wrap}.pxbox .px b{font-size:28px;font-weight:800;color:var(--ink)}
+.pxbox .px span{font-size:16px;font-weight:700}.pxbox .pxs{font-size:12.5px;color:var(--muted);margin-top:2px}.pxbox .pxs b{color:var(--ink2);font-weight:700}
+@media (max-width:520px){.pxbox{text-align:left}.pxbox .px{justify-content:flex-start}}
 .pret{font-size:13px;color:var(--ink2);margin:2px 0 6px}.pret b{font-size:15px}
 .fitrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 8px}.fitrow .why{flex-basis:100%;font-size:12px;color:var(--muted)}
 .fitrow .tag{font-size:12.5px}.t-good{background:var(--summer-pill,var(--spring-pill));color:var(--summer-ink,var(--spring-ink))}
@@ -585,9 +591,9 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
 <div class="ov" id="ov" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="d-name">
     <div class="eyebrow" id="d-eye"></div>
-    <h2 id="d-name"></h2>
+    <div class="nmrow"><h2 id="d-name"></h2><div class="pxbox num" id="d-px" aria-live="polite"></div></div>
     <div class="fitrow" id="d-fit"></div>
-    <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span><span class="meta num" id="d-px"></span></div>
+    <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
       <button class="pbtn" data-y="ytd">연초</button><button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
@@ -772,9 +778,13 @@ const COLS=[
   {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>S.sector||'힣',str:1},
   {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'trend',t:'추세',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},{k:'stance',t:'종합 의견',v:S=>S.view?.combined??-1,r:1},
-  {k:null,t:'최근 120일'},{k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
+  {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:null,t:'최근 120일'},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1},{k:null,t:''}
 ];
+/* 시가총액 — 원화. 1조 이상은 조(소수 둘째 자리까지), 미만은 억 */
+const capFmt=v=>{if(v==null||!(v>0))return '—';if(v>=1e12)return `${(+(v/1e12).toFixed(2)).toLocaleString('ko-KR')}조`;return `${Math.round(v/1e8).toLocaleString('ko-KR')}억`};
+const hasMC=()=>!!(D&&D.stocks&&D.stocks.some(s=>s.m===state.m&&s.mcap>0));
+const cols=()=>COLS.filter(c=>!c.hide||!c.hide());
 /* 종목 표시 — 미국은 티커만, 한국은 종목명만 (다른 쪽은 마우스를 올리면 보임) */
 const idOf=S=>S.m==='KR'?(S.name||S.code):S.code;
 const idCell=S=>S.m==='KR'?`<td class="name" title="${esc(S.code)}">${esc(S.name||S.code)}</td>`:`<td class="code" title="${esc(S.name||'')}">${esc(S.code)}</td>`;
@@ -804,7 +814,7 @@ function renderFilters(){
   const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
   const held=visible().filter(s=>W(s.code).cur>0).length;
   $('filters').innerHTML=['전체','보유',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='보유'?held:cnt(f)}</span></button>`).join('')
-    +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${COLS.filter(c=>c.k).map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
+    +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${cols().filter(c=>c.k).map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
     +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`;
   $('sortk').onchange=e=>{const c=COLS.find(x=>x.k===e.target.value);PREF.sort={k:c.k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()};
   $('sortd').onclick=()=>{PREF.sort={...PREF.sort,d:-PREF.sort.d};savePrefs();renderFilters();renderHead();renderRows()};
@@ -812,21 +822,21 @@ function renderFilters(){
 }
 function renderHead(){
   normSort();const so=PREF.sort;
-  $('thead').innerHTML='<tr>'+COLS.map(c=>{if(!c.k)return `<th>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
+  $('thead').innerHTML='<tr>'+cols().map(c=>{if(!c.k)return `<th>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
     return `<th class="${c.r?'r':''}" aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
   $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()});
 }
 function renderRows(flash){
   normSort();
-  const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m);
+  const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m),MC=hasMC(),NC=cols().length;
   let list=visible().filter(s=>state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
   const rm=S=>`<td><button class="rm" data-m="${S.m}" data-rm="${esc(S.code)}" aria-label="${esc(S.name)} 삭제" title="목록에서 삭제">✕</button></td>`;
-  const html=busy.map(b=>`<tr>${idCell(b)}<td colspan="15" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
+  const html=busy.map(b=>`<tr>${idCell(b)}<td colspan="${NC-1}" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
     list.map(S=>{
-      if(!ok(S))return `<tr>${idCell(S)}<td colspan="14" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
+      if(!ok(S))return `<tr>${idCell(S)}<td colspan="${NC-2}" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S);return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>
       ${idCell(S)}<td class="sub">${esc(S.sector||'—')}</td>
       <td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>
@@ -835,11 +845,12 @@ function renderRows(flash){
       <td class="r num">${S.age}d</td>
       <td><span class="act ${A[1]}">${A[0]}</span></td>
       ${vcells(S)}
-      <td>${mini(S)}</td>
       <td class="r num" style="color:${S.dd<-15?'var(--neg)':'var(--ink2)'}">${S.dd>-0.5?'신고가':sgn(S.dd)+'%'}</td>
+      ${MC?`<td class="r num">${capFmt(S.mcap)}</td>`:''}
+      <td>${mini(S)}</td>
       <td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td><td class="r">${wi(S.code,'tgt')}</td><td class="r">${wi(S.code,'cur')}</td>${rm(S)}</tr>`}).join('');
-  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="16" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
-    :`<tr><td colspan="16" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
+  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="${NC}" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
+    :`<tr><td colspan="${NC}" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
   $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm'))return;openDetail(tr.dataset.k)});
   $('rows').querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();removeStock(b.dataset.m,b.dataset.rm)});
   $('rows').querySelectorAll('.wt-in').forEach(inp=>{inp.onclick=e=>e.stopPropagation();
@@ -1070,7 +1081,7 @@ let FD=null,FD_M=null;
 async function loadFund(force){
   if(FD_M===state.m&&!force)return;
   FD_M=state.m;FD=null;renderFund();
-  try{FD=await api('/api/fundamentals?all=1&m='+state.m)}catch(e){FD={err:e.message}}
+  try{const [f,mc]=await Promise.all([api('/api/fundamentals?all=1&m='+state.m),api('/api/list?op=mcap&m='+state.m).catch(()=>null)]);FD=f;FD.mcap=mc}catch(e){FD={err:e.message}}
   renderFund();
 }
 const openAttr=(m,code,name)=>`data-open="${esc(m)}:${esc(code)}" data-name="${esc(name||code)}"`;
@@ -1091,16 +1102,18 @@ function renderFund(){
   if(!S||!S.rows||!S.rows.length){el.innerHTML=ops+`<div class="muted">${KR?'국내 점수 없음 — 데이터 제공처 응답이 막혀 있으면 위에 이유가 떠.':'아직 점수 없음 — 수집이 한 바퀴 돌면 표가 생겨 (매일 자동).'}</div>`;bindFund();return}
   const q=(state.fq||'').trim().toLowerCase(),so=state.fsort||{k:'score',d:-1},lim=state.flim||50;
   let rows=S.rows.filter(r=>!q||r.code.toLowerCase().includes(q)||String(r.name||'').toLowerCase().includes(q)||String(r.sector||'').toLowerCase().includes(q)||(r.flags||[]).some(f=>f.includes(q)));
-  const val=(r,k)=>k==='score'?r.score:k==='accel'?r.p?.accel:k==='value'?r.p?.value:r[k];
+  const MCD=FD.mcap,FMC=!!(MCD&&Object.keys(MCD.sh||{}).length);
+  const capOf=r=>{const sh=MCD?.sh?.[r.code];if(!sh)return null;const px=BYKEY[`${state.m}:${r.code}`]?.last??MCD.px?.[r.code];if(!px)return null;return KR?sh*px:(MCD.fx?sh*px*MCD.fx:null)};
+  const val=(r,k)=>k==='score'?r.score:k==='accel'?r.p?.accel:k==='value'?r.p?.value:k==='mcap'?capOf(r):r[k];
   rows=[...rows].sort((a,b)=>{const x=val(a,so.k),y=val(b,so.k);return (x==null)-(y==null)||so.d*((x??0)-(y??0))});
   const th=(k,t)=>`<th class="r"><button class="sb2" data-fk="${k}">${t}${so.k===k?(so.d>0?' ▲':' ▼'):''}</button></th>`;
   const pc=v=>v==null?'—':(v>0?'+':'')+v+'%';
-  const row=r=>`<tr><td class="num muted">${S.rows.indexOf(r)+1}</td><td><b>${esc(r.code)}</b></td><td><span class="lnk" ${openAttr(state.m,r.code,r.name)}>${esc(r.name||r.code)}</span></td><td class="sub">${esc(r.sector||'—')}</td>
+  const row=r=>`<tr><td class="num muted">${S.rows.indexOf(r)+1}</td><td><b>${esc(r.code)}</b></td><td><span class="lnk" ${openAttr(state.m,r.code,r.name)}>${esc(r.name||r.code)}</span></td>${FMC?`<td class="r num">${capFmt(capOf(r))}</td>`:''}<td class="sub">${esc(r.sector||'—')}</td>
     <td class="r num wt">${r.score??'—'}</td><td class="r num">${r.p?.accel??'—'}</td><td class="r num">${r.p?.value??'—'}</td>
     ${KR?`<td class="r num">${pc(r.gEpsFwd)}</td><td class="r num">${r.surOp==null?'—':pc(r.surOp)}${r.surQ?` <span class="muted" style="font-size:11px">${esc(r.surQ.slice(2))}</span>`:''}</td><td class="r num">${r.revUp==null?'<span class="muted">기록 중</span>':pc(r.revUp)}</td>`:`<td class="r num">${pc(r.gRev)}</td><td class="r num">${r.dOm==null?'—':(r.dOm>0?'+':'')+r.dOm}</td><td class="r num">${pc(r.fcfM)}</td>`}
     <td class="r num">${r.fwdPe??'—'}${r.peBasis==='trailing'&&r.fwdPe!=null?'<span class="muted" title="추정치가 없어 최근 실적 EPS 기준">*</span>':''}</td>${KR?'':`<td class="r num">${pc(r.gEpsFwd)}</td>`}
     <td style="font-size:11.5px">${(r.flags||[]).map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지|쇼크|적자/.test(f)?'sig-weak':/추정치 없음|별도/.test(f)?'':'sig-up'}">${esc(f)}</span>`).join(' ')}</td></tr>`;
-  const head=`<tr><th>#</th><th>코드</th><th>종목</th><th>섹터</th>${th('score','점수')}${th('accel','가속 %ile')}${th('value','싼 정도 %ile')}
+  const head=`<tr><th>#</th><th>코드</th><th>종목</th>${FMC?th('mcap','시가총액'):''}<th>섹터</th>${th('score','점수')}${th('accel','가속 %ile')}${th('value','싼 정도 %ile')}
     ${KR?`${th('gEpsFwd','내년 EPS 성장')}${th('surOp','직전 분기 서프라이즈')}${th('revUp','추정 EPS 변화')}`:`${th('gRev','매출 YoY')}${th('dOm','영업마진 변화')}${th('fcfM','FCF 마진')}`}${th('fwdPe','선행 PER')}${KR?'':th('gEpsFwd','선행 EPS 성장')}<th>플래그</th></tr>`;
   el.innerHTML=ops+`<div class="sub">${S.n}종목 · 이익 정점 경계 <b>${S.peak}</b>종목${S.funding&&!KR?` · 재원 ${Object.entries(S.funding).map(([k,v])=>`${esc(k)} ${v}`).join(' · ')}`:''} · 점수 계산 ${kst(S.at)}</div>
     <div class="fd-tools"> <input id="fq" type="search" placeholder="종목·코드·섹터·플래그 검색" value="${esc(state.fq||'')}" aria-label="펀더멘털 표 검색"><span class="sub">${rows.length}종목 · 이름을 누르면 상세</span></div>
@@ -1286,7 +1299,7 @@ async function openDetail(key){
   $('ov').hidden=false;document.body.style.overflow='hidden';
   const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';$('d-fit').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
-  $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
+  $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';state.mcap=null;$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
   $('d-prev').textContent=`· 직전 국면 ${S.prev.s} (${f(S.prev.a)}~${S.prev.b.slice(5).replace('-','.')})`;
   $('c-price').innerHTML='<div class="loading">차트 불러오는 중…</div>';$('c-prob').innerHTML='';$('d-seg').innerHTML='';$('d-why').innerHTML='';
@@ -1304,7 +1317,7 @@ async function openDetail(key){
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
-    J.h=h;state.series=J;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
+    J.h=h;state.series=J;state.mcap=j.mcap??null;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
   }catch(e){$('c-price').innerHTML=`<div class="loading">차트 데이터를 못 불러왔어 (${esc(e.message)})</div>`}
 }
 /* 국면 변경 내역 → 국면 효과 — 'N일 후'는 회귀가 섞여 국면 효과를 가린다. 국면에 머문 동안의 속도·위아래 폭·다음 국면으로 보여준다 */
@@ -1324,16 +1337,18 @@ function drawHist(){
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  const pnls=STS.map(x=>F[x.id].pnl).filter(v=>v!=null),best=Math.max(...pnls),worst=Math.min(...pnls);
+  const L2=!!state.ss2&&!!F?.SS2,R=id=>id==='SS'&&L2?F.SS2:F[id];               // 봄·여름만 보유 2배 토글
+  const pnls=STS.map(x=>R(x.id).pnl).filter(v=>v!=null),best=Math.max(...pnls),worst=Math.min(...pnls);
   const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
-  const card=x=>{const o=F[x.id],cls=pnls.length>1&&best!==worst?(o.pnl===best?' best':o.pnl===worst?' worst':''):'';
-    return `<div class="fxc${cls}" title="${esc(x.desc)}"><div class="k"><b>${esc(x.name)}</b>${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.short||x.desc)}</span>
+  const card=x=>{const o=R(x.id),cls=pnls.length>1&&best!==worst?(o.pnl===best?' best':o.pnl===worst?' worst':''):'';
+    const tg=x.id==='SS'&&F.SS2?` <button type="button" class="lv2" data-lv2 aria-pressed="${L2}" title="봄·여름 구간을 2배 레버리지로 들고 있었다면 (구간 수익률 × 2)">2배</button>`:'';
+    return `<div class="fxc${cls}" title="${esc(x.id==='SS'&&L2?'봄·여름 구간을 2배 레버리지로 보유 (구간 단순 수익률 × 2, 차입 비용 제외) — '+x.desc:x.desc)}"><div class="k"><b>${esc(x.name)}${x.id==='SS'&&L2?' ×2':''}</b>${tg}${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.id==='SS'&&L2?'봄·여름 2배 레버리지 보유 · 가을·겨울 현금':(x.short||x.desc))}</span>
       <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
       <div class="fxm"><span title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
   const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
     <div class="fxg">${STS.map(card).join('')}</div>
-    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 빨간 테두리 = 수익금 최고, 파란 테두리 = 최저. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 레버리지 차입 비용은 넣지 않았어.</div>`:'';
+    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 빨간 테두리 = 수익금 최고, 파란 테두리 = 최저. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 봄·여름만 보유의 2배 버튼 = 봄·여름 구간을 2배 레버리지로 들고 있었을 때 (보유 구간 단순 수익률 × 2, 켜면 테두리도 2배 기준으로 다시 매김). 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -1355,6 +1370,7 @@ function drawHist(){
     <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
   $('d-hist').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${cards}${sum}${rows}`;
   $('d-hist').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist()});
+  $('d-hist').querySelectorAll('[data-lv2]').forEach(b=>b.onclick=e=>{e.stopPropagation();state.ss2=!state.ss2;drawHist()});
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 function drawDetail(){
@@ -1364,7 +1380,9 @@ function drawDetail(){
   const N=J.d.length,A=N-1,win=Math.min(N,state.years==='ytd'?Math.max(2,N-J.d.findIndex(d=>d>=J.d[A].slice(0,4)+'-01-01')+1):WIN[state.years]),i0=N-win;
   const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]){runs.push({s:J.s[a],a,b:t-1});a=t}}
   const dd=d=>d.slice(2).replace(/-/g,'.'),pcs=v=>`<span class="${v>0?'up':v<0?'dn':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
-  if(A>0){const c0=J.c[A-1],ch=(J.c[A]/c0-1)*100;$('d-px').innerHTML=`· 종가 <b>${fmtP(J.c[A],S.m)}</b> · 전일 종가 ${fmtP(c0,S.m)} (${pcs(ch)})`}
+  if(A>0){const c0=J.c[A-1],ch=(J.c[A]/c0-1)*100,ci=ch>0?'up':ch<0?'dn':'',cap=state.mcap??S.mcap;
+    $('d-px').innerHTML=`<div class="px"><b>${fmtP(J.c[A],S.m)}</b><span class="${ci}">${ch>0?'▲':ch<0?'▼':''} ${fmtP(Math.abs(J.c[A]-c0),S.m)} (${ch>0?'+':''}${ch.toFixed(2)}%)</span></div>
+      <div class="pxs">${dd(J.d[A])} 종가 · 전일 ${fmtP(c0,S.m)}${cap>0&&S.m!=='IX'?` · 시가총액 <b>${capFmt(cap)}</b>`:''}</div>`}
   const PL={ytd:'연초 이후',['1m']:'1개월',['3m']:'3개월',['6m']:'6개월',['1y']:'1년',['2y']:'2년',['3y']:'3년',['5y']:'5년'};
   $('d-pret').innerHTML=`${PL[state.years]||''} 수익률 <b>${pcs((J.c[A]/J.c[i0]-1)*100)}</b> <span class="muted">${dd(J.d[i0])} 종가 ${fmtP(J.c[i0],S.m)} → ${dd(J.d[A])} 종가 ${fmtP(J.c[A],S.m)}</span>`;
   const Wd=640,ml=62,mr=18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
