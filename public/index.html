@@ -532,7 +532,7 @@ body{margin:0}
             <text class="lbl" x="359" y="115" text-anchor="middle">고점 −d₁·σ</text>
             <text class="lbl" x="539" y="115" text-anchor="middle">−d₂·σ 또는 T衰</text>
             <text class="lbl" x="360" y="36" text-anchor="middle">고점 재돌파 + 20일선 위</text>
-            <text class="lbl" x="360" y="244" text-anchor="middle">60일선 위 + 60일선 상승 + W봉 고점 b·σ 돌파 (또는 정배열 + 52주 고점 −10% 안)</text>
+            <text class="lbl" x="360" y="244" text-anchor="middle">60일선 위 + 20일선 상승 + W봉 고점 b·σ 돌파 (또는 정배열 + 52주 고점 −10% 안)</text>
             <g><circle class="nd" cx="90" cy="125" r="44" style="fill:var(--spring-pill);stroke:var(--spring-ink)"/><text x="90" y="124" text-anchor="middle" class="han" style="font-size:26px;fill:var(--spring-ink)">生</text><text x="90" y="146" text-anchor="middle" style="font-size:12px;fill:var(--spring-ink)">봄 · 무릎</text></g>
             <g><circle class="nd" cx="270" cy="125" r="44" style="fill:var(--summer-pill);stroke:var(--summer-ink)"/><text x="270" y="124" text-anchor="middle" class="han" style="font-size:26px;fill:var(--summer-ink)">旺</text><text x="270" y="146" text-anchor="middle" style="font-size:12px;fill:var(--summer-ink)">여름 · 성장</text></g>
             <g><circle class="nd" cx="450" cy="125" r="44" style="fill:var(--autumn-pill);stroke:var(--autumn-ink)"/><text x="450" y="124" text-anchor="middle" class="han" style="font-size:26px;fill:var(--autumn-ink)">衰</text><text x="450" y="146" text-anchor="middle" style="font-size:12px;fill:var(--autumn-ink)">가을 · 어깨</text></g>
@@ -542,12 +542,12 @@ body{margin:0}
         <div class="tbl-wrap" style="margin-top:12px"><table>
           <thead><tr><th>전이</th><th>조건 (신호일 종가까지의 정보만 · σ = 20일 변동성)</th><th>행동</th><th>파라미터</th></tr></thead>
           <tbody>
-            <tr><td>死 → 生</td><td>종가 &gt; 60일선 + 60일선 상승 + (직전 W봉 고점을 b·σ 이상 돌파 또는 60일선 위 0.5·b·σ). 정배열(20&gt;60&gt;120) + 52주 고점 −10% 안이면 즉시 전환</td><td>진입 검토</td><td>W · b</td></tr>
+            <tr><td>死 → 生</td><td>종가 &gt; 60일선 + 20일선 상승 + (직전 W봉 고점을 b·σ 이상 돌파 또는 60일선 위 0.5·b·σ). 정배열(20&gt;60&gt;120) + 52주 고점 −10% 안이면 즉시 전환. 급락 뒤 60일선이 몇 달씩 내려가는 동안 반등을 놓치지 않으려고 기울기는 20일선으로 본다</td><td>진입 검토</td><td>W · b</td></tr>
             <tr><td>生 → 旺</td><td>정배열 + 20일선 상승 + 봄 진입가 대비 u·σ 상승 + 52주 저점 대비 lowGate 이상 + 52주 고점 −15% 안</td><td>매수·비중 확대</td><td>u · lowGate</td></tr>
             <tr><td>旺 → 衰</td><td>국면 고점 대비 d₁·σ 하락, 또는 20일선 이탈 + 20일선 하락</td><td>비중 절반 축소</td><td>d1</td></tr>
             <tr><td>衰 → 旺</td><td>국면 고점 재돌파 + 20일선 위</td><td>재확대</td><td>—</td></tr>
             <tr><td>衰 → 死</td><td>고점 대비 d₂·σ 하락, 또는 60일선 이탈 + 60일선 하락, 또는 衰 체류 &gt; TF일</td><td>전량 정리</td><td>d2 · TF</td></tr>
-            <tr><td>生 → 死</td><td>봄 진입가 대비 d₁·σ 되밀림, 또는 60일선 이탈 + 60일선 하락 (돌파 실패)</td><td>손절</td><td>d1</td></tr>
+            <tr><td>生 → 死</td><td>봄 진입가 대비 d₁·σ 되밀림, 또는 직전 겨울 저점 이탈, 또는 봄 진입가 대비 −15% (본주 종가 기준 손절)</td><td>손절</td><td>d1</td></tr>
             <tr><td>확정</td><td>같은 방향 신호가 hyst일 연속 + 직전 전환 뒤 TC일 경과해야 전환 확정</td><td>—</td><td>hyst · TC</td></tr>
           </tbody>
         </table></div>
@@ -1010,7 +1010,7 @@ async function renderEngine(){
   let M;try{M=await api('/api/meta')}catch(e){$('engdyn').innerHTML=`<div class="warn">${esc(e.message)}</div>`;return}
   const [BT,UV,HL,SM]=await Promise.all([api('/api/backtest?m='+state.m).catch(()=>null),api('/api/universe').catch(()=>null),api('/api/health').catch(()=>null),api('/api/portfolio?m='+state.m).catch(()=>null)]);
   const P=M.params;
-  const pr=[['W','돌파 창 길이','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 전이 낙폭','σ'],['d2','겨울 전이 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','전환 후 최소 유지','봉'],['hyst','연속 확인일','일'],['lowGate','52주 저점 대비 최소 상승','%'],['slopeWin','기울기 측정 창','봉']];
+  const pr=[['W','돌파 창 길이','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 전이 낙폭 (하한 1.5)','σ'],['d2','겨울 전이 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','전환 후 최소 유지','봉'],['hyst','연속 확인일 (하한 2)','일'],['lowGate','52주 저점 대비 최소 상승','%'],['slopeWin','기울기 측정 창','봉']];
   const fv=(k,u)=>P[k]==null?'—':u==='%'?(P[k]*100).toFixed(0)+'%':u==='σ'?(+P[k]).toFixed(2)+'σ':u==='일'?P[k]+'일':P[k]+'봉';
   $('engdyn').innerHTML=`
   <section class="card"><h2>임계값</h2>
@@ -1179,7 +1179,7 @@ function tuneCard(BT){
       표본 기간 앞 70%만 써서 채점하고, 한 표본에서만 잘 나온 후보는 뒤로 밀려 — 3판 이상 검증되고 현재보다 1.5점 넘게 좋아야 적용 후보가 돼.</p>
     <div class="ops"><button class="pbtn" id="tuneBtn" aria-pressed="true">보정 한 판</button>${T&&T.ready&&T.ready.ok?'<button class="pbtn" id="applyBtn">검증된 후보 적용</button>':''}<span class="sub" id="tunemsg"></span></div>`;
   if(!T||!T.pool||!T.pool.length||T.ver!==3)return head+'<div class="muted">새 채점 기준으로는 아직 보정 판이 없어 (매일 자동으로 4판).</div></section>';
-  const pr=[['W','돌파 창','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 낙폭','σ'],['d2','겨울 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','최소 유지','봉'],['hyst','연속 확인일','일'],['lowGate','52주 저점 대비','%']];
+  const pr=[['W','돌파 창','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 낙폭 (하한 1.5)','σ'],['d2','겨울 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','최소 유지','봉'],['hyst','연속 확인일 (하한 2)','일'],['lowGate','52주 저점 대비','%']];
   const fv=(P,k,u)=>P[k]==null?'—':u==='%'?(P[k]*100).toFixed(0)+'%':u==='σ'?(+P[k]).toFixed(2)+'σ':P[k]+'봉';
   const C=T.candidate;
   const cells=x=>`<td class="r num">${x.balanced??'—'}%</td><td class="r num">${x.severe??'—'}%</td><td class="r num">${x.lagS??'—'}일</td><td class="r num">${x.lagW??'—'}일</td><td class="r num">${x.summerExc==null?'—':((x.summerExc-x.winterExc)>0?'+':'')+(x.summerExc-x.winterExc).toFixed(2)+'%p'}</td>`;
