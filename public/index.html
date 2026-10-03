@@ -319,15 +319,21 @@ details[open]>summary.fold::after{content:' ▴'}
 .fxt{font-size:12px;font-weight:700;color:var(--gold-ink);margin:14px 0 7px}
 .fxh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .fxper{display:flex;flex-wrap:wrap;gap:4px}.fxper .pbtn{padding:3px 9px;font-size:11.5px}
-.fxg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.fxc{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-.fxc.hi{border-color:var(--pos)}
+.fxg{display:grid;grid-template-columns:1fr;gap:6px}
+.fxc{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:9px 12px;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:6px 12px}
+.fxc{border-width:2px}.fxc.best{border-color:var(--pos)}.fxc.worst{border-color:var(--neg)}
+.fxb{font-size:10.5px;font-weight:800;border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:3px}
+.fxm{display:grid;grid-template-columns:auto auto;gap:6px}
+.fxm span{background:var(--card);border-radius:8px;padding:4px 8px;display:flex;flex-direction:column;gap:0;min-width:74px}
+.fxm i{font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap}.fxm b{font-size:14.5px;font-weight:800}
+.fitrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 8px}.fitrow .why{flex-basis:100%;font-size:12px;color:var(--muted)}
+.fitrow .tag{font-size:12.5px}.t-good{background:var(--summer-pill,var(--spring-pill));color:var(--summer-ink,var(--spring-ink))}
 .fxc .k{font-size:12px;color:var(--ink2);line-height:1.4}.fxc .k .muted{display:block;font-size:11px}
-.fxc .v{font-size:21px;font-weight:800;margin-top:3px}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.fxc .v{font-size:20px;font-weight:800;text-align:right;min-width:80px}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
 .fxbar{display:inline-block;width:56px;height:6px;border-radius:3px;position:relative;overflow:hidden;vertical-align:middle;margin-left:7px;background:var(--line)}
 .fxbar i{position:absolute;top:0;bottom:0}
 .hist .nx{color:var(--ink2)}.hist .nx b{color:var(--ink)}
-@media (max-width:760px){.fxg{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fxc{grid-template-columns:1fr auto}.fxc .fxm{grid-column:1/-1}}
 .up{color:var(--pos)}.dn{color:var(--neg)}
 @media (max-width:760px){.ixgrid,.ixgrid.two{grid-template-columns:1fr}}
 .sig{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:1px}
@@ -578,10 +584,11 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="d-name">
     <div class="eyebrow" id="d-eye"></div>
     <h2 id="d-name"></h2>
+    <div class="fitrow" id="d-fit"></div>
     <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
-      <button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
+      <button class="pbtn" data-y="ytd">연초</button><button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
       <button class="pbtn ta" id="d-ta" aria-pressed="false"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><rect x="2" y="4" width="4" height="9" rx="1" style="fill:var(--gold)"/><line x1="4" y1="1" x2="4" y2="17" style="stroke:var(--gold);stroke-width:1.6"/><rect x="10" y="6" width="4" height="7" rx="1" style="fill:none;stroke:var(--gold);stroke-width:1.6"/><line x1="12" y1="2" x2="12" y2="16" style="stroke:var(--gold);stroke-width:1.6"/></svg>기술적 분석 열기</button>
       <button class="pbtn x" id="d-x" aria-label="닫기">✕</button>
     </div>
@@ -1175,11 +1182,11 @@ function tuneCard(BT){
 }
 function stratOpsCard(SM){
   return `<section class="card"><h2>전략실 실행</h2>
-    <p class="lead">5개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
+    <p class="lead">6개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
     <div class="ops"><button class="pbtn" id="stRun" aria-pressed="true">지금 이어 돌리기 (${state.m==='US'?'미국':'한국'})</button><button class="pbtn" id="stReset">오늘부터 다시 시작</button><span class="sub" id="stmsg">${SM&&!SM.empty?`${SM.asof} 까지 · ${kst(SM.at)} 갱신 · 이번에 ${SM.processed}일 처리 (${(SM.ms/1000).toFixed(1)}초)`:'아직 장부 없음'}</span></div></section>`;
 }
 async function runStrat(reset){
-  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 5개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
+  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 6개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
   const msg=$('stmsg');msg.textContent='돌리는 중…';
   try{const r=await post('/api/portfolio',{m:state.m,step:'run',reset});msg.textContent=`${r.asof} 까지 · ${r.processed}일 처리`;ST=null;STD=null;loadInd();if(!$('strat').hidden)loadStrat(true)}
   catch(e){msg.textContent='실패: '+e.message}
@@ -1274,7 +1281,7 @@ function estTable(E){
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
-  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
+  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;$('d-hist').innerHTML='';$('d-fit').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
   $('d-prob').textContent=S.prob+'%';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
@@ -1294,27 +1301,37 @@ async function openDetail(key){
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
-    J.h=h;state.series=J;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawHist();
+    J.h=h;state.series=J;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
   }catch(e){$('c-price').innerHTML=`<div class="loading">차트 데이터를 못 불러왔어 (${esc(e.message)})</div>`}
 }
 /* 국면 변경 내역 → 국면 효과 — 'N일 후'는 회귀가 섞여 국면 효과를 가린다. 국면에 머문 동안의 속도·위아래 폭·다음 국면으로 보여준다 */
+/* 맨 위 — 이 종목에 계절이 잘 맞는지 + 지금 계절에 맞는 행동 */
+function drawFit(S){
+  const F=state.eff?.fit;if(!F||S.m==='IX'){$('d-fit').innerHTML='';return}
+  const fc=F.grade===3?'t-good':F.grade===2?'t-warn':F.grade===1?'t-crit':'t-mid';
+  const ACT={봄:['진입 검토','t-good'],여름:['보유','t-good'],가을:['비중 축소','t-warn'],겨울:['회피','t-crit']};
+  const a=F.grade>=2?ACT[S.season]:F.grade===1?['계절 신호 참고만','t-mid']:null;
+  $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}<span class="why">${esc(F.why)}</span>`;
+}
 function drawHist(){
   const H=state.hist,S=state.cur,E=state.eff;if(!H)return;
   const f=d=>d.slice(2).replace(/-/g,'.'),rc=(v,u='%')=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'up':v<0?'dn':''}">${sgn(v)}${u}</span>`;
   const pill=s=>`<span class="pill p-${s}"><span class="han">${HAN[s]}</span>${s}</span>`;
   const ss=E?.seasons||{},U=E?.univ?.seasons||null;
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
-  const F=E?.follows?{...E.follows[FP],stage:E.stage,cost:E.cost}:E?.follow;
+  const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
+  const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
+  const cums=STS.map(x=>F[x.id].cum).filter(v=>v!=null),best=Math.max(...cums),worst=Math.min(...cums);
+  const card=x=>{const o=F[x.id],cls=cums.length>1&&best!==worst?(o.cum===best?' best':o.cum===worst?' worst':''):'';
+    return `<div class="fxc${cls}" title="${esc(x.desc)}"><div class="k"><b>${esc(x.name)}</b>${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.short||x.desc)}</span></div>
+      <div class="v num">${rc(o.cum)}</div>
+      <div class="fxm"><span><i>최대수익률</i><b class="num up">${o.maxRet==null?'—':sgn(o.maxRet)+'%'}</b></span><span><i>최대손실률</i><b class="num dn">${o.maxLoss==null?'—':sgn(o.maxLoss)+'%'}</b></span></div></div>`};
+  const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)} · ${F.days}거래일 · 판정일 종가에 매매 · 거래비용 ${E.cost}%</span></span>${psel}</div>
+    <div class="fxg">${STS.map(card).join('')}</div>
+    <div class="sub" style="margin-top:6px">빨간 테두리 = 이 기간 수익률 최고, 파란 테두리 = 최저. 최대수익률 = 기간 중 가장 많이 올랐을 때(시작 대비), 최대손실률 = 기간 중 고점에서 가장 크게 빠졌을 때. 장부는 5년 전부터 규칙대로 돌리고 선택한 시작일에서 잘라 봐서, 그날 이미 들고 있던 상태를 그대로 이어받아. 레버리지 전략의 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
-  const card=(k,v,sub,hi)=>`<div class="fxc${hi?' hi':''}"><div class="k">${k}</div><div class="v num">${v}</div><div class="s">${sub}</div></div>`;
-  const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  const cards=F?`<div class="fxt fxh"><span>① 엔진대로 들고 있었다면 <span class="muted" style="font-weight:500">${f(F.from)} ~ ${f(F.to)}${F.days?` · ${F.days}거래일`:''} · 판정일 종가에 매매 · 거래비용 ${F.cost}%</span></span>${psel}</div>
-    <div class="fxg">${card('봄·여름만 보유, 가을·겨울엔 현금',rc(F.ss.cum),`최대낙폭 ${sgn(F.ss.mdd)}% · 보유 기간 ${F.ss.expo}%`,F.ss.cum>F.hold.cum)}
-      ${card(`단계 매매 <span class="muted">봄 ${Math.round(F.stage.spring*100)}% 진입 → 여름 +${Math.round(F.stage.add*100)}% → 가을 보유분 ${Math.round((F.stage.sell??0.8)*100)}% 매도 → 겨울 전량 매도</span>`,rc(F.staged.cum),`최대낙폭 ${sgn(F.staged.mdd)}% · 평균 비중 ${F.staged.expo}%`,F.staged.cum>F.hold.cum)}
-      ${card('계속 보유',rc(F.hold.cum),`최대낙폭 ${sgn(F.hold.mdd)}% · 보유 기간 100%`)}
-      ${card('겨울 동안 들고 있었다면',rc(F.winter.r),F.winter.days?`${F.winter.n?`이 기간 끝난 겨울 ${F.winter.n}번 중 ${F.winter.down}번 하락 · `:''}겨울 ${F.winter.days}거래일`:'이 기간엔 겨울이 없었어')}</div>`:'';
   const sum=`<div class="fxt">② 계절별 요약</div>
     <div class="tbl-wrap" style="margin-bottom:6px"><table style="min-width:720px"><thead><tr><th>국면</th><th class="r">횟수</th><th class="r">평균 기간</th><th class="r">국면 중 수익률<br><span class="muted" style="font-weight:500">중앙값</span></th><th class="r">월 환산</th><th class="r">상승 마감</th><th>평균 최대상승 / 최대낙폭</th><th>다음 국면</th>${U?'<th class="r">유니버스 같은 계절<br><span class="muted" style="font-weight:500">월 환산 · 상승 마감</span></th>':''}</tr></thead><tbody>
     ${SEASONS.map(s=>{const t=ss[s]||{},u=U?.[s];return `<tr><td>${pill(s)}</td><td class="r num">${t.n??0}</td><td class="r num">${t.days==null?'—':t.days+'일'}</td><td class="r num">${rc(t.med)}</td><td class="r num"><b>${rc(t.mo)}</b></td>
@@ -1339,7 +1356,7 @@ function drawDetail(){
   const S=state.cur,J=state.series;if(!J)return;
   document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.y===state.years)));
   $('d-ta').setAttribute('aria-pressed',String(state.ta));$('d-ta').lastChild.textContent=state.ta?'기술적 분석 닫기':'기술적 분석 열기';
-  const N=J.d.length,A=N-1,win=Math.min(N,WIN[state.years]),i0=N-win;
+  const N=J.d.length,A=N-1,win=Math.min(N,state.years==='ytd'?Math.max(2,N-J.d.findIndex(d=>d>=J.d[A].slice(0,4)+'-01-01')+1):WIN[state.years]),i0=N-win;
   const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]){runs.push({s:J.s[a],a,b:t-1});a=t}}
   const Wd=640,ml=62,mr=18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
   const bands=(top,bot,label)=>{let o='',lb='';for(const r of runs){if(r.b<i0)continue;const a=Math.max(r.a,i0),b=r.b;
