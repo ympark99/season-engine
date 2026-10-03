@@ -1337,18 +1337,19 @@ function drawHist(){
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  const L2=!!state.ss2&&!!F?.SS2,R=id=>id==='SS'&&L2?F.SS2:F[id];               // 봄·여름만 보유 2배 토글
+  const X2=state.x2||(state.x2={}),on2=id=>!!X2[id]&&!!F?.[id+'2'],R=id=>on2(id)?F[id+'2']:F[id];   // 봄·여름만 보유 · 봄 진입·가을 매도 2배 토글
+  const D2={SS:'봄·여름 2배 레버리지 보유 · 가을·겨울 현금',SF:'봄 전환 때 2배 진입 → 여름 유지 → 가을 전량 매도 → 겨울 관망'};
   const pnls=STS.map(x=>R(x.id).pnl).filter(v=>v!=null),best=Math.max(...pnls),worst=Math.min(...pnls);
   const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
   const card=x=>{const o=R(x.id),cls=pnls.length>1&&best!==worst?(o.pnl===best?' best':o.pnl===worst?' worst':''):'';
-    const tg=x.id==='SS'&&F.SS2?` <button type="button" class="lv2" data-lv2 aria-pressed="${L2}" title="봄·여름 구간을 2배 레버리지로 들고 있었다면 (구간 수익률 × 2)">2배</button>`:'';
-    return `<div class="fxc${cls}" title="${esc(x.id==='SS'&&L2?'봄·여름 구간을 2배 레버리지로 보유 (구간 단순 수익률 × 2, 차입 비용 제외) — '+x.desc:x.desc)}"><div class="k"><b>${esc(x.name)}${x.id==='SS'&&L2?' ×2':''}</b>${tg}${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(x.id==='SS'&&L2?'봄·여름 2배 레버리지 보유 · 가을·겨울 현금':(x.short||x.desc))}</span>
+    const L2=on2(x.id),tg=F[x.id+'2']?` <button type="button" class="lv2" data-lv2="${x.id}" aria-pressed="${L2}" title="보유 구간을 2배 레버리지로 들고 있었다면 (구간 수익률 × 2)">2배</button>`:'';
+    return `<div class="fxc${cls}" title="${esc(L2?'보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외) — '+x.desc:x.desc)}"><div class="k"><b>${esc(x.name)}${L2?' ×2':''}</b>${tg}${cls===' best'?' <span class="fxb up">최고</span>':cls===' worst'?' <span class="fxb dn">최저</span>':''}<span class="muted">${esc(L2?D2[x.id]:(x.short||x.desc))}</span>
       <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
       <div class="fxm"><span title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
   const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
     <div class="fxg">${STS.map(card).join('')}</div>
-    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 빨간 테두리 = 수익금 최고, 파란 테두리 = 최저. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 봄·여름만 보유의 2배 버튼 = 봄·여름 구간을 2배 레버리지로 들고 있었을 때 (보유 구간 단순 수익률 × 2, 켜면 테두리도 2배 기준으로 다시 매김). 레버리지 차입 비용은 넣지 않았어.</div>`:'';
+    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 빨간 테두리 = 수익금 최고, 파란 테두리 = 최저. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 봄·여름만 보유·봄 진입·가을 매도의 2배 버튼 = 보유 구간을 2배 레버리지로 들고 있었을 때 (보유 구간 단순 수익률 × 2, 켜면 테두리도 2배 기준으로 다시 매김). 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -1370,7 +1371,7 @@ function drawHist(){
     <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
   $('d-hist').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${cards}${sum}${rows}`;
   $('d-hist').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist()});
-  $('d-hist').querySelectorAll('[data-lv2]').forEach(b=>b.onclick=e=>{e.stopPropagation();state.ss2=!state.ss2;drawHist()});
+  $('d-hist').querySelectorAll('[data-lv2]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.lv2;state.x2[k]=!state.x2[k];drawHist()});
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 function drawDetail(){
