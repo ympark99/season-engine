@@ -1,5 +1,5 @@
-// /api/portfolio — 전략실 (5개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
-//   GET ?m=US                → 전략 5개 요약 + 벤치마크 + 장세
+// /api/portfolio — 전략실 (6개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
+//   GET ?m=US                → 전략 6개 요약 + 벤치마크 + 장세
 //   GET ?m=US&s=S1           → 전략 하나 상세 (보유·매매 내역 전체·일별 평가금액·벤치마크 곡선)
 //   POST {step:'run', m, reset}  (관리자) — 지금 이어 돌리기 / reset 이면 장부를 지우고 오늘(최근 거래일)부터 다시 시작
 // 시장 지표 3종(mkt:ind:{m})과 국면 효과 유니버스 기준선(mkt:eff:{m})도 같은 데이터로 여기서 계산한다.
@@ -59,7 +59,7 @@ async function build(m, books) {
   const cnt = new Map(); for (const x of items) for (const d of x.s.d.slice(-30)) cnt.set(d, (cnt.get(d) || 0) + 1);
   const all = [...cnt.keys()].filter(d => cnt.get(d) >= items.length * 0.5).sort();
   const lasts = STRATS.map(st => books[st.id]?.last).filter(Boolean);
-  const after = lasts.length === STRATS.length ? lasts.reduce((a, b) => (a < b ? a : b)) : null;
+  const after = lasts.length ? lasts.reduce((a, b) => (a < b ? a : b)) : null;   // 새로 추가된 전략은 다음 거래일부터 합류
   const days = after ? all.filter(d => d > after) : all.slice(-1);
   // 지수 국면 (장세)
   const ixBars = await store.mget(BENCH[m].map(([c]) => store.barsKey('IX', c)));
