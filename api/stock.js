@@ -10,13 +10,14 @@ import { effectOf } from '../lib/effect.js';
 import { Series } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
+import { mcapOf } from '../lib/mcap.js';
 
 export default async function handler(req, res) {
   try {
     const { m, code } = req.query;
     const IXC = { US: 'SPX', KR: 'KOSPI' }[m];
-    const [bars, eng, sum, rec, ixb, ueff] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
-      IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null]);
+    const [bars, eng, sum, rec, ixb, ueff, shm] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
+      IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null, IXC ? store.get(`mcap:${m}`) : null]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
     const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값 (v2 는 그대로)
     const A = analyze(bars, P, eng.cal, KEEP), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
@@ -25,7 +26,8 @@ export default async function handler(req, res) {
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
     const sector = m === 'IX' ? null : fund?.sector || sectorOf(m, code, { name: req.query.name || null });
-    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector,
+    const mcap = m === 'IX' ? null : mcapOf(shm?.rows?.[code]?.[0], summary.last, m, shm?.fx);   // 원화 시가총액 (원)
+    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
       est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
   } catch (e) { send(res, 500, { error: e.message }); }
