@@ -313,6 +313,7 @@ th.r .sb{flex-direction:row}
 .toast button{border:0;background:none;color:var(--gold);font-weight:700}
 .warn{color:var(--autumn-ink)}
 table{min-width:1080px}
+table.stbl{min-width:820px}
 summary.fold{cursor:pointer;list-style:none;margin-bottom:6px}
 summary.fold::-webkit-details-marker{display:none}
 summary.fold::after{content:' ▾';color:var(--muted)}
@@ -521,7 +522,7 @@ body{margin:0}
             <div class="chips" id="filters"></div>
           </div>
         </div>
-        <div class="tbl-wrap"><table><thead id="thead"></thead><tbody id="rows"></tbody></table></div>
+        <div class="tbl-wrap"><table class="stbl"><thead id="thead"></thead><tbody id="rows"></tbody></table></div>
         <div class="foot"><span id="cashline"></span><span id="cronline"></span></div>
       </div>
     </details>
@@ -1009,11 +1010,13 @@ const COLS=[
   {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>stTh(S)||'힣',str:1},
   {k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99,off:1},
-  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1,r:1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
+  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
   {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1,off:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:'spark',t:'최근 120일',off:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1,off:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1,off:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1,off:1},{k:'rm',t:''}
 ];
 const SORTABLE=c=>c.v&&c.k!=='rm';
+/* 열 너비 목표(%) — 표가 넓을 때 남는 폭이 긴 글자 열(섹터·종합 의견)에만 몰리지 않게. 합 100 기준, 숨긴 열은 빠진 만큼 비례로 늘어남 */
+const CW={season:8,id:8,sector:14,prob:11,ps5:6,age:6,action:9,stance:12,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
 /* 시가총액 — 원화. 1조 이상은 조(소수 둘째 자리까지), 미만은 억 */
 const capFmt=v=>{if(v==null||!(v>0))return '—';if(v>=1e12)return `${(+(v/1e12).toFixed(2)).toLocaleString('ko-KR')}조`;return `${Math.round(v/1e8).toLocaleString('ko-KR')}억`};
 const hasMC=()=>!!(D&&D.stocks&&D.stocks.some(s=>s.m===state.m&&s.mcap>0));
@@ -1095,8 +1098,9 @@ function renderFilters(){
 }
 function renderHead(){
   normSort();const so=PREF.sort;
-  $('thead').innerHTML='<tr>'+cols().map(c=>{if(!SORTABLE(c))return `<th>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
-    return `<th class="${c.r?'r':''}" aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
+  const CS=cols(),tot=CS.reduce((a,c)=>a+(CW[c.k]||6),0),wd=c=>` style="width:${(100*(CW[c.k]||6)/tot).toFixed(1)}%"`;
+  $('thead').innerHTML='<tr>'+CS.map(c=>{if(!SORTABLE(c))return `<th${wd(c)}>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
+    return `<th class="${c.r?'r':''}"${wd(c)} aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
   $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()});
 }
 function renderRows(flash){
