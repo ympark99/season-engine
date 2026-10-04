@@ -54,7 +54,8 @@ async function list(req, res) {
     const f = fund[`${it.m}:${it.code}`] || null;
     if (!r.error) r.view = opinion(r, f, volumeSignal(bars[i]));
     r.sector = f?.sector || sectorOf(it.m, it.code, { name: it.name });
-    r.theme = OVR[it.m] ? OVR[it.m][it.code] || themeOf(it.m, it.code, r.sector) : null;   // 화면의 '섹터' (lib/themes.js)
+    r.themeAuto = themeOf(it.m, it.code, r.sector);                              // 직접 지정을 지우면 돌아갈 자동 분류
+    r.theme = OVR[it.m]?.[it.code] || r.themeAuto;                               // 화면의 '섹터' (lib/themes.js)
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     return r;
