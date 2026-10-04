@@ -129,12 +129,17 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .thed:hover{color:var(--gold-ink)}
 .wtbar{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:600;color:var(--ink2)}
 .wtbar .wl{white-space:nowrap}.wtbar .wl b{display:inline-block;min-width:1.6em;text-align:center}
-.wtbar input[type=range]{-webkit-appearance:none;appearance:none;width:150px;height:12px;border-radius:999px;margin:0;cursor:pointer;
-  background:linear-gradient(90deg,#4b4d52 0 var(--p),#2e3034 var(--p) 100%);box-shadow:inset 0 1px 2px rgba(0,0,0,.55),0 0 0 3px #e9eaec,0 0 0 4px #d4d6da}
-.wtbar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;border:1px solid #9a9da3;
-  background:radial-gradient(circle at 50% 50%,#f4f5f6 0 22%,transparent 23%),conic-gradient(from 0deg,#d9dbde,#f7f8f9,#b9bcc1,#eef0f2,#c3c6ca,#fafbfb,#bdc0c5,#e6e8ea,#d9dbde);box-shadow:0 2px 4px rgba(0,0,0,.35)}
-.wtbar input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;border:1px solid #9a9da3;
-  background:conic-gradient(from 0deg,#d9dbde,#f7f8f9,#b9bcc1,#eef0f2,#c3c6ca,#fafbfb,#bdc0c5,#e6e8ea,#d9dbde);box-shadow:0 2px 4px rgba(0,0,0,.35)}
+.wtbar input[type=range]{-webkit-appearance:none;appearance:none;width:140px;height:18px;margin:0;cursor:pointer;background:transparent}
+.wtbar input[type=range]:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:999px}
+.wtbar input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:999px;
+  background:radial-gradient(circle,var(--muted) 0 1px,transparent 1.5px) 0 50%/calc((100% - 6px)/10) 100% repeat-x content-box,color-mix(in srgb,var(--muted) 28%,transparent);padding:0 3px}
+.wtbar input[type=range]::-moz-range-track{height:6px;border-radius:999px;background:color-mix(in srgb,var(--muted) 28%,transparent)}
+.wtbar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;margin-top:-5px;border-radius:50%;
+  background:var(--card);border:3px solid var(--gold);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .12s}
+.wtbar input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--card);border:3px solid var(--gold);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.wtbar input[type=range]:hover::-webkit-slider-thumb,.wtbar input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+.wtbar .wl b{color:var(--gold-ink)}
+.feed{max-height:132px;overflow-y:auto;overscroll-behavior:contain;padding-right:4px;scrollbar-width:thin}
 .stance.s-avoid{background:#f6e9ea;color:#8a1f2b;border-color:#e8c7cb}
 .act{display:inline-block;border-radius:999px;padding:3px 11px;font-size:12.5px;font-weight:700}
 .a-buy{background:var(--summer-pill);color:var(--summer-ink)}
@@ -1202,7 +1207,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('.search'))dd.hidden=
 function renderFlow(){
   const ev=D.events.filter(e=>e.m===state.m);
   const nm=x=>x.m==='US'?`<b title="${esc(x.name||'')}">${esc(x.code)}</b>`:`<b title="${esc(x.code)}">${esc(x.name||x.code)}</b>`;   // 미국은 티커
-  $('feed').innerHTML=ev.length?ev.slice(0,14).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
+  $('feed').innerHTML=ev.length?ev.slice(0,60).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
     <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span></span></div>`).join(''):'<div class="muted">최근 20거래일 전이 없음</div>';
   const au=visible().filter(s=>s.season==='가을').sort((a,b)=>b.age-a.age),MAX=30;
   const avg=UNIV?.accuracy?.dwell?.['가을']??null;
