@@ -8,6 +8,7 @@ import { engineState, row, send, refresh, isAdmin, body } from '../lib/service.j
 import { SEASONS } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
+import { themeOf } from '../lib/themes.js';
 import { mcapOf, sharesOf } from '../lib/mcap.js';
 import { krQuote, usQuote } from '../lib/kis.js';
 
@@ -42,7 +43,8 @@ async function remove(req, res) {
 async function list(req, res) {
   const [items, eng, cron] = await Promise.all([store.listAll(), engineState(), store.mget(['cron:KR', 'cron:US'])]);
   const bars = await store.mgetBars(items);
-  const [fUS, fKR, shUS, shKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR']);
+  const [fUS, fKR, shUS, shKR, oUS, oKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR', 'theme:ovr:US', 'theme:ovr:KR']);
+  const OVR = { US: oUS || {}, KR: oKR || {} };
   const SH = { US: shUS, KR: shKR };
   const fund = {};
   for (const s of [fUS, fKR]) for (const r of s?.rows || []) fund[`${s.m}:${r.code}`] = r;
@@ -52,6 +54,7 @@ async function list(req, res) {
     const f = fund[`${it.m}:${it.code}`] || null;
     if (!r.error) r.view = opinion(r, f, volumeSignal(bars[i]));
     r.sector = f?.sector || sectorOf(it.m, it.code, { name: it.name });
+    r.theme = OVR[it.m] ? OVR[it.m][it.code] || themeOf(it.m, it.code, r.sector) : null;   // 화면의 '섹터' (lib/themes.js)
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     return r;
