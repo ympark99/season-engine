@@ -5,10 +5,12 @@
 //   GET ?themes=US           → 전종목 섹터(테마) {code: 섹터} + 세부 업종 + 직접 바꾼 값
 //   GET ?rot=US              → 섹터 순환(4분면) 재료 — 없으면 일봉에서 바로 계산
 //   POST {m, step:'theme', code, theme} → 종목 섹터 직접 지정 (theme 비우면 자동 분류로 되돌림) · {step:'rot'} → 4분면 재료 다시 계산
+//   POST {m, step:'rejudge'} → 저장된 일봉으로 마지막 스캔을 현재 판정기로 다시 계산 (판정 버전이 바뀌면 첫 조회 때 자동)
 //   POST {m, step:'scan'}    → 배치 스캔 1회 (화면에서 수동 진행), {step:'members', force} → 구성종목 갱신
 import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
-import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation } from '../lib/universe.js';
+import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge } from '../lib/universe.js';
+import { JUDGE_REV } from '../lib/engine2.js';
 import { THEMES, GROUPS, themeOf, ovrKey, loadOvr } from '../lib/themes.js';
 
 const mOf = v => (v === 'KR' ? 'KR' : v === 'US' ? 'US' : null);
@@ -65,11 +67,19 @@ export default async function handler(req, res) {
         await store.set(ovrKey(m), ovr);
         return send(res, 200, { ok: true, code, theme: th || null, ovr });
       }
+      if (b.step === 'rejudge') { const d = await rejudge(m); return send(res, 200, { ok: !!d, asof: d?.asof || null, changesN: d?.changesN ?? null, dipsN: d?.dipsN ?? null, ms: d?.rejudgeMs ?? null }); }
       if (b.step === 'rot') { const rot = await buildRotation(m); return send(res, 200, { ok: !!rot, asof: rot?.asof || null, n: rot?.n || 0 }); }
       if (b.step === 'scan') return send(res, 200, await scanBatch(m, { budgetMs: +b.budgetMs || 45000, reset: !!b.reset }));
-      return send(res, 400, { error: "step 은 scan | members | theme | rot" });
+      return send(res, 400, { error: "step 은 scan | members | theme | rot | rejudge" });
     }
 
+    // 판정기가 바뀐 뒤 첫 조회 — 마지막 스캔을 저장된 일봉으로 새 판정기 기준 다시 계산 (시장당 20~40초, 한 번만)
+    await Promise.all(['US', 'KR'].map(async m => {
+      const d = await store.get(`univ:daily:${m}`);
+      if (!d || d.ev === JUDGE_REV) return;
+      if (!(await store.setNX(`lock:rejudge:${m}`, 1, 280))) return;
+      try { await rejudge(m); } catch (e) { console.error('rejudge', m, e.message); } finally { await store.del(`lock:rejudge:${m}`); }
+    }));
     const [us, kr, mem, acc, indUS, indKR] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy'), store.get('mkt:ind:US'), store.get('mkt:ind:KR')]);
     const counts = Object.fromEntries(Object.entries(mem?.sets || {}).map(([k, v]) => [k, v.length]));
     send(res, 200, {
