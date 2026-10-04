@@ -144,7 +144,8 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 svg.rq{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:var(--card)}
 svg.rq .tk{font-size:10.5px;fill:var(--muted)}
 svg.rq .lb{font-size:11.5px;font-weight:600;fill:var(--ink)}
-svg.rq .rdot{cursor:pointer}
+svg.rq .rdot,svg.rq .lb,svg.rq .rqq{cursor:pointer}
+svg.rq{user-select:none;-webkit-user-select:none}
 table.rtbl{min-width:0;width:100%;font-size:12.5px}
 table.rtbl td,table.rtbl th{padding:6px 7px}
 table.rtbl tr.rrow{cursor:pointer}
@@ -776,11 +777,12 @@ let TH=null,THP=null,ROT=null;
 function ensureTH(){const m=state.m;if(TH&&TH.m===m)return Promise.resolve(TH);if(THP&&THP.m===m)return THP.p;
   const p=api('/api/universe?themes='+m).then(j=>{if(j.m===state.m)TH=j;return j}).catch(()=>null);THP={m,p};return p}
 const thName=code=>TH&&TH.m===state.m?TH.map[code]||null:null;
-const thCell=(code,sec)=>{const t=thName(code)||'—',f=sec&&sec!==t?sec:'';return `<td><b style="font-weight:600">${esc(t)}</b>${f?`<div class="sub" style="font-size:11px">${esc(f)}</div>`:''}</td>`};
+const stTh=S=>thName(S.code)||S.theme||null;
+const thCell=(code,sec,alt)=>{const t=thName(code)||alt||'—',f=sec&&sec!==t?sec:'';return `<td><b style="font-weight:600">${esc(t)}</b>${f?`<div class="sub" style="font-size:11px">${esc(f)}</div>`:''}</td>`};
 const thOpts=()=>{const xs=new Set(TH?.themes||[]);for(const v of Object.values(TH?.ovr||{}))xs.add(v);return [...xs]};
-const thSelect=(id,cur,codes)=>{const have=new Set(codes.map(c=>thName(c)).filter(Boolean));const xs=thOpts().filter(t=>have.has(t));for(const t of have)if(!xs.includes(t))xs.push(t);
+const thSelect=(id,cur,codes,names)=>{const have=new Set(names||codes.map(c=>thName(c)).filter(Boolean));const xs=thOpts().filter(t=>have.has(t));for(const t of have)if(!xs.includes(t))xs.push(t);
   return `<select id="${id}" aria-label="섹터 필터"><option value="">섹터 전체</option>${Object.entries(TH?.groups||{}).map(([g])=>`<option value="g:${esc(g)}"${cur==='g:'+g?' selected':''}>${esc(g)}</option>`).join('')}${xs.map(t=>`<option${cur===t?' selected':''}>${esc(t)}</option>`).join('')}</select>`};
-const thMatch=(code,f)=>{if(!f)return true;const t=thName(code);if(f.startsWith('g:'))return (TH?.groups?.[f.slice(2)]||[]).includes(t);return t===f};
+const thMatch=(code,f,alt)=>{if(!f)return true;const t=thName(code)||alt||null;if(f.startsWith('g:'))return (TH?.groups?.[f.slice(2)]||[]).includes(t);return t===f};
 async function loadRot(force){
   const m=state.m;
   if(ROT&&ROT.m===m&&!force&&!ROT.err){renderRot();return}
@@ -808,24 +810,10 @@ function renderRot(){
   if(R.err){el.innerHTML=`<div class="warn" style="margin:14px 0">섹터 4분면: ${esc(R.err)}</div>`;return}
   if(R.empty||!R.mem){el.innerHTML='<div class="muted" style="margin:14px 0">섹터 4분면 재료가 아직 없어 — 유니버스 일봉이 쌓이면 생겨.</div>';return}
   const A=rotAgg(),sel=A.some(a=>a.t===state.rotSel)?state.rotSel:null;
-  const W=720,H=430,PX=40,PY=26,all=A.flatMap(a=>a.pts);
-  const xm=Math.max(5,...all.map(p=>Math.abs(p[0])))*1.12,ym=Math.max(5,...all.map(p=>Math.abs(p[1])))*1.12;
-  const X=v=>W/2+v/xm*(W/2-PX),Y=v=>H/2-v/ym*(H/2-PY),f1=v=>(v>0?'+':'')+v.toFixed(1);
-  const ink=q=>`var(--${KEY[q.s]}-ink)`;
-  const bg=[[W/2,0,QD[0]],[W/2,H/2,QD[1]],[0,H/2,QD[2]],[0,0,QD[3]]].map(([x,y,q])=>`<rect x="${x}" y="${y}" width="${W/2}" height="${H/2}" style="fill:var(--${KEY[q.s]});opacity:.13"/>`).join('');
-  const corner=[[W-10,18,'end',QD[0]],[W-10,H-10,'end',QD[1]],[10,H-10,'start',QD[2]],[10,18,'start',QD[3]]].map(([x,y,a,q])=>`<text x="${x}" y="${y}" text-anchor="${a}" style="font-size:13px;font-weight:700;fill:${ink(q)}">${q.k} <tspan style="font-weight:500;font-size:11px">(${q.s})</tspan></text>`).join('');
-  const tx=[-xm/2,xm/2].map(v=>`<text x="${X(v)}" y="${H/2+14}" text-anchor="middle" class="tk">${f1(v)}%p</text>`).join('')+[-ym/2,ym/2].map(v=>`<text x="${W/2+5}" y="${Y(v)+4}" class="tk">${f1(v)}</text>`).join('');
-  const dots=[...A].sort((a,b)=>(a.t===sel)-(b.t===sel)).map(a=>{
-    const c=ink(a.q),r=4+a.bull/100*9,dim=sel&&a.t!==sel?' style="opacity:.3"':'',[cx,cy]=[X(a.x),Y(a.y)];
-    const trail=a.pts.map(p=>`${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
-    return `<g class="rdot" data-t="${esc(a.t)}"${dim}><title>${esc(a.t)} · ${a.q.k} · 60일 초과 ${f1(a.x)}%p · 탄력 ${f1(a.y)}%p · 봄+여름 ${Math.round(a.bull)}% · ${a.n}종목</title>
-      <polyline points="${trail}" style="fill:none;stroke:${c};stroke-width:${a.t===sel?2:1.3};opacity:${a.t===sel?.9:.35}"/>
-      ${a.pts.slice(0,-1).map(p=>`<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="${a.t===sel?3:2}" style="fill:${c};opacity:${a.t===sel?.9:.4}"/>`).join('')}
-      <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" style="fill:${c};fill-opacity:.85;stroke:${a.t===sel?'var(--ink)':'var(--card)'};stroke-width:${a.t===sel?2:1.5}${a.grp?';stroke-dasharray:3 2':''}"/>
-      <text x="${(cx+(cx>W-90?-r-3:r+3)).toFixed(1)}" y="${(cy+4).toFixed(1)}" text-anchor="${cx>W-90?'end':'start'}" class="lb">${esc(a.t)}</text></g>`}).join('');
-  const svg=`<svg class="rq" viewBox="0 0 ${W} ${H}" role="img" aria-label="섹터 순환 4분면">${bg}
-    <line x1="${W/2}" y1="0" x2="${W/2}" y2="${H}" style="stroke:var(--muted);stroke-width:1;opacity:.5"/><line x1="0" y1="${H/2}" x2="${W}" y2="${H/2}" style="stroke:var(--muted);stroke-width:1;opacity:.5"/>
-    ${corner}${tx}<text x="${W-10}" y="${H/2-6}" text-anchor="end" class="tk">60일 초과수익 →</text><text x="${W/2+6}" y="${PY+10}" class="tk">↑ 탄력</text>${dots}</svg>`;
+  const all=A.flatMap(a=>a.pts),f1=v=>(v>0?'+':'')+v.toFixed(1),ink=q=>`var(--${KEY[q.s]}-ink)`;
+  const sc={xm:Math.max(5,...all.map(p=>Math.abs(p[0])))*1.12,ym:Math.max(5,...all.map(p=>Math.abs(p[1])))*1.12};
+  ROT._A=A;ROT._sel=sel;ROT._sc=sc;
+  const svg=`<svg class="rq" id="rqsvg" viewBox="0 0 ${RW} ${RH}" role="img" aria-label="섹터 순환 4분면"></svg>`;
   const order=s=>QD.findIndex(q=>q.k===s.q.k);
   const rk=[...A].sort((a,b)=>order(a)-order(b)||b.x-a.x);
   const tbl=`<div class="tbl-wrap" style="max-height:440px;overflow-y:auto"><table class="acc rtbl"><thead><tr><th>섹터</th><th>단계</th><th class="r">60일 초과</th><th class="r">탄력</th><th class="r">봄+여름</th><th class="r">종목</th></tr></thead><tbody>
@@ -839,15 +827,105 @@ function renderRot(){
     ${adm?'<div class="sub" style="margin-top:6px">섹터 칸에 목록에서 고르거나 새 이름을 쓰고 엔터 — 바로 저장되고 그림·필터에 반영돼. 비우면 자동 분류로 되돌림.</div>':''}</div>`:'';
   const nOther=R.mem.filter(x=>x.th==='기타').length;
   el.innerHTML=`<div class="rothead"><h3 style="margin:0;font-size:15px">섹터 순환 <span class="muted" style="font-weight:500">${esc((R.dates||[])[0]?.slice(5)||'')} → ${esc(R.asof?.slice(5)||'')} · ${R.n}종목 · 유니버스 평균 대비</span></h3>
-      <div class="chips">${Object.keys(R.groups||{}).map(g=>`<button class="chip" id="rotgrp" aria-pressed="${!!state.rotGrp}">${esc(g)}으로 보기</button>`).join('')}${adm?'<button class="chip" id="rotre">다시 계산</button>':''}</div></div>
+      <div class="chips"><span class="sub num" id="rqk"></span><button class="chip" id="rqin" aria-label="확대">＋ 확대</button><button class="chip" id="rqout" aria-label="축소">－</button><button class="chip" id="rqall">전체</button><button class="chip" id="rqtrail" aria-pressed="${!!state.rotTrail}">꼬리 보기</button>${Object.keys(R.groups||{}).map(g=>`<button class="chip" id="rotgrp" aria-pressed="${!!state.rotGrp}">${esc(g)}으로 보기</button>`).join('')}${adm?'<button class="chip" id="rotre">다시 계산</button>':''}</div></div>
     <div class="rotwrap"><div>${svg}</div>${tbl}</div>
-    <div class="sub" style="margin-top:6px">가로 = 최근 60일 섹터 평균 수익 − 유니버스 평균 · 세로(탄력) = 최근 20일 초과수익 − 그 전 20일 초과수익 · 점 크기 = 봄+여름 종목 비율 · 꼬리 = 3주 전 → 오늘 (1주 간격) · 3종목 이상 섹터만${nOther?` · 기타 ${nOther}종목 제외`:''} · 점이나 줄을 누르면 종목</div>
+    <div class="sub" style="margin-top:6px">가로 = 최근 60일 섹터 평균 수익 − 유니버스 평균 · 세로(탄력) = 최근 20일 초과수익 − 그 전 20일 초과수익 · 점 크기 = 봄+여름 종목 비율 · 꼬리 = 3주 전 → 오늘 (1주 간격, 고른 섹터는 항상 표시) · 3종목 이상 섹터만${nOther?` · 기타 ${nOther}종목 제외`:''} · 점이나 줄을 누르면 종목<br><span id="rqhid"></span>확대: ＋·－ 버튼, 더블클릭, Ctrl(⌘)+휠·트랙패드 핀치 · 확대한 뒤 끌어서 이동 · 칸 이름(주도·둔화…)을 누르면 그 칸만 확대</div>
     ${det}${adm?`<datalist id="thlist">${thOpts().map(t=>`<option value="${esc(t)}">`).join('')}</datalist>`:''}`;
-  el.querySelectorAll('[data-t]').forEach(g=>g.onclick=()=>{state.rotSel=state.rotSel===g.dataset.t?null:g.dataset.t;renderRot()});
+  el.querySelectorAll('.rrow[data-t]').forEach(g=>g.onclick=()=>{state.rotSel=state.rotSel===g.dataset.t?null:g.dataset.t;renderRot()});
+  drawRot();bindRot();
   if($('rotx'))$('rotx').onclick=()=>{state.rotSel=null;renderRot()};
-  if($('rotgrp'))$('rotgrp').onclick=()=>{state.rotGrp=!state.rotGrp;state.rotSel=null;renderRot()};
+  if($('rotgrp'))$('rotgrp').onclick=()=>{state.rotGrp=!state.rotGrp;state.rotSel=null;state.rotView=null;renderRot()};
   if($('rotre'))$('rotre').onclick=()=>loadRot(true);
   el.querySelectorAll('[data-thc]').forEach(i=>i.onchange=()=>setTheme(i.dataset.thc,i.value.trim()));
+}
+/* 4분면 그리기 — 확대·이동은 좌표 범위를 바꿔 다시 그린다 (글자·점 크기는 그대로라 확대할수록 덜 겹침) */
+const RW=720,RH=440,RP=36;
+const twid=t=>[...String(t)].reduce((a,ch)=>a+(/[ㄱ-힝]/.test(ch)?11.2:/[ ·]/.test(ch)?4:6.6),0);
+function drawRot(){
+  const svg=$('rqsvg');if(!svg||!ROT?._A)return;
+  const A=ROT._A,sel=ROT._sel,{xm,ym}=ROT._sc,v=state.rotView||{x:0,y:0,k:1};
+  const hx=xm/v.k,hy=ym/v.k,x0=v.x-hx,y1=v.y+hy,L=RP,Rr=RW-RP,T=RP-10,B=RH-RP;
+  const X=d=>L+(d-x0)/(2*hx)*(Rr-L),Y=d=>T+(y1-d)/(2*hy)*(B-T),cl=(z,a,b)=>Math.max(a,Math.min(b,z));
+  const f1=d=>(d>0?'+':'')+d.toFixed(Math.abs(d)<10?1:0),ink=q=>`var(--${KEY[q.s]}-ink)`;
+  const ox=cl(X(0),L,Rr),oy=cl(Y(0),T,B);
+  const rect=(x,y,w,h,q)=>w>0&&h>0?`<rect x="${x}" y="${y}" width="${w}" height="${h}" style="fill:var(--${KEY[q.s]});opacity:.13"/>`:'';
+  let o=`<defs><clipPath id="rqclip"><rect x="${L}" y="${T}" width="${Rr-L}" height="${B-T}"/></clipPath></defs>`
+    +rect(ox,T,Rr-ox,oy-T,QD[0])+rect(ox,oy,Rr-ox,B-oy,QD[1])+rect(L,oy,ox-L,B-oy,QD[2])+rect(L,T,ox-L,oy-T,QD[3])
+    +`<rect x="${L}" y="${T}" width="${Rr-L}" height="${B-T}" style="fill:none;stroke:var(--line)"/>`;
+  if(X(0)>=L&&X(0)<=Rr)o+=`<line x1="${X(0)}" y1="${T}" x2="${X(0)}" y2="${B}" style="stroke:var(--muted);opacity:.55"/>`;
+  if(Y(0)>=T&&Y(0)<=B)o+=`<line x1="${L}" y1="${Y(0)}" x2="${Rr}" y2="${Y(0)}" style="stroke:var(--muted);opacity:.55"/>`;
+  // 칸 이름 — 그 모서리가 실제로 그 칸일 때만 (누르면 그 칸만 확대)
+  const xr=x0+2*hx,yb=y1-2*hy;
+  [[xr>0&&y1>0,Rr-8,T+16,'end',0],[xr>0&&yb<0,Rr-8,B-8,'end',1],[x0<0&&yb<0,L+8,B-8,'start',2],[x0<0&&y1>0,L+8,T+16,'start',3]].forEach(([on,x,y,a,i])=>{
+    if(on)o+=`<text class="rqq" data-q="${i}" x="${x}" y="${y}" text-anchor="${a}" style="font-size:13px;font-weight:700;fill:${ink(QD[i])}">${QD[i].k} <tspan style="font-weight:500;font-size:11px">(${QD[i].s})</tspan></text>`});
+  // 눈금
+  o+=[x0,v.x,xr].map((d,i)=>`<text x="${[L,(L+Rr)/2,Rr][i]}" y="${B+15}" text-anchor="${['start','middle','end'][i]}" class="tk">${f1(d)}%p</text>`).join('')
+    +`<text x="${(L+Rr)/2}" y="${B+29}" text-anchor="middle" class="tk">60일 초과수익 →</text>`
+    +[y1,v.y,yb].map((d,i)=>`<text x="${L-4}" y="${[T+9,(T+B)/2+4,B][i]}" text-anchor="end" class="tk">${f1(d)}</text>`).join('')
+    +`<text x="${L+2}" y="${T-7}" class="tk">↑ 탄력 (최근 20일 − 그 전 20일, %p)</text>`;
+  // 점 · 꼬리
+  const P=A.map(a=>({a,cx:X(a.x),cy:Y(a.y),r:4+a.bull/100*9})),inside=p=>p.cx>=L-p.r&&p.cx<=Rr+p.r&&p.cy>=T-p.r&&p.cy<=B+p.r;
+  let g='';
+  for(const p of [...P].sort((u,w)=>(u.a.t===sel)-(w.a.t===sel))){
+    const a=p.a,c=ink(a.q),on=a.t===sel,dim=sel&&!on?' style="opacity:.28"':'';
+    const tr=(state.rotTrail||on)?`<polyline points="${a.pts.map(q=>`${X(q[0]).toFixed(1)},${Y(q[1]).toFixed(1)}`).join(' ')}" style="fill:none;stroke:${c};stroke-width:${on?2:1.2};opacity:${on?.9:.4}"/>`
+      +a.pts.slice(0,-1).map((q,k)=>`<circle cx="${X(q[0]).toFixed(1)}" cy="${Y(q[1]).toFixed(1)}" r="${on?3:2}" style="fill:${c};opacity:${on?.35+k*.2:.4}"/>`).join(''):'';
+    g+=`<g class="rdot" data-t="${esc(a.t)}"${dim}><title>${esc(a.t)} · ${a.q.k} · 60일 초과 ${f1(a.x)}%p · 탄력 ${f1(a.y)}%p · 봄+여름 ${Math.round(a.bull)}% · ${a.n}종목</title>${tr}
+      <circle cx="${p.cx.toFixed(1)}" cy="${p.cy.toFixed(1)}" r="${p.r.toFixed(1)}" style="fill:${c};fill-opacity:.85;stroke:${on?'var(--ink)':'var(--card)'};stroke-width:${on?2.2:1.5}${a.grp?';stroke-dasharray:3 2':''}"/></g>`;
+  }
+  // 라벨 — 겹치지 않는 자리(오른쪽·왼쪽·위·아래·대각)를 큰 점부터 찾고, 자리가 없으면 숨김 (확대하면 나타남)
+  const boxes=P.filter(inside).map(p=>({x:p.cx-p.r,y:p.cy-p.r,w:2*p.r,h:2*p.r,own:p.a.t}));
+  const hit=(b,own)=>b.x<L||b.x+b.w>Rr||b.y<T||b.y+b.h>B||boxes.some(z=>z.own!==own&&b.x<z.x+z.w&&b.x+b.w>z.x&&b.y<z.y+z.h&&b.y+b.h>z.y);
+  let lab='',hid=0;
+  for(const p of P.filter(inside).sort((u,w)=>(w.a.t===sel)-(u.a.t===sel)||w.a.n-u.a.n)){
+    const w=twid(p.a.t)+2,h=13,{cx,cy,r}=p;
+    const cand=[[cx+r+3,cy-h/2],[cx-r-3-w,cy-h/2],[cx-w/2,cy-r-h-1],[cx-w/2,cy+r+1],[cx+r*.7+2,cy-r*.7-h],[cx+r*.7+2,cy+r*.7],[cx-r*.7-2-w,cy-r*.7-h],[cx-r*.7-2-w,cy+r*.7]];
+    let b=null;for(const [x,y] of cand){const z={x,y,w,h,own:p.a.t};if(!hit(z,p.a.t)){b=z;break}}
+    if(!b){if(p.a.t!==sel){hid++;continue}b={x:cand[0][0],y:cand[0][1],w,h,own:p.a.t}}
+    boxes.push({...b,own:'#'+p.a.t});
+    const dim=sel&&p.a.t!==sel?';opacity:.35':'';
+    lab+=`<text class="lb" data-t="${esc(p.a.t)}" x="${b.x+1}" y="${(b.y+10.5).toFixed(1)}" style="${p.a.t===sel?'font-weight:800':''}${dim}">${esc(p.a.t)}</text>`;
+  }
+  svg.innerHTML=o+`<g clip-path="url(#rqclip)">${g}</g>${lab}`;
+  svg.style.touchAction=v.k>1?'none':'pan-y';
+  const hd=$('rqhid');if(hd)hd.textContent=hid?`라벨 ${hid}개는 겹쳐서 숨김 — 확대하면 보여 · `:'';
+  const zl=$('rqk');if(zl)zl.textContent=v.k>1?`×${v.k.toFixed(1)}`:'';
+}
+function rotZoom(px,py,f){
+  const {xm,ym}=ROT._sc,v=state.rotView||{x:0,y:0,k:1},L=RP,Rr=RW-RP,T=RP-10,B=RH-RP;
+  const fx=(px-L)/(Rr-L),fy=(py-T)/(B-T),hx=xm/v.k,hy=ym/v.k;
+  const dx=v.x-hx+fx*2*hx,dy=v.y+hy-fy*2*hy,k=Math.max(1,Math.min(16,v.k*f));
+  if(k<=1.001){state.rotView=null;drawRot();return}
+  const hx2=xm/k,hy2=ym/k;
+  state.rotView={k,x:dx-(fx*2-1)*hx2,y:dy+(fy*2-1)*hy2};drawRot();
+}
+function bindRot(){
+  const svg=$('rqsvg');if(!svg)return;
+  const pt=e=>{const r=svg.getBoundingClientRect();return [(e.clientX-r.left)*RW/r.width,(e.clientY-r.top)*RH/r.height]};
+  let drag=null,raf=0;
+  svg.onpointerdown=e=>{if(e.button)return;drag={p:pt(e),v:{...(state.rotView||{x:0,y:0,k:1})},moved:false,id:e.pointerId}};
+  svg.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const [x,y]=pt(e),ddx=x-drag.p[0],ddy=y-drag.p[1];
+    if(!drag.moved&&Math.hypot(ddx,ddy)<5)return;
+    if(drag.v.k<=1)return;                                   // 전체 보기에선 끌기 없음 (페이지 스크롤 그대로)
+    if(!drag.moved){drag.moved=true;try{svg.setPointerCapture(drag.id)}catch(_){}}
+    const {xm,ym}=ROT._sc,hx=xm/drag.v.k,hy=ym/drag.v.k;
+    state.rotView={k:drag.v.k,x:drag.v.x-ddx/(RW-2*RP)*2*hx,y:drag.v.y+ddy/(RH-RP*2+10)*2*hy};
+    cancelAnimationFrame(raf);raf=requestAnimationFrame(drawRot)};
+  svg.onpointerup=e=>{const d=drag;drag=null;if(!d||d.moved)return;
+    const q=e.target.closest?.('.rqq');if(q){const i=+q.dataset.q,{xm,ym}=ROT._sc;state.rotView={k:2,x:(i<2?1:-1)*xm/2,y:(i===0||i===3?1:-1)*ym/2};drawRot();return}
+    const t=e.target.closest?.('[data-t]');if(t){state.rotSel=state.rotSel===t.dataset.t?null:t.dataset.t;renderRot()}};
+  svg.onpointercancel=()=>{drag=null};
+  svg.onwheel=e=>{if(!(e.ctrlKey||e.metaKey||e.altKey))return;e.preventDefault();const [x,y]=pt(e);rotZoom(x,y,Math.exp(-e.deltaY*0.01))};
+  svg.ondblclick=e=>{e.preventDefault();const [x,y]=pt(e);rotZoom(x,y,e.shiftKey?0.5:2)};
+  // 두 손가락 핀치 (확대된 상태에서)
+  const tp=new Map();let pinch=null;
+  svg.addEventListener('touchstart',e=>{if(e.touches.length===2){const [a,b]=e.touches;pinch={d:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)};e.preventDefault()}},{passive:false});
+  svg.addEventListener('touchmove',e=>{if(pinch&&e.touches.length===2){e.preventDefault();const [a,b]=e.touches,d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+    const r=svg.getBoundingClientRect(),cx=((a.clientX+b.clientX)/2-r.left)*RW/r.width,cy=((a.clientY+b.clientY)/2-r.top)*RH/r.height;rotZoom(cx,cy,d/pinch.d);pinch.d=d}},{passive:false});
+  svg.addEventListener('touchend',()=>{pinch=null});
+  const z=(f)=>rotZoom(RW/2,(RH-RP+RP-10)/2,f);
+  if($('rqin'))$('rqin').onclick=()=>z(1.6);if($('rqout'))$('rqout').onclick=()=>z(1/1.6);if($('rqall'))$('rqall').onclick=()=>{state.rotView=null;drawRot()};
+  if($('rqtrail'))$('rqtrail').onclick=()=>{state.rotTrail=!state.rotTrail;$('rqtrail').setAttribute('aria-pressed',String(!!state.rotTrail));drawRot()};
 }
 async function setTheme(code,theme){
   const m=state.m;
@@ -888,7 +966,7 @@ async function loadMarket(){
 const SEASON_ORD={봄:0,여름:1,가을:2,겨울:3};
 const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입 검토':4,'보유 후보':5,'보류 · 범주 Under':6,'비중 축소':7,'대기':8,'관망':9,'전량 정리':10};
 const COLS=[
-  {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>S.sector||'힣',str:1},
+  {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>stTh(S)||'힣',str:1},
   {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},{k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99},{k:'trend',t:'추세',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},{k:'stance',t:'종합 의견',v:S=>S.view?.combined??-1,r:1},
   {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:null,t:'최근 120일'},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1},
@@ -928,10 +1006,12 @@ function renderFilters(){
   const held=visible().filter(s=>W(s.code).cur>0).length;
   $('filters').innerHTML=['전체','보유',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='보유'?held:cnt(f)}</span></button>`).join('')
     +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${cols().filter(c=>c.k).map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
-    +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`;
+    +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`
+    +thSelect('sth',state.sth||'',[],[...new Set(visible().map(stTh).filter(Boolean))]);
   $('sortk').onchange=e=>{const c=COLS.find(x=>x.k===e.target.value);PREF.sort={k:c.k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()};
   $('sortd').onclick=()=>{PREF.sort={...PREF.sort,d:-PREF.sort.d};savePrefs();renderFilters();renderHead();renderRows()};
   $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
+  if($('sth'))$('sth').onchange=e=>{state.sth=e.target.value;renderRows()};
 }
 function renderHead(){
   normSort();const so=PREF.sort;
@@ -942,7 +1022,7 @@ function renderHead(){
 function renderRows(flash){
   normSort();
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m),MC=hasMC(),NC=cols().length;
-  let list=visible().filter(s=>state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter));
+  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
@@ -951,7 +1031,7 @@ function renderRows(flash){
     list.map(S=>{
       if(!ok(S))return `<tr>${idCell(S)}<td colspan="${NC-2}" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S);return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>
-      ${idCell(S)}<td class="sub">${esc(S.sector||'—')}</td>
+      ${idCell(S)}${thCell(S.code,S.sector,S.theme)}
       <td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>
       <td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>
       <td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>
@@ -1552,7 +1632,7 @@ $('k-save').onclick=async()=>{PREF.key=$('k-in').value.trim();savePrefs();
   renderHeader()};
 
 /* ---------- wiring ---------- */
-function syncMkt(){state.fth='';state.uth='';state.rotSel=null;document.querySelectorAll('#mktseg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.m===state.m)));q.placeholder=`종목 검색·추가 — ${state.m==='US'?'티커·영문명 (예: AMD, Tesla)':'종목명·코드 (예: 한미반도체, 042700)'}`}
+function syncMkt(){state.fth='';state.uth='';state.sth='';state.rotSel=null;state.rotView=null;document.querySelectorAll('#mktseg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.m===state.m)));q.placeholder=`종목 검색·추가 — ${state.m==='US'?'티커·영문명 (예: AMD, Tesla)':'종목명·코드 (예: 한미반도체, 042700)'}`}
 /* ---------- 전략 탭 (/api/portfolio) ---------- */
 let ST=null,ST_M=null,STD=null;
 const won=v=>v==null?'—':(v<0?'−':'')+Math.abs(Math.round(v)).toLocaleString('ko-KR')+'원';
@@ -1659,7 +1739,7 @@ function benchChart(dates,eq,bms,label){
   return `<div class="chart"><svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="전략과 벤치마크 누적 수익률">${g}${paths}${xl}</svg></div><div class="legend"><div class="items" style="flex-wrap:wrap">${lastLbl}</div><span class="muted">${dates[0]} = 0%</span></div>`;
 }
 const loadInd=loadUniverse;
-function renderAll(){loadFund();if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd()}
+function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>{if(D){renderFilters();renderRows()}});if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd()}
 async function reload(flash){D=await api('/api/list');BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll()});
 let engDone=false;
