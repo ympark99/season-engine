@@ -2,10 +2,16 @@
 //   GET                      → 최신 유니버스 국면 분포·오늘 바뀐 종목·진행 상태 (공개)
 //   GET ?scan=US&secret=...  → 배치 스캔 1회 (CRON_SECRET 또는 관리자 키) — 매일 이어 돌리는 건 /api/cron 파이프라인이 한다
 //   GET ?rows=US             → 전종목 판정 목록 (대시보드 '전종목 보기')
+//   GET ?themes=US           → 전종목 섹터(테마) {code: 섹터} + 세부 업종 + 직접 바꾼 값
+//   GET ?rot=US              → 섹터 순환(4분면) 재료 — 없으면 일봉에서 바로 계산
+//   POST {m, step:'theme', code, theme} → 종목 섹터 직접 지정 (theme 비우면 자동 분류로 되돌림) · {step:'rot'} → 4분면 재료 다시 계산
 //   POST {m, step:'scan'}    → 배치 스캔 1회 (화면에서 수동 진행), {step:'members', force} → 구성종목 갱신
 import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
-import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap } from '../lib/universe.js';
+import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation } from '../lib/universe.js';
+import { THEMES, GROUPS, themeOf, ovrKey, loadOvr } from '../lib/themes.js';
+
+const mOf = v => (v === 'KR' ? 'KR' : v === 'US' ? 'US' : null);
 
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query.secret === process.env.CRON_SECRET);
 
@@ -22,8 +28,24 @@ export default async function handler(req, res) {
     if (req.method === 'GET' && (req.query.rows === 'US' || req.query.rows === 'KR')) {
       const m = req.query.rows, prev = await store.get(`univ:prev:${m}`);   // 마지막으로 끝난 스캔의 전종목
       const rows = prev?.rows || {}, sec = await sectorMap(m, Object.fromEntries(Object.entries(rows).map(([c, r]) => [c, r.n])));
-      for (const [c, r] of Object.entries(rows)) r.sec = sec[c] || null;
+      const ovr = await loadOvr(m);
+      for (const [c, r] of Object.entries(rows)) { r.sec = sec[c] || null; r.th = ovr[c] || themeOf(m, c, r.sec); }
       return send(res, 200, { m, date: prev?.date || null, rows });
+    }
+
+    if (req.method === 'GET' && mOf(req.query.themes)) {
+      const m = mOf(req.query.themes), t = await themesFor(m);
+      return send(res, 200, { m, themes: THEMES[m], groups: GROUPS[m], map: t.map, sec: t.sec, ovr: t.ovr });
+    }
+
+    if (req.method === 'GET' && mOf(req.query.rot)) {
+      const m = mOf(req.query.rot);
+      let [rot, daily] = await store.mget([`mkt:rot:${m}`, `univ:daily:${m}`]);
+      if (!rot || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
+      if (!rot) return send(res, 200, { m, empty: true });
+      const ovr = await loadOvr(m);
+      for (const x of rot.mem) if (ovr[x.c]) x.th = ovr[x.c];
+      return send(res, 200, { m, themes: THEMES[m], groups: GROUPS[m], ...rot });
     }
 
     if (req.method === 'POST') {
@@ -34,8 +56,18 @@ export default async function handler(req, res) {
         const mem = await members({ force: !!b.force });
         return send(res, 200, { at: mem.at, errors: mem.errors || [], counts: Object.fromEntries(Object.entries(mem.sets || {}).map(([k, v]) => [k, v.length])) });
       }
+      if (b.step === 'theme') {
+        const code = String(b.code || '').trim(), th = String(b.theme || '').trim();
+        if (!code) return send(res, 400, { error: 'code 가 필요해' });
+        if (th && th.length > 20) return send(res, 400, { error: '섹터 이름은 20자까지' });
+        const ovr = await loadOvr(m);
+        if (th) ovr[code] = th; else delete ovr[code];
+        await store.set(ovrKey(m), ovr);
+        return send(res, 200, { ok: true, code, theme: th || null, ovr });
+      }
+      if (b.step === 'rot') { const rot = await buildRotation(m); return send(res, 200, { ok: !!rot, asof: rot?.asof || null, n: rot?.n || 0 }); }
       if (b.step === 'scan') return send(res, 200, await scanBatch(m, { budgetMs: +b.budgetMs || 45000, reset: !!b.reset }));
-      return send(res, 400, { error: "step 은 scan | members" });
+      return send(res, 400, { error: "step 은 scan | members | theme | rot" });
     }
 
     const [us, kr, mem, acc, indUS, indKR] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy'), store.get('mkt:ind:US'), store.get('mkt:ind:KR')]);
