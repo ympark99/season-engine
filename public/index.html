@@ -811,17 +811,22 @@ function renderUniv(){
 function renderUnivLists(){
   const el=$('ulists');if(!el||!UNIV)return;
   const d=(UNIV[state.m]||{}).daily;if(!d)return;
-  const m=state.m,chg=d.changes||[],cf=state.cf||'',cs=chg.filter(c=>!cf||c.to===cf),dp=d.dips||[];
+  const m=state.m,R=d.recent,days=(R?.days||[]).slice().reverse(),cf=state.cf||'',dp=d.dips||[];
+  const day=days.includes(state.cday)?state.cday:days[0];
+  const chg=R?R.rows.filter(c=>c.d===day):(d.changes||[]),cs=chg.filter(c=>!cf||c.to===cf);
+  const fd=x=>x.slice(5).replace('-','.');
+  const dayChips=days.length?`<div class="chips sm" data-cday>${days.map((x,k)=>`<button type="button" class="chip" data-d="${x}" aria-pressed="${x===day}">${fd(x)}${k?'':' 최신'} <span class="num muted">${R.rows.filter(c=>c.d===x).length}</span></button>`).join('')}</div>`:'';
   const th=c=>`<span class="sub thn">${esc(thName(c)||'')}</span>`;
-  el.innerHTML=`<div class="box"><h3>국면이 바뀐 종목 <span class="muted">${d.changesN||0}개 · 시가총액 순</span></h3>${seasonChips('cf',chg,'to')}
+  el.innerHTML=`<div class="box"><h3>국면이 바뀐 종목 <span class="muted">${R?`${fd(day)} ${chg.length}개 · 최근 5거래일 ${R.n}개`:`${d.changesN||0}개`} · 시가총액 순</span></h3>${dayChips}${seasonChips('cf',chg,'to')}
       ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
         :`<div class="muted">${cf?cf+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
-      <div class="sub" style="margin-top:6px">종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목 — 상세 화면의 국면 구간과 같은 기준 · 칩 = 바뀐 계절</div></div>
+      <div class="sub" style="margin-top:6px">${R?'날짜 = 새 국면이 시작된 거래일 (최근 5거래일, 기본은 가장 최근 거래일) · 그 사이 두 번 바뀐 종목은 마지막 변경만':'종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목'} — 상세 화면의 국면 구간과 같은 기준 · 계절 칩 = 바뀐 계절</div></div>
     <div class="box"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
       ${dp.length?`<div class="chg chg4">${dp.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now||!c.d?'<span class="sig sig-dip" style="margin:0">지금 조건</span>':`<span class="sub">${c.d.slice(5).replace('-','.')}까지 ${c.days}일</span>`}</span><span class="num" style="color:var(--neg)" title="최근 20거래일 중 가장 깊었을 때 20일선 대비">최저 ${c.min??c.dv}%</span>`).join('')}</div>`
         :`<div class="muted">${d.dips?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
       <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>`;
   bindChips(el,'cf',renderUnivLists);
+  el.querySelectorAll('[data-cday] button').forEach(b=>b.onclick=e=>{e.stopPropagation();state.cday=b.dataset.d;renderUnivLists()});
 }
 let UROWS=null;
 async function loadUnivRows(){
@@ -1483,7 +1488,7 @@ function renderFund(){
   if(!FD){el.innerHTML='<div class="muted">불러오는 중…</div>';return}
   if(FD.err){el.innerHTML=`<div class="warn">${esc(FD.err)}</div>`;return}
   const S=FD.summary,st=FD.state;
-  $('fund-sub').textContent=KR?'국내 — 컨센서스(연간 3년 추정·다음 2분기 추정), 12개월 선행 PER, 직전 분기 서프라이즈, 추정 EPS 변화(3일마다 자체 기록)로 점수':'미국 — 분기 재무 12분기 + 선행 EPS·선행 PER로 점수';
+  $('fund-sub').textContent=KR?'국내 — 컨센서스(연간 3년 추정·다음 2분기 추정), 12개월 선행 PER, 직전 분기 서프라이즈, 추정 EPS 변화(3일마다 자체 기록)로 점수':'미국 — 분기 재무 12분기 + 애널리스트 컨센서스(연간 EPS·매출 3년 추정, 추정 변화 매주 기록)로 점수';
   const prog=st?(st.blocked?`<span class="warn">수집이 막혔어 — ${esc(st.blocked)}</span>`
       :st.done?`수집 완료 ${st.collected??S?.n??'?'}종목 · ${kst(st.finishedAt||st.updatedAt)} · 다음 갱신 ${esc(st.next||'—')}`
       :`수집 중 ${st.i}/${st.total}${st.collected!=null?` (지난 주기 ${st.collected}종목 점수는 그대로 표시)`:''} · ${kst(st.updatedAt||'')}`)
@@ -1511,7 +1516,7 @@ function renderFund(){
     <div class="fd-tools"> <input id="fq" type="search" placeholder="종목·코드·섹터·플래그 검색" value="${esc(state.fq||'')}" aria-label="펀더멘털 표 검색">${thSelect('fth',state.fth||'',S.rows.map(r=>r.code))}<span class="sub">${rows.length}종목 · 이름을 누르면 상세</span></div>
     <div class="tbl-wrap" style="max-height:560px;overflow-y:auto"><table class="acc" style="min-width:1080px"><thead>${head}</thead><tbody>${rows.slice(0,lim).map(row).join('')}</tbody></table></div>
     ${rows.length>lim?`<div style="margin-top:8px"><button class="pbtn" id="fmore">${Math.min(50,rows.length-lim)}개 더 보기</button></div>`:''}
-    <div class="sub" style="margin-top:8px">점수 = 가속 30% + 성장 15% + 마진 15% + 현금 15% + 질 10% + 밸류 10% + 위험 5%의 유니버스 백분위 가중합 (값이 없는 축은 빼고 나머지로 다시 나눔). 싼 정도 %ile 은 높을수록 싸다는 뜻.${KR?' 국내 가속 = 추정 EPS 변화(기록이 20일 이상 쌓이기 전엔 내년·올해 성장률 차이) + 직전 분기 영업이익 서프라이즈의 절반. 현금 축은 컨센서스 표에 없어서 빠져.':''} 아직 <b>검증 전</b>이라 참고용이야.</div>`;
+    <div class="sub" style="margin-top:8px">점수 = 가속 20% + 성장 20% + 추정 상향 10% + 마진 15% + 현금 10% + 질 10% + 싼 정도 10% + 위험 5%의 백분위 가중합 (값이 없는 축은 빼고 나머지로 다시 나눔) + 태그 가감(추정 편차 큼 −3). 가속·성장·마진·추정 상향·위험은 유니버스 전체, 싼 정도(선행 PER·PEG·자기 과거 P/S)·질·FCF 수준은 동종 섹터와 비교. 싼 정도 %ile 은 높을수록 싸다는 뜻. 항목별 기준은 종목 상세의 i 버튼.${KR?' 국내 가속 = 추정 EPS 변화(기록이 20일 이상 쌓이기 전엔 내년·올해 성장률 차이) + 직전 분기 영업이익 서프라이즈의 절반. 현금 축은 컨센서스 표에 없어서 빠져.':''} 아직 <b>검증 전</b>이라 참고용이야.</div>`;
   bindFund();
 }
 function bindFund(){
@@ -1658,20 +1663,70 @@ async function openCode(m,code,name){
   catch(e){toast(`${name||code}: ${e.message}`)}
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-open]');if(!t)return;e.preventDefault();const i=t.dataset.open.indexOf(':');openCode(t.dataset.open.slice(0,i),t.dataset.open.slice(i+1),t.dataset.name)});
+/* 펀더멘털 항목 설명 (i 버튼) — api/fundamentals.js scoreAll 과 같은 기준. 한쪽을 바꾸면 같이 바꿀 것 */
+const FW={accel:20,growth:20,revision:10,margin:15,cash:10,quality:10,value:10,risk:5};
+const FNM={accel:'이익 가속',growth:'성장',revision:'추정 상향',margin:'마진',cash:'현금흐름',quality:'질',value:'싼 정도',risk:'위험(낮을수록 좋음 반영)'};
+function fundInfo(k,F,m){
+  const KR=m==='KR',P=F.p||{},pv=F.pv||{},n2=v=>v==null?'—':v;
+  const peer=`동종 = 섹터 '${F.theme||'기타'}' ${F.peerN??'—'}종목. 섹터가 작으면 ${F.peerFam==='AI 밸류체인'?'AI 밸류체인 묶음':'유니버스 전체'}과 섞어서 매겨 (섹터 종목 수 : 8 비중 — 섹터가 8종목이면 반반).`;
+  const T={
+    accel:[`성장 속도가 빨라지는지. ${KR?'추정 EPS 변화(기록이 20일 넘게 쌓이면) 또는 내년−올해 EPS 성장률 차이에, 직전 분기 영업이익 서프라이즈의 절반을 더한 값.':'최근 4분기 합산(TTM) EPS 증가율이 1년 전의 증가율보다 몇 %p 올랐는지. 기저가 작아 EPS 증가율이 튀는 종목은 매출 증가율의 변화로 대신해.'}`,
+      '비교: 유니버스 전체 백분위 — 성장주가 위로 오게.',KR?'':`이 종목: EPS 가속 ${n2(F.accelEps)}%p · 매출 가속 ${n2(F.accelRev)}%p${F.noisy?' · 기저가 작아 매출 쪽 사용':''}`],
+    growth:[KR?'내년 추정 EPS 성장률.':'오늘 기준 1년 선행 → 2년 선행 EPS 성장(컨센서스) 70% + 다음 회계연도 매출 성장 추정 30%. 컨센서스가 없으면 다른 선행 EPS 성장 추정, 그것도 없으면 TTM EPS 증가율(기저가 작으면 매출).',
+      '비교: 유니버스 전체 — 성장주가 위로 오게.',`이 종목: 1년→2년 선행 EPS ${F.tb?.g!=null?(F.tb.g>0?'+':'')+F.tb.g+'%':'—'}${KR?'':` · 매출 추정 성장 ${F.gRevFwd!=null?F.gRevFwd+'%':'—'}`}`],
+    revision:['애널리스트의 다음 회계연도 EPS 추정치가 30일 전보다 몇 % 바뀌었는지. 성장주 주가를 가장 잘 설명하는 신호야.',
+      KR?'국내는 이미 이익 가속 축에 들어 있어서 따로 쓰지 않아.':'매주 추정치를 기록하는 중이라 기록이 30일 쌓여야 나와 — 그 전엔 이 축을 빼고 나머지 가중치로 다시 나눠.','비교: 유니버스 전체.',`이 종목: ${F.revUp==null?'기록 중':(F.revUp>0?'+':'')+F.revUp+'%'}`],
+    margin:[KR?'내년 추정 영업이익률 − 올해.':'영업이익률(TTM)이 1년 전보다 몇 %p 좋아졌는지 — 수준이 아니라 개선폭.','개선폭은 업종 차이가 작아서 유니버스 전체와 비교.',`이 종목: 영업이익률 ${n2(F.om)}% · 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm+'%p'}`],
+    cash:[KR?'국내는 컨센서스 표에 현금흐름이 없어서 빠져.':'FCF 마진 개선폭(1년 전 대비, 유니버스 전체 비교) 50% + FCF 마진 수준(동종 비교) 50%.',KR?'':'설비투자가 큰 업종은 FCF 수준이 원래 낮아서 수준은 동종끼리 비교해. 최근 4분기 FCF 가 모두 플러스이고 마진이 좋아지면 \'현금흐름 개선\' 태그.',KR?'':peer,KR?'':`이 종목: FCF 마진 ${n2(F.fcfM)}% · 재원 ${F.funding||'—'}`],
+    quality:[KR?'내년 추정 ROE.':'ROIC(투하자본수익률).','업종마다 자본 집약도가 달라서 동종 섹터와 비교.',peer,`이 종목: ${KR?'ROE':'ROIC'} ${n2(F.roic)}%`],
+    value:['높을수록 싸다는 뜻. 동종 안에서 ① 1년 선행 PER 35% ② PEG(1년 선행 PER ÷ 선행 EPS 성장률) 40% ③ 자기 과거 P/S 대비 위치 25%.','성장주는 PER 이 높아도 성장률로 나누면 싸게 나올 수 있게 PEG 비중이 가장 커. 적자라 PER 이 없으면 ③만.',peer,
+      `이 종목: 1년 선행 PER ${n2(F.tb?.ntm1?.pe??F.fwdPe)}배 (동종 백분위 ${n2(pv.pe)}) · PEG ${n2(F.peg)} (${n2(pv.peg)}) · 자기 과거 P/S z ${n2(F.zPs)} (${n2(pv.hist)})`],
+    risk:[KR?'부채비율 — 낮을수록 점수가 높아.':'순부채/EBITDA 와 주식 희석률(÷5)을 합친 값 — 부채·희석이 적을수록 점수가 높아(막대가 길수록 안전).','비교: 유니버스 전체.',KR?`이 종목: 부채비율 ${n2(F.debtRatio)}%`:`이 종목: 순부채/EBITDA ${n2(F.lev)} · 1년 희석 ${n2(F.dilution)}%`],
+  }[k]||[];
+  return [`가중치 ${FW[k]}% · 이 종목 백분위 ${P[k]??'— (재료 없음, 계산에서 빠짐)'}`,...T.filter(Boolean)].join('\n\n');
+}
+/* 오늘 기준 1년·2년 선행 EPS·PER 표 (회계연도 추정치를 결산일까지 남은 기간 비중으로 섞음) */
+function fwdTbl(F,m){
+  const KR=m==='KR',T=F&&F.tb;
+  const fe=v=>v==null?'—':KR?Math.round(v).toLocaleString('ko-KR'):(+v).toFixed(2);
+  const fp=v=>v==null?'—':(+v).toFixed(1)+'배',fg=v=>v==null?'—':`<span class="${v>0?'up':v<0?'dn':''}">${v>0?'+':''}${(+v).toFixed(1)}%</span>`;
+  if(!T){
+    if(F?.fwdPe==null)return '';
+    return `<h4 style="margin:12px 0 6px;font-size:14px">선행 PER·EPS</h4><div class="sub">다음 회계연도 EPS ${fe(F.fwdEps)} · PER ${fp(F.fwdPe)} · EPS 성장 ${fg(F.gEpsFwd)} — 연도별 컨센서스가 아직 없어 1·2년 선행 표를 못 만들었어</div>`;
+  }
+  const add=(d,y)=>{const t=new Date(d+'T00:00:00Z');t.setUTCFullYear(t.getUTCFullYear()+y);return t.toISOString().slice(2,10).replace(/-/g,'.')};
+  const i=T.rows.findIndex(r=>r.end>T.asOf),f1=T.rows[i],f2=T.rows[i+1];
+  const row=(a,b,eps,pe,g,cls='')=>`<tr${cls?` class="${cls}"`:''}><td>${a}</td><td class="sub">${b}</td><td class="r num">${fe(eps)}</td><td class="r num">${fp(pe)}</td><td class="r num">${g===undefined?'':fg(g)}</td></tr>`;
+  return `<h4 style="margin:12px 0 6px;font-size:14px">선행 PER·EPS <span class="sub">오늘(${T.asOf.slice(5).replace('-','.')}) 기준</span></h4>
+    <div class="tbl-wrap"><table class="acc" style="min-width:420px"><thead><tr><th>구분</th><th>기간</th><th class="r">EPS</th><th class="r">PER</th><th class="r">EPS 성장</th></tr></thead><tbody>
+    ${row('<b>1년 선행</b>',`${add(T.asOf,0)}~${add(T.asOf,1)}`,T.ntm1.eps,T.ntm1.pe,undefined)}
+    ${row('<b>2년 선행</b>',`${add(T.asOf,1)}~${add(T.asOf,2)}`,T.ntm2.eps,T.ntm2.pe,T.g)}
+    ${T.rows.map(r=>row(`FY${r.fy} <span class="muted">${r.est?'추정':'실적'}</span>`,`결산 ${r.end.slice(2).replace(/-/g,'.')}${r.n?` · ${r.n}명`:''}`,r.eps,r.pe,r.g,'muted')).join('')}
+    </tbody></table></div>
+    <div class="sub" style="margin-top:6px">1년 선행 EPS = ${f1?`FY${f1.fy} ${Math.round(T.w*100)}%`:''}${f2&&T.w<0.999?` + FY${f2.fy} ${100-Math.round(T.w*100)}%`:''} (오늘부터 1년 구간이 각 회계연도에 걸친 비중) · 2년 선행도 한 해씩 밀어서 같은 방식 · PER = 최근 종가 ${KR?Math.round(T.price).toLocaleString('ko-KR')+'원':'$'+T.price} ÷ EPS · ${KR?'국내 컨센서스 EPS':'미국 EPS 는 조정(non-GAAP) 컨센서스 평균 — 재무제표 EPS 와 섞지 않아'}</div>`;
+}
 function drawFundBlock(j,S){
   const el=$('d-fund');if(!el)return;
   const F=j&&j.fund,V=vwOf(j&&j.view);
   if(S.m==='IX'||(!F&&!V)){el.hidden=true;return}
   el.hidden=false;
-  const P=F?.p||{},NM={accel:'이익 가속',growth:'성장',margin:'마진',cash:'현금흐름',quality:'질',value:'싼 정도',risk:'위험(낮을수록 좋음 반영)'};
+  const P=F?.p||{},NM=FNM;
+  const keys=Object.keys(NM).filter(k=>!(S.m==='KR'&&(k==='cash'||k==='revision')));
   const pc=v=>v==null?'—':(v>0?'+':'')+v+'%';
+  const adj=F?.adj||[];
   el.innerHTML=`${V?`<h4>종합 의견 · <span class="stance s-${esc(V.tone)}">${esc(V.stance)}</span> <span class="sub">종합 ${V.combined??'—'} = 추세+저점 ${V.trend.score??'—'}${V.trend.bonus?` (저점 가점 +${V.trend.bonus})`:''} · 가치 ${V.value.score??'—'} · 비율 ${Math.round((V.w??0.7)*100)}:${100-Math.round((V.w??0.7)*100)}</span>${dipTag(V.trend.dip)}</h4>
       <div class="sub" style="margin-bottom:10px">${(V.why||[]).map(esc).join(' · ')}${V.volume?` · 거래량 1일 ${V.volume.vr1}배 / 5일 ${V.volume.vr5}배`:''}</div>`:''}
-    ${F?`<h4>펀더멘털 <span class="sub">점수 ${F.score} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}</span></h4>
-      <div class="bars">${Object.keys(NM).map(k=>`<span>${NM[k]}</span><span class="bar"><i style="width:${P[k]??0}%"></i></span><span class="num">${P[k]??'—'}</span>`).join('')}</div>
-      <div class="sub" style="margin-top:8px">${F.peBasis==='trailing'?'PER(실적 기준, 추정치 없음)':'선행 PER'} ${F.fwdPe??'—'} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='KR'?` · 직전 분기(${esc(F.surQ||'—')}) 영업이익 서프라이즈 ${pc(F.surOp)} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}${F.debtRatio!=null?' · 부채비율 '+F.debtRatio+'%':''}`:''}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}${F.fwdPe2!=null?` · FY${F.fy2} PER ${F.fwdPe2} (EPS ${F.fwdEps2})`:''}${F.estN?` · 애널리스트 ${F.estN}명`:''}${F.estSpread!=null?` · 추정 편차 ${F.estSpread}%`:''} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}`:''}</div>
-      ${(F.flags||[]).length?`<div style="margin-top:6px">${F.flags.map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</div>`:''}`
+    ${F?fwdTbl(F,S.m):''}
+    ${F?`<h4 style="margin-top:14px">펀더멘털 <span class="sub">점수 ${F.score}${adj.length?` (항목 합 ${F.base} ${adj.map(a=>`· ${esc(a.t)} ${a.v>0?'+':''}${a.v}`).join(' ')})`:''} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}${F.theme?` · 동종 ${esc(F.theme)} ${F.peerN}종목`:''}</span></h4>
+      <div class="bars">${keys.map(k=>`<span>${NM[k]}<button type="button" class="ibtn" data-fi="${k}" aria-label="${NM[k]} 설명">i</button></span><span class="bar"><i style="width:${P[k]??0}%"></i></span><span class="num">${P[k]??'—'}</span>`).join('')}</div>
+      <div class="sub" style="margin-top:8px">${F.peBasis==='trailing'?'PER(실적 기준, 추정치 없음)':'선행 PER'} ${F.fwdPe??'—'}${F.peg!=null?` · PEG ${F.peg}`:''} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='KR'?` · 직전 분기(${esc(F.surQ||'—')}) 영업이익 서프라이즈 ${pc(F.surOp)} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}${F.debtRatio!=null?' · 부채비율 '+F.debtRatio+'%':''}`:''}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}${F.estN?` · 애널리스트 ${F.estN}명`:''}${F.estSpread!=null?` · 추정 편차 ${F.estSpread}%`:''} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}`:''}</div>
+      ${(F.flags||[]).length?`<div style="margin-top:6px">${F.flags.map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지|편차|쇼크/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</div>`:''}
+      <div class="ipop" id="fpop" role="dialog" aria-modal="true" aria-labelledby="fpop-h" hidden><div class="ipbox"><b id="fpop-h"></b><p id="fpop-t"></p><button type="button" class="pbtn" id="fpop-x">닫기</button></div></div>`
     :'<div class="sub">펀더멘털 점수 없음 — 아직 수집 전이거나 재료를 못 받은 종목 (내 목록에 추가하면 바로 모으고, 실패하면 다음 수집 때 다시)</div>'}${estTable(j&&j.est)}`;
+  const fp=$('fpop');
+  if(fp){const close=()=>{fp.hidden=true};
+    el.querySelectorAll('[data-fi]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.fi;$('fpop-h').textContent=FNM[k];$('fpop-t').textContent=fundInfo(k,F,S.m);fp.hidden=false;$('fpop-x').focus()});
+    $('fpop-x').onclick=e=>{e.stopPropagation();close()};fp.onclick=e=>{e.stopPropagation();if(e.target===fp)close()};fp.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
 }
 /* 국내 컨센서스 표 — 연간(실적·추정)과 분기(실적·다음 추정). 금액은 억원 */
 function estTable(E){
