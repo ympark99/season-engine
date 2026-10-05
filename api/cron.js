@@ -2,6 +2,7 @@
 // GET /api/cron?op=step&m=KR     — 같은 일. 예비 크론이 부르거나 화면에서 수동 진행(&budget=초)
 // GET /api/meta                  — 엔진 탭: 현재 파라미터·확률 보정 (rewrite → ?op=meta)
 // GET /api/cron?op=est&t=COHR    — 미국 컨센서스 한 종목 바로 조회 (연결 시험용) · t 없이 부르면 전체 갱신(하루 한 번)
+// GET /api/cron?op=score&m=US  — 저장된 재료로 대장 점수만 다시 매기기
 // GET /api/cron?op=fwd            — 미국 선행 지표(요약표) 다시 받기 한 번 (7일 지난 종목만, 천천히)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
@@ -32,6 +33,12 @@ export default async function handler(req, res) {
         if (r.got) { const sum = await scoreAll('US'); r.scored = sum.n; }
         return send(res, 200, r);
       } finally { await store.del('lock:fwd:US'); }
+    }
+    if (op === 'score') {                                                               // 저장된 재료로 점수만 다시 (외부 요청 없음)
+      const m = req.query.m === 'KR' ? 'KR' : 'US';
+      if (!(await store.setNX(`lock:score:${m}`, 1, 120))) return send(res, 200, { busy: true });
+      try { const t0 = Date.now(), sum = await scoreAll(m); return send(res, 200, { m, n: sum.n, rev: sum.rev, ms: Date.now() - t0 }); }
+      finally { await store.del(`lock:score:${m}`); }
     }
     if (op === 'est' && !req.query.t) {                                                  // 미국 컨센서스 전체 갱신 — 하루 한 번만 실제로 받음 (이미 받은 종목은 건너뜀)
       if (!(await store.setNX('lock:est:US', 1, 290))) return send(res, 200, { busy: true });

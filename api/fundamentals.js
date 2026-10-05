@@ -13,9 +13,9 @@ import { fetchForward, blendForward } from '../lib/forward.js';
 import { fetchKrInfo, normalizeKr, krMetrics, krRawScores, epsSnapshot } from '../lib/krfund.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
 import { sectorOf } from '../lib/sectors.js';
-import { loadSecOvr } from '../lib/themes.js';
+import { loadSecOvr, loadOvr, themeOf, GROUPS } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
-import { collectEstimates, loadEstimates, estForward } from '../lib/estimates.js';
+import { collectEstimates, loadEstimates, estForward, fwdTable } from '../lib/estimates.js';
 
 /** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
 export async function targetsOf(m) {
@@ -171,8 +171,8 @@ async function catchUp(m, t0) {
   return { got, catchUp: need.length };
 }
 
-const pct = (v, sorted) => {                       // 유니버스 내 백분위 (0~100)
-  if (v == null) return null;
+const pct = (v, sorted) => {                       // 백분위 (0~100)
+  if (v == null || !sorted?.length) return null;
   let lo = 0, hi = sorted.length;
   while (lo < hi) { const mid = (lo + hi) >> 1; if (sorted[mid] < v) lo = mid + 1; else hi = mid; }
   let up = lo;
@@ -181,11 +181,62 @@ const pct = (v, sorted) => {                       // 유니버스 내 백분위
   return Math.round(100 * rank / Math.max(1, sorted.length - 1));
 };
 
-/** 저장된 지표를 유니버스 백분위로 환산해 대장 점수 산출 */
+/**
+ * 가중치 — 나스닥·AI 성장주 위주로 보는 기준 (2026-10-05 조정).
+ *   예전: 가속 30 · 성장 15 · 마진 15 · 현금 15 · 질 10 · 싼 정도 10 · 위험 5
+ *   가속(성장률의 변화)은 기저가 작으면 값이 튀어서 30% 는 과했다 → 성장과 20:20 으로 나누고,
+ *   성장주에서 가장 잘 듣는 '추정 상향'을 10% 새 축으로. 현금은 AI 투자기(설비투자로 FCF 가 일시 마이너스)를 과하게 벌주지 않게 15 → 10.
+ *   값이 없는 축(국내 현금·추정 상향, 기록이 쌓이기 전의 추정 상향 등)은 빼고 나머지 가중치로 다시 나눈다.
+ */
+/** 점수 방식 버전 — 바꾸면 다음 조회 때 저장된 재료로 한 번 다시 매긴다 */
+export const SCORE_REV = '2026-10-05p';
+export const WEIGHTS = { accel: 0.20, growth: 0.20, revision: 0.10, margin: 0.15, cash: 0.10, quality: 0.10, value: 0.10, risk: 0.05 };
+const KEYS = Object.keys(WEIGHTS);
+const PEER_K = 8;                                    // 동종 섹터가 작을 때 상위 묶음과 섞는 강도 (섹터 n종목 : 묶음 8종목 비중)
+/** 태그 가감점 — 다른 축과 겹치지 않는 것만. 희석·레버리지(위험 축), 자기 과거 대비 비쌈(싼 정도), 현금흐름 개선(현금 축),
+ *  이익 정점(가속·마진), 추정 상향/하향(추정 상향 축), 서프라이즈(국내 가속 축)는 이미 축에 들어 있어서 빼고, 추정이 크게 갈리는 불확실성만 깎는다 */
+const ADJ = { '추정 편차 큼': -3 };
+const clipv = (v, a) => (v == null || !Number.isFinite(v) ? null : Math.max(-a, Math.min(a, v)));
+const endOf = (y, mo) => new Date(Date.UTC(y, mo || 12, 0)).toISOString().slice(0, 10);
+
+/** 국내 1·2년 선행 표 — 컨센서스 연간(실적·추정) → 결산월 말일 기준으로 같은 방식 */
+function krTable(rec) {
+  const ys = (rec?.kr?.yearly || []).filter(r => r.eps != null && r.y).map(r => ({ fy: r.y, end: endOf(r.y, r.m), eps: r.eps, est: !!r.est }));
+  return fwdTable(ys, rec?.metrics?.price ?? null);
+}
+
+/** 축별 원재료 (백분위 전). pe·gPeg·zv·cashD·cashL 은 싼 정도·현금 축을 여러 비교군으로 나눠 매기려고 따로 둔다 */
+function rawOf(m, r) {
+  const M = r.metrics, F = r.F;
+  if (m === 'KR') {
+    const s = krRawScores(M);
+    if (!s) return null;
+    return { ...s, revision: null, pe: r.tb?.ntm1?.pe ?? M.fwdPe ?? null, gPeg: r.tb?.g ?? M.gEpsFwd ?? null, zv: null, cashD: null, cashL: null };
+  }
+  const s = blendForward(rawScores(M), F);
+  if (!s) return null;
+  const finvizAccel = F?.ok && F.src !== 'est' && F.gEpsThisY != null && F.gEpsNextY != null;
+  if (!finvizAccel) s.accel = M.noisy ? (M.accelRev ?? M.accelEps) : (M.accelEps ?? M.accelRev);   // 기저가 작아 EPS 증가율이 튀면 매출 가속으로
+  if (F?.src === 'est') {
+    const gN = F.tb?.g ?? F.gEpsNextY;                                             // 1년 선행 → 2년 선행 EPS 성장 (없으면 FY+1→FY+2)
+    s.growth = gN == null ? s.growth : F.gRev12 != null ? 0.7 * clipv(gN, 300) + 0.3 * clipv(F.gRev12, 300) : clipv(gN, 300);
+  } else if (!(F?.ok && F.gEpsNextY != null)) s.growth = M.noisy ? (M.gRev ?? M.gEps) : (M.gEps ?? M.gRev);
+  s.growth = clipv(s.growth, 300); s.accel = clipv(s.accel, 300);
+  s.revision = F?.revUp ?? null;
+  s.pe = F?.tb?.ntm1?.pe ?? (F?.ok ? F.fwdPe : null) ?? null;
+  s.gPeg = F?.tb?.g ?? (F?.ok ? F.gEpsNextY : null) ?? null;
+  s.zv = M.zPs == null ? null : -M.zPs;
+  s.cashD = M.dFcfM ?? null; s.cashL = M.fcfM ?? null;
+  return s;
+}
+
+/** 저장된 지표를 백분위로 환산해 대장 점수 산출.
+ *  비교군: 성장·가속·마진 변화·추정 상향·위험은 유니버스 전체 (성장주가 위로 오게),
+ *  싼 정도·질(ROIC)·FCF 마진 수준은 업종마다 기준이 달라서 동종 섹터 (작으면 상위 묶음과 섞음) */
 export async function scoreAll(m) {
   const list = await targetsOf(m), recs = [];
   // 미국 컨센서스 + 최근 종가 (선행 PER 은 우리 종가 ÷ 추정 EPS)
-  const E = m === 'US' ? await loadEstimates() : null, px = {};
+  const E = m === 'US' ? await loadEstimates() : null, px = {}, today = kstDate();
   if (E) {
     const univ = await store.get(`univ:res:${m}`);
     for (const [c, r] of Object.entries(univ?.rows || {})) if (r?.c) px[c] = r.c;
@@ -195,28 +246,62 @@ export async function scoreAll(m) {
       b.forEach((x, k) => { if (x?.c?.length) px[miss[i + k].code] = x.c[x.c.length - 1]; });
     }
   }
-  const fwdOf = r => (E && estForward(E.rows[r.code], E.hist[r.code], px[r.code])) || (r.fwd?.ok ? r.fwd : null);
+  const fwdOf = r => (E && estForward(E.rows[r.code], E.hist[r.code], px[r.code], today)) || (r.fwd?.ok ? r.fwd : null);
   for (let i = 0; i < list.length; i += 25) {
     const chunk = list.slice(i, i + 25);
     const got = await store.mget(chunk.map(x => KEY(m, x.code)));
     got.forEach((r, j) => { if (r?.metrics?.ok) recs.push({ ...r, name: chunk[j].name, tags: chunk[j].tags }); });
   }
   if (!recs.length) { const prev = await store.get(S_SUM(m)); return prev || { m, n: 0, at: new Date().toISOString(), rows: [] }; }   // 수집이 전부 실패해도 이전 점수는 지우지 않음
-  for (const r of recs) if (m === 'US') r.F = fwdOf(r);
-  const raw = recs.map(r => ({ r, s: m === 'KR' ? krRawScores(r.metrics) : blendForward(rawScores(r.metrics), r.F) })).filter(x => x.s);
-  const keys = ['accel', 'growth', 'margin', 'cash', 'quality', 'value', 'risk'];
-  const sorted = Object.fromEntries(keys.map(k => [k, raw.map(x => x.s[k]).filter(v => v != null).sort((a, b) => a - b)]));
-  const W = { accel: 0.30, growth: 0.15, margin: 0.15, cash: 0.15, quality: 0.10, value: 0.10, risk: 0.05 };
-  const rows = raw.map(({ r, s }) => {
-    const p = Object.fromEntries(keys.map(k => [k, pct(s[k], sorted[k])]));
+  const [ovr, secOvr] = await Promise.all([loadOvr(m), loadSecOvr(m)]);
+  const AIG = new Set(GROUPS[m]?.AI || []);
+  for (const r of recs) {
+    if (m === 'US') { r.F = fwdOf(r); r.tb = r.F?.tb || null; } else r.tb = krTable(r);
+    r.sector = secOvr[r.code] || sectorOf(m, r.code, { name: r.name, collected: m === 'KR' ? r.secRaw : r.fwd?.industry });
+    r.theme = ovr[r.code] || themeOf(m, r.code, r.sector);
+    r.fam = AIG.has(r.theme) ? 'AI' : '*';
+  }
+  const raw = recs.map(r => ({ r, s: rawOf(m, r) })).filter(x => x.s);
+  for (const x of raw) {
+    const s = x.s;
+    s.peLn = s.pe > 0 ? -Math.log(s.pe) : null;
+    s.peg = s.pe > 0 && s.gPeg != null ? -(s.pe / Math.max(1, Math.min(s.gPeg, 100))) : null;   // PEG (성장 1% 미만·역성장이면 PER 그대로 → 비쌈)
+  }
+  // 비교군별 정렬 배열
+  const SUB = ['accel', 'growth', 'revision', 'margin', 'risk', 'quality', 'peLn', 'peg', 'zv', 'cashD', 'cashL'];
+  const sortv = arr => arr.filter(v => v != null && Number.isFinite(v)).sort((a, b) => a - b);
+  const U = Object.fromEntries(SUB.map(k => [k, sortv(raw.map(x => x.s[k]))]));
+  const grp = (keyOf) => { const g = {}; for (const x of raw) (g[keyOf(x.r)] ||= []).push(x); return g; };
+  const byTheme = grp(r => r.theme), byFam = grp(r => r.fam);
+  const cache = {};
+  const sortedOf = (kind, name, k) => (cache[`${kind}|${name}|${k}`] ||= sortv(((kind === 't' ? byTheme : byFam)[name] || []).map(x => x.s[k])));
+  const univ = (x, k) => pct(x.s[k], U[k]);
+  const peer = (x, k) => {
+    const v = x.s[k];
+    if (v == null || !Number.isFinite(v)) return null;
+    const T = sortedOf('t', x.r.theme, k), Fm = x.r.fam === '*' ? U[k] : sortedOf('f', x.r.fam, k), n = T.length;
+    const pF = pct(v, Fm);
+    return n < 3 ? pF : Math.round((n * pct(v, T) + PEER_K * pF) / (n + PEER_K));
+  };
+  const wavg = parts => { let a = 0, w = 0; for (const [v, k] of parts) if (v != null) { a += v * k; w += k; } return w ? Math.round(a / w) : null; };
+  const rows = raw.map(x => {
+    const { r, s } = x;
+    const vPe = peer(x, 'peLn'), vPeg = peer(x, 'peg'), vHist = univ(x, 'zv');
+    const p = {
+      accel: univ(x, 'accel'), growth: univ(x, 'growth'), revision: univ(x, 'revision'), margin: univ(x, 'margin'),
+      cash: wavg([[univ(x, 'cashD'), 1], [peer(x, 'cashL'), 1]]),               // FCF 마진 개선폭(전체) + FCF 마진 수준(동종)
+      quality: peer(x, 'quality'),
+      value: wavg([[vPe, 0.35], [vPeg, 0.40], [vHist, 0.25]]),                   // 선행 PER(동종) · PEG(동종) · 자기 과거 P/S
+      risk: univ(x, 'risk'),
+    };
     let wsum = 0, acc = 0;
-    for (const k of keys) if (p[k] != null) { acc += W[k] * p[k]; wsum += W[k]; }
-    const score = wsum ? +(acc / wsum).toFixed(1) : null;
+    for (const k of KEYS) if (p[k] != null) { acc += WEIGHTS[k] * p[k]; wsum += WEIGHTS[k]; }
     const M = r.metrics, F = m === 'US' ? r.F : null, flags = [], RU = M.revUp ?? F?.revUp ?? null;
     if (p.accel != null && p.accel < 20 && (M.dOm ?? 0) < 0) flags.push('이익 정점 경계');      // 정유 매도를 설명하는 규칙
     if (M.funding === '남의 돈' && (M.levEbitda ?? 0) > 3) flags.push('남의 돈 · 레버리지');
     if ((M.dilution ?? 0) > 10) flags.push('희석 10%+');
-    if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비쌈');
+    if ((M.zPs ?? 0) > 1.5) flags.push('자기 과거 대비 비쌈');                                  // P/S 가 자기 평균보다 1.5 표준편차 넘게 위
+    if (s.pe > 0 && s.gPeg >= 15 && s.pe / s.gPeg <= 1) flags.push('성장 대비 쌈');             // PEG 1 이하
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
     if ((RU ?? 0) > 3) flags.push('추정 상향');
     if ((RU ?? 0) < -3) flags.push('추정 하향');
@@ -226,18 +311,23 @@ export async function scoreAll(m) {
     if (M.basis === 'trailing') flags.push('추정치 없음 · 실적 기준');
     if (M.loss) flags.push('적자(PER 없음)');
     if (M.consol === 'P') flags.push('별도 기준');
-    const sector = sectorOf(m, r.code, { name: r.name, collected: m === 'KR' ? r.secRaw : r.fwd?.industry });
-    return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), sector, score, p, flags, funding: M.funding,
+    const adj = flags.filter(f => ADJ[f]).map(f => ({ t: f, v: ADJ[f] }));
+    const base = wsum ? acc / wsum : null, adjSum = adj.reduce((a, b) => a + b.v, 0);
+    const score = base == null ? null : +Math.max(0, Math.min(100, base + adjSum)).toFixed(1);
+    const peerN = (byTheme[r.theme] || []).length;
+    return { code: r.code, name: r.name, tags: (r.tags || []).join('+'), sector: r.sector, theme: r.theme, peerN, peerFam: r.fam === 'AI' ? 'AI 밸류체인' : '전체',
+      score, base: base == null ? null : +base.toFixed(1), adj, p, pv: { pe: vPe, peg: vPeg, hist: vHist }, peg: s.pe > 0 && s.gPeg > 0 ? +(s.pe / s.gPeg).toFixed(2) : null,
+      flags, funding: M.funding,
       q: M.q, asOf: M.asOf, gRev: M.gRev, gEps: M.gEps, accelEps: M.accelEps, accelRev: M.accelRev,
       om: M.om, dOm: M.dOm, fcfM: M.fcfM, roic: M.roic ?? M.roeFwd, zPs: M.zPs, lev: M.levEbitda, dilution: M.dilution, noisy: M.noisy,
       fwdEps: M.fwdEps ?? F?.epsNextY ?? null, fwdPe: M.fwdPe ?? F?.fwdPe ?? null,
       gEpsFwd: M.gEpsFwd ?? F?.gEpsNextY ?? null, revUp: RU, rs: M.rs ?? null,
       fwdPe2: F?.pe2 ?? null, fwdEps2: F?.eps2 ?? null, fy1: F?.fy1 ?? null, fy2: F?.fy2 ?? null, gEps23: F?.g23 ?? null, gRevFwd: F?.gRev12 ?? null,
-      estSpread: F?.spread1 ?? null, estN: F?.n1 ?? null,
+      estSpread: F?.spread1 ?? null, estN: F?.n1 ?? null, tb: r.tb || null,
       surOp: M.surOp ?? null, surQ: M.surQ ?? null, peBasis: M.basis ?? (F?.src === 'est' ? 'forward' : null), gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
       target: F?.target ?? null, upside: F?.upside ?? null };
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
-  const sum = { m, at: new Date().toISOString(), n: rows.length, weights: W,
+  const sum = { m, at: new Date().toISOString(), rev: SCORE_REV, n: rows.length, weights: WEIGHTS, adjRules: ADJ, peerK: PEER_K,
     funding: rows.reduce((a, x) => { a[x.funding || '미상'] = (a[x.funding || '미상'] || 0) + 1; return a; }, {}),
     peak: rows.filter(x => x.flags.includes('이익 정점 경계')).length, rows };
   await store.set(S_SUM(m), sum);
@@ -265,7 +355,10 @@ export default async function handler(req, res) {
     }
     if (req.method === 'GET') {
       const m = req.query.m === 'KR' ? 'KR' : 'US';
-      const [sum, st] = await store.mget([S_SUM(m), S_STATE(m)]);
+      let [sum, st] = await store.mget([S_SUM(m), S_STATE(m)]);
+      if (sum?.rows && sum.rev !== SCORE_REV && (await store.setNX(`lock:score:${m}`, 1, 120))) {   // 점수 방식이 바뀐 뒤 첫 조회 — 저장된 재료로 다시 매김 (외부 요청 없음)
+        try { sum = await scoreAll(m); } catch (e) { console.error('rescore', m, e.message); } finally { await store.del(`lock:score:${m}`); }
+      }
       if (sum?.rows) { const so = await loadSecOvr(m); for (const r of sum.rows) if (so[r.code]) r.sector = so[r.code]; }   // 직접 지정한 세부 업종
       const state = st ? { i: st.i, total: st.codes?.length ?? null, done: st.done, started: st.started, updatedAt: st.updatedAt, finishedAt: st.finishedAt || null,
         collected: st.collected ?? null, failedN: st.failed?.length || 0, failed: (st.failed || []).slice(-5), blocked: st.blocked || null,
