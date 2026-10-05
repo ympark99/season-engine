@@ -125,6 +125,12 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .stance.s-trade{background:#eaf1fd;color:#1b4b9c;border-color:#c6d8f7}
 .stance.s-watch{background:#fdf6e3;color:#8a6116;border-color:#f0e0b0}
 .sig.sig-dip{background:#eaf1fd;color:#1b4b9c;border:1px solid #c6d8f7;margin:0 6px 0 0}
+table.stbl td.code,table.stbl td.name{padding-right:4px}
+table.stbl td.thc{padding-left:4px;max-width:150px}
+table.stbl td.thc>b{display:inline-block;max-width:118px;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
+table.stbl td.thc .sub{max-width:140px;overflow:hidden;text-overflow:ellipsis}
+table.stbl td.tr{padding-left:2px}
+table.stbl .stance{font-size:11px;padding:2px 6px}
 .fav{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;color:var(--muted);padding:2px}
 .fav[aria-pressed="true"]{color:var(--gold)}
 .fav:hover{color:var(--gold)}
@@ -1067,20 +1073,33 @@ const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입
 /* sortOnly:1 = 표에는 따로 칸이 없지만 정렬 목록에는 있음 (확률은 국면 칸 안에 같이 표시) */
 const COLS=[
   {k:'fav',t:'<span aria-label="즐겨찾기">★</span>',v:S=>isFav(S)?0:1},
-  {k:'season',t:'국면 · 확률',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},
   {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>stTh(S)||'힣',str:1},
+  {k:'season',t:'국면 · 확률',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},
   {k:'prob',t:'확률',v:S=>S.prob??-1,r:1,sortOnly:1},{k:'fit',t:'계절 적합도',v:S=>S.fit?.grade??-1,sortOnly:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99,off:1},
-  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
+  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
   {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1,off:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:'spark',t:'최근 120일',off:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1,off:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1,off:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1,off:1},{k:'rm',t:''}
 ];
 const SORTABLE=c=>c.v&&c.k!=='rm'&&c.k!=='fav';
 /* 즐겨찾기 — 이 브라우저에 저장 (PREF.fav = {'US:NVDA':1}) */
-const isFav=S=>!!(PREF.fav&&PREF.fav[K(S)]);
-function toggleFav(k){PREF.fav=PREF.fav||{};if(PREF.fav[k])delete PREF.fav[k];else PREF.fav[k]=1;savePrefs();renderFilters();renderRows()}
+/* 즐겨찾기 — 서버에 저장 (/api/list 의 fav, 다른 브라우저에서도 같음). 저장은 관리자 키 필요 */
+let FAV=new Set();
+const isFav=S=>FAV.has(K(S));
+async function toggleFav(k){
+  const on=!FAV.has(k);if(on)FAV.add(k);else FAV.delete(k);renderFilters();renderRows();
+  try{const r=await post('/api/list?op=fav',{k,on});FAV=new Set(r.fav||[])}
+  catch(e){if(on)FAV.delete(k);else FAV.add(k);toast('즐겨찾기 저장 실패: '+e.message)}
+  renderFilters();renderRows();
+}
+/* 예전에 이 브라우저에만 저장한 즐겨찾기(PREF.fav)는 서버에 한 번 옮긴다 */
+async function syncFav(){
+  FAV=new Set(D?.fav||[]);
+  const old=Object.keys(PREF.fav||{}).filter(k=>!FAV.has(k));
+  if(old.length&&PREF.key){try{const r=await post('/api/list?op=fav',{add:old});FAV=new Set(r.fav||[]);delete PREF.fav;savePrefs();renderFilters();renderRows()}catch(e){}}
+}
 /* 열 너비 목표(%) — 표가 넓을 때 남는 폭이 긴 글자 열(섹터·종합 의견)에만 몰리지 않게. 합 100 기준, 숨긴 열은 빠진 만큼 비례로 늘어남 */
-const CW={fav:3,season:13,id:8,sector:14,prob:11,ps5:6,age:6,action:9,stance:12,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
+const CW={fav:3,id:7,sector:10,season:13,prob:11,ps5:6,age:6,action:9,stance:9,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
 /* 시가총액 — 원화. 1조 이상은 조(소수 둘째 자리까지), 미만은 억 */
 const capFmt=v=>{if(v==null||!(v>0))return '—';if(v>=1e12)return `${(+(v/1e12).toFixed(2)).toLocaleString('ko-KR')}조`;return `${Math.round(v/1e8).toLocaleString('ko-KR')}억`};
 const hasMC=()=>!!(D&&D.stocks&&D.stocks.some(s=>s.m===state.m&&s.mcap>0));
@@ -1143,7 +1162,7 @@ function vcells(S){
   const t=v.trend||{},a=v.value||{},tip=(v.why||[]).join(' · ');
   return {
     stance:`<td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`,
-    trend:`<td class="r num" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${sc(t.score)}</td>`,
+    trend:`<td class="num tr" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${sc(t.score)}</td>`,
     value:`<td class="r num">${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
 }
 /* 비율 막대 — 왼쪽 가치 · 오른쪽 추세, 10단위. 손잡이를 오른쪽으로 밀수록 추세 비중↑ */
@@ -1910,7 +1929,7 @@ function benchChart(dates,eq,bms,label){
 }
 const loadInd=loadUniverse;
 function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>{if(D){renderFilters();renderRows()}});if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd()}
-async function reload(flash){D=await api('/api/list');BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
+async function reload(flash){D=await api('/api/list');FAV=new Set(D.fav||[]);BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll()});
 let engDone=false;
 [['tab-dash','dash'],['tab-strat','strat'],['tab-eng','eng']].forEach(([t,p],_,all)=>$(t).onclick=()=>{all.forEach(([t2,p2])=>{$(t2).setAttribute('aria-pressed',String(t2===t));$(p2).hidden=p2!==p});
@@ -1926,7 +1945,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)
     let C;[MACRO,C]=await Promise.all(['macro','categories'].map(n=>fetch(`data/${n}.json`,{cache:'no-store'}).then(r=>r.json()).catch(()=>null)));
     if(C)CATS=C;
     loadMarket();loadUniverse();
-    await reload();
+    await reload();syncFav();
   }catch(e){$('asofline').innerHTML=`<span class="warn">서버에 연결 못 했어: ${esc(e.message)}</span> — /api/health 로 설정을 확인해줘`}
 })();
 })();
