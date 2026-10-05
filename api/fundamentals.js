@@ -5,7 +5,7 @@
 //   GET ?auto=US|KR&secret=.. → 남은 수집 한 조각 실행 (파이프라인이 부름)
 //   GET ?probe=CODE&m=KR      → 원응답 스키마 확인 (관리자)
 //   POST {step:'collect'|'score'|'one', m, code, reset}   (관리자)
-// 미국은 분기 재무 + 선행 EPS/PER, 국내는 추정실적을 쓴다 — 점수 축은 동일. 제공처 이름은 코드·화면에 쓰지 않는다.
+// 미국은 분기 재무 + 애널리스트 컨센서스(연간 EPS·매출 추정, lib/estimates.js), 국내는 추정실적을 쓴다 — 점수 축은 동일. 제공처 이름은 코드·화면에 쓰지 않는다.
 import * as store from '../lib/store.js';
 import { isAdmin, send, body } from '../lib/service.js';
 import { fetchStatement, normalize, metricsAt, rawScores } from '../lib/fundamentals.js';
@@ -15,9 +15,10 @@ import { members, listOf, kstDate } from '../lib/universe.js';
 import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
+import { collectEstimates, loadEstimates, estForward } from '../lib/estimates.js';
 
 /** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
-async function targetsOf(m) {
+export async function targetsOf(m) {
   const [mem, mine] = await Promise.all([members(), store.listAll()]);
   const list = listOf(m, mem), have = new Set(list.map(x => x.code));
   for (const it of mine) if (it?.m === m && !have.has(it.code)) { list.push({ code: it.code, name: it.name, tags: ['내 목록'] }); have.add(it.code); }
@@ -64,9 +65,15 @@ export async function collectOne(m, code) {
  *  (예전엔 끝나자마자 다음 호출에서 진행 0/N 으로 새 바퀴를 시작해서, 화면에선 수집한 게 날아간 것처럼 보였다) */
 export async function collectChunk(m, { reset = false } = {}) {
   const t0 = Date.now(), today = kstDate();
+  let est = null;
+  if (m === 'US') try { est = await collectEstimates((await targetsOf(m)).map(x => x.code), { budgetMs: 40000 }); } catch (e) { est = { error: e.message }; }   // 하루 한 번, 이미 받은 종목은 건너뜀
   let st = await store.get(S_STATE(m));
   const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
-  if (st?.done && !reset && !cycleOld) return { m, i: st.i, total: st.codes.length, ...(await catchUp(m, t0)), skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
+  if (st?.done && !reset && !cycleOld) {
+    const cu = await catchUp(m, t0);
+    if (est?.got && !cu.got) await scoreAll(m);                                      // 추정치가 새로 들어왔으면 점수 다시
+    return { m, i: st.i, total: st.codes.length, ...cu, est, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
+  }
   if (reset || !st || !st.codes?.length || st.done) {
     const list = await targetsOf(m);
     if (!list.length) throw new Error('구성종목이 없어 — 유니버스 스캔을 먼저 돌려줘');
@@ -92,8 +99,9 @@ export async function collectChunk(m, { reset = false } = {}) {
     const sum = await scoreAll(m);
     st.collected = sum.n;
   }
+  else if (est?.got) await scoreAll(m);
   await store.set(S_STATE(m), st);
-  return { m, i: st.i, total: st.codes.length, got, skipped, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
+  return { m, i: st.i, total: st.codes.length, got, skipped, est, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
 }
 
 /** 바퀴 사이 쉬는 동안 — 아직 재료가 없는 종목(새로 추가한 내 목록·AI 밸류체인 종목)만 바로 모으고 점수를 다시 낸다.
@@ -131,13 +139,26 @@ const pct = (v, sorted) => {                       // 유니버스 내 백분위
 /** 저장된 지표를 유니버스 백분위로 환산해 대장 점수 산출 */
 export async function scoreAll(m) {
   const list = await targetsOf(m), recs = [];
+  // 미국 컨센서스 + 최근 종가 (선행 PER 은 우리 종가 ÷ 추정 EPS)
+  const E = m === 'US' ? await loadEstimates() : null, px = {};
+  if (E) {
+    const univ = await store.get(`univ:res:${m}`);
+    for (const [c, r] of Object.entries(univ?.rows || {})) if (r?.c) px[c] = r.c;
+    const miss = list.filter(x => px[x.code] == null && E.rows[x.code]);
+    for (let i = 0; i < miss.length; i += 25) {
+      const b = await store.mget(miss.slice(i, i + 25).map(x => store.barsKey(m, x.code)));
+      b.forEach((x, k) => { if (x?.c?.length) px[miss[i + k].code] = x.c[x.c.length - 1]; });
+    }
+  }
+  const fwdOf = r => (E && estForward(E.rows[r.code], E.hist[r.code], px[r.code])) || (r.fwd?.ok ? r.fwd : null);
   for (let i = 0; i < list.length; i += 25) {
     const chunk = list.slice(i, i + 25);
     const got = await store.mget(chunk.map(x => KEY(m, x.code)));
     got.forEach((r, j) => { if (r?.metrics?.ok) recs.push({ ...r, name: chunk[j].name, tags: chunk[j].tags }); });
   }
   if (!recs.length) { const prev = await store.get(S_SUM(m)); return prev || { m, n: 0, at: new Date().toISOString(), rows: [] }; }   // 수집이 전부 실패해도 이전 점수는 지우지 않음
-  const raw = recs.map(r => ({ r, s: m === 'KR' ? krRawScores(r.metrics) : blendForward(rawScores(r.metrics), r.fwd) })).filter(x => x.s);
+  for (const r of recs) if (m === 'US') r.F = fwdOf(r);
+  const raw = recs.map(r => ({ r, s: m === 'KR' ? krRawScores(r.metrics) : blendForward(rawScores(r.metrics), r.F) })).filter(x => x.s);
   const keys = ['accel', 'growth', 'margin', 'cash', 'quality', 'value', 'risk'];
   const sorted = Object.fromEntries(keys.map(k => [k, raw.map(x => x.s[k]).filter(v => v != null).sort((a, b) => a - b)]));
   const W = { accel: 0.30, growth: 0.15, margin: 0.15, cash: 0.15, quality: 0.10, value: 0.10, risk: 0.05 };
@@ -146,14 +167,15 @@ export async function scoreAll(m) {
     let wsum = 0, acc = 0;
     for (const k of keys) if (p[k] != null) { acc += W[k] * p[k]; wsum += W[k]; }
     const score = wsum ? +(acc / wsum).toFixed(1) : null;
-    const M = r.metrics, F = r.fwd?.ok ? r.fwd : null, flags = [];
+    const M = r.metrics, F = m === 'US' ? r.F : null, flags = [], RU = M.revUp ?? F?.revUp ?? null;
     if (p.accel != null && p.accel < 20 && (M.dOm ?? 0) < 0) flags.push('이익 정점 경계');      // 정유 매도를 설명하는 규칙
     if (M.funding === '남의 돈' && (M.levEbitda ?? 0) > 3) flags.push('남의 돈 · 레버리지');
     if ((M.dilution ?? 0) > 10) flags.push('희석 10%+');
     if (p.value != null && p.value < 10) flags.push('자기 과거 대비 비쌈');
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
-    if ((M.revUp ?? 0) > 3) flags.push('추정 상향');
-    if ((M.revUp ?? 0) < -3) flags.push('추정 하향');
+    if ((RU ?? 0) > 3) flags.push('추정 상향');
+    if ((RU ?? 0) < -3) flags.push('추정 하향');
+    if ((F?.spread1 ?? 0) > 50) flags.push('추정 편차 큼');
     if ((M.surOp ?? 0) >= 5) flags.push('어닝 서프라이즈');
     if ((M.surOp ?? 0) <= -5) flags.push('어닝 쇼크');
     if (M.basis === 'trailing') flags.push('추정치 없음 · 실적 기준');
@@ -164,8 +186,10 @@ export async function scoreAll(m) {
       q: M.q, asOf: M.asOf, gRev: M.gRev, gEps: M.gEps, accelEps: M.accelEps, accelRev: M.accelRev,
       om: M.om, dOm: M.dOm, fcfM: M.fcfM, roic: M.roic ?? M.roeFwd, zPs: M.zPs, lev: M.levEbitda, dilution: M.dilution, noisy: M.noisy,
       fwdEps: M.fwdEps ?? F?.epsNextY ?? null, fwdPe: M.fwdPe ?? F?.fwdPe ?? null,
-      gEpsFwd: M.gEpsFwd ?? F?.gEpsNextY ?? null, revUp: M.revUp ?? null, rs: M.rs ?? null,
-      surOp: M.surOp ?? null, surQ: M.surQ ?? null, peBasis: M.basis ?? null, gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
+      gEpsFwd: M.gEpsFwd ?? F?.gEpsNextY ?? null, revUp: RU, rs: M.rs ?? null,
+      fwdPe2: F?.pe2 ?? null, fwdEps2: F?.eps2 ?? null, fy1: F?.fy1 ?? null, fy2: F?.fy2 ?? null, gEps23: F?.g23 ?? null, gRevFwd: F?.gRev12 ?? null,
+      estSpread: F?.spread1 ?? null, estN: F?.n1 ?? null,
+      surOp: M.surOp ?? null, surQ: M.surQ ?? null, peBasis: M.basis ?? (F?.src === 'est' ? 'forward' : null), gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
       target: F?.target ?? null, upside: F?.upside ?? null };
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
   const sum = { m, at: new Date().toISOString(), n: rows.length, weights: W,
