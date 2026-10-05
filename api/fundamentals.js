@@ -126,7 +126,8 @@ export async function refreshForward(m, budgetMs = 30000) {
   const idx = idx0 || {}, day = day0?.d === today ? day0 : { d: today, n: 0 };
   if (day.n >= FWD_PER_DAY) return { got: 0, left: 0, capped: true };
   const cut = Date.now() - FWD_STALE * 864e5;
-  const need = (await targetsOf(m)).map(x => x.code).filter(c => !idx[c] || Date.parse(idx[c]) < cut);
+  const sum = await store.get(S_SUM(m));                                          // 점수에 들어간 종목만 (재무가 아직 없는 종목은 catchUp 이 모은 뒤에)
+  const need = (sum?.rows || []).map(x => x.code).filter(c => !idx[c] || Date.parse(idx[c]) < cut);
   let got = 0, tried = 0, blocked = false;
   for (const code of need) {
     if (Date.now() - t0 > budgetMs || day.n >= FWD_PER_DAY) break;
