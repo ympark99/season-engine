@@ -2,6 +2,7 @@
 // GET /api/cron?op=step&m=KR     — 같은 일. 예비 크론이 부르거나 화면에서 수동 진행(&budget=초)
 // GET /api/meta                  — 엔진 탭: 현재 파라미터·확률 보정 (rewrite → ?op=meta)
 // GET /api/cron?op=est&t=COHR    — 미국 컨센서스 한 종목 바로 조회 (연결 시험용) · t 없이 부르면 전체 갱신(하루 한 번)
+// GET /api/cron?op=fwd            — 미국 선행 지표(요약표) 다시 받기 한 번 (7일 지난 종목만, 천천히)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
@@ -9,7 +10,7 @@ import { send, isAdmin, engineState } from '../lib/service.js';
 import { step, pipeState } from '../lib/pipeline.js';
 import { selfBase, chainLog } from '../lib/selfcall.js';
 import { searchId, fetchEstimates, summarize, collectEstimates } from '../lib/estimates.js';
-import { targetsOf, scoreAll } from './fundamentals.js';
+import { targetsOf, scoreAll, refreshForward } from './fundamentals.js';
 
 export default async function handler(req, res) {
   try {
@@ -23,6 +24,14 @@ export default async function handler(req, res) {
         krFundHeaders: !!process.env.KR_FUND_HEADERS,
         pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null,
       });
+    }
+    if (op === 'fwd') {                                                                 // 미국 선행 지표만 다시 받기 — 하루 600종목·요청 사이 2.5초 제한은 refreshForward 안에서
+      if (!(await store.setNX('lock:fwd:US', 1, 290))) return send(res, 200, { busy: true });
+      try {
+        const r = await refreshForward('US', 200000);
+        if (r.got) { const sum = await scoreAll('US'); r.scored = sum.n; }
+        return send(res, 200, r);
+      } finally { await store.del('lock:fwd:US'); }
     }
     if (op === 'est' && !req.query.t) {                                                  // 미국 컨센서스 전체 갱신 — 하루 한 번만 실제로 받음 (이미 받은 종목은 건너뜀)
       if (!(await store.setNX('lock:est:US', 1, 290))) return send(res, 200, { busy: true });

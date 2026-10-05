@@ -26,7 +26,10 @@ export async function targetsOf(m) {
 }
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
-const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 350), STALE_DAYS = 7;
+const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 1000), STALE_DAYS = 7;          // 요청 사이 1초 (빨리 보내면 봇 차단)
+const FWD_IDX = 'fwd:at:US', FWD_BLOCK = 'fwd:block:US', FWD_DAY = 'fwd:day:US';
+const FWD_GAP = +(process.env.FWD_GAP ?? 2500), FWD_PER_DAY = 600, FWD_STALE = 7;
+const isBlock = e => /HTTP (403|429)/.test(String(e?.message || ''));
 const staleDays = m => (m === 'KR' ? 3 : STALE_DAYS);    // 국내는 추정 변화 기록을 촘촘히 쌓으려고 3일마다
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query?.secret === process.env.CRON_SECRET);
@@ -54,9 +57,10 @@ export async function collectOne(m, code) {
   const rows = normalize({ IQ: iq, CQ: cq, BQ: bq });
   const metrics = metricsAt(rows);
   let fwd = null;
-  try { await sleep(GAP_MS); fwd = await fetchForward(code); } catch (e) { fwd = { ok: false, why: e.message.slice(0, 80) }; }   // 선행치는 없어도 진행
+  try { await sleep(GAP_MS); fwd = await fetchForward(code); } catch (e) { fwd = { ok: false, why: e.message.slice(0, 80), at: new Date().toISOString() }; }   // 선행치는 없어도 진행
   const rec = { code, m, at: new Date().toISOString(), currency: iq.currency || 'USD', rows, metrics, fwd };
   await store.set(KEY(m, code), rec);
+  const idx = (await store.get(FWD_IDX)) || {}; idx[code] = rec.at; await store.set(FWD_IDX, idx);
   return rec;
 }
 
@@ -68,11 +72,16 @@ export async function collectChunk(m, { reset = false } = {}) {
   let est = null;
   if (m === 'US') try { est = await collectEstimates((await targetsOf(m)).map(x => x.code), { budgetMs: 40000 }); } catch (e) { est = { error: e.message }; }   // 하루 한 번, 이미 받은 종목은 건너뜀
   let st = await store.get(S_STATE(m));
-  const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
+  if (m === 'US') {                                                               // 재무 제공처에 차단됐으면 6시간 동안 손대지 않는다
+    const blk = await store.get(FWD_BLOCK);
+    if (blk) return { m, i: st?.i ?? 0, total: st?.codes?.length ?? 0, got: 0, est, blocked: `차단 대기 (${blk.at})`, done: true, idle: true, fwdLeft: 0, ms: Date.now() - t0 };
+  }
+  const endAt = st?.finishedAt || st?.updatedAt || null;                          // 예전 상태엔 finishedAt 이 없어서 다음 바퀴가 영영 안 시작됐다
+  const cycleOld = st?.done && (!endAt || Date.now() - Date.parse(endAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5));   // 막혔던 바퀴는 다음 날 다시 시도
   if (st?.done && !reset && !cycleOld) {
-    const cu = await catchUp(m, t0);
-    if (est?.got && !cu.got) await scoreAll(m);                                      // 추정치가 새로 들어왔으면 점수 다시
-    return { m, i: st.i, total: st.codes.length, ...cu, est, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
+    const cu = await catchUp(m, t0), fw = await refreshForward(m, 30000);
+    if ((est?.got || fw.got) && !cu.got) await scoreAll(m);                         // 추정치·선행 지표가 새로 들어왔으면 점수 다시
+    return { m, i: st.i, total: st.codes.length, ...cu, est, fwd: fw, fwdLeft: fw.left || 0, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
   }
   if (reset || !st || !st.codes?.length || st.done) {
     const list = await targetsOf(m);
@@ -86,7 +95,10 @@ export async function collectChunk(m, { reset = false } = {}) {
     const cur = await store.get(KEY(m, code));
     if (cur?.at > fresh && !reset) { skipped++; st.i++; continue; }
     try { await collectOne(m, code); got++; }
-    catch (e) { st.failed.push({ code, error: e.message.slice(0, 140) }); if (st.failed.length > 300) st.failed = st.failed.slice(-300); }
+    catch (e) {
+      st.failed.push({ code, error: e.message.slice(0, 140) }); if (st.failed.length > 300) st.failed = st.failed.slice(-300);
+      if (m === 'US' && isBlock(e)) { await store.set(FWD_BLOCK, { at: new Date().toISOString(), why: e.message }, 6 * 3600); st.pausedAt = new Date().toISOString(); break; }   // 봇 차단 — 6시간 쉬고 같은 종목부터 (st.i 그대로)
+    }
     st.i++;
     await sleep(GAP_MS);
     // 국내 제공처가 통째로 막힌 경우 — 첫 10종목이 전부 같은 이유로 실패하면 그 바퀴를 멈추고 이유를 남긴다
@@ -102,6 +114,38 @@ export async function collectChunk(m, { reset = false } = {}) {
   else if (est?.got) await scoreAll(m);
   await store.set(S_STATE(m), st);
   return { m, i: st.i, total: st.codes.length, got, skipped, est, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
+}
+
+/** 선행 지표(요약표)만 다시 받기 — 재무 3종은 그대로 두고 1회 요청만. 7일 지난 종목만, 요청 사이 2.5초, 하루 600종목까지.
+ *  예전 기록(선행 지표 기능 전에 모은 것)은 선행 PER 이 비어 있어서 이걸로 채운다. 차단(403·429)되면 6시간 쉰다. */
+export async function refreshForward(m, budgetMs = 30000) {
+  if (m !== 'US') return { got: 0, left: 0 };
+  const t0 = Date.now(), today = kstDate();
+  if (await store.get(FWD_BLOCK)) return { got: 0, left: 0, blocked: true };
+  const [idx0, day0] = await store.mget([FWD_IDX, FWD_DAY]);
+  const idx = idx0 || {}, day = day0?.d === today ? day0 : { d: today, n: 0 };
+  if (day.n >= FWD_PER_DAY) return { got: 0, left: 0, capped: true };
+  const cut = Date.now() - FWD_STALE * 864e5;
+  const need = (await targetsOf(m)).map(x => x.code).filter(c => !idx[c] || Date.parse(idx[c]) < cut);
+  let got = 0, tried = 0, blocked = false;
+  for (const code of need) {
+    if (Date.now() - t0 > budgetMs || day.n >= FWD_PER_DAY) break;
+    tried++;
+    const rec = await store.get(KEY(m, code));
+    if (!rec) continue;                                                          // 재무가 아직 없으면 catchUp 이 모은다
+    let fwd;
+    try { fwd = await fetchForward(code); got++; }
+    catch (e) {
+      if (isBlock(e)) { await store.set(FWD_BLOCK, { at: new Date().toISOString(), why: e.message }, 6 * 3600); blocked = true; break; }
+      fwd = { ok: false, why: e.message.slice(0, 80), at: new Date().toISOString() };
+    }
+    rec.fwd = fwd;
+    await store.set(KEY(m, code), rec);
+    idx[code] = new Date().toISOString(); day.n++;
+    await sleep(FWD_GAP);
+  }
+  await store.set(FWD_IDX, idx); await store.set(FWD_DAY, day);
+  return { got, tried, left: blocked ? 0 : Math.max(0, Math.min(need.length - tried, FWD_PER_DAY - day.n)), blocked, ms: Date.now() - t0 };
 }
 
 /** 바퀴 사이 쉬는 동안 — 아직 재료가 없는 종목(새로 추가한 내 목록·AI 밸류체인 종목)만 바로 모으고 점수를 다시 낸다.
