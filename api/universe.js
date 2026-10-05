@@ -10,7 +10,7 @@
 //   POST {m, step:'scan'}    → 배치 스캔 1회 (화면에서 수동 진행), {step:'members', force} → 구성종목 갱신
 import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
-import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge, fillMissing } from '../lib/universe.js';
+import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge, fillMissing, ensureRecent } from '../lib/universe.js';
 import { JUDGE_REV } from '../lib/engine2.js';
 import { AI_SETS } from '../lib/aiset.js';
 import { THEMES, GROUPS, themeOf, ovrKey, loadOvr, secOvrKey, loadSecOvr, THEME_REV } from '../lib/themes.js';
@@ -95,6 +95,7 @@ export default async function handler(req, res) {
       if (!(await store.setNX(`lock:rejudge:${m}`, 1, 280))) return;
       try { await rejudge(m); } catch (e) { console.error('rejudge', m, e.message); } finally { await store.del(`lock:rejudge:${m}`); }
     }));
+    await Promise.all(['US', 'KR'].map(m => ensureRecent(m).catch(e => console.error('recent', m, e.message))));   // 최근 5거래일 국면 변경 (예전 결과 보강)
     const [us, kr, mem, acc, indUS, indKR] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy'), store.get('mkt:ind:US'), store.get('mkt:ind:KR')]);
     const counts = Object.fromEntries(Object.entries(mem?.sets || {}).map(([k, v]) => [k, v.length]));
     counts.AIX = AI_SETS.US.items.length; counts.AIK = AI_SETS.KR.items.length;              // AI 밸류체인 추가 종목 (lib/aiset.js)
