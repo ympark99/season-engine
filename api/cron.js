@@ -1,12 +1,14 @@
 // GET /api/cron?m=KR|US         — Vercel Cron 이 매일 호출 (vercel.json). 자동 갱신 파이프라인 한 조각
 // GET /api/cron?op=step&m=KR     — 같은 일. 예비 크론이 부르거나 화면에서 수동 진행(&budget=초)
 // GET /api/meta                  — 엔진 탭: 현재 파라미터·확률 보정 (rewrite → ?op=meta)
+// GET /api/cron?op=est&t=COHR    — 미국 컨센서스 한 종목 바로 조회 (연결 시험용)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
 import { send, isAdmin, engineState } from '../lib/service.js';
 import { step, pipeState } from '../lib/pipeline.js';
 import { selfBase, chainLog } from '../lib/selfcall.js';
+import { searchId, fetchEstimates, summarize } from '../lib/estimates.js';
 
 export default async function handler(req, res) {
   try {
@@ -20,6 +22,15 @@ export default async function handler(req, res) {
         krFundHeaders: !!process.env.KR_FUND_HEADERS,
         pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null,
       });
+    }
+    if (op === 'est') {                                                                  // 미국 컨센서스 연결 시험 — 한 종목만
+      const t = String(req.query.t || 'COHR').toUpperCase().slice(0, 10), t0 = Date.now();
+      try {
+        const id = await searchId(t);
+        if (!id) return send(res, 200, { ok: false, t, step: 'id', ms: Date.now() - t0 });
+        const ys = (await fetchEstimates([id]))[id] || [], bars = await store.get(store.barsKey('US', t));
+        return send(res, 200, { ok: true, t, id, ms: Date.now() - t0, summary: summarize(ys, bars?.c?.at(-1) ?? null) });
+      } catch (e) { return send(res, 200, { ok: false, t, error: e.message, status: e.status ?? null, body: e.body ?? null, ms: Date.now() - t0 }); }
     }
     if (op === 'meta') {
       return send(res, 200, await engineState());
