@@ -46,8 +46,8 @@ export default async function handler(req, res) {
       const m = mOf(req.query.rot);
       let [rot, daily] = await store.mget([`mkt:rot:${m}`, `univ:daily:${m}`]);
       // 일봉이 없는 유니버스 종목(새로 넣은 섹터 종목)을 먼저 채우고, 채운 게 있으면 4분면을 다시 계산
-      if (!(await store.get(`univ:fillok:${m}`)) && await store.setNX(`lock:fill:${m}`, 1, 280)) {
-        try { const f = await fillMissing(m, 150000); if (f.got) rot = null; if (!f.left) await store.set(`univ:fillok:${m}`, 1, 6 * 3600); } catch (e) { console.error('fill', m, e.message); } finally { await store.del(`lock:fill:${m}`); }
+      if (!(await store.get(`univ:fillok:${m}:${AI_SETS[m].items.length}`)) && await store.setNX(`lock:fill:${m}`, 1, 280)) {
+        try { const f = await fillMissing(m, 150000); if (f.got) rot = null; if (!f.left) await store.set(`univ:fillok:${m}:${AI_SETS[m].items.length}`, 1, 6 * 3600); } catch (e) { console.error('fill', m, e.message); } finally { await store.del(`lock:fill:${m}`); }
       }
       if (!rot || rot.rev !== THEME_REV || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
       if (!rot) return send(res, 200, { m, empty: true });
