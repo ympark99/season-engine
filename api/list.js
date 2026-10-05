@@ -2,6 +2,7 @@
 // POST /api/add          — 종목 추가 (관리자). vercel.json rewrite 로 ?op=add 로 들어옴
 // POST /api/remove       — 종목 삭제 (관리자). ?op=remove
 // GET  /api/list?op=mcap — 시가총액 재료 (상장주식수·환율)
+// POST /api/list?op=fav  — 즐겨찾기 저장 (관리자)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
 import { engineState, row, send, refresh, isAdmin, body, KEEP } from '../lib/service.js';
@@ -90,9 +91,22 @@ async function list(req, res) {
   for (const s of stocks) for (const e of s.events || []) events.push({ m: s.m, code: s.code, name: s.name, ...e });
   stocks.forEach(s => delete s.events);
   events.sort((a, b) => (a.d < b.d ? 1 : -1));
-  send(res, 200, { now: new Date().toISOString(), engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
+  const fav = (await store.get(FAV_KEY))?.keys || [];
+  send(res, 200, { now: new Date().toISOString(), fav, engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
     fund: { US: fUS ? { at: fUS.at, n: fUS.n } : null, KR: fKR ? { at: fKR.at, n: fKR.n } : null },
     mcap: { US: shUS ? { fx: shUS.fx, fxAt: shUS.fxAt, at: shUS.at } : null, KR: shKR ? { at: shKR.at } : null } });
+}
+
+/** POST /api/list?op=fav {k:'US:NVDA', on} 또는 {add:[...]} — 즐겨찾기 (서버 저장, 어느 브라우저에서나 같음) */
+const FAV_KEY = 'fav';
+async function fav(req, res) {
+  const b = await body(req), cur = new Set((await store.get(FAV_KEY))?.keys || []);
+  const ok = k => typeof k === 'string' && /^(US|KR):[0-9A-Z.\-]{1,12}$/.test(k);
+  if (ok(b.k)) { if (b.on) cur.add(b.k); else cur.delete(b.k); }
+  for (const k of Array.isArray(b.add) ? b.add.slice(0, 200) : []) if (ok(k)) cur.add(k);
+  const keys = [...cur];
+  await store.set(FAV_KEY, { keys, at: new Date().toISOString() });
+  send(res, 200, { fav: keys });
 }
 
 /** GET /api/list?op=mcap&m=US — 펀더멘털 표용 상장주식수·환율·최근 종가. ?code=CRWD 를 붙이면 KIS 원응답 일부로 조회 확인 (공개 시세 정보만) */
@@ -112,6 +126,11 @@ export default async function handler(req, res) {
   try {
     const op = req.query.op;
     if (op === 'mcap') return await mcap(req, res);
+    if (op === 'fav') {
+      if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
+      if (!isAdmin(req)) return send(res, 401, { error: '관리자 키가 필요해' });
+      return fav(req, res);
+    }
     if (op === 'add' || op === 'remove') {
       if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });
       if (!isAdmin(req)) return send(res, 401, { error: '관리자 키가 필요해' });
