@@ -125,6 +125,22 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .stance.s-trade{background:#eaf1fd;color:#1b4b9c;border-color:#c6d8f7}
 .stance.s-watch{background:#fdf6e3;color:#8a6116;border-color:#f0e0b0}
 .sig.sig-dip{background:#eaf1fd;color:#1b4b9c;border:1px solid #c6d8f7;margin:0 6px 0 0}
+.fav{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;color:var(--muted);padding:2px}
+.fav[aria-pressed="true"]{color:var(--gold)}
+.fav:hover{color:var(--gold)}
+td.fv{padding-right:0;width:1%}
+.favchip{font-size:13px}
+.favchip[aria-pressed="true"]{color:var(--gold-ink)}
+.sn{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.sn .pb{font-weight:400;color:var(--ink2);font-size:13px}
+.sn .sig{margin-left:0}
+.fit{font-size:11px;margin-top:4px;font-weight:600}
+.fit-3{color:var(--summer-ink)}.fit-2{color:var(--muted)}.fit-1{color:var(--winter-ink)}.fit-0{color:var(--muted);font-weight:500}
+.mcard.good{border:1.5px solid color-mix(in srgb,var(--summer) 70%,transparent);background:color-mix(in srgb,var(--summer) 10%,var(--card))}
+.mcard.bad{border:1.5px solid color-mix(in srgb,var(--winter) 75%,transparent);background:color-mix(in srgb,var(--winter) 10%,var(--card))}
+.mleg{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px}
+.mleg.good{border:1.5px solid var(--summer);background:color-mix(in srgb,var(--summer) 18%,transparent)}
+.mleg.bad{border:1.5px solid var(--winter);background:color-mix(in srgb,var(--winter) 18%,transparent)}
 .thed{border:0;background:none;color:var(--muted);cursor:pointer;font-size:12px;padding:0 0 0 5px;line-height:1}
 .thed:hover{color:var(--gold-ink)}
 .wtbar{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:600;color:var(--ink2)}
@@ -140,6 +156,14 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .wtbar input[type=range]:hover::-webkit-slider-thumb,.wtbar input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
 .wtbar .wl b{color:var(--gold-ink)}
 .feed{max-height:132px;overflow-y:auto;overscroll-behavior:contain;padding-right:4px;scrollbar-width:thin}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.three .feed .ev{grid-template-columns:44px minmax(0,1fr) auto;gap:8px}
+.three .dwell{max-height:118px;overflow-y:auto;scrollbar-width:thin;padding-right:4px}
+.three .dwell .d{grid-template-columns:minmax(60px,90px) 1fr 40px}
+.chips.sm{margin:-2px 0 8px}.chips.sm .chip{padding:2px 8px;font-size:11.5px;gap:4px}
+.chg.chg4{grid-template-columns:auto minmax(0,1fr) auto auto}
+.chg .thn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:900px){.three{grid-template-columns:1fr}}
 .stance.s-avoid{background:#f6e9ea;color:#8a1f2b;border-color:#e8c7cb}
 .act{display:inline-block;border-radius:999px;padding:3px 11px;font-size:12.5px;font-weight:700}
 .a-buy{background:var(--summer-pill);color:var(--summer-ink)}
@@ -494,22 +518,24 @@ body{margin:0}
 
   <main id="dash">
     <details class="sec" id="sec-regime">
-      <summary><span class="ico"><i>1</i></span><div><h2>시장 국면 · 레짐</h2><p id="regime-sub">지수 국면과 추적 종목의 생왕쇠사 분포</p></div><span class="chev">▾</span></summary>
-      <div class="body" id="regime"></div>
-    </details>
-
-    <details class="sec" id="sec-univ">
-      <summary><span class="ico"><i>2</i></span><div><h2>유니버스·섹터 국면</h2><p id="univ-sub">S&amp;P 500·나스닥 100 / 코스피 200·코스닥 150 전종목 — 매일 자동 판정</p></div><span class="chev">▾</span></summary>
-      <div class="body" id="univ"></div>
+      <summary><span class="ico"><i>1</i></span><div><h2>시장 국면</h2><p id="regime-sub">유니버스 전종목 분포 · 지수 국면 · 시장 지표 3종 · 섹터 순환 · 국면 바뀐 종목</p></div><span class="chev">▾</span></summary>
+      <div class="body">
+        <div id="udist"></div>
+        <div id="regime"></div>
+        <div class="regsub" style="margin-top:18px">시장 지표 3종 <span class="sub" id="ind-sub" style="font-weight:500"></span></div>
+        <div id="ind"></div>
+        <div id="univ" style="margin-top:18px"></div>
+      </div>
     </details>
 
     <details class="sec" id="sec-stocks">
-      <summary><span class="ico"><i>3</i></span><div><h2>종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · 내 목록 분포 · 최근 전이 · 衰 체류 · 종합 의견 (추세+저점 : 가치 비율 조절)</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>2</i></span><div><h2>내 종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · 내 목록 분포 · 최근 전이 · 저점매수 시그널 · 가을 체류 · 종합 의견</p></div><span class="chev">▾</span></summary>
       <div class="body">
         <div id="mydist"></div>
-        <div class="two" style="margin:14px 0 16px">
-          <div class="box"><h3>최근 20거래일 전이</h3><div class="feed" id="feed"></div></div>
-          <div class="box"><h3>가을 체류 타이머 — 대응 창구가 얼마나 남았나</h3><div class="dwell" id="dwell"></div>
+        <div class="three" style="margin:14px 0 16px">
+          <div class="box"><h3>최근 20거래일 전이 <span class="muted" id="feedn"></span></h3><div class="chips sm" id="feedf"></div><div class="feed" id="feed"></div></div>
+          <div class="box"><h3>저점매수 시그널 (20거래일) <span class="muted" id="mydipn"></span></h3><div class="feed" id="mydip"></div></div>
+          <div class="box"><h3>가을 체류 진행중 <span class="muted" id="dwelln"></span></h3><div class="dwell" id="dwell"></div>
             <div class="legend-refs" id="dwell-ref"></div></div>
         </div>
         <div class="tools">
@@ -528,19 +554,15 @@ body{margin:0}
     </details>
 
     <details class="sec" id="sec-fund">
-      <summary><span class="ico"><i>4</i></span><div><h2>펀더멘털 — 대장 엔진</h2><p id="fund-sub">유니버스 전종목 실적·추정치 점수 (가속·성장·마진·현금·질·밸류·위험 백분위)</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>3</i></span><div><h2>펀더멘털</h2><p id="fund-sub">유니버스 전종목 실적·추정치 점수 (가속·성장·마진·현금·질·밸류·위험 백분위)</p></div><span class="chev">▾</span></summary>
       <div class="body" id="fund"></div>
     </details>
 
     <details class="sec" id="sec-macro">
-      <summary><span class="ico"><i>5</i></span><div><h2>매크로 감시 · 범주 뷰</h2><p id="macro-sub">지금 시장을 움직이는 지표(상황에 따라 매일 추가·삭제)와 현금흐름 범주별 비중 뷰</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>4</i></span><div><h2>매크로 · 시나리오</h2><p id="macro-sub">지금 시장을 움직이는 지표(상황에 따라 매일 추가·삭제)와 현금흐름 범주별 비중 뷰</p></div><span class="chev">▾</span></summary>
       <div class="body" id="macro"></div>
     </details>
 
-    <details class="sec" id="sec-ind">
-      <summary><span class="ico"><i>6</i></span><div><h2>시장 지표 3종</h2><p id="ind-sub">시장 온도 · 추세 점수 · 리스크 경보 — 우리 엔진이 유니버스 전종목을 매일 판정한 결과로 계산</p></div><span class="chev">▾</span></summary>
-      <div class="body" id="ind"></div>
-    </details>
   </main>
 
   <main id="strat" hidden>
@@ -662,7 +684,7 @@ const LS='swss-vercel-v1';
 let PREF={key:'',w:{},sort:{k:'tgt',d:-1},cat:{}};
 try{PREF=Object.assign(PREF,JSON.parse(localStorage.getItem(LS)||'{}'))}catch(e){}
 const savePrefs=()=>{try{localStorage.setItem(LS,JSON.stringify(PREF))}catch(e){}};
-/* 섹션 접힘 — 처음 접속하면 ③ 종목 국면만 열고, 그 뒤로는 네가 열고 닫은 대로 기억 */
+/* 섹션 접힘 — 처음 접속하면 ② 내 종목 국면만 열고, 그 뒤로는 네가 열고 닫은 대로 기억 */
 const SEC_DEF={'sec-stocks':true};
 document.querySelectorAll('#dash details.sec').forEach(d=>{const o=(PREF.open||{})[d.id];d.open=o==null?!!SEC_DEF[d.id]:!!o;
   d.addEventListener('toggle',()=>{PREF.open=Object.assign({},PREF.open,{[d.id]:d.open});savePrefs()})});
@@ -715,57 +737,79 @@ function renderHeader(){
 }
 
 /* ① */
-function renderRegime(){
-  $('regime-sub').textContent=`${state.m==='US'?'나스닥·S&P 500·러셀 2000':'코스피·코스닥'} 지수 국면 — 유니버스 전체는 ②, 내 목록 분포는 ③, 시장 지표는 ⑥`;
-  $('regime').innerHTML=renderIndices();
-  $('regime').querySelectorAll('.ix[data-k]').forEach(b=>b.onclick=()=>openDetail(b.dataset.k));
-  renderMyDist();
-}
-/* ③ 맨 위 — 내 목록 분포 (예전 ① 아래에 있던 것) */
-function renderMyDist(){
-  const el=$('mydist');if(!el||!D)return;
-  const R=D.regime[state.m],lab={봄:'무릎',여름:'성장',가을:'어깨',겨울:'쇠퇴'},n=R.n||1,pct=s=>100*R.cnt[s]/n;
-  el.innerHTML=`<div class="regsub">내 목록 분포 <span class="sub" style="font-weight:500">${R.n}종목</span></div><div class="regime">${SEASONS.map(s=>`<div class="rcell"><div class="k"><span class="han" style="color:var(--${KEY[s]}-ink)">${HAN[s]}</span>${s} · ${lab[s]}</div>
-    <div class="v num">${pct(s).toFixed(1)}%</div><div class="c num">${R.cnt[s]}종목 / ${R.n}</div></div>`).join('')}</div>
+const LAB={봄:'무릎',여름:'성장',가을:'어깨',겨울:'쇠퇴'};
+/* 계절 분포 카드 4개 + 막대 — 유니버스 분포(① 맨 위)와 내 목록 분포(② 맨 위)가 같은 모양 */
+function distHTML(title,cnt,n,meta){
+  const N=n||1,c=s=>cnt?.[s]||0,pct=s=>100*c(s)/N;
+  return `<div class="regsub">${title} <span class="sub" style="font-weight:500">${meta||''}</span></div><div class="regime">${SEASONS.map(s=>`<div class="rcell"><div class="k"><span class="han" style="color:var(--${KEY[s]}-ink)">${HAN[s]}</span>${s} · ${LAB[s]}</div>
+    <div class="v num">${pct(s).toFixed(1)}%</div><div class="c num">${c(s)}종목 / ${n||0}</div></div>`).join('')}</div>
     <div class="stack" aria-hidden="true">${SEASONS.map(s=>`<span style="width:${pct(s)}%;background:${col(s)}"></span>`).join('')}</div>
     <div class="stack-lbl num"><span>강세폭(봄+여름) <b style="color:var(--summer-ink)">${(pct('봄')+pct('여름')).toFixed(1)}%</b></span><span>종목 수 기준</span><span>위험폭(가을+겨울) <b style="color:var(--winter-ink)">${(pct('가을')+pct('겨울')).toFixed(1)}%</b></span></div>`;
 }
+/* 종목 표시 — 미국은 티커, 한국은 종목명 (다른 쪽은 마우스를 올리면) */
+const idSpan=(m,code,name)=>m==='US'?`<span class="c lnk" title="${esc(name||'')}" ${openAttr(m,code,name)}>${esc(code)}</span>`:`<span class="nm lnk" title="${esc(code)}" ${openAttr(m,code,name)}>${esc(name||code)}</span>`;
+/* 바뀐 계절 필터 칩 (전체·봄·여름·가을·겨울) — state[key] 에 저장 */
+function seasonChips(key,list,field){
+  const cur=state[key]||'';
+  return `<div class="chips sm" data-sf="${key}">${['',...SEASONS].map(s=>{const n=s?list.filter(x=>x[field]===s).length:list.length;
+    return `<button type="button" class="chip" data-s="${s}" aria-pressed="${cur===s}">${s?`<span class="dot" style="background:${col(s)}"></span>${s}`:'전체'} <span class="num muted">${n}</span></button>`}).join('')}</div>`;
+}
+const bindChips=(el,key,rer)=>el.querySelectorAll(`[data-sf="${key}"] button`).forEach(b=>b.onclick=e=>{e.stopPropagation();state[key]=b.dataset.s;rer()});
+
+function renderRegime(){
+  $('regime').innerHTML=renderIndices();
+  $('regime').querySelectorAll('.ix[data-k]').forEach(b=>b.onclick=()=>openDetail(b.dataset.k));
+  renderUnivDist();renderMyDist();
+}
+/* ② 맨 위 — 내 목록 분포 */
+function renderMyDist(){
+  const el=$('mydist');if(!el||!D)return;
+  const R=D.regime[state.m];
+  el.innerHTML=distHTML('내 목록 분포',R.cnt,R.n,`${R.n}종목`);
+}
+/* ① 맨 위 — 유니버스 전종목 분포 */
+function renderUnivDist(){
+  const el=$('udist');if(!el)return;
+  if(!UNIV){el.innerHTML='<div class="muted">유니버스 불러오는 중…</div>';return}
+  const U=UNIV[state.m]||{},d=U.daily,st=U.state,mem=UNIV.members||{},SN=UNIV.setName||{},keys=(UNIV.sets||{})[state.m]||[];
+  if(!d){el.innerHTML=`<div class="muted">아직 유니버스 스캔 결과가 없어. 엔진 탭 → <b>유니버스 스캔</b>을 한 번 돌리면 그 뒤로는 매일 자동으로 갱신돼.${st?` <span class="num">(진행 ${st.i}${st.done?' 완료':''})</span>`:''}${(mem.errors||[]).length?`<div class="warn" style="margin-top:8px">${esc(mem.errors.join(' / '))}</div>`:''}</div>`;return}
+  const meta=`${d.n}종목 · ${keys.map(k=>`${esc(SN[k]||k)} ${mem.counts?.[k]??'?'}`).join(' · ')} · 기준 ${d.asof} · 갱신 ${kst(d.at)}${d.rejudgedAt?' · 새 판정기로 다시 계산':''}`;
+  const warn=[d.failedN?`<span class="warn sub">조회 실패 ${d.failedN}종목</span>`:'',
+    d.lastFail&&d.lastFail.asof>d.asof?`<span class="warn sub">${esc(d.lastFail.asof)} 스캔이 ${d.lastFail.ok}/${d.lastFail.total}만 성공해서 이전 결과를 유지 중 (${esc((d.lastFail.failed[0]||{}).error||'')})</span>`:'',
+    st&&!st.done?`<span class="warn sub">스캔 진행 중 ${st.i}/${d.total}</span>`:''].filter(Boolean).join(' ');
+  el.innerHTML=distHTML('유니버스 분포',d.cnt,d.n,meta)+(warn?`<div style="margin-top:6px">${warn}</div>`:'')
+    +(Object.keys(d.bySet||{}).length?`<div class="sub" style="margin-top:6px">${Object.entries(d.bySet).map(([k,v])=>`${esc(SN[k]||k)} ${v.n}종목 · 강세폭 ${v.bull}%`).join(' · ')}</div>`:'')
+    +'<div style="height:14px"></div>';
+}
 
 function renderUniv(){
+  renderUnivDist();
   const el=$('univ');if(!el)return;
-  if(!UNIV){el.innerHTML='<div class="muted">불러오는 중…</div>';return}
-  const U=UNIV[state.m]||{},d=U.daily,st=U.state,mem=UNIV.members||{},SN=UNIV.setName||{};
-  const keys=(UNIV.sets||{})[state.m]||[];
-  const cnts=keys.map(k=>`${SN[k]||k} ${mem.counts?.[k]??'?'}`).join(' · ');
-  $('univ-sub').textContent=`${cnts||'구성종목 미수집'} — 검색 목록과 별개로 매일 자동 판정${mem.at?` · 구성종목 갱신 ${mem.at.slice(0,10)}`:''}`;
-  if(!d){
-    el.innerHTML=`<div class="muted">아직 스캔 결과가 없어. 엔진 탭 → <b>유니버스 스캔</b>을 한 번 돌리면 그 뒤로는 매일 자동으로 갱신돼.${st?` <span class="num">(진행 ${st.i}/${'?'}${st.done?' 완료':''})</span>`:''}${(mem.errors||[]).length?`<div class="warn" style="margin-top:8px">${esc(mem.errors.join(' / '))}</div>`:''}</div>`;
-    return}
-  const bar=(pct,cnt,n)=>`<div class="stack" aria-hidden="true">${SEASONS.map(s2=>`<span style="width:${pct[s2]}%;background:${col(s2)}"></span>`).join('')}</div>
-    <div class="stack-lbl num">${SEASONS.map(s2=>`<span>${HAN[s2]} ${s2} ${pct[s2]}%${cnt?` · ${cnt[s2]}`:''}</span>`).join('')}</div>`;
-  const chg=d.changes||[];
-  const dp=d.dips||[];   // 확률 10%p 변동(d.moves)은 데이터만 남기고 화면에서는 저점매수 조건 종목으로 바꿈
-  el.innerHTML=`<div class="uvhead"><span class="big num">${d.n}종목</span><span class="sub">기준 ${d.asof}${d.prevAsof?` · 직전 스캔 ${d.prevAsof} 이후`:''} · 갱신 ${kst(d.at)}${d.rejudgedAt?' · 새 판정기로 다시 계산':''}</span>
-      <span class="sub">강세폭(봄+여름) <b style="color:var(--summer-ink)">${d.bull}%</b></span>
-      ${d.failedN?`<span class="warn sub">조회 실패 ${d.failedN}종목</span>`:''}${d.lastFail&&d.lastFail.asof>d.asof?`<span class="warn sub">${esc(d.lastFail.asof)} 스캔이 ${d.lastFail.ok}/${d.lastFail.total}만 성공해서 이전 결과를 유지 중 (${esc((d.lastFail.failed[0]||{}).error||'')})</span>`:''}${st&&!st.done?`<span class="warn sub">스캔 진행 중 ${st.i}/${d.total}</span>`:''}</div>
-    ${bar(d.pct,d.cnt)}
-    <div class="rot" id="rot"></div>
-    <div class="two" style="margin-top:14px">
-      <div class="box"><h3>국면이 바뀐 종목 <span class="muted">${d.changesN||0}개 · 전환일 기준</span></h3>
-        ${chg.length?`<div class="chg">${chg.map(c=>`<span class="c">${esc(c.code)}</span><span class="nm lnk" ${openAttr(state.m,c.code,c.name)}>${esc(c.name)}</span>
-          <span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
-          :'<div class="muted">바뀐 종목 없음</div>'}
-        <div class="sub" style="margin-top:6px">종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목만 — 상세 화면의 국면 구간과 같은 기준</div></div>
-      <div class="box"><h3>저점매수 조건 종목 <span class="muted">${d.dipsN??'—'}개 · 겨울 20일+ · 20일선 −15% 이하</span></h3>
-        ${dp.length?`<div class="chg">${dp.map(c=>`<span class="c">${esc(c.code)}</span><span class="nm lnk" ${openAttr(state.m,c.code,c.name)}>${esc(c.name)}</span>
-          <span><span class="pill p-겨울">겨울 ${c.age}일</span></span><span class="num" style="color:var(--neg)">20일선 ${c.dv>0?'+':''}${c.dv}%</span>`).join('')}</div>`
-          :`<div class="muted">${d.dips?'조건 충족 종목 없음':'다음 판정 때 표시'}</div>`}
-        <div class="sub" style="margin-top:6px">20일선에서 멀리 떨어진 순 · 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 오는 날 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>
-    </div>
-    ${Object.keys(d.bySet||{}).length?`<div class="sub" style="margin-top:12px">${Object.entries(d.bySet).map(([k,v])=>`${esc(SN[k]||k)} ${v.n}종목 · 강세폭 ${v.bull}%`).join(' · ')}</div>`:''}
+  if(!UNIV){el.innerHTML='';return}
+  const d=(UNIV[state.m]||{}).daily;
+  if(!d){el.innerHTML='';return}
+  el.innerHTML=`<div class="rot" id="rot"></div>
+    <div class="two" style="margin-top:14px" id="ulists"></div>
     <details id="uall" style="margin-top:12px"${state.uopen?' open':''}><summary class="fold"><b style="font-size:14px">전종목 보기</b> <span class="sub">국면별 필터 · 이름을 누르면 상세</span></summary><div id="uallbody"><div class="muted">불러오는 중…</div></div></details>`;
+  renderUnivLists();ensureTH().then(()=>{if($('ulists'))renderUnivLists()});
   const det=$('uall');det.ontoggle=()=>{state.uopen=det.open;if(det.open)loadUnivRows()};if(det.open)loadUnivRows();
   loadRot();
+}
+/* 국면이 바뀐 종목 · 저점매수 시그널(20거래일) — 둘 다 시가총액 큰 순 (서버에서 정렬) */
+function renderUnivLists(){
+  const el=$('ulists');if(!el||!UNIV)return;
+  const d=(UNIV[state.m]||{}).daily;if(!d)return;
+  const m=state.m,chg=d.changes||[],cf=state.cf||'',cs=chg.filter(c=>!cf||c.to===cf),dp=d.dips||[];
+  const th=c=>`<span class="sub thn">${esc(thName(c)||'')}</span>`;
+  el.innerHTML=`<div class="box"><h3>국면이 바뀐 종목 <span class="muted">${d.changesN||0}개 · 시가총액 순</span></h3>${seasonChips('cf',chg,'to')}
+      ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
+        :`<div class="muted">${cf?cf+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
+      <div class="sub" style="margin-top:6px">종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목 — 상세 화면의 국면 구간과 같은 기준 · 칩 = 바뀐 계절</div></div>
+    <div class="box"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
+      ${dp.length?`<div class="chg chg4">${dp.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now||!c.d?'<span class="sig sig-dip" style="margin:0">지금 조건</span>':`<span class="sub">${c.d.slice(5).replace('-','.')}까지 ${c.days}일</span>`}</span><span class="num" style="color:var(--neg)" title="최근 20거래일 중 가장 깊었을 때 20일선 대비">최저 ${c.min??c.dv}%</span>`).join('')}</div>`
+        :`<div class="muted">${d.dips?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
+      <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>`;
+  bindChips(el,'cf',renderUnivLists);
 }
 let UROWS=null;
 async function loadUnivRows(){
@@ -799,26 +843,39 @@ function ensureTH(){const m=state.m;if(TH&&TH.m===m)return Promise.resolve(TH);i
   const p=api('/api/universe?themes='+m).then(j=>{if(j.m===state.m)TH=j;return j}).catch(()=>null);THP={m,p};return p}
 const thName=code=>TH&&TH.m===state.m?TH.map[code]||null:null;
 const stTh=S=>thName(S.code)||S.theme||null;
-const thCell=(code,sec,alt)=>{const t=thName(code)||alt||'—',f=sec&&sec!==t?sec:'',own=!!TH?.ovr?.[code];
-  return `<td class="thc"><b style="font-weight:600">${esc(t)}</b>${own?'<span class="sub" title="직접 지정한 섹터"> ·직접</span>':''}${PREF.key?`<button type="button" class="thed" data-thed="${esc(code)}" data-cur="${esc(t==='—'?'':t)}" title="섹터 지정·변경" aria-label="섹터 지정·변경">✎</button>`:''}${f?`<div class="sub" style="font-size:11px">${esc(f)}</div>`:''}</td>`};
-/* 섹터 직접 지정 — 표의 ✎ 를 누르면 그 칸이 입력칸으로 바뀐다. 목록에서 고르거나 새 이름 쓰고 엔터 (비우고 엔터 = 자동 분류로), Esc = 취소. 관리자 키 필요 */
+const thCell=(code,sec,alt)=>{const t=thName(code)||alt||'—',f=sec&&sec!==t?sec:'',own=!!TH?.ovr?.[code],sown=!!TH?.secOvr?.[code],adm=!!PREF.key;
+  return `<td class="thc"><b style="font-weight:600">${esc(t)}</b>${own?'<span class="sub" title="직접 지정한 섹터"> ·직접</span>':''}${adm?`<button type="button" class="thed" data-thed="${esc(code)}" data-cur="${esc(t==='—'?'':t)}" title="섹터 지정·변경" aria-label="섹터 지정·변경">✎</button>`:''}${f||adm?`<div class="sub" style="font-size:11px">${esc(sec||(adm?'세부 업종 없음':''))}${sown?' ·직접':''}${adm?`<button type="button" class="thed" data-seced="${esc(code)}" data-cur="${esc(sec||'')}" title="세부 업종(소분류) 지정·변경" aria-label="세부 업종 지정·변경">✎</button>`:''}</div>`:''}</td>`};
+/* 섹터·세부 업종 직접 지정 — 표의 ✎ 를 누르면 그 칸이 입력칸으로 바뀐다. 목록에서 고르거나 새 이름 쓰고 엔터 (비우고 엔터 = 자동으로), Esc = 취소. 관리자 키 필요 */
 document.addEventListener('click',e=>{
   const b=e.target.closest('.thed');if(!b)return;e.preventDefault();e.stopPropagation();
-  const td=b.closest('td'),code=b.dataset.thed,cur=b.dataset.cur||'';
+  const isSec=!!b.dataset.seced,td=b.closest('td'),code=b.dataset.seced||b.dataset.thed,cur=b.dataset.cur||'';
   let dl=$('thlist-all');if(!dl){dl=document.createElement('datalist');dl.id='thlist-all';document.body.appendChild(dl)}
-  dl.innerHTML=thOpts().map(t=>`<option value="${esc(t)}">`).join('');
-  td.innerHTML=`<input class="thin thedit" list="thlist-all" value="${esc(cur)}" placeholder="섹터 (비우면 자동)" aria-label="섹터 이름" style="width:130px">`;
+  dl.innerHTML=(isSec?[...new Set(Object.values(TH?.sec||{}).filter(Boolean))].sort():thOpts()).map(t=>`<option value="${esc(t)}">`).join('');
+  td.innerHTML=`<input class="thin thedit" list="thlist-all" value="${esc(cur)}" placeholder="${isSec?'세부 업종':'섹터'} (비우면 자동)" aria-label="${isSec?'세부 업종':'섹터'} 이름" style="width:140px">`;
   const inp=td.querySelector('input');inp.focus();inp.select();
   let done=false;const fin=async save=>{if(done)return;done=true;const v=inp.value.trim();
-    if(save&&v!==cur){td.innerHTML='<span class="muted">저장 중…</span>';await setTheme(code,v)}else rerenderTh()};
+    if(save&&v!==cur){td.innerHTML='<span class="muted">저장 중…</span>';await (isSec?setSector(code,v):setTheme(code,v))}else rerenderTh()};
   inp.onclick=ev=>ev.stopPropagation();
   inp.onkeydown=ev=>{if(ev.key==='Enter'){ev.preventDefault();fin(true)}else if(ev.key==='Escape'){ev.preventDefault();fin(false)}};
   inp.onblur=()=>setTimeout(()=>fin(true),120);
 },true);
+/* 세부 업종 저장 — 섹터 자동 분류도 이 값으로 다시 맞춰지니 섹터 표·목록을 다시 받는다 */
+async function setSector(code,sector){
+  const m=state.m;
+  try{await post('/api/universe',{m,step:'sector',code,sector});
+    TH=null;THP=null;await ensureTH();
+    if(D?.stocks?.some(x=>x.m===m&&x.code===code))await reload();
+    const fr=FD?.summary?.rows?.find(r=>r.code===code);if(fr){if(sector)fr.sector=sector;else loadFund(true)}
+    if(UROWS&&UROWS.m===m&&UROWS.rows?.[code]){UROWS.rows[code].sec=sector||UROWS.rows[code].sec;UROWS.rows[code].th=thName(code)}
+    if(ROT&&ROT.m===m&&ROT.mem){const x=ROT.mem.find(z=>z.c===code);if(x)x.th=thName(code)||'기타'}
+    toast(`${code} 세부 업종 → ${sector||'자동'}`);
+  }catch(e){toast('세부 업종 저장 실패: '+e.message)}
+  rerenderTh();
+}
 function rerenderTh(){if(D){renderFilters();renderRows()}renderFund();if($('uallbody')&&UROWS)renderUnivRows();if(ROT&&!ROT.loading)renderRot()}
 const thOpts=()=>{const xs=new Set(TH?.themes||[]);for(const v of Object.values(TH?.ovr||{}))xs.add(v);return [...xs]};
 const thSelect=(id,cur,codes,names)=>{const have=new Set(names||codes.map(c=>thName(c)).filter(Boolean));const xs=thOpts().filter(t=>have.has(t));for(const t of have)if(!xs.includes(t))xs.push(t);
-  return `<select id="${id}" aria-label="섹터 필터"><option value="">섹터 전체</option>${Object.entries(TH?.groups||{}).map(([g])=>`<option value="g:${esc(g)}"${cur==='g:'+g?' selected':''}>${esc(g)}</option>`).join('')}${xs.map(t=>`<option${cur===t?' selected':''}>${esc(t)}</option>`).join('')}</select>`};
+  return `<select id="${id}" aria-label="섹터 필터"><option value="">섹터 전체</option>${Object.entries(TH?.groups||{}).map(([g])=>`<option value="g:${esc(g)}"${cur==='g:'+g?' selected':''}>${esc(g)} 관련 전체</option>`).join('')}${xs.map(t=>`<option${cur===t?' selected':''}>${esc(t)}</option>`).join('')}</select>`};
 const thMatch=(code,f,alt)=>{if(!f)return true;const t=thName(code)||alt||null;if(f.startsWith('g:'))return (TH?.groups?.[f.slice(2)]||[]).includes(t);return t===f};
 async function loadRot(force){
   const m=state.m;
@@ -835,7 +892,8 @@ function rotAgg(){
   for(const x of R.mem){if(hide.has(x.th))continue;(by[x.th]||(by[x.th]=[])).push(x)}
   for(const [g,ts] of Object.entries(grp))by[g]=R.mem.filter(x=>ts.includes(x.th));
   const avg=(xs,k,j)=>xs.reduce((a,x)=>a+x.v[k][j],0)/xs.length;
-  return Object.entries(by).filter(([t,xs])=>t!=='기타'&&xs.length>=3).map(([t,xs])=>{
+  const only=state.rotAI?new Set([...Object.values(R.groups||{}).flat(),...Object.keys(R.groups||{})]):null;   // AI 관련 섹터만
+  return Object.entries(by).filter(([t,xs])=>t!=='기타'&&xs.length>=3&&(!only||only.has(t))).map(([t,xs])=>{
     const pts=R.U.map((u,k)=>[avg(xs,k,0)-u[0],(avg(xs,k,1)-u[1])-(avg(xs,k,2)-u[2])]),[x,y]=pts[pts.length-1];
     return {t,xs,pts,x,y,q:quadOf(x,y),n:xs.length,bull:100*xs.filter(m=>m.s<=1).length/xs.length,r60:avg(xs,3,0),r20:avg(xs,3,1),grp:!!grp[t]};
   });
@@ -864,7 +922,7 @@ function renderRot(){
     ${adm?'<div class="sub" style="margin-top:6px">섹터 칸에 목록에서 고르거나 새 이름을 쓰고 엔터 — 바로 저장되고 그림·필터에 반영돼. 비우면 자동 분류로 되돌림.</div>':''}</div>`:'';
   const nOther=R.mem.filter(x=>x.th==='기타').length;
   el.innerHTML=`<div class="rothead"><h3 style="margin:0;font-size:15px">섹터 순환 <span class="muted" style="font-weight:500">${esc((R.dates||[])[0]?.slice(5)||'')} → ${esc(R.asof?.slice(5)||'')} · ${R.n}종목 · 유니버스 평균 대비</span></h3>
-      <div class="chips"><span class="sub num" id="rqk"></span><button class="chip" id="rqin" aria-label="확대">＋ 확대</button><button class="chip" id="rqout" aria-label="축소">－</button><button class="chip" id="rqall">전체</button><button class="chip" id="rqtrail" aria-pressed="${!!state.rotTrail}">꼬리 보기</button>${Object.keys(R.groups||{}).map(g=>`<button class="chip" id="rotgrp" aria-pressed="${!!state.rotGrp}">${esc(g)}으로 보기</button>`).join('')}${adm?'<button class="chip" id="rotre">다시 계산</button>':''}</div></div>
+      <div class="chips"><span class="sub num" id="rqk"></span><button class="chip" id="rqin" aria-label="확대">＋ 확대</button><button class="chip" id="rqout" aria-label="축소">－</button><button class="chip" id="rqall">전체</button><button class="chip" id="rqtrail" aria-pressed="${!!state.rotTrail}">꼬리 보기</button>${Object.keys(R.groups||{}).length?`<button class="chip" id="rotai" aria-pressed="${!!state.rotAI}">${esc(Object.keys(R.groups)[0])}만 보기</button><button class="chip" id="rotgrp" aria-pressed="${!!state.rotGrp}">${esc(Object.keys(R.groups)[0])} 묶어서 보기</button>`:''}${adm?'<button class="chip" id="rotre">다시 계산</button>':''}</div></div>
     <div class="rotwrap"><div>${svg}</div>${tbl}</div>
     <div class="sub" style="margin-top:6px">가로 = 최근 60일 섹터 평균 수익 − 유니버스 평균 · 세로(탄력) = 최근 20일 초과수익 − 그 전 20일 초과수익 · 점 크기 = 봄+여름 종목 비율 · 꼬리 = 3주 전 → 오늘 (1주 간격, 고른 섹터는 항상 표시) · 3종목 이상 섹터만${nOther?` · 기타 ${nOther}종목 제외`:''} · 점이나 줄을 누르면 종목<br><span id="rqhid"></span>확대: ＋·－ 버튼, 더블클릭, Ctrl(⌘)+휠·트랙패드 핀치 · 확대한 뒤 끌어서 이동 · 칸 이름(주도·둔화…)을 누르면 그 칸만 확대</div>
     ${det}${adm?`<datalist id="thlist">${thOpts().map(t=>`<option value="${esc(t)}">`).join('')}</datalist>`:''}`;
@@ -872,6 +930,7 @@ function renderRot(){
   drawRot();bindRot();
   if($('rotx'))$('rotx').onclick=()=>{state.rotSel=null;renderRot()};
   if($('rotgrp'))$('rotgrp').onclick=()=>{state.rotGrp=!state.rotGrp;state.rotSel=null;state.rotView=null;renderRot()};
+  if($('rotai'))$('rotai').onclick=()=>{state.rotAI=!state.rotAI;state.rotSel=null;state.rotView=null;renderRot()};
   if($('rotre'))$('rotre').onclick=()=>loadRot(true);
   el.querySelectorAll('[data-thc]').forEach(i=>i.onchange=()=>setTheme(i.dataset.thc,i.value.trim()));
 }
@@ -1005,26 +1064,32 @@ async function loadMarket(){
 const SEASON_ORD={봄:0,여름:1,가을:2,겨울:3};
 const ACT_ORD={'추가 매수':0,'매수':1,'신규 매수':2,'보유':3,'진입 검토':4,'보유 후보':5,'보류 · 범주 Under':6,'비중 축소':7,'대기':8,'관망':9,'전량 정리':10};
 /* 표 열 — off:1 은 화면에서 뺀 열 (Action·고점 대비·최근 120일·범주·목표·현재비중). 로직(actionOf·catOf·W·mini)은 남겨 둠 — off 를 지우면 다시 보임 */
+/* sortOnly:1 = 표에는 따로 칸이 없지만 정렬 목록에는 있음 (확률은 국면 칸 안에 같이 표시) */
 const COLS=[
-  {k:'season',t:'국면',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},
+  {k:'fav',t:'<span aria-label="즐겨찾기">★</span>',v:S=>isFav(S)?0:1},
+  {k:'season',t:'국면 · 확률',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},
   {k:'id',t:'종목',v:S=>idOf(S),str:1},{k:'sector',t:'섹터',v:S=>stTh(S)||'힣',str:1},
-  {k:'prob',t:'확률',v:S=>S.prob??-1,r:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
+  {k:'prob',t:'확률',v:S=>S.prob??-1,r:1,sortOnly:1},{k:'fit',t:'계절 적합도',v:S=>S.fit?.grade??-1,sortOnly:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99,off:1},
   {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1,r:1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
   {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1,off:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:'spark',t:'최근 120일',off:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1,off:1},
   {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1,off:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1,off:1},{k:'rm',t:''}
 ];
-const SORTABLE=c=>c.v&&c.k!=='rm';
+const SORTABLE=c=>c.v&&c.k!=='rm'&&c.k!=='fav';
+/* 즐겨찾기 — 이 브라우저에 저장 (PREF.fav = {'US:NVDA':1}) */
+const isFav=S=>!!(PREF.fav&&PREF.fav[K(S)]);
+function toggleFav(k){PREF.fav=PREF.fav||{};if(PREF.fav[k])delete PREF.fav[k];else PREF.fav[k]=1;savePrefs();renderFilters();renderRows()}
 /* 열 너비 목표(%) — 표가 넓을 때 남는 폭이 긴 글자 열(섹터·종합 의견)에만 몰리지 않게. 합 100 기준, 숨긴 열은 빠진 만큼 비례로 늘어남 */
-const CW={season:8,id:8,sector:14,prob:11,ps5:6,age:6,action:9,stance:12,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
+const CW={fav:3,season:13,id:8,sector:14,prob:11,ps5:6,age:6,action:9,stance:12,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
 /* 시가총액 — 원화. 1조 이상은 조(소수 둘째 자리까지), 미만은 억 */
 const capFmt=v=>{if(v==null||!(v>0))return '—';if(v>=1e12)return `${(+(v/1e12).toFixed(2)).toLocaleString('ko-KR')}조`;return `${Math.round(v/1e8).toLocaleString('ko-KR')}억`};
 const hasMC=()=>!!(D&&D.stocks&&D.stocks.some(s=>s.m===state.m&&s.mcap>0));
-const cols=()=>COLS.filter(c=>!c.off&&(!c.hide||!c.hide()));
+const cols=()=>COLS.filter(c=>!c.off&&!c.sortOnly&&(!c.hide||!c.hide()));
+const sortCols=()=>COLS.filter(c=>!c.off&&SORTABLE(c)&&(!c.hide||!c.hide()));
 /* 종목 표시 — 미국은 티커만, 한국은 종목명만 (다른 쪽은 마우스를 올리면 보임) */
 const idOf=S=>S.m==='KR'?(S.name||S.code):S.code;
 const idCell=S=>S.m==='KR'?`<td class="name" title="${esc(S.code)}">${esc(S.name||S.code)}</td>`:`<td class="code" title="${esc(S.name||'')}">${esc(S.code)}</td>`;
-function normSort(){if(PREF.sort&&(PREF.sort.k==='code'||PREF.sort.k==='name'))PREF.sort={k:'id',d:1};if(!cols().some(c=>c.k===PREF.sort?.k&&SORTABLE(c)))PREF.sort={k:'stance',d:-1}}
+function normSort(){if(PREF.sort&&(PREF.sort.k==='code'||PREF.sort.k==='name'))PREF.sort={k:'id',d:1};if(!sortCols().some(c=>c.k===PREF.sort?.k))PREF.sort={k:'stance',d:-1}}
 function mini(S){
   const n=S.ribbon.length;let out='',a=0;
   for(let t=1;t<=n;t++){if(t===n||S.ribbon[t]!==S.ribbon[a]){out+=`<rect x="${a}" y="0" width="${t-a}" height="14" style="fill:${col(SEASONS[+S.ribbon[a]])}"/>`;a=t}}
@@ -1069,6 +1134,8 @@ function judge(b,wT){
 const vwOf=v=>v&&v.base?{...v,...judge(v.base,wTrend()),w:wTrend()}:v;
 const vw=S=>vwOf(S.view);
 function sc(x){return x==null?'<span class="muted">—</span>':`<b>${x}</b>`}
+/* 계절 적합도 — 상세 화면 맨 위 태그와 같은 판정 (계절 잘 맞음 · 보통 · 안 맞음 · 표본 부족) */
+const fitTag=f=>f?`<div class="fit fit-${f.grade}" title="${esc(f.why||'')}">${esc(f.label)}</div>`:'';
 const dipTag=d=>d?`<span class="sig sig-dip" title="겨울 ${d.age}일째 · 20일선 대비 ${d.dev20}% — 겨울 20일+ · 20일선 −15% 이하">저점매수</span>`:'';
 function vcells(S){
   const v=vw(S);
@@ -1086,8 +1153,9 @@ function renderFilters(){
   normSort();
   const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
   const held=visible().filter(s=>W(s.code).cur>0).length;
-  $('filters').innerHTML=['전체',...SEASONS].map(f=>`<button class="chip" data-f="${f}" aria-pressed="${state.filter===f}">${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='보유'?held:cnt(f)}</span></button>`).join('')
-    +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${cols().filter(SORTABLE).map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
+  const nfav=visible().filter(isFav).length;
+  $('filters').innerHTML=['전체','★',...SEASONS].map(f=>`<button class="chip${f==='★'?' favchip':''}" data-f="${f}" aria-pressed="${state.filter===f}"${f==='★'?' aria-label="즐겨찾기만" title="즐겨찾기만"':''}>${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='★'?nfav:f==='보유'?held:cnt(f)}</span></button>`).join('')
+    +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${sortCols().map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
     +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`
     +thSelect('sth',state.sth||'',[],[...new Set(visible().map(stTh).filter(Boolean))])+wtBar();
   $('sortk').onchange=e=>{const c=COLS.find(x=>x.k===e.target.value);PREF.sort={k:c.k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()};
@@ -1106,18 +1174,19 @@ function renderHead(){
 function renderRows(flash){
   normSort();
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m),MC=hasMC(),NC=cols().length;
-  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme));
+  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='★'?isFav(s):state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
   const rm=S=>`<td><button class="rm" data-m="${S.m}" data-rm="${esc(S.code)}" aria-label="${esc(S.name)} 삭제" title="목록에서 삭제">✕</button></td>`;
   const CS=cols(),iId=CS.findIndex(c=>c.k==='id');
   const pre=k=>k>0?`<td colspan="${k}"></td>`:'';            // 종목 칸 왼쪽(국면) 자리 채움
-  const html=busy.map(b=>`<tr>${pre(iId)}${idCell(b)}<td colspan="${NC-iId-1}" class="muted">KIS에서 5년치 일봉 조회·판정 중…</td></tr>`).join('')+
+  const html=busy.map(b=>`<tr>${pre(iId)}${idCell(b)}<td colspan="${NC-iId-1}" class="muted">KIS에서 5년치 일봉 조회·판정 중… (펀더멘털이 없으면 같이 모아서 조금 더 걸려)</td></tr>`).join('')+
     list.map(S=>{
       if(!ok(S))return `<tr>${pre(iId)}${idCell(S)}<td colspan="${NC-iId-2}" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
       const A=actionOf(S),V=vcells(S),cell={
-        season:`<td><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span></td>`,
+        fav:`<td class="fv"><button type="button" class="fav" data-fav="${K(S)}" aria-pressed="${isFav(S)}" aria-label="${esc(S.name||S.code)} 즐겨찾기" title="즐겨찾기">${isFav(S)?'★':'☆'}</button></td>`,
+        season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span><span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</div>${fitTag(S.fit)}</td>`,
         id:idCell(S),sector:thCell(S.code,S.sector,S.theme),
         prob:`<td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>`,
         ps5:`<td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>`,
@@ -1132,7 +1201,8 @@ function renderRows(flash){
       return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>${CS.map(c=>cell[c.k]||'<td></td>').join('')}</tr>`}).join('');
   $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="${NC}" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
     :`<tr><td colspan="${NC}" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
-  $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm,.thed,select'))return;openDetail(tr.dataset.k)});
+  $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm,.thed,select,.fav'))return;openDetail(tr.dataset.k)});
+  $('rows').querySelectorAll('.fav').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFav(b.dataset.fav)});
   $('rows').querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();removeStock(b.dataset.m,b.dataset.rm)});
   $('rows').querySelectorAll('.wt-in').forEach(inp=>{inp.onclick=e=>e.stopPropagation();
     inp.onchange=()=>{const v=parseFloat(inp.value);const w={...W(inp.dataset.c)};w[inp.dataset.k]=isFinite(v)&&v>0?Math.min(100,v):0;PREF.w[inp.dataset.c]=w;savePrefs();renderRows()}});
@@ -1177,6 +1247,7 @@ async function seed(){
 
 /* 검색 — KIS 종목 마스터(빌드 때 생성) */
 const q=$('q'),dd=$('dd');let hl=-1,res=[];
+const inMyList=c=>!!D?.stocks?.some(s=>s.m===c.m&&s.code===c.code);
 const norm=s=>s.toLowerCase().replace(/\s+/g,'');
 async function loadMaster(){if(MASTER)return;try{const j=await (await fetch('data/master.json')).json();MASTER_SRC=j.source;MASTER=j.rows.map(r=>r[0]==='KR'?{m:'KR',code:r[1],name:r[2],excd:null,ko:'',tag:r[4]||''}:{m:'US',code:r[1],name:r[2],excd:r[3],ko:r[4]||'',tag:''})}catch(e){MASTER=[]}}
 async function showDD(){
@@ -1189,7 +1260,7 @@ async function showDD(){
     if(/^[0-9]{6}$/.test(up))res.push({m:'KR',code:up,name:up,excd:null,manual:1});
     else if(/^[A-Z][A-Z.\-]{0,9}$/.test(up))res.push({m:'US',code:up,name:up,excd:null,manual:1});
   }
-  const inList=c=>!!BYKEY[`${c.m}:${c.code}`];
+  const inList=inMyList;   // BYKEY 는 상세를 본 종목도 들어가서 '추가됨'으로 잘못 보였음 — 실제 내 목록으로 판단
   hl=res.findIndex(r=>!inList(r));
   dd.innerHTML=res.length?res.map((c,i)=>{const got=inList(c);return `<button type="button" role="option" data-i="${i}" ${got?'disabled':''} class="${i===hl?'hl':''}"><b>${esc(c.code)}</b><span>${c.manual?'<span class="muted">코드로 직접 조회</span>':esc(c.name)}${c.ko&&c.ko!==c.name?` <span class="muted">${esc(c.ko)}</span>`:''}${c.tag?` <span class="tag t-mid">${esc(c.tag)}</span>`:''} <span class="muted">· ${c.m==='US'?'미국'+(c.excd?' '+c.excd:''):'한국'}</span></span><span class="add">${got?'추가됨':'조회+추가'}</span></button>`}).join('')
     :`<div class="empty">‘${esc(raw)}’ 없음</div>`;
@@ -1200,7 +1271,7 @@ async function showDD(){
 function pick(c){q.value='';dd.hidden=true;addItems([{m:c.m,code:c.code,name:c.name,excd:c.excd}])}
 q.addEventListener('input',showDD);q.addEventListener('focus',()=>{loadMaster();if(q.value)showDD()});
 q.addEventListener('keydown',e=>{
-  const opts=res.map((r,i)=>i).filter(i=>!BYKEY[`${res[i].m}:${res[i].code}`]);
+  const opts=res.map((r,i)=>i).filter(i=>!inMyList(res[i]));
   if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!opts.length)return;let k=opts.indexOf(hl);k=e.key==='ArrowDown'?Math.min(opts.length-1,k+1):Math.max(0,k-1);hl=opts[k];dd.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('hl',i===hl))}
   else if(e.key==='Enter'){e.preventDefault();if(hl>=0&&res[hl])pick(res[hl])}
   else if(e.key==='Escape')dd.hidden=true;
@@ -1209,12 +1280,21 @@ document.addEventListener('click',e=>{if(!e.target.closest('.search'))dd.hidden=
 
 /* ③ */
 function renderFlow(){
-  const ev=D.events.filter(e=>e.m===state.m);
+  const ev=D.events.filter(e=>e.m===state.m),ff=state.ff||'',evs=ev.filter(e=>!ff||e.to===ff);
   const nm=x=>x.m==='US'?`<b title="${esc(x.name||'')}">${esc(x.code)}</b>`:`<b title="${esc(x.code)}">${esc(x.name||x.code)}</b>`;   // 미국은 티커
-  $('feed').innerHTML=ev.length?ev.slice(0,60).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
-    <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span></span></div>`).join(''):'<div class="muted">최근 20거래일 전이 없음</div>';
+  $('feedn').textContent=`${ev.length}건`;
+  $('feedf').innerHTML=seasonChips('ff',ev,'to');bindChips($('feedf'),'ff',renderFlow);
+  $('feed').innerHTML=evs.length?evs.slice(0,80).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
+    <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span></span></div>`).join(''):`<div class="muted">${ff?ff+'(으)로 바뀐 전이 없음':'최근 20거래일 전이 없음'}</div>`;
+  // 저점매수 시그널 — 최근 20거래일 안에 겨울 20일+ · 20일선 −15% 이하가 나온 내 종목
+  const md=visible().filter(s=>ok(s)&&s.dip20).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
+  $('mydipn').textContent=`${md.length}종목`;
+  $('mydip').innerHTML=md.length?md.map(S=>`<div class="ev"><span class="num muted">${S.dip20.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
+    <span>${S.dip?'<span class="sig sig-dip" style="margin:0">지금 조건</span> ':''}<span class="num" style="color:var(--neg)" title="20거래일 중 ${S.dip20.n}일 조건 · 가장 깊었을 때 20일선 대비">${S.dip20.dev20}%</span></span></div>`).join('')
+    :'<div class="muted">최근 20거래일 시그널 없음 — 겨울 20거래일+ · 20일선 −15% 이하</div>';
   const au=visible().filter(s=>s.season==='가을').sort((a,b)=>b.age-a.age),MAX=30;
   const avg=UNIV?.accuracy?.dwell?.['가을']??null;
+  $('dwelln').textContent=`${au.length}종목`;
   $('dwell-ref').innerHTML=avg!=null?`<span>┃ 유니버스 실측 가을 평균 ${avg}td${UNIV.accuracy.m?` (${UNIV.accuracy.m==='US'?'미국':'한국'} 표본)`:''}</span>`:'<span>유니버스 실측 평균은 첫 신뢰도 측정 뒤 표시</span>';
   $('dwell').innerHTML=au.length?au.map(S=>`<div class="d"><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
     <div class="track"><div class="fill" style="width:${Math.min(100,S.age/MAX*100)}%"></div>${avg!=null?`<div class="ref" style="left:${Math.min(100,avg/MAX*100)}%"></div>`:''}</div>
@@ -1232,9 +1312,10 @@ function renderMacro(){
   const seg=`<div class="mseg">${[['ALL',`전체 ${M.watch.length}`],['US',`미국 ${nUS}`],['KR',`한국 ${nKR}`]].map(([k,t])=>
     `<button type="button" data-mflag="${k}" aria-pressed="${MF===k}">${t}</button>`).join('')}</div>`;
   const flag=x=>`<span class="mflag ${mof(x)}">${mlbl[mof(x)]}</span>`;
-  $('macro').innerHTML=`${seg}<div class="macro-grid">${pick(M.watch).map(w=>`<div class="mcard"><div class="k"><span>${flag(w)} ${esc(w.name)}</span><span class="tag t-mid">${esc(w.status)}</span></div>
+  $('macro').innerHTML=`${seg}<div class="macro-grid">${pick(M.watch).map(w=>`<div class="mcard${w.signal==='good'?' good':w.signal==='bad'?' bad':''}"><div class="k"><span>${flag(w)} ${esc(w.name)}</span><span class="tag ${w.signal==='good'?'t-low':w.signal==='bad'?'t-crit':'t-mid'}">${esc(w.status)}</span></div>
       <div class="v num">${w.value==null?'—':(w.unit==='$'?'$':'')+w.value+(w.unit&&w.unit!=='$'?`<small>${esc(w.unit)}</small>`:'')} <small>${esc(w.chg||'')}</small></div>
       <div class="c">${esc(w.check)}</div>${w.if?`<div class="if">→ ${esc(w.if)}</div>`:''}${w.why?`<div class="if">왜 보나: ${esc(w.why)}</div>`:''}<div class="if num">기준 ${esc(w.asof||'')}${w.since?` · ${esc(w.since)}부터 감시`:''}</div></div>`).join('')}</div>
+    <div class="sub" style="margin-top:8px"><span class="mleg good"></span> 조건 충족 · 좋은 신호 &nbsp; <span class="mleg bad"></span> 조건 충족 · 나쁜 신호 &nbsp; 테두리 없음 = 아직 미충족·중립</div>
     ${(M.retired||[]).length?`<div class="retired">최근 감시에서 뺀 지표 — ${M.retired.slice(0,6).map(r=>`${esc(r.name)} <span class="num">(${esc(r.d||'')})</span>: ${esc(r.why||'')}`).join(' · ')}</div>`:''}
     ${M.explain?`<div class="box" style="margin-top:14px"><h3>${esc(M.explain.title)}</h3><div class="explain">${M.explain.body.map(([n,t,d])=>`<b>${esc(n)}</b><span><b style="color:var(--ink)">${esc(t)}</b></span><span class="dsc">${esc(d)}</span>`).join('')}</div><div class="sub" style="margin-top:8px">${esc(M.explain.caveat)}</div></div>`:''}
     <div class="two" style="margin-top:14px">
@@ -1321,7 +1402,7 @@ function univOpsCard(UV){
     return `${m==='US'?'미국':'한국'} — ${st?`진행 ${st.i}/${d?d.total:'?'}${st.done?' <b>완료</b>':' 진행 중'} (${kst(st.updatedAt||st.startedAt)})`:'스캔 기록 없음'}${d?` · ${d.asof} 분포 生${d.pct['봄']} 旺${d.pct['여름']} 衰${d.pct['가을']} 死${d.pct['겨울']} · 변경 ${d.changesN}종목`:''}${st&&st.failed&&st.failed.length?` · <span class="warn">실패 ${st.failed.length}</span>`:''}`};
   const c=UV?.members?.counts||{};
   return `<section class="card"><h2>유니버스 전종목 스캔</h2>
-    <p class="lead">S&amp;P 500·나스닥 100·코스피 200·코스닥 150 구성종목을 매일 전부 판정해. 내 목록(검색 추가)과는 따로 돌고, 결과는 대시보드 ②에 분포와 '오늘 바뀐 종목'으로 나와.
+    <p class="lead">S&amp;P 500·나스닥 100·코스피 200·코스닥 150 구성종목을 매일 전부 판정해. 내 목록(검색 추가)과는 따로 돌고, 결과는 대시보드 ① 시장 국면에 분포와 '국면 바뀐 종목'으로 나와.
       구성종목 ${Object.entries(c).map(([k,v])=>`${k} ${v}`).join(' · ')||'미수집'}${(UV?.members?.errors||[]).length?` <span class="warn">${esc(UV.members.errors.join(' / '))}</span>`:''}</p>
     <div class="ops"><button class="pbtn" id="scanUS" aria-pressed="true">미국 스캔</button><button class="pbtn" id="scanKR" aria-pressed="true">한국 스캔</button>
       <button class="pbtn" id="memBtn">구성종목 갱신</button><span class="sub" id="scanmsg"></span></div>
@@ -1557,11 +1638,11 @@ function drawFundBlock(j,S){
   const pc=v=>v==null?'—':(v>0?'+':'')+v+'%';
   el.innerHTML=`${V?`<h4>종합 의견 · <span class="stance s-${esc(V.tone)}">${esc(V.stance)}</span> <span class="sub">종합 ${V.combined??'—'} = 추세+저점 ${V.trend.score??'—'}${V.trend.bonus?` (저점 가점 +${V.trend.bonus})`:''} · 가치 ${V.value.score??'—'} · 비율 ${Math.round((V.w??0.7)*100)}:${100-Math.round((V.w??0.7)*100)}</span>${dipTag(V.trend.dip)}</h4>
       <div class="sub" style="margin-bottom:10px">${(V.why||[]).map(esc).join(' · ')}${V.volume?` · 거래량 1일 ${V.volume.vr1}배 / 5일 ${V.volume.vr5}배`:''}</div>`:''}
-    ${F?`<h4>대장 엔진 <span class="sub">점수 ${F.score} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}</span></h4>
+    ${F?`<h4>펀더멘털 <span class="sub">점수 ${F.score} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}</span></h4>
       <div class="bars">${Object.keys(NM).map(k=>`<span>${NM[k]}</span><span class="bar"><i style="width:${P[k]??0}%"></i></span><span class="num">${P[k]??'—'}</span>`).join('')}</div>
       <div class="sub" style="margin-top:8px">${F.peBasis==='trailing'?'PER(실적 기준, 추정치 없음)':'선행 PER'} ${F.fwdPe??'—'} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='KR'?` · 직전 분기(${esc(F.surQ||'—')}) 영업이익 서프라이즈 ${pc(F.surOp)} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}${F.debtRatio!=null?' · 부채비율 '+F.debtRatio+'%':''}`:''}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}`:''}</div>
       ${(F.flags||[]).length?`<div style="margin-top:6px">${F.flags.map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</div>`:''}`
-    :'<div class="sub">대장 엔진 점수 없음 — 펀더멘털 수집 대상이 아니거나 아직 수집 전</div>'}${estTable(j&&j.est)}`;
+    :'<div class="sub">펀더멘털 점수 없음 — 아직 수집 전이거나 재료를 못 받은 종목 (내 목록에 추가하면 바로 모으고, 실패하면 다음 수집 때 다시)</div>'}${estTable(j&&j.est)}`;
 }
 /* 국내 컨센서스 표 — 연간(실적·추정)과 분기(실적·다음 추정). 금액은 억원 */
 function estTable(E){
