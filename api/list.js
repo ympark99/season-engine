@@ -4,13 +4,17 @@
 // GET  /api/list?op=mcap — 시가총액 재료 (상장주식수·환율)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
-import { engineState, row, send, refresh, isAdmin, body } from '../lib/service.js';
+import { engineState, row, send, refresh, isAdmin, body, KEEP } from '../lib/service.js';
+import { analyzeV2, JUDGE_REV } from '../lib/engine2.js';
+import { historyOf } from '../lib/history.js';
+import { effectOf } from '../lib/effect.js';
 import { SEASONS } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
-import { themeOf } from '../lib/themes.js';
+import { themeOf, loadSecOvr } from '../lib/themes.js';
 import { mcapOf, sharesOf } from '../lib/mcap.js';
 import { krQuote, usQuote } from '../lib/kis.js';
+import { collectOne, scoreAll } from './fundamentals.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -27,7 +31,13 @@ async function add(req, res) {
       out.push(row(item, bars, eng));
     } catch (e) { out.push({ ...item, error: e.message }); }
   }
-  send(res, 200, { stocks: out });
+  // 펀더멘털(대장 점수) — 재료가 없으면 바로 모으고 점수를 다시 낸다. 실패해도 추가는 그대로 (다음 수집 때 다시)
+  const need = [];
+  for (const it of out.filter(x => !x.error)) if (!(await store.get(`fund:${it.m}:${it.code}`))) need.push(it);
+  const ms = new Set();
+  for (const it of need) { try { await collectOne(it.m, it.code); ms.add(it.m); } catch (e) { it.fundError = e.message.slice(0, 120); } }
+  for (const m of ms) { try { await scoreAll(m); } catch { /* 다음 수집 때 */ } }
+  send(res, 200, { stocks: out, fund: [...ms] });
 }
 
 /** POST /api/remove {m, code} — 목록에서 빼고 매일 갱신도 멈춤. 유니버스 종목이면 일봉은 남긴다 (매일 스캔이 계속 씀) */
@@ -44,22 +54,33 @@ async function list(req, res) {
   const [items, eng, cron] = await Promise.all([store.listAll(), engineState(), store.mget(['cron:KR', 'cron:US'])]);
   const bars = await store.mgetBars(items);
   const [fUS, fKR, shUS, shKR, oUS, oKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR', 'theme:ovr:US', 'theme:ovr:KR']);
-  const OVR = { US: oUS || {}, KR: oKR || {} };
+  const OVR = { US: oUS || {}, KR: oKR || {} }, SOVR = { US: await loadSecOvr('US'), KR: await loadSecOvr('KR') };
   const SH = { US: shUS, KR: shKR };
   const fund = {};
   for (const s of [fUS, fKR]) for (const r of s?.rows || []) fund[`${s.m}:${r.code}`] = r;
 
+  const fitKeys = items.map(it => `fit:${it.m}:${it.code}`), fits = await store.mget(fitKeys), fitPut = [];
   const stocks = items.map((it, i) => {
-    const r = row(it, bars[i], eng);
+    let r, A = null;
+    if (!bars[i] || bars[i].d.length < 80) r = row(it, bars[i], eng);
+    else { A = analyzeV2(bars[i], eng.params, eng.cal, KEEP); r = { ...it, ...A.summary }; }
+    // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 마지막 봉이 바뀔 때만 다시 계산
+    if (A) {
+      const fc = fits[i];
+      if (fc && fc.ld === r.lastDate && fc.rev === JUDGE_REV) r.fit = fc.fit;
+      else try { const f = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; r.fit = f ? { grade: f.grade, label: f.label, why: f.why } : null; fitPut.push([fitKeys[i], { ld: r.lastDate, rev: JUDGE_REV, fit: r.fit }]); }
+      catch { r.fit = null; }
+    }
     const f = fund[`${it.m}:${it.code}`] || null;
     if (!r.error) r.view = opinion(r, f, volumeSignal(bars[i]));
-    r.sector = f?.sector || sectorOf(it.m, it.code, { name: it.name });
+    r.sector = SOVR[it.m][it.code] || f?.sector || sectorOf(it.m, it.code, { name: it.name });
     r.themeAuto = themeOf(it.m, it.code, r.sector);                              // 직접 지정을 지우면 돌아갈 자동 분류
     r.theme = OVR[it.m]?.[it.code] || r.themeAuto;                               // 화면의 '섹터' (lib/themes.js)
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     return r;
   });
+  if (fitPut.length) await Promise.all(fitPut.map(([k, v]) => store.set(k, v)));
   const regime = {}, events = [];
   for (const m of ['US', 'KR']) {
     const xs = stocks.filter(s => s.m === m && !s.error);

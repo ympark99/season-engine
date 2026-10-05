@@ -13,7 +13,16 @@ import { fetchForward, blendForward } from '../lib/forward.js';
 import { fetchKrInfo, normalizeKr, krMetrics, krRawScores, epsSnapshot } from '../lib/krfund.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
 import { sectorOf } from '../lib/sectors.js';
+import { loadSecOvr } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
+
+/** 수집·점수 대상 — 유니버스 전종목 + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
+async function targetsOf(m) {
+  const [mem, mine] = await Promise.all([members(), store.listAll()]);
+  const list = listOf(m, mem), have = new Set(list.map(x => x.code));
+  for (const it of mine) if (it?.m === m && !have.has(it.code)) { list.push({ code: it.code, name: it.name, tags: ['내 목록'] }); have.add(it.code); }
+  return list;
+}
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
 const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 350), STALE_DAYS = 7;
@@ -57,9 +66,9 @@ export async function collectChunk(m, { reset = false } = {}) {
   const t0 = Date.now(), today = kstDate();
   let st = await store.get(S_STATE(m));
   const cycleOld = st?.done && st.finishedAt && Date.now() - Date.parse(st.finishedAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5);   // 막혔던 바퀴는 다음 날 다시 시도
-  if (st?.done && !reset && !cycleOld) return { m, i: st.i, total: st.codes.length, got: 0, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: 0 };
+  if (st?.done && !reset && !cycleOld) return { m, i: st.i, total: st.codes.length, ...(await catchUp(m, t0)), skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
   if (reset || !st || !st.codes?.length || st.done) {
-    const mem = await members(), list = listOf(m, mem);
+    const list = await targetsOf(m);
     if (!list.length) throw new Error('구성종목이 없어 — 유니버스 스캔을 먼저 돌려줘');
     st = { m, started: today, i: 0, codes: list.map(x => x.code), failed: [], done: false, prevN: st?.collected ?? null };
   }
@@ -87,6 +96,21 @@ export async function collectChunk(m, { reset = false } = {}) {
   return { m, i: st.i, total: st.codes.length, got, skipped, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
 }
 
+/** 바퀴 사이 쉬는 동안 — 새로 추가했는데 아직 재료가 없는 내 목록 종목만 바로 모으고 점수를 다시 낸다 */
+async function catchUp(m, t0) {
+  const list = await targetsOf(m);
+  const recs = await store.mget(list.map(x => KEY(m, x.code)));
+  const need = list.filter((x, i) => !recs[i] && x.tags?.includes('내 목록'));
+  let got = 0;
+  for (const x of need) {
+    if (Date.now() - t0 > CHUNK_MS) break;
+    try { await collectOne(m, x.code); got++; } catch { /* 다음 호출 때 다시 */ }
+    await sleep(GAP_MS);
+  }
+  if (got) await scoreAll(m);
+  return { got, catchUp: need.length };
+}
+
 const pct = (v, sorted) => {                       // 유니버스 내 백분위 (0~100)
   if (v == null) return null;
   let lo = 0, hi = sorted.length;
@@ -99,7 +123,7 @@ const pct = (v, sorted) => {                       // 유니버스 내 백분위
 
 /** 저장된 지표를 유니버스 백분위로 환산해 대장 점수 산출 */
 export async function scoreAll(m) {
-  const mem = await members(), list = listOf(m, mem), recs = [];
+  const list = await targetsOf(m), recs = [];
   for (let i = 0; i < list.length; i += 25) {
     const chunk = list.slice(i, i + 25);
     const got = await store.mget(chunk.map(x => KEY(m, x.code)));
@@ -166,6 +190,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       const m = req.query.m === 'KR' ? 'KR' : 'US';
       const [sum, st] = await store.mget([S_SUM(m), S_STATE(m)]);
+      if (sum?.rows) { const so = await loadSecOvr(m); for (const r of sum.rows) if (so[r.code]) r.sector = so[r.code]; }   // 직접 지정한 세부 업종
       const state = st ? { i: st.i, total: st.codes?.length ?? null, done: st.done, started: st.started, updatedAt: st.updatedAt, finishedAt: st.finishedAt || null,
         collected: st.collected ?? null, failedN: st.failed?.length || 0, failed: (st.failed || []).slice(-5), blocked: st.blocked || null,
         next: st.finishedAt ? new Date(Date.parse(st.finishedAt) + (st.blocked ? 864e5 : staleDays(m) * 864e5)).toISOString().slice(0, 10) : null } : null;

@@ -10,6 +10,7 @@ import { effectOf } from '../lib/effect.js';
 import { Series } from '../lib/engine.js';
 import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
+import { loadSecOvr } from '../lib/themes.js';
 import { mcapOf } from '../lib/mcap.js';
 
 export default async function handler(req, res) {
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
     const effect = { ...effectOf(A, history, ix, KEEP), ix: ix ? IXC : null, univ: ueff || null };
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
-    const sector = m === 'IX' ? null : fund?.sector || sectorOf(m, code, { name: req.query.name || null });
+    const sector = m === 'IX' ? null : (await loadSecOvr(m))[code] || fund?.sector || sectorOf(m, code, { name: req.query.name || null });
     const mcap = m === 'IX' ? null : mcapOf(shm?.rows?.[code]?.[0], summary.last, m, shm?.fx);   // 원화 시가총액 (원)
     send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
