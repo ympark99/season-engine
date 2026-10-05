@@ -12,6 +12,7 @@ import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
 import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge } from '../lib/universe.js';
 import { JUDGE_REV } from '../lib/engine2.js';
+import { AI_SETS } from '../lib/aiset.js';
 import { THEMES, GROUPS, themeOf, ovrKey, loadOvr, secOvrKey, loadSecOvr, THEME_REV } from '../lib/themes.js';
 
 const mOf = v => (v === 'KR' ? 'KR' : v === 'US' ? 'US' : null);
@@ -92,6 +93,7 @@ export default async function handler(req, res) {
     }));
     const [us, kr, mem, acc, indUS, indKR] = await Promise.all([scanState('US'), scanState('KR'), store.get('univ:members'), store.get('engine:accuracy'), store.get('mkt:ind:US'), store.get('mkt:ind:KR')]);
     const counts = Object.fromEntries(Object.entries(mem?.sets || {}).map(([k, v]) => [k, v.length]));
+    counts.AIX = AI_SETS.US.items.length; counts.AIK = AI_SETS.KR.items.length;              // AI 밸류체인 추가 종목 (lib/aiset.js)
     send(res, 200, {
       now: new Date().toISOString(), sets: UNIV_SETS, setName: SET_NAME,
       members: { at: mem?.at || null, counts, errors: mem?.errors || [] },

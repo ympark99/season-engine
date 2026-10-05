@@ -16,6 +16,7 @@ import { themeOf, loadSecOvr } from '../lib/themes.js';
 import { mcapOf, sharesOf } from '../lib/mcap.js';
 import { krQuote, usQuote } from '../lib/kis.js';
 import { collectOne, scoreAll } from './fundamentals.js';
+import { AI_SETS } from '../lib/aiset.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -46,7 +47,7 @@ async function remove(req, res) {
   const { m, code } = await body(req);
   await store.listDel(m, code);
   const mem = await store.get('univ:members');
-  const inUniv = Object.values(mem?.sets || {}).some(xs => xs.some(x => x.code === code));
+  const inUniv = Object.values(mem?.sets || {}).some(xs => xs.some(x => x.code === code)) || AI_SETS[m]?.items.some(x => x.code === code);
   if (!inUniv) await store.del(store.barsKey(m, code));
   send(res, 200, { ok: true });
 }

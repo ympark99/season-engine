@@ -16,7 +16,7 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
 
-/** 수집·점수 대상 — 유니버스 전종목 + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
+/** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
 async function targetsOf(m) {
   const [mem, mine] = await Promise.all([members(), store.listAll()]);
   const list = listOf(m, mem), have = new Set(list.map(x => x.code));
@@ -96,17 +96,24 @@ export async function collectChunk(m, { reset = false } = {}) {
   return { m, i: st.i, total: st.codes.length, got, skipped, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
 }
 
-/** 바퀴 사이 쉬는 동안 — 새로 추가했는데 아직 재료가 없는 내 목록 종목만 바로 모으고 점수를 다시 낸다 */
+/** 바퀴 사이 쉬는 동안 — 아직 재료가 없는 종목(새로 추가한 내 목록·AI 밸류체인 종목)만 바로 모으고 점수를 다시 낸다.
+ *  못 받은 종목은 3일 동안 다시 시도하지 않는다 (ETF 처럼 재무가 없는 종목이 매번 시간을 잡아먹지 않게) */
 async function catchUp(m, t0) {
-  const list = await targetsOf(m);
-  const recs = await store.mget(list.map(x => KEY(m, x.code)));
-  const need = list.filter((x, i) => !recs[i] && x.tags?.includes('내 목록'));
-  let got = 0;
+  const list = await targetsOf(m), missKey = `fund:miss:${m}`;
+  const miss = (await store.get(missKey)) || {}, cut = Date.now() - 3 * 864e5, have = new Set();
+  for (let i = 0; i < list.length; i += 25) {                                  // 재무 기록이 커서 25개씩 나눠 확인
+    const part = list.slice(i, i + 25), recs = await store.mget(part.map(x => KEY(m, x.code)));
+    recs.forEach((r, k) => { if (r) have.add(part[k].code); });
+  }
+  const need = list.filter(x => !have.has(x.code) && !(miss[x.code] && Date.parse(miss[x.code]) > cut));
+  let got = 0, tried = 0;
   for (const x of need) {
     if (Date.now() - t0 > CHUNK_MS) break;
-    try { await collectOne(m, x.code); got++; } catch { /* 다음 호출 때 다시 */ }
+    tried++;
+    try { await collectOne(m, x.code); got++; delete miss[x.code]; } catch { miss[x.code] = new Date().toISOString(); }
     await sleep(GAP_MS);
   }
+  if (tried) await store.set(missKey, miss);
   if (got) await scoreAll(m);
   return { got, catchUp: need.length };
 }
