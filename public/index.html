@@ -131,11 +131,14 @@ table.stbl td.thc>b{display:inline-block;max-width:118px;overflow:hidden;text-ov
 table.stbl td.thc .sub{max-width:140px;overflow:hidden;text-overflow:ellipsis}
 table.stbl td.tr{padding-left:2px}
 table.stbl .stance{font-size:11px;padding:2px 6px}
+table.stbl td.fillc,table.stbl th:last-child{padding:0}
 .fav{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;color:var(--muted);padding:2px}
 .fav[aria-pressed="true"]{color:var(--gold)}
 .fav:hover{color:var(--gold)}
 td.fv{padding-right:0;width:1%}
 .favchip{font-size:13px}
+.fitchip.on3{border-color:var(--summer);color:var(--summer-ink);background:color-mix(in srgb,var(--summer) 12%,var(--card))}
+.fitchip.on1{border-color:var(--winter);color:var(--winter-ink);background:color-mix(in srgb,var(--winter) 12%,var(--card))}
 .favchip[aria-pressed="true"]{color:var(--gold-ink)}
 .sn{display:flex;align-items:center;gap:6px;white-space:nowrap}
 .sn .pb{font-weight:400;color:var(--ink2);font-size:13px}
@@ -394,6 +397,10 @@ details[open]>summary.fold::after{content:' ▴'}
 .lv2{font:inherit;font-size:11px;font-weight:800;padding:1px 8px;margin-left:4px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;vertical-align:1px}
 .lv2[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
 .fxa{display:block;font-size:11.5px;color:var(--ink2);margin-top:3px}.fxr{display:block;font-size:12px;font-weight:600;margin-top:1px}.fxr .muted{font-weight:500}
+.nmhead{display:flex;align-items:center;gap:14px;margin-right:auto;min-width:0}
+.nmrow .nmhead h2{margin:0}
+.dx{flex:none;width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow)}
+.dx:hover{border-color:var(--gold);color:var(--gold-ink)}
 .nmrow{display:flex;align-items:flex-start;justify-content:space-between;gap:10px 18px;flex-wrap:wrap}.nmrow h2{margin-right:auto}
 .pxbox{text-align:right;line-height:1.25}.pxbox .px{display:flex;align-items:baseline;gap:8px;justify-content:flex-end;flex-wrap:wrap}.pxbox .px b{font-size:28px;font-weight:800;color:var(--ink)}
 .pxbox .px span{font-size:16px;font-weight:700}.pxbox .pxs{font-size:12.5px;color:var(--muted);margin-top:2px}.pxbox .pxs b{color:var(--ink2);font-weight:700}
@@ -651,14 +658,13 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
 <div class="ov" id="ov" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="d-name">
     <div class="eyebrow" id="d-eye"></div>
-    <div class="nmrow"><h2 id="d-name"></h2><div class="pxbox num" id="d-px" aria-live="polite"></div></div>
+    <div class="nmrow"><div class="nmhead"><h2 id="d-name"></h2><button type="button" class="dx" id="d-x" aria-label="닫기" title="닫기 (Esc)">✕</button></div><div class="pxbox num" id="d-px" aria-live="polite"></div></div>
     <div class="fitrow" id="d-fit"></div>
     <div class="hrow"><span class="pill" id="d-pill"></span><span class="prob num" id="d-prob"></span><span class="meta num" id="d-meta"></span></div>
     <div class="prev num" id="d-prev"></div>
     <div class="btns">
       <button class="pbtn" data-y="ytd">연초</button><button class="pbtn" data-y="1m">1개월</button><button class="pbtn" data-y="3m">3개월</button><button class="pbtn" data-y="6m">6개월</button><button class="pbtn" data-y="1y">1년</button><button class="pbtn" data-y="2y">2년</button><button class="pbtn" data-y="3y">3년</button><button class="pbtn" data-y="5y">5년</button>
       <button class="pbtn ta" id="d-ta" aria-pressed="false"><svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><rect x="2" y="4" width="4" height="9" rx="1" style="fill:var(--gold)"/><line x1="4" y1="1" x2="4" y2="17" style="stroke:var(--gold);stroke-width:1.6"/><rect x="10" y="6" width="4" height="7" rx="1" style="fill:none;stroke:var(--gold);stroke-width:1.6"/><line x1="12" y1="2" x2="12" y2="16" style="stroke:var(--gold);stroke-width:1.6"/></svg>기술적 분석 열기</button>
-      <button class="pbtn x" id="d-x" aria-label="닫기">✕</button>
     </div>
     <div class="pret num" id="d-pret"></div>
     <div class="chart" id="c-price"><div class="loading">차트 불러오는 중…</div></div>
@@ -1077,9 +1083,9 @@ const COLS=[
   {k:'season',t:'국면 · 확률',v:S=>ok(S)?SEASON_ORD[S.season]*1000-S.prob:9e9},
   {k:'prob',t:'확률',v:S=>S.prob??-1,r:1,sortOnly:1},{k:'fit',t:'계절 적합도',v:S=>S.fit?.grade??-1,sortOnly:1},{k:'ps5',t:'5일',v:S=>S.ps5??0,r:1},{k:'age',t:'경과',v:S=>S.age??-1,r:1},
   {k:'action',t:'Action',v:S=>ok(S)?ACT_ORD[actionOf(S)[0]]??50:99,off:1},
-  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1,r:1},
+  {k:'stance',t:'종합 의견',v:S=>vw(S)?.combined??-1},{k:'trend',t:'추세+저점',v:S=>S.view?.trend?.score??-1},{k:'value',t:'가치',v:S=>S.view?.value?.score??-1},
   {k:'dd',t:'고점 대비',v:S=>S.dd??0,r:1,off:1},{k:'mcap',t:'시가총액',v:S=>S.mcap??-1,r:1,hide:()=>!hasMC()},{k:'spark',t:'최근 120일',off:1},{k:'cat',t:'범주',v:S=>catKey(S)||'zz',str:1,off:1},
-  {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1,off:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1,off:1},{k:'rm',t:''}
+  {k:'tgt',t:'목표비중',v:S=>W(S.code).tgt,r:1,off:1},{k:'cur',t:'현재비중',v:S=>W(S.code).cur,r:1,off:1},{k:'rm',t:''},{k:'fill',t:''}
 ];
 const SORTABLE=c=>c.v&&c.k!=='rm'&&c.k!=='fav';
 /* 즐겨찾기 — 이 브라우저에 저장 (PREF.fav = {'US:NVDA':1}) */
@@ -1099,7 +1105,7 @@ async function syncFav(){
   if(old.length&&PREF.key){try{const r=await post('/api/list?op=fav',{add:old});FAV=new Set(r.fav||[]);delete PREF.fav;savePrefs();renderFilters();renderRows()}catch(e){}}
 }
 /* 열 너비 목표(%) — 표가 넓을 때 남는 폭이 긴 글자 열(섹터·종합 의견)에만 몰리지 않게. 합 100 기준, 숨긴 열은 빠진 만큼 비례로 늘어남 */
-const CW={fav:3,id:7,sector:10,season:13,prob:11,ps5:6,age:6,action:9,stance:9,trend:9,value:7,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:4};
+const CW={fav:3,id:8,sector:11,season:15,prob:11,ps5:6,age:6,action:9,stance:10,trend:6,value:5,dd:8,mcap:9,spark:10,cat:10,tgt:7,cur:7,rm:2};
 /* 시가총액 — 원화. 1조 이상은 조(소수 둘째 자리까지), 미만은 억 */
 const capFmt=v=>{if(v==null||!(v>0))return '—';if(v>=1e12)return `${(+(v/1e12).toFixed(2)).toLocaleString('ko-KR')}조`;return `${Math.round(v/1e8).toLocaleString('ko-KR')}억`};
 const hasMC=()=>!!(D&&D.stocks&&D.stocks.some(s=>s.m===state.m&&s.mcap>0));
@@ -1163,7 +1169,7 @@ function vcells(S){
   return {
     stance:`<td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`,
     trend:`<td class="num tr" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${sc(t.score)}</td>`,
-    value:`<td class="r num">${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
+    value:`<td class="num tr">${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
 }
 /* 비율 막대 — 왼쪽 가치 · 오른쪽 추세, 10단위. 손잡이를 오른쪽으로 밀수록 추세 비중↑ */
 function wtBar(){const t=Math.round(wTrend()*100);
@@ -1174,6 +1180,8 @@ function renderFilters(){
   const held=visible().filter(s=>W(s.code).cur>0).length;
   const nfav=visible().filter(isFav).length;
   $('filters').innerHTML=['전체','★',...SEASONS].map(f=>`<button class="chip${f==='★'?' favchip':''}" data-f="${f}" aria-pressed="${state.filter===f}"${f==='★'?' aria-label="즐겨찾기만" title="즐겨찾기만"':''}>${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='★'?nfav:f==='보유'?held:cnt(f)}</span></button>`).join('')
+    +(()=>{const f=state.fitf||0,lab=f===3?'계절 잘 맞음':f===1?'계절 안 맞음':'계절 일치',n=f?visible().filter(x=>x.fit?.grade===f).length:'';
+      return `<button class="chip fitchip${f?' on'+f:''}" id="fitf" aria-pressed="${!!f}" title="누를 때마다 계절 잘 맞음 → 계절 안 맞음 → 전체">${lab}${n!==''?` <span class="num muted">${n}</span>`:''}</button>`})()
     +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${sortCols().map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
     +`<button class="chip" id="sortd" aria-label="정렬 방향">${PREF.sort.d>0?'오름차순 ▲':'내림차순 ▼'}</button>`
     +thSelect('sth',state.sth||'',[],[...new Set(visible().map(stTh).filter(Boolean))])+wtBar();
@@ -1181,11 +1189,13 @@ function renderFilters(){
   $('sortd').onclick=()=>{PREF.sort={...PREF.sort,d:-PREF.sort.d};savePrefs();renderFilters();renderHead();renderRows()};
   $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
   if($('sth'))$('sth').onchange=e=>{state.sth=e.target.value;renderRows()};
+  if($('fitf'))$('fitf').onclick=()=>{state.fitf=state.fitf===3?1:state.fitf===1?0:3;renderFilters();renderRows()};
   const wt=$('wt');if(wt){wt.oninput=()=>{const t=+wt.value;PREF.wt=t;wt.style.setProperty('--p',t+'%');$('wtv').textContent=100-t;$('wtt').textContent=t;renderRows()};wt.onchange=()=>savePrefs()}
 }
 function renderHead(){
   normSort();const so=PREF.sort;
-  const CS=cols(),tot=CS.reduce((a,c)=>a+(CW[c.k]||6),0),wd=c=>` style="width:${(100*(CW[c.k]||6)/tot).toFixed(1)}%"`;
+  // fill = 맨 오른쪽 빈 칸 — 남는 폭을 여기서 받아서 ✕ 가 가치 바로 옆에 붙는다
+  const CS=cols(),tot=CS.reduce((a,c)=>a+(c.k==='fill'?0:CW[c.k]||6),0),wd=c=>c.k==='fill'?'':` style="width:${(88*(CW[c.k]||6)/tot).toFixed(1)}%"`;
   $('thead').innerHTML='<tr>'+CS.map(c=>{if(!SORTABLE(c))return `<th${wd(c)}>${c.t}</th>`;const on=so.k===c.k,aria=on?(so.d>0?'ascending':'descending'):'none';
     return `<th class="${c.r?'r':''}"${wd(c)} aria-sort="${aria}"><button class="sb" data-k="${c.k}" aria-sort="${aria}">${c.t}<span class="ar">${on?(so.d>0?'▲':'▼'):'↕'}</span></button></th>`}).join('')+'</tr>';
   $('thead').querySelectorAll('.sb').forEach(b=>b.onclick=()=>{const k=b.dataset.k,c=COLS.find(x=>x.k===k);PREF.sort=so.k===k?{k,d:-so.d}:{k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()});
@@ -1193,7 +1203,7 @@ function renderHead(){
 function renderRows(flash){
   normSort();
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m),MC=hasMC(),NC=cols().length;
-  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='★'?isFav(s):state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme));
+  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='★'?isFav(s):state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme)&&(!state.fitf||s.fit?.grade===state.fitf));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
@@ -1202,7 +1212,7 @@ function renderRows(flash){
   const pre=k=>k>0?`<td colspan="${k}"></td>`:'';            // 종목 칸 왼쪽(국면) 자리 채움
   const html=busy.map(b=>`<tr>${pre(iId)}${idCell(b)}<td colspan="${NC-iId-1}" class="muted">KIS에서 5년치 일봉 조회·판정 중… (펀더멘털이 없으면 같이 모아서 조금 더 걸려)</td></tr>`).join('')+
     list.map(S=>{
-      if(!ok(S))return `<tr>${pre(iId)}${idCell(S)}<td colspan="${NC-iId-2}" class="warn">${esc(S.error)}</td>${rm(S)}</tr>`;
+      if(!ok(S))return `<tr>${pre(iId)}${idCell(S)}<td colspan="${NC-iId-3}" class="warn">${esc(S.error)}</td>${rm(S)}<td class="fillc"></td></tr>`;
       const A=actionOf(S),V=vcells(S),cell={
         fav:`<td class="fv"><button type="button" class="fav" data-fav="${K(S)}" aria-pressed="${isFav(S)}" aria-label="${esc(S.name||S.code)} 즐겨찾기" title="즐겨찾기">${isFav(S)?'★':'☆'}</button></td>`,
         season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span><span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</div>${fitTag(S.fit)}</td>`,
@@ -1216,7 +1226,7 @@ function renderRows(flash){
         mcap:`<td class="r num">${capFmt(S.mcap)}</td>`,
         spark:`<td>${mini(S)}</td>`,
         cat:`<td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td>`,
-        tgt:`<td class="r">${wi(S.code,'tgt')}</td>`,cur:`<td class="r">${wi(S.code,'cur')}</td>`,rm:rm(S)};
+        tgt:`<td class="r">${wi(S.code,'tgt')}</td>`,cur:`<td class="r">${wi(S.code,'cur')}</td>`,rm:rm(S),fill:'<td class="fillc"></td>'};
       return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>${CS.map(c=>cell[c.k]||'<td></td>').join('')}</tr>`}).join('');
   $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="${NC}" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
     :`<tr><td colspan="${NC}" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
