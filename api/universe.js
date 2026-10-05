@@ -5,13 +5,14 @@
 //   GET ?themes=US           → 전종목 섹터(테마) {code: 섹터} + 세부 업종 + 직접 바꾼 값
 //   GET ?rot=US              → 섹터 순환(4분면) 재료 — 없으면 일봉에서 바로 계산
 //   POST {m, step:'theme', code, theme} → 종목 섹터 직접 지정 (theme 비우면 자동 분류로 되돌림) · {step:'rot'} → 4분면 재료 다시 계산
+//   POST {m, step:'sector', code, sector} → 세부 업종(소분류) 직접 지정 (비우면 자동)
 //   POST {m, step:'rejudge'} → 저장된 일봉으로 마지막 스캔을 현재 판정기로 다시 계산 (판정 버전이 바뀌면 첫 조회 때 자동)
 //   POST {m, step:'scan'}    → 배치 스캔 1회 (화면에서 수동 진행), {step:'members', force} → 구성종목 갱신
 import * as store from '../lib/store.js';
 import { send, body, isAdmin } from '../lib/service.js';
 import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge } from '../lib/universe.js';
 import { JUDGE_REV } from '../lib/engine2.js';
-import { THEMES, GROUPS, themeOf, ovrKey, loadOvr } from '../lib/themes.js';
+import { THEMES, GROUPS, themeOf, ovrKey, loadOvr, secOvrKey, loadSecOvr, THEME_REV } from '../lib/themes.js';
 
 const mOf = v => (v === 'KR' ? 'KR' : v === 'US' ? 'US' : null);
 
@@ -37,13 +38,13 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET' && mOf(req.query.themes)) {
       const m = mOf(req.query.themes), t = await themesFor(m);
-      return send(res, 200, { m, themes: THEMES[m], groups: GROUPS[m], map: t.map, sec: t.sec, ovr: t.ovr });
+      return send(res, 200, { m, themes: THEMES[m], groups: GROUPS[m], map: t.map, sec: t.sec, ovr: t.ovr, secOvr: await loadSecOvr(m) });
     }
 
     if (req.method === 'GET' && mOf(req.query.rot)) {
       const m = mOf(req.query.rot);
       let [rot, daily] = await store.mget([`mkt:rot:${m}`, `univ:daily:${m}`]);
-      if (!rot || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
+      if (!rot || rot.rev !== THEME_REV || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
       if (!rot) return send(res, 200, { m, empty: true });
       const ovr = await loadOvr(m);
       for (const x of rot.mem) if (ovr[x.c]) x.th = ovr[x.c];
@@ -67,10 +68,19 @@ export default async function handler(req, res) {
         await store.set(ovrKey(m), ovr);
         return send(res, 200, { ok: true, code, theme: th || null, ovr });
       }
+      if (b.step === 'sector') {                                              // 세부 업종(소분류) 직접 지정 — 비우면 자동으로
+        const code = String(b.code || '').trim(), sec = String(b.sector || '').trim();
+        if (!code) return send(res, 400, { error: 'code 가 필요해' });
+        if (sec.length > 24) return send(res, 400, { error: '세부 업종은 24자까지' });
+        const so = await loadSecOvr(m);
+        if (sec) so[code] = sec; else delete so[code];
+        await store.set(secOvrKey(m), so);
+        return send(res, 200, { ok: true, code, sector: sec || null, secOvr: so });
+      }
       if (b.step === 'rejudge') { const d = await rejudge(m); return send(res, 200, { ok: !!d, asof: d?.asof || null, changesN: d?.changesN ?? null, dipsN: d?.dipsN ?? null, ms: d?.rejudgeMs ?? null }); }
       if (b.step === 'rot') { const rot = await buildRotation(m); return send(res, 200, { ok: !!rot, asof: rot?.asof || null, n: rot?.n || 0 }); }
       if (b.step === 'scan') return send(res, 200, await scanBatch(m, { budgetMs: +b.budgetMs || 45000, reset: !!b.reset }));
-      return send(res, 400, { error: "step 은 scan | members | theme | rot | rejudge" });
+      return send(res, 400, { error: "step 은 scan | members | theme | sector | rot | rejudge" });
     }
 
     // 판정기가 바뀐 뒤 첫 조회 — 마지막 스캔을 저장된 일봉으로 새 판정기 기준 다시 계산 (시장당 20~40초, 한 번만)
