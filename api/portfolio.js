@@ -1,5 +1,5 @@
-// /api/portfolio — 전략실 (6개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
-//   GET ?m=US                → 전략 6개 요약 + 벤치마크 + 장세
+// /api/portfolio — 전략실 (8개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
+//   GET ?m=US                → 전략 8개 요약 + 벤치마크 + 장세
 //   GET ?m=US&s=S1           → 전략 하나 상세 (보유·매매 내역 전체·일별 평가금액·벤치마크 곡선)
 //   POST {step:'run', m, reset}  (관리자) — 지금 이어 돌리기 / reset 이면 장부를 지우고 오늘(최근 거래일)부터 다시 시작
 // 시장 지표 3종(mkt:ind:{m})과 국면 효과 유니버스 기준선(mkt:eff:{m})도 같은 데이터로 여기서 계산한다.
@@ -8,6 +8,7 @@ import { engineState, isAdmin, send, body, KEEP } from '../lib/service.js';
 import { Series } from '../lib/engine.js';
 import { classifyOf } from '../lib/engine2.js';
 import { STRATS, CAPITAL, prepItem, runDays, summaryOf, periodsOf, newBook } from '../lib/portfolio.js';
+import { pbScan, mcOpt } from '../lib/pullback.js';
 import { marketIndicators } from '../lib/indicators.js';
 import { universeEffect, effectOf } from '../lib/effect.js';
 import { historyOf } from '../lib/history.js';
@@ -45,9 +46,9 @@ async function build(m, books) {
   const names = Object.fromEntries(list.map(x => [x.code, x.name]));
   for (const b of Object.values(books)) for (const p of Object.values(b?.pos || {})) if (!names[p.code]) names[p.code] = p.name;    // 유니버스에서 빠진 보유 종목도 가격은 계속 본다
   const codes = Object.keys(names);
-  const [bars, recs, eng, sum, sectors, macro, catsJ] = await Promise.all([
+  const [bars, recs, eng, sum, sectors, macro, catsJ, MC] = await Promise.all([
     loadMany(codes.map(c => store.barsKey(m, c))), loadMany(codes.map(c => `fund:${m}:${c}`)), engineState(), store.get(`fund:sum:${m}`),
-    sectorMap(m, names), getJson('macro.json'), getJson('categories.json'),
+    sectorMap(m, names), getJson('macro.json'), getJson('categories.json'), store.get(`mcap:${m}`),
   ]);
   const items = [];
   codes.forEach((code, k) => {
@@ -55,6 +56,7 @@ async function build(m, books) {
     if (!b?.d?.length || b.d.length < 300) return;
     items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null }, eng.params, eng.cal));
   });
+  for (const x of items) x.pb = new Map(pbScan(x.s, mcOpt(m, MC, x.code)).ent.map(e => [e.t, e]));   // 8호 눌림매매 — 날짜 인덱스 → 눌림 진입
   for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 6호 대상 선정
     try { const A = { s: x.s, season: x.season }; x.fit = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; } catch { x.fit = null; }
   }
