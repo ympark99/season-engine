@@ -125,6 +125,8 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .stance.s-trade{background:#eaf1fd;color:#1b4b9c;border-color:#c6d8f7}
 .stance.s-watch{background:#fdf6e3;color:#8a6116;border-color:#f0e0b0}
 .sig.sig-dip{background:#eaf1fd;color:#1b4b9c;border:1px solid #c6d8f7;margin:0 6px 0 0}
+.sig.sig-pb{background:#f1ebfc;color:#5b3aa0;border:1px solid #dacdf4;margin:0 6px 0 0}
+.ucol{display:grid;gap:14px;align-content:start}.ucol .chg{max-height:220px}
 table.stbl td.code,table.stbl td.name{padding-right:4px}
 table.stbl td.thc{padding-left:4px;max-width:150px}
 table.stbl td.thc>b{display:inline-block;max-width:118px;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
@@ -542,14 +544,13 @@ body{margin:0}
     </details>
 
     <details class="sec" id="sec-stocks">
-      <summary><span class="ico"><i>2</i></span><div><h2>내 종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · 내 목록 분포 · 최근 전이 · 저점매수 시그널 · 가을 체류 · 종합 의견</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>2</i></span><div><h2>내 종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · 내 목록 분포 · 최근 전이 · 저점매수 시그널 · 눌림목 시그널 · 종합 의견</p></div><span class="chev">▾</span></summary>
       <div class="body">
         <div id="mydist"></div>
         <div class="three" style="margin:14px 0 16px">
           <div class="box"><h3>최근 20거래일 전이 <span class="muted" id="feedn"></span></h3><div class="chips sm" id="feedf"></div><div class="feed" id="feed"></div></div>
           <div class="box"><h3>저점매수 시그널 (20거래일) <span class="muted" id="mydipn"></span></h3><div class="feed" id="mydip"></div></div>
-          <div class="box"><h3>가을 체류 진행중 <span class="muted" id="dwelln"></span></h3><div class="dwell" id="dwell"></div>
-            <div class="legend-refs" id="dwell-ref"></div></div>
+          <div class="box"><h3>눌림목 시그널 (20거래일) <span class="muted" id="mypbn"></span></h3><div class="feed" id="mypb"></div></div>
         </div>
         <div class="tools">
           <div class="tools-l">
@@ -807,11 +808,11 @@ function renderUniv(){
   const det=$('uall');det.ontoggle=()=>{state.uopen=det.open;if(det.open)loadUnivRows()};if(det.open)loadUnivRows();
   loadRot();
 }
-/* 국면이 바뀐 종목 · 저점매수 시그널(20거래일) — 둘 다 시가총액 큰 순 (서버에서 정렬) */
+/* 국면이 바뀐 종목 · 저점매수·눌림목 시그널(20거래일) — 모두 시가총액 큰 순 (서버에서 정렬) */
 function renderUnivLists(){
   const el=$('ulists');if(!el||!UNIV)return;
   const d=(UNIV[state.m]||{}).daily;if(!d)return;
-  const m=state.m,R=d.recent,days=(R?.days||[]).slice().reverse(),cf=state.cf||'',dp=d.dips||[];
+  const m=state.m,R=d.recent,days=(R?.days||[]).slice().reverse(),cf=state.cf||'',dp=d.dips||[],pb=d.pbs||[];
   const day=days.includes(state.cday)?state.cday:days[0];
   const chg=R?R.rows.filter(c=>c.d===day):(d.changes||[]),cs=chg.filter(c=>!cf||c.to===cf);
   const fd=x=>x.slice(5).replace('-','.');
@@ -821,10 +822,14 @@ function renderUnivLists(){
       ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
         :`<div class="muted">${cf?cf+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
       <div class="sub" style="margin-top:6px">${R?'날짜 = 새 국면이 시작된 거래일 (최근 5거래일, 기본은 가장 최근 거래일) · 그 사이 두 번 바뀐 종목은 마지막 변경만':'종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목'} — 상세 화면의 국면 구간과 같은 기준 · 계절 칩 = 바뀐 계절</div></div>
-    <div class="box"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
+    <div class="ucol"><div class="box"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
       ${dp.length?`<div class="chg chg4">${dp.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now||!c.d?'<span class="sig sig-dip" style="margin:0">지금 조건</span>':`<span class="sub">${c.d.slice(5).replace('-','.')}까지 ${c.days}일</span>`}</span><span class="num" style="color:var(--neg)" title="최근 20거래일 중 가장 깊었을 때 20일선 대비">최저 ${c.min??c.dv}%</span>`).join('')}</div>`
         :`<div class="muted">${d.dips?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
-      <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>`;
+      <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>
+    <div class="box"><h3>눌림목 시그널 종목 (20거래일) <span class="muted">${d.pbsN??0}개 · 시가총액 순</span></h3>
+      ${pb.length?`<div class="chg chg4">${pb.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now?'<span class="sig sig-pb" style="margin:0">지금 눌림</span>':`<span class="sub" title="기준봉 ${c.sig}">${c.d.slice(5).replace('-','.')} 진입${c.broke?' · 손절가 이탈':''}</span>`}</span><span class="num" title="기준봉 이후 고점 대비 · 손익비 ${c.rr}">${c.dd}% · ${c.rr}R</span>`).join('')}</div>`
+        :`<div class="muted">${d.pbs?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
+      <div class="sub" style="margin-top:6px">기준봉(5·10·20일선 정배열·종가 5일선 위·거래량 20일 평균 2배↑·종가 +3%↑·시가총액 3,000억↑) 뒤 15거래일 안에 거래량이 마르며 10일선 근처까지 눌린 날 — 최근 20거래일 안에 진입이 나온 종목. 숫자 = 기준봉 이후 고점 대비 · 손익비(R). 손절은 기준봉 시작가·진입가 −8% 중 높은 값 종가 이탈 (전략 비교 ‘눌림매매’와 같은 규칙)</div></div></div>`;
   bindChips(el,'cf',renderUnivLists);
   el.querySelectorAll('[data-cday] button').forEach(b=>b.onclick=e=>{e.stopPropagation();state.cday=b.dataset.d;renderUnivLists()});
 }
@@ -1167,13 +1172,16 @@ function sc(x){return x==null?'<span class="muted">—</span>':`<b>${x}</b>`}
 /* 계절 적합도 — 상세 화면 맨 위 태그와 같은 판정 (계절 잘 맞음 · 보통 · 안 맞음 · 표본 부족) */
 const fitTag=f=>f?`<div class="fit fit-${f.grade}" title="${esc(f.why||'')}">${esc(f.label)}</div>`:'';
 const dipTag=d=>d?`<span class="sig sig-dip" title="겨울 ${d.age}일째 · 20일선 대비 ${d.dev20}% — 겨울 20일+ · 20일선 −15% 이하">저점매수</span>`:'';
+/* 눌림목 — 오늘 눌림 조건이거나, 최근 3거래일 안에 눌림 진입이 나왔고 아직 손절가를 안 깬 종목 */
+const pbOn=S=>!!(S&&(S.pb||(S.pb20&&S.pb20.days<=2&&!S.pb20.broke)));
+const pbTag=S=>pbOn(S)?`<span class="sig sig-pb" title="${S.pb20?`${S.pb20.d.slice(5)} 눌림 진입 · 기준봉 ${S.pb20.sig.slice(5)} · 고점 대비 ${S.pb20.dd}% · 손절가 ${S.pb20.stop} · 손익비 ${S.pb20.rr}`:`오늘 눌림 조건 · 고점 대비 ${S.pb.dd}%`}">눌림목</span>`:'';
 function vcells(S){
   const v=vw(S);
   if(!v)return {stance:'<td class="muted">—</td>',trend:'<td class="r num muted">—</td>',value:'<td class="r num muted">—</td>'};
   const t=v.trend||{},a=v.value||{},tip=(v.why||[]).join(' · ');
   return {
     stance:`<td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`,
-    trend:`<td class="num tr" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${sc(t.score)}</td>`,
+    trend:`<td class="num tr" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${pbTag(S)}${sc(t.score)}</td>`,
     value:`<td class="num tr">${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
 }
 /* 비율 막대 — 왼쪽 가치 · 오른쪽 추세, 10단위. 손잡이를 오른쪽으로 밀수록 추세 비중↑ */
@@ -1326,13 +1334,12 @@ function renderFlow(){
   $('mydip').innerHTML=md.length?md.map(S=>`<div class="ev"><span class="num muted">${S.dip20.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
     <span>${S.dip?'<span class="sig sig-dip" style="margin:0">지금 조건</span> ':''}<span class="num" style="color:var(--neg)" title="20거래일 중 ${S.dip20.n}일 조건 · 가장 깊었을 때 20일선 대비">${S.dip20.dev20}%</span></span></div>`).join('')
     :'<div class="muted">최근 20거래일 시그널 없음 — 겨울 20거래일+ · 20일선 −15% 이하</div>';
-  const au=visible().filter(s=>s.season==='가을').sort((a,b)=>b.age-a.age),MAX=30;
-  const avg=UNIV?.accuracy?.dwell?.['가을']??null;
-  $('dwelln').textContent=`${au.length}종목`;
-  $('dwell-ref').innerHTML=avg!=null?`<span>┃ 유니버스 실측 가을 평균 ${avg}td${UNIV.accuracy.m?` (${UNIV.accuracy.m==='US'?'미국':'한국'} 표본)`:''}</span>`:'<span>유니버스 실측 평균은 첫 신뢰도 측정 뒤 표시</span>';
-  $('dwell').innerHTML=au.length?au.map(S=>`<div class="d"><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
-    <div class="track"><div class="fill" style="width:${Math.min(100,S.age/MAX*100)}%"></div>${avg!=null?`<div class="ref" style="left:${Math.min(100,avg/MAX*100)}%"></div>`:''}</div>
-    <span class="num" style="text-align:right">${S.age}d</span></div>`).join('')+`<div class="sub">${avg==null?'':au.some(s=>s.age>avg)?'유니버스 평균을 넘긴 종목 — 겨울 전이 임박 구간':'평균 이내 — 아직 대응 창구 안'}</div>`:'<div class="muted">현재 가을 구간 종목 없음</div>';
+  // 눌림목 시그널 — 최근 20거래일 안에 기준봉 뒤 눌림 진입이 나온 내 종목
+  const mp=visible().filter(s=>ok(s)&&s.pb20).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
+  $('mypbn').textContent=`${mp.length}종목`;
+  $('mypb').innerHTML=mp.length?mp.map(S=>`<div class="ev"><span class="num muted">${S.pb20.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
+    <span>${S.pb?'<span class="sig sig-pb" style="margin:0">지금 눌림</span> ':S.pb20.broke?'<span class="sub">손절가 이탈</span> ':''}<span class="num" title="기준봉 ${S.pb20.sig} · 손절가 ${S.pb20.stop} · 목표 ${S.pb20.tgt}">${S.pb20.dd}% · ${S.pb20.rr}R</span></span></div>`).join('')
+    :'<div class="muted">최근 20거래일 시그널 없음 — 급등 기준봉 뒤 거래량 마른 10일선 눌림</div>';
 }
 
 /* ④ 매크로 */
@@ -1417,7 +1424,7 @@ async function renderEngine(){
   ${calCard(M)}`
   +pipeCard(HL)+univOpsCard(UV)+accCard(BT)+tuneCard(BT)+stratOpsCard(SM);
   $('scanUS').onclick=()=>runScan('US');$('scanKR').onclick=()=>runScan('KR');$('memBtn').onclick=runMembers;
-  if($('pipeBtn'))$('pipeBtn').onclick=runPipe;
+  if($('pipeBtn')){$('pipeBtn').onclick=runPipe;$('pipeStage').onclick=()=>runPipeLoop('stage');$('pipeAll').onclick=()=>runPipeLoop('all');$('pipeStop').onclick=()=>{PIPE_STOP=true;$('pipemsg').textContent='이번 조각이 끝나면 멈춰…'}}
   if($('stRun'))$('stRun').onclick=()=>runStrat(false);if($('stReset'))$('stReset').onclick=()=>runStrat(true);
   $('accBtn').onclick=()=>runAcc(false);if($('accReset'))$('accReset').onclick=()=>runAcc(true);$('tuneBtn').onclick=runTune;if($('applyBtn'))$('applyBtn').onclick=applyTune;
 }
@@ -1455,16 +1462,36 @@ function pipeCard(H){
   if(!H.cronSecret)warn.push('CRON_SECRET 환경변수가 없어 — 크론이 인증에 막혀. Vercel → Settings → Environment Variables 에 CRON_SECRET(아무 긴 문자열)을 넣고 재배포해줘.');
   if(H.cronDenied)warn.push(`크론 호출이 인증에 막힌 기록이 있어 (${kst(H.cronDenied.at)}, ${H.cronDenied.m}${H.cronDenied.hasSecret?'':' · 서버에 CRON_SECRET 없음'}).`);
   return `<section class="card"><h2>자동 갱신 상태</h2>
-    <p class="lead">매일 시장 마감 뒤 크론이 <b>목록·지수 → 유니버스 스캔 → 신뢰도·보정 → 펀더멘털 → 전략실</b>을 순서대로 돌려. 한 번 호출에 최대 4분씩 여러 조각을 몰아서 처리하고, 못 끝낸 일은 몇 시간 동안 30분 간격의 예비 크론이 같은 자리에서 이어받아.
-      <span class="sub">(한국 16:10 시작 · 미국 07:10 시작, KST. Vercel 무료 플랜은 크론 시각이 최대 1시간 늦을 수 있어)</span></p>
+    <p class="lead">매일 시장 마감 뒤 크론이 <b>목록·지수 → 유니버스 스캔 → 신뢰도·보정 → 펀더멘털 → 전략실</b>을 순서대로 돌려. 한 번 호출에 최대 4분 45초씩 여러 조각을 몰아서 처리하고(스캔은 3종목씩 동시에), 못 끝낸 일은 10분 간격의 예비 크론이 같은 자리에서 이어받아. 펀더멘털은 하루 8분까지만 하고 나머지는 다음 날 이어서 해 — 미국은 아침 8시 전에 전략실까지 끝내는 게 목표야.
+      <span class="sub">(한국 16:10~22:30 · 미국 06:10~12:30 KST. Vercel 무료 플랜은 크론이 그 시(時) 안에서 아무 때나 깨서, 장 마감 20분 전에 깨면 기다렸다 다음 크론이 시작해)</span></p>
     <dl class="pipe">${line('US')}${line('KR')}</dl>
     ${warn.length?`<div class="warn" style="margin-top:10px;font-size:13px">${warn.map(w=>`<div>• ${w}</div>`).join('')}</div>`:''}
-    <div class="ops" style="margin-top:10px"><button class="pbtn" id="pipeBtn" aria-pressed="true">지금 한 조각 진행 (${state.m==='US'?'미국':'한국'})</button><span class="sub" id="pipemsg"></span></div>
+    <div class="ops" style="margin-top:10px"><button class="pbtn" id="pipeBtn" aria-pressed="true">지금 한 조각 진행 (${state.m==='US'?'미국':'한국'})</button><button class="pbtn" id="pipeStage">한 단계 실행</button><button class="pbtn" id="pipeAll">모든 프로세스 진행</button><button class="pbtn" id="pipeStop" hidden>멈춤</button><span class="sub" id="pipemsg"></span></div>
     ${logOf(H)}</section>`;
 }
 function logOf(H){
   const L=[...((H.pipeline||{}).US?.log||[]).map(x=>({...x,m:'미국'})),...((H.pipeline||{}).KR?.log||[]).map(x=>({...x,m:'한국'}))].sort((a,b)=>a.at<b.at?1:-1).slice(0,20);
   return L.length?`<details style="margin-top:8px"><summary class="fold"><span class="sub">최근 진행 기록</span></summary><div class="sub num">${L.map(x=>`${kst(x.at)} ${x.m} · ${esc(STG[x.stage]||x.stage)} · ${esc(x.from)} — ${esc(x.note)}`).join('<br>')}</div></details>`:'';
+}
+/* 한 단계 실행 = 지금 단계가 다음 단계로 넘어갈 때까지 · 모든 프로세스 = 완료까지 — 서버에 조각을 이어서 부른다 (조각당 최대 1분 30초) */
+let PIPE_STOP=false;
+async function runPipeLoop(kind){
+  const msg=$('pipemsg'),bs=['pipeBtn','pipeStage','pipeAll'].map($),stop=$('pipeStop'),m=state.m,lbl=m==='US'?'미국':'한국';
+  bs.forEach(b=>b.disabled=true);stop.hidden=false;PIPE_STOP=false;
+  let start=null,n=0,last='';
+  try{
+    for(;;){
+      const r=await api(`/api/cron?op=step&m=${m}&budget=90`);n++;
+      if(r.busy){msg.textContent=`${lbl} — 다른 호출(크론)이 돌고 있어, 20초 뒤 다시`;await new Promise(z=>setTimeout(z,20000));if(PIPE_STOP)break;continue}
+      if(start==null)start=(r.steps&&r.steps.length&&(r.steps[0].split(':')[0]))||r.now;
+      last=`${(r.steps||[]).slice(-1)[0]||r.note||''}`;
+      msg.textContent=`${lbl} ${n}번째 조각 — ${last} → 지금 단계: ${STG[r.now]||r.now}`;
+      if(r.now==='done'){msg.textContent=`${lbl} 모든 단계 완료 (${n}조각) — ${last}`;break}
+      if(kind==='stage'&&r.now!==start){msg.textContent=`${lbl} '${STG[start]||start}' 단계 끝 (${n}조각) → 다음: ${STG[r.now]||r.now}`;break}
+      if(PIPE_STOP){msg.textContent=`멈춤 — 지금 단계: ${STG[r.now]||r.now}`;break}
+    }
+  }catch(e){msg.textContent='실패: '+e.message}
+  finally{bs.forEach(b=>b.disabled=false);stop.hidden=true;setTimeout(renderEngine,800)}
 }
 async function runPipe(){
   const msg=$('pipemsg'),b=$('pipeBtn');b.disabled=true;msg.textContent='진행 중…';
@@ -1596,11 +1623,11 @@ function tuneCard(BT){
 }
 function stratOpsCard(SM){
   return `<section class="card"><h2>전략실 실행</h2>
-    <p class="lead">7개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
+    <p class="lead">8개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
     <div class="ops"><button class="pbtn" id="stRun" aria-pressed="true">지금 이어 돌리기 (${state.m==='US'?'미국':'한국'})</button><button class="pbtn" id="stReset">오늘부터 다시 시작</button><span class="sub" id="stmsg">${SM&&!SM.empty?`${SM.asof} 까지 · ${kst(SM.at)} 갱신 · 이번에 ${SM.processed}일 처리 (${(SM.ms/1000).toFixed(1)}초)`:'아직 장부 없음'}</span></div></section>`;
 }
 async function runStrat(reset){
-  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 7개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
+  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 8개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
   const msg=$('stmsg');msg.textContent='돌리는 중…';
   try{const r=await post('/api/portfolio',{m:state.m,step:'run',reset});msg.textContent=`${r.asof} 까지 · ${r.processed}일 처리`;ST=null;STD=null;loadInd();if(!$('strat').hidden)loadStrat(true)}
   catch(e){msg.textContent='실패: '+e.message}
@@ -1785,15 +1812,17 @@ function drawHist(){
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  // 토글 — 2배 레버리지(2) · 겨울 저점매수(D). 봄·여름만 보유 · 봄 진입·가을 매도에만 있음
+  // 토글 — 2배 레버리지(2) · 겨울 저점매수(D). 눌림매매 · 봄·여름만 보유 · 봄 진입·가을 매도에만 있음
   const X2=state.x2||(state.x2={}),XD=state.xd||(state.xd={});
   const keyOf=id=>id+(X2[id]&&F?.[id+'2']?'2':'')+(XD[id]&&F?.[id+'D']?'D':''),R=id=>F[keyOf(id)]||F[id];
   const SHORT={SS:{'2':'봄·여름 2배 보유 · 가을·겨울 현금',D:'봄·여름 보유 · 가을·겨울 현금 · 겨울 저점매수',
       '2D':'봄·여름 2배 보유 · 가을·겨울 현금 · 겨울 저점매수(2배)'},
-    SF:{'2':'봄 전환 때 2배 진입 → 여름 유지 → 가을 전량 매도',D:'봄 전환 진입 + 겨울 저점매수 → 가을 전량 매도','2D':'봄 전환·겨울 저점매수 때 2배 진입 → 가을 전량 매도'}};
+    SF:{'2':'봄 전환 때 2배 진입 → 여름 유지 → 가을 전량 매도',D:'봄 전환 진입 + 겨울 저점매수 → 가을 전량 매도','2D':'봄 전환·겨울 저점매수 때 2배 진입 → 가을 전량 매도'},
+    PB:{'2':'급등 기준봉 뒤 눌림목 2배 매수 → 손절가 종가 이탈·국면 기준 익절',D:'눌림목 매수 + 겨울 저점매수',
+      '2D':'눌림목·겨울 저점매수 때 2배 진입'}};
   const DIPTXT='겨울 저점매수: 겨울이 20거래일 넘게 이어지고 종가가 20일선보다 15% 이상 아래면 매수 → 종가 60일선 회복 · 40거래일 · 매수가 대비 −15%(본주) 중 먼저 오는 날 매도.';
   const infoOf=x=>{const k=keyOf(x.id).slice(x.id.length);let t=x.desc;
-    if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄·여름이 되면 그대로 계절 보유로 넘어가 가을·겨울에 판다.`:` / ${DIPTXT} 저점매수 매도 전에 봄으로 전환되면 그대로 보유하다 가을·겨울 전환 때 판다.`;
+    if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄·여름이 되면 그대로 계절 보유로 넘어가 가을·겨울에 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 저점매수 매도 전에 봄으로 전환되면 그대로 보유하다 가을·겨울 전환 때 판다.`;
     if(k.includes('2'))t+=' / 2배: 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외).';return t};
   // 최대수익 · 최대손실 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
   const vals=STS.map(x=>R(x.id)),mxs=vals.map(o=>o.maxAmt),lss=vals.map(o=>o.lossAmt);
@@ -1804,13 +1833,13 @@ function drawHist(){
       +(F[x.id+'D']?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'');
     const nm=x.name+(k.includes('2')?' ×2':'')+(k.includes('D')?' +저점':'');
     return `<div class="fxc"><div class="k"><b>${esc(nm)}</b><button type="button" class="ibtn" data-info="${x.id}" aria-label="${esc(x.name)} 설명">i</button>${tg}<span class="muted">${esc(k&&SHORT[x.id]?.[k]||x.short||x.desc)}</span>
-      <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회</span></div>
+      <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회${o.stop!=null?` · 손절가 <b class="num">${fmtP(o.stop,S.m)}</b>`:''}${o.tgt!=null?` · 목표 <b class="num">${fmtP(o.tgt,S.m)}</b>`:''}</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
       <div class="fxm"><span class="${mark(mxs,o.maxAmt)}" title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span class="${mark(lss,o.lossAmt)}" title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
   const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
     <div class="fxg">${STS.map(card).join('')}</div>
     <div class="ipop" id="ipop" role="dialog" aria-modal="true" aria-labelledby="ipop-h" hidden><div class="ipbox"><b id="ipop-h"></b><p id="ipop-t"></p><button type="button" class="pbtn" id="ipop-x">닫기</button></div></div>
-    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 봄·여름만 보유·봄 진입·가을 매도의 버튼: 2배 = 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2), 저점매수 = 겨울 저점매수를 함께 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 규칙이 나와. 레버리지 차입 비용은 넣지 않았어.</div>`:'';
+    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 눌림매매는 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다. 눌림매매·봄·여름만 보유·봄 진입·가을 매도의 버튼: 2배 = 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2), 저점매수 = 겨울 저점매수를 함께 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 규칙이 나와. 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -1995,10 +2024,10 @@ function benchChart(dates,eq,bms,label){
 const loadInd=loadUniverse;
 function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>{if(D){renderFilters();renderRows()}});if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd()}
 async function reload(flash){D=await api('/api/list');FAV=new Set(D.fav||[]);BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
-document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll()});
+document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll();if(!$('eng').hidden)renderEngine()});
 let engDone=false;
 [['tab-dash','dash'],['tab-strat','strat'],['tab-eng','eng']].forEach(([t,p],_,all)=>$(t).onclick=()=>{all.forEach(([t2,p2])=>{$(t2).setAttribute('aria-pressed',String(t2===t));$(p2).hidden=p2!==p});
-  $('mktseg').style.visibility=p==='eng'?'hidden':'visible';if(p==='eng'&&!engDone){engDone=true;renderEngine()}if(p==='strat')loadStrat()});
+  if(p==='eng'&&!engDone){engDone=true;renderEngine()}if(p==='strat')loadStrat()});
 document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.onclick=()=>{state.years=b.dataset.y;drawDetail()});
 $('d-ta').onclick=()=>{state.ta=!state.ta;drawDetail()};
 $('d-x').onclick=closeDetail;$('ov').onclick=e=>{if(e.target.id==='ov')closeDetail()};
