@@ -12,6 +12,7 @@ import { opinion, volumeSignal } from '../lib/opinion.js';
 import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { mcapOf } from '../lib/mcap.js';
+import { mcOpt } from '../lib/pullback.js';
 
 export default async function handler(req, res) {
   try {
@@ -21,9 +22,10 @@ export default async function handler(req, res) {
       IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null, IXC ? store.get(`mcap:${m}`) : null]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
     const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값 (v2 는 그대로)
-    const A = analyze(bars, P, eng.cal, KEEP), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
+    const mc = m === 'IX' ? {} : mcOpt(m, shm, code);
+    const A = analyze(bars, P, eng.cal, KEEP, mc), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
     const ix = ixb?.d?.length ? new Series(ixb.d, ixb.c, ixb.v) : null;
-    const effect = { ...effectOf(A, history, ix, KEEP), ix: ix ? IXC : null, univ: ueff || null };
+    const effect = { ...effectOf(A, history, ix, KEEP, mc), ix: ix ? IXC : null, univ: ueff || null };
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
     const sector = m === 'IX' ? null : (await loadSecOvr(m))[code] || fund?.sector || sectorOf(m, code, { name: req.query.name || null });

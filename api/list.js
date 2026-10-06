@@ -17,6 +17,7 @@ import { mcapOf, sharesOf } from '../lib/mcap.js';
 import { krQuote, usQuote } from '../lib/kis.js';
 import { collectOne, scoreAll } from './fundamentals.js';
 import { AI_SETS } from '../lib/aiset.js';
+import { mcOpt } from '../lib/pullback.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -65,7 +66,7 @@ async function list(req, res) {
   const stocks = items.map((it, i) => {
     let r, A = null;
     if (!bars[i] || bars[i].d.length < 80) r = row(it, bars[i], eng);
-    else { A = analyzeV2(bars[i], eng.params, eng.cal, KEEP); r = { ...it, ...A.summary }; }
+    else { A = analyzeV2(bars[i], eng.params, eng.cal, KEEP, mcOpt(it.m, SH[it.m], it.code)); r = { ...it, ...A.summary }; }
     // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 마지막 봉이 바뀔 때만 다시 계산
     if (A) {
       const fc = fits[i];
