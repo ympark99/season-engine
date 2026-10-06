@@ -70,7 +70,7 @@ export default async function handler(req, res) {
       return send(res, 401, { error: 'cron 전용' });
     }
     const from = isAdmin(req) && !okCron ? '수동' : req.query.bk ? `예비 크론 ${req.query.bk}` : '크론';
-    const budgetMs = Math.min(240, Math.max(30, +req.query.budget || 240)) * 1000;   // 화면 버튼은 짧게, 크론은 최대 4분
+    const budgetMs = Math.min(285, Math.max(30, +req.query.budget || 285)) * 1000;   // 화면 버튼은 짧게, 크론은 최대 4분 45초 (함수 한도 300초)
     send(res, 200, await step(m, { from, budgetMs }));
   } catch (e) { send(res, 500, { error: e.message }); }
 }
