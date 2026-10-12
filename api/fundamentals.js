@@ -11,6 +11,7 @@ import { isAdmin, send, body } from '../lib/service.js';
 import { fetchStatement, normalize, metricsAt, rawScores } from '../lib/fundamentals.js';
 import { fetchForward, blendForward } from '../lib/forward.js';
 import { fetchKrInfo, normalizeKr, krMetrics, krRawScores, epsSnapshot } from '../lib/krfund.js';
+import { parseBand, slimBand, bandOf, fetchKrBand } from '../lib/band.js';
 import { members, listOf, kstDate } from '../lib/universe.js';
 import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr, loadOvr, themeOf, GROUPS } from '../lib/themes.js';
@@ -27,13 +28,14 @@ export async function targetsOf(m) {
 
 const KEY = (m, c) => `fund:${m}:${c}`, S_STATE = m => `fund:state:${m}`, S_SUM = m => `fund:sum:${m}`;
 const CHUNK_MS = 35000, GAP_MS = +(process.env.FUND_GAP ?? 1000), STALE_DAYS = 7;          // 요청 사이 1초 (빨리 보내면 봇 차단)
-const FWD_IDX = 'fwd:at:US', FWD_BLOCK = 'fwd:block:US', FWD_DAY = 'fwd:day:US';
+const FWD_IDX = 'fwd:at2:US', FWD_BLOCK = 'fwd:block:US', FWD_DAY = 'fwd:day:US';   // at2: 요약표 항목(EV·공매도) 추가로 한 번 전부 다시 받게 키를 바꿈
 const FWD_GAP = +(process.env.FWD_GAP ?? 2500), FWD_PER_DAY = 600, FWD_STALE = 7;
 const isBlock = e => /HTTP (403|429)/.test(String(e?.message || ''));
 const staleDays = m => (m === 'KR' ? 3 : STALE_DAYS);    // 국내는 추정 변화 기록을 촘촘히 쌓으려고 3일마다
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const okCron = req => process.env.CRON_SECRET && (req.headers.authorization === `Bearer ${process.env.CRON_SECRET}` || req.query?.secret === process.env.CRON_SECRET);
 
+const BAND_DAYS = 14;                                     // 국내 PER·PBR 밴드는 월말 단위라 14일에 한 번
 /** 한 종목 — 미국은 분기 재무 3회 + 선행 지표 1회, 국내는 컨센서스 연간·분기 2회 */
 export async function collectOne(m, code) {
   if (m === 'KR') {
@@ -47,7 +49,16 @@ export async function collectOne(m, code) {
     if (!secAt || Date.now() - Date.parse(secAt) > 60 * 864e5) {
       try { const si = await krStockInfo(code); secRaw = si.std || si.idx || secRaw; secAt = new Date().toISOString(); } catch { /* 섹터는 없어도 진행 */ }
     }
-    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, hist, metrics, secRaw, secAt };
+    // PER·PBR 밴드 — 월말 단위라 14일에 한 번만 받는다 (실패해도 진행, 이전 값 유지)
+    let band = prev?.band || null;
+    if (!band?.at || Date.now() - Date.parse(band.at) > BAND_DAYS * 864e5) {
+      try {
+        const per = parseBand(await fetchKrBand(code, 1, 'C')); await sleep(GAP_MS);
+        const pbr = parseBand(await fetchKrBand(code, 2, 'C'));
+        band = { at: new Date().toISOString(), per: per && slimBand(per), pbr: pbr && slimBand(pbr) };
+      } catch (e) { band = band ? { ...band, err: e.message.slice(0, 80) } : { at: new Date().toISOString(), err: e.message.slice(0, 80) }; }
+    }
+    const rec = { code, m, at: new Date().toISOString(), currency: 'KRW', kr: norm, hist, metrics, secRaw, secAt, band };
     await store.set(KEY(m, code), rec);
     return rec;
   }
@@ -79,8 +90,8 @@ export async function collectChunk(m, { reset = false } = {}) {
   const endAt = st?.finishedAt || st?.updatedAt || null;                          // 예전 상태엔 finishedAt 이 없어서 다음 바퀴가 영영 안 시작됐다
   const cycleOld = st?.done && (!endAt || Date.now() - Date.parse(endAt) > (st.blocked ? 20 * 3600e3 : staleDays(m) * 864e5));   // 막혔던 바퀴는 다음 날 다시 시도
   if (st?.done && !reset && !cycleOld) {
-    const cu = await catchUp(m, t0), fw = await refreshForward(m, 30000);
-    if ((est?.got || fw.got) && !cu.got) await scoreAll(m);                         // 추정치·선행 지표가 새로 들어왔으면 점수 다시
+    const cu = await catchUp(m, t0), fw = m === 'US' ? await refreshForward(m, 30000) : await fillBands(25000);   // 국내는 쉬는 동안 밴드가 없는 종목부터 채운다
+    if ((est?.got || fw.got) && !cu.got) await scoreAll(m);                         // 추정치·선행 지표·밴드가 새로 들어왔으면 점수 다시
     return { m, i: st.i, total: st.codes.length, ...cu, est, fwd: fw, fwdLeft: fw.left || 0, skipped: 0, failed: st.failed.length, done: true, idle: true, ms: Date.now() - t0 };
   }
   if (reset || !st || !st.codes?.length || st.done) {
@@ -149,6 +160,35 @@ export async function refreshForward(m, budgetMs = 30000) {
   return { got, tried, left: blocked ? 0 : Math.max(0, Math.min(need.length - tried, FWD_PER_DAY - day.n)), blocked, ms: Date.now() - t0 };
 }
 
+/** 국내 PER·PBR 밴드만 받기 — 바퀴 사이 쉬는 동안, 밴드가 없거나 14일 지난 종목만. 받은 시각은 band:at:KR 에 따로 적어서
+ *  큰 재무 기록을 전부 읽지 않는다. 요청 사이 1초, 연결 차단(403·429)이면 이번 호출은 멈춤 */
+async function fillBands(budgetMs = 25000) {
+  const t0 = Date.now(), IDX = 'band:at:KR', idx = (await store.get(IDX)) || {}, cut = Date.now() - BAND_DAYS * 864e5;
+  const sum = await store.get(S_SUM('KR'));
+  const need = (sum?.rows || []).map(x => x.code).filter(c => !idx[c] || Date.parse(idx[c]) < cut);
+  let got = 0, tried = 0;
+  for (const code of need) {
+    if (Date.now() - t0 > budgetMs) break;
+    tried++;
+    const rec = await store.get(KEY('KR', code));
+    if (!rec) { idx[code] = new Date().toISOString(); continue; }
+    if (rec.band?.at && Date.parse(rec.band.at) > cut && !rec.band.err) { idx[code] = rec.band.at; continue; }   // 재무 수집 때 이미 받음
+    try {
+      const per = parseBand(await fetchKrBand(code, 1, 'C')); await sleep(GAP_MS);
+      const pbr = parseBand(await fetchKrBand(code, 2, 'C'));
+      rec.band = { at: new Date().toISOString(), per: per && slimBand(per), pbr: pbr && slimBand(pbr) }; got++;
+    } catch (e) {
+      if (isBlock(e)) break;
+      rec.band = { ...(rec.band || {}), at: new Date().toISOString(), err: e.message.slice(0, 80) };
+    }
+    await store.set(KEY('KR', code), rec);
+    idx[code] = rec.band.at;
+    await sleep(GAP_MS);
+  }
+  await store.set(IDX, idx);
+  return { got, tried, left: Math.max(0, need.length - tried) };
+}
+
 /** 바퀴 사이 쉬는 동안 — 아직 재료가 없는 종목(새로 추가한 내 목록·AI 밸류체인 종목)만 바로 모으고 점수를 다시 낸다.
  *  못 받은 종목은 3일 동안 다시 시도하지 않는다 (ETF 처럼 재무가 없는 종목이 매번 시간을 잡아먹지 않게) */
 async function catchUp(m, t0) {
@@ -171,6 +211,28 @@ async function catchUp(m, t0) {
   return { got, catchUp: need.length };
 }
 
+/** 성장주 지표·애널리스트·공매도 (미국 요약표) — 점수에는 안 넣고 상세 표시용 */
+export function growthX(f, M, F) {
+  const g = F?.gRev12 ?? M?.gRev ?? null, fcfM = M?.fcfM ?? null;
+  const sq = squeezeOf(f);
+  const o = { evS: f?.evSales ?? null, evE: f?.evEbitda ?? null, pFcf: f?.pFcf ?? null, fcfY: f?.pFcf > 0 ? +(100 / f.pFcf).toFixed(1) : null,
+    r40: g != null && fcfM != null ? +(g + fcfM).toFixed(1) : null, r40g: g, r40f: fcfM,
+    recom: f?.recom ?? null, target: f?.target ?? null, upside: f?.upside ?? null, sf: f?.shortFloat ?? null, sr: f?.shortRatio ?? null, si: f?.shortInt ?? null, sq };
+  return Object.values(o).some(v => v != null) ? o : null;
+}
+
+/**
+ * 숏스퀴즈 가능성 — 공매도 비율(유통주식 대비)과 커버 일수(공매도 잔고 ÷ 하루 평균 거래량).
+ *   높음: 비율 20%+ 이고 커버 5일+   ·  중간: 비율 10%+ 이거나 (5%+ 이고 커버 7일+)  ·  낮음: 그 외
+ *   실제 스퀴즈는 '공매도가 많은데 주가가 오르기 시작할 때' 나오므로 화면에선 국면(봄·여름)과 같이 읽게 한다.
+ */
+export function squeezeOf(f) {
+  const sf = f?.shortFloat, sr = f?.shortRatio;
+  if (sf == null) return null;
+  const lv = sf >= 20 && (sr ?? 0) >= 5 ? '높음' : sf >= 10 || (sf >= 5 && (sr ?? 0) >= 7) ? '중간' : '낮음';
+  return lv;
+}
+
 const pct = (v, sorted) => {                       // 백분위 (0~100)
   if (v == null || !sorted?.length) return null;
   let lo = 0, hi = sorted.length;
@@ -189,7 +251,7 @@ const pct = (v, sorted) => {                       // 백분위 (0~100)
  *   값이 없는 축(국내 현금·추정 상향, 기록이 쌓이기 전의 추정 상향 등)은 빼고 나머지 가중치로 다시 나눈다.
  */
 /** 점수 방식 버전 — 바꾸면 다음 조회 때 저장된 재료로 한 번 다시 매긴다 */
-export const SCORE_REV = '2026-10-05p';
+export const SCORE_REV = '2026-10-12a';
 export const WEIGHTS = { accel: 0.20, growth: 0.20, revision: 0.10, margin: 0.15, cash: 0.10, quality: 0.10, value: 0.10, risk: 0.05 };
 const KEYS = Object.keys(WEIGHTS);
 const PEER_K = 8;                                    // 동종 섹터가 작을 때 상위 묶음과 섞는 강도 (섹터 n종목 : 묶음 8종목 비중)
@@ -260,6 +322,7 @@ export async function scoreAll(m) {
     r.sector = secOvr[r.code] || sectorOf(m, r.code, { name: r.name, collected: m === 'KR' ? r.secRaw : r.fwd?.industry });
     r.theme = ovr[r.code] || themeOf(m, r.code, r.sector);
     r.fam = AIG.has(r.theme) ? 'AI' : '*';
+    if (m === 'KR') r.bd = bandOf(r, r.theme);
   }
   const raw = recs.map(r => ({ r, s: rawOf(m, r) })).filter(x => x.s);
   for (const x of raw) {
@@ -286,12 +349,15 @@ export async function scoreAll(m) {
   const wavg = parts => { let a = 0, w = 0; for (const [v, k] of parts) if (v != null) { a += v * k; w += k; } return w ? Math.round(a / w) : null; };
   const rows = raw.map(x => {
     const { r, s } = x;
-    const vPe = peer(x, 'peLn'), vPeg = peer(x, 'peg'), vHist = univ(x, 'zv');
+    const vPe = peer(x, 'peLn'), vPeg = peer(x, 'peg');
+    const bSelf = m === 'KR' ? r.bd?.self?.pct ?? null : null;
+    const vHist = m === 'KR' ? (bSelf == null ? null : 100 - bSelf) : univ(x, 'zv');   // 국내는 PER·PBR 밴드 자기 백분위 (낮을수록 쌈 → 점수 높게)
     const p = {
       accel: univ(x, 'accel'), growth: univ(x, 'growth'), revision: univ(x, 'revision'), margin: univ(x, 'margin'),
       cash: wavg([[univ(x, 'cashD'), 1], [peer(x, 'cashL'), 1]]),               // FCF 마진 개선폭(전체) + FCF 마진 수준(동종)
       quality: peer(x, 'quality'),
-      value: wavg([[vPe, 0.35], [vPeg, 0.40], [vHist, 0.25]]),                   // 선행 PER(동종) · PEG(동종) · 자기 과거 P/S
+      value: m === 'KR' ? wavg([[vPe, 0.30], [vPeg, 0.35], [vHist, 0.35]])        // 국내: 선행 PER(동종) · PEG(동종) · 자기 밴드 위치
+        : wavg([[vPe, 0.35], [vPeg, 0.40], [vHist, 0.25]]),                       // 미국: 선행 PER(동종) · PEG(동종) · 자기 과거 P/S
       risk: univ(x, 'risk'),
     };
     let wsum = 0, acc = 0;
@@ -300,7 +366,8 @@ export async function scoreAll(m) {
     if (p.accel != null && p.accel < 20 && (M.dOm ?? 0) < 0) flags.push('이익 정점 경계');      // 정유 매도를 설명하는 규칙
     if (M.funding === '남의 돈' && (M.levEbitda ?? 0) > 3) flags.push('남의 돈 · 레버리지');
     if ((M.dilution ?? 0) > 10) flags.push('희석 10%+');
-    if ((M.zPs ?? 0) > 1.5) flags.push('자기 과거 대비 비쌈');                                  // P/S 가 자기 평균보다 1.5 표준편차 넘게 위
+    if ((M.zPs ?? 0) > 1.5 || (bSelf ?? 0) >= 85) flags.push('자기 과거 대비 비쌈');            // 미국 P/S 가 자기 평균 +1.5σ 넘게 위 · 국내 밴드 상위 15%
+    if (bSelf != null && bSelf <= 15) flags.push('자기 과거 대비 쌈');                            // 국내 밴드 하위 15%
     if (s.pe > 0 && s.gPeg >= 15 && s.pe / s.gPeg <= 1) flags.push('성장 대비 쌈');             // PEG 1 이하
     if ((M.fcfPos ?? 0) === 4 && (M.dFcfM ?? 0) > 0) flags.push('현금흐름 개선');
     if ((RU ?? 0) > 3) flags.push('추정 상향');
@@ -325,7 +392,9 @@ export async function scoreAll(m) {
       fwdPe2: F?.pe2 ?? null, fwdEps2: F?.eps2 ?? null, fy1: F?.fy1 ?? null, fy2: F?.fy2 ?? null, gEps23: F?.g23 ?? null, gRevFwd: F?.gRev12 ?? null,
       estSpread: F?.spread1 ?? null, estN: F?.n1 ?? null, tb: r.tb || null,
       surOp: M.surOp ?? null, surQ: M.surQ ?? null, peBasis: M.basis ?? (F?.src === 'est' ? 'forward' : null), gOp: M.gOp ?? null, gOpNext: M.gOpNext ?? null, epsNext: M.epsNext ?? null, debtRatio: M.debtRatio ?? null,
-      target: F?.target ?? null, upside: F?.upside ?? null };
+      target: F?.target ?? r.fwd?.target ?? null, upside: F?.upside ?? r.fwd?.upside ?? null,
+      bd: r.bd ? { self: r.bd.self, per: r.bd.per && { now: r.bd.per.now, pct: r.bd.per.pct, med: r.bd.per.med }, pbr: r.bd.pbr && { now: r.bd.pbr.now, pct: r.bd.pbr.pct, med: r.bd.pbr.med } } : null,
+      gx: m === 'US' ? growthX(r.fwd, M, F) : null };
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
   const sum = { m, at: new Date().toISOString(), rev: SCORE_REV, n: rows.length, weights: WEIGHTS, adjRules: ADJ, peerK: PEER_K,
     funding: rows.reduce((a, x) => { a[x.funding || '미상'] = (a[x.funding || '미상'] || 0) + 1; return a; }, {}),
