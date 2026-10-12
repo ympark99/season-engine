@@ -5,6 +5,7 @@
 // POST /api/list?op=fav  — 즐겨찾기 저장 (관리자)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
+import { srPlan } from '../lib/levels.js';
 import { engineState, row, send, refresh, isAdmin, body, KEEP } from '../lib/service.js';
 import { analyzeV2, JUDGE_REV } from '../lib/engine2.js';
 import { historyOf } from '../lib/history.js';
@@ -62,6 +63,7 @@ async function list(req, res) {
   const fund = {};
   for (const s of [fUS, fKR]) for (const r of s?.rows || []) fund[`${s.m}:${r.code}`] = r;
 
+  const lvs = await store.mget(items.map(it => `lv:${it.m}:${it.code}`));       // 차트 지지·저항 (매일 파이프라인이 계산)
   const fitKeys = items.map(it => `fit:${it.m}:${it.code}`), fits = await store.mget(fitKeys), fitPut = [];
   const stocks = items.map((it, i) => {
     let r, A = null;
@@ -81,6 +83,8 @@ async function list(req, res) {
     r.theme = OVR[it.m]?.[it.code] || r.themeAuto;                               // 화면의 '섹터' (lib/themes.js)
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
+    const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
+    if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
     return r;
   });
   if (fitPut.length) await Promise.all(fitPut.map(([k, v]) => store.set(k, v)));
