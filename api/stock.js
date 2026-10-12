@@ -15,19 +15,27 @@ import { mcapOf } from '../lib/mcap.js';
 import { mcOpt } from '../lib/pullback.js';
 import { srPlan, levelsFor, lvStale } from '../lib/levels.js';
 import { bandOf, bandFor } from '../lib/band.js';
-import { flowOf, saveFlowOvr } from '../lib/flow.js';
+import { flowOf, saveFlowOvr, enqueue, queueText } from '../lib/flow.js';
 
 /** GET ?flow=1 — 매출 흐름도 (버튼 누를 때만, 7일 저장) · POST ?flow=1 — 매출처·사업 구성 직접 수정 (관리자) */
 async function flow(req, res) {
+  if (req.query.flow === 'queue') {                                              // 정기 작업이 읽는 예약 목록 (평문)
+    res.setHeader('content-type', 'text/plain; charset=utf-8'); res.setHeader('cache-control', 'no-store');
+    res.statusCode = 200; return res.end(await queueText());
+  }
   const m = req.query.m === 'KR' ? 'KR' : 'US', code = String(req.query.code || '');
   if (!code) return send(res, 400, { error: 'code 가 필요해' });
-  if (req.method === 'POST') {
+  if (req.method === 'POST' && req.query.flow === 'req') {                        // 매출 흐름도 분석 예약 (누구나 — 최대 60건)
+    const [sum] = await store.mget([`fund:sum:${m}`]), f0 = sum?.rows?.find(r => r.code === code);
+    const b = await body(req);
+    await enqueue(m, code, { name: req.query.name || f0?.name || code, theme: f0?.theme || null, update: !!b?.update });
+  } else if (req.method === 'POST') {
     if (!isAdmin(req)) return send(res, 401, { error: '관리자 키가 필요해' });
     await saveFlowOvr(m, code, await body(req));
   }
   const [rec, sum] = await store.mget([`fund:${m}:${code}`, `fund:sum:${m}`]);
   const f = sum?.rows?.find(r => r.code === code) || null;
-  return send(res, 200, await flowOf(m, code, { name: req.query.name || f?.name || code, theme: f?.theme || null, rec, force: req.method === 'POST' || !!req.query.force }));
+  return send(res, 200, await flowOf(m, code, { name: req.query.name || f?.name || code, theme: f?.theme || null, rec, force: (req.method === 'POST' && req.query.flow !== 'req') || !!req.query.force }));
 }
 
 export default async function handler(req, res) {
