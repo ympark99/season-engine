@@ -2,7 +2,7 @@
 // 내 목록에 없는 종목(유니버스·펀더멘털 표에서 누른 종목)도 저장된 일봉이 있으면 똑같이 보여준다.
 // effect = 국면 효과(계절별 월 환산·위아래 폭·다음 국면, 따라 했다면 3종) + 유니버스 같은 계절 기준선(mkt:eff:{m})
 import * as store from '../lib/store.js';
-import { engineState, KEEP, send } from '../lib/service.js';
+import { engineState, KEEP, send, isAdmin, body } from '../lib/service.js';
 import { analyzeV2 as analyze } from '../lib/engine2.js';
 import { indexParams } from '../lib/market.js';
 import { historyOf } from '../lib/history.js';
@@ -13,11 +13,26 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { mcapOf } from '../lib/mcap.js';
 import { mcOpt } from '../lib/pullback.js';
-import { srPlan } from '../lib/levels.js';
-import { bandOf } from '../lib/band.js';
+import { srPlan, levelsFor, lvStale } from '../lib/levels.js';
+import { bandOf, bandFor } from '../lib/band.js';
+import { flowOf, saveFlowOvr } from '../lib/flow.js';
+
+/** GET ?flow=1 — 매출 흐름도 (버튼 누를 때만, 7일 저장) · POST ?flow=1 — 매출처·사업 구성 직접 수정 (관리자) */
+async function flow(req, res) {
+  const m = req.query.m === 'KR' ? 'KR' : 'US', code = String(req.query.code || '');
+  if (!code) return send(res, 400, { error: 'code 가 필요해' });
+  if (req.method === 'POST') {
+    if (!isAdmin(req)) return send(res, 401, { error: '관리자 키가 필요해' });
+    await saveFlowOvr(m, code, await body(req));
+  }
+  const [rec, sum] = await store.mget([`fund:${m}:${code}`, `fund:sum:${m}`]);
+  const f = sum?.rows?.find(r => r.code === code) || null;
+  return send(res, 200, await flowOf(m, code, { name: req.query.name || f?.name || code, theme: f?.theme || null, rec, force: req.method === 'POST' || !!req.query.force }));
+}
 
 export default async function handler(req, res) {
   try {
+    if (req.query.flow) return await flow(req, res);
     const { m, code } = req.query;
     const IXC = { US: 'SPX', KR: 'KOSPI' }[m];
     const [bars, eng, sum, rec, ixb, ueff, shm, lv] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
@@ -33,9 +48,13 @@ export default async function handler(req, res) {
     const sector = m === 'IX' ? null : (await loadSecOvr(m))[code] || fund?.sector || sectorOf(m, code, { name: req.query.name || null });
     const mcap = m === 'IX' ? null : mcapOf(shm?.rows?.[code]?.[0], summary.last, m, shm?.fx);   // 원화 시가총액 (원)
     // 차트 지지·저항 (눌림목 후보·내 목록만 매일 계산) — 눌림매매 손절·목표 보정
-    const lvOk = lv && !lv.none ? lv : null;
+    // 없거나 묵었으면 지금 바로 계산 (종목 조회 때도 지지·저항이 나오게). 실패하면 있던 값 그대로
+    let lvNow = lv;
+    if (IXC && lvStale(m, lv, summary.lastDate) && !(lv?.none && Date.now() - Date.parse(lv.at || 0) < 864e5)) lvNow = (await levelsFor(m, code)) || lv;
+    const lvOk = lvNow && !lvNow.none ? lvNow : null;
     if (lvOk && summary.pb20) summary.pb20.sr = srPlan(summary.pb20, lvOk);
-    const band = m === 'KR' && rec ? bandOf(rec, fund?.theme, summary.last) : null;            // PER·PBR 밴드 자기 위치 (작은 차트용 월별 배수 포함)
+    const bd = m === 'KR' ? await bandFor(store, code, rec) : null;                                // 국내 밴드 — 없으면 지금 받아 둠
+    const band = bd ? bandOf({ band: bd }, fund?.theme, summary.last) : null;            // PER·PBR 밴드 자기 위치 (작은 차트용 월별 배수 포함)
     send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap, lv: lvOk, band,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
       est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
