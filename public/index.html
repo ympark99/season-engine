@@ -827,9 +827,9 @@ function renderUnivLists(){
         :`<div class="muted">${d.dips?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
       <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>
     <div class="box"><h3>눌림목 시그널 종목 (20거래일) <span class="muted">${d.pbsN??0}개 · 시가총액 순</span></h3>
-      ${pb.length?`<div class="chg chg4">${pb.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now?'<span class="sig sig-pb" style="margin:0">지금 눌림</span>':`<span class="sub" title="기준봉 ${c.sig}">${c.d.slice(5).replace('-','.')} 진입${c.broke?' · 손절가 이탈':''}</span>`}</span><span class="num" title="기준봉 이후 고점 대비 · 손익비 ${c.rr}">${c.dd}% · ${c.rr}R</span>`).join('')}</div>`
+      ${pb.length?`<div class="chg chg4">${pb.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now?'<span class="sig sig-pb" style="margin:0">지금 눌림</span>':`<span class="sub" title="기준봉 ${c.sig}">${c.d.slice(5).replace('-','.')} 진입${c.broke?' · 손절가 이탈':''}</span>`}</span><span class="num" title="${pbTitle(c,m)}">${c.dd}% · ${c.sr?c.sr.rr:c.rr}R${c.sr?'<sup class="muted">차트</sup>':''}</span>`).join('')}</div>`
         :`<div class="muted">${d.pbs?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
-      <div class="sub" style="margin-top:6px">기준봉(5·10·20일선 정배열·종가 5일선 위·거래량 20일 평균 2배↑·종가 +3%↑·시가총액 3,000억↑) 뒤 15거래일 안에 거래량이 마르며 10일선 근처까지 눌린 날 — 최근 20거래일 안에 진입이 나온 종목. 숫자 = 기준봉 이후 고점 대비 · 손익비(R). 손절은 기준봉 시작가·진입가 −8% 중 높은 값 종가 이탈 (전략 비교 ‘눌림매매’와 같은 규칙)</div></div></div>`;
+      <div class="sub" style="margin-top:6px">기준봉(5·10·20일선 정배열·종가 5일선 위·거래량 20일 평균 2배↑·종가 +3%↑·시가총액 3,000억↑) 뒤 15거래일 안에 거래량이 마르며 10일선 근처까지 눌린 날 — 최근 20거래일 안에 진입이 나온 종목. 숫자 = 기준봉 이후 고점 대비 · 손익비(R). 손절은 기준봉 시작가·진입가 −8% 중 높은 값 종가 이탈 (전략 비교 ‘눌림매매’와 같은 규칙). <b>R<sup>차트</sup></b> = 매일 계산하는 차트 지지·저항으로 보정한 손익비 — 손절은 진입가 아래 가장 가까운 지지(수평선·상승 추세선) − 0.5 ATR(최대 −8%), 목표는 위쪽 가장 가까운 저항. 숫자에 마우스를 올리면 규칙·차트 손절·목표가 같이 보여</div></div></div>`;
   bindChips(el,'cf',renderUnivLists);
   el.querySelectorAll('[data-cday] button').forEach(b=>b.onclick=e=>{e.stopPropagation();state.cday=b.dataset.d;renderUnivLists()});
 }
@@ -1174,7 +1174,10 @@ const fitTag=f=>f?`<div class="fit fit-${f.grade}" title="${esc(f.why||'')}">${e
 const dipTag=d=>d?`<span class="sig sig-dip" title="겨울 ${d.age}일째 · 20일선 대비 ${d.dev20}% — 겨울 20일+ · 20일선 −15% 이하">저점매수</span>`:'';
 /* 눌림목 — 오늘 눌림 조건이거나, 최근 3거래일 안에 눌림 진입이 나왔고 아직 손절가를 안 깬 종목 */
 const pbOn=S=>!!(S&&(S.pb||(S.pb20&&S.pb20.days<=2&&!S.pb20.broke)));
-const pbTag=S=>pbOn(S)?`<span class="sig sig-pb" title="${S.pb20?`${S.pb20.d.slice(5)} 눌림 진입 · 기준봉 ${S.pb20.sig.slice(5)} · 고점 대비 ${S.pb20.dd}% · 손절가 ${S.pb20.stop} · 손익비 ${S.pb20.rr}`:`오늘 눌림 조건 · 고점 대비 ${S.pb.dd}%`}">눌림목</span>`:'';
+/* 눌림 진입 설명 — 규칙 손절·목표 + 차트 지지·저항 보정 */
+const pbTitle=(q,m)=>{const f=v=>v==null?'—':fmtP(v,m);const base=`기준봉 ${q.sig||''} · 규칙 손절 ${f(q.stop)} · 목표 ${f(q.tgt)} · ${q.rr}R`;
+  return q.sr?`${base}\n차트 손절 ${f(q.sr.stop)} (${q.sr.why}) · 목표 ${f(q.sr.tgt)} (${q.sr.twhy}) · ${q.sr.rr}R`:base};
+const pbTag=S=>pbOn(S)?`<span class="sig sig-pb" title="${S.pb20?`${S.pb20.d.slice(5)} 눌림 진입 · 기준봉 ${S.pb20.sig.slice(5)} · 고점 대비 ${S.pb20.dd}% · 손절가 ${S.pb20.stop} · 손익비 ${S.pb20.rr}${S.pb20.sr?` · 차트 손절 ${S.pb20.sr.stop} · 목표 ${S.pb20.sr.tgt} · ${S.pb20.sr.rr}R`:''}`:`오늘 눌림 조건 · 고점 대비 ${S.pb.dd}%`}">눌림목</span>`:'';
 function vcells(S){
   const v=vw(S);
   if(!v)return {stance:'<td class="muted">—</td>',trend:'<td class="r num muted">—</td>',value:'<td class="r num muted">—</td>'};
@@ -1338,7 +1341,7 @@ function renderFlow(){
   const mp=visible().filter(s=>ok(s)&&s.pb20).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
   $('mypbn').textContent=`${mp.length}종목`;
   $('mypb').innerHTML=mp.length?mp.map(S=>`<div class="ev"><span class="num muted">${S.pb20.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
-    <span>${S.pb?'<span class="sig sig-pb" style="margin:0">지금 눌림</span> ':S.pb20.broke?'<span class="sub">손절가 이탈</span> ':''}<span class="num" title="기준봉 ${S.pb20.sig} · 손절가 ${S.pb20.stop} · 목표 ${S.pb20.tgt}">${S.pb20.dd}% · ${S.pb20.rr}R</span></span></div>`).join('')
+    <span>${S.pb?'<span class="sig sig-pb" style="margin:0">지금 눌림</span> ':S.pb20.broke?'<span class="sub">손절가 이탈</span> ':''}<span class="num" title="${pbTitle(S.pb20,S.m)}">${S.pb20.dd}% · ${S.pb20.sr?S.pb20.sr.rr:S.pb20.rr}R${S.pb20.sr?'<sup class="muted">차트</sup>':''}</span></span></div>`).join('')
     :'<div class="muted">최근 20거래일 시그널 없음 — 급등 기준봉 뒤 거래량 마른 10일선 눌림</div>';
 }
 
@@ -1450,10 +1453,10 @@ function univOpsCard(UV){
     <div class="sub">${line('US')}<br>${line('KR')}</div>
     <div class="sub" style="margin-top:8px">처음 한 번은 5년치 일봉을 받느라 오래 걸려 (미국 30~40분, 한국 15~20분). 끝나면 매일 새 봉만 받아서 몇 분이면 끝나고, Vercel Cron이 알아서 이어 돌려.</div></section>`;
 }
-const STG={list:'목록·지수',scan:'유니버스 스캔',bt:'신뢰도·보정',fund:'펀더멘털',pf:'전략실',done:'완료'};
+const STG={list:'목록·지수',scan:'유니버스 스캔',lv:'지지·저항',bt:'신뢰도·보정',fund:'펀더멘털',pf:'전략실',done:'완료'};
 function pipeCard(H){
   if(!H)return '';
-  const line=m=>{const p=(H.pipeline||{})[m];const order=['list','scan','bt','fund','pf','done'];
+  const line=m=>{const p=(H.pipeline||{})[m];const order=['list','scan','lv','bt','fund','pf','done'];
     if(!p)return `<dt>${m==='US'?'미국':'한국'}</dt><dd class="muted">기록 없음 — 크론이 아직 한 번도 안 돌았거나 인증에 막힘</dd>`;
     const at=order.indexOf(p.stage);
     return `<dt>${m==='US'?'미국':'한국'}</dt><dd><div class="stg">${order.map((k,i)=>`<span class="${i===at?'on':i<at?'ok':''}">${i<at?'✓ ':''}${STG[k]}</span>`).join('')}</div>
@@ -1706,7 +1709,9 @@ function fundInfo(k,F,m){
     margin:[KR?'내년 추정 영업이익률 − 올해.':'영업이익률(TTM)이 1년 전보다 몇 %p 좋아졌는지 — 수준이 아니라 개선폭.','개선폭은 업종 차이가 작아서 유니버스 전체와 비교.',`이 종목: 영업이익률 ${n2(F.om)}% · 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm+'%p'}`],
     cash:[KR?'국내는 컨센서스 표에 현금흐름이 없어서 빠져.':'FCF 마진 개선폭(1년 전 대비, 유니버스 전체 비교) 50% + FCF 마진 수준(동종 비교) 50%.',KR?'':'설비투자가 큰 업종은 FCF 수준이 원래 낮아서 수준은 동종끼리 비교해. 최근 4분기 FCF 가 모두 플러스이고 마진이 좋아지면 \'현금흐름 개선\' 태그.',KR?'':peer,KR?'':`이 종목: FCF 마진 ${n2(F.fcfM)}% · 재원 ${F.funding||'—'}`],
     quality:[KR?'내년 추정 ROE.':'ROIC(투하자본수익률).','업종마다 자본 집약도가 달라서 동종 섹터와 비교.',peer,`이 종목: ${KR?'ROE':'ROIC'} ${n2(F.roic)}%`],
-    value:['높을수록 싸다는 뜻. 동종 안에서 ① 1년 선행 PER 35% ② PEG(1년 선행 PER ÷ 선행 EPS 성장률) 40% ③ 자기 과거 P/S 대비 위치 25%.','성장주는 PER 이 높아도 성장률로 나누면 싸게 나올 수 있게 PEG 비중이 가장 커. 적자라 PER 이 없으면 ③만.',peer,
+    value:KR?['높을수록 싸다는 뜻. ① 1년 선행 PER 30% (동종) ② PEG(1년 선행 PER ÷ 선행 EPS 성장률) 35% (동종) ③ 자기 PER·PBR 밴드 위치 35%.','③ 은 지금 PER·PBR 이 지난 4~5년 월말 기록 중 어디쯤인지 (낮을수록 쌈). 메모리·화학·철강·조선·2차전지·금융은 이익 바닥에서 PER 이 거꾸로 높아지는 업종이라 PBR 75%, 그 외는 PER 60%·PBR 40%. 밴드 상위 15%면 \'자기 과거 대비 비쌈\', 하위 15%면 \'자기 과거 대비 쌈\' 태그.',peer,
+      `이 종목: 1년 선행 PER ${n2(F.tb?.ntm1?.pe??F.fwdPe)}배 (동종 백분위 ${n2(pv.pe)}) · PEG ${n2(F.peg)} (${n2(pv.peg)}) · 밴드 자기 위치 ${F.bd?.self?F.bd.self.pct+'% → 점수 '+n2(pv.hist):'수집 중'}${F.bd?.per?` · PER ${F.bd.per.now}배(${n2(F.bd.per.pct)}%)`:''}${F.bd?.pbr?` · PBR ${F.bd.pbr.now}배(${n2(F.bd.pbr.pct)}%)`:''}`]
+      :['높을수록 싸다는 뜻. 동종 안에서 ① 1년 선행 PER 35% ② PEG(1년 선행 PER ÷ 선행 EPS 성장률) 40% ③ 자기 과거 P/S 대비 위치 25%.','성장주는 PER 이 높아도 성장률로 나누면 싸게 나올 수 있게 PEG 비중이 가장 커. 적자라 PER 이 없으면 ③만.',peer,
       `이 종목: 1년 선행 PER ${n2(F.tb?.ntm1?.pe??F.fwdPe)}배 (동종 백분위 ${n2(pv.pe)}) · PEG ${n2(F.peg)} (${n2(pv.peg)}) · 자기 과거 P/S z ${n2(F.zPs)} (${n2(pv.hist)})`],
     risk:[KR?'부채비율 — 낮을수록 점수가 높아.':'순부채/EBITDA 와 주식 희석률(÷5)을 합친 값 — 부채·희석이 적을수록 점수가 높아(막대가 길수록 안전).','비교: 유니버스 전체.',KR?`이 종목: 부채비율 ${n2(F.debtRatio)}%`:`이 종목: 순부채/EBITDA ${n2(F.lev)} · 1년 희석 ${n2(F.dilution)}%`],
   }[k]||[];
@@ -1735,7 +1740,7 @@ function fwdTbl(F,m){
 function drawFundBlock(j,S){
   const el=$('d-fund');if(!el)return;
   const F=j&&j.fund,V=vwOf(j&&j.view);
-  if(S.m==='IX'||(!F&&!V)){el.hidden=true;return}
+  if(S.m==='IX'||(!F&&!V&&!j?.lv&&!j?.band)){el.hidden=true;return}
   el.hidden=false;
   const P=F?.p||{},NM=FNM;
   const keys=Object.keys(NM).filter(k=>!(S.m==='KR'&&(k==='cash'||k==='revision')));
@@ -1743,7 +1748,9 @@ function drawFundBlock(j,S){
   const adj=F?.adj||[];
   el.innerHTML=`${V?`<h4>종합 의견 · <span class="stance s-${esc(V.tone)}">${esc(V.stance)}</span> <span class="sub">종합 ${V.combined??'—'} = 추세+저점 ${V.trend.score??'—'}${V.trend.bonus?` (저점 가점 +${V.trend.bonus})`:''} · 가치 ${V.value.score??'—'} · 비율 ${Math.round((V.w??0.7)*100)}:${100-Math.round((V.w??0.7)*100)}</span>${dipTag(V.trend.dip)}</h4>
       <div class="sub" style="margin-bottom:10px">${(V.why||[]).map(esc).join(' · ')}${V.volume?` · 거래량 1일 ${V.volume.vr1}배 / 5일 ${V.volume.vr5}배`:''}</div>`:''}
+    ${techBlock(j,S)}
     ${F?fwdTbl(F,S.m):''}
+    ${bandBlock(j,S)}${gxBlock(F,j,S)}
     ${F?`<h4 style="margin-top:14px">펀더멘털 <span class="sub">점수 ${F.score}${adj.length?` (항목 합 ${F.base} ${adj.map(a=>`· ${esc(a.t)} ${a.v>0?'+':''}${a.v}`).join(' ')})`:''} · ${F.of}종목 중 ${F.rank}위 · ${kst(F.at)}${F.theme?` · 동종 ${esc(F.theme)} ${F.peerN}종목`:''}</span></h4>
       <div class="bars">${keys.map(k=>`<span>${NM[k]}<button type="button" class="ibtn" data-fi="${k}" aria-label="${NM[k]} 설명">i</button></span><span class="bar"><i style="width:${P[k]??0}%"></i></span><span class="num">${P[k]??'—'}</span>`).join('')}</div>
       <div class="sub" style="margin-top:8px">${F.peBasis==='trailing'?'PER(실적 기준, 추정치 없음)':'선행 PER'} ${F.fwdPe??'—'}${F.peg!=null?` · PEG ${F.peg}`:''} · 선행 EPS 성장 ${pc(F.gEpsFwd)}${S.m==='KR'?` · 직전 분기(${esc(F.surQ||'—')}) 영업이익 서프라이즈 ${pc(F.surOp)} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}${F.debtRatio!=null?' · 부채비율 '+F.debtRatio+'%':''}`:''}${S.m==='US'?` · 매출 YoY ${pc(F.gRev)} · 영업마진 변화 ${F.dOm==null?'—':(F.dOm>0?'+':'')+F.dOm} · FCF 마진 ${pc(F.fcfM)}${F.funding?' · 재원 '+esc(F.funding):''}${F.upside!=null?' · 목표가 괴리 '+pc(F.upside):''}${F.estN?` · 애널리스트 ${F.estN}명`:''}${F.estSpread!=null?` · 추정 편차 ${F.estSpread}%`:''} · 추정 EPS 변화 ${F.revUp==null?'기록 중':pc(F.revUp)}`:''}</div>
@@ -1754,6 +1761,57 @@ function drawFundBlock(j,S){
   if(fp){const close=()=>{fp.hidden=true};
     el.querySelectorAll('[data-fi]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.fi;$('fpop-h').textContent=FNM[k];$('fpop-t').textContent=fundInfo(k,F,S.m);fp.hidden=false;$('fpop-x').focus()});
     $('fpop-x').onclick=e=>{e.stopPropagation();close()};fp.onclick=e=>{e.stopPropagation();if(e.target===fp)close()};fp.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
+}
+/* 차트 지지·저항 + 눌림매매 계획(규칙 vs 차트) */
+function techBlock(j,S){
+  const L=j&&j.lv,Q=j&&j.summary&&j.summary.pb20,m=S.m;if(!L&&!Q)return '';
+  const f=v=>v==null?'—':fmtP(v,m),px=L?.px??S.last,dist=p=>p==null||!px?'':` <span class="muted">${p>px?'+':''}${(100*(p/px-1)).toFixed(1)}%</span>`;
+  const lv=L?`<div class="sub" style="line-height:1.9">
+      <b style="color:${SRC.sup}">지지</b> ${(L.sup||[]).map(v=>`${f(v.p)}${dist(v.p)} <span class="muted">(${v.n}회)</span>`).join(' · ')||'— (아래 매물대 없음)'}<br>
+      <b style="color:${SRC.res}">저항</b> ${(L.res||[]).map(v=>`${f(v.p)}${dist(v.p)} <span class="muted">(${v.n}회)</span>`).join(' · ')||'— 위 저항 없음 (신고가권)'}<br>
+      <b style="color:#2f7fd1">상승 추세선</b> ${L.tl?`오늘 ${f(L.tl.now)}${dist(L.tl.now)} · ${L.tl.a.d.slice(5)}→${L.tl.b.d.slice(5)} 저점 연결 · ${L.tl.touch}회 터치${L.tl.broke?' · <span class="dn">이탈</span>':''}`:'— 없음'}<br>
+      <span class="muted">ATR(14) ${f(L.atr)} (${px?(100*L.atr/px).toFixed(1):'—'}%) · 1년 고가 ${f(L.hi52)} · ${L.d} 기준 · [기술적 분석 열기]를 누르면 차트에 선이 그려져</span></div>`
+    :'<div class="sub">차트 지지·저항은 눌림목 후보·내 목록 종목만 매일 계산해 — 다음 파이프라인 때 나와</div>';
+  const plan=Q?(()=>{const R=Q.sr;const row=(k,a,b)=>`<tr><td>${k}</td><td class="r num">${a}</td><td class="r num">${b}</td></tr>`;
+    return `<div class="tbl-wrap" style="margin-top:8px"><table class="acc" style="min-width:420px"><thead><tr><th>눌림매매 ${Q.d.slice(5)} 진입 ${f(Q.px)}${Q.broke?' · <span class="dn">손절가 이탈</span>':''}</th><th class="r">규칙</th><th class="r">차트 보정</th></tr></thead><tbody>
+      ${row('손절가',`${f(Q.stop)}${dist2(Q.stop,Q.px)}`,R?`${f(R.stop)}${dist2(R.stop,Q.px)}<br><span class="muted">${esc(R.why)}</span>`:'—')}
+      ${row('목표가',`${f(Q.tgt)}${dist2(Q.tgt,Q.px)}`,R?`${f(R.tgt)}${dist2(R.tgt,Q.px)}<br><span class="muted">${esc(R.twhy)}</span>`:'—')}
+      ${row('손익비',`${Q.rr}R`,R?`<b>${R.rr}R</b>`:'—')}</tbody></table></div>`})():'';
+  return `<h4 style="margin:12px 0 6px;font-size:14px">차트 지지·저항</h4>${lv}${plan}`;
+}
+const dist2=(p,b)=>p==null||!b?'':` <span class="muted">${p>b?'+':''}${(100*(p/b-1)).toFixed(1)}%</span>`;
+/* 국내 PER·PBR 밴드 — 자기 과거(월말) 대비 지금 위치 */
+function bandBlock(j,S){
+  const B=j&&j.band;if(!B||S.m!=='KR'||(!B.per&&!B.pbr))return '';
+  const one=(t,X)=>{if(!X)return '';const pct=X.pct;
+    const W=300,H=70,pad=4,v=X.hist.map((y,i)=>[i,y]).filter(z=>z[1]!=null);if(v.length<3)return `<div class="sub">${t} — 기록 부족</div>`;
+    const ys=v.map(z=>z[1]).concat(X.now??[]),lo=Math.min(...ys),top=Math.max(X.now??0,X.p80??0)*1.8,hi=Math.min(Math.max(...ys),top>lo?top:Infinity),n=X.hist.length,xx=i=>pad+i/(n-1)*(W-2*pad),yy=y=>H-pad-(Math.min(y,hi)-lo)/((hi-lo)||1)*(H-2*pad);   // 이익 바닥 해의 튀는 PER 은 위를 잘라 보여줌
+    const path=v.map((z,k)=>`${k&&v[k-1][0]===z[0]-1?'L':'M'}${xx(z[0]).toFixed(1)},${yy(z[1]).toFixed(1)}`).join('');
+    const band=(a,b,c)=>a==null||b==null?'':`<rect x="${pad}" y="${yy(b).toFixed(1)}" width="${W-2*pad}" height="${Math.max(0,yy(a)-yy(b)).toFixed(1)}" style="fill:${c}"/>`;
+    const tone=pct==null?'':pct<=20?SRC.sup:pct>=80?SRC.res:'';
+    return `<div style="flex:1 1 300px;min-width:260px"><div class="sub"><b>${t}</b> 지금 <b class="num">${X.now??'—'}배</b> · 자기 ${X.from.slice(0,4)}~ 백분위 <b class="num" style="color:${tone||'inherit'}">${pct??'—'}%</b> <span class="muted">(최저 ${X.min} · 중앙 ${X.med} · 최고 ${X.max})</span></div>
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="${t} 월별 추이">${band(X.min,X.p20,'rgba(31,138,76,.13)')}${band(X.p80,Math.min(X.max,hi),'rgba(194,86,26,.12)')}<path d="${path}" style="fill:none;stroke:var(--navy);stroke-width:1.6"/>${X.now!=null?`<circle cx="${xx(n-1).toFixed(1)}" cy="${yy(X.now).toFixed(1)}" r="4" style="fill:var(--gold);stroke:var(--card);stroke-width:1.5"/>`:''}</svg>
+      ${X.gBase1y!=null?`<div class="sub muted">밴드에 반영된 1년 뒤 ${t==='PER'?'EPS':'BPS'} ${X.gBase1y>0?'+':''}${X.gBase1y}%</div>`:''}</div>`};
+  const sf=B.self;
+  return `<h4 style="margin:12px 0 6px;font-size:14px">PER·PBR 밴드 — 자기 과거 대비 ${sf?`<span class="sub">합산 ${sf.pct}% (${esc(sf.basis)}${sf.cyc?' · 경기민감/금융이라 PBR 75%':''}) → 가치 점수 '자기 밴드 위치' 35%</span>`:''}</h4>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">${one('PER',B.per)}${one('PBR',B.pbr)}</div>
+    <div class="sub" style="margin-top:4px">월말 수정주가 ÷ 그달 EPS(BPS), 연결 기준. 0% = 역대 가장 쌈, 100% = 가장 비쌈. 초록 띠 = 하위 20%(쌈), 주황 띠 = 상위 20%(비쌈), 금색 점 = 지금. 이익이 바닥인 해는 PER 이 튀어서 200배 넘는 달은 계산에서 빼고, 차트는 위를 잘라 보여줘</div>`;
+}
+/* 미국 성장주 지표 · 애널리스트 · 공매도 (숏스퀴즈) */
+function gxBlock(F,j,S){
+  const G=F&&F.gx;if(!G||S.m!=='US')return '';
+  const n=(v,s='')=>v==null?'—':v+s,sn=j?.summary?.season;
+  const r40=G.r40==null?'—':`<b class="${G.r40>=40?'up':G.r40<20?'dn':''}">${G.r40}</b> <span class="muted">(매출 성장 ${n(G.r40g,'%')} + FCF 마진 ${n(G.r40f,'%')}${G.r40>=40?' · 40 통과':''})</span>`;
+  const rec=G.recom==null?'—':`${G.recom} <span class="muted">(${G.recom<=1.5?'강력 매수':G.recom<=2.5?'매수':G.recom<=3.5?'중립':'매도'} · 1 강력매수 ~ 5 매도)</span>`;
+  const sqCls={높음:'sig-up',중간:'sig-thaw',낮음:''}[G.sq]||'';
+  const sqWhy=G.sq==null?'':G.sq==='낮음'?'공매도가 적어 스퀴즈 재료는 약해':
+    (sn==='봄'||sn==='여름')?`공매도가 많은데 주가가 ${sn} 국면 — 숏커버(되사기)가 상승을 키울 수 있는 구간`:`공매도가 많지만 주가가 ${sn||'—'} 국면 — 공매도 쪽이 맞고 있는 중이라 스퀴즈보다 하락 압력 신호`;
+  return `<h4 style="margin:12px 0 6px;font-size:14px">성장주 지표 · 애널리스트 · 공매도</h4>
+    <div class="sub" style="line-height:1.9">
+      <b>밸류</b> EV/매출 ${n(G.evS,'배')} · EV/EBITDA ${n(G.evE,'배')} · P/FCF ${n(G.pFcf,'배')}${G.fcfY!=null?` (FCF 수익률 ${G.fcfY}%)`:''}<br>
+      <b>Rule of 40</b> ${r40}<br>
+      <b>애널리스트</b> 평균 의견 ${rec} · 목표가 ${G.target!=null?fmtP(G.target,'US'):'—'}${G.upside!=null?` (${G.upside>0?'+':''}${G.upside}%)`:''}<br>
+      <b>공매도</b> 유통주식 대비 ${n(G.sf,'%')} · 커버 일수 ${n(G.sr,'일')}${G.si!=null?` · 잔고 ${G.si}M주`:''} ${G.sq?`<span class="sig ${sqCls}">숏스퀴즈 가능성 ${G.sq}</span>`:''}${sqWhy?`<br><span class="muted">${sqWhy}. 높음 = 공매도 20%+ 이고 커버 5일+ · 중간 = 10%+ 또는 5%+ 이고 커버 7일+</span>`:''}</div>`;
 }
 /* 국내 컨센서스 표 — 연간(실적·추정)과 분기(실적·다음 추정). 금액은 억원 */
 function estTable(E){
@@ -1783,7 +1841,7 @@ async function openDetail(key){
   if(!IX)$('d-catv').textContent=(PREF.cat||{})[K(S)]!=null?'직접 지정':(CATS.map[K(S)]?'기본 태그(추정)':'');
   $('d-cat').onchange=e=>{PREF.cat=PREF.cat||{};PREF.cat[K(S)]=e.target.value;savePrefs();$('d-catv').textContent='직접 지정';renderRows();renderMacro()};
   $('d-x').focus();
-  $('d-fund').hidden=true;
+  $('d-fund').hidden=true;state.lv=null;
   try{const j=S._pre||await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}`);delete S._pre;if(state.cur!==S)return;
     drawFundBlock(j,S);if(j.sector&&!IX)$('d-eye').textContent=`국면 확률 · ${S.code} · ${j.sector}`;
     $('d-why').innerHTML=[['종가 ('+S.lastDate.slice(5)+')',fmtP(S.last,S.m)],['국면 진입 후',sgn(S.sinceEntry)+'%'],['국면 내 정점 대비',sgn(S.fromPeak)+'%'],
@@ -1792,7 +1850,7 @@ async function openDetail(key){
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
-    J.h=h;state.series=J;state.mcap=j.mcap??null;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
+    J.h=h;state.series=J;state.mcap=j.mcap??null;state.lv=j.lv||null;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
   }catch(e){$('c-price').innerHTML=`<div class="loading">차트 데이터를 못 불러왔어 (${esc(e.message)})</div>`}
 }
 /* 국면 변경 내역 → 국면 효과 — 'N일 후'는 회귀가 섞여 국면 효과를 가린다. 국면에 머문 동안의 속도·위아래 폭·다음 국면으로 보여준다 */
@@ -1870,6 +1928,15 @@ function drawHist(){
     $('ipop-x').onclick=close;ip.onclick=e=>{if(e.target===ip)close()};ip.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
+/* 기술적 분석을 열면 차트에 지지(초록)·저항(빨강) 수평선과 상승 추세선(파랑)을 겹친다 */
+const SRC={sup:'#1f8a4c',res:'#c2561a',tl:'#2f7fd1'};
+function srSvg(J,i0,A,x,y,lo,hi,ml,pw){
+  const L=state.lv;if(!state.ta||!L)return '';
+  let o='';const hl=(p,c,t)=>{if(p==null||p<lo||p>hi)return;const yy=y(p).toFixed(1);o+=`<line x1="${ml}" x2="${ml+pw}" y1="${yy}" y2="${yy}" style="stroke:${c};stroke-width:1.3;stroke-dasharray:6 4"/><text x="${ml+pw-4}" y="${(+yy-4).toFixed(1)}" text-anchor="end" style="font-size:11px;fill:${c}">${t}</text>`};
+  (L.sup||[]).slice(0,2).forEach((v,k)=>hl(v.p,SRC.sup,k?'':'지지'));(L.res||[]).slice(0,2).forEach((v,k)=>hl(v.p,SRC.res,k?'':'저항'));
+  const T=L.tl;if(T){const ia=J.d.indexOf(T.a.d);if(ia>=0){const a=Math.max(ia,i0),va=T.a.p+T.slope*(a-ia),vb=T.a.p+T.slope*(A-ia);
+    if(Math.max(va,vb)>=lo&&Math.min(va,vb)<=hi)o+=`<line x1="${x(a).toFixed(1)}" x2="${x(A).toFixed(1)}" y1="${y(va).toFixed(1)}" y2="${y(vb).toFixed(1)}" style="stroke:#2f7fd1;stroke-width:1.5${T.broke?';stroke-dasharray:3 3':''}"/>`}}
+  return o}
 function drawDetail(){
   const S=state.cur,J=state.series;if(!J)return;
   document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.y===state.years)));
@@ -1893,7 +1960,7 @@ function drawDetail(){
   const line=arr=>arr.map((v,k)=>`${k?'L':'M'}${x(i0+k).toFixed(1)},${y(v).toFixed(1)}`).join('');
   let ma='';if(state.ta){for(const [n,c,dash] of [[20,'var(--gold)','none'],[60,'var(--ink2)','4 3']])ma+=`<path d="${line(sma(J.c,n).slice(i0))}" style="fill:none;stroke:${c};stroke-width:1.4;stroke-dasharray:${dash}"/>`;
     ma+=`<text x="${ml+6}" y="${H-14}" style="font-size:11.5px;fill:var(--gold-ink)">— MA20</text><text x="${ml+64}" y="${H-14}" class="t-muted" style="font-size:11.5px">- - MA60</text>`}
-  $('c-price').innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/></svg>`;
+  $('c-price').innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}${srSvg(J,i0,A,x,y,lo,hi,ml,pw)}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/></svg>`;
   const H2=190,mt2=34,mb2=30,ph2=H2-mt2-mb2,y2=v=>mt2+(100-v)/100*ph2;
   let d=`M${x(i0).toFixed(1)},${y2(J.h[i0]).toFixed(1)}`;for(let t=i0+1;t<N;t++)d+=`H${x(t).toFixed(1)}V${y2(J.h[t]).toFixed(1)}`;
   let g2='';for(const v of [0,50,100])g2+=`<line x1="${ml}" x2="${ml+pw}" y1="${y2(v)}" y2="${y2(v)}" style="stroke:var(--line)"/><text x="${ml-8}" y="${y2(v)+4}" text-anchor="end" class="t-muted num" style="font-size:12px">${v}%</text>`;
