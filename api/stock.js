@@ -13,13 +13,15 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { mcapOf } from '../lib/mcap.js';
 import { mcOpt } from '../lib/pullback.js';
+import { srPlan } from '../lib/levels.js';
+import { bandOf } from '../lib/band.js';
 
 export default async function handler(req, res) {
   try {
     const { m, code } = req.query;
     const IXC = { US: 'SPX', KR: 'KOSPI' }[m];
-    const [bars, eng, sum, rec, ixb, ueff, shm] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
-      IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null, IXC ? store.get(`mcap:${m}`) : null]);
+    const [bars, eng, sum, rec, ixb, ueff, shm, lv] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
+      IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null, IXC ? store.get(`mcap:${m}`) : null, IXC ? store.get(`lv:${m}:${code}`) : null]);
     if (!bars) return send(res, 404, { error: '저장된 일봉이 없어' });
     const P = m === 'IX' ? indexParams(bars, eng.params).P : eng.params;   // 지수는 변동성 보정 임계값 (v2 는 그대로)
     const mc = m === 'IX' ? {} : mcOpt(m, shm, code);
@@ -30,7 +32,11 @@ export default async function handler(req, res) {
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
     const sector = m === 'IX' ? null : (await loadSecOvr(m))[code] || fund?.sector || sectorOf(m, code, { name: req.query.name || null });
     const mcap = m === 'IX' ? null : mcapOf(shm?.rows?.[code]?.[0], summary.last, m, shm?.fx);   // 원화 시가총액 (원)
-    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap,
+    // 차트 지지·저항 (눌림목 후보·내 목록만 매일 계산) — 눌림매매 손절·목표 보정
+    const lvOk = lv && !lv.none ? lv : null;
+    if (lvOk && summary.pb20) summary.pb20.sr = srPlan(summary.pb20, lvOk);
+    const band = m === 'KR' && rec ? bandOf(rec, fund?.theme, summary.last) : null;            // PER·PBR 밴드 자기 위치 (작은 차트용 월별 배수 포함)
+    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap, lv: lvOk, band,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
       est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
   } catch (e) { send(res, 500, { error: e.message }); }
