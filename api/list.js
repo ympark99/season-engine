@@ -5,7 +5,7 @@
 // POST /api/list?op=fav  — 즐겨찾기 저장 (관리자)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
-import { srPlan } from '../lib/levels.js';
+import { srPlan, levelsFor } from '../lib/levels.js';
 import { engineState, row, send, refresh, isAdmin, body, KEEP } from '../lib/service.js';
 import { analyzeV2, JUDGE_REV } from '../lib/engine2.js';
 import { historyOf } from '../lib/history.js';
@@ -41,6 +41,7 @@ async function add(req, res) {
   const ms = new Set();
   for (const it of need) { try { await collectOne(it.m, it.code); ms.add(it.m); } catch (e) { it.fundError = e.message.slice(0, 120); } }
   for (const m of ms) { try { await scoreAll(m); } catch { /* 다음 수집 때 */ } }
+  for (const it of out.filter(x => !x.error)) await levelsFor(it.m, it.code).catch(() => null);   // 차트 지지·저항도 바로 (국내 밴드는 collectOne 이 받음)
   send(res, 200, { stocks: out, fund: [...ms] });
 }
 
