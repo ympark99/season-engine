@@ -1912,31 +1912,34 @@ function drawHist(){
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
   // 토글 — 2배 레버리지(2) · 겨울 저점매수(D). 눌림매매 · 봄·여름만 보유 · 봄 진입·가을 매도에만 있음
-  const X2=state.x2||(state.x2={}),XD=state.xd||(state.xd={});
-  const keyOf=id=>id+(X2[id]&&F?.[id+'2']?'2':'')+(XD[id]&&F?.[id+'D']?'D':''),R=id=>F[keyOf(id)]||F[id];
+  const X2=state.x2||(state.x2={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={});   // XF — 일목기준선 횡보·가짜 돌파 필터
+  const keyOf=id=>id+(X2[id]&&F?.[id+'2']?'2':'')+(XD[id]&&F?.[id+'D']?'D':'')+(XF[id]&&F?.[id+'F']?'F':''),R=id=>F[keyOf(id)]||F[id];
   const SHORT={SS:{'2':'봄·여름 2배 보유 · 가을·겨울 현금',D:'봄·여름 보유 · 가을·겨울 현금 · 겨울 저점매수',
       '2D':'봄·여름 2배 보유 · 가을·겨울 현금 · 겨울 저점매수(2배)'},
     SF:{'2':'봄 전환 때 2배 진입 → 여름 유지 → 가을 전량 매도',D:'봄 전환 진입 + 겨울 저점매수 → 가을 전량 매도','2D':'봄 전환·겨울 저점매수 때 2배 진입 → 가을 전량 매도'},
     PB:{'2':'급등 기준봉 뒤 눌림목 2배 매수 → 손절가 종가 이탈·국면 기준 익절',D:'눌림목 매수 + 겨울 저점매수',
-      '2D':'눌림목·겨울 저점매수 때 2배 진입'}};
+      '2D':'눌림목·겨울 저점매수 때 2배 진입'},
+    KJ:{F:'기준선 돌파 50% → 터치 25%×2 → 이탈 매도 · 횡보 중 추가매수·진입 제한, 돌파는 기준선 +1% 위 마감만'}};
   const DIPTXT='겨울 저점매수: 겨울이 20거래일 넘게 이어지고 종가가 20일선보다 15% 이상 아래면 매수 → 종가 60일선 회복 · 40거래일 · 매수가 대비 −15%(본주) 중 먼저 오는 날 매도.';
   const infoOf=x=>{const k=keyOf(x.id).slice(x.id.length);let t=x.desc;
     if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄·여름이 되면 그대로 계절 보유로 넘어가 가을·겨울에 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 저점매수 매도 전에 봄으로 전환되면 그대로 보유하다 가을·겨울 전환 때 판다.`;
-    if(k.includes('2'))t+=' / 2배: 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외).';return t};
+    if(k.includes('2'))t+=' / 2배: 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외).';
+    if(x.id==='KJ')t=t.replace(/ \/ 필터: .*/,'')+(k.includes('F')?' / '+x.desc.split(' / ').find(z=>z.startsWith('필터'))+' (켜짐)':' / 필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어.');return t};
   // 최대수익 · 최대손실 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
   const vals=STS.map(x=>R(x.id)),mxs=vals.map(o=>o.maxAmt),lss=vals.map(o=>o.lossAmt);
   const mark=(arr,v)=>{const hi=Math.max(...arr),lo=Math.min(...arr);return arr.length<2||hi===lo?'':v===hi?' hi':v===lo?' lo':''};
   const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
   const card=x=>{const o=R(x.id),k=keyOf(x.id).slice(x.id.length);
     const tg=(F[x.id+'2']?` <button type="button" class="lv2" data-lv2="${x.id}" aria-pressed="${!!X2[x.id]}" aria-label="2배 레버리지">2배</button>`:'')
-      +(F[x.id+'D']?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'');
-    const nm=x.name+(k.includes('2')?' ×2':'')+(k.includes('D')?' +저점':'');
+      +(F[x.id+'D']?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'')
+      +(F[x.id+'F']?` <button type="button" class="lv2" data-kf="${x.id}" aria-pressed="${!!XF[x.id]}" aria-label="횡보·가짜 돌파 필터">필터</button>`:'');
+    const nm=x.name+(k.includes('2')?' ×2':'')+(k.includes('D')?' +저점':'')+(k.includes('F')?' +필터':'');
     return `<div class="fxc"><div class="k"><b>${esc(nm)}</b><button type="button" class="ibtn" data-info="${x.id}" aria-label="${esc(x.name)} 설명">i</button>${tg}<span class="muted">${esc(k&&SHORT[x.id]?.[k]||x.short||x.desc)}</span>
-      <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회${o.stop!=null?` · 손절가 <b class="num">${fmtP(o.stop,S.m)}</b>`:''}${o.tgt!=null?` · 목표 <b class="num">${fmtP(o.tgt,S.m)}</b>`:''}</span></div>
+      <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회${o.stop!=null?` · 손절가 <b class="num">${fmtP(o.stop,S.m)}</b>`:''}${o.tgt!=null?` · 목표 <b class="num">${fmtP(o.tgt,S.m)}</b>`:''}${o.kj!=null?` · 기준선 <b class="num">${fmtP(o.kj,S.m)}</b>`:''}</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
       <div class="fxm"><span class="${mark(mxs,o.maxAmt)}" title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span class="${mark(lss,o.lossAmt)}" title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
   const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
-    <div class="fxg">${STS.map(card).join('')}</div>
+    <div class="fxg">${STS.map(card).join('')}</div>${E?.kjMax&&!F.KJ&&['2Y','3Y','5Y'].includes(FP)?`<div class="sub" style="margin-top:6px">일목기준선 매매는 1년까지만 계산해 (지지·저항 계산 때 받은 약 1년 2개월 일봉 사용) — 연초·1개월~1년 기간에서 볼 수 있어.</div>`:''}
     <div class="ipop" id="ipop" role="dialog" aria-modal="true" aria-labelledby="ipop-h" hidden><div class="ipbox"><b id="ipop-h"></b><p id="ipop-t"></p><button type="button" class="pbtn" id="ipop-x">닫기</button></div></div>
     <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 눌림매매는 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다. 눌림매매·봄·여름만 보유·봄 진입·가을 매도의 버튼: 2배 = 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2), 저점매수 = 겨울 저점매수를 함께 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 규칙이 나와. 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
@@ -1963,9 +1966,10 @@ function drawHist(){
   $('d-s-strat').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist()});
   $('d-s-strat').querySelectorAll('[data-lv2]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.lv2;state.x2[k]=!state.x2[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-dip]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.dip;state.xd=state.xd||{};state.xd[k]=!state.xd[k];drawHist()});
+  $('d-s-strat').querySelectorAll('[data-kf]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.kf;state.xf=state.xf||{};state.xf[k]=!state.xf[k];drawHist()});
   const ip=$('ipop');if(ip){const close=()=>{ip.hidden=true};
     $('d-s-strat').querySelectorAll('[data-info]').forEach(b=>b.onclick=e=>{e.stopPropagation();const x=(E.strats||[]).find(z=>z.id===b.dataset.info);if(!x)return;
-      const k=(state.x2?.[x.id]&&F?.[x.id+'2']?' ×2':'')+(state.xd?.[x.id]&&F?.[x.id+'D']?' +저점':'');
+      const k=(state.x2?.[x.id]&&F?.[x.id+'2']?' ×2':'')+(state.xd?.[x.id]&&F?.[x.id+'D']?' +저점':'')+(state.xf?.[x.id]&&F?.[x.id+'F']?' +필터':'');
       $('ipop-h').textContent=x.name+k;$('ipop-t').textContent=infoOf(x).split(' / ').join('\n\n');ip.hidden=false;$('ipop-x').focus()});
     $('ipop-x').onclick=close;ip.onclick=e=>{if(e.target===ip)close()};ip.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
 }

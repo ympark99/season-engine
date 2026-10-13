@@ -13,7 +13,8 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr } from '../lib/themes.js';
 import { mcapOf } from '../lib/mcap.js';
 import { mcOpt } from '../lib/pullback.js';
-import { srPlan, levelsFor, lvStale } from '../lib/levels.js';
+import { srPlan, levelsFor, lvStale, OKEY } from '../lib/levels.js';
+import { addKijun } from '../lib/kijun.js';
 import { bandOf, bandFor } from '../lib/band.js';
 import { flowOf, saveFlowOvr, enqueue, queueText } from '../lib/flow.js';
 
@@ -61,9 +62,11 @@ export default async function handler(req, res) {
     if (IXC && lvStale(m, lv, summary.lastDate) && !(lv?.none && Date.now() - Date.parse(lv.at || 0) < 864e5)) lvNow = (await levelsFor(m, code)) || lv;
     const lvOk = lvNow && !lvNow.none ? lvNow : null;
     if (lvOk && summary.pb20) summary.pb20.sr = srPlan(summary.pb20, lvOk);
+    const ohlc = lvOk ? (lvNow.ohlc !== undefined ? lvNow.ohlc : await store.get(OKEY(m, code))) : null;
+    if (ohlc) addKijun(effect, ohlc);                                                   // 일목기준선 매매 — 1년까지 (지지·저항 계산 때 받은 일봉 재사용)
     const bd = m === 'KR' ? await bandFor(store, code, rec) : null;                                // 국내 밴드 — 없으면 지금 받아 둠
     const band = bd ? bandOf({ band: bd }, fund?.theme, summary.last) : null;            // PER·PBR 밴드 자기 위치 (작은 차트용 월별 배수 포함)
-    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap, lv: lvOk, band,
+    send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap, lv: lvOk && { ...lvOk, ohlc: undefined }, band,
       fund: fund ? { ...fund, rank: sum.rows.indexOf(fund) + 1, of: sum.n, at: sum.at } : null, view,
       est: rec?.kr ? { yearly: rec.kr.yearly, quarterly: rec.kr.quarterly, at: rec.at } : null });
   } catch (e) { send(res, 500, { error: e.message }); }
