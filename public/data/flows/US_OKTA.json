@@ -1,0 +1,78 @@
+{
+ "m": "US",
+ "code": "OKTA",
+ "name": "OKTA INC",
+ "at": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "summary": "기업·기관에 클라우드 신원·접근 관리(로그인·권한) 구독을 판다. FY2026(1월 결산) 매출 29.2억$의 98%가 구독이고, 매출의 10%를 넘는 고객은 없다. 미국 매출이 80%다. 서비스는 대부분 한 곳의 외부 데이터센터 운영사(AWS) 위에서 돌아서, 호스팅 비용이 구독 원가의 주요 항목이다.",
+ "cust": [
+  {
+   "name": "기업·기관 고객 (분산)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 매출·매출채권의 10%를 넘는 고객 없음. 미국 23.2억$·해외 6.0억$"
+  },
+  {
+   "name": "채널 파트너 (리셀러·SI·클라우드 마켓플레이스)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 직판과 함께 리셀러·시스템통합업체·클라우드 마켓플레이스로 간접 판매"
+  },
+  {
+   "name": "AWS Marketplace",
+   "code": "AMZN",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "2020년 입점, 2024년 AWS 글로벌 마켓플레이스 올해의 파트너 — AWS를 통해 팔리는 구독"
+  }
+ ],
+ "supp": [
+  {
+   "name": "Amazon Web Services",
+   "code": "AMZN",
+   "m": "US",
+   "item": "클라우드 호스팅(데이터센터)",
+   "share": null,
+   "conf": "보도",
+   "note": "10-K는 '데이터센터 대부분을 한 외부 업체가 운영'이라고만 씀. Okta는 AWS 위에 처음부터 지어진 서비스라고 스스로 밝힘"
+  }
+ ],
+ "segs": [
+  {
+   "name": "구독",
+   "code": null,
+   "m": null,
+   "amt": 2855,
+   "share": 97.8,
+   "note": "FY2026 — 사용자 수·추가 제품 판매로 +12%"
+  },
+  {
+   "name": "전문 서비스·기타",
+   "code": null,
+   "m": null,
+   "amt": 64,
+   "share": 2.2,
+   "note": "FY2026 — 도입 설정·연동·교육"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Okta FY2026 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1660134/000166013426000020/okta-20260131.htm"
+  },
+  {
+   "t": "Okta–AWS Marketplace 입점(2020)",
+   "u": "https://www.businesswire.com/news/home/20201202005943/en/Okta-and-Amazon-Web-Services-Bring-the-Okta-Identity-Cloud-to-AWS-Marketplace"
+  },
+  {
+   "t": "AWS 글로벌 마켓플레이스 올해의 파트너(2024)",
+   "u": "https://okta.com/blog/2024/12/okta-wins-aws-global-marketplace-partner-of-the-year"
+  }
+ ]
+}

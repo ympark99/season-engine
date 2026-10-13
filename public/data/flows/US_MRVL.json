@@ -1,0 +1,116 @@
+{
+ "m": "US",
+ "code": "MRVL",
+ "name": "MARVELL TECHNOLOGY INC",
+ "at": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "summary": "FY2026(1월 결산) 매출 81.9억$의 74%가 데이터센터다(맞춤형 AI 칩·광 DSP·네트워크 칩). 유통사 한 곳이 37%, 직접 고객 한 곳이 14%다. 그 직접 고객은 트레이니엄을 같이 설계하는 아마존으로 보도된다. 칩 생산은 외부 파운드리(주로 TSMC)에, 패키징·테스트는 대만·한국 등 외주에 맡긴다.",
+ "cust": [
+  {
+   "name": "유통사 A (비공개)",
+   "code": null,
+   "m": null,
+   "share": 37,
+   "conf": "공시",
+   "note": "FY2026 10-K — 유통사 매출 37% (FY25 34%), 최종 고객은 여러 지역에 분산"
+  },
+  {
+   "name": "직접 고객 A (비공개)",
+   "code": null,
+   "m": null,
+   "share": 14,
+   "conf": "공시",
+   "note": "FY2026 10-K — 단일 직접 고객 14% (FY25 13%)"
+  },
+  {
+   "name": "Amazon (AWS)",
+   "code": "AMZN",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "트레이니엄 2·3 공동 설계, 최대 고객으로 보도 — 직접 고객 A일 가능성이 높음"
+  },
+  {
+   "name": "Microsoft",
+   "code": "MSFT",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "마이아(Maia) 가속기 IP·후공정 설계 지원으로 보도"
+  },
+  {
+   "name": "Google",
+   "code": "GOOGL",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "2026-08 맞춤형 AI 칩 협력 확대 보도"
+  }
+ ],
+ "supp": [
+  {
+   "name": "TSMC",
+   "code": "TSM",
+   "m": "US",
+   "item": "웨이퍼 생산(파운드리)",
+   "share": null,
+   "conf": "보도",
+   "note": "10-K는 '외부 파운드리'라고만 씀. 칩 대부분을 TSMC가 만들고 3nm·2nm 공정을 쓴다는 보도"
+  },
+  {
+   "name": "후공정 외주 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "패키징·테스트",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 패키징·테스트 전량을 대만·캐나다·한국·싱가포르·중국의 여러 외주업체에 맡김"
+  },
+  {
+   "name": "기판 업체 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "패키지 기판",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 장기 물량 확보를 위해 일부 파운드리·기판 업체와 생산능력 예약 계약"
+  }
+ ],
+ "segs": [
+  {
+   "name": "데이터센터",
+   "code": null,
+   "m": null,
+   "amt": 6100.3,
+   "share": 74,
+   "note": "FY2026 — 맞춤형 AI 칩·광 DSP·이더넷·스토리지 (FY25 41.6억$)"
+  },
+  {
+   "name": "통신·기타",
+   "code": null,
+   "m": null,
+   "amt": 2094.3,
+   "share": 26,
+   "note": "FY2026 — 통신 인프라·기업 네트워크·소비자·자동차/산업"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Marvell FY2026 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/mrvl-20260131.htm"
+  },
+  {
+   "t": "맞춤형 XPU 고객 정리",
+   "u": "https://www.nextplatform.com/2025/09/03/marvells-custom-xpu-pipeline-is-a-declaration-of-ai-independence/"
+  },
+  {
+   "t": "구글 협력 확대 보도(2026-08)",
+   "u": "https://techwireasia.com/2026/08/google-expands-marvell-partnership-for-custom-ai-chips/"
+  },
+  {
+   "t": "아마존 관계 보도",
+   "u": "https://www.itiger.com/hans/news/2539272772"
+  }
+ ]
+}

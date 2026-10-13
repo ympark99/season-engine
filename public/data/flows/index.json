@@ -14,5 +14,21 @@
  "US:MRNA": {
   "at": "2026-10-13",
   "name": "MODERNA INC"
+ },
+ "US:OKTA": {
+  "at": "2026-10-14",
+  "name": "OKTA INC"
+ },
+ "US:MRVL": {
+  "at": "2026-10-14",
+  "name": "MARVELL TECHNOLOGY INC"
+ },
+ "KR:425420": {
+  "at": "2026-10-14",
+  "name": "티에프이"
+ },
+ "KR:126340": {
+  "at": "2026-10-14",
+  "name": "비나텍"
  }
 }
