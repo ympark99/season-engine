@@ -85,7 +85,7 @@ async function list(req, res) {
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
-    if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
+    if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
     return r;
   });
   if (fitPut.length) await Promise.all(fitPut.map(([k, v]) => store.set(k, v)));
