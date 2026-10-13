@@ -1,0 +1,86 @@
+{
+ "m": "KR",
+ "code": "356860",
+ "name": "티엘비",
+ "at": "2026-10-13",
+ "by": "Claude 정기 조사",
+ "summary": "메모리 3사의 서버용 DRAM 모듈과 SSD에 들어가는 PCB를 만든다. 매출은 전부 PCB이고 약 70%가 수출이다. 2026년부터 SOCAMM 모듈 기판을 국내·북미 고객에게 양산 공급하기 시작했다.",
+ "cust": [
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "m": "KR",
+   "share": null,
+   "conf": "보도",
+   "note": "서버용 DRAM 모듈·SSD 기판 공급"
+  },
+  {
+   "name": "SK하이닉스",
+   "code": "000660",
+   "m": "KR",
+   "share": null,
+   "conf": "보도",
+   "note": "서버용 DRAM 모듈·SSD 기판 공급"
+  },
+  {
+   "name": "Micron",
+   "code": "MU",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "서버용 DRAM 모듈 기판. 2026년 SOCAMM 기판 '북미 고객' 양산 — 마이크론으로 보는 게 자연스러움"
+  }
+ ],
+ "supp": [
+  {
+   "name": "두산 (전자BG)",
+   "code": "000150",
+   "m": "KR",
+   "item": "CCL(동박적층판)",
+   "share": null,
+   "conf": "추정",
+   "note": "국내 메모리 모듈 PCB 업체의 주력 CCL 공급사라는 업계 구조로 유추. 직접 거래는 공시 미확인"
+  }
+ ],
+ "segs": [
+  {
+   "name": "DRAM 모듈 기판",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "DDR5 RDIMM·UDIMM·SODIMM, CXL·SOCAMM·LPCAMM"
+  },
+  {
+   "name": "SSD 기판",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "서버용 eSSD(E1.S·E3.S·EDSFF), M.2"
+  },
+  {
+   "name": "베트남 법인",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "연결 자회사 — 2공장 증설로 고부가 PCB 생산능력을 2025년 말 월 2만㎡에서 2028년 4만㎡로 늘릴 계획"
+  }
+ ],
+ "unitSeg": "억원",
+ "sources": [
+  {
+   "t": "SOCAMM 기판 국내·북미 퀄 통과 보도",
+   "u": "https://stock.pstatic.net/stock-research/company/62/20260513_company_557555000.pdf"
+  },
+  {
+   "t": "매출 구성·고객 정리",
+   "u": "https://alphadistill.com/report/178"
+  },
+  {
+   "t": "빅테크·메모리 고객 거래 보도",
+   "u": "https://newstomato.com/ReadNews.aspx?no=1310703"
+  }
+ ]
+}

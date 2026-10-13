@@ -1,0 +1,137 @@
+{
+ "m": "US",
+ "code": "MRNA",
+ "name": "MODERNA INC",
+ "at": "2026-10-13",
+ "by": "Claude 정기 조사",
+ "summary": "2025년 매출 19.4억$ 중 93%가 코로나 백신(스파이크박스·엠넥스파이크)이다. 미국 도매상(FFF·카디널헬스)과 캐나다 정부 조달청이 각각 10%를 넘는다. 원액·충전(fill-finish) 일부를 위탁생산사에 맡기고, 일부 원재료는 단일 공급원에 의존한다.",
+ "cust": [
+  {
+   "name": "FFF Enterprises",
+   "code": null,
+   "m": null,
+   "share": 15,
+   "conf": "공시",
+   "note": "2025년 매출의 15% (2024년 13%) — 미국 백신 유통 도매상"
+  },
+  {
+   "name": "캐나다 공공서비스조달부",
+   "code": null,
+   "m": null,
+   "share": 13,
+   "conf": "공시",
+   "note": "2025년 매출의 13%, 매출채권의 33%"
+  },
+  {
+   "name": "Cardinal Health",
+   "code": "CAH",
+   "m": "US",
+   "share": 11,
+   "conf": "공시",
+   "note": "2025년 매출의 11% — 미국 의약품 도매상"
+  },
+  {
+   "name": "영국 보건안전청(UKHSA)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2024년 매출의 16%, 2025년에는 10% 미만"
+  },
+  {
+   "name": "Merck",
+   "code": "MRK",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "개인맞춤형 암백신(인티스메란) 공동개발 — 협력수익 1,300만$(2025)"
+  }
+ ],
+ "supp": [
+  {
+   "name": "Rovi",
+   "code": null,
+   "m": null,
+   "item": "충전·포장(fill-finish)",
+   "share": null,
+   "conf": "보도",
+   "note": "스페인 마드리드 공장 — 충전·포장, 10년 연장 계약"
+  },
+  {
+   "name": "삼성바이오로직스",
+   "code": "207940",
+   "m": "KR",
+   "item": "충전·포장(fill-finish)",
+   "share": null,
+   "conf": "보도",
+   "note": "2021년 인천 공장에서 미국 외 물량 충전·포장 계약. 현재 진행 여부 미확인"
+  },
+  {
+   "name": "Catalent (현 Novo Holdings)",
+   "code": null,
+   "m": null,
+   "item": "충전·포장(fill-finish)",
+   "share": null,
+   "conf": "보도",
+   "note": "2021년 미국 블루밍턴 공장 충전·포장 계약. 현재 진행 여부 미확인"
+  },
+  {
+   "name": "Baxter",
+   "code": "BAX",
+   "m": "US",
+   "item": "충전·포장(fill-finish)",
+   "share": null,
+   "conf": "보도",
+   "note": "2021년 미국 충전·포장 계약. 현재 진행 여부 미확인"
+  }
+ ],
+ "segs": [
+  {
+   "name": "코로나 백신 (스파이크박스·엠넥스파이크)",
+   "code": null,
+   "m": null,
+   "amt": 1810,
+   "share": 93.1,
+   "note": "2025년 제품 매출"
+  },
+  {
+   "name": "RSV 백신 (엠레스비아)",
+   "code": null,
+   "m": null,
+   "amt": 8,
+   "share": 0.4,
+   "note": "2025년 제품 매출"
+  },
+  {
+   "name": "기타 수익",
+   "code": null,
+   "m": null,
+   "amt": 126,
+   "share": 6.5,
+   "note": "생산 대기 수익 80·보조금 22·협력 13·라이선스 11"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Moderna 2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1682852/000168285226000033/mrna-20251231.htm"
+  },
+  {
+   "t": "2025년 4분기·연간 실적 발표",
+   "u": "https://seekingalpha.com/pr/20399010"
+  },
+  {
+   "t": "Rovi 10년 계약 연장",
+   "u": "https://www.fiercepharma.com/manufacturing/moderna-inks-10-year-deal-rovi-to-produce-covid-and-future-vaccines"
+  },
+  {
+   "t": "삼성바이오로직스 충전·포장 계약(2021)",
+   "u": "https://journalforclinicalstudies.com/moderna-taps-samsung-for-fill-finish-duties-on-hundreds-of-millions-of-covid-19-vaccine-doses/"
+  },
+  {
+   "t": "Catalent 충전·포장 계약(2021)",
+   "u": "https://www.nspackaging.com/?p=115976"
+  }
+ ]
+}

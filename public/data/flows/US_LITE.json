@@ -1,0 +1,107 @@
+{
+ "m": "US",
+ "code": "LITE",
+ "name": "LUMENTUM HLDGS INC",
+ "at": "2026-10-13",
+ "by": "Claude 정기 조사",
+ "summary": "AI 데이터센터용 레이저 칩·광트랜시버(부품)와 광회로스위치(OCS)·통신 전송장비(시스템)를 팔아 FY2026(6월 결산) 매출 30.1억$를 냈다(+83%). 이름을 밝히지 않은 최종 고객 두 곳이 매출의 41.6%다. 인듐인화물(InP) 웨이퍼 공급이 수요보다 25~30% 모자라서 기판을 장기 계약으로 묶고 있다.",
+ "cust": [
+  {
+   "name": "최종 고객 A (비공개)",
+   "code": null,
+   "m": null,
+   "share": 26.6,
+   "conf": "공시",
+   "note": "FY2026 10-K — 단일 최종 고객 26.6% (FY25 15.4%)"
+  },
+  {
+   "name": "최종 고객 B (비공개)",
+   "code": null,
+   "m": null,
+   "share": 15.0,
+   "conf": "공시",
+   "note": "FY2026 10-K — 단일 최종 고객 15.0% (FY25 16.0%)"
+  },
+  {
+   "name": "NVIDIA",
+   "code": "NVDA",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "2026-03 20억$ 우선주 투자와 함께 레이저 부품 수십억$ 구매 약정 — CPO 스위치용 레이저 공급"
+  },
+  {
+   "name": "Google",
+   "code": "GOOGL",
+   "m": "US",
+   "share": null,
+   "conf": "추정",
+   "note": "OCS 매출(분기 2,500만$+ → 1억$대 예상)의 최대 사용처로 유추 — 데이터센터 OCS를 대규모로 쓰는 곳이 사실상 구글뿐이라는 업계 구조 기준. 공시 미확인"
+  },
+  {
+   "name": "Ciena",
+   "code": "CIEN",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "FY2022 매출의 13%였던 통신장비 고객(구 10-K). 현재 비중은 미확인"
+  }
+ ],
+ "supp": [
+  {
+   "name": "AXT",
+   "code": "AXTI",
+   "m": "US",
+   "item": "InP 웨이퍼 기판",
+   "share": null,
+   "conf": "공시",
+   "note": "2031년까지 InP 기판 최소 물량 예약, 보증금 8,700만$(4,350만$×2) — AXT 공시"
+  },
+  {
+   "name": "Fabrinet",
+   "code": "FN",
+   "m": "US",
+   "item": "광모듈 위탁생산",
+   "share": null,
+   "conf": "추정",
+   "note": "10-K는 '일부 완제품은 특정 위탁생산사가 단일 공급원'이라고만 씀. 태국 생산 거점과 광부품 위탁생산 업계 1위라는 점으로 유추"
+  }
+ ],
+ "segs": [
+  {
+   "name": "부품 (레이저 칩·광트랜시버)",
+   "code": null,
+   "m": null,
+   "amt": 2005.6,
+   "share": 66.5,
+   "note": "FY2026. 증가분의 약 78%가 레이저 칩·어셈블리"
+  },
+  {
+   "name": "시스템 (OCS·통신 전송)",
+   "code": null,
+   "m": null,
+   "amt": 1008.4,
+   "share": 33.5,
+   "note": "FY2026. Cloud Light 인수(2023) 트랜시버 포함"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Lumentum FY2026 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026057358/lite-20260627.htm"
+  },
+  {
+   "t": "AXT–Lumentum InP 장기 공급 계약",
+   "u": "https://www.barchart.com/story/news/3533758/axt-inc-announces-long-term-supplier-agreement-with-lumentum"
+  },
+  {
+   "t": "엔비디아의 루멘텀·코히런트 투자 보도",
+   "u": "https://siliconangle.com/2026/03/02/nvidia-invests-4b-co-packaged-optics-suppliers-lumentum-coherent/"
+  },
+  {
+   "t": "FY2026 4분기 실적 발표",
+   "u": "https://s21.q4cdn.com/377324469/files/doc_news/Lumentum-Announces-Fourth-Quarter-and-Full-Fiscal-Year-2026-Results-2026.pdf"
+  }
+ ]
+}
