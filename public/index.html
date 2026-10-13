@@ -2050,21 +2050,27 @@ function drawFlow(){
     :`<button type="button" class="pbtn" id="flow-req" data-up="${made?1:0}">${made?'업데이트 (다시 조사)':'매출처 조사 예약'}</button>`;
   const madeTxt=made?`<span class="sub">작성일 <b>${dd(made.at)}</b> · ${esc(made.by||'')}</span>`:`<span class="sub">${F.src==='정리표'?'정리표 (검증 전)':F.src==='직접 수정'?'직접 수정':'아직 조사 안 됨'}</span>`;
   const srcList=made?.sources?.length?`<details style="margin-top:4px"><summary class="fold"><span class="sub">조사 출처 ${made.sources.length}건</span></summary><div class="sub" style="line-height:1.8">${made.sources.map(x=>{const u=typeof x==='string'?x:x.u,t=typeof x==='string'?x:(x.t||x.u);return /^https?:/.test(u||'')?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`:esc(t)}).join('<br>')}</div></details>`:'';
+  // ③ 매입처 — 이 회사가 사 오는 곳 (부품·소재·장비·위탁생산)
+  const P=F.supp||[];
+  const supp=P.length?`<div style="display:grid;gap:8px">${P.map(p=>`<div style="border-left:3px solid var(--fl-cost);padding:2px 0 2px 10px"><div style="font-size:13px">${p.code?`<a href="#" data-open="${p.m}:${esc(p.code)}" data-name="${esc(p.name)}" style="font-weight:600;color:var(--ink);text-decoration:underline dotted var(--muted);text-underline-offset:3px">${esc(p.name)}</a>`:`<b>${esc(p.name)}</b>`}${p.item?` <span class="muted">← ${esc(p.item)}</span>`:''}${p.share!=null?` · 매입의 ${p.share}%`:''}${p.src?` <span class="chip">${esc(p.src)}</span>`:''}</div>${p.note?`<div class="sub">${esc(p.note)}</div>`:''}</div>`).join('')}</div>`
+    :'<div class="sub">매입처 정보 없음 — [업데이트]로 다시 조사하면 채워져</div>';
   const adm=!!PREF.key;
   el.innerHTML=`<div class="fh"><b>매출 파이프라인 <span class="sub" style="font-weight:400">주요 매출처 → ${esc(S.name)} → 사업·자회사</span></b><span class="chip">${esc(F.src||'정보 없음')}</span></div>
     <div class="ops" style="margin:0 0 6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">${madeTxt}${jobBtn}<span class="sub" id="flow-rmsg"></span></div>
     ${made?.summary?`<div class="sub" style="margin-bottom:6px">${esc(made.summary)}</div>`:''}${pipe}${srcList}
     <div class="sub">${srcTxt}. 비중 숫자는 공시된 것만 적고, 나머지는 굵기를 똑같이 나눠 그렸어 · 이름을 누르면 그 종목 상세로 · 막대에 마우스를 올리면 출처 메모</div>
+    <div class="fh" style="margin-top:14px"><b>주요 매입처 <span class="sub" style="font-weight:400">이 회사가 부품·소재·장비·위탁생산을 사 오는 곳</span></b></div>
+    ${supp}
     <div class="fh" style="margin-top:14px"><b>손익 흐름 <span class="sub" style="font-weight:400">${PL?esc(PL===F.pl?F.pl.period:(PL.y+'년 추정')):''}${u?` · 단위 ${u==='M$'?'달러':'원'}`:''}</span></b>${chips}</div>
     ${pl||'<div class="sub">손익 재료가 없어 (펀더멘털 수집 전)</div>'}
     <div class="sub">${S.m==='US'?'최근 4분기 합 — 매출 → 매출원가·매출총이익 → 연구개발·판관비·영업이익 → 세금·영업외·순이익':'컨센서스 표 기준 — 매출원가가 따로 없어 매출 → 영업비용·영업이익 → 세금·영업외·순이익'} · 만든 시각 ${kst(F.at)}</div>
     ${adm?`<details style="margin-top:10px"><summary class="fold"><span class="sub">매출처·사업 구성 직접 고치기 (관리자)</span></summary>
-      <textarea id="flow-ed" spellcheck="false">${esc(JSON.stringify({cust:(F.cust||[]).map(({items,...x})=>x),segs:F.segs||[]},null,1))}</textarea>
-      <div class="ops" style="margin-top:6px"><button type="button" class="pbtn" id="flow-save">저장</button><button type="button" class="pbtn" id="flow-reset">정리표로 되돌리기</button><span class="sub" id="flow-msg">cust = 매출처(share = 매출 대비 %), segs = 사업·자회사(amt = 금액). code·m 을 넣으면 눌러서 이동돼</span></div></details>`:''}`;
+      <textarea id="flow-ed" spellcheck="false">${esc(JSON.stringify({cust:(F.cust||[]).map(({items,...x})=>x),segs:F.segs||[],supp:F.supp||[]},null,1))}</textarea>
+      <div class="ops" style="margin-top:6px"><button type="button" class="pbtn" id="flow-save">저장</button><button type="button" class="pbtn" id="flow-reset">정리표로 되돌리기</button><span class="sub" id="flow-msg">cust = 매출처(share = 매출 대비 %), segs = 사업·자회사(amt = 금액), supp = 매입처(item = 사 오는 것, share = 매입 대비 %). code·m 을 넣으면 눌러서 이동돼</span></div></details>`:''}`;
   el.querySelectorAll('[data-fy]').forEach(b=>b.onclick=()=>{state.flowYr=+b.dataset.fy;drawFlow()});
   const rq=$('flow-req');if(rq)rq.onclick=async()=>{rq.disabled=true;try{const r=await post(`/api/stock?flow=req&m=${S.m}&code=${encodeURIComponent(S.code)}&name=${encodeURIComponent(S.name)}`,{update:rq.dataset.up==='1'});if(state.cur!==S)return;state.flowData=r;drawFlow()}catch(e){$('flow-rmsg').textContent=e.message;rq.disabled=false}};
   if(adm){$('flow-save').onclick=async()=>{try{const o=JSON.parse($('flow-ed').value);await loadFlow(true,o)}catch(e){$('flow-msg').textContent='JSON 형식 오류: '+e.message}};
-    $('flow-reset').onclick=()=>loadFlow(true,{cust:[],segs:[]})}
+    $('flow-reset').onclick=()=>loadFlow(true,{cust:[],segs:[],supp:[]})}
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
 /* 기술적 분석을 열면 차트에 지지(초록)·저항(빨강) 수평선과 상승 추세선(파랑)을 겹친다 */
