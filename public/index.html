@@ -13,7 +13,7 @@
   --fl-rev:#4A78D6;--fl-pro:#2E9B5F;--fl-cost:#D2564F;
   --bg:#EDEFF3;--card:#FFFFFF;--soft:#F6F7F9;--ink:#161B29;--ink2:#495064;--muted:#8A90A0;--line:#E3E6EC;
   --gold:#C39A2E;--gold-soft:#FBF3DE;--gold-ink:#8F6C12;--navy:#26458E;
-  --ma20:#D63A3A;--ma60:#E8771F;--ma120:#8E44D9;--trend-line:#6B7280;--hz-line:#C9A000;
+  --ma20:#D63A3A;--ma60:#E8771F;--ma120:#8E44D9;--trend-line:#A3A8B4;--kijun-line:#161B29;--hz-line:#C9A000;
   --spring:#BDEDD9;--summer:#5CBC91;--autumn:#F2CB66;--winter:#EA95A0;
   --spring-ink:#2A9A70;--summer-ink:#1C8656;--autumn-ink:#AD7E12;--winter-ink:#C4404F;
   --spring-bg:rgba(189,237,217,.38);--summer-bg:rgba(92,188,145,.17);--autumn-bg:rgba(242,203,102,.22);--winter-bg:rgba(234,149,160,.22);
@@ -24,7 +24,7 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#10131A;--card:#191D27;--soft:#20252F;--ink:#E9EBF1;--ink2:#B4BAC8;--muted:#838A9B;--line:#2A303C;
   --gold:#D8B452;--gold-soft:#2C2616;--gold-ink:#E6C66E;--navy:#86A6F2;
-  --ma20:#FF5A5A;--ma60:#FF9A3C;--ma120:#B47CF0;--trend-line:#FFFFFF;--hz-line:#FFD60A;
+  --ma20:#FF5A5A;--ma60:#FF9A3C;--ma120:#B47CF0;--trend-line:#8A90A0;--kijun-line:#FFFFFF;--hz-line:#FFD60A;
   --spring:#3E8B6E;--summer:#3FA979;--autumn:#C9A240;--winter:#C56B77;
   --spring-ink:#7FDDB6;--summer-ink:#6FD6A2;--autumn-ink:#EBC867;--winter-ink:#F09AA6;
   --spring-bg:rgba(90,200,155,.10);--summer-bg:rgba(63,169,121,.16);--autumn-bg:rgba(201,162,64,.15);--winter-bg:rgba(197,107,119,.15);
@@ -35,7 +35,7 @@
 :root[data-theme="dark"]{
   --bg:#10131A;--card:#191D27;--soft:#20252F;--ink:#E9EBF1;--ink2:#B4BAC8;--muted:#838A9B;--line:#2A303C;
   --gold:#D8B452;--gold-soft:#2C2616;--gold-ink:#E6C66E;--navy:#86A6F2;
-  --ma20:#FF5A5A;--ma60:#FF9A3C;--ma120:#B47CF0;--trend-line:#FFFFFF;--hz-line:#FFD60A;
+  --ma20:#FF5A5A;--ma60:#FF9A3C;--ma120:#B47CF0;--trend-line:#8A90A0;--kijun-line:#FFFFFF;--hz-line:#FFD60A;
   --spring:#3E8B6E;--summer:#3FA979;--autumn:#C9A240;--winter:#C56B77;
   --spring-ink:#7FDDB6;--summer-ink:#6FD6A2;--autumn-ink:#EBC867;--winter-ink:#F09AA6;
   --spring-bg:rgba(90,200,155,.10);--summer-bg:rgba(63,169,121,.16);--autumn-bg:rgba(201,162,64,.15);--winter-bg:rgba(197,107,119,.15);
@@ -285,8 +285,8 @@ table.acc th button.sb2{all:unset;cursor:pointer;font-weight:700}
 .pbtn.ta svg{flex:none}
 .pbtn.x{width:40px;padding:6px 0}
 .chart svg{width:100%;height:auto;display:block}
-#c-price{position:relative}
-.pbtn.vpt{position:absolute;left:calc(9.7% + 6px);top:6px;padding:3px 12px;font-size:12.5px}
+.tg{cursor:pointer}.tg rect{fill:var(--card);stroke:var(--line);stroke-width:1.2}.tg text{fill:var(--ink2);font-size:11.5px;font-weight:700}
+.tg[aria-pressed="true"] rect{fill:var(--gold-soft);stroke:var(--gold)}.tg[aria-pressed="true"] text{fill:var(--gold-ink)}
 .t-muted{fill:var(--muted)}
 .clab{font-size:12.5px;font-weight:700;fill:var(--gold-ink)}
 .legend{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--ink2);margin:8px 0 14px}
@@ -2078,12 +2078,15 @@ function drawFlow(){
     $('flow-reset').onclick=()=>loadFlow(true,{cust:[],segs:[],supp:[]})}
 }
 function closeDetail(){$('ov').hidden=true;document.body.style.overflow=''}
-/* 기술적 분석을 열면 차트에 지지·저항 수평선(노랑 가는 선)과 추세선(흰색)을 겹친다 — 선 위 글자는 겹쳐서 안 씀 */
+/* 기술적 분석을 열면 차트에 지지·저항 수평선(노랑 가는 선)·일목 기준선(흰색)·추세선(회색 가는 선)을 겹친다 — 선 위 글자는 겹쳐서 안 씀 */
 const SRC={sup:'#1f8a4c',res:'#c2561a',tl:'#2f7fd1'};
 function srSvg(J,i0,A,x,y,lo,hi,ml,pw){
   const L=state.lv;if(!state.ta||!L)return '';
   let o='';const hl=(p,c)=>{if(p==null||p<lo||p>hi)return;const yy=y(p).toFixed(1);o+=`<line x1="${ml}" x2="${ml+pw}" y1="${yy}" y2="${yy}" style="stroke:${c};stroke-width:.7"/>`};   // 지지·저항 수평선 — 노랑 가는 실선, 글자 없음
-  (L.sup||[]).filter(v=>v.src!=='chart').slice(0,2).forEach(v=>hl(v.p,'var(--hz-line)'));(L.res||[]).filter(v=>v.src!=='chart').slice(0,2).forEach(v=>hl(v.p,'var(--hz-line)'));   // 차트 제공처 선은 아래에서 기울기 그대로 그림
+  if(PREF.sr!==false){(L.sup||[]).filter(v=>v.src!=='chart').slice(0,2).forEach(v=>hl(v.p,'var(--hz-line)'));(L.res||[]).filter(v=>v.src!=='chart').slice(0,2).forEach(v=>hl(v.p,'var(--hz-line)'))}   // [지지·저항] 토글 (기본 켬)
+  const K=L.kj;if(K&&K.d){const m=new Map(K.d.map((d,k)=>[d,K.v[k]]));let seg='',pen=false;   // 일목 기준선(26) — 흰 실선, 지지·저항 받을 때 같이 계산해 둔 값 (날짜로 맞춤, 빈 날은 끊음)
+    for(let i=i0;i<=A;i++){const v=m.get(J.d[i]);if(v==null||v<lo||v>hi){pen=false;continue}seg+=`${pen?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`;pen=true}
+    if(seg)o+=`<path d="${seg}" style="fill:none;stroke:var(--kijun-line);stroke-width:1.5"/>`}   // 차트 제공처 선은 아래에서 기울기 그대로 그림
   const V=L.vp;                                                         // 매물대(FRVP) — 차트 좌상단 [매물대] 켰을 때만 VAH·VAL·POC 점선 (글자·옆 막대그래프는 안 그림)
   if(PREF.vp&&V&&V.rows){const ia=J.d.findIndex(d=>d>=V.from),xa=ia<0?ml:x(Math.max(ia,i0));
     const dl=p=>{if(p<lo||p>hi)return;const yy=y(p).toFixed(1);o+=`<line x1="${xa.toFixed(1)}" x2="${ml+pw}" y1="${yy}" y2="${yy}" style="stroke:var(--ink2);stroke-width:1.4;stroke-dasharray:2 4"/>`};
@@ -2092,10 +2095,10 @@ function srSvg(J,i0,A,x,y,lo,hi,ml,pw){
   if(L.lines&&L.lines.length){                                       // 차트 제공처가 그린 선 — 시작 봉부터 오늘까지 (기울기 그대로)
     for(const ln of L.lines){const ia=J.d.indexOf(ln.a.d);if(ia<0)continue;const a=Math.max(ia,i0),va=ln.a.p+ln.slope*(a-ia),vb=ln.now,c='var(--trend-line)';
       if(Math.max(va,vb)<lo||Math.min(va,vb)>hi)continue;const cy=v=>y(Math.max(lo,Math.min(hi,v))).toFixed(1);
-      o+=`<line x1="${x(a).toFixed(1)}" x2="${x(A).toFixed(1)}" y1="${cy(va)}" y2="${cy(vb)}" style="stroke:${c};stroke-width:1.6"/>`}
+      o+=`<line x1="${x(a).toFixed(1)}" x2="${x(A).toFixed(1)}" y1="${cy(va)}" y2="${cy(vb)}" style="stroke:${c};stroke-width:1"/>`}
     return o}
   const T=L.tl;if(T){const ia=J.d.indexOf(T.a.d);if(ia>=0){const a=Math.max(ia,i0),va=T.a.p+T.slope*(a-ia),vb=T.a.p+T.slope*(A-ia);
-    if(Math.max(va,vb)>=lo&&Math.min(va,vb)<=hi)o+=`<line x1="${x(a).toFixed(1)}" x2="${x(A).toFixed(1)}" y1="${y(va).toFixed(1)}" y2="${y(vb).toFixed(1)}" style="stroke:var(--trend-line);stroke-width:1.5${T.broke?';stroke-dasharray:3 3':''}"/>`}}
+    if(Math.max(va,vb)>=lo&&Math.min(va,vb)<=hi)o+=`<line x1="${x(a).toFixed(1)}" x2="${x(A).toFixed(1)}" y1="${y(va).toFixed(1)}" y2="${y(vb).toFixed(1)}" style="stroke:var(--trend-line);stroke-width:1${T.broke?';stroke-dasharray:3 3':''}"/>`}}
   return o}
 function drawDetail(){
   const S=state.cur,J=state.series;if(!J)return;
@@ -2121,8 +2124,9 @@ function drawDetail(){
   let ma='';if(state.ta){const MAS=[[20,'var(--ma20)',1.4,'none','—'],[60,'var(--ma60)',1.4,'none','—'],[120,'var(--ma120)',1,'4 3','- -']];   // 이동평균 — 20 빨강·60 주황 실선, 120 보라 가는 점선
     for(const [n,c,w,dash] of MAS)ma+=`<path d="${line(sma(J.c,n).slice(i0))}" style="fill:none;stroke:${c};stroke-width:${w};stroke-dasharray:${dash}"/>`;
     MAS.forEach(([n,c,,,mk],k)=>ma+=`<text x="${ml+6+k*64}" y="${H-14}" style="font-size:11.5px;fill:${c}">${mk} MA${n}</text>`)}
-  const vpb=state.ta&&state.lv?.vp?.rows?`<button type="button" class="pbtn vpt" id="d-vp" aria-pressed="${!!PREF.vp}" title="매물대(FRVP) — POC·VAH·VAL 선 보이기/숨기기">매물대</button>`:'';
-  $('c-price').innerHTML=`${vpb}<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}${srSvg(J,i0,A,x,y,lo,hi,ml,pw)}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/></svg>`;
+  let tg='';if(state.ta&&state.lv){const T=[];if(state.lv.vp?.rows)T.push(['vp','매물대',!!PREF.vp]);T.push(['sr','지지·저항',PREF.sr!==false]);   // 차트 안 좌상단 토글 — SVG 로 그려 차트와 같이 늘고 줄어듦
+    T.forEach(([k,t,on],j)=>{const bx=ml+6,by=16+j*26;tg+=`<g class="tg" data-tg="${k}" role="button" tabindex="0" aria-pressed="${on}"><title>${t} 선 보이기/숨기기</title><rect x="${bx}" y="${by}" width="64" height="21" rx="10.5"/><text x="${bx+32}" y="${by+14.5}" text-anchor="middle">${t}</text></g>`})}
+  $('c-price').innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}${srSvg(J,i0,A,x,y,lo,hi,ml,pw)}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/>${tg}</svg>`;
   const H2=190,mt2=34,mb2=30,ph2=H2-mt2-mb2,y2=v=>mt2+(100-v)/100*ph2;
   let d=`M${x(i0).toFixed(1)},${y2(J.h[i0]).toFixed(1)}`;for(let t=i0+1;t<N;t++)d+=`H${x(t).toFixed(1)}V${y2(J.h[t]).toFixed(1)}`;
   let g2='';for(const v of [0,50,100])g2+=`<line x1="${ml}" x2="${ml+pw}" y1="${y2(v)}" y2="${y2(v)}" style="stroke:var(--line)"/><text x="${ml-8}" y="${y2(v)+4}" text-anchor="end" class="t-muted num" style="font-size:12px">${v}%</text>`;
@@ -2259,7 +2263,9 @@ let engDone=false;
   if(p==='eng'&&!engDone){engDone=true;renderEngine()}if(p==='strat')loadStrat()});
 document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.onclick=()=>{state.years=b.dataset.y;drawDetail()});
 $('d-ta').onclick=()=>{state.ta=!state.ta;drawDetail()};
-$('c-price').addEventListener('click',e=>{if(e.target.closest('#d-vp')){PREF.vp=!PREF.vp;savePrefs();drawDetail()}});   // 매물대 토글 — 켜고 끈 상태는 기억
+const tgFlip=g=>{const k=g.dataset.tg;PREF[k]=k==='vp'?!PREF.vp:PREF.sr===false;savePrefs();drawDetail()};   // 차트 토글(매물대·지지·저항) — 켜고 끈 상태는 기억
+$('c-price').addEventListener('click',e=>{const g=e.target.closest('[data-tg]');if(g)tgFlip(g)});
+$('c-price').addEventListener('keydown',e=>{const g=e.target.closest('[data-tg]');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();tgFlip(g)}});
 $('d-x').onclick=closeDetail;$('ov').onclick=e=>{if(e.target.id==='ov')closeDetail()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)closeDetail();$('keyov').hidden=true}});
 
