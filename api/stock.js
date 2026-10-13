@@ -51,7 +51,8 @@ export default async function handler(req, res) {
     const mc = m === 'IX' ? {} : mcOpt(m, shm, code);
     const A = analyze(bars, P, eng.cal, KEEP, mc), { summary, series } = A, history = historyOf(A, eng.cal, KEEP);
     const ix = ixb?.d?.length ? new Series(ixb.d, ixb.c, ixb.v) : null;
-    const effect = { ...effectOf(A, history, ix, KEEP, mc), ix: ix ? IXC : null, univ: ueff || null };
+    const curvePer = req.query.curve ? String(req.query.curve).slice(0, 4) : null;   // ?curve=1Y — 전략 카드 평가금액 곡선만 (차트용)
+    const effect = { ...effectOf(A, history, ix, KEEP, mc, curvePer), ix: ix ? IXC : null, univ: ueff || null };
     const fund = sum?.rows?.find(r => r.code === code) || null;
     const view = m === 'IX' ? null : opinion(summary, fund, volumeSignal(bars));
     const sector = m === 'IX' ? null : (await loadSecOvr(m))[code] || fund?.sector || sectorOf(m, code, { name: req.query.name || null });
@@ -64,6 +65,7 @@ export default async function handler(req, res) {
     if (lvOk && summary.pb20) summary.pb20.sr = srPlan(summary.pb20, lvOk);
     const ohlc = lvOk ? (lvNow.ohlc !== undefined ? lvNow.ohlc : await store.get(OKEY(m, code))) : null;
     if (ohlc) addKijun(effect, ohlc);                                                   // 일목기준선 매매 — 1년까지 (지지·저항 계산 때 받은 일봉 재사용)
+    if (curvePer) return send(res, 200, { curves: effect.curves || null });
     const bd = m === 'KR' ? await bandFor(store, code, rec) : null;                                // 국내 밴드 — 없으면 지금 받아 둠
     const band = bd ? bandOf({ band: bd }, fund?.theme, summary.last) : null;            // PER·PBR 밴드 자기 위치 (작은 차트용 월별 배수 포함)
     send(res, 200, { summary, series, history, effect, cal: eng.cal, src: bars.src || null, sector, mcap, lv: lvOk && { ...lvOk, ohlc: undefined }, band,

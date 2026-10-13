@@ -428,6 +428,8 @@ details[open]>summary.fold::after{content:' ▴'}
 .pret{font-size:13px;color:var(--ink2);margin:2px 0 6px}.pret b{font-size:15px}
 .fitrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 8px}.fitrow .why{flex-basis:100%;font-size:12px;color:var(--muted)}
 .fitrow .tag{font-size:12.5px}.t-good{background:var(--summer-pill,var(--spring-pill));color:var(--summer-ink,var(--spring-ink))}
+.fxc[data-sel]{cursor:pointer}.fxc[data-sel]:hover{border-color:var(--muted)}
+.eqlg{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0;padding:0 4px 0 62px;font-size:12px;color:var(--ink2)}.eqlg i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:3px;margin-right:5px}.eqlg b{font-weight:700}
 .fxc .k{font-size:12px;color:var(--ink2);line-height:1.4}.fxc .k .muted{display:block;font-size:11px}
 .fxc .v{font-size:18px;font-weight:800;text-align:right;min-width:110px;white-space:nowrap}.fxc .s{font-size:11.5px;color:var(--muted);margin-top:2px}
 .fxbar{display:inline-block;width:56px;height:6px;border-radius:3px;position:relative;overflow:hidden;vertical-align:middle;margin-left:7px;background:var(--line)}
@@ -1873,7 +1875,7 @@ function estTable(E){
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
-  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin'].forEach(k=>$('d-s-'+k).innerHTML='');showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;$('d-name').textContent=S.name;
+  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin'].forEach(k=>$('d-s-'+k).innerHTML='');showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;state.eqSel=[];state.curves={};state.eqPer=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
   $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';state.mcap=null;$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
@@ -1905,6 +1907,15 @@ function drawFit(S){
   const a=F.grade>=2?ACT[S.season]:F.grade===1?['계절 신호 참고만','t-mid']:null;
   $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}<span class="why">${esc(F.why)}</span>`;
 }
+/* 전략 카드 → 차트에 날짜별 평가금액 (여러 장 고르면 색을 달리해 같이). 곡선은 고른 기간만 서버에서 받아 둠 */
+const EQC=['#22D3EE','#F472B6','#A3E635','#FBBF24','#FB7185','#2DD4BF','#C084FC','#F97316'];
+const EQY={YTD:'ytd','1M':'1m','3M':'3m','6M':'6m','1Y':'1y','2Y':'2y','3Y':'3y','5Y':'5y'};
+async function eqLoad(per){const S=state.cur;if(!S||!per)return;state.eqPer=per;if(EQY[per])state.years=EQY[per];
+  if(!state.curves[per]){drawDetail();try{const j=await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}&curve=${per}`);if(state.cur!==S)return;state.curves[per]=j.curves||{eq:{}}}catch(e){state.curves[per]={eq:{},err:e.message}}}
+  if(state.cur===S&&state.eqPer===per)drawDetail()}
+const eqKey=(id,eq)=>id+(state.x2?.[id]&&eq[id+'2']?'2':'')+(state.xd?.[id]&&eq[id+'D']?'D':'')+(state.xf?.[id]&&eq[id+'F']?'F':'');
+const eqName=id=>{const x=(state.eff?.strats||[]).find(z=>z.id===id);const k=eqKey(id,state.curves?.[state.eqPer]?.eq||{}).slice(id.length);return (x?x.name:id)+(k.includes('2')?' ×2':'')+(k.includes('D')?' +저점':'')+(k.includes('F')?' +필터':'')};
+const eqFmt=v=>Math.abs(v)>=1e8?(v/1e8).toFixed(2).replace(/\.?0+$/,'')+'억':Math.round(v/1e4).toLocaleString('ko-KR')+'만';
 function drawHist(){
   const H=state.hist,S=state.cur,E=state.eff;if(!H)return;
   const f=d=>d.slice(2).replace(/-/g,'.'),rc=(v,u='%')=>v==null?'<span class="muted">—</span>':`<span class="${v>0?'up':v<0?'dn':''}">${sgn(v)}${u}</span>`;
@@ -1936,7 +1947,8 @@ function drawHist(){
       +(F[x.id+'D']?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'')
       +(F[x.id+'F']?` <button type="button" class="lv2" data-kf="${x.id}" aria-pressed="${!!XF[x.id]}" aria-label="횡보·가짜 돌파 필터">필터</button>`:'');
     const nm=x.name+(k.includes('2')?' ×2':'')+(k.includes('D')?' +저점':'')+(k.includes('F')?' +필터':'');
-    return `<div class="fxc"><div class="k"><b>${esc(nm)}</b><button type="button" class="ibtn" data-info="${x.id}" aria-label="${esc(x.name)} 설명">i</button>${tg}<span class="muted">${esc(k&&SHORT[x.id]?.[k]||x.short||x.desc)}</span>
+    const si=(state.eqSel||[]).indexOf(x.id),sc=si>=0?EQC[si%EQC.length]:'';
+    return `<div class="fxc" data-sel="${x.id}" role="button" tabindex="0" aria-pressed="${si>=0}" title="누르면 위 차트에 날짜별 평가금액을 겹쳐 그려"${sc?` style="border-color:${sc};box-shadow:inset 0 0 0 1.5px ${sc}"`:''}><div class="k">${sc?`<i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${sc};margin-right:6px;vertical-align:-1px"></i>`:''}<b>${esc(nm)}</b><button type="button" class="ibtn" data-info="${x.id}" aria-label="${esc(x.name)} 설명">i</button>${tg}<span class="muted">${esc(k&&SHORT[x.id]?.[k]||x.short||x.desc)}</span>
       <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회${o.stop!=null?` · 손절가 <b class="num">${fmtP(o.stop,S.m)}</b>`:''}${o.tgt!=null?` · 목표 <b class="num">${fmtP(o.tgt,S.m)}</b>`:''}${o.kj!=null?` · 기준선 <b class="num">${fmtP(o.kj,S.m)}</b>`:''}</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
       <div class="fxm"><span class="${mark(mxs,o.maxAmt)}" title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span class="${mark(lss,o.lossAmt)}" title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
@@ -1965,7 +1977,9 @@ function drawHist(){
     <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
   $('d-s-season').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${sum}${rows}`;
   $('d-s-strat').innerHTML=cards||'<div class="sub">전략 비교 데이터가 아직 없어</div>';
-  $('d-s-strat').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist()});
+  $('d-s-strat').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist();if(state.eqSel?.length)eqLoad(b.dataset.fp)});
+  $('d-s-strat').querySelectorAll('[data-sel]').forEach(c=>{const go=()=>{const id=c.dataset.sel,a=state.eqSel||(state.eqSel=[]),i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);drawHist();if(a.length)eqLoad(FP);else drawDetail()};
+    c.onclick=e=>{if(e.target.closest('button'))return;go()};c.onkeydown=e=>{if(e.target===c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();go()}}});
   $('d-s-strat').querySelectorAll('[data-lv2]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.lv2;state.x2[k]=!state.x2[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-dip]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.dip;state.xd=state.xd||{};state.xd[k]=!state.xd[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-kf]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.kf;state.xf=state.xf||{};state.xf[k]=!state.xf[k];drawHist()});
@@ -1974,6 +1988,7 @@ function drawHist(){
       const k=(state.x2?.[x.id]&&F?.[x.id+'2']?' ×2':'')+(state.xd?.[x.id]&&F?.[x.id+'D']?' +저점':'')+(state.xf?.[x.id]&&F?.[x.id+'F']?' +필터':'');
       $('ipop-h').textContent=x.name+k;$('ipop-t').textContent=infoOf(x).split(' / ').join('\n\n');ip.hidden=false;$('ipop-x').focus()});
     $('ipop-x').onclick=close;ip.onclick=e=>{if(e.target===ip)close()};ip.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
+  if(state.eqSel?.length&&state.curves?.[state.eqPer])drawDetail();   // 2배·저점매수·필터 토글이 바뀌면 차트 곡선도 그 기준으로
 }
 /* 상세 섹션 탭 — 계절분석 · 전략비교 · 차트분석 · 재무분석 (마지막으로 본 탭 기억) */
 const SECS=['season','strat','chart','fin'];
@@ -2118,7 +2133,10 @@ function drawDetail(){
       <div class="pxs">${dd(J.d[A])} 종가 · 전일 ${fmtP(c0,S.m)}${cap>0&&S.m!=='IX'?` · 시가총액 <b>${capFmt(cap)}</b>`:''}</div>`}
   const PL={ytd:'연초 이후',['1m']:'1개월',['3m']:'3개월',['6m']:'6개월',['1y']:'1년',['2y']:'2년',['3y']:'3년',['5y']:'5년'};
   $('d-pret').innerHTML=`${PL[state.years]||''} 수익률 <b>${pcs((J.c[A]/J.c[i0]-1)*100)}</b> <span class="muted">${dd(J.d[i0])} 종가 ${fmtP(J.c[i0],S.m)} → ${dd(J.d[A])} 종가 ${fmtP(J.c[A],S.m)}</span>`;
-  const Wd=640,ml=62,mr=18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
+  const CV=state.eqSel?.length&&state.eqPer?state.curves?.[state.eqPer]:null,EQ=[];   // 고른 전략 카드의 날짜별 평가금액
+  if(CV&&CV.d){const at=new Map(J.d.map((d,i)=>[d,i]));state.eqSel.forEach((id,k)=>{const key=eqKey(id,CV.eq||{}),arr=CV.eq?.[key];if(!arr)return;const pts=[];
+    CV.d.forEach((d,j)=>{const i=at.get(d);if(i!=null&&i>=i0&&arr[j]!=null)pts.push([i,arr[j]])});if(pts.length)EQ.push({id,c:EQC[k%EQC.length],pts,last:arr[arr.length-1]})})}
+  const Wd=640,ml=62,mr=EQ.length?60:18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
   const bands=(top,bot,label)=>{let o='',lb='';for(const r of runs){if(r.b<i0)continue;const a=Math.max(r.a,i0),b=r.b;
     const x0=a===i0?ml:(x(a-1)+x(a))/2,x1=b===A?ml+pw:(x(b)+x(b+1))/2;
     o+=`<rect x="${x0.toFixed(1)}" y="${top}" width="${(x1-x0).toFixed(1)}" height="${bot-top}" style="fill:var(--${KEY[r.s]}-bg)"/>`;
@@ -2132,7 +2150,14 @@ function drawDetail(){
     MAS.forEach(([n,c,,,mk],k)=>ma+=`<text x="${ml+6+k*64}" y="${H-14}" style="font-size:11.5px;fill:${c}">${mk} MA${n}</text>`)}
   let tg='';if(state.ta&&state.lv){const T=[];if(state.lv.vp?.rows)T.push(['vp','매물대',!!PREF.vp]);T.push(['sr','지지·저항',PREF.sr!==false]);   // 차트 안 좌상단 토글 — SVG 로 그려 차트와 같이 늘고 줄어듦
     T.forEach(([k,t,on],j)=>{const bx=ml+6,by=16+j*26;tg+=`<g class="tg" data-tg="${k}" role="button" tabindex="0" aria-pressed="${on}"><title>${t} 선 보이기/숨기기</title><rect x="${bx}" y="${by}" width="64" height="21" rx="10.5"/><text x="${bx+32}" y="${by+14.5}" text-anchor="middle">${t}</text></g>`})}
-  $('c-price').innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}${srSvg(J,i0,A,x,y,lo,hi,ml,pw)}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/>${tg}</svg>`;
+  let eqs='',eqlg='';if(EQ.length){let a=Infinity,b=-Infinity;for(const e of EQ)for(const [,v] of e.pts){if(v<a)a=v;if(v>b)b=v}
+    const pad=(b-a)*0.08||a*0.02||1;a-=pad;b+=pad;const ye=v=>mt+(b-v)/(b-a)*ph;
+    for(let k=0;k<=4;k++){const v=a+(b-a)*k/4;eqs+=`<text x="${ml+pw+6}" y="${(ye(v)+4).toFixed(1)}" class="t-muted num" style="font-size:11px">${eqFmt(v)}</text>`}
+    if(1e7>a&&1e7<b)eqs+=`<line x1="${ml}" x2="${ml+pw}" y1="${ye(1e7).toFixed(1)}" y2="${ye(1e7).toFixed(1)}" style="stroke:var(--muted);stroke-width:.8;stroke-dasharray:2 3"/>`;   // 시드 1,000만
+    for(const e of EQ)eqs+=`<path d="${e.pts.map(([i,v],j)=>`${j?'L':'M'}${x(i).toFixed(1)},${ye(v).toFixed(1)}`).join('')}" style="fill:none;stroke:${e.c};stroke-width:2;stroke-linejoin:round"/>`;
+    eqlg=`<div class="eqlg">${EQ.map(e=>`<span><i style="background:${e.c}"></i>${esc(eqName(e.id))} <b class="${e.last>1e7?'up':e.last<1e7?'dn':''}">${e.last>=1e7?'+':''}${((e.last/1e7-1)*100).toFixed(1)}%</b></span>`).join('')}<span class="muted">오른쪽 축 = 평가금액 (시드 1,000만 · 점선)${EQY[state.eqPer]!==state.years?' · 차트 기간과 전략 기간이 달라 겹치는 날만':''}</span></div>`}
+  else if(state.eqSel?.length)eqlg=`<div class="eqlg muted">${CV?.err?`평가금액을 못 불러왔어 (${esc(CV.err)})`:CV?'이 기간엔 고른 전략의 평가금액이 없어':'평가금액 불러오는 중…'}</div>`;
+  $('c-price').innerHTML=`<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="${esc(S.name)} 가격과 국면 구간">${bands(12,H-mb,true)}${g}${ma}${srSvg(J,i0,A,x,y,lo,hi,ml,pw)}<path d="${line(ps)}" style="fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round"/><circle cx="${x(A).toFixed(1)}" cy="${y(J.c[A]).toFixed(1)}" r="6" style="fill:var(--card);stroke:var(--navy);stroke-width:2.2"/>${eqs}${tg}</svg>${eqlg}`;
   const H2=190,mt2=34,mb2=30,ph2=H2-mt2-mb2,y2=v=>mt2+(100-v)/100*ph2;
   let d=`M${x(i0).toFixed(1)},${y2(J.h[i0]).toFixed(1)}`;for(let t=i0+1;t<N;t++)d+=`H${x(t).toFixed(1)}V${y2(J.h[t]).toFixed(1)}`;
   let g2='';for(const v of [0,50,100])g2+=`<line x1="${ml}" x2="${ml+pw}" y1="${y2(v)}" y2="${y2(v)}" style="stroke:var(--line)"/><text x="${ml-8}" y="${y2(v)+4}" text-anchor="end" class="t-muted num" style="font-size:12px">${v}%</text>`;
