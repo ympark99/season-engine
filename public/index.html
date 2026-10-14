@@ -1930,6 +1930,8 @@ function cpSpan(d){d=String(d||'');let m;const yy=y=>y===String(new Date().getFu
   if(/^\d{4}-\d{2}-\d{2}$/.test(d))return [d,d,yy(d.slice(0,4))+d.slice(5).replace('-','.')];
   if((m=d.match(/^(\d{4})-(\d{2})$/))){const e=new Date(Date.UTC(+m[1],+m[2],0)).toISOString().slice(0,10);return [`${d}-01`,e,`${yy(m[1])}${+m[2]}월 중`]}
   if((m=d.match(/^(\d{4})-Q([1-4])$/))){const q=+m[2],a=`${m[1]}-${String(q*3-2).padStart(2,'0')}-01`,e=new Date(Date.UTC(+m[1],q*3,0)).toISOString().slice(0,10);return [a,e,`${yy(m[1])}${q}분기 중`]}
+  if((m=d.match(/^(\d{4})-H([12])$/))){const h=+m[2];return [`${m[1]}-${h===1?'01':'07'}-01`,`${m[1]}-${h===1?'06-30':'12-31'}`,`${yy(m[1])}${h===1?'상반기':'하반기'} 중`]}
+  if(/^\d{4}$/.test(d))return [`${d}-01-01`,`${d}-12-31`,`${yy(d)||"올해 "}중`];
   return [null,null,d||'—']}
 const dDiff=(a,b)=>Math.round((Date.parse(a+'T00:00:00Z')-Date.parse(b+'T00:00:00Z'))/864e5);
 function cpTag(c,today){const [a,e,lab]=cpSpan(c.d);if(!a)return {lab,cls:'',sort:'9'};
