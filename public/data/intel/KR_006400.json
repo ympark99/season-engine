@@ -1,0 +1,61 @@
+{
+  "m": "KR",
+  "code": "006400",
+  "name": "삼성SDI",
+  "theme": "2차전지",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 조사 (첫 등록)",
+  "position": "각형 셀 기반 ESS 안전성과 전고체 일정은 선두권이지만, LFP·ESS 규모는 중국·LG에너지솔루션보다 1~2년 늦고 전기차 점유율은 가장 크게 줄었다. 이번 분기 관건은 10월 미국 LFP ESS 양산이 일정대로 시작되는지와 일회성을 뺀 본업 이익.",
+  "peers": [
+    { "name": "LG에너지솔루션", "m": "KR", "code": "373220" },
+    { "name": "SK온 (SK이노베이션)", "m": "KR", "code": "096770" },
+    { "name": "CATL", "m": null, "code": null },
+    { "name": "BYD", "m": null, "code": null },
+    { "name": "파나소닉", "m": null, "code": null }
+  ],
+  "axes": [
+    { "k": "ESS 안전", "me": "LFP 첫 ESS 'SBB 2.0'이 UL 대형 화재시험(LSFT) 통과 — 인접 랙 전파·폭발 없음, 스프링클러 없이 자체 진화. 알루미늄 캔 각형 + 벤트 + 모듈 내장 직분사 소화(EDI)", "vs": "LG에너지솔루션과 같은 조건의 공개 비교 시험은 확인 안 됨", "verdict": "우위", "conf": "보도", "src": [0, 1] },
+    { "k": "ESS 규모·시기", "me": "미국 인디애나 LFP 라인 10월 셀 양산·연내 공급 목표, 2026년 말 미국 30GWh 목표. 2029년까지 생산능력 상당 부분 수주 확보(회사 설명)", "vs": "LG에너지솔루션은 미국 LFP 이미 양산, 연말 북미 ESS 약 50GWh 목표. 상반기 ESS 출하 점유율 CATL 27.1% · LG엔솔 2.6% · 삼성SDI 1.4%", "verdict": "열세", "conf": "공시", "src": [2, 3, 4, 5] },
+    { "k": "전고체", "me": "황화물계·은-탄소 음극, 연구실 목표 900Wh/L. 울산 2027년 하반기 양산 목표, 로봇용 'SolidStack' 샘플 공개", "vs": "CATL은 회장이 9단계 중 4단계라고 언급, 2027 소량 생산. BYD 2027 소량, 도요타 2027~28 (자료마다 다름)", "verdict": "선두권", "conf": "보도", "src": [6, 7, 8] },
+    { "k": "원통형 46파이", "me": "2025년 미국 고객 초도 공급, 2026년 확대. BMW 공급 보도, GM 협력", "vs": "LG에너지솔루션·파나소닉·테슬라 자체 생산과 경쟁", "verdict": "동등", "conf": "공시", "src": [9, 10] },
+    { "k": "소형 고출력 (공구·로봇)", "me": "전동공구에서 검증된 21700 고출력 셀, 현대차 로봇(달이·모베드) 공급. 아틀라스 공급사로 거론(미확인)", "vs": "휴머노이드 확정 계약은 경쟁사 포함 확인된 것 없음", "verdict": "우위", "conf": "보도", "src": [11] },
+    { "k": "전기차 점유율", "me": "비중국 시장 1~8월 사용량 13.6GWh, 전년 대비 −32% (상위 10개사 중 감소 폭 최대)", "vs": "CATL 비중국 점유율 33.7%(+4.7%p), 한국 3사 합산 26.8%(−11.1%p)", "verdict": "열세", "conf": "보도", "src": [12] }
+  ],
+  "checkpoints": [
+    { "id": "us_lfp_ess", "what": "미국 인디애나 LFP ESS 셀 양산 시작", "d": "2026-10", "kind": "양산", "status": "진행", "conf": "공시", "src": [2],
+      "log": [ { "d": "2026-08-05", "s": "예정", "note": "2분기 실적 콜: 품질 검증 단계, 10월 셀 양산 예정" }, { "d": "2026-10-14", "s": "진행", "note": "10월 양산 일정 유지 — 양산 시작 발표는 아직 확인 안 됨" } ] },
+    { "id": "q3_earn", "what": "3분기 실적 — 일회성(GM 정산·세액공제) 뺀 본업 흑자 여부", "d": "2026-10", "kind": "실적", "status": "예정", "conf": "보도", "src": [13],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "영업이익 전망 약 1,650억~3,000억원으로 갈림. 정확한 발표일은 미확정 — 10월 말" } ] },
+    { "id": "sbb2_ship", "what": "SBB 2.0(LFP ESS) 미국 고객 첫 공급", "d": "2026-Q4", "kind": "출시", "status": "예정", "conf": "공시", "src": [2],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "연내 공급 목표" } ] },
+    { "id": "us_ess_award", "what": "하반기 미국 ESS 추가 수주", "d": "2026-Q4", "kind": "수주", "status": "예정", "conf": "공시", "src": [2],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "회사는 하반기 수주가 붙으면 2028년부터 수요가 생산능력을 넘는다고 설명" } ] },
+    { "id": "ssb_mass", "what": "전고체 배터리 양산 (울산)", "d": "2027-Q3", "kind": "양산", "status": "예정", "conf": "보도", "src": [6, 7],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "2027년 하반기 목표 — 고객사 발표 여부가 관건" } ] }
+  ],
+  "metrics": [
+    { "k": "비중국 EV 배터리 사용량 (1~8월)", "v": "13.6GWh (전년 대비 −32%)", "asof": "2026-08", "src": [12] },
+    { "k": "ESS 출하 점유율 (상반기)", "v": "1.4% (CATL 27.1%)", "asof": "2026-06", "src": [4] },
+    { "k": "3분기 영업이익 전망", "v": "약 1,650억~3,000억원 (일회성 포함)", "asof": "2026-10", "src": [13] }
+  ],
+  "updates": [
+    { "d": "2026-10-14", "note": "첫 등록 — 경쟁 구도·기술 축·체크포인트 정리. 미국 LFP ESS 10월 양산, 10월 말 3분기 실적이 다음 확인 지점", "src": [2, 13] }
+  ],
+  "sources": [
+    { "t": "삼성SDI ESS 'SBB 2.0', 글로벌 화재 안전 인증 통과", "u": "https://www.g-enews.com/article/Industry/2026/09/202609280916012646139bf6e4b2_1", "d": "2026-09-28" },
+    { "t": "삼성SDI LFP 탑재 ESS, 글로벌 화재 안전성 테스트 통과", "u": "https://biz.sbs.co.kr/article/20000336937", "d": "2026-09-28" },
+    { "t": "Samsung SDI to start US LFP battery cell production (Q2 2026 call)", "u": "https://www.indexbox.io/blog/samsung-sdi-to-start-us-lfp-battery-cell-production-in-q3-2026/", "d": "2026-08" },
+    { "t": "LG에너지솔루션, 북미 ESS 생산 거점 5곳으로 확대", "u": "https://inside.lgensol.com/2026/03/lg%EC%97%90%EB%84%88%EC%A7%80%EC%86%94%EB%A3%A8%EC%85%98-%EB%B6%81%EB%AF%B8-ess-%EC%83%9D%EC%82%B0-%EA%B1%B0%EC%A0%90-5%EA%B3%B3%EC%9C%BC%EB%A1%9C-%ED%99%95%EB%8C%80-lg%EC%97%90%EB%84%88%EC%A7%80/", "d": "2026-03" },
+    { "t": "2026년 상반기 ESS 배터리 출하 71% 급증…CATL 27% 점유율", "u": "https://www.thalestimes.com/news/530302", "d": "2026" },
+    { "t": "SAMSUNG SDI Wins KRW 1.5 Trillion ESS Prismatic Battery Supply Deal in the U.S.", "u": "https://www.samsungsdi.com/sdi-now/sdi-news/4802.html?pageIndex=1&pagesize=15&idx=4802", "d": "2026-03" },
+    { "t": "Samsung SDI to Mass-Produce Solid-State Batteries by 2027", "u": "https://battery-tech.net/battery-markets-news/samsung-sdi-to-mass-produce-solid-state-batteries-by-2027/", "d": "2026" },
+    { "t": "CATL chief: solid-state batteries at 'level 4 of 9'", "u": "https://electrek.co/2026/06/25/catl-solid-state-battery-level-4-2030/", "d": "2026-06-25" },
+    { "t": "Solid-State Battery 2027: Race To Pilot Production", "u": "https://evsays.com/solid-state-battery-2027-mass-production-race/", "d": "2026" },
+    { "t": "삼성SDI, 차세대 46파이 배터리 양산…美고객사 초도 공급", "u": "https://samsungsdi.co.kr/sdi-now/sdi-news/4321.html", "d": "2025-03" },
+    { "t": "삼성SDI 각형 대신 원통형 배터리 BMW에 공급", "u": "https://www.thelec.kr/news/articleView.html?idxno=41887", "d": "2025" },
+    { "t": "CES서 시연된 '아틀라스' 배터리, 삼성SDI '유력'", "u": "https://www.newstomato.com/ReadNews.aspx?no=1290400", "d": "2026-01" },
+    { "t": "SNE리서치 — 2026년 1~8월 非중국 전기차용 배터리 사용량", "u": "https://sneresearch.com/kr/insight/release_view/750/page/264?s_cat=%7C&s_keyword=", "d": "2026-10" },
+    { "t": "K배터리 3사, ESS가 끌고 보상금이 민다…삼성SDI 3분기 깜짝 실적 기대", "u": "https://biz.heraldcorp.com/article/10900606", "d": "2026-10-13" }
+  ]
+}

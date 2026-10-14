@@ -211,6 +211,13 @@ table.rtbl tr.rrow:hover td,table.rtbl tr.rrow.on td{background:var(--gold-soft)
 input.thin{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:3px 7px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .box{background:var(--soft);border-radius:14px;padding:14px 16px}
+.cpl{display:grid;gap:4px;max-height:220px;overflow-y:auto;scrollbar-width:thin}.cpl .cp{display:grid;grid-template-columns:62px minmax(70px,auto) 1fr auto;gap:8px;align-items:baseline;font-size:13px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.cpl .cp:last-child{border-bottom:0}.cpd{font-weight:800;font-variant-numeric:tabular-nums}.cpd.od{color:var(--pos)}.cpd.soon{color:var(--gold-ink)}
+.ivb{display:inline-block;font-size:11px;font-weight:800;border-radius:6px;padding:1px 7px;border:1px solid var(--line);white-space:nowrap}
+.ivb.up{color:var(--pos);border-color:var(--pos)}.ivb.dn{color:var(--neg);border-color:var(--neg)}.ivb.eq{color:var(--ink2)}.ivb.uk{color:var(--muted);border-style:dashed}
+.ivb.st-진행{color:var(--gold-ink);border-color:var(--gold)}.ivb.st-완료{color:var(--muted)}.ivb.st-지연{color:#fff;background:var(--pos);border-color:var(--pos)}.ivb.st-취소{color:var(--muted);text-decoration:line-through}
+.itl h4{margin:14px 0 6px}.itl .pos{font-size:14.5px;line-height:1.55;margin:4px 0 2px}.peers{display:flex;flex-wrap:wrap;gap:8px}.peer{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px}
+.itl table td{vertical-align:top}.itl details summary{cursor:pointer;list-style:none}.itl details summary::-webkit-details-marker{display:none}.itl .lg{font-size:12px;color:var(--ink2);margin:4px 0 0 4px}.itl .src{font-size:12px;line-height:1.6}.itl a{color:var(--ink2)}
 .box h3{margin:0 0 8px;font-size:13px;color:var(--ink2);font-weight:600}
 .big{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1}
 .big small{font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
@@ -567,6 +574,7 @@ body{margin:0}
       <summary><span class="ico"><i>2</i></span><div><h2>내 종목 국면</h2><p>검색해서 추가하면 KIS 5년치 일봉을 바로 조회·판정 · 내 목록 분포 · 최근 전이 · 저점매수 시그널 · 눌림목 시그널 · 종합 의견</p></div><span class="chev">▾</span></summary>
       <div class="body">
         <div id="mydist"></div>
+        <div class="box" id="cpbox" style="margin-top:14px"></div>
         <div class="three" style="margin:14px 0 16px">
           <div class="box"><h3>최근 20거래일 전이 <span class="muted" id="feedn"></span></h3><div class="chips sm" id="feedf"></div><div class="feed" id="feed"></div></div>
           <div class="box"><h3>저점매수 시그널 (20거래일) <span class="muted" id="mydipn"></span></h3><div class="feed" id="mydip"></div></div>
@@ -696,11 +704,12 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
     <h4 style="margin:0 0 8px;font-size:15px">국면 구간 (길이 = 기간)</h4>
     <div class="segbar" id="d-seg"></div>
     <div class="dfund" id="d-fund" hidden></div>
-    <div class="btns dtabs" id="d-tabs" role="tablist" aria-label="상세 섹션"><button type="button" class="pbtn" role="tab" data-sec="season">계절분석</button><button type="button" class="pbtn" role="tab" data-sec="strat">전략비교</button><button type="button" class="pbtn" role="tab" data-sec="chart">차트분석</button><button type="button" class="pbtn" role="tab" data-sec="fin">재무분석</button></div>
+    <div class="btns dtabs" id="d-tabs" role="tablist" aria-label="상세 섹션"><button type="button" class="pbtn" role="tab" data-sec="season">계절분석</button><button type="button" class="pbtn" role="tab" data-sec="strat">전략비교</button><button type="button" class="pbtn" role="tab" data-sec="chart">차트분석</button><button type="button" class="pbtn" role="tab" data-sec="fin">재무분석</button><button type="button" class="pbtn" role="tab" data-sec="intel">경쟁·기술</button></div>
     <div class="dsec hist" id="d-s-season" role="tabpanel"></div>
     <div class="dsec hist" id="d-s-strat" role="tabpanel" hidden></div>
     <div class="dsec dfund" id="d-s-chart" role="tabpanel" hidden></div>
     <div class="dsec dfund" id="d-s-fin" role="tabpanel" hidden></div>
+    <div class="dsec itl" id="d-s-intel" role="tabpanel" hidden></div>
     <div class="why"><h4>엔진 근거</h4><dl id="d-why"></dl>
       <div id="d-catrow" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label class="sub" for="d-cat">현금흐름 범주</label><select id="d-cat"></select><span class="sub" id="d-catv"></span></div></div>
   </div>
@@ -1875,7 +1884,7 @@ function estTable(E){
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
-  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin'].forEach(k=>$('d-s-'+k).innerHTML='');showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;state.eqSel=[];state.curves={};state.eqPer=null;$('d-name').textContent=S.name;
+  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin','intel'].forEach(k=>$('d-s-'+k).innerHTML='');state.intel=null;showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;state.eqSel=[];state.curves={};state.eqPer=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
   $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';state.mcap=null;$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
@@ -1907,6 +1916,72 @@ function drawFit(S){
   const a=F.grade>=2?ACT[S.season]:F.grade===1?['계절 신호 참고만','t-mid']:null;
   $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}<span class="why">${esc(F.why)}</span>`;
 }
+
+/* ---------- 경쟁·기술 (매일 아침 '경쟁·기술 갱신' 정기 작업이 public/data/intel 에 올린 조사 — 사이트는 읽기만) ---------- */
+let INTEL=null;
+async function loadIntelIdx(){try{const r=await fetch('data/intel/index.json',{cache:'no-store'});INTEL=r.ok?await r.json():{}}catch(e){INTEL={}}renderCP()}
+const todayISO=()=>{const t=new Date();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`};
+// 체크포인트 날짜 — YYYY-MM-DD · YYYY-MM(그 달 중) · YYYY-Qn(그 분기 중) → [시작, 끝, 표시]
+function cpSpan(d){d=String(d||'');let m;const yy=y=>y===String(new Date().getFullYear())?'':`${y.slice(2)}년 `;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(d))return [d,d,yy(d.slice(0,4))+d.slice(5).replace('-','.')];
+  if((m=d.match(/^(\d{4})-(\d{2})$/))){const e=new Date(Date.UTC(+m[1],+m[2],0)).toISOString().slice(0,10);return [`${d}-01`,e,`${yy(m[1])}${+m[2]}월 중`]}
+  if((m=d.match(/^(\d{4})-Q([1-4])$/))){const q=+m[2],a=`${m[1]}-${String(q*3-2).padStart(2,'0')}-01`,e=new Date(Date.UTC(+m[1],q*3,0)).toISOString().slice(0,10);return [a,e,`${yy(m[1])}${q}분기 중`]}
+  return [null,null,d||'—']}
+const dDiff=(a,b)=>Math.round((Date.parse(a+'T00:00:00Z')-Date.parse(b+'T00:00:00Z'))/864e5);
+function cpTag(c,today){const [a,e,lab]=cpSpan(c.d);if(!a)return {lab,cls:'',sort:'9'};
+  if(e<today)return {lab:`${lab} · ${dDiff(today,e)}일 지남`,cls:'od',sort:'0'+e,over:true};
+  if(a<=today)return {lab:a===e?'오늘':lab,cls:'soon',sort:'1'+e,now:true};
+  const n=dDiff(a,today);return {lab:a===e?`D-${n}`:`${lab} · D-${n}`,cls:n<=3?'soon':'',sort:'2'+a,n}}
+const stB=s=>`<span class="ivb st-${esc(s||'')}">${esc(s||'—')}</span>`;
+/* 대시보드 — 다가오는 체크포인트 (내 목록 · 14일 안 · 지났는데 안 끝난 것 · 지연) */
+function renderCP(){const el=$('cpbox');if(!el)return;
+  if(!INTEL||!D){el.innerHTML='<h3>다가오는 체크포인트</h3><div class="muted">불러오는 중…</div>';return}
+  const today=todayISO(),mine=(D.stocks||[]).filter(x=>x.m===state.m),rows=[];let have=0;
+  for(const S of mine){const it=INTEL[K(S)];if(!it)continue;have++;
+    for(const c of it.cp||[]){if(c.status==='완료'||c.status==='취소')continue;const t=cpTag(c,today);
+      if(t.over||t.now||c.status==='지연'||(t.n!=null&&t.n<=14))rows.push({S,c,t})}}
+  rows.sort((x,y)=>x.t.sort<y.t.sort?-1:x.t.sort>y.t.sort?1:0);
+  const wait=mine.length-have;
+  el.innerHTML=`<h3>다가오는 체크포인트 <span class="muted">${rows.length}건 · 14일 안·지난 미완료·지연 · 조사 ${have}/${mine.length}종목</span></h3>
+    ${rows.length?`<div class="cpl">${rows.map(({S,c,t})=>`<div class="cp"><span class="cpd ${t.cls}">${esc(t.lab)}</span>${idSpan(S.m,S.code,S.name)}<span>${esc(c.what)} <span class="muted">· ${esc(c.kind||'')}</span></span>${stB(c.status)}</div>`).join('')}</div>`
+      :`<div class="muted">${have?'14일 안에 다가오는 체크포인트가 없어':'아직 조사된 종목이 없어'}</div>`}
+    <div class="sub" style="margin-top:6px">매일 아침 '경쟁·기술 갱신' 정기 조사가 종목별 주요·양산 일정을 확인해 상태를 바꿔.${wait>0?` 아직 조사 안 된 ${wait}종목은 다음 아침 배치에서 처음 조사해.`:''} 종목을 누르면 상세 화면 '경쟁·기술' 탭에서 경쟁사·기술 비교와 진척 이력을 볼 수 있어.</div>`}
+/* 상세 화면 '경쟁·기술' 탭 */
+async function loadIntel(){const S=state.cur,el=$('d-s-intel');if(!S||!el)return;
+  if(S.m==='IX'){el.innerHTML='<div class="sub">지수는 경쟁·기술 조사 대상이 아니야</div>';return}
+  const k=K(S);if(state.intel?.k===k){drawIntel();return}
+  el.innerHTML='<div class="loading">경쟁·기술 조사 불러오는 중…</div>';
+  let j=null;try{const r=await fetch(`data/intel/${S.m}_${encodeURIComponent(S.code)}.json`,{cache:'no-store'});if(r.ok)j=await r.json()}catch(e){}
+  if(state.cur!==S)return;state.intel={k,j};drawIntel()}
+function drawIntel(){const S=state.cur,el=$('d-s-intel'),j=state.intel?.j;if(!S||!el)return;
+  if(!j){const mine=(D?.stocks||[]).some(x=>K(x)===K(S));
+    el.innerHTML=`<div class="box"><b>${mine?'조사 예약됨':'아직 조사 안 됨'}</b><div class="sub" style="margin-top:4px">${mine?'내 목록 종목이라 다음 아침 ‘경쟁·기술 갱신’ 배치에서 처음 조사해 (경쟁사·기술 비교·주요 일정). 종목 조회만으로는 조사하지 않아.':'경쟁·기술 조사는 내 목록 종목만 해. 이 종목을 내 목록에 추가하면 다음 아침 배치에서 조사해.'}</div></div>`;return}
+  const today=todayISO(),src=j.sources||[],u=x=>/^https?:\/\//.test(x||'')?x:null;
+  const sref=a=>(a||[]).filter(i=>src[i]).map(i=>{const x=src[i];return u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener" title="${esc(x.t)}${x.d?' · '+esc(x.d):''}">[${i+1}]</a>`:`<span title="${esc(x.t)}">[${i+1}]</span>`}).join('');
+  const vb=v=>{const c={우위:'up',선두권:'up',동등:'eq',열세:'dn'}[v]||'uk';return `<span class="ivb ${c}">${esc(v||'불확실')}</span>`};
+  const peers=(j.peers||[]).map(p=>{const P=p.m&&p.code?BYKEY[`${p.m}:${p.code}`]:null;
+    const meta=P?` <span class="pill p-${P.season}" style="font-size:11px"><span class="han">${HAN[P.season]||''}</span>${P.season}</span> <span class="muted">${P.prob??''}%${P.view?.combined!=null?` · 종합 ${P.view.combined}`:''}</span>`:'';
+    return `<span class="peer">${p.m&&p.code?`<span class="lnk" ${openAttr(p.m,p.code,p.name)}>${esc(p.name)}</span>`:esc(p.name)}${meta}</span>`}).join('');
+  const cps=[...(j.checkpoints||[])].map(c=>({c,t:cpTag(c,today)})).sort((x,y)=>{const dn=s=>s==='완료'||s==='취소';if(dn(x.c.status)!==dn(y.c.status))return dn(x.c.status)?1:-1;return x.t.sort<y.t.sort?-1:1});
+  const ch=[];for(const x of j.updates||[])ch.push({d:x.d,t:'진척',n:x.note,src:x.src});
+  for(const c of j.checkpoints||[])for(const g of c.log||[])ch.push({d:g.d,t:`일정 · ${c.what}`,n:`${g.s?g.s+' — ':''}${g.note||''}`});
+  for(const a of j.axes||[])for(const g of a.chg||[])ch.push({d:g.d,t:`판정 · ${a.k}`,n:g.note});
+  const recent=ch.filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.d||'')&&dDiff(today,x.d)<=7).sort((a,b)=>a.d<b.d?1:-1);
+  el.innerHTML=`<div class="hh"><h4>경쟁·기술 <span class="sub" style="font-weight:400">갱신 ${esc(j.at||'—')} · 전체 조사 ${esc(j.full||'—')}</span></h4></div>
+    ${j.position?`<p class="pos">${esc(j.position)}</p>`:''}
+    ${peers?`<h4>경쟁사</h4><div class="peers">${peers}</div>`:''}
+    <h4>최근 7일 변경 <span class="muted" style="font-weight:400">${recent.length}건</span></h4>
+    ${recent.length?`<div class="cpl" style="max-height:180px">${recent.map(x=>`<div class="cp" style="grid-template-columns:62px 1fr"><span class="cpd">${esc(x.d.slice(5).replace('-','.'))}</span><span><b>${esc(x.t)}</b> ${esc(x.n||'')} ${sref(x.src)}</span></div>`).join('')}</div>`:'<div class="muted">최근 7일 동안 바뀐 게 없어</div>'}
+    <h4>주요 일정·체크포인트</h4>
+    ${cps.length?`<div class="tbl-wrap"><table style="min-width:620px"><thead><tr><th>언제</th><th>체크포인트</th><th>상태</th><th>근거</th></tr></thead><tbody>${cps.map(({c,t})=>`<tr><td class="num"><span class="cpd ${c.status==='완료'||c.status==='취소'?'':t.cls}">${esc(t.lab)}</span></td>
+      <td><details><summary>${esc(c.what)} <span class="muted">· ${esc(c.kind||'')}${(c.log||[]).length?` · 이력 ${c.log.length}`:''} ▾</span></summary>${(c.log||[]).map(g=>`<div class="lg">${esc(g.d||'')} ${g.s?stB(g.s):''} ${esc(g.note||'')}</div>`).join('')}</details></td>
+      <td>${stB(c.status)}</td><td class="sub">${esc(c.conf||'')} ${sref(c.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">정리된 일정이 없어</div>'}
+    <h4>기술·사업 비교</h4>
+    ${(j.axes||[]).length?`<div class="tbl-wrap"><table style="min-width:720px"><thead><tr><th>항목</th><th>${esc(j.name)}</th><th>경쟁사</th><th>판정</th><th>근거</th></tr></thead><tbody>${j.axes.map(a=>`<tr><td><b>${esc(a.k)}</b></td><td>${esc(a.me||'')}</td><td class="sub">${esc(a.vs||'')}</td><td>${vb(a.verdict)}</td><td class="sub">${esc(a.conf||'')} ${sref(a.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">비교 항목이 없어</div>'}
+    ${(j.metrics||[]).length?`<h4>숫자</h4><div class="tbl-wrap"><table style="min-width:420px"><tbody>${j.metrics.map(x=>`<tr><td>${esc(x.k)}</td><td class="r num"><b>${esc(x.v)}</b></td><td class="sub">${esc(x.asof||'')} ${sref(x.src)}</td></tr>`).join('')}</tbody></table></div>`:''}
+    ${src.length?`<h4>출처</h4><div class="src">${src.map((x,i)=>`<div>[${i+1}] ${u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)}${x.d?` <span class="muted">${esc(x.d)}</span>`:''}</div>`).join('')}</div>`:''}
+    <div class="sub" style="margin-top:8px">매일 아침 정기 조사가 종목·업종(경쟁사) 뉴스와 다가온 일정을 확인해 바뀐 것만 고치고, 변화 없는 종목도 주기적으로 전체를 다시 조사해. 판정: 우위·선두권·동등·열세·불확실 · 근거: 공시·보도·추정. 회사 목표치는 '목표'로 적어.</div>`}
+
 /* 전략 카드 → 차트에 날짜별 평가금액 (여러 장 고르면 색을 달리해 같이). 곡선은 고른 기간만 서버에서 받아 둠 */
 const EQC=['#22D3EE','#F472B6','#A3E635','#FBBF24','#FB7185','#2DD4BF','#C084FC','#F97316'];
 const EQY={YTD:'ytd','1M':'1m','3M':'3m','6M':'6m','1Y':'1y','2Y':'2y','3Y':'3y','5Y':'5y'};
@@ -1991,10 +2066,10 @@ function drawHist(){
   if(state.eqSel?.length&&state.curves?.[state.eqPer])drawDetail();   // 2배·저점매수·필터 토글이 바뀌면 차트 곡선도 그 기준으로
 }
 /* 상세 섹션 탭 — 계절분석 · 전략비교 · 차트분석 · 재무분석 (마지막으로 본 탭 기억) */
-const SECS=['season','strat','chart','fin'];
+const SECS=['season','strat','chart','fin','intel'];
 function showSec(k){k=SECS.includes(k)?k:'season';state.dsec=k;if(PREF.dsec!==k){PREF.dsec=k;try{savePrefs()}catch(e){}}
   document.querySelectorAll('#d-tabs [data-sec]').forEach(b=>{const on=b.dataset.sec===k;b.setAttribute('aria-selected',String(on));b.setAttribute('aria-pressed',String(on))});
-  SECS.forEach(x=>{$('d-s-'+x).hidden=x!==k})}
+  SECS.forEach(x=>{$('d-s-'+x).hidden=x!==k});if(k==='intel')loadIntel()}
 document.querySelectorAll('#d-tabs [data-sec]').forEach(b=>b.onclick=()=>showSec(b.dataset.sec));
 
 /* 매출 흐름도 — 버튼을 누를 때만 서버에서 만든다 (7일 저장). 켜져 있는 동안 가격 차트·국면 확률 자리를 대신한다 */
@@ -2286,7 +2361,7 @@ function benchChart(dates,eq,bms,label){
   return `<div class="chart"><svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="전략과 벤치마크 누적 수익률">${g}${paths}${xl}</svg></div><div class="legend"><div class="items" style="flex-wrap:wrap">${lastLbl}</div><span class="muted">${dates[0]} = 0%</span></div>`;
 }
 const loadInd=loadUniverse;
-function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>{if(D){renderFilters();renderRows()}});if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd()}
+function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>{if(D){renderFilters();renderRows()}});if(!$('strat').hidden)loadStrat();if(!D){renderUniv();renderInd();return}renderHeader();renderRegime();renderUniv();renderFilters();renderHead();renderRows();renderFlow();renderMacro();renderInd();renderCP()}
 async function reload(flash){D=await api('/api/list');FAV=new Set(D.fav||[]);BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll();if(!$('eng').hidden)renderEngine()});
 let engDone=false;
@@ -2304,6 +2379,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)
   syncMkt();
   try{
     let C;[MACRO,C]=await Promise.all(['macro','categories'].map(n=>fetch(`data/${n}.json`,{cache:'no-store'}).then(r=>r.json()).catch(()=>null)));
+    loadIntelIdx();
     if(C)CATS=C;
     loadMarket();loadUniverse();
     await reload();syncFav();
