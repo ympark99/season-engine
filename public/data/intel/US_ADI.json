@@ -1,0 +1,299 @@
+{
+  "m": "US",
+  "code": "ADI",
+  "name": "Analog Devices",
+  "theme": "아날로그 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "산업·데이터센터·자동차 전반에서 고성능 아날로그 선두권으로, 회계 3분기 매출 40억 달러(+40%)로 사상 최대를 냈다. 다음 분기 관건은 4분기 매출 43억 달러 안팎 가이던스 달성과 Empower 인수 마무리, 경쟁사 TI의 3분기 발표(10월 21일)에서 보이는 수요 강도.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "고성능 신호처리 중심으로 조정 매출총이익률 72.5%, 산업 +53%·통신(데이터센터) +84% 등 모멘텀이 강하다. 반면 전체 아날로그 규모는 TI가 더 크고 추정 점유율 자료가 불확실하며, 성장이 업황 회복과 AI 수요에 크게 기대 높아진 만큼 둔화 시 변동이 커질 수 있다."
+  },
+  "peers": [
+    {
+      "name": "Texas Instruments",
+      "m": "US",
+      "code": "TXN"
+    },
+    {
+      "name": "Microchip Technology",
+      "m": "US",
+      "code": "MCHP"
+    },
+    {
+      "name": "NXP Semiconductors",
+      "m": "US",
+      "code": "NXPI"
+    },
+    {
+      "name": "STMicroelectronics",
+      "m": "US",
+      "code": "STM"
+    },
+    {
+      "name": "Infineon",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "산업 회복 모멘텀",
+      "me": "산업 매출 약 19.7억 달러, 전년 대비 +53% (자동 테스트 장비·항공우주·방산 주도)",
+      "vs": "TI는 산업 매출 전년 대비 약 +30% (2분기)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        7
+      ]
+    },
+    {
+      "k": "데이터센터·AI 전력/광",
+      "me": "통신 매출 약 6.55억 달러(+84%), 그중 약 80%가 데이터센터. 광·전력 제품 +100% 초과. 15억 달러 규모 Empower 인수로 전압조정기 보강",
+      "vs": "TI 데이터센터 매출은 2분기에 전년 대비 약 2배",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        5,
+        7,
+        2
+      ]
+    },
+    {
+      "k": "자동차",
+      "me": "자동차 매출 약 9.98억 달러, +16% (전동 파워트레인·차세대 ADAS 콘텐츠 증가)",
+      "vs": "TI 자동차 2분기 전년 대비 중반 10%대 증가",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        7,
+        2
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "3분기 조정 매출총이익률 72.5%(+330bp), 4분기 조정 영업이익률 약 52% 가이던스",
+      "vs": "TI 아날로그 부문 영업이익률 45.6% (2분기, 부문 기준이라 직접 비교는 제한적)",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        2,
+        8
+      ]
+    },
+    {
+      "k": "아날로그 전체 규모",
+      "me": "3분기 매출 40.2억 달러",
+      "vs": "TI 아날로그 부문만 2분기 43.7억 달러, TI 전체 54.6억 달러. 점유율 수치는 출처 불확실",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "생산능력·공급 여력",
+      "me": "회사 내부 공장 활용도는 적정 수준이라는 보도, 상세 증설 계획은 이번 조사에서 확인 못함",
+      "vs": "TI는 신규 공장(LFAB) 가동 확대 중이며 클린룸 여유 보유",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        3,
+        8
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "adi_q3fy26",
+      "what": "회계 3분기 실적 발표 (매출 40.2억 달러, 4분기 목표 43억 달러 제시)",
+      "d": "2026-08-19",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-19",
+          "s": "완료",
+          "note": "매출 4,022백만 달러(+40%), 조정 EPS 3.45달러. 4분기 매출 43억±1억 달러 제시"
+        }
+      ]
+    },
+    {
+      "id": "txn_q3",
+      "what": "경쟁사 TI 3분기 실적 발표 (아날로그 업황 판단 지표)",
+      "d": "2026-10-21",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "TI 컨퍼런스콜 10월 21일 현지 오후 3시 30분(중부)"
+        }
+      ]
+    },
+    {
+      "id": "adi_q4fy26",
+      "what": "회계 4분기 실적 발표 — 매출 43억±1억 달러 가이던스 달성 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6,
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 발표일 미확정, 일정 사이트 추정은 11월 18일과 24일로 엇갈림. 통상 4주 전 공지"
+        }
+      ]
+    },
+    {
+      "id": "empower_close",
+      "what": "Empower Semiconductor 15억 달러 인수 마무리",
+      "d": "2026-H2",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "공시상 2026년 하반기 마감 예정, 반독점 대기기간 만료 등 조건. 마감 발표는 아직 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "adi_q1fy27",
+      "what": "회계 2027년 1분기 실적 발표 (2월 중 추정)",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년 1분기는 2월 18일 발표 — 정확한 일정 미공지"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "회계 3분기 매출",
+      "v": "40.22억 달러 (+40%)",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "조정 매출총이익률",
+      "v": "72.5% (전년 대비 +330bp)",
+      "asof": "2026-08",
+      "src": [
+        8
+      ]
+    },
+    {
+      "k": "4분기 매출 가이던스",
+      "v": "43억 달러 ±1억 달러 (회사 제시)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "조정 EPS (3분기)",
+      "v": "3.45달러 (+68%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 3분기 사상 최대 매출·4분기 43억 달러 가이던스, 다음 확인 지점은 TI 10월 21일 실적과 11월 ADI 4분기 실적",
+      "src": [
+        0,
+        4,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Analog Devices Reports Record Fiscal Third Quarter 2026 Financial Results",
+      "u": "https://www.analog.com/en/newsroom/press-releases/2026/8-19-2026-adi-reports-record-fiscal-3q2026-financial-results.html",
+      "d": "2026-08-19"
+    },
+    {
+      "t": "ADI Form 8-K - 3Q26 earnings exhibit 99.1",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000006281/000000628126000072/adi3q26exhibit991earnings.htm",
+      "d": "2026-08-19"
+    },
+    {
+      "t": "TI reports second quarter 2026 financial results and shareholder returns",
+      "u": "https://investor.ti.com/node/38476",
+      "d": "2026-07-22"
+    },
+    {
+      "t": "Texas Instruments Form 10-Q (quarter ended 2026-06-30)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000152/txn-20260630.htm",
+      "d": "2026-07"
+    },
+    {
+      "t": "Texas Instruments to webcast Q3 2026 earnings conference call",
+      "u": "https://finviz.com/news/397904/texas-instruments-to-webcast-q3-2026-earnings-conference-call",
+      "d": "2026-10"
+    },
+    {
+      "t": "Analog Devices to Acquire Empower Semiconductor (ADI SEC filing)",
+      "u": "https://www.sec.gov/Archives/edgar/data/6281/0000006281-26-000048.txt",
+      "d": "2026-05"
+    },
+    {
+      "t": "Analog Devices (ADI) earnings date estimate",
+      "u": "https://beta.earningswhispers.com/go/w/ADI",
+      "d": "2026-10"
+    },
+    {
+      "t": "Analog Devices (ADI) Q3 2026 Earnings Call Transcript",
+      "u": "https://www.webull.com/news/15432330876175360",
+      "d": "2026-08"
+    },
+    {
+      "t": "Analog Devices (ADI) Q3 2026 earnings summary",
+      "u": "https://quartr.com/events/analog-devices-inc-adi-q3-2026_3YUiYcdh",
+      "d": "2026-08"
+    }
+  ]
+}
