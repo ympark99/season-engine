@@ -1,0 +1,323 @@
+{
+  "m": "US",
+  "code": "TER",
+  "name": "Teradyne",
+  "theme": "반도체 후공정",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 수요로 반도체 테스트 매출이 급증해 2분기·3분기 가이던스가 모두 컨센서스를 웃돌았고, SoC 테스트는 어드밴테스트가 앞서며 메모리·HBM 테스트에서 추격 중인 2위권이다. 다음 분기 관건은 10월 말 3분기 실적에서 가이던스(매출 12억~13억 달러)를 지키는지와 모바일 약세·컴퓨트 주문 시점 영향.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "AI 컴퓨트·메모리 테스트 수요로 2분기 매출 13.29억 달러(+104%), 영업이익률 32.9%로 모멘텀이 강함. 다만 SoC 테스트 점유율은 어드밴테스트가 앞서고(추정치 자료마다 다름), 로봇 사업은 구조조정·적자 부담이 남아 있음."
+  },
+  "peers": [
+    {
+      "name": "어드밴테스트 (Advantest)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Cohu",
+      "m": "US",
+      "code": "COHU"
+    },
+    {
+      "name": "FormFactor",
+      "m": "US",
+      "code": "FORM"
+    },
+    {
+      "name": "Technoprobe",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "SoC 테스트 점유율",
+      "me": "2025년 SoC 테스트 매출 +23%, VIP 컴퓨트 시장 점유율 약 50% 유지(회사 설명)",
+      "vs": "제3자 분석은 어드밴테스트 SoC 점유율이 2025년 56%에서 66%로 올랐다고 추정(회사 공시 아님)",
+      "verdict": "열세",
+      "conf": "추정",
+      "src": [
+        4,
+        3
+      ]
+    },
+    {
+      "k": "메모리·HBM 테스트",
+      "me": "2분기 메모리 테스트 매출 분기 최고 2.12억 달러, DRAM 강세·NAND 최종 테스트 회복",
+      "vs": "어드밴테스트가 글로벌 메모리 테스트 장비 50% 이상, 테라다인은 서버 메모리 테스트 약 30%로 2위(보도)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        0,
+        5,
+        3
+      ]
+    },
+    {
+      "k": "AI 수요 노출·실적 모멘텀",
+      "me": "2분기 매출 13.29억 달러(+104%), 영업이익률 32.9%, AI 관련 매출 60% 초과. 3분기 매출 가이던스 12억~13억 달러",
+      "vs": "어드밴테스트도 SoC 테스터 수요가 올해와 내년까지 강하다고 설명, 1분기 결산에서 실적 전망 상향",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        10,
+        12
+      ]
+    },
+    {
+      "k": "로봇 사업(UR·MiR)",
+      "me": "2분기 로봇 매출 1.0억 달러, 미국 미시간 거점 계획, 2027년 EBITDA 흑자 전환 목표",
+      "vs": "2025년 매출 부진과 두 차례 인력 감축 보도",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        8,
+        9
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 영업이익률 32.9% (전년 13.9%), 3분기 매출총이익률 58~59% 전망",
+      "vs": "경쟁사 동일 기준 수치는 확인하지 못함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 가이던스(매출 12억~13억 달러, 비GAAP EPS 1.85~2.15달러) 달성 여부",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6,
+        7,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 10-27 로 알려졌으나 회사 확정 공지는 확인 못함"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기·연간 실적 및 2027 전망",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 날짜 미확인"
+        }
+      ]
+    },
+    {
+      "id": "robot_ebitda",
+      "what": "로봇 사업 EBITDA 흑자 전환 목표",
+      "d": "2027",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 목표(2026-01 분석 기사 기준)"
+        }
+      ]
+    },
+    {
+      "id": "mi_hub",
+      "what": "미국 미시간 로봇 거점 가동 계획",
+      "d": "2026",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "2026년 계획 — 가동 시작 여부는 확인 못함"
+        }
+      ]
+    },
+    {
+      "id": "q1_27_earn",
+      "what": "2027년 1분기 실적 발표",
+      "d": "2027-Q2",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 날짜 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q2_26_earn",
+      "what": "2분기 실적 발표 (분기 최고 매출 13.29억 달러)",
+      "d": "2026-07-28",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-07-28",
+          "s": "완료",
+          "note": "매출 가이던스 상단 초과, 3분기 가이던스 12억~13억 달러 제시"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "13.29억 달러 (+104% 전년비)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 영업이익률",
+      "v": "32.9% (전년 13.9%)",
+      "asof": "2026-06",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "2분기 메모리 테스트 매출",
+      "v": "2.12억 달러 (분기 최고)",
+      "asof": "2026-06",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "12억~13억 달러",
+      "asof": "2026-07",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — AI 수요로 2분기 기록 실적, 3분기 가이던스 강세. SoC는 어드밴테스트 우위, 10월 말 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        2,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Teradyne 8-K 2분기 2026 실적 (SEC)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000097210/000119312526321933/ter-ex99_1.htm",
+      "d": "2026-07-28"
+    },
+    {
+      "t": "Teradyne Reports Second Quarter 2026 Results",
+      "u": "https://investors.teradyne.com/news-events/press-releases/detail/445",
+      "d": "2026-07-28"
+    },
+    {
+      "t": "Teradyne Shares Rise After Record Quarterly Results and Strong Q3 Outlook",
+      "u": "https://finviz.com/news/373906/teradyne-shares-rise-after-record-quarterly-results-and-strong-q3-outlook",
+      "d": "2026-07"
+    },
+    {
+      "t": "TER Rides on Strong Semiconductor Test Segment",
+      "u": "https://www.nasdaq.com/articles/ter-rides-strong-semiconductor-test-segment-more-upside-ahead-0",
+      "d": "2026"
+    },
+    {
+      "t": "The Chip Testing Bottleneck",
+      "u": "https://wing.vc/content/the-chip-testing-bottleneck",
+      "d": "2026"
+    },
+    {
+      "t": "TrendForce News — 테스트 장비 점유 언급",
+      "u": "https://www.trendforce.com/news/?p=64727",
+      "d": "2026"
+    },
+    {
+      "t": "TERADYNE (TER) Earnings Date",
+      "u": "https://unusualwhales.com/stock/TER/earnings",
+      "d": "2026-10-06"
+    },
+    {
+      "t": "Teradyne Next Earnings Date",
+      "u": "https://nextearningsdate.com/teradyne.html",
+      "d": "2026-10"
+    },
+    {
+      "t": "Teradyne Robotics lays off another 14% of workforce",
+      "u": "https://www.therobotreport.com/teradyne-robotics-lays-off-another-14-of-workforce/",
+      "d": "2025"
+    },
+    {
+      "t": "The Invisible Giant: A Deep Dive into Teradyne",
+      "u": "https://markets.financialcontent.com/stocks/article/finterra-2026-1-23-the-invisible-giant-a-deep-dive-into-teradyne-ter-amidst-ai-shifts-and-robotics-headwinds",
+      "d": "2026-01-23"
+    },
+    {
+      "t": "Teradyne Q2 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/teradyne-q2-earnings-call-highlights-2026-07-29/",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Advantest FY2026 Q1 결산",
+      "u": "https://www.advantest.com/investors/financial-highlights/review.html",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Advantest FY2026 1Q Q&A",
+      "u": "https://www.advantest.com/document/ja/investors/ir-library/result/JE_BIZ_260729_QA.pdf",
+      "d": "2026-07-29"
+    }
+  ]
+}
