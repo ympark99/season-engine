@@ -134,6 +134,11 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-pb{background:#f1ebfc;color:#5b3aa0;border:1px solid #dacdf4;margin:0 6px 0 0}
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
 .ucol{display:grid;gap:14px;align-content:start}.ucol .chg{max-height:220px}
+.ulg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"chg dip" "best pb";gap:14px;align-items:stretch}
+.ulg>.u-chg{grid-area:chg}.ulg>.u-dip{grid-area:dip}.ulg>.u-best{grid-area:best;align-self:start}.ulg>.u-pb{grid-area:pb;align-self:start}
+.ulg>.u-chg,.ulg>.u-dip{display:flex;flex-direction:column;min-height:0}.ulg>.u-chg .chg,.ulg>.u-dip .chg{max-height:none;flex:1 1 0;min-height:240px}
+@media (max-width:760px){.ulg{grid-template-columns:minmax(0,1fr);grid-template-areas:"chg" "best" "dip" "pb"}.ulg>.u-chg .chg,.ulg>.u-dip .chg{flex:none;max-height:260px}}
+table.bst{min-width:0}.bst th,.bst td{padding:7px 8px}.bst td.sub{white-space:normal;max-width:120px}.bst th button.sb2 .ar{font-size:10px;margin-left:2px;color:var(--muted)}
 table.stbl td.code,table.stbl td.name{padding-right:4px}
 table.stbl td.thc{padding-left:4px;max-width:150px}
 table.stbl td.thc>b{display:inline-block;max-width:118px;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
@@ -837,7 +842,7 @@ function renderUniv(){
   const d=(UNIV[state.m]||{}).daily;
   if(!d){el.innerHTML='';return}
   el.innerHTML=`<div class="rot" id="rot"></div>
-    <div class="two" style="margin-top:14px" id="ulists"></div>
+    <div class="ulg" style="margin-top:14px" id="ulists"></div>
     <details id="uall" style="margin-top:12px"${state.uopen?' open':''}><summary class="fold"><b style="font-size:14px">전종목 보기</b> <span class="sub">국면별 필터 · 이름을 누르면 상세</span></summary><div id="uallbody"><div class="muted">불러오는 중…</div></div></details>`;
   renderUnivLists();ensureTH().then(()=>{if($('ulists'))renderUnivLists()});
   const det=$('uall');det.ontoggle=()=>{state.uopen=det.open;if(det.open)loadUnivRows()};if(det.open)loadUnivRows();
@@ -853,20 +858,46 @@ function renderUnivLists(){
   const fd=x=>x.slice(5).replace('-','.');
   const dayChips=days.length?`<div class="chips sm" data-cday>${days.map((x,k)=>`<button type="button" class="chip" data-d="${x}" aria-pressed="${x===day}">${fd(x)}${k?'':' 최신'} <span class="num muted">${R.rows.filter(c=>c.d===x).length}</span></button>`).join('')}</div>`:'';
   const th=c=>`<span class="sub thn">${esc(thName(c)||'')}</span>`;
-  el.innerHTML=`<div class="box"><h3>국면이 바뀐 종목 <span class="muted">${R?`${fd(day)} ${chg.length}개 · 최근 5거래일 ${R.n}개`:`${d.changesN||0}개`} · 시가총액 순</span></h3>${dayChips}${seasonChips('cf',chg,'to')}
+  el.innerHTML=`<div class="box u-chg"><h3>국면이 바뀐 종목 <span class="muted">${R?`${fd(day)} ${chg.length}개 · 최근 5거래일 ${R.n}개`:`${d.changesN||0}개`} · 시가총액 순</span></h3>${dayChips}${seasonChips('cf',chg,'to')}
       ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
         :`<div class="muted">${cf?cf+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
       <div class="sub" style="margin-top:6px">${R?'날짜 = 새 국면이 시작된 거래일 (최근 5거래일, 기본은 가장 최근 거래일) · 그 사이 두 번 바뀐 종목은 마지막 변경만':'종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목'} — 상세 화면의 국면 구간과 같은 기준 · 계절 칩 = 바뀐 계절</div></div>
-    <div class="ucol"><div class="box"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
+    <div class="box u-best" id="ubest"></div>
+    <div class="box u-dip"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
       ${dp.length?`<div class="chg chg4">${dp.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now||!c.d?'<span class="sig sig-dip" style="margin:0">지금 조건</span>':`<span class="sub">${c.d.slice(5).replace('-','.')}까지 ${c.days}일</span>`}</span><span class="num" style="color:var(--neg)" title="최근 20거래일 중 가장 깊었을 때 20일선 대비">최저 ${c.min??c.dv}%</span>`).join('')}</div>`
         :`<div class="muted">${d.dips?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
       <div class="sub" style="margin-top:6px">겨울 20거래일+ · 종가가 20일선보다 15% 이상 아래 — 최근 20거래일 안에 한 번이라도 나온 종목. 매도는 60일선 회복·40거래일·매수가 −15% 중 먼저 (전략 비교 ‘저점매수’와 같은 규칙)</div></div>
-    <div class="box"><h3>눌림목 시그널 종목 (20거래일) <span class="muted">${d.pbsN??0}개 · 시가총액 순</span></h3>
+    <div class="box u-pb"><h3>눌림목 시그널 종목 (20거래일) <span class="muted">${d.pbsN??0}개 · 시가총액 순</span></h3>
       ${pb.length?`<div class="chg chg4">${pb.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now?'<span class="sig sig-pb" style="margin:0">지금 눌림</span>':`<span class="sub" title="기준봉 ${c.sig}">${c.d.slice(5).replace('-','.')} 진입${c.broke?' · 손절가 이탈':''}</span>`}</span><span class="num" title="${pbTitle(c,m)}">${c.dd}% · ${c.sr?c.sr.rr:c.rr}R${c.sr?'<sup class="muted">차트</sup>':''}</span>`).join('')}</div>`
         :`<div class="muted">${d.pbs?'최근 20거래일 시그널 없음':'다음 판정 때 표시'}</div>`}
-      <div class="sub" style="margin-top:6px">기준봉(5·10·20일선 정배열·종가 5일선 위·거래량 20일 평균 2배↑·종가 +3%↑·시가총액 3,000억↑) 뒤 15거래일 안에 거래량이 마르며 10일선 근처까지 눌린 날 — 최근 20거래일 안에 진입이 나온 종목. 숫자 = 기준봉 이후 고점 대비 · 손익비(R). 손절은 기준봉 시작가·진입가 −8% 중 높은 값 종가 이탈 (전략 비교 ‘눌림매매’와 같은 규칙). <b>R<sup>차트</sup></b> = 매일 계산하는 차트 지지·저항으로 보정한 손익비 — 손절은 진입가 아래 가장 가까운 지지(수평선·상승 추세선) − 0.5 ATR(최대 −8%), 목표는 위쪽 가장 가까운 저항. 숫자에 마우스를 올리면 규칙·차트 손절·목표가 같이 보여</div></div></div>`;
+      <div class="sub" style="margin-top:6px">기준봉(5·10·20일선 정배열·종가 5일선 위·거래량 20일 평균 2배↑·종가 +3%↑·시가총액 3,000억↑) 뒤 15거래일 안에 거래량이 마르며 10일선 근처까지 눌린 날 — 최근 20거래일 안에 진입이 나온 종목. 숫자 = 기준봉 이후 고점 대비 · 손익비(R). 손절은 기준봉 시작가·진입가 −8% 중 높은 값 종가 이탈 (전략 비교 ‘눌림매매’와 같은 규칙). <b>R<sup>차트</sup></b> = 매일 계산하는 차트 지지·저항으로 보정한 손익비 — 손절은 진입가 아래 가장 가까운 지지(수평선·상승 추세선) − 0.5 ATR(최대 −8%), 목표는 위쪽 가장 가까운 저항. 숫자에 마우스를 올리면 규칙·차트 손절·목표가 같이 보여</div></div>`;
   bindChips(el,'cf',renderUnivLists);
+  renderBest();
   el.querySelectorAll('[data-cday] button').forEach(b=>b.onclick=e=>{e.stopPropagation();state.cday=b.dataset.d;renderUnivLists()});
+}
+/* 베스트 종목 — 유니버스에서 추세+저점 90점 이상 / 종합 90점 이상. 점수·종목·섹터·계절·시가총액 정렬 · 계절 적합도 필터 (설정은 기억) */
+const FIT_N={3:'잘 맞음',2:'보통',1:'안 맞음',0:'표본 부족'};
+function renderBest(){
+  const el=$('ubest');if(!el||!UNIV)return;
+  const d=(UNIV[state.m]||{}).daily,m=state.m,B=PREF.best=Object.assign({k:'T',f:'',s:'sc',d:-1},PREF.best);
+  const head=`<h3>베스트 종목 <span class="muted">${B.k==='T'?'추세+저점':'종합'} 90점 이상</span></h3>`;
+  if(!d?.best){el.innerHTML=head+`<div class="muted">다음 유니버스 스캔부터 표시 (${m==='KR'?'평일 16:10':'평일 06:10'} KST)</div>`;return}
+  const all=d.best.filter(x=>(B.k==='T'?x.T:x.C)>=90),sc=x=>B.k==='T'?x.T:x.C;
+  const fits=['',3,2,1,0],cnt=f=>f===''?all.length:all.filter(x=>x.ft===f).length;
+  const rs=all.filter(x=>B.f===''||x.ft===+B.f);
+  const key={sc:x=>sc(x),nm:x=>(m==='US'?x.code:x.name)||x.code,th:x=>thName(x.code)||'',s:x=>SEASONS.indexOf(x.s),mc:x=>x.mc??-1}[B.s]||(x=>sc(x));
+  rs.sort((a,b)=>{const p=key(a),q=key(b);const r=typeof p==='string'?p.localeCompare(q,'ko'):p-q;return B.d*r||sc(b)-sc(a)||(b.mc??-1)-(a.mc??-1)});
+  const hd=(k,t,r)=>`<th${r?' class="r"':''}><button type="button" class="sb2" data-bs="${k}">${t}<span class="ar">${B.s===k?(B.d<0?'▼':'▲'):''}</span></button></th>`;
+  el.innerHTML=head+`<div class="chips sm" data-bk>${[['T','추세 90+',d.best.filter(x=>x.T>=90).length],['C','종합 90+',d.best.filter(x=>x.C>=90).length]].map(([k,t,n])=>`<button type="button" class="chip" data-k="${k}" aria-pressed="${B.k===k}">${t} <span class="num muted">${n}</span></button>`).join('')}</div>
+    <div class="chips sm" data-bf>${fits.map(f=>`<button type="button" class="chip" data-f="${f}" aria-pressed="${String(B.f)===String(f)}">${f===''?'계절 일치 전체':FIT_N[f]} <span class="num muted">${cnt(f)}</span></button>`).join('')}</div>
+    ${rs.length?`<div class="tbl-wrap" style="max-height:360px;overflow-y:auto"><table class="acc bst"><thead><tr>${hd('sc','점수',1)}${hd('nm','종목')}${hd('th','섹터')}${hd('s','계절')}${hd('mc','시가총액',1)}</tr></thead><tbody>
+      ${rs.map(x=>`<tr><td class="r num" title="추세+저점 ${x.T} · 종합 ${x.C}${x.V!=null?` (가치 ${x.V})`:' (가치 점수 없음 — 종합 = 추세)'}"><b>${sc(x)}</b></td><td>${idSpan(m,x.code,x.name)}</td><td class="sub">${esc(thName(x.code)||'—')}</td><td><span class="pill p-${x.s}"><span class="han">${HAN[x.s]}</span>${x.s}</span>${x.ft!=null?` <span class="sub fit-${x.ft}" style="font-size:11px">${FIT_N[x.ft]}</span>`:''}</td><td class="r num">${capFmt(x.mc)}</td></tr>`).join('')}
+    </tbody></table></div>`:`<div class="muted">${B.f!==''?'이 계절 적합도의 종목 없음':'90점 이상 종목 없음'}</div>`}
+    <div class="sub" style="margin-top:6px">기준 ${esc(d.asof||'')} 스캔 · 추세+저점 = 내 종목 표와 같은 식 · 종합 = 추세 70 : 가치 30 (가치 점수가 없으면 추세 점수) · 계절 일치 = 상세 화면 맨 위 ‘계절 잘 맞음/보통/안 맞음’ 판정 · 머리글을 누르면 정렬</div>`;
+  const sv=()=>{savePrefs();renderBest()};
+  el.querySelectorAll('[data-bk] button').forEach(b=>b.onclick=()=>{B.k=b.dataset.k;sv()});
+  el.querySelectorAll('[data-bf] button').forEach(b=>b.onclick=()=>{B.f=b.dataset.f===''?'':+b.dataset.f;sv()});
+  el.querySelectorAll('[data-bs]').forEach(b=>b.onclick=()=>{const k=b.dataset.bs;if(B.s===k)B.d=-B.d;else{B.s=k;B.d=k==='nm'||k==='th'||k==='s'?1:-1}sv()});
 }
 let UROWS=null;
 async function loadUnivRows(){
