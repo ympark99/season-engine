@@ -1,0 +1,404 @@
+{
+  "m": "US",
+  "code": "MRNA",
+  "name": "Moderna",
+  "theme": "제약·바이오",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "mRNA 플랫폼으로 8월 미국 첫 mRNA 독감백신(mFLUSIVA) 승인과 개인맞춤 암백신 흑색종 3상 성공이라는 두 가지 큰 진전을 얻었지만, 2분기 매출은 약 1.5억달러·순손실 약 8억달러로 아직 적자 구조다. 다음 분기 관건은 10월 말 3분기 실적에서 독감백신 출시 초기 반응과 연말 현금 가이던스(47~52억달러) 유지 여부.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "mRNA 독감백신 승인과 암백신 3상 성공은 플랫폼 가치를 입증한 강점. 다만 매출 규모가 작고 분기 순손실이 크며, 코로나 백신은 단백질 기반 경쟁 제품에 점유율을 내줄 가능성이 있고 암백신 3상은 구체 수치가 아직 공개되지 않음"
+  },
+  "peers": [
+    {
+      "name": "화이자",
+      "m": "US",
+      "code": "PFE"
+    },
+    {
+      "name": "BioNTech",
+      "m": "US",
+      "code": "BNTX"
+    },
+    {
+      "name": "노바백스",
+      "m": "US",
+      "code": "NVAX"
+    },
+    {
+      "name": "사노피",
+      "m": "US",
+      "code": "SNY"
+    },
+    {
+      "name": "머크(암백신 공동개발사)",
+      "m": "US",
+      "code": "MRK"
+    }
+  ],
+  "axes": [
+    {
+      "k": "독감백신(mRNA-1010)",
+      "me": "미국 FDA 승인(2026-08-05): 50~64세 정식, 65세 이상 가속승인. 3상 4만여 명에서 비교 백신 대비 독감 27% 감소(회사 발표)",
+      "vs": "기존 독감백신 업체는 이미 시장 보유; 같은 조건의 mRNA 독감백신 경쟁 승인은 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        2,
+        3
+      ]
+    },
+    {
+      "k": "개인맞춤 암백신",
+      "me": "intismeran+키트루다 흑색종 3상(1,137명) 중간분석에서 재발 없는 생존 1차 평가지표와 원격전이 없는 생존 달성",
+      "vs": "수치 미공개; 경쟁 mRNA 암백신의 3상 성공 사례는 회사 설명상 처음이라고 함",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "코로나 백신 점유율",
+      "me": "미국 코로나 백신 점유율 약 42%(CDC 기준 추정이라는 2차 분석글)",
+      "vs": "사노피가 판매하는 노바백스 제품이 미국 성인 시장 15% 목표 제시; 점유율 잠식 전망은 한 분석글의 추정",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        7
+      ]
+    },
+    {
+      "k": "재무 체력",
+      "me": "2분기 매출 약 1.45억달러, 순손실 약 8억달러, 6월 말 현금 69억달러; 연말 현금 47~52억달러 가이던스",
+      "vs": "화이자·사노피는 대형 흑자 사업 보유; 모더나는 2028년 현금 손익분기 목표",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        8
+      ]
+    },
+    {
+      "k": "희귀질환 mRNA 치료제",
+      "me": "프로피온산혈증 mRNA-3927 등록용 시험 환자 모집 완료, 2026년 내 결과 목표; 레코르다티와 공동 상업화(선급금 5천만달러)",
+      "vs": "경쟁 mRNA 치료제 후보 상황은 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        6
+      ]
+    },
+    {
+      "k": "복합백신·신규 후보",
+      "me": "EU에서 독감+코로나 복합백신 허가, 미국은 FDA 지침 대기; 노로바이러스 3상 중간분석은 조기성공 기준 미충족",
+      "vs": "경쟁사 복합백신의 미국 승인 현황은 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 독감백신 초기 출시 반응·연말 현금 가이던스",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정: 10월 29일(표기) 또는 30일(예상) 자료 상충"
+        }
+      ]
+    },
+    {
+      "id": "flu_launch",
+      "what": "mFLUSIVA 2026-27 절기 미국 출시",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-08-05",
+          "s": "예정",
+          "note": "승인 후 일부 소매점 출시 예정"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "출시 시작 공식 확인은 못 함"
+        }
+      ]
+    },
+    {
+      "id": "analyst_day",
+      "what": "모더나 애널리스트 데이",
+      "d": "2026-11-12",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "중기 전략·파이프라인 설명 예상"
+        }
+      ]
+    },
+    {
+      "id": "pa_data",
+      "what": "프로피온산혈증 mRNA-3927 등록용 시험 결과",
+      "d": "2026-H2",
+      "kind": "임상",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        6,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 내 결과 목표, 아직 발표 없음"
+        }
+      ]
+    },
+    {
+      "id": "cash_ye",
+      "what": "2026년 말 현금·투자자산 47~52억달러 목표 확인",
+      "d": "2026-12",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-07-31",
+          "s": "예정",
+          "note": "2분기 발표에서 가이던스 약 2억달러 개선"
+        }
+      ]
+    },
+    {
+      "id": "ita_filing",
+      "what": "intismeran 흑색종 3상 학회 발표·규제 당국 제출",
+      "d": "2027",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사는 향후 학회 발표와 제출 예정이라고만 밝힘, 시점 미공개"
+        }
+      ]
+    },
+    {
+      "id": "combo_us",
+      "what": "독감+코로나 복합백신 미국 재제출",
+      "d": "2027",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "FDA 지침 대기 중, 일정 미공개"
+        }
+      ]
+    },
+    {
+      "id": "flu_approval",
+      "what": "mRNA-1010(mFLUSIVA) FDA 승인",
+      "d": "2026-08-05",
+      "kind": "규제",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        2,
+        13
+      ],
+      "log": [
+        {
+          "d": "2026-06",
+          "s": "예정",
+          "note": "자문위 9대0 찬성"
+        },
+        {
+          "d": "2026-08-05",
+          "s": "완료",
+          "note": "50세 이상 승인"
+        }
+      ]
+    },
+    {
+      "id": "melanoma_p3",
+      "what": "intismeran+키트루다 흑색종 3상 중간분석 성공",
+      "d": "2026-08",
+      "kind": "임상",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-08",
+          "s": "완료",
+          "note": "재발 없는 생존 1차 평가지표 달성, 수치 미공개"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "약 1.45억달러 (+2%)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 GAAP 순손실",
+      "v": "약 8억달러, 주당 −1.97달러",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "현금·투자자산",
+      "v": "69억달러 (연말 목표 47~52억달러)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "2분기 R&D",
+      "v": "6.51억달러 (−7%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 8월 mRNA 독감백신 승인·암백신 3상 성공으로 파이프라인은 진전, 매출·적자 구조는 그대로; 10월 말 3분기 실적이 다음 확인 지점",
+      "src": [
+        2,
+        4,
+        1
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Moderna Form 8-K 2026년 2분기 실적 보도자료",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001682852/000168285226000147/exhibit9912026q2pressrelea.htm",
+      "d": "2026-07-31"
+    },
+    {
+      "t": "Moderna Reports Second Quarter 2026 Financial Results and Provides Business Updates",
+      "u": "https://www.newswire.com/news/moderna-reports-second-quarter-2026-financial-results-and-provides-business",
+      "d": "2026-07-31"
+    },
+    {
+      "t": "Moderna Receives U.S. FDA Approval for Influenza Vaccine mFLUSIVA",
+      "u": "https://www.biospace.com/press-releases/moderna-receives-u-s-fda-approval-for-influenza-vaccine-mflusiva",
+      "d": "2026-08-05"
+    },
+    {
+      "t": "FDA approves Moderna's mFLUSIVA for adults 50+ ahead of 2026-2027 flu season",
+      "u": "https://www.mlo-online.com/disease/flu/news/55396559/fda-approves-modernas-mflusiva-for-adults-50-ahead-of-2026-2027-flu-season",
+      "d": "2026-08"
+    },
+    {
+      "t": "Moderna, Merck phase III win opens door to personalized neoantigen vaccines",
+      "u": "https://www.biocentury.com/article/660577/moderna-merck-phase-iii-win-opens-door-to-personalized-neoantigen-vaccines",
+      "d": "2026-08"
+    },
+    {
+      "t": "Moderna Shares Surge More Than 90% After Phase 3 Melanoma Trial Success",
+      "u": "https://finviz.com/news/383754/moderna-shares-surge-more-than-90-after-phase-3-melanoma-trial-success",
+      "d": "2026-08"
+    },
+    {
+      "t": "Moderna announces strategic collaboration with Recordati (mRNA-3927)",
+      "u": "https://www.newswire.com/news/moderna-announces-strategic-collaboration-with-recordati-to-globally",
+      "d": "2026-01-29"
+    },
+    {
+      "t": "Moderna Competitive Landscape Shifts Following Head-to-Head COVID Vaccine Trial Results (2차 분석글)",
+      "u": "https://www.ibhe.org/first-dry/Moderna-Inc-MRNA-Competitive-Landscape-Shifts-Following-HeadtoHead-COVID-Vaccine-Trial-Results-and-Peer-Catalyst-Updates-11-1013",
+      "d": "2026-04-27"
+    },
+    {
+      "t": "Moderna takes out $1.5B loan, outlines strategy in bid to break even by 2028",
+      "u": "https://www.fiercepharma.com/pharma/moderna-takes-15b-loan-outlines-new-commercial-and-rd-strategy-bid-break-even-2028",
+      "d": "2026-01"
+    },
+    {
+      "t": "RTTNews — Moderna 경영진 변경 (COO 복귀)",
+      "u": "https://www.rttnews.com/story.aspx?Id=3695426",
+      "d": "2026-10"
+    },
+    {
+      "t": "TipRanks — MRNA earnings (2026-10-29 표기)",
+      "u": "https://www.tipranks.com/stocks/GB:0A45/earnings",
+      "d": "2026-10"
+    },
+    {
+      "t": "Earnings Whispers — MRNA (2026-10-30 예상)",
+      "u": "https://beta.earningswhispers.com/go/w/MRNA",
+      "d": "2026-10"
+    },
+    {
+      "t": "FDA accepts Moderna's mRNA-1010 influenza vaccine application",
+      "u": "https://www.uspharmacist.com/article/fda-accepts-modernas-mrna1010-influenza-vaccine-application",
+      "d": "2026-03-03"
+    },
+    {
+      "t": "Moderna announces FDA advisory committee votes unanimously in favor of mRNA-1010",
+      "u": "https://www.newswire.com/news/moderna-announces-fda-advisory-committee-votes-unanimously-in-favor-of-the",
+      "d": "2026-06"
+    }
+  ]
+}
