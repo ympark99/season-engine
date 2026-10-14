@@ -1,0 +1,372 @@
+{
+  "m": "US",
+  "code": "MCHP",
+  "name": "Microchip Technology",
+  "theme": "아날로그 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "재고 조정을 마치고 주문이 빠르게 회복 중이다(6월 분기 수주 약 4년 만에 최대, 회사 설명). 임베디드 MCU 강자이면서 데이터센터 PCIe 스위치 비중이 커지는 중이며, 다음 관건은 11월 초로 추정되는 FY27 2분기 실적이 회사 가이던스(매출 15.89억~16.18억 달러)를 달성하는지와 가격 인상·공급 제약의 영향.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "MCU·FPGA·SiC 폭넓은 포트폴리오와 데이터센터 PCIe Gen 6 설계 수주(14건, 보도)가 강점이고 실적 모멘텀이 강하다. 다만 MCU 점유율은 TI·NXP·르네사스·ST 등과 비슷한 수준으로 뚜렷한 우위 근거가 없고, 공급 제약·재고 정상화 이후 수요 지속성이 불확실하다."
+  },
+  "peers": [
+    {
+      "name": "Texas Instruments",
+      "m": "US",
+      "code": "TXN"
+    },
+    {
+      "name": "NXP Semiconductors",
+      "m": "US",
+      "code": "NXPI"
+    },
+    {
+      "name": "STMicroelectronics",
+      "m": "US",
+      "code": "STM"
+    },
+    {
+      "name": "Renesas",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Infineon",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Analog Devices",
+      "m": "US",
+      "code": "ADI"
+    }
+  ],
+  "axes": [
+    {
+      "k": "실적 모멘텀",
+      "me": "FY27 1분기 매출 14.85억 달러(전년 대비 +38%, 전분기 대비 +13.2%), 비GAAP 매출총이익률 63.8%. 2분기 매출 가이던스 15.89억~16.18억 달러",
+      "vs": "TI 2분기 매출 54.6억 달러(+23%), 아날로그 +26% — 업종 전반이 회복 국면",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        9
+      ]
+    },
+    {
+      "k": "MCU 점유율",
+      "me": "제3자 순위표(방법론 불명확)에서 16.7%로 TI(18.2%)에 이은 상위권",
+      "vs": "NXP 15.5%, 르네사스 13.6%, ST 12.6%, 인피니언 11.5% (같은 표)",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        13
+      ]
+    },
+    {
+      "k": "데이터센터·PCIe Gen 6",
+      "me": "3nm PCIe 6.0 Switchtec 스위치(최대 160레인), 설계 수주 14건(스위치 12·리타이머 2, 보도). 2026년 데이터센터 매출 약 10억 달러 전망",
+      "vs": "경쟁 PCIe 스위치 업체와의 점유율 비교 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        14
+      ]
+    },
+    {
+      "k": "재고·공급",
+      "me": "재고일수 피크 266일 → FY27 1분기 175일, 목표 130~150일. 후공정 약 70% 자체 보유, 8~9월 가격 조정 시행(보도)",
+      "vs": "업종 전반 패키징 기판·선단 파운드리 공급 빠듯함(보도)",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        0,
+        5,
+        6,
+        3
+      ]
+    },
+    {
+      "k": "SiC·전력",
+      "me": "2026-05 3.3kV mSiC 전력모듈 출시(AI 데이터센터 고체변압기 대상)",
+      "vs": "인피니언·ST 등 SiC 선두권 대비 점유율 자료 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        11
+      ]
+    },
+    {
+      "k": "64비트 RISC-V·FPGA",
+      "me": "PIC64 RISC-V 마이크로프로세서(항공·방산, TSN 이더넷 내장), PolarFire 2 FPGA 예고 페이지 확인",
+      "vs": "비교 가능한 공개 자료 없음",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        12,
+        11
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2fy27_earn",
+      "what": "FY27 2분기(7~9월) 실적 발표 — 가이던스 대비 달성 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 공식 일정은 미확인, 외부 추정 11월 초(과거 패턴: 11월 5일 전후). 가이던스 매출 15.89억~16.18억 달러, 비GAAP EPS 0.91~0.95달러"
+        }
+      ]
+    },
+    {
+      "id": "txn_q3",
+      "what": "TI 3분기 실적 — 업종 회복 강도 확인용",
+      "d": "2026-10-21",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "웹캐스트 10월 21일(단일 출처). 3분기 매출 가이던스 56.5억~61.5억 달러"
+        }
+      ]
+    },
+    {
+      "id": "q3fy27_earn",
+      "what": "FY27 3분기(10~12월) 실적 발표",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "과거 분기 패턴 기반 추정, 공식 일정 미확인"
+        }
+      ]
+    },
+    {
+      "id": "pcie6_ramp",
+      "what": "PCIe Gen 6 스위치·리타이머 설계 수주 양산 진입",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "경영진은 2027년 이후 의미 있는 성장 기대. 일부 수주는 2027년부터 약 1억 달러 매출 발생 예상(보도)"
+        }
+      ]
+    },
+    {
+      "id": "inv_target",
+      "what": "재고일수 130~150일 목표 도달",
+      "d": "2027",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "FY27 1분기 175일. 도달 시점은 회사가 특정하지 않음"
+        }
+      ]
+    },
+    {
+      "id": "q1fy27_earn",
+      "what": "FY27 1분기 실적 발표",
+      "d": "2026-08-06",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-08-06",
+          "s": "완료",
+          "note": "매출 14.85억 달러(+38%), 2분기 가이던스 상향 제시"
+        }
+      ]
+    },
+    {
+      "id": "price_adj",
+      "what": "가격 조정 시행(이번 사이클 첫 인상)",
+      "d": "2026-08",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "8월 중순~9월 초 시행, 공급망 비용 상승 상쇄 목적(Citi 콘퍼런스 요약)"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "FY27 1분기 매출",
+      "v": "14.85억 달러 (전년 대비 +38%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "비GAAP 매출총이익률",
+      "v": "63.8%",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "재고일수",
+      "v": "175일 (목표 130~150일)",
+      "asof": "2026-06",
+      "src": [
+        1,
+        5
+      ]
+    },
+    {
+      "k": "2분기 매출 가이던스",
+      "v": "15.89억~16.18억 달러",
+      "asof": "2026-08",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 재고 조정 종료·수주 회복, 데이터센터 비중 확대. 11월 초 추정 2분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        3
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Microchip 8-K 1분기 FY2027 실적 보도자료(Exhibit 99.1)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000827054/000082705426000037/exhibit991q1fy27.htm",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Microchip Technology Announces Financial Results for First Quarter of Fiscal Year 2027",
+      "u": "https://finviz.com/news/379256/microchip-technology-announces-financial-results-for-first-quarter-of-fiscal-year-2027",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Microchip swings to Q1 profit (RTTNews)",
+      "u": "https://www.rttnews.com/3677266/microchip-swings-to-q1-profit.aspx",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Microchip Q1 FY 2027 Earnings Beat as Data Center Exposure Nears $1 Billion",
+      "u": "https://futurumgroup.com/insights/microchip-q1-fy-2027-earnings-beat-as-data-center-exposure-nears-1-billion/",
+      "d": "2026-08"
+    },
+    {
+      "t": "Microchip Technology Q1 earnings call highlights",
+      "u": "https://www.nasdaq.com/articles/microchip-technology-q1-earnings-call-highlights",
+      "d": "2026-08"
+    },
+    {
+      "t": "Microchip 연차보고서 FY2026 (ARS)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000827054/000082705426000029/arsfy2026.pdf",
+      "d": "2026"
+    },
+    {
+      "t": "Microchip Citi 2026 Global TMT Conference summary",
+      "u": "https://quartr.com/events/microchip-technology-inc-mchp-citi-s-2026-global-tmt-conference_3etrCfe2",
+      "d": "2026"
+    },
+    {
+      "t": "Microchip's Q1FY27 Financial Results Conference Call (IR 일정)",
+      "u": "https://ir.microchip.com/news-events/ir-calendar/detail/20260806-microchips-q1fy27-financial-results-conference-call",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Investor Signals — Microchip 예상 실적일",
+      "u": "https://www.investorsignals.com/?p=51288",
+      "d": "2026"
+    },
+    {
+      "t": "Texas Instruments Q2 FY 2026 Earnings Climb on Broad-based Analog Growth",
+      "u": "https://futurumgroup.com/insights/texas-instruments-q2-fy-2026-earnings-climb-on-broad-based-analog-growth/",
+      "d": "2026-07"
+    },
+    {
+      "t": "Texas Instruments Schedules Q3 2026 Earnings Call",
+      "u": "https://briefglance.com/companies/texas-instruments-incorporated-ti/pulses/83969",
+      "d": "2026-10"
+    },
+    {
+      "t": "Microchip 뉴스·이벤트 목록 (3.3kV mSiC 모듈 등)",
+      "u": "https://www.microchip.com/documentlisting/news-and-events",
+      "d": "2026-05-26"
+    },
+    {
+      "t": "Microchip's New Processor Enables Scalable Computing Performance (PIC64)",
+      "u": "https://saemobilus.sae.org/articles/microchips-new-processor-enables-scalable-computing-performance-26aerd03_08",
+      "d": "2026-03"
+    },
+    {
+      "t": "Report Prime — 범용 MCU 업체 순위(방법론 불명확)",
+      "u": "https://www.reportprime.com/general-purpose-microcontroller-r5154/company",
+      "d": "2026"
+    },
+    {
+      "t": "Microchip unveils first 3 nm PCIe Gen 6 switch (EE Journal)",
+      "u": "https://www.eejournal.com/industry_news/microchip-unveils-first-3-nm-pcie-gen-6-switch-to-power-modern-ai-infrastructure/",
+      "d": "2025-10-13"
+    }
+  ]
+}
