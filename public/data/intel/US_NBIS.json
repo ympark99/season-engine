@@ -1,0 +1,390 @@
+{
+  "m": "US",
+  "code": "NBIS",
+  "name": "Nebius Group",
+  "theme": "네오클라우드",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 전용 클라우드(네오클라우드) 2위권으로, 2분기 매출 5.8억 달러(+454%)·연환산 매출 30억 달러로 급성장 중이지만 규모와 수주잔고는 CoreWeave보다 작다. 다음 분기 관건은 연말 ARR 70~90억 달러 목표와 연결 전력 0.8~1GW 달성, 그리고 200~250억 달러 규모 설비투자의 자금 조달.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "Meta·Microsoft 대형 장기계약과 약 40% 조정 EBITDA 마진 목표, 자체 데이터센터 확대는 강점. 다만 CoreWeave 대비 규모가 작고 설비투자 부담이 커서 전환사채 등 외부 자금 의존이 크며, 계약 전력이 실제 매출로 이어지는 속도가 관건"
+  },
+  "peers": [
+    {
+      "name": "CoreWeave",
+      "m": "US",
+      "code": "CRWV"
+    },
+    {
+      "name": "Oracle",
+      "m": "US",
+      "code": "ORCL"
+    },
+    {
+      "name": "Microsoft",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Lambda",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Crusoe",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "매출 성장·규모",
+      "me": "2분기 매출 5.82억 달러(전년 대비 +454%), 연환산 매출 30억 달러(6월 말)",
+      "vs": "CoreWeave 2분기 매출 약 26억 달러(+112%), 수주잔고 약 1,040억 달러",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "k": "대형 고객 계약",
+      "me": "Meta 5년 약 270억 달러(전용 120억 + 미판매분 최대 150억 매입 조건), Microsoft 2031년까지 최대 약 174억 달러 보도",
+      "vs": "CoreWeave는 Microsoft 비중이 1분기 45%로 낮아지고 OpenAI·Meta 등으로 다변화",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "전력·데이터센터 확보",
+      "me": "2026년 말 계약 전력 5GW 목표(5월 제시 4GW 초과에서 상향), 연결 전력 0.8~1GW 목표. 임대보다 자체 시설 비중 확대",
+      "vs": "CoreWeave는 1GW 이상 가동 용량을 전량 장기 임대로 확보",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        3,
+        6
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 조정 EBITDA 2.36억 달러, 연간 조정 EBITDA 마진 약 40% 목표. GAAP 순손실 1.9억 달러",
+      "vs": "CoreWeave 2분기 순손실 6.26억 달러, 이자비용 약 6.4억 달러",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        7
+      ]
+    },
+    {
+      "k": "차세대 GPU 대응",
+      "me": "Vera Rubin NVL72를 2026년 하반기 미국·유럽에서 제공 계획, 핀란드에서 첫 랙 검증 보도",
+      "vs": "CoreWeave는 6월 초 Vera Rubin NVL72 검증 완료를 발표했다고 보도",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        10,
+        11
+      ]
+    },
+    {
+      "k": "자금 조달 여력",
+      "me": "2026년 3월 약 43억 달러, 8월 약 57.5억 달러 전환사채 발행. 고객 선급금이 관련 설비투자의 50~60% 충당",
+      "vs": "CoreWeave는 1분기 말 부채 251억 달러, 올해 설비투자 가이던스 350~390억 달러",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        9,
+        1,
+        6,
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 — ARR·매출 가이던스 유지 및 설비투자 진행",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "11월 11일 발표 예상(제3자 일정표, 회사 확정 공지는 확인 안 됨)"
+        }
+      ]
+    },
+    {
+      "id": "yearend_arr",
+      "what": "연말 연환산 매출(ARR) 70~90억 달러 목표 달성",
+      "d": "2026-12-31",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-12",
+          "s": "진행",
+          "note": "2분기 실적에서 2026년 가이던스 유지 — ARR 70~90억 달러, 매출 30~34억 달러 목표"
+        }
+      ]
+    },
+    {
+      "id": "power_5gw",
+      "what": "연말 계약 전력 5GW·연결 전력 0.8~1GW 달성",
+      "d": "2026-12-31",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-08-12",
+          "s": "진행",
+          "note": "계약 전력 목표를 4GW 초과에서 5GW로 상향, 연결 전력 목표 유지"
+        }
+      ]
+    },
+    {
+      "id": "rubin_launch",
+      "what": "Vera Rubin NVL72 고객 제공 시작 (미국·유럽)",
+      "d": "2026-H2",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        10,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-01-05",
+          "s": "예정",
+          "note": "2026년 하반기 제공 계획 발표"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "핀란드 첫 랙 검증 보도 있음, 정식 제공 시작 발표는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "capex_2026",
+      "what": "2026년 설비투자 200~250억 달러 집행과 자금 조달",
+      "d": "2026-12-31",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        13
+      ],
+      "log": [
+        {
+          "d": "2026-08-12",
+          "s": "진행",
+          "note": "상반기 설비투자 81억 달러 이상, 2분기 약 57억 달러"
+        }
+      ]
+    },
+    {
+      "id": "meta_backstop",
+      "what": "Meta 계약 전용 용량 인도 진행",
+      "d": "2026-Q4",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "Meta 계약 인도 일정 세부는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 (매출 5.82억 달러, 가이던스 유지·전력 목표 상향)",
+      "d": "2026-08-12",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-12",
+          "s": "완료",
+          "note": "매출 +454%, 연환산 매출 30억 달러"
+        }
+      ]
+    },
+    {
+      "id": "aug_convert",
+      "what": "약 57.5억 달러 전환사채 발행 완료",
+      "d": "2026-08",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08",
+          "s": "완료",
+          "note": "45억 달러에서 증액해 발행"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "5.82억 달러 (+454%)",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "연환산 매출(ARR)",
+      "v": "30억 달러 (연말 목표 70~90억 달러)",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "2분기 조정 EBITDA",
+      "v": "2.36억 달러",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "2026년 설비투자 목표",
+      "v": "200~250억 달러",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 급성장·대형 계약은 강점이나 CoreWeave보다 작고 설비투자 자금 의존이 큼, 다음 확인은 11월 3분기 실적",
+      "src": [
+        0,
+        3,
+        13
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Nebius 6-K 2026-08-12 (2분기 실적 자료 및 자금 조달 공시)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "d": "2026-08-12"
+    },
+    {
+      "t": "Nebius (NBIS) Q2 2026 earnings summary",
+      "u": "https://quartr.com/events/nebius-group-n-v-nbis-q2-2026_ozKEzQzr",
+      "d": "2026-08"
+    },
+    {
+      "t": "Nebius Reports Second Quarter 2026 Financial Results",
+      "u": "https://www.barchart.com/story/news/3800918/nebius-reports-second-quarter-2026-financial-results",
+      "d": "2026-08"
+    },
+    {
+      "t": "Nebius Group reports 454% revenue growth in Q2 2026, raises power guidance to 5 GW",
+      "u": "https://theenergymag.com/news/market-news/nebius-group-reports-454-revenue-growth-in-q2-2026-raises-power-guidance-to-5-gw",
+      "d": "2026-08"
+    },
+    {
+      "t": "Nebius Just Locked Up $49B in AI Contracts: 5 Ways to Play the Neocloud Boom",
+      "u": "https://www.investing.com/analysis/nebius-just-locked-up-49b-in-ai-contracts-5-ways-to-play-the-neocloud-boom-200677144",
+      "d": "2026"
+    },
+    {
+      "t": "Nebius Aktie: 27 Milliarden Dollar von Meta bis Q4 2026",
+      "u": "https://www.boerse-express.com/news/articles/nebius-aktie-27-milliarden-dollar-von-meta-bis-q4-2026-909191",
+      "d": "2026"
+    },
+    {
+      "t": "Better Neocloud Stock: CoreWeave vs. Nebius",
+      "u": "https://www.webull.com/news/15342657938875392",
+      "d": "2026"
+    },
+    {
+      "t": "CoreWeave 2026년 2분기 실적 (Record Second Quarter Revenue and Revenue Backlog)",
+      "u": "https://www.01net.it/coreweave-reports-strong-second-quarter-2026-results/",
+      "d": "2026-08"
+    },
+    {
+      "t": "CoreWeave: Revenue Backlog Reaches $104 Billion Before Another $25 Billion Of New Commitments",
+      "u": "https://pulse2.com/coreweave-revenue-backlog-reaches-104-billion-before-another-25-billion-of-new-commitments/",
+      "d": "2026-08"
+    },
+    {
+      "t": "Nebius 6-K 2026-03 (전환사채 발행 공시)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "d": "2026-03"
+    },
+    {
+      "t": "Nebius to Offer NVIDIA Vera Rubin NVL72 in US and Europe From H2 2026",
+      "u": "https://nebius.com/newsroom/nebius-to-offer-nvidia-vera-rubin-nvl-72-in-us-and-europe-from-h2-2026",
+      "d": "2026-01-05"
+    },
+    {
+      "t": "Nebius validates first Vera Rubin NVL72 rack days after Nvidia's 9.3% stake disclosed",
+      "u": "https://startupmap.iamsterdam.com/news/feed/nebius-validates-first-vera-rubin-nvl72-rack-days-after-nvidia-s-9-3-stake-disclosed",
+      "d": "2026"
+    },
+    {
+      "t": "Nebius (NBIS) 실적 발표 예정일 (Earnings Whispers)",
+      "u": "https://beta.earningswhispers.com/go/w/NBIS",
+      "d": "2026"
+    },
+    {
+      "t": "Nebius Group (NBIS) Stock Faces Funding Questions Despite 41% EBITDA Margin",
+      "u": "https://www.webull.com/news/15398380618916864",
+      "d": "2026-08"
+    }
+  ]
+}
