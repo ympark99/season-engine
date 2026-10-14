@@ -4030,6 +4030,16 @@
  "_meta": {
   "rev": 1,
   "refreshDays": 7,
-  "runs": []
+  "runs": [
+   {
+    "d": "2026-10-14",
+    "targets": 81,
+    "newN": 79,
+    "changed": 0,
+    "deep": 0,
+    "full": 0,
+    "sectors": 33
+   }
+  ]
  }
 }
