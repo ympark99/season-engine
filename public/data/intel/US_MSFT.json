@@ -1,0 +1,324 @@
+{
+  "m": "US",
+  "code": "MSFT",
+  "name": "Microsoft",
+  "theme": "소프트웨어",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "클라우드 점유율 2위(20%)지만 Azure 성장률(43%)은 선두권이고, M365 Copilot 유료 좌석 3,000만으로 업무용 AI 배포에서 앞서 있다. OpenAI 독점이 풀린 뒤 자체 MAI 모델 전환과 대규모 설비투자의 수익화가 관건이며, 다음 확인 지점은 10월 28일 회계 1분기 실적.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "Azure 성장 43%·연간 클라우드 매출 1,000억 달러 돌파, Copilot 유료 좌석 3,000만으로 모멘텀이 강함. 반면 OpenAI 독점 종료, 용량 부족, 회계 2027년 설비투자 약 1,750억 달러(보도)와 FTC 조사는 부담."
+  },
+  "peers": [
+    {
+      "name": "Amazon (AWS)",
+      "m": "US",
+      "code": "AMZN"
+    },
+    {
+      "name": "Alphabet (Google Cloud)",
+      "m": "US",
+      "code": "GOOGL"
+    },
+    {
+      "name": "Oracle",
+      "m": "US",
+      "code": "ORCL"
+    },
+    {
+      "name": "Salesforce",
+      "m": "US",
+      "code": "CRM"
+    },
+    {
+      "name": "OpenAI",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "클라우드 인프라 점유율",
+      "me": "Azure 점유율 20%, 성장률 43%",
+      "vs": "AWS 28%, Google Cloud 15% (2026 2분기, 성장률은 보도상 AWS 약 37%·Google Cloud 82%)",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        3,
+        0
+      ]
+    },
+    {
+      "k": "업무용 AI (Copilot)",
+      "me": "M365 Copilot 유료 좌석 3,000만, 직전 분기 2,000만에서 50% 증가",
+      "vs": "경쟁사 동급 좌석 수치는 확인 안 됨",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "AI 모델 자립",
+      "me": "자체 MAI 모델 7종 공개, OpenAI 모델 라이선스는 2032년까지 유지(비독점)",
+      "vs": "OpenAI는 타 클라우드에서도 판매 가능",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ]
+    },
+    {
+      "k": "데이터센터 용량·투자",
+      "me": "Azure·AI 수요는 용량 제약 상태, 회계 2027년 설비투자 약 1,750억 달러 전망(단일 보도), 1분기 500억 달러 초과 예상",
+      "vs": "경쟁사 투자 규모 대비 비교 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        1,
+        10
+      ]
+    },
+    {
+      "k": "규제 위험",
+      "me": "미국 FTC가 클라우드 라이선스·AI·번들링 조사 확대, EU Teams 건은 약속안으로 마무리 보도",
+      "vs": "해당 없음",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        9,
+        12
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q1fy27",
+      "what": "회계 2027 1분기 실적 — Azure 약 45% 성장 가이던스(보도) 달성, 설비투자 500억 달러 초과 여부",
+      "d": "2026-10-28",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        6,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-07",
+          "s": "예정",
+          "note": "회사가 10월 28일 장 마감 후 발표·2:30pm PT 콜 공지"
+        }
+      ]
+    },
+    {
+      "id": "ignite26",
+      "what": "Microsoft Ignite 2026 (샌프란시스코) — 에이전트형 AI·Copilot·Azure 발표",
+      "d": "2026-11-17",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "11월 17~20일 개최 일정 확인"
+        }
+      ]
+    },
+    {
+      "id": "q2fy27",
+      "what": "회계 2027 2분기 실적",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q3fy27",
+      "what": "회계 2027 3분기 실적",
+      "d": "2027-04",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q4fy27",
+      "what": "회계 2027 4분기 실적 — 연간 Azure·설비투자 결산",
+      "d": "2027-07",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q4fy26",
+      "what": "회계 2026 4분기 실적 발표 (Azure 43%, 매출 약 900억 달러)",
+      "d": "2026-07-29",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "완료",
+          "note": "Azure 43% 성장, 연간 Azure 매출 1,000억 달러 돌파(보도)"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "Azure 성장률 (회계 4분기)",
+      "v": "43%",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "클라우드 인프라 점유율",
+      "v": "AWS 28% · Azure 20% · Google 15%",
+      "asof": "2026-Q2",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "M365 Copilot 유료 좌석",
+      "v": "3,000만 (직전 분기 2,000만)",
+      "asof": "2026-06",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "회계 4분기 매출",
+      "v": "약 900억 달러 (+18%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — Azure 43% 성장·Copilot 3,000만 좌석으로 우위, 10월 28일 1분기 실적과 OpenAI 비독점 이후 AI 전략이 다음 확인점",
+      "src": [
+        0,
+        4,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Microsoft Q4 Earnings: Azure Growth Hits 43% as Annual Cloud Revenue Tops $100 Billion",
+      "u": "https://www.kucoin.com/blog/microsoft-q4-earnings-azure-growth-hits-43-percent-as-annual-cloud-revenue-tops-100-billion",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Microsoft Q4 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/microsoft-q4-earnings-call-highlights-2026-07-29/",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Q4 earnings confirm Microsoft Azure machine is just getting started",
+      "u": "https://www.tikr.com/blog/q4-earnings-confirm-microsoft-azure-machine-is-just-getting-started",
+      "d": "2026-07"
+    },
+    {
+      "t": "Q2 Cloud Market Passes $143 Billion; Highest Growth Rate in Eight Years",
+      "u": "https://www.srgresearch.com/articles/q2-cloud-market-passes-143-billion-highest-growth-rate-in-eight-years",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Microsoft 365 Copilot adoption jumps 50% over prior quarter",
+      "u": "https://www.nojitter.com/digital-workplace/microsoft-365-copilot-adoption-jumps-50-percent-over-prior-quarter",
+      "d": "2026-07"
+    },
+    {
+      "t": "Microsoft 365 Copilot passes 30 million paid seats",
+      "u": "https://uctoday.com/microsoft-365-copilot-passes-30-million-paid-seats-as-cloud-and-ai-growth-power-record-quarter",
+      "d": "2026-07"
+    },
+    {
+      "t": "Microsoft announces quarterly earnings release date",
+      "u": "https://finviz.com/news/400058/microsoft-announces-quarterly-earnings-release-date",
+      "d": "2026-10-07"
+    },
+    {
+      "t": "Microsoft OpenAI Restructure Partnership",
+      "u": "https://redmondmag.com/Articles/2026/04/28/Microsoft-OpenAI-Restructure-Partnership.aspx",
+      "d": "2026-04-28"
+    },
+    {
+      "t": "Microsoft Reduces OpenAI Dependency With In-House Frontier Models",
+      "u": "https://hothardware.com/news/microsoft-reduces-openai-dependency",
+      "d": "2026"
+    },
+    {
+      "t": "FTC Ratchets Up Microsoft Probe, Queries Rivals on Cloud, AI",
+      "u": "https://news.bloomberglaw.com/antitrust/ftc-ratchets-up-microsoft-probe-queries-rivals-on-cloud-ai",
+      "d": "2026-02"
+    },
+    {
+      "t": "Directions on Microsoft — July 30, 2026 (capex, capacity)",
+      "u": "https://www.directionsonmicrosoft.com/?p=173164",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Microsoft Ignite 2026",
+      "u": "https://www.uctoday.com/events/microsoft-ignite-2026/",
+      "d": "2026"
+    },
+    {
+      "t": "Microsoft and EU to Settle Antitrust Case Involving Teams",
+      "u": "https://www.pymnts.com/antitrust/2025/microsoft-and-eu-to-settle-antitrust-case-involving-teams/",
+      "d": "2025-05"
+    }
+  ]
+}
