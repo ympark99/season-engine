@@ -1,0 +1,324 @@
+{
+  "m": "US",
+  "code": "HPE",
+  "name": "Hewlett Packard Enterprise",
+  "theme": "AI 서버",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 서버 주문이 분기 최대치를 기록하고 백로그가 역대 최고인 가운데, 공급 제약이 매출 인식의 병목이다. 다음 분기(12월 중 4분기 실적) 관건은 4분기 매출 가이던스(139억~148억 달러) 달성과 메모리 등 부품 부족 속 마진 유지.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "3분기 매출 122억 달러(+34%)·서버 +35%·Non-GAAP 총이익률 40%로 모멘텀이 강하고 Juniper 인수로 네트워킹 축이 커졌다. 다만 델·슈퍼마이크로 대비 AI 백로그 규모의 직접 비교 근거가 부족하고, 공급 제약·부품 가격과 인수 후 레버리지가 약점."
+  },
+  "peers": [
+    {
+      "name": "Dell Technologies",
+      "m": "US",
+      "code": "DELL"
+    },
+    {
+      "name": "Super Micro Computer",
+      "m": "US",
+      "code": "SMCI"
+    },
+    {
+      "name": "Cisco Systems",
+      "m": "US",
+      "code": "CSCO"
+    },
+    {
+      "name": "Arista Networks",
+      "m": "US",
+      "code": "ANET"
+    },
+    {
+      "name": "Lenovo",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "AI 서버 수요·주문",
+      "me": "분기 사상 최대 주문, 사상 최대 백로그. 서버 매출 68억 달러(+35.3%)",
+      "vs": "델은 FY2026 AI 주문 641억 달러·백로그 430억 달러(보도), 슈퍼마이크로 미충족 주문 600억 달러 초과(보도). HPE 백로그 절대 규모는 이번 조사에서 확인 못 함",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "k": "네트워킹(Juniper 통합)",
+      "me": "1분기 네트워킹 매출 27억 달러(+151.5%), Juniper·Aruba 영업조직 통합 완료. 2분기 주문 2배 이상 증가",
+      "vs": "시스코·아리스타 등 기존 강자와 AI 데이터센터 스위칭에서 경쟁; 직접 점유율 비교는 확인 안 됨",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "공급·부품 제약",
+      "me": "수요가 공급을 초과해 이행 지연, 메모리 부족에 따른 가격 상승이 부담",
+      "vs": "경쟁사도 동일 부품 시장 영향. 공급 우위 비교 자료 없음",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        5
+      ]
+    },
+    {
+      "k": "GPU 플랫폼 다변화(엔비디아·AMD)",
+      "me": "AMD Helios 랙 2026년부터 고객 공급 계획, GTC 2026에서 차세대 랙 스케일 AI 시스템·Vera CPU 블레이드 공개",
+      "vs": "슈퍼마이크로는 신제품 선출시 이력, 델·HPE도 랙 스케일 설계 보유(보도). 출하 시점 비교는 확인 안 됨",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        9,
+        10,
+        8
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "Non-GAAP 총이익률 40%(분기 최대), 잉여현금흐름 9.58억 달러",
+      "vs": "경쟁사 동일 기준 비교 자료는 이번에 확인 못 함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        6
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2026 회계 3분기 실적 발표 (매출 122억 달러, 연간 성장 전망 34~37%로 상향)",
+      "d": "2026-09-02",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        6,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "사상 최대 주문·백로그, 4분기 매출 가이던스 139억~148억 달러"
+        }
+      ]
+    },
+    {
+      "id": "cloud_deal",
+      "what": "분기 종료 후 대형 클라우드 업체와 35억 달러 규모 AI 서버 계약",
+      "d": "2026-09",
+      "kind": "수주",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "고객·조건은 공개 자료에서 확인 못 함"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026 회계 4분기 실적·FY27 전망 (4분기 매출 139억~148억 달러 가이던스)",
+      "d": "2026-12",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        11,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "12월 초(지난해 12월 4일 발표) 예상, 공식 날짜 미확인"
+        }
+      ]
+    },
+    {
+      "id": "helios",
+      "what": "AMD Helios 랙 스케일 AI 시스템 고객 공급",
+      "d": "2026",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년부터 제공 계획, 구체 출하일 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q1fy27",
+      "what": "2027 회계 1분기 실적",
+      "d": "2027-03",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "올해 1분기 실적이 3월 초 발표된 일정 기준 추정"
+        }
+      ]
+    },
+    {
+      "id": "herder",
+      "what": "HLRS 슈투트가르트 Herder(Cray GX5000·MI430X) 시스템 인도",
+      "d": "2027-H2",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 하반기 인도 예정으로 보도"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "3분기 매출",
+      "v": "122억 달러 (+34%)",
+      "asof": "2026-09",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "3분기 서버 매출",
+      "v": "68억 달러 (+35.3%)",
+      "asof": "2026-09",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "Non-GAAP 총이익률",
+      "v": "40% (분기 최대)",
+      "asof": "2026-09",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FY27 회사 목표",
+      "v": "매출 +13~17%, EPS 4.40~4.60달러, 잉여현금흐름 50억 달러 이상",
+      "asof": "2026-09",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 3분기 사상 최대 주문·백로그와 공급 제약 병존, 12월 4분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        2,
+        11
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "HPE Q3 FY 2026: AI Infrastructure Demand Strengthens Outlook",
+      "u": "https://futurumgroup.com/insights/hpe-q3-fy-2026-ai-infrastructure-demand-strengthens-outlook/",
+      "d": "2026-09"
+    },
+    {
+      "t": "HPE delivers strong Q3, ups fiscal 2026 outlook due to AI demand",
+      "u": "https://www.constellationr.com/insights/news/hpe-delivers-strong-q3-ups-fiscal-2026-outlook-due-ai-demand",
+      "d": "2026-09"
+    },
+    {
+      "t": "HPE naikkan proyeksi FY27 dorong permintaan AI agentik",
+      "u": "https://pluang.com/en/news-feed/hpe-naikkan-proyeksi-fy27-dorong-permintaan-ai-agentik",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "HPE Q1 FY 2026 Results Show Networking Strength, AI Backlog, and Higher Outlook",
+      "u": "https://futurumgroup.com/insights/hpe-q1-fy-2026-results-show-networking-strength-ai-backlog-and-higher-outlook/",
+      "d": "2026-03"
+    },
+    {
+      "t": "HPE's networking revenue soars 148% as AI buildout drives orders to more than double",
+      "u": "https://www.sdxcentral.com/news/hpes-networking-revenue-soars-148-as-ai-buildout-drives-orders-to-more-than-double/",
+      "d": "2026"
+    },
+    {
+      "t": "HPE Q2 Earnings Call Highlights Faster AI, Networking Push",
+      "u": "https://www.nasdaq.com/articles/hpe-q2-earnings-call-highlights-faster-ai-networking-push",
+      "d": "2026-06"
+    },
+    {
+      "t": "Hewlett Packard Enterprise Form 8-K (2026-09-02 실적 발표)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001645590/000164559026000078/ex-991x922026x8k.htm",
+      "d": "2026-09-02"
+    },
+    {
+      "t": "DELL's ISG Revenue Rises: Is Solid AI Server Demand the Catalyst?",
+      "u": "https://www.nasdaq.com/articles/dells-isg-revenue-rises-solid-ai-server-demand-catalyst",
+      "d": "2026"
+    },
+    {
+      "t": "What Super Micro's $60 Billion New Orders Means",
+      "u": "https://www.fool.com/investing/2026/07/24/what-super-micros-60-billion-new-orders-means/",
+      "d": "2026-07-24"
+    },
+    {
+      "t": "HPE expands collaboration with AMD for delivery of Helios AI racks",
+      "u": "https://www.datacenterdynamics.com/en/news/hpe-expands-collaboration-with-amd-for-delivery-of-helios-ai-racks/",
+      "d": "2025-12"
+    },
+    {
+      "t": "HPE: AI Factory & Storage Advancements (GTC 2026)",
+      "u": "https://nand-research.com/hpe-ai-factory-storage-advancements-at-gtc-2026/",
+      "d": "2026-03"
+    },
+    {
+      "t": "HPE earnings calendar (TipRanks)",
+      "u": "https://www.tipranks.com/stocks/mx:hpe/earnings",
+      "d": "2026-10"
+    }
+  ]
+}
