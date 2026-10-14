@@ -1,0 +1,315 @@
+{
+  "m": "US",
+  "code": "ARM",
+  "name": "Arm Holdings",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "CPU 명령어 구조 라이선스 기반으로 데이터센터 로열티가 2배 넘게 늘며 지위가 커지는 중이지만, 자체 칩(AGI CPU) 진출로 고객사와 겹치고 퀄컴 소송과 스마트폰 둔화가 변수. 다음 분기 관건은 11월 4일 2분기 실적과 퀄컴 평결.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "데이터센터 로열티가 3분기 연속 2배 수준으로 늘고 AWS·엔비디아·마이크로소프트 서버 칩이 Arm 설계를 쓰는 점은 강점. 반면 스마트폰 수요 둔화, 라이선시인 퀄컴과의 소송 재판, 자체 칩이 고객과 경쟁하는 구조는 약점."
+  },
+  "peers": [
+    {
+      "name": "Intel (x86)",
+      "m": "US",
+      "code": "INTC"
+    },
+    {
+      "name": "AMD (x86)",
+      "m": "US",
+      "code": "AMD"
+    },
+    {
+      "name": "Qualcomm (라이선시·소송 상대)",
+      "m": "US",
+      "code": "QCOM"
+    },
+    {
+      "name": "NVIDIA (라이선시·자체 Arm CPU)",
+      "m": "US",
+      "code": "NVDA"
+    },
+    {
+      "name": "RISC-V 진영",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "데이터센터 CPU",
+      "me": "1분기(4~6월) 데이터센터 로열티 전년 대비 2배 넘게 증가. AWS Graviton5(192코어)·NVIDIA Vera(88코어)·Microsoft Cobalt 200이 Arm 기반",
+      "vs": "x86(Intel·AMD)이 여전히 서버 CPU 다수이나 2026년 점유율 수치는 확인 못 함",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        0,
+        8
+      ]
+    },
+    {
+      "k": "자체 칩 (AGI CPU)",
+      "me": "2026년 3월 첫 자체 데이터센터 칩 공개(Neoverse V3 136코어, TSMC 3nm). Meta 공동 개발, OpenAI·Cerebras 등 채택. 고객 수요 20억 달러 초과(FYE27~28)",
+      "vs": "Intel·AMD·고객사 칩과 직접 경쟁. 공급 확대가 병목이라고 회사 설명",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "k": "스마트폰·로열티 기반",
+      "me": "로열티 7.15억 달러(+22%), v9·CSS로 칩당 로열티율 상승",
+      "vs": "CFO가 메모리 가격 상승에 따른 스마트폰 수요 둔화 언급",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        10
+      ]
+    },
+    {
+      "k": "RISC-V 위협",
+      "me": "범용 서버 CPU에서 Arm·x86 대체는 아직 현실화되지 않음",
+      "vs": "Meta 추론 칩 등 가속기 역할로 양산 중, 중국 업체 서버 칩 출시",
+      "verdict": "우위",
+      "conf": "추정",
+      "src": [
+        9
+      ]
+    },
+    {
+      "k": "라이선스 관계 (퀄컴)",
+      "me": "2024년 1차 소송은 퀄컴 승, 2026년 10월 2차 배심 재판(계약 위반·Meta 협상 방해 주장) 진행",
+      "vs": "퀄컴은 최대 5년 로열티 면제를 요구, Arm은 부인",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "qcom_verdict",
+      "what": "퀄컴 대 Arm 2차 소송 배심 평결 (계약 위반·로열티 면제 요구)",
+      "d": "2026-10",
+      "kind": "규제",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "10월 9일 배심 심리 착수 보도. 평결 결과는 확인 안 됨. 신의성실 협상 여부 재판부 판단은 더 늦을 수 있음"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2026 회계 2분기(FYE27) 실적 발표 — 매출 13.8억 달러 안팎 가이던스 대비",
+      "d": "2026-11-04",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        3,
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사가 10월 5일 발표일 공지. 가이던스: 매출 13.8억 달러 ±5천만, 비GAAP 주당순이익 0.47달러 ±0.04"
+        }
+      ]
+    },
+    {
+      "id": "agi_ramp",
+      "what": "AGI CPU 하반기 본격 공급 확대",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        1,
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "초기 시스템 가능, 2026년 하반기 확대 예상(보도). 회사는 공급 확대가 핵심 제약이라고 설명. 정확한 시점 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "3분기(FYE27) 실적 발표",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년 3분기 발표가 2월 무렵이라 그 시기로 추정, 발표일 미공지"
+        }
+      ]
+    },
+    {
+      "id": "fy_earn",
+      "what": "FYE27 연간(4분기) 실적 — AGI CPU 매출 목표 추적",
+      "d": "2027-05",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년 4분기 발표가 5월 무렵이라 추정, 발표일 미공지. 회사 목표: AGI CPU 연 매출 약 150억 달러(FYE31)"
+        }
+      ]
+    },
+    {
+      "id": "q1_earn",
+      "what": "1분기(FYE27) 실적 발표",
+      "d": "2026-07-29",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "완료",
+          "note": "매출 12.89억 달러(+22%), 로열티 7.15억(+22%), 라이선스 5.74억(+23%). 가이던스 상회에도 주가 하락 보도"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "1분기 매출 (4~6월)",
+      "v": "12.89억 달러 (+22%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "로열티 / 라이선스 매출",
+      "v": "7.15억 / 5.74억 달러",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "AGI CPU 고객 수요",
+      "v": "20억 달러 초과 (FYE27~28)",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 매출 가이던스",
+      "v": "13.8억 달러 ±5천만",
+      "asof": "2026-07",
+      "src": [
+        10
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 데이터센터 로열티 급증과 AGI CPU 수요가 강점, 11월 4일 실적·퀄컴 평결이 다음 확인 지점",
+      "src": [
+        0,
+        3,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Arm Q1 FYE27 results",
+      "u": "https://newsroom.arm.com/news/arm-q1-fye27-results",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Arm says AGI CPU demand has surpassed $2bn, reports record royalty and licensing results",
+      "u": "https://www.datacenterdynamics.com/en/news/arm-says-agi-cpu-demand-has-surpassed-2bn-reports-record-royalty-and-licensing-results/",
+      "d": "2026-07"
+    },
+    {
+      "t": "Arm Q4 FYE26 results",
+      "u": "https://newsroom.arm.com/news/arm-q4-fye26-results",
+      "d": "2026-05"
+    },
+    {
+      "t": "Arm Newsroom — 2분기 실적 발표일 공지",
+      "u": "https://newsroom.arm.com/?p=22756",
+      "d": "2026-10-05"
+    },
+    {
+      "t": "Arm Q1 FY 2027: Data Center Royalties Strengthen as AGI CPU Gains Traction",
+      "u": "https://futurumgroup.com/insights/arm-q1-fy-2027-data-center-royalties-strengthen-as-agi-cpu-gains-traction/",
+      "d": "2026-07"
+    },
+    {
+      "t": "Qualcomm and Arm set for jury verdict in contract breach feud",
+      "u": "https://www.thestar.com.my/tech/tech-news/2026/10/09/qualcomm-and-arm-set-for-jury-verdict-in-contract-breach-feud",
+      "d": "2026-10-09"
+    },
+    {
+      "t": "Qualcomm and Arm head to trial again, potential for huge damages in focus",
+      "u": "https://www.thestar.com.my/tech/tech-news/2026/10/05/qualcomm-and-arm-head-to-trial-again-potential-for-huge-damages-in-focus",
+      "d": "2026-10-05"
+    },
+    {
+      "t": "Arm partners with Meta for data center AGI CPU",
+      "u": "https://datacenterdynamics.com/en/news/arm-partners-with-meta-for-data-center-agi-cpu/",
+      "d": "2026-03"
+    },
+    {
+      "t": "Arm delivers fourth consecutive billion-dollar revenue quarter (Q3 FYE26)",
+      "u": "https://newsroom.arm.com/news/arm-q3-fye26-results",
+      "d": "2026-02"
+    },
+    {
+      "t": "RISC-V Server Validation Arrives — Just Not Where the Roadmaps Predicted",
+      "u": "https://nextwavesinsight.com/?p=922",
+      "d": "2026"
+    },
+    {
+      "t": "Arm Q1 FY2027 Earnings: Record Revenue and a Guidance Beat, but the Stock Sold Off",
+      "u": "https://longbridge.com/news/294985711",
+      "d": "2026-07"
+    }
+  ]
+}
