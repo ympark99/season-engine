@@ -1,0 +1,363 @@
+{
+  "m": "US",
+  "code": "HOOD",
+  "name": "Robinhood Markets",
+  "theme": "코인",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "2분기 암호화폐 매출은 1억 달러(전년 대비 -38%)로 줄었지만 예측시장(1.56억 달러)·구독·은행 등으로 총매출 13.1억 달러(+32%)를 냈다. 코인 의존도는 낮아졌고, 다음 분기 관건은 10월 27일 3분기 실적에서 코인 약세 속 예측시장·Rothera 거래소의 지속성과 주별 규제 소송 흐름이다.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "고객 2,840만·플랫폼 자산 3,690억 달러, 구독 480만으로 사업 기반과 이익(순이익 5.73억 달러)은 강함. 반면 암호화폐 거래 매출은 시장 약세에 전년 대비 38% 감소해 코인 전문 거래소 대비 코인 자체 경쟁력은 약하고, 예측시장은 주정부 규제 소송 위험이 큼"
+  },
+  "peers": [
+    {
+      "name": "Coinbase",
+      "m": "US",
+      "code": "COIN"
+    },
+    {
+      "name": "Charles Schwab",
+      "m": "US",
+      "code": "SCHW"
+    },
+    {
+      "name": "Interactive Brokers",
+      "m": "US",
+      "code": "IBKR"
+    },
+    {
+      "name": "Kalshi",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Webull",
+      "m": "US",
+      "code": "BULL"
+    }
+  ],
+  "axes": [
+    {
+      "k": "암호화폐 거래 매출",
+      "me": "2분기 암호화폐 매출 약 1억 달러, 전년 대비 -38%. 명목 거래액 400억 달러(앱 180억·Bitstamp 220억), 앱 거래액은 -35%",
+      "vs": "Coinbase 2분기 거래 매출 약 5.99억 달러, 거래량 시장 점유율 10.3%(1분기 9.1%)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "예측시장",
+      "me": "2분기 이벤트 계약 매출 1.56억 달러(전년 대비 10배 이상), 코인·주식 거래 매출보다 큼. 자체 거래소 Rothera 6월 4일부터 계약 접수",
+      "vs": "Coinbase 예측시장은 연환산 1억 달러를 막 넘긴 수준. 주정부 소송 위험은 공통",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        4
+      ]
+    },
+    {
+      "k": "온체인·토큰화",
+      "me": "Robinhood Chain 메인넷 7월 출시, 150M 거래 달성(2분기 콜). 주식 토큰은 EU 2,000종 이상, 120여 개국으로 확대",
+      "vs": "비교 가능한 경쟁사 공개 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "k": "고객·자산 기반",
+      "me": "자금 보유 고객 2,840만, 플랫폼 자산 3,690억 달러(+32%), 순입금 217억 달러, 구독 480만(+39%)",
+      "vs": "Schwab는 4월 비트코인·이더리움 현물 거래를 시작(출금 제한, 2차 보도). 기존 증권사의 코인 진입 중",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        3,
+        10
+      ]
+    },
+    {
+      "k": "수익 다변화",
+      "me": "코인이 거래 매출의 13%로 축소, 은행 예치금 30억 달러 초과, 벤처펀드 II 상장 추진",
+      "vs": "Coinbase는 거래 사이클 의존도가 큼",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        4,
+        10,
+        11
+      ]
+    },
+    {
+      "k": "규제 위험",
+      "me": "WA·NV·NJ·MA·MI 등에서 주 도박법 집행 차단 소송 제기, 6개 주에서 손실 환수 소송 진행",
+      "vs": "CFTC도 여러 주를 상대로 소송. 최종 판결 방향은 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 (장 마감 후, 콜 오후 5시 ET)",
+      "d": "2026-10-27",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-01",
+          "s": "예정",
+          "note": "회사가 10월 27일 발표 공지"
+        }
+      ]
+    },
+    {
+      "id": "rothera",
+      "what": "자체 예측시장 거래소 Rothera 거래 확대 여부",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        1,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-06-04",
+          "s": "진행",
+          "note": "Rothera 계약 접수 시작"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "3분기 실적에서 거래 비중 확인 예정"
+        }
+      ]
+    },
+    {
+      "id": "state_suits",
+      "what": "예측시장 관련 주정부 소송 판단",
+      "d": "2026",
+      "kind": "규제",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "여러 주에서 소송 진행 중 — 선고 일정은 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "rvii",
+      "what": "Robinhood Ventures Fund II 상장 (목표 최대 2억 달러)",
+      "d": "2026-H2",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-08",
+          "s": "예정",
+          "note": "상장 신청서 제출"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기 및 2026 연간 실적 발표",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 일정은 미공지"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 (매출 13.1억 달러, 예측시장이 코인 추월)",
+      "d": "2026-07-29",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        3,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "완료",
+          "note": "총매출 +32%, 순이익 5.73억 달러"
+        }
+      ]
+    },
+    {
+      "id": "chain_main",
+      "what": "Robinhood Chain 공개 메인넷 출시",
+      "d": "2026-07-01",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6,
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-07-03",
+          "s": "완료",
+          "note": "메인넷 출시 및 120여 개국 주식 토큰 확대 보도"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 암호화폐 매출",
+      "v": "약 1억 달러 (-38%)",
+      "asof": "2026-06",
+      "src": [
+        1,
+        4
+      ]
+    },
+    {
+      "k": "2분기 예측시장 매출",
+      "v": "1.56억 달러",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "자금 보유 고객 / 플랫폼 자산",
+      "v": "2,840만 / 3,690억 달러",
+      "asof": "2026-06",
+      "src": [
+        3,
+        10
+      ]
+    },
+    {
+      "k": "Gold 구독자",
+      "v": "480만 (+39%)",
+      "asof": "2026-06",
+      "src": [
+        10
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 코인 매출은 약세지만 예측시장·구독으로 총매출 성장, 10월 27일 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Robinhood Markets, Inc. to Announce Third Quarter 2026 Results on October 27, 2026",
+      "u": "https://www.globenewswire.com/news-release/2026/10/01/3373375/0/en/index.html",
+      "d": "2026-10-01"
+    },
+    {
+      "t": "Robinhood's prediction markets top crypto and equities revenue in Q2",
+      "u": "https://www.theblock.co/post/410102/robinhood-prediction-markets-top-crypto-and-equities-revenue-in-q2",
+      "d": "2026-07"
+    },
+    {
+      "t": "Robinhood Q2 prediction markets (Fortune)",
+      "u": "https://fortune.com/2026/07/29/robinhood-q2-prediction-markets/",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Robinhood Reports Second Quarter 2026 Results",
+      "u": "https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-second-quarter-2026-results",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Robinhood shrugs off crypto slump as Coinbase activity remains tied to trading cycle",
+      "u": "https://theblock.co/post/410478/robinhood-shrugs-off-crypto-slump-coinbase-activity-remains-tied-trading-cycle",
+      "d": "2026-07"
+    },
+    {
+      "t": "Coinbase Form 8-K Q2 2026 earnings deck",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001679788/000167978826000087/q226earningsdeck_sec.htm",
+      "d": "2026-07"
+    },
+    {
+      "t": "Robinhood Chain: From Brokerage to an Onchain Capital Market (CertiK)",
+      "u": "https://www.certik.com/blog/robinhood-chain-onchain-capital-market",
+      "d": "2026-07"
+    },
+    {
+      "t": "Robinhood launches Chain stock tokens in 120 countries",
+      "u": "https://securitybrief.co.uk/story/robinhood-launches-chain-stock-tokens-in-120-countries",
+      "d": "2026-07-03"
+    },
+    {
+      "t": "Robinhood sues WA state to block enforcement of gambling laws against prediction markets",
+      "u": "https://www.geekwire.com/2026/robinhood-sues-wa-state-to-block-enforcement-of-gambling-laws-against-prediction-markets/",
+      "d": "2026-03"
+    },
+    {
+      "t": "CFTC sues three states to protect prediction markets",
+      "u": "https://www.fow.com/insights/cftc-sues-three-states-to-protect-prediction-markets",
+      "d": "2026"
+    },
+    {
+      "t": "Robinhood (HOOD) Q2 2026 Earnings Call Transcript",
+      "u": "https://www.webull.com/news/15364304610403328",
+      "d": "2026-07"
+    },
+    {
+      "t": "Robinhood Launches Second Venture Fund with Target of Up to $200 Million IPO",
+      "u": "https://finviz.com/news/376478/robinhood-launches-second-venture-fund-with-target-of-up-to-200-million-ipo",
+      "d": "2026-08"
+    },
+    {
+      "t": "Robinhood launches tokenized US stock trading for EU users",
+      "u": "https://m.bankingexchange.com/news-feed/item/10349-robinhood-launches-tokenized-us-stock-trading-for-eu-users?Itemid=620",
+      "d": "2025-06"
+    }
+  ]
+}
