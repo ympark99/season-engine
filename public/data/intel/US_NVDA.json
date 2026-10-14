@@ -1,0 +1,367 @@
+{
+  "m": "US",
+  "code": "NVDA",
+  "name": "NVIDIA",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 가속기 시장의 압도적 1위로, 2027 회계연도 2분기 매출 962억달러(전년 대비 +106%)를 냈고 3분기는 중국 데이터센터 매출 0 가정으로 1,080억달러 안팎(±2%)을 가이던스로 제시했다. 다음 분기 관건은 베라 루빈의 4분기 물량 확대 일정, AMD 헬리오스·맞춤형 칩의 추격, 중국 H200 출하 재개 여부.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "데이터센터 매출 890억달러(+117%), 매출총이익률 75%로 규모·수익성이 압도적이고 베라 루빈 풀 생산 단계. 반면 중국 시장은 베이징의 H200 구매 제동으로 사실상 막혀 있고, 구글 TPU·브로드컴 등 맞춤형 칩과 AMD의 랙 단위 제품이 점유율을 잠식할 위험이 있으며 마진은 74%로 소폭 하락 가이던스."
+  },
+  "peers": [
+    {
+      "name": "AMD",
+      "m": "US",
+      "code": "AMD"
+    },
+    {
+      "name": "브로드컴 (구글 TPU 설계 파트너)",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "인텔",
+      "m": "US",
+      "code": "INTC"
+    },
+    {
+      "name": "화웨이 (Ascend)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "구글 TPU",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "AI 가속기 시장 지위",
+      "me": "데이터센터 매출 890억달러(+117%), 하이퍼스케일러 487억달러, 매출총이익률 75%",
+      "vs": "맞춤형 ASIC 서버 출하 비중 2026년 27.8% 전망(전망치), 점유율 추정치는 자료마다 70~90%로 갈림",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        0,
+        7
+      ]
+    },
+    {
+      "k": "차세대 제품 일정 (베라 루빈)",
+      "me": "풀 생산 단계, 2026년 3분기 생산 출하·4분기 물량 확대 예정으로 보도",
+      "vs": "AMD 헬리오스(MI455X 72개 랙)는 3분기 말 출하 시작·OpenAI 4분기 가동 시작 예정",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "랙 단위 시스템·플랫폼",
+      "me": "CPU(베라)·GPU·네트워크를 묶은 NVL 랙 시스템과 CUDA 생태계, 로드맵은 루빈 울트라(2027)·파인만(2028)",
+      "vs": "AMD는 헬리오스로 랙 단위 제품 출시, 구글 등은 자체 TPU",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        13,
+        5
+      ]
+    },
+    {
+      "k": "맞춤형 칩 (구글 TPU·브로드컴)",
+      "me": "범용 GPU 중심, 주요 고객이 자체 칩도 병행",
+      "vs": "브로드컴이 맞춤 가속기 설계 점유 70~80% 주장(회사 주장), AI 수주잔고 730억달러",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7
+      ]
+    },
+    {
+      "k": "중국 시장",
+      "me": "3분기 가이던스는 중국 데이터센터 컴퓨트 매출 0 가정. 미국은 H200 소량 수출 허가, 중국은 구매 제동 보도",
+      "vs": "화웨이 Ascend가 국산 대체 수요 흡수 (2026 AI 칩 매출 120억달러 추정)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "GAAP·비GAAP 매출총이익률 75.0%, 3분기 74% 가이던스",
+      "vs": "경쟁사 마진 비교 가능한 공개 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2_earn",
+      "what": "2027 회계연도 2분기 실적 발표 (매출 962억달러, 3분기 가이던스 1,080억달러)",
+      "d": "2026-08-26",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-26",
+          "s": "완료",
+          "note": "매출 962억달러, 데이터센터 890억달러, 3분기 1,080억달러±2% 가이던스"
+        }
+      ]
+    },
+    {
+      "id": "rubin_ramp",
+      "what": "베라 루빈 생산 출하 시작 및 4분기 물량 확대",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "풀 생산 단계, 3분기 출하 시작·4분기 확대 보도. 2026년 랙 물량 추정치는 자료마다 달라 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "amd_helios",
+      "what": "(경쟁) AMD 헬리오스 OpenAI 가동 시작",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "AMD 발표: 3분기 말 출하 시작, OpenAI 4분기부터 가동·2027년 확대"
+        }
+      ]
+    },
+    {
+      "id": "china_h200",
+      "what": "중국향 H200 실제 출하 개시 여부",
+      "d": "2026-Q4",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        8,
+        9,
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "미국은 소량 허가, 중국은 구매 제동으로 출하 미확인. 날짜는 확정된 바 없음"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "2027 회계연도 3분기 실적 (1,080억달러 가이던스 달성·4분기 가이던스)",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        11,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정, 11월 18일로 추정하는 일정표가 있음"
+        }
+      ]
+    },
+    {
+      "id": "gtc_dc",
+      "what": "GTC 워싱턴 D.C. 기조연설",
+      "d": "2026-12-01",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "행사 2026-11-30~12-03, 기조연설 12월 1일"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2027 회계연도 4분기 실적",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "예년 발표 시기 기준 추정, 공식 일정 미확인"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "962억달러 (전년 대비 +106%)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "데이터센터 매출",
+      "v": "890억달러 (+117%)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "1,080억달러 ±2% (중국 데이터센터 컴퓨트 0 가정)",
+      "asof": "2026-08",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "매출총이익률",
+      "v": "75.0% (3분기 74% 가이던스)",
+      "asof": "2026-07",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 사상 최대 실적과 루빈 양산 진행으로 우위 유지, 중국 0 가정과 AMD·맞춤형 칩 추격이 리스크",
+      "src": [
+        0,
+        2,
+        3,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "NVIDIA Q2 FY27 results: Data Center demand",
+      "u": "https://hothardware.com/news/nvidias-ai-empire-crushes-q2-estimates-data-center-demand",
+      "d": "2026-08-26"
+    },
+    {
+      "t": "NVIDIA operating income jumps 124%, Q3 outlook $108B",
+      "u": "https://pulse2.com/nvidia-operating-income-jumps-124-to-63-7-billion-as-revenue-doubles-and-q3-outlook-hits-108-billion/",
+      "d": "2026-08"
+    },
+    {
+      "t": "NVIDIA guides to $108B with zero China revenue assumed",
+      "u": "https://app.sentisense.ai/stories/nvidia-beats-across-the-board-guides-108-billion-with-zero-china-revenue-assume-08262026",
+      "d": "2026-08-26"
+    },
+    {
+      "t": "NVIDIA confirms Vera Rubin launch for Q3",
+      "u": "https://www.digitalcitizen.life/nvidia-confirms-vera-rubin-launch-for-q3-as-blackwell-demand-keeps-climbing/",
+      "d": "2026"
+    },
+    {
+      "t": "Nvidia confirms Vera Rubin is shipping (volume estimates unsourced)",
+      "u": "https://startupfortune.com/nvidia-confirms-vera-rubin-is-shipping-but-not-the-630-billion-number/",
+      "d": "2026-07-21"
+    },
+    {
+      "t": "AMD Advancing AI 2026: Helios, OpenAI, Meta, Anthropic",
+      "u": "https://techwireasia.com/2026/07/amd-advancing-ai-2026-helios-openai-meta-anthropic/",
+      "d": "2026-07"
+    },
+    {
+      "t": "AMD says Helios AI servers are in full production, OpenAI deployment later this year",
+      "u": "https://www.cxodigitalpulse.com/amd-says-helios-ai-servers-are-in-full-production-with-openai-deployment-planned-later-this-year/",
+      "d": "2026"
+    },
+    {
+      "t": "The custom AI ASIC state of play (May 2026)",
+      "u": "https://www.tomshardware.com/tech-industry/semiconductors/custom-ai-asics-examined-from-broadcom-to-mtia",
+      "d": "2026-05"
+    },
+    {
+      "t": "Nvidia loses China AI market as Beijing blocks H200 sales",
+      "u": "https://aiweekly.co/alerts/nvidia-loses-china-ai-market-as-beijing-blocks-h200-sales",
+      "d": "2026"
+    },
+    {
+      "t": "Nvidia gets US license for small amount of H200 exports to China",
+      "u": "https://news.bloomberglaw.com/international-trade/nvidia-gets-us-license-for-small-amount-of-h200-exports-to-china",
+      "d": "2026-02-26"
+    },
+    {
+      "t": "Nvidia has received POs from Chinese customers",
+      "u": "https://www.tomshardware.com/tech-industry/nvidia-has-received-pos-from-chinese-customers",
+      "d": "2026-03"
+    },
+    {
+      "t": "Nvidia earnings calendar (Q3 date inferred)",
+      "u": "https://www.wallstreethorizon.com/nvidia-earnings-calendar",
+      "d": "2026"
+    },
+    {
+      "t": "NVIDIA GTC Washington D.C. 2026 (Nov 30-Dec 3)",
+      "u": "https://www.nvidia.com/en-us/gtc-dc/attend/",
+      "d": "2026"
+    },
+    {
+      "t": "Nvidia details its GPU, CPU and system roadmap",
+      "u": "https://www.networkworld.com/article/3848394/nvidia-details-its-gpu-cpu-and-system-roadmap-for-the-next-three-years.html",
+      "d": "2025"
+    }
+  ]
+}

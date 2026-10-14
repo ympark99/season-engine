@@ -1,0 +1,375 @@
+{
+  "m": "US",
+  "code": "STX",
+  "name": "Seagate Technology",
+  "theme": "저장장치",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "HAMR(Mozaic) 기반 대용량 니어라인 HDD에서 선두권이며, 공급 부족과 장기계약으로 2026 회계 4분기 매출 36.3억달러·비GAAP 매출총이익률 52.7%까지 올라왔다. 다음 분기 관건은 회사 목표(매출 41억±1억달러)대로 9월 분기 실적이 나오는지와 Mozaic 4 전환 속도, 도시바의 증설 영향.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "HAMR 양산·고객 인증에서 경쟁사(WD 2027년 상반기 HAMR 목표)보다 앞서 있고 공급이 장기 배정돼 마진이 크게 개선됨. 다만 HDD 3사 과점 구조에서 가격 의존도가 높고 도시바 증설·WD 대용량 ePMR 추격, 수요 사이클 둔화 위험은 남아 있음."
+  },
+  "peers": [
+    {
+      "name": "Western Digital",
+      "m": "US",
+      "code": "WDC"
+    },
+    {
+      "name": "Toshiba (HDD)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Micron (낸드·SSD 대체재)",
+      "m": "US",
+      "code": "MU"
+    },
+    {
+      "name": "Sandisk (낸드·SSD 대체재)",
+      "m": "US",
+      "code": "SNDK"
+    }
+  ],
+  "axes": [
+    {
+      "k": "HAMR 양산·인증",
+      "me": "Mozaic 3 전 주요 클라우드 고객 인증, Mozaic 4(최대 44TB)는 상위 2개 클라우드와 양산 중. HAMR이 니어라인 엑사바이트 출하의 약 40%",
+      "vs": "WD는 44TB HAMR 제품을 2027년 상반기 출하 목표(현재 출하 중인 40TB는 ePMR+UltraSMR)",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "용량 로드맵",
+      "me": "Mozaic 5 인증용 출하 2027년 말 목표, 50TB급은 2027년 고객 검증 로드맵",
+      "vs": "WD 50TB급 2027년 하반기 목표, 도시바 65TB급은 2030년 양산 목표",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "k": "수익성(매출총이익률)",
+      "me": "2026 회계 4분기 비GAAP 매출총이익률 52.7% (전년 동기 37.9%), 비GAAP 영업이익률 44.6%",
+      "vs": "WD 비교 수치는 이번 조사에서 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ]
+    },
+    {
+      "k": "공급·수요 계약",
+      "me": "니어라인 물량 대부분이 장기 배정, 다년 계약이 2027년 제품·가격 확정. 9월 분기 매출 41억달러 목표",
+      "vs": "WD도 2026년 물량 매진 언급, 도시바는 증설 계획 단계",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        2,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "k": "점유율(출하량 기준)",
+      "me": "2025년 1분기 기준 유닛 40%·143.6EB, 최근 보도는 Seagate·WD 각 약 44%",
+      "vs": "WD 42%(유닛), 도시바 약 10~18%로 자료마다 다름",
+      "verdict": "동등",
+      "conf": "추정",
+      "src": [
+        7,
+        10
+      ]
+    },
+    {
+      "k": "신규 경쟁(도시바 증설)",
+      "me": "도시바는 필리핀에 약 600억엔(약 3.8억달러) 투자, AI 데이터센터 HDD 생산 2027 회계연도까지 약 2배 목표",
+      "vs": "도시바 점유율 약 10~11%, 중기 30% 목표(생산능력 기준)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "fq1_27",
+      "what": "2027 회계 1분기(9월 분기) 실적 — 매출 41억±1억달러·비GAAP EPS 7.30±0.20달러 목표 달성 여부",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일은 확인 못 함 — 과거 사례상 10월 하순"
+        }
+      ]
+    },
+    {
+      "id": "mozaic4_ramp",
+      "what": "Mozaic 4 비중 확대 — 2026년 말 HAMR 엑사바이트의 50% 목표",
+      "d": "2026-12",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-07-28",
+          "s": "진행",
+          "note": "2분기 콜: Mozaic 4가 상위 2개 클라우드와 램프 중"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "달성 여부 확인 자료 아직 없음"
+        }
+      ]
+    },
+    {
+      "id": "fq2_27",
+      "what": "2027 회계 2분기(12월 분기) 실적",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년 사례상 1월 하순, 날짜 미확정"
+        }
+      ]
+    },
+    {
+      "id": "lta_2027",
+      "what": "2027 캘린더 연도 장기계약 가격·물량 반영 시작",
+      "d": "2027-01",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "CFO: 다년 계약이 2027년 제품·가격 확정"
+        }
+      ]
+    },
+    {
+      "id": "toshiba_cap",
+      "what": "도시바 필리핀 증설 가동 — 2027 회계연도까지 AI용 HDD 생산 2배 목표",
+      "d": "2027-03",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-06",
+          "s": "예정",
+          "note": "투자 계획 보도"
+        }
+      ]
+    },
+    {
+      "id": "wd_hamr",
+      "what": "WD 44TB HAMR 출하 시작(경쟁사 일정)",
+      "d": "2027-Q2",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "WD 목표: 2027년 상반기"
+        }
+      ]
+    },
+    {
+      "id": "m5_qual",
+      "what": "Mozaic 5 인증용 출하 시작",
+      "d": "2027-Q4",
+      "kind": "인증",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 목표: 2027년 말"
+        }
+      ]
+    },
+    {
+      "id": "fq4_26",
+      "what": "2026 회계 4분기·연간 실적 발표",
+      "d": "2026-07-28",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-07-28",
+          "s": "완료",
+          "note": "매출 36.29억달러, 비GAAP EPS 5.71달러, FY27 1분기 목표 제시"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2026 회계 4분기 매출",
+      "v": "36.29억달러 (전년 동기 24.44억)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "비GAAP 매출총이익률",
+      "v": "52.7% (전년 동기 37.9%)",
+      "asof": "2026-07",
+      "src": [
+        0,
+        3
+      ]
+    },
+    {
+      "k": "2026 회계연도 매출",
+      "v": "121.95억달러",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "HAMR 비중(니어라인 EB 출하)",
+      "v": "약 40%",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "다음 분기 매출 목표",
+      "v": "41억±1억달러",
+      "asof": "2026-07",
+      "src": [
+        3
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — HAMR·장기계약 기반 우위, 9월 분기 실적(회사 목표 41억달러)과 도시바 증설이 다음 확인 지점",
+      "src": [
+        0,
+        3,
+        7
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Seagate Form 8-K — FY2026 4분기 실적 보도자료",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001137789/000113778926000153/stxq42026pressreleasefinan.htm",
+      "d": "2026-07-28"
+    },
+    {
+      "t": "Seagate's HAMR bet is paying off (Zacks)",
+      "u": "https://www.zacks.com/stock/news/2986842/seagates-hamr-bet-is-paying-off-can-mozaic-sustain-the-momentum",
+      "d": "2026"
+    },
+    {
+      "t": "Seagate Technology Q4 Earnings Call Highlights",
+      "u": "https://www.nasdaq.com/articles/seagate-technology-q4-earnings-call-highlights-ai-storage-demand",
+      "d": "2026-07"
+    },
+    {
+      "t": "Seagate shatters Q4 estimates, guides FY27 $4.1B",
+      "u": "https://www.techtimes.com/articles/321894/20260728/seagate-shatters-q4-estimates-record-hamr-margins-guides-fy27-41b.htm",
+      "d": "2026-07-28"
+    },
+    {
+      "t": "Seagate delivers highest-capacity drives with Mozaic 4",
+      "u": "https://www.seagate.com/stories/articles/seagate-delivers-industrys-highest-capacity-hard-drives-with-next-generation-mozaic-4/",
+      "d": "2026-03-03"
+    },
+    {
+      "t": "WD 40TB UltraSMR starts shipping (StorageReview)",
+      "u": "https://www.storagereview.com/news/wd-bets-8x-bandwidth-beats-more-terabytes-as-40tb-ultrasmr-starts-shipping",
+      "d": "2026-08"
+    },
+    {
+      "t": "Western Digital Q4 Earnings Call Highlights",
+      "u": "https://www.nasdaq.com/articles/western-digital-q4-earnings-call-highlights",
+      "d": "2026-08"
+    },
+    {
+      "t": "Distant third HDD maker Toshiba spending $380 million to catch up (Blocks & Files)",
+      "u": "https://www.blocksandfiles.com/disk/2026/10/06/distant-third-hdd-maker-toshiba-spending-380-million-to-catch-up/5301322",
+      "d": "2026-10-06"
+    },
+    {
+      "t": "Hard Drive Supply Shortages Get Even Worse (Tech4Gamers)",
+      "u": "https://www.tech4gamers.com/hard-drive-supply-shortages-get-even-worse/",
+      "d": "2026"
+    },
+    {
+      "t": "STX stock rallies after Q4 beat, locked-in 2028 demand",
+      "u": "https://newsable.asianetnews.com/markets/stx-stock-rallies-as-much-as-9-after-hours-on-q4-beat-raised-guidance-and-locked-in-2028-demand-articleshow-yfg05mk",
+      "d": "2026-07"
+    },
+    {
+      "t": "Disk drive capacity shipments forecast (Blocks & Files, 2025년 1분기 점유율)",
+      "u": "https://www.blocksandfiles.com/container-storage/2025/05/17/disk-drive-capacity-shipments-out-to-2030-forecast-to-rocket-upwards/1610577",
+      "d": "2025-05-17"
+    }
+  ]
+}

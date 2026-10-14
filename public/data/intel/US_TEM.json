@@ -1,0 +1,322 @@
+{
+  "m": "US",
+  "code": "TEM",
+  "name": "Tempus AI",
+  "theme": "AI 헬스케어",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "정밀의료 검사(진단)와 데이터 라이선스를 함께 키우는 선두권 AI 헬스케어 업체로, 2분기 매출이 22% 늘고 연간 매출 가이던스를 올렸다. 다음 분기 관건은 3분기 실적에서 매출 성장 유지와 조정 EBITDA 흑자 흐름, 그리고 Guardant 특허 소송 진행이다.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "FDA 승인 진단(xT CDx 종양 단독)과 ECG 기반 AI 기기 허가, 데이터 라이선스(Insights +36%)로 경쟁 차별점이 뚜렷하고 매출 성장도 이어짐. 다만 GAAP 이익은 증권 평가이익 영향이 커서 본업 수익성은 아직 얇고, Guardant 특허 소송이 기각되지 않고 진행 중이라 불확실성이 남음"
+  },
+  "peers": [
+    {
+      "name": "Guardant Health",
+      "m": "US",
+      "code": "GH"
+    },
+    {
+      "name": "Natera",
+      "m": "US",
+      "code": "NTRA"
+    },
+    {
+      "name": "Caris Life Sciences",
+      "m": "US",
+      "code": "CAI"
+    },
+    {
+      "name": "NeoGenomics",
+      "m": "US",
+      "code": "NEO"
+    },
+    {
+      "name": "Foundation Medicine (Roche)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Flatiron Health (Roche)",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "성장·규모",
+      "me": "2분기 매출 3억8,250만 달러(+22%), 진단 2억8,930만 달러, 데이터·응용 9,320만 달러",
+      "vs": "경쟁사와 같은 기준의 직접 비교 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FDA 승인 종양 진단",
+      "me": "xT CDx 종양 단독 적응증 FDA 승인(2026-05-29), 종양 단독·종양-정상 모두 CDx 승인을 가진 첫 검사실이라고 회사 설명",
+      "vs": "Foundation Medicine(Roche) 등과 승인 범위 직접 비교는 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "데이터 라이선스",
+      "me": "Insights(데이터 라이선스) 2분기 +36%",
+      "vs": "Flatiron(Roche)·Caris(제약사 연구 서비스)와 경쟁 — 규모 비교 자료 없음",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        0,
+        7
+      ]
+    },
+    {
+      "k": "AI 심장 ECG 기기",
+      "me": "ECG-AF 위험 탐지 FDA 510(k) 첫 허가, 승모판 역류(ECG-MR) 등 추가 허가 보도",
+      "vs": "주요 진단 경쟁사는 이 영역에서 두드러진 제품이 확인되지 않음",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 GAAP 순이익 560만 달러(증권 미실현 이익 9,850만 달러 포함), 조정 EBITDA 800만 달러, 연간 조정 EBITDA 약 6,500만 달러 목표",
+      "vs": "경쟁사와 같은 기준의 비교 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "특허 분쟁",
+      "me": "Guardant가 제기한 델라웨어 특허 소송이 2026-08 기각 신청 거부로 계속됨. 반대로 Tempus의 캘리포니아 소송은 2026-01 특허 적격성 문제로 기각",
+      "vs": "Guardant는 청구 특허 8건 주장",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        3
+      ],
+      "chg": [
+        {
+          "d": "2026-10-14",
+          "note": "첫 등록"
+        }
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 매출 성장률과 조정 EBITDA 흑자 유지 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 발표일 공지 미확인. 데이터 사이트는 11월 4일로 추정하나 확인 필요"
+        }
+      ]
+    },
+    {
+      "id": "fy26_guid",
+      "what": "2026 연간 매출 가이던스(15.95억~16.05억 달러) 및 조정 EBITDA 약 6,500만 달러 목표 달성 여부",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-07-30",
+          "s": "예정",
+          "note": "2분기 발표에서 매출 가이던스 상향, EBITDA 목표 유지"
+        }
+      ]
+    },
+    {
+      "id": "xtcdx_asp",
+      "what": "xT CDx 종양 단독 승인에 따른 ADLT 가격 이전 효과(회사 추정 약 200달러 ASP 개선) 반영 시작",
+      "d": "2027-01",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-05-29",
+          "s": "예정",
+          "note": "CFO가 2027년부터 효과 예상"
+        }
+      ]
+    },
+    {
+      "id": "guardant_litig",
+      "what": "Guardant 특허 소송(델라웨어) 후속 절차 — 일정 미확정",
+      "d": "2027-Q1",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026-08 기각 신청 거부 이후 다음 기일은 확인 안 됨. 날짜는 임의 분기 표기"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 — 매출 +22%, 연간 매출 가이던스 상향",
+      "d": "2026-07-30",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-07-30",
+          "s": "완료",
+          "note": "매출 3억8,250만 달러, 조정 EBITDA 800만 달러"
+        }
+      ]
+    },
+    {
+      "id": "guardant_mtd",
+      "what": "Guardant 소송 기각 신청 거부 결정(델라웨어)",
+      "d": "2026-08",
+      "kind": "규제",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        2,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-08",
+          "s": "완료",
+          "note": "Tempus가 소송에 응해야 함"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "3억8,250만 달러 (+22%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2026 매출 가이던스",
+      "v": "15.95억~16.05억 달러 (회사 목표)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 조정 EBITDA",
+      "v": "800만 달러",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "Insights 성장률 (2분기)",
+      "v": "+36%",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 2분기 매출 +22%·가이던스 상향, FDA 승인 진단 강점, Guardant 소송 계속이 변수",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Tempus Reports Second Quarter 2026 Results",
+      "u": "https://www.tempus.com/news/pr/tempus-reports-second-quarter-2026-results/",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Tempus Receives FDA Approval for Tumor Only xT CDx",
+      "u": "https://www.tempus.com/news/pr/tempus-receives-fda-approval-for-tumor-only-xt-cdx-enabling-migration-of-its-entire-dna-solid-tumor-portfolio/",
+      "d": "2026-05-29"
+    },
+    {
+      "t": "Tempus AI Can't Shake Guardant Lawsuits Over Diagnostic Tests",
+      "u": "https://news.bloomberglaw.com/ip-law/tempus-ai-cant-shake-guardant-lawsuits-over-diagnostic-tests",
+      "d": "2026-08"
+    },
+    {
+      "t": "Guardant Suits Against Tempus AI Clear Dismissal Bids",
+      "u": "https://www.mlex.com/healthcare-authority/digital-health-technology/articles/2518152/guardant-suits-against-tempus-ai-clear-dismissal-bids",
+      "d": "2026-08"
+    },
+    {
+      "t": "Tempus Receives First FDA Clearance for AI-Based Atrial Fibrillation Risk Detection Algorithm",
+      "u": "https://trial.medpath.com/news/tempus-receives-first-fda-clearance-for-ai-based-atrial-fibrillation-risk-detection-algorithm",
+      "d": "2026"
+    },
+    {
+      "t": "Tempus AI Stock After FDA Clearance for AI Heart Valve Detection",
+      "u": "https://www.webull.com/news/15699159403070464",
+      "d": "2026-09"
+    },
+    {
+      "t": "CAI vs TEM: How Caris Life Sciences and Tempus AI Compare (2026)",
+      "u": "https://walnutinvest.com/stocks/compare/cai-vs-tem",
+      "d": "2026"
+    },
+    {
+      "t": "Tempus competitors",
+      "u": "https://www.distillintelligence.com/competitors/tempus",
+      "d": "2026"
+    },
+    {
+      "t": "Tempus to Report Second Quarter 2026 Financial Results on July 30",
+      "u": "https://www.tempus.com/news/pr/tempus-to-report-second-quarter-2026-financial-results-on-july-30/",
+      "d": "2026-07-09"
+    }
+  ]
+}

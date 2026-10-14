@@ -1,0 +1,310 @@
+{
+  "m": "US",
+  "code": "APH",
+  "name": "Amphenol",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 데이터센터용 고속 구리·광 커넥터에서 가장 큰 업체 중 하나로, 2026년 1월 인수한 CommScope CCS 광섬유 사업이 합쳐져 구리와 광을 함께 파는 위치다. 이번 분기 관건은 10월 말 3분기 실적에서 매출 93~94억달러 가이던스 달성과 IT·데이터컴 성장 유지 여부.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "2분기 매출 88억달러(유기 +30%), IT·데이터컴 +89%, 수주 107억달러(수주/매출 1.23)로 모멘텀이 강하고 구리·광·전력을 모두 갖춘 점이 강점. 다만 TE 등과 경쟁이 커지고 광섬유 공급 제약 질문이 나왔으며, 인수 부채(순부채 134억달러)와 높은 기대치가 부담"
+  },
+  "peers": [
+    {
+      "name": "TE Connectivity",
+      "m": "US",
+      "code": "TEL"
+    },
+    {
+      "name": "Corning",
+      "m": "US",
+      "code": "GLW"
+    },
+    {
+      "name": "Credo Technology",
+      "m": "US",
+      "code": "CRDO"
+    },
+    {
+      "name": "Molex (Koch Industries)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Bel Fuse",
+      "m": "US",
+      "code": "BELFB"
+    }
+  ],
+  "axes": [
+    {
+      "k": "AI 데이터센터 인터커넥트",
+      "me": "IT·데이터컴이 2분기 매출의 43%, 전년 대비 +89%(유기 +63%). 3분기에 전분기 대비 중간 십%대 증가 전망",
+      "vs": "TE의 AI 연계 부문(Digital Data Networks) 2분기 매출 8.13억달러, +34%. 직접 비교 가능한 점유율 공식 통계는 확인 못함",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "k": "광(광섬유) 인터커넥트",
+      "me": "2026-01 CommScope CCS 인수(현금 105억달러)로 광섬유 커넥티비티 확보. 2분기 해당 IT·데이터컴 사업 거의 2배 성장, 2026 CCS 매출 전망 46억달러",
+      "vs": "Corning 광통신 매출 2분기 20.7억달러 +32%, AI 데이터센터 관련 거의 2배. 광섬유 공급 제약 우려가 콜에서 질문으로 나옴",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        6,
+        9
+      ]
+    },
+    {
+      "k": "고속 구리 제품",
+      "me": "고속 구리 케이블·커넥터를 광과 함께 제공, 경영진은 고객이 구리와 광 둘 다 필요하다고 설명",
+      "vs": "TE·Credo 등이 고속 케이블·액티브 케이블에서 경쟁. 제3자 추정 점유율 약 33%는 단일 출처",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        2,
+        7,
+        9
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 조정 영업이익률 29.8%(IEEPA 관세 환급 8천만달러 포함), 조정 EPS 1.35달러, 잉여현금흐름 12억달러",
+      "vs": "TE 3분기 조정 EPS 2.94달러(매출 52억달러)로 규모가 작고 마진 비교 자료는 확인 못함",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        5
+      ]
+    },
+    {
+      "k": "수주 모멘텀",
+      "me": "2분기 수주 107억달러, 수주/매출 1.23",
+      "vs": "TE 3분기 수주 57억달러 +27%(전년 대비)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        5
+      ]
+    },
+    {
+      "k": "광 부품·CPO 등 능동 광학",
+      "me": "능동 광 부품 직접 제조 비중·CPO 대응은 이번 조사에서 확인 못함",
+      "vs": "Coherent·Lumentum 등이 AI 수요로 크게 성장하는 중",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        10
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 발표 — 가이던스(매출 93~94억달러, 조정 EPS 1.40~1.42달러) 달성 여부",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일 확인 안 됨. 작년은 10월 22일 발표"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026년 4분기·연간 실적 발표 (CCS 연 매출 46억달러 전망 확인)",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미정"
+        }
+      ]
+    },
+    {
+      "id": "q1_27_earn",
+      "what": "2027년 1분기 실적 발표",
+      "d": "2027-04",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미정, 통상 4월 하순"
+        }
+      ]
+    },
+    {
+      "id": "ccs_synergy",
+      "what": "CCS 통합 성과 — 2026 EPS 기여 0.30달러(기존 0.15달러에서 상향) 달성",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        0,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "진행",
+          "note": "2분기 콜에서 CCS 연 매출 46억달러·EPS 0.30달러 기여로 상향"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2026년 2분기 실적 발표 — 기대 상회, 3분기 가이던스 제시",
+      "d": "2026-07-29",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "완료",
+          "note": "매출 88억달러(+55%, 유기 +30%), 조정 EPS 1.35달러, 수주 107억달러"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "88억달러 (+55%, 유기 +30%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "IT·데이터컴 비중/성장",
+      "v": "매출의 43%, +89%",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "수주/매출",
+      "v": "1.23 (수주 107억달러)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "3분기 가이던스",
+      "v": "매출 93~94억달러, 조정 EPS 1.40~1.42달러",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 2분기 호실적과 CCS 광섬유 합류로 AI 인터커넥트 선두권, 다음은 10월 말 3분기 실적",
+      "src": [
+        0,
+        3
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Amphenol 2026년 2분기 실적 발표 (8-K 보도자료)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000820313/000110465926087904/aph-20260729xex99d1.htm",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Amphenol Q2 earnings call highlights (Nasdaq)",
+      "u": "https://www.nasdaq.com/articles/amphenol-q2-earnings-call-highlights",
+      "d": "2026-07"
+    },
+    {
+      "t": "Amphenol Q2 earnings call highlights (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/amphenol-q2-earnings-call-highlights-2026-07-29/",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Amphenol Completes Acquisition of CCS Business From CommScope",
+      "u": "https://businesswire.com/news/home/20260112617512/en/Amphenol-Completes-Acquisition-of-CCS-Business-From-CommScope",
+      "d": "2026-01-12"
+    },
+    {
+      "t": "Amphenol lifts CommScope sales outlook to $4.6B",
+      "u": "https://dealroom.co/news/142493-amphenol-lifts-commscope-sales-outlook-to-4-6b-as-ai-bets-pay-off/",
+      "d": "2026-07-31"
+    },
+    {
+      "t": "TE Connectivity 2026 회계연도 3분기 실적",
+      "u": "https://teconnectivity.mediaroom.com/2026-07-22-TE-Connectivity-delivers-results-above-guidance-with-14-sales-growth-and-19-EPS-growth-in-third-quarter-of-fiscal-2026",
+      "d": "2026-07-22"
+    },
+    {
+      "t": "Corning Q2 earnings call highlights (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/corning-q2-earnings-call-highlights-2026-07-28/",
+      "d": "2026-07-28"
+    },
+    {
+      "t": "AI-Driven Datacom Growth Powers Amphenol: Is the Trend Durable? (Nasdaq)",
+      "u": "https://www.nasdaq.com/articles/ai-driven-datacom-growth-powers-amphenol-trend-durable",
+      "d": "2026"
+    },
+    {
+      "t": "Amphenol 2025년 3분기 실적 보도자료 (작년 발표 시기 참고)",
+      "u": "https://s21.q4cdn.com/564806605/files/doc_financials/2025/q3/2025_10_22-PR-3Q-results-and-dividend-raise.pdf",
+      "d": "2025-10-22"
+    },
+    {
+      "t": "5 must read analyst questions from Amphenol's Q2 earnings call (Barchart)",
+      "u": "https://www.barchart.com/story/news/3656520/5-must-read-analyst-questions-from-amphenols-q2-earnings-call",
+      "d": "2026-07"
+    },
+    {
+      "t": "Coherent Advances 16%, Lumentum Climbs 13% as Optics Rally Broadens (Yahoo Finance)",
+      "u": "https://finance.yahoo.com/markets/stocks/articles/coherent-advances-16-lumentum-climbs-164337686.html",
+      "d": "2026"
+    }
+  ]
+}
