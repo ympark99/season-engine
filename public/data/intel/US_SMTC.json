@@ -1,0 +1,368 @@
+{
+  "m": "US",
+  "code": "SMTC",
+  "name": "Semtech",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "데이터센터 광·구리 상호연결 칩(1.6T FiberEdge·CopperEdge)이 실적을 끌어올리는 국면으로, 경쟁사 Marvell 등과 직접 겨루는 후발 주자에서 점유율 확대 단계로 올라서는 중. 이번 분기 관건은 11월 발표될 3분기 실적이 매출 4.1억달러 안팎 가이던스를 지키는지와 1.6T 광 제품 점유율 목표 진척.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "1.6T 구리 리니어 이퀄라이저 선두권 설명과 데이터센터 매출 전년 대비 +91%로 모멘텀이 강하고 224G 광 TIA·드라이버 라인업도 갖췄다. 다만 광 제품 점유율 50% 목표는 회사 목표일 뿐 독립 검증이 없고, LoRa·IoT는 정체이며 부채 상환 부담과 경쟁사(Marvell·Broadcom·Credo) 대비 규모 열세는 남아 있다."
+  },
+  "peers": [
+    {
+      "name": "Marvell Technology",
+      "m": "US",
+      "code": "MRVL"
+    },
+    {
+      "name": "Broadcom",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "Credo Technology",
+      "m": "US",
+      "code": "CRDO"
+    },
+    {
+      "name": "MACOM",
+      "m": "US",
+      "code": "MTSI"
+    },
+    {
+      "name": "Astera Labs",
+      "m": "US",
+      "code": "ALAB"
+    }
+  ],
+  "axes": [
+    {
+      "k": "1.6T 광 TIA·드라이버 (FiberEdge)",
+      "me": "224G/레인 TIA·MZM 드라이버(LPO·리니어 규격) 출시, 1.6T FiberEdge 초기 양산 시작. 회사는 회계연도 말까지 목표 1.6T 시장 점유율 50% 초과를 목표로 제시",
+      "vs": "Marvell은 100G~1.6T 리니어 드라이버를 이미 양산 판매 중. 독립 점유율 자료는 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        7,
+        8,
+        9,
+        13,
+        1
+      ]
+    },
+    {
+      "k": "구리 리니어 이퀄라이저 (CopperEdge)",
+      "me": "1.6T CopperEdge 출하 확대, 3.2T까지 설계 채택 협의 진행. 회사는 해당 시장의 대부분을 차지한다고 설명",
+      "vs": "Credo·Marvell 등과 AEC/ACC 시장에서 경쟁. 독립 점유율 수치는 확인 안 됨",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "k": "차세대 3.2T·448G",
+      "me": "OFC 2026에서 GN8304 리두라이버 기반 3.2T ACC를 미리 보여줌(블로그는 차세대 예고 수준)",
+      "vs": "경쟁사 3.2T 제품 현황은 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ]
+    },
+    {
+      "k": "고출력 CW 레이저·CPO 확장",
+      "me": "고출력 CW 레이저 매출이 회계 2028 상반기 시작할 것으로 회사가 전망, 샘플은 수개월 내라는 AI 번역 요약",
+      "vs": "경쟁 구도·고객 확정 자료 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        1,
+        11
+      ]
+    },
+    {
+      "k": "LoRa·IoT 연결",
+      "me": "IoT 시스템·연결 부문 매출 9,830만달러(전년 8,880만달러), 부문 매출총이익률 34.0%. 셀룰러 모듈은 매각 중이고 LoRa에 집중",
+      "vs": "LoRa 경쟁사 점유율 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        4
+      ]
+    },
+    {
+      "k": "수익성·성장 속도",
+      "me": "2분기 매출 3.419억달러(+33%), 시그널 인티그리티 부문 총이익률 65.3%, 3분기 매출 목표 4.1억달러",
+      "vs": "비교 가능한 경쟁사 동일 기간 수치는 이번 조사에서 확인 안 함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2027 회계 3분기 실적 — 가이던스(매출 4.1억±0.05억달러, 데이터센터 전분기 대비 약 +45%) 달성 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미공표. 전년은 11월 하순 발표(추정)"
+        }
+      ]
+    },
+    {
+      "id": "fiberedge_share",
+      "what": "1.6T FiberEdge 점유율 50% 초과 (회사 목표, 회계연도 말)",
+      "d": "2027-Q1",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        1,
+        13
+      ],
+      "log": [
+        {
+          "d": "2026-08-25",
+          "s": "진행",
+          "note": "2분기 콜: 초기 1.6T FiberEdge 양산 시작, 연말까지 50% 초과 목표. 회계연도 말은 2027년 1월 전후"
+        }
+      ]
+    },
+    {
+      "id": "cellular_close",
+      "what": "셀룰러 모듈 사업 Compal 매각 완료 (6,200만달러 현금)",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-08-13",
+          "s": "예정",
+          "note": "최종 계약 체결, 회계 4분기(2026-11~2027-01) 중 종결 예정"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2027 회계 4분기·연간 실적",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확인"
+        }
+      ]
+    },
+    {
+      "id": "cw_laser",
+      "what": "고출력 CW 레이저 매출 시작 (회계 2028 상반기, 회사 전망)",
+      "d": "2027-H1",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "샘플 수개월 내라는 AI 번역 요약, 공식 일정은 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2027 회계 2분기 실적 — 매출 3.419억달러, 가이던스 상회",
+      "d": "2026-08-25",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-25",
+          "s": "완료",
+          "note": "매출 +33%, 조정 EPS 0.71달러(가이던스 0.61달러)"
+        }
+      ]
+    },
+    {
+      "id": "compal_deal",
+      "what": "셀룰러 모듈 사업 Compal 매각 최종 계약",
+      "d": "2026-08-13",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-08-13",
+          "s": "완료",
+          "note": "6,200만달러 현금, 양사 이사회 승인"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "3.419억달러 (+33% YoY)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "데이터센터 매출",
+      "v": "약 1억달러 (+91% YoY, +39% QoQ)",
+      "asof": "2026-07",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "시그널 인티그리티 부문 매출",
+      "v": "1.262억달러 (전년 7,680만달러)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "4.1억달러 ±0.05억 · 조정 EPS 1.05달러 ±0.03",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "차입금(단기+장기)",
+      "v": "1.434억+3.494억달러, 현금 2.041억달러",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 데이터센터 1.6T 제품이 실적을 끌어올리는 중, 3분기 실적(11월)이 다음 확인 지점",
+      "src": [
+        0,
+        3
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Semtech Announces Second Quarter of Fiscal Year 2027 Results",
+      "u": "https://www.semtech.com/company/press/semtech-announces-second-quarter-of-fiscal-year-2027-results",
+      "d": "2026-08-25"
+    },
+    {
+      "t": "Semtech's Q2 Earnings Surpass Estimates, Revenues Increase Y/Y (Nasdaq/Zacks)",
+      "u": "https://www.nasdaq.com/articles/semtechs-q2-earnings-surpass-estimates-revenues-increase-y-y",
+      "d": "2026-08"
+    },
+    {
+      "t": "Semtech (SMTC) Q2 2027 earnings summary (Quartr)",
+      "u": "https://quartr.com/events/semtech-corporation-smtc-q2-2027_3PPTtePD",
+      "d": "2026-08"
+    },
+    {
+      "t": "Transcript: Semtech Q2 earnings call highlights (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/transcript-semtech-q2-earnings-call-highlights-2026-08-25/",
+      "d": "2026-08-25"
+    },
+    {
+      "t": "Semtech sells cellular module business to Compal for $62 million (Evertiq)",
+      "u": "https://evertiq.com/news/2026-08-18-semtech-sells-cellular-module-business-to-compal-for-62-million",
+      "d": "2026-08-18"
+    },
+    {
+      "t": "Semtech Showcases AI Interconnect Leadership with Live 1.6T Demos at OFC 2026",
+      "u": "https://www.semtech.com/company/press/showcases-ai-interconnect-leadership-with-live-1.6t-demos-ofc-2026",
+      "d": "2026-03-12"
+    },
+    {
+      "t": "OFC 2026: Semtech advances the future of AI data center optical and active copper interconnects",
+      "u": "https://blog.semtech.com/ofc-2026-semtech-advances-the-future-of-ai-data-center-optical-and-active-copper-interconnects",
+      "d": "2026-03"
+    },
+    {
+      "t": "Semtech Announces 224Gbps TIAs and MZM Drivers for Optical Interconnect Applications",
+      "u": "https://www.gophotonics.com/news/details/8735-semtech-announces-224gbps-tias-and-mzm-drivers-for-optical-interconnect-applications",
+      "d": "2026-03-16"
+    },
+    {
+      "t": "Semtech Unveils High Performance TIAs for 1.6T AI Data Centers",
+      "u": "https://www.businesswire.com/news/home/20250907380868/en/Semtech-Unveils-High-Performance-TIAs-for-1.6T-AI-Data-Centers",
+      "d": "2025-09-07"
+    },
+    {
+      "t": "Marvell Linear Drivers",
+      "u": "https://www.Marvell.com/products/linear-driver.html"
+    },
+    {
+      "t": "Can Credo Sustain Momentum in Optical Business Amid Competition? (Nasdaq/Zacks)",
+      "u": "https://www.nasdaq.com/articles/can-credo-sustain-momentum-optical-business-amid-competition"
+    },
+    {
+      "t": "Semtech (SMTC) 2027 Q2 법說會逐字稿 (StatementDog, AI 번역)",
+      "u": "https://statementdog.com/analysis/SMTC/earnings_calls/319115",
+      "d": "2026-08"
+    },
+    {
+      "t": "Credo competitors (Distill Intelligence)",
+      "u": "https://www.distillintelligence.com/competitors/credo"
+    },
+    {
+      "t": "SMTC Q2 earnings call spotlights 1.6T data center growth (Zacks)",
+      "u": "https://www.zacks.com/stock/news/2980324/smtc-q2-earnings-call-spotlights-16t-data-center-growth",
+      "d": "2026-08"
+    }
+  ]
+}

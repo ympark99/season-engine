@@ -1,0 +1,354 @@
+{
+  "m": "US",
+  "code": "SPCX",
+  "name": "Space Exploration Technologies (SpaceX)",
+  "theme": "우주",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "2026-06 나스닥 상장(티커 SPCX, 공모가 135달러 보도) 후 첫 분기 실적에서 매출이 92% 늘었고 스타링크 가입자 1,200만으로 발사·위성통신 양쪽에서 압도적 선두권이다. 다음 분기 관건은 스타십 후속 비행(우주선 포획 시도 등), AI 부문 적자 폭, 11월 3분기 실적과 12월 보호예수 해제 물량.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "팰컨 발사 빈도와 스타링크 가입자(1,200만) 규모에서 경쟁사와 격차가 크고 스타십이 처음 궤도에 올라 V3 위성 26기를 배치. 다만 스타십은 Flight 14에서 엔진 1기 조기 정지로 조기 귀환했고 AI 부문 영업손실 13억 달러 등 순손실(5.41억 달러)이 이어지며 보호예수 해제 물량이 주가 변수"
+  },
+  "peers": [
+    {
+      "name": "Amazon Leo (아마존)",
+      "m": "US",
+      "code": "AMZN"
+    },
+    {
+      "name": "Rocket Lab",
+      "m": "US",
+      "code": "RKLB"
+    },
+    {
+      "name": "AST SpaceMobile",
+      "m": "US",
+      "code": "ASTS"
+    },
+    {
+      "name": "Blue Origin",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "ULA",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "발사 빈도",
+      "me": "팰컨 2026년 8월 22일 기준 100회 돌파, 연간 약 160회 페이스(뉴스레터 추정)",
+      "vs": "블루 오리진 New Glenn은 5월 28일 폭발 후 연내 복귀 목표",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        4,
+        8
+      ]
+    },
+    {
+      "k": "위성 인터넷 (스타링크)",
+      "me": "가입자 1,200만(전년 600만), 연결 부문 매출 42.9억 달러(+66%), 영업이익 16.6억 달러, ARPU 월 66달러",
+      "vs": "아마존 Leo는 7월 초 약 400기 배치, 초기 서비스는 연내 시작 예정",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        8
+      ]
+    },
+    {
+      "k": "차세대 대형 로켓",
+      "me": "스타십 Flight 14가 궤도 도달·V3 26기 배치, 단 엔진 1기 조기 정지로 약 3시간 만에 태평양 착수",
+      "vs": "New Glenn은 발사대 손상으로 복귀 일정 연말",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        3,
+        8
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 매출 78억 달러(+92%), 조정 EBITDA 35억 달러, 순손실 5.41억 달러",
+      "vs": "비교 가능한 동종 상장사 수치는 이번 조사에서 확인 못 함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        12
+      ]
+    },
+    {
+      "k": "AI 부문",
+      "me": "AI 부문 매출 26억 달러(3배), 영업손실 13억 달러",
+      "vs": "경쟁 AI 업체 대비 비교는 확인 못 함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "달 착륙선 (HLS)",
+      "me": "궤도 연료 전달 시연이 달 착륙의 선행 조건. 2026-05 아르테미스 III가 저궤도 시연으로 바뀌었다는 2차 매체 보도(NASA 직접 확인 못 함)",
+      "vs": "경쟁 착륙선 일정은 이번 조사에서 확인 못 함",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        11
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "flight14",
+      "what": "스타십 Flight 14 — 궤도 도달·스타링크 V3 26기 배치",
+      "d": "2026-09-28",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "궤도 도달·배치 성공, 엔진 1기 조기 정지로 임무 조기 종료(착수)"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 (상장 후 첫 실적)",
+      "d": "2026-08-04",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-04",
+          "s": "완료",
+          "note": "매출 78억 달러(+92%), 순손실 5.41억 달러"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 — 스타링크 가입자·AI 부문 손실 확인",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 발표일 미확정, 추정 11월 초(자료마다 11-03·11-05·11-17로 다름)"
+        }
+      ]
+    },
+    {
+      "id": "flight15",
+      "what": "스타십 Flight 15",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 일정 미확인, 예측 시장은 10월 하순~11월 중순에 몰림"
+        }
+      ]
+    },
+    {
+      "id": "lockup",
+      "what": "보호예수 단계적 해제 — 12월 8일까지 약 40% 유통 가능",
+      "d": "2026-12-08",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "8월 6일 9.1억주, 9월 24일 최대 3.28억주 해제됨. 머스크 지분은 2027년 6월경까지"
+        }
+      ]
+    },
+    {
+      "id": "leo_service",
+      "what": "경쟁사 아마존 Leo 초기 서비스 개시",
+      "d": "2026",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "연내 개시 예정으로 보도, 정확한 날짜 미확인"
+        }
+      ]
+    },
+    {
+      "id": "moon_lander",
+      "what": "무인 달 착륙 시도 (2차 매체 보도)",
+      "d": "2027",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 중반 목표로 거론, NASA 확인 못 함"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "스타링크 가입자",
+      "v": "1,200만 (전년 600만)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        2
+      ]
+    },
+    {
+      "k": "2분기 매출 / 순손실",
+      "v": "78억 달러 (+92%) / -5.41억 달러",
+      "asof": "2026-06",
+      "src": [
+        0,
+        12
+      ]
+    },
+    {
+      "k": "팰컨 연간 발사",
+      "v": "100회 돌파 (8월 22일)",
+      "asof": "2026-08",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "주가 vs 공모가",
+      "v": "9월 중순 150달러 안팎 시초가 부근, 공모가 135달러 상회 (시총 약 2.05조 달러, 보도)",
+      "asof": "2026-09",
+      "src": [
+        5,
+        9
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 상장(SPCX) 확인. 스타링크 1,200만·매출 +92%로 선두, 스타십 궤도 도달. 11월 실적과 보호예수 해제가 다음 확인점",
+      "src": [
+        0,
+        3,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "SpaceX Reports Second Quarter 2026 Results (Form 8-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026052515/earningsreleaseq22608042.htm",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "SpaceX reports first earnings since going public, makes big bet on AI",
+      "u": "https://spaceq.ca/spacex-reports-first-earnings-since-going-public-makes-big-bet-on-ai/",
+      "d": "2026-08"
+    },
+    {
+      "t": "SpaceX Q2 Earnings Call Highlights",
+      "u": "https://www.nasdaq.com/articles/spacex-q2-earnings-call-highlights",
+      "d": "2026-08"
+    },
+    {
+      "t": "Starship Flight 14 Reaches Orbit (26 Starlink V3)",
+      "u": "https://xenospectrum.com/en/starship-flight14-orbit-starlink-v3-26/",
+      "d": "2026-09-28"
+    },
+    {
+      "t": "SpaceX brief 2026-08-22 (Falcon 100 launches)",
+      "u": "https://keeptrack.space/x-report/spacex-brief-2026-08-22",
+      "d": "2026-08-22"
+    },
+    {
+      "t": "SpaceX's next share unlock is coming",
+      "u": "https://fool.com/investing/2026/09/15/spacexs-next-share-unlock-is-coming-history-says-t",
+      "d": "2026-09-15"
+    },
+    {
+      "t": "SpaceX Stock Surges 6% on First Lockup Expiry",
+      "u": "https://www.kucoin.com/news/flash/spacex-stock-surges-6-on-first-lockup-expiry-despite-market-expectations",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "SpaceX Earnings Date & Event Calendar",
+      "u": "https://www.wallstreethorizon.com/spacex-earnings-calendar",
+      "d": "2026-10"
+    },
+    {
+      "t": "New Glenn 폭발·복귀 일정 (Motley Fool via Webull)",
+      "u": "https://www.webull.com/news/15225656518075392",
+      "d": "2026-07"
+    },
+    {
+      "t": "SpaceX targets June 12 for mega IPO",
+      "u": "https://www.businessday.co.za/world/international-companies/2026-05-17-spacex-targets-june-12-for-mega-ipo/",
+      "d": "2026-05-17"
+    },
+    {
+      "t": "When will SpaceX launch Starship Flight 15 (예측 시장)",
+      "u": "https://manifold.markets/Terminator2/when-will-spacex-launch-starship-fl-nn95Q9cuhA",
+      "d": "2026-10"
+    },
+    {
+      "t": "SpaceX Starship HLS: What the Road to the Moon Looks Like Now",
+      "u": "https://www.basenor.com/blogs/news/spacex-starship-hls-what-the-road-to-the-moon-looks-like-now",
+      "d": "2026-07"
+    },
+    {
+      "t": "Elon Musk's SpaceX posts $541M loss; Starlink subscribers surge (AP)",
+      "u": "https://www.fox35orlando.com/news/elon-musks-spacex-posts-541m-loss-starlink-subscribers-surge",
+      "d": "2026-08"
+    }
+  ]
+}
