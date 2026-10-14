@@ -1,0 +1,355 @@
+{
+  "m": "US",
+  "code": "INTC",
+  "name": "Intel",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "x86 CPU 점유율은 AMD에 계속 내주는 중이지만 서버 CPU 수요 급증으로 매출은 늘고(2분기 161억 달러, 전년 대비 +25%) 18A 공정이 자체 제품에 투입되기 시작했다. 다음 분기 관건은 10월 29일 3분기 실적(가이던스 158억~168억 달러)과 14A 핵심 외부 고객 확보 여부.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "서버 CPU 수요·공급 부족 속 매출 반등과 18A 첫 양산 제품(Panther Lake)은 강점. 다만 x86 점유율은 AMD 최고치 경신(클라이언트 30.3%)이고, AI 가속기는 후발이며, 14A는 확정된 외부 고객이 없어 파운드리 사업 성패가 불확실"
+  },
+  "peers": [
+    {
+      "name": "AMD",
+      "m": "US",
+      "code": "AMD"
+    },
+    {
+      "name": "TSMC",
+      "m": "US",
+      "code": "TSM"
+    },
+    {
+      "name": "NVIDIA",
+      "m": "US",
+      "code": "NVDA"
+    },
+    {
+      "name": "Qualcomm",
+      "m": "US",
+      "code": "QCOM"
+    },
+    {
+      "name": "삼성전자 (파운드리)",
+      "m": "KR",
+      "code": "005930"
+    }
+  ],
+  "axes": [
+    {
+      "k": "PC·서버 CPU 점유율",
+      "me": "2026년 2분기 x86 전체 점유율 65.9% (IoT·SoC 포함 기준, 전년 70.6%), 클라이언트 69.7%",
+      "vs": "AMD 클라이언트 30.3%(첫 30% 돌파), 데스크톱 34.9%, 서버 34.5%(보도 기준)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "서버 CPU 수요·로드맵",
+      "me": "Xeon 수요 급증으로 3·4분기 공급 제약. Clearwater Forest 3월 공개, Diamond Rapids(18A-P, 최대 256코어)는 2027년",
+      "vs": "AMD 서버 점유율 상승세. Diamond Rapids 일정이 올해 조정되어 2027로 밀림",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ]
+    },
+    {
+      "k": "공정 기술 (18A)",
+      "me": "18A 첫 제품 Panther Lake(Core Ultra 시리즈 3) 2026년 1월 출시, 애리조나 Fab 52 생산. 수율 월 7~8% 개선 주장(CEO 발언)",
+      "vs": "TSMC 2nm/A16 대비 직접 비교 자료는 확인 안 됨. 수율 절대 수치 공개 없음",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ]
+    },
+    {
+      "k": "파운드리 외부 고객",
+      "me": "14A 위험 생산 2028년·양산 2029년 계획. 확정 외부 고객 발표 없음, 외부 고객 문의·논의 확대 중이라고 회사 설명",
+      "vs": "TSMC는 이미 대형 고객 다수 보유(본 조사에서 별도 수치 미확인). 회사는 고객·마일스톤 미달 시 14A 중단 가능성을 경고",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "k": "AI 가속기",
+      "me": "Falcon Shores 상용 폐기, 추론용 Crescent Island(LPDDR5X, 2026년 하반기 고객 테스트 예정)와 후속 Jaguar Shores(2027 예상)",
+      "vs": "NVIDIA·AMD 대비 출하 실적·고객 계약은 확인 안 됨",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ]
+    },
+    {
+      "k": "실적 모멘텀",
+      "me": "2분기 매출 161억 달러(+25%), 비GAAP EPS 0.42달러. 3분기 매출 가이던스 158억~168억 달러, 비GAAP 매출총이익률 42%. 2026년 설비투자 200억 달러 초과 예상",
+      "vs": "GAAP은 에스크로 주식 손실 125억 달러 등 일회성으로 적자(EPS -2.16달러)",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 (가이던스 매출 158억~168억 달러, 비GAAP 매출총이익률 42%)",
+      "d": "2026-10-29",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-06",
+          "s": "예정",
+          "note": "회사가 10월 29일 장 마감 후 발표·컨퍼런스콜 공지"
+        }
+      ]
+    },
+    {
+      "id": "crescent_island",
+      "what": "추론용 GPU Crescent Island 고객 테스트(샘플링) 시작",
+      "d": "2026-H2",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "자료마다 하반기·연말로 갈림 — 정확한 시점 불확실"
+        }
+      ]
+    },
+    {
+      "id": "nova_lake",
+      "what": "Nova Lake 데스크톱·노트북 CPU 출시 (일부 외부 파운드리 생산)",
+      "d": "2026",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 목표로 알려졌으나 일부 제품이 2027로 밀릴 수 있다는 보도도 있어 확정 아님"
+        }
+      ]
+    },
+    {
+      "id": "14a_anchor",
+      "what": "14A 핵심 외부 고객 확정 발표",
+      "d": "2027-H1",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 말~2027년 초 확보가 필요하다는 보도. 확정 고객 발표는 아직 없음"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기·연간 실적 발표",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "통상 1월 하순 발표 — 정확한 날짜 미공지"
+        }
+      ]
+    },
+    {
+      "id": "diamond_rapids",
+      "what": "Xeon 7 Diamond Rapids (18A-P) 출시",
+      "d": "2027",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "올해 일정 조정으로 2027년으로 알려짐"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn_done",
+      "what": "2분기 실적 발표 (매출 161억 달러, 3분기 가이던스 제시)",
+      "d": "2026-07",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-07",
+          "s": "완료",
+          "note": "매출 +25%, GAAP 적자(일회성 손실 포함)"
+        }
+      ]
+    },
+    {
+      "id": "hotchips",
+      "what": "Hot Chips 2026 — Diamond Rapids·Crescent Island 상세 공개",
+      "d": "2026-08",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-08",
+          "s": "완료",
+          "note": "256코어 Xeon, 480GB 메모리 추론 GPU 사양 공개"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "161억 달러 (전년 대비 +25%)",
+      "asof": "2026-Q2",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "158억~168억 달러, 비GAAP EPS 0.38달러",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "클라이언트 x86 점유율",
+      "v": "Intel 69.7% / AMD 30.3%",
+      "asof": "2026-Q2",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "2026년 설비투자 전망",
+      "v": "200억 달러 초과",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 서버 CPU 수요로 매출은 반등하나 AMD 점유율 상승·14A 외부 고객 미확정이 부담, 10월 29일 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        1,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Intel to Report Third-Quarter 2026 Financial Results",
+      "u": "https://www.intc.com/news-events/press-releases/detail/1782/intel-to-report-third-quarter-2026-financial-results",
+      "d": "2026-10-06"
+    },
+    {
+      "t": "Intel Reports Second-Quarter 2026 Financial Results",
+      "u": "https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results",
+      "d": "2026-07"
+    },
+    {
+      "t": "Intel reportedly reaffirms 14A commitment (TrendForce)",
+      "u": "https://www.trendforce.com/news/2026/01/13/news-intel-reportedly-reaffirms-14a-commitment-as-lip-bu-tan-hints-at-possible-customer-interest/",
+      "d": "2026-01-13"
+    },
+    {
+      "t": "Intel's 14A node will enter risk production in 2028 (TweakTown)",
+      "u": "https://www.tweaktown.com/news/111778/intels-14a-node-will-enter-risk-production-in-2028-while-10a-and-7a-nodes-are-on-the-roadmap/index.html",
+      "d": "2026"
+    },
+    {
+      "t": "AMD Hits Record x86 Market Share (HotHardware)",
+      "u": "https://hothardware.com/news/amd-record-x86-market-share-cut-intels-chip-lead",
+      "d": "2026"
+    },
+    {
+      "t": "Intel's roadmaps examined — 14A, Nova Lake, Diamond Rapids & AI accelerator push (Tom's Hardware)",
+      "u": "https://tomshardware.com/tech-industry/semiconductors/intel-chip-roadmap-2026-2028",
+      "d": "2026"
+    },
+    {
+      "t": "Intel Hot Chips 2026: 256-core Diamond Rapids, Crescent Island (StorageReview)",
+      "u": "https://www.storagereview.com/news/intel-hot-chips-2026-256-core-diamond-rapids-crescent-island-with-480gb-for-inference-and-wildcat-lake-at-the-edge",
+      "d": "2026-08"
+    },
+    {
+      "t": "Intel CEO calls foundry a national treasure as external customers knock after 18A yield turnaround (Wccftech)",
+      "u": "https://wccftech.com/intel-ceo-lip-bu-tan-calls-foundry-a-national-treasure-as-external-customers-knock-on-his-door-after-18a-yield-turnaround/",
+      "d": "2026"
+    },
+    {
+      "t": "Intel launches next-gen PC chip at CES (MarketScreener)",
+      "u": "https://www.marketscreener.com/news/intel-launches-next-gen-pc-chip-at-ces-in-las-vegas-ce7e59dede8af722",
+      "d": "2026-01"
+    },
+    {
+      "t": "Intel's post-18A roadmap hangs on landing 14A foundry customers (Borecraft)",
+      "u": "https://borecraft.com/2026/06/17/intels-post-18a-roadmap-hangs-on-landing-14a-foundry-customers/",
+      "d": "2026-06-17"
+    }
+  ]
+}

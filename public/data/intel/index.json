@@ -1116,6 +1116,61 @@
    }
   ]
  },
+ "US:INTC": {
+  "name": "Intel",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "grade": {
+   "g": "C",
+   "label": "경쟁력 보통",
+   "why": "서버 CPU 수요·공급 부족 속 매출 반등과 18A 첫 양산 제품(Panther Lake)은 강점. 다만 x86 점유율은 AMD 최고치 경신(클라이언트 30.3%)이고, AI 가속기는 후발이며, 14A는 확정된 외부 고객이 없어 파운드리 사업 성패가 불확실"
+  },
+  "cp": [
+   {
+    "id": "q3_earn",
+    "d": "2026-10-29",
+    "what": "3분기 실적 발표 (가이던스 매출 158억~168억 달러, 비GAAP 매출총이익률 42%)",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "crescent_island",
+    "d": "2026-H2",
+    "what": "추론용 GPU Crescent Island 고객 테스트(샘플링) 시작",
+    "kind": "출시",
+    "status": "예정"
+   },
+   {
+    "id": "nova_lake",
+    "d": "2026",
+    "what": "Nova Lake 데스크톱·노트북 CPU 출시 (일부 외부 파운드리 생산)",
+    "kind": "출시",
+    "status": "예정"
+   },
+   {
+    "id": "14a_anchor",
+    "d": "2027-H1",
+    "what": "14A 핵심 외부 고객 확정 발표",
+    "kind": "수주",
+    "status": "예정"
+   },
+   {
+    "id": "q4_earn",
+    "d": "2027-01",
+    "what": "4분기·연간 실적 발표",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "diamond_rapids",
+    "d": "2027",
+    "what": "Xeon 7 Diamond Rapids (18A-P) 출시",
+    "kind": "출시",
+    "status": "예정"
+   }
+  ]
+ },
  "US:LITE": {
   "name": "Lumentum",
   "theme": "광통신·네트워크",
