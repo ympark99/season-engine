@@ -1,0 +1,138 @@
+{
+ "m": "US",
+ "code": "HPE",
+ "name": "HEWLETT PACKARD ENTERPRISE CO",
+ "at": "2026-10-15",
+ "by": "Claude 정기 조사",
+ "summary": "FY2025(10월 결산) 매출 343억$(+13.8%) 중 서버가 177억$로 가장 크다. 2025년 7월 주니퍼 인수로 네트워킹이 69억$(+51%)로 커졌다. 매출의 약 10%가 유통사 한 곳을 거치고, 미국 매출이 134억$(+23%)다. GPU는 엔비디아·AMD, CPU는 인텔·AMD에서 사 오고, 생산 대부분을 외주 설계·제조사(ODM·EMS)에 맡긴다.",
+ "cust": [
+  {
+   "name": "유통사 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 10,
+   "conf": "공시",
+   "note": "FY2025 10-K — 유통사 한 곳이 매출의 약 10%, 주로 서버·네트워킹"
+  },
+  {
+   "name": "기업·정부·서비스 사업자 (분산)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "FY2025 10-K — 미국 134억$·해외 209억$"
+  },
+  {
+   "name": "AI 서버 고객 (클라우드·소버린·연구소)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "추정",
+   "note": "Cray XD 계열 AI 서버(엔비디아·AMD GPU 8개)가 서버 매출 증가(판가 상승)를 이끈다는 설명에서 유추 — 고객 이름 공시 없음"
+  }
+ ],
+ "supp": [
+  {
+   "name": "NVIDIA",
+   "code": "NVDA",
+   "m": "US",
+   "item": "GPU",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — GPU 단일 공급원(업계 공통)으로 명시"
+  },
+  {
+   "name": "AMD",
+   "code": "AMD",
+   "m": "US",
+   "item": "x86 CPU·GPU",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — x86 프로세서 공급원, AI 서버에 MI355X GPU 옵션"
+  },
+  {
+   "name": "Intel",
+   "code": "INTC",
+   "m": "US",
+   "item": "x86 CPU",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — x86 프로세서 공급원"
+  },
+  {
+   "name": "Broadcom",
+   "code": "AVGO",
+   "m": "US",
+   "item": "네트워크·스토리지 칩",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 표준 ASSP 칩 공급원"
+  },
+  {
+   "name": "외주 설계·제조사 ODM·EMS (비공개)",
+   "code": null,
+   "m": null,
+   "item": "서버·장비 조립",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 전 세계 다수의 외주 설계·위탁 제조사에 HPE 제품 생산을 맡김"
+  }
+ ],
+ "segs": [
+  {
+   "name": "서버",
+   "code": null,
+   "m": null,
+   "amt": 17745,
+   "share": 51.7,
+   "note": "FY2025 +10.2% — 판가 상승(AI 서버)"
+  },
+  {
+   "name": "네트워킹",
+   "code": null,
+   "m": null,
+   "amt": 6850,
+   "share": 20.0,
+   "note": "FY2025 +51.1% — 주니퍼 인수 반영"
+  },
+  {
+   "name": "하이브리드 클라우드",
+   "code": null,
+   "m": null,
+   "amt": 5754,
+   "share": 16.8,
+   "note": "FY2025 +4.9% — 스토리지·GreenLake"
+  },
+  {
+   "name": "금융 서비스",
+   "code": null,
+   "m": null,
+   "amt": 3504,
+   "share": 10.2,
+   "note": "FY2025 −0.2% — 리스·렌탈"
+  },
+  {
+   "name": "기업투자·기타",
+   "code": null,
+   "m": null,
+   "amt": 776,
+   "share": 2.3,
+   "note": "FY2025 −23.5% — CTG 매각"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "HPE FY2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1645590/000164559025000130/hpe-20251031.htm"
+  },
+  {
+   "t": "HPE FY2025 4분기 실적 발표",
+   "u": "https://www.businesswire.com/news/home/20251204671507/en"
+  },
+  {
+   "t": "HPE AI 서버 제품 구성",
+   "u": "https://www.hpe.com/hk/en/hpe-cray-xd670.html"
+  }
+ ]
+}

@@ -1,0 +1,126 @@
+{
+ "m": "KR",
+ "code": "327260",
+ "name": "RF머트리얼즈",
+ "at": "2026-10-15",
+ "by": "Claude 정기 조사",
+ "summary": "화합물 반도체(GaN·GaAs·InP)용 밀폐 패키지와 군수 장비 부품을 만든다. 2025년 매출 641억원(+44%) 중 군수 장비 부품이 52%이고, 통신용 패키지가 222억원(+148%)으로 가장 빨리 늘었다. 통신용은 모회사 RFHIC와 MACOM에, 광통신용은 루멘텀에 납품한다. 원재료는 PGC 등 283억원을 사 온다.",
+ "cust": [
+  {
+   "name": "RFHIC",
+   "code": "218410",
+   "m": "KR",
+   "share": null,
+   "conf": "공시",
+   "note": "모회사 — RF 통신용(GaN 트랜지스터) 패키지 주 공급처"
+  },
+  {
+   "name": "MACOM",
+   "code": "MTSI",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "RF 통신용 패키지 주 공급처 (미국 판매처 Metallife-USA 경유 영업)"
+  },
+  {
+   "name": "Lumentum",
+   "code": "LITE",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "광 펌프 모듈용 광통신 패키지 공급"
+  },
+  {
+   "name": "아이쓰리시스템",
+   "code": "214430",
+   "m": "KR",
+   "share": null,
+   "conf": "공시",
+   "note": "군수용 적외선 센서 패키지 주요 고객"
+  },
+  {
+   "name": "SCD (이스라엘)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "군수용 적외선 센서 패키지 주요 고객"
+  },
+  {
+   "name": "이오테크닉스",
+   "code": "039030",
+   "m": "KR",
+   "share": null,
+   "conf": "공시",
+   "note": "고출력 레이저용 패키지 납품 (DILAS·IPG·TRUMPF와 함께)"
+  },
+  {
+   "name": "IPG Photonics",
+   "code": "IPGP",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "고출력 레이저용 패키지 납품"
+  }
+ ],
+ "supp": [
+  {
+   "name": "A사 등 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "PGC(방열 소재) 등 원재료",
+   "share": null,
+   "conf": "공시",
+   "note": "2025 사업보고서 — PGC 및 기타 원재료 283억원(2024 206억원). 매입처 이름은 'A사 등'으로만 표기"
+  }
+ ],
+ "segs": [
+  {
+   "name": "군수용 장비부품",
+   "code": null,
+   "m": null,
+   "amt": 335.81,
+   "share": 52.4,
+   "note": "2025"
+  },
+  {
+   "name": "통신용 패키지",
+   "code": null,
+   "m": null,
+   "amt": 222.03,
+   "share": 34.65,
+   "note": "2025 — RF(GaN)·광통신, 2024년 89.6억원에서 +148%"
+  },
+  {
+   "name": "군수용 패키지",
+   "code": null,
+   "m": null,
+   "amt": 25.81,
+   "share": 4.03,
+   "note": "2025 — 적외선 센서용"
+  },
+  {
+   "name": "레이저용 패키지",
+   "code": null,
+   "m": null,
+   "amt": 4.15,
+   "share": 0.65,
+   "note": "2025 — 산업·의료 레이저"
+  },
+  {
+   "name": "기타",
+   "code": null,
+   "m": null,
+   "amt": 53.04,
+   "share": 8.27,
+   "note": "2025 — 자동차 전력모듈용 히트싱크 등"
+  }
+ ],
+ "unitSeg": "억원",
+ "sources": [
+  {
+   "t": "RF머트리얼즈 2025 사업보고서 (DART)",
+   "u": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001224"
+  }
+ ]
+}

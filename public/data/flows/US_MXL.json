@@ -1,0 +1,161 @@
+{
+ "m": "US",
+ "code": "MXL",
+ "name": "MAXLINEAR INC",
+ "at": "2026-10-15",
+ "by": "Claude 정기 조사",
+ "summary": "브로드밴드(케이블·광 모뎀 칩), 인프라(데이터센터 광 DSP 'Keystone'·무선 백홀), 와이파이·이더넷 칩을 판다. 2025년 매출 4.68억$(+30%) 중 고객 두 곳이 28%, 유통사 경유가 37%이고, 출하지 기준 82%가 아시아다. 공장이 없어 웨이퍼는 TSMC·UMC가, 패키징·테스트는 ASE·시그네틱스 등이 맡고, 매입처 상위 3곳이 재고 매입의 70%다.",
+ "cust": [
+  {
+   "name": "고객 A (비공개)",
+   "code": null,
+   "m": null,
+   "share": 16,
+   "conf": "공시",
+   "note": "2025 10-K — 16% (2024 12%, 2023 10%)"
+  },
+  {
+   "name": "고객 B (비공개)",
+   "code": null,
+   "m": null,
+   "share": 12,
+   "conf": "공시",
+   "note": "2025 10-K — 12% (2024년 10% 미만)"
+  },
+  {
+   "name": "아시아 유통사 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 37,
+   "conf": "공시",
+   "note": "2025 10-K — 유통사 경유 매출 37% (2024 44%, 2023 50%)"
+  },
+  {
+   "name": "하이퍼스케일 데이터센터 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "보도",
+   "note": "Keystone PAM4 광 DSP가 미국·아시아 여러 대형 하이퍼스케일러에 양산 중이라는 회사 설명"
+  }
+ ],
+ "supp": [
+  {
+   "name": "벤더 A (비공개)",
+   "code": null,
+   "m": null,
+   "item": "웨이퍼·완제품 중 하나",
+   "share": 32,
+   "conf": "공시",
+   "note": "2025 10-K — 재고 매입의 32% (2024 36%)"
+  },
+  {
+   "name": "벤더 B (비공개)",
+   "code": null,
+   "m": null,
+   "item": "웨이퍼·완제품 중 하나",
+   "share": 25,
+   "conf": "공시",
+   "note": "2025 10-K — 25% (2024 17%)"
+  },
+  {
+   "name": "벤더 C (비공개)",
+   "code": null,
+   "m": null,
+   "item": "웨이퍼·완제품 중 하나",
+   "share": 13,
+   "conf": "공시",
+   "note": "2025 10-K — 13%"
+  },
+  {
+   "name": "TSMC",
+   "code": "TSM",
+   "m": "US",
+   "item": "웨이퍼(대만)",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K '핵심 파운드리 파트너' — 장기 계약 없이 주문 단위 매입"
+  },
+  {
+   "name": "UMC",
+   "code": "UMC",
+   "m": "US",
+   "item": "웨이퍼",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K '핵심 파운드리 파트너' (대만·싱가포르)"
+  },
+  {
+   "name": "Intel",
+   "code": "INTC",
+   "m": "US",
+   "item": "턴키 완제품",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 일부 제품을 턴키(완제품)로 공급"
+  },
+  {
+   "name": "ASE",
+   "code": "ASX",
+   "m": "US",
+   "item": "패키징·테스트",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 패키징·테스트 주요 외주 (Greatek·SIGURD·SPIL과 함께)"
+  },
+  {
+   "name": "시그네틱스",
+   "code": "033170",
+   "m": "KR",
+   "item": "패키징·테스트",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 패키징·테스트 주요 외주업체로 명시"
+  }
+ ],
+ "segs": [
+  {
+   "name": "브로드밴드",
+   "code": null,
+   "m": null,
+   "amt": 204.4,
+   "share": 44,
+   "note": "2025 — 케이블·광 게이트웨이 칩"
+  },
+  {
+   "name": "인프라",
+   "code": null,
+   "m": null,
+   "amt": 148.2,
+   "share": 32,
+   "note": "2025 — 데이터센터 광 DSP·무선 백홀·스토리지 가속"
+  },
+  {
+   "name": "커넥티비티",
+   "code": null,
+   "m": null,
+   "amt": 78.0,
+   "share": 17,
+   "note": "2025 — 와이파이·이더넷"
+  },
+  {
+   "name": "산업·기타",
+   "code": null,
+   "m": null,
+   "amt": 37.1,
+   "share": 8,
+   "note": "2025 — 전력·인터페이스 칩, 2024년 74억$에서 축소"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "MaxLinear 2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1288469/000128846926000011/mxl-20251231.htm"
+  },
+  {
+   "t": "MaxLinear 2025 ARS",
+   "u": "https://www.sec.gov/Archives/edgar/data/1288469/000110465926039215/tm264159d3_ars.pdf"
+  }
+ ]
+}
