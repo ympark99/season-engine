@@ -1,0 +1,318 @@
+{
+  "m": "US",
+  "code": "SOXX",
+  "name": "iShares Semiconductor ETF",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "NYSE 반도체 지수를 따르는 약 30종목 규모의 대형 반도체 ETF로, 운용자산 규모는 경쟁 상품인 SMH보다 작다. 다음 분기 관건은 11월 5일 분할 거래 시작과 엔비디아·마이크론 실적에서 AI 수요가 이어지는지.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "보수 0.34%로 SMH(0.35%)보다 낮고 종목당 비중 상한으로 집중도가 낮으며, 올해 5월까지 수익률도 SMH를 앞섰다. 다만 운용자산은 SMH의 약 3분의 2 수준이고 5~7월 자금 유출 보도도 있어 자금 흐름은 엇갈린다."
+  },
+  "peers": [
+    {
+      "name": "VanEck Semiconductor ETF",
+      "m": "US",
+      "code": "SMH"
+    },
+    {
+      "name": "Direxion 반도체 3배 불 (SOXL)",
+      "m": "US",
+      "code": "SOXL"
+    },
+    {
+      "name": "SEMI (비교 상품)",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "운용자산 규모",
+      "me": "약 427억~478억 달러 (6월 말 fact sheet 약 478억, 9월 보도 약 427억 — 자료마다 다름)",
+      "vs": "SMH는 7월 말 약 706억 달러, SOXX 약 459억 달러",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        0,
+        9
+      ]
+    },
+    {
+      "k": "보수",
+      "me": "연 0.34%",
+      "vs": "SMH 연 0.35%",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "집중도",
+      "me": "약 30종목, 비중 상한 적용 — 엔비디아 약 6.8~8.4%",
+      "vs": "SMH 25종목, 엔비디아 약 19.7%",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        10
+      ]
+    },
+    {
+      "k": "올해 수익률",
+      "me": "5월 20일 기준 연초 대비 약 +72.9%",
+      "vs": "SMH 약 +56.7% (5월 기준, 이후 자료 확인 안 됨)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "자금 흐름",
+      "me": "5월 기준 연초 이후 +30.7억 달러, 7월 8일 하루 54억 달러 유입 보도",
+      "vs": "SMH 연초 이후 +47.2억 달러, 5~7월은 SMH로 자금이 몰렸다는 보도",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "변동성",
+      "me": "최근 1년 변동성 34.1%",
+      "vs": "SMH 30.7%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "tsmc_q3",
+      "what": "TSMC 3분기 실적 발표 (AI 반도체 수요 확인)",
+      "d": "2026-10-15",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "투자자 페이지 기준 10월 15일 발표, 분기 매출 가이던스 446억~458억 달러"
+        }
+      ]
+    },
+    {
+      "id": "soxx_split",
+      "what": "SOXX 주식분할 — 11/3 기준일, 11/5 분할 반영 거래 시작",
+      "d": "2026-11-05",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "8월 21일 신고, 분할 비율은 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "nvda_q3",
+      "what": "엔비디아 2027 회계연도 3분기 실적 (최대 편입 종목 중 하나)",
+      "d": "2026-11-18",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        4,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일은 회사 미확정, 달력 사이트 추정. 회사 가이던스 매출 약 1,080억 달러 ±2%"
+        }
+      ]
+    },
+    {
+      "id": "mu_q1",
+      "what": "마이크론 2027 회계연도 1분기 실적 (SOXX 상위 편입)",
+      "d": "2026-12-16",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정 추정(12/16 또는 12/23 자료 엇갈림)"
+        }
+      ]
+    },
+    {
+      "id": "sec232",
+      "what": "반도체 관세 확대 여부 (Section 232 후속)",
+      "d": "2027",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "1월 15일 첨단 AI 칩 25% 관세 부과, 더 넓은 관세는 가능성만 언급 — 시점 미정"
+        }
+      ]
+    },
+    {
+      "id": "nvda_q2",
+      "what": "엔비디아 2027 회계연도 2분기 실적 발표",
+      "d": "2026-08-26",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-08-26",
+          "s": "완료",
+          "note": "매출 962.2억 달러, 시장 예상 922.7억 달러 상회"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "순자산 (6월 말, issuer fact sheet)",
+      "v": "약 478억 달러",
+      "asof": "2026-06-30",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "보수",
+      "v": "연 0.34%",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "상위 편입 비중",
+      "v": "마이크론 8.5%, AMD 8.1%, 엔비디아 6.8%, 인텔 6.3%, 브로드컴 6.1%",
+      "asof": "2026-06-30",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "SMH 순자산 (비교)",
+      "v": "약 706억 달러",
+      "asof": "2026-07-23",
+      "src": [
+        9
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — SOXX는 SMH 대비 보수·집중도 우위, 규모·자금 흐름은 열세. 10/15 TSMC, 11/5 분할, 11/18 엔비디아 실적이 다음 확인 지점",
+      "src": [
+        0,
+        1,
+        8
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "iShares Semiconductor ETF fact sheet (2026-06-30 기준)",
+      "u": "https://www.ishares.com/us/literature/fact-sheet/soxx-ishares-semiconductor-etf-fact-sheet-en-us.pdf",
+      "d": "2026-06-30"
+    },
+    {
+      "t": "SMH vs SOXX: Which Semiconductor ETF Should You Buy in 2026?",
+      "u": "https://www.etf.com/sections/news/smh-vs-soxx-which-semiconductor-etf-should-you-buy-2026",
+      "d": "2026-05"
+    },
+    {
+      "t": "Daily ETF Flows: SMH Pulls In $1.8B",
+      "u": "https://www.etf.com/sections/daily-etf-flows/daily-etf-flows-smh-pulls-18b",
+      "d": "2026-07"
+    },
+    {
+      "t": "TSMC quarterly results (투자자 페이지)",
+      "u": "https://investor.tsmc.com/quarterly-results",
+      "d": "2026-10"
+    },
+    {
+      "t": "Nvidia earnings date (days.to)",
+      "u": "https://days.to/nvidia-earnings",
+      "d": "2026-10"
+    },
+    {
+      "t": "Micron earnings calendar (Wall Street Horizon)",
+      "u": "https://www.wallstreethorizon.com/micron-earnings-calendar",
+      "d": "2026-10"
+    },
+    {
+      "t": "Micron Form 8-K FY2026 Q4 press release",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312526000018/a2026q4ex991-pressrelease.htm",
+      "d": "2026-09"
+    },
+    {
+      "t": "United States imposes tariff on advanced computing chips (KPMG)",
+      "u": "https://kpmg.com/us/en/taxnewsflash/news/2026/01/united-states-imposes-tariff-advanced-computing-chips.html",
+      "d": "2026-01"
+    },
+    {
+      "t": "iShares Semiconductor ETF (SOXX) - Stock Splits",
+      "u": "https://www.digrin.com/stocks/detail/SOXX/stock_split",
+      "d": "2026-09"
+    },
+    {
+      "t": "Deep Dive: AI Fueling Semiconductor Surge (eToro)",
+      "u": "https://www.etoro.com/news-and-analysis/market-insights/deep-dives/deep-dive-ai-fueling-semiconductor-surge/",
+      "d": "2026-07-23"
+    },
+    {
+      "t": "iShares Semiconductor ETF analysis (TradingView)",
+      "u": "https://in.tradingview.com/symbols/BOATS-SOXX/analysis",
+      "d": "2026"
+    },
+    {
+      "t": "Nvidia Q2 FY2027 실적 (Webull)",
+      "u": "https://www.webull.com/blog/304-Nvidia-Q2-FY2027-Earnings-Beats-Revenue-EPS-Estimates-Guides-Q3-to-108B",
+      "d": "2026-08-26"
+    }
+  ]
+}

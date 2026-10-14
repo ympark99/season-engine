@@ -1,0 +1,413 @@
+{
+  "m": "US",
+  "code": "TSLA",
+  "name": "Tesla",
+  "theme": "자동차",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "전기차 판매는 BYD와 반기 기준 근소한 차로 1·2위를 다투는 수준에서 정체(3분기 인도 486,532대, 전년 대비 약 −2%)인 반면, 자율주행·로봇에 대한 투자 부담이 커져 2분기 영업이익률이 1.4%까지 내려왔다. 다음 분기 관건은 10월 3분기 실적의 마진·현금흐름과 로보택시·Cybercab 확대 속도.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "인도량·에너지저장 규모와 FSD·로보택시 면허 확보에서 앞서 있고 Semi·Cybercab 등 신규 라인을 동시에 가동 중. 다만 BYD에 반기 판매 1위를 내줬고 2분기 영업이익률 1.4%·잉여현금흐름 적자에 연 설비투자 250억달러 초과 전망으로 수익성이 약해졌으며, 로보택시는 Waymo보다 규모가 매우 작음"
+  },
+  "peers": [
+    {
+      "name": "BYD",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Waymo (Alphabet)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "GM",
+      "m": "US",
+      "code": "GM"
+    },
+    {
+      "name": "Ford",
+      "m": "US",
+      "code": "F"
+    },
+    {
+      "name": "Rivian",
+      "m": "US",
+      "code": "RIVN"
+    }
+  ],
+  "axes": [
+    {
+      "k": "전기차 판매량",
+      "me": "2026 상반기 인도 838,149대, 3분기 486,532대(전년 −약 2%)",
+      "vs": "BYD 상반기 승용 BEV 867,479대(1분기 Tesla, 2분기 BYD 우위)",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 총이익률 16.8%, 영업이익 3.98억달러(영업이익률 1.4%), 잉여현금흐름 약 −10.9억달러",
+      "vs": "자율주행·로봇 투자로 영업비용 +47%, 연 설비투자 250억달러 초과 전망",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "로보택시 규모",
+      "me": "오스틴·댈러스·휴스턴 운영, 무감독 차량 약 25대(추적 집계), 대규모 확대는 FSD v15 이후로 미룸",
+      "vs": "Waymo 2026-03 주간 유료 탑승 약 50만건, 연말 100만건 목표",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        6,
+        7
+      ]
+    },
+    {
+      "k": "FSD 규제 승인",
+      "me": "2026-04 네덜란드 RDW가 FSD(감독형) 승인, EU 전역 승인 추진",
+      "vs": "타사 유럽 승인 사례는 확인 안 됨. 미국은 NHTSA 저시정 FSD 조사 진행",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        9,
+        10,
+        15
+      ]
+    },
+    {
+      "k": "에너지저장",
+      "me": "3분기 13.7GWh 설치, Megapack 3·Megablock 휴스턴 2026 생산 예정",
+      "vs": "경쟁사 직접 비교 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1,
+        14
+      ]
+    },
+    {
+      "k": "중국·유럽 수요",
+      "me": "9월 상하이 생산 판매 95,366대(+약 5%, 11개월 연속 증가), 유럽 판매 회복",
+      "vs": "유럽 상반기 점유율 Tesla·BYD 각 약 2.4%",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        11,
+        3
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 마진·잉여현금흐름·설비투자",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "21일 장 마감 후 발표 보도, 다른 자료는 28일 추정 — 날짜 확정 미확인. 영업이익 컨센서스 약 6.6억달러, 총이익률 약 17.7%"
+        }
+      ]
+    },
+    {
+      "id": "fsd_v15",
+      "what": "FSD v15 출시 — 무감독 로보택시 대규모 확대의 전제",
+      "d": "2027-Q1",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 설명: 2026년 말 이른 시점~2027년 초 늦은 시점"
+        }
+      ]
+    },
+    {
+      "id": "cybercab",
+      "what": "Cybercab 양산 (Giga Texas, 회사 목표 4월 시작)",
+      "d": "2026-04",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "실제 양산 시작은 주요 매체로 확인 안 됨 — 램프 속도가 관건"
+        }
+      ]
+    },
+    {
+      "id": "optimus_v3",
+      "what": "Optimus 양산 시작 (Fremont, 회사 목표 7~8월)",
+      "d": "2026-Q3",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        13
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "시작 여부 보도 확인 안 됨. 초기 생산은 느릴 것이라고 회사가 설명"
+        }
+      ]
+    },
+    {
+      "id": "fsd_eu",
+      "what": "FSD 유럽연합 전역 승인",
+      "d": "2027",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "RDW가 EU 전역 승인 추진 통보. 일부 자료는 2027년 이후로 봄"
+        }
+      ]
+    },
+    {
+      "id": "customer_unsup",
+      "what": "고객 차량 무감독 FSD 지역별 단계 출시 (회사 추정 4분기)",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 발언 기반, 일정 미확정"
+        }
+      ]
+    },
+    {
+      "id": "megapack3",
+      "what": "Megapack 3·Megablock 휴스턴 생산 시작",
+      "d": "2026",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        14
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "8-K 표에는 텍사스 Megapack이 건설 중으로 기재"
+        }
+      ]
+    },
+    {
+      "id": "nhtsa_fsd",
+      "what": "NHTSA FSD 저시정 조사 진행",
+      "d": "2026",
+      "kind": "규제",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        15
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "최신 상태는 확인 안 됨 — 리콜·제한 여부가 위험 요인"
+        }
+      ]
+    },
+    {
+      "id": "q3_deliv",
+      "what": "3분기 생산·인도 발표 — 인도 486,532대, 에너지저장 13.7GWh",
+      "d": "2026-10-02",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "예상치(약 461,974대) 상회, 전년 대비 약 −2%, 재고 약 2.2만대 감소"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "3분기 인도량",
+      "v": "486,532대 (전년 −약 2%)",
+      "asof": "2026-09",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 영업이익률",
+      "v": "1.4% (영업이익 3.98억달러)",
+      "asof": "2026-06",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "2026 연 설비투자 전망",
+      "v": "250억달러 초과",
+      "asof": "2026-07",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "에너지저장 설치 (3분기)",
+      "v": "13.7GWh",
+      "asof": "2026-09",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "상반기 BEV BYD 대 Tesla",
+      "v": "867,479 대 838,149대",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 판매는 BYD와 박빙·정체, 수익성 약화, 10월 3분기 실적과 로보택시 확대(FSD v15)가 다음 확인 지점",
+      "src": [
+        0,
+        4,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Tesla beats expectations with Q3 2026 deliveries (486,532)",
+      "u": "https://electrek.co/2026/10/02/tesla-q3-2026-deliveries-486532/",
+      "d": "2026-10-02"
+    },
+    {
+      "t": "Tesla Delivers 486,532 Vehicles And Deploys 13.7 GWh Of Energy Storage In Q3 2026",
+      "u": "https://pulse2.com/tesla-delivers-486532-vehicles-and-deploys-13-7-gwh-of-energy-storage-in-q3-2026",
+      "d": "2026-10-02"
+    },
+    {
+      "t": "BYD overtakes Tesla again in Q2 2026 EV sales as global gap widens",
+      "u": "https://electriccarsreport.com/2026/07/byd-overtakes-tesla-again-in-q2-2026-ev-sales-as-global-gap-widens/",
+      "d": "2026-07"
+    },
+    {
+      "t": "BYD beats Tesla EV sales Q2 2026 deliveries reshape global market",
+      "u": "https://www.itechpost.com/articles/236556/20260703/byd-beats-tesla-ev-sales-q2-2026-deliveries-reshape-global-market.htm",
+      "d": "2026-07-03"
+    },
+    {
+      "t": "Tesla beats revenue expectations but misses on earnings in Q2 2026",
+      "u": "https://driveteslacanada.ca/news/tesla-q2-2026-earnings-results-beat-revenue-miss-eps/",
+      "d": "2026-07"
+    },
+    {
+      "t": "Tesla (TSLA) Q3 2026 Earnings Preview",
+      "u": "https://www.hudson-labs.com/research/tesla-q3-2026-earnings-preview-tsla-revenue-margins-outlook",
+      "d": "2026-10"
+    },
+    {
+      "t": "Tesla robotaxi fleet hits 25 as Musk defers scale to FSD v15",
+      "u": "https://www.automotiveworld.com/news/tesla-robotaxi-fleet-hits-25-as-musk-defers-scale-to-fsd-v15/",
+      "d": "2026"
+    },
+    {
+      "t": "Robotaxi statistics (Waymo 주간 유료 탑승)",
+      "u": "https://www.gradually.ai/en/robotaxi-statistics/",
+      "d": "2026"
+    },
+    {
+      "t": "Tesla Cybercab Production Will Begin In April 2026, Elon Musk Says",
+      "u": "https://insideevs.com/news/778232/tesla-cybercab-production-april-2026/",
+      "d": "2025"
+    },
+    {
+      "t": "Tesla finally secures FSD approval in the Netherlands",
+      "u": "https://driveteslacanada.ca/news/tesla-finally-secures-fsd-approval-in-the-netherlands/",
+      "d": "2026-04"
+    },
+    {
+      "t": "Tesla FSD Europe approval",
+      "u": "https://www.carscoops.com/2026/04/tesla-fsd-europe-approval/",
+      "d": "2026-04"
+    },
+    {
+      "t": "Tesla's China-made EV sales rise 5% in September as European demand recovers",
+      "u": "https://finviz.com/news/400764/teslas-china-made-ev-sales-rise-5-in-september-as-european-demand-recovers",
+      "d": "2026-10"
+    },
+    {
+      "t": "Long-awaited Tesla Semi enters volume production in Nevada",
+      "u": "https://www.automotiveworld.com/news/long-awaited-tesla-semi-enters-volume-production-in-nevada/",
+      "d": "2026-04"
+    },
+    {
+      "t": "Tesla is delaying Optimus V3 reveal over fears of copycats",
+      "u": "https://driveteslacanada.ca/news/tesla-delaying-optimus-v3-reveal-fears-copycats/",
+      "d": "2026"
+    },
+    {
+      "t": "Tesla, Inc. Form 8-K (생산능력 표: Megapack·Semi)",
+      "u": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003837/exhibit991.htm",
+      "d": "2026"
+    },
+    {
+      "t": "Tesla FSD Probe: NHTSA Grants 5-Week Breathing Room",
+      "u": "https://www.heygotrade.com/en/news/tesla-fsd-probe-nhtsa-grants-5-week-breathing-room/",
+      "d": "2026"
+    }
+  ]
+}
