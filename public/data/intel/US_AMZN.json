@@ -1,0 +1,355 @@
+{
+  "m": "US",
+  "code": "AMZN",
+  "name": "Amazon",
+  "theme": "인터넷",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "클라우드는 AWS가 점유율 약 28%로 1위를 지키며 2분기 성장률이 36.7%로 18분기 만에 가장 빨랐고, 미국 이커머스도 약 40% 점유로 선두다. 다음 분기 관건은 10월 말 3분기 실적에서 AWS 가속 유지 여부와 연 약 2,200억달러 규모 설비투자 부담, 위성인터넷 Leo 상용 개시 시점이다.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "클라우드 1위에 성장 가속, 백오피스 수주잔고 약 4,960억달러(보도)와 자체 칩 사업이 강점이고 미국 이커머스도 선두. 다만 설비투자 급증으로 최근 12개월 잉여현금흐름이 마이너스이고, FTC 반독점 재판(2027-03-29)과 Leo 지연 위험이 있다."
+  },
+  "peers": [
+    {
+      "name": "Microsoft",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Alphabet (Google Cloud)",
+      "m": "US",
+      "code": "GOOGL"
+    },
+    {
+      "name": "Walmart",
+      "m": "US",
+      "code": "WMT"
+    },
+    {
+      "name": "Temu (PDD)",
+      "m": "US",
+      "code": "PDD"
+    },
+    {
+      "name": "Starlink (SpaceX)",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "클라우드 점유율",
+      "me": "AWS 약 28% (전년 약 30%에서 하락, 1분기와 동일). 2분기 매출 422억달러, +36.7%",
+      "vs": "Azure 20~21%, Google Cloud 13~15% — 출처마다 차이",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        4,
+        1
+      ]
+    },
+    {
+      "k": "클라우드 성장 모멘텀",
+      "me": "AWS 성장률 5개 분기 연속 가속, 2분기 36.7%(18분기 최고). 영업이익 166억달러",
+      "vs": "시장 전체 2분기 +43%(보도)라 점유율은 소폭 하락",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        1,
+        4
+      ]
+    },
+    {
+      "k": "AI 자체 칩 (Trainium)",
+      "me": "칩 사업 연환산 매출 250억달러 초과(보도). Anthropic·OpenAI 다년 대규모 약정(규모는 2차 보도)",
+      "vs": "엔비디아 의존 경쟁사 대비 비용 구조 차별화, 외부 판매도 논의 중",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "AI 인프라 투자 부담",
+      "me": "2026년 현금 설비투자 약 2,200억달러로 상향, 2분기 542억달러, 12개월 잉여현금흐름 -76억달러",
+      "vs": "경쟁 하이퍼스케일러도 투자 확대 중이라 직접 비교 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        3,
+        1
+      ]
+    },
+    {
+      "k": "미국 이커머스",
+      "me": "점유율 약 40.5%(2차 집계)",
+      "vs": "월마트 약 10%, 둘의 합 약 51%로 월마트가 격차를 좁히는 중",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        9,
+        10
+      ]
+    },
+    {
+      "k": "위성인터넷 (Leo)",
+      "me": "위성 약 396기 운용, 3분기 상용 개시 목표였으나 7월 기준 미확정. FCC가 중간 배치 기한 면제, 전체 배치는 2029-07-30까지",
+      "vs": "스타링크는 이미 상용 서비스 중 (구체 수치는 확인 안 함)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        6,
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 — AWS 성장률 36.7% 초과 여부, 매출 가이던스 1,970억~2,020억달러 대비",
+      "d": "2026-10-29",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 발표일 미확정, 통상 패턴상 10월 29일 전후로 추정. 영업이익 가이던스 225억~265억달러"
+        }
+      ]
+    },
+    {
+      "id": "leo_vulcan",
+      "what": "Amazon Leo 첫 Vulcan 발사(LV-01, 위성 40기)",
+      "d": "2026-10-29",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "위키 목록상 NET 10월 29일, 확정 아님"
+        }
+      ]
+    },
+    {
+      "id": "leo_commercial",
+      "what": "Amazon Leo 상용 서비스 개시",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-07-02",
+          "s": "예정",
+          "note": "3분기 상용 개시 목표 보도"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "개시 발표는 아직 확인 안 됨 — 연내로 밀릴 수 있음"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기 실적 및 2027년 설비투자 가이던스",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 날짜 미확정"
+        }
+      ]
+    },
+    {
+      "id": "ftc_trial",
+      "what": "FTC 반독점(독점 행위) 재판 시작",
+      "d": "2027-03-29",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-09",
+          "s": "예정",
+          "note": "법원이 2027년 6월로 미루자는 아마존 요청을 기각, 3월 29일 재판일 유지"
+        }
+      ]
+    },
+    {
+      "id": "trainium_ext",
+      "what": "Trainium 외부 판매 및 Anthropic·OpenAI 약정 물량 가동",
+      "d": "2027",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "약정은 2027년부터라는 2차 보도, 1차 공시로 미확인"
+        }
+      ]
+    },
+    {
+      "id": "bdd",
+      "what": "프라임 빅딜 데이즈 (10월 6~7일)",
+      "d": "2026-10-07",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-07",
+          "s": "완료",
+          "note": "48시간 행사 종료. 결과 수치는 확인 안 됨"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "AWS 2분기 매출",
+      "v": "422억달러 (+36.7%)",
+      "asof": "2026-06",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "2026년 현금 설비투자",
+      "v": "약 2,200억달러 (상향)",
+      "asof": "2026-07",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "AWS 수주잔고",
+      "v": "약 4,960억달러 (2차 보도)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "3분기 영업이익 가이던스",
+      "v": "225억~265억달러",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "클라우드 점유율 (AWS)",
+      "v": "약 28%",
+      "asof": "2026-06",
+      "src": [
+        4
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 클라우드 1위·성장 가속으로 우위, 10월 말 3분기 실적과 설비투자 부담·Leo 상용 개시·FTC 재판(2027-03-29)이 확인 지점",
+      "src": [
+        0,
+        5,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "The Dates That Matter Most For Amazon Stock",
+      "u": "https://www.trefis.com/articles/617445/the-dates-that-matter-most-for-amazon-stock/2026-10-02",
+      "d": "2026-10-02"
+    },
+    {
+      "t": "Amazon Q2 2026 Earnings Call Highlights (GuruFocus)",
+      "u": "https://www.gurufocus.com/news/8993599/",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Amazon Q2 2026: AWS Momentum Accelerates as AI Investment Climbs (Futurum)",
+      "u": "https://futurumgroup.com/?p=93531",
+      "d": "2026-07"
+    },
+    {
+      "t": "Amazon's AI infrastructure bill just got $20B bigger (Fierce Network)",
+      "u": "https://www.fierce-network.com/cloud/memory-drives-amazon-capex-another-20b-2026",
+      "d": "2026-07"
+    },
+    {
+      "t": "Google Cloud 15 percent share, AWS falls 2026 (Tech Insider)",
+      "u": "https://tech-insider.org/google-cloud-15-percent-share-aws-falls-2026/",
+      "d": "2026"
+    },
+    {
+      "t": "Amazon's bid to delay US FTC monopolization trial rejected by judge (MLex)",
+      "u": "https://www.mlex.com/mlex/articles/2536525/amazon-s-bid-to-delay-us-ftc-monopolization-trial-rejected-by-judge",
+      "d": "2026-10-09"
+    },
+    {
+      "t": "Amazon Leo hits its mark for satellite internet service (Cosmic Log)",
+      "u": "https://cosmiclog.com/2026/07/02/amazon-leo-hits-its-mark-for-satellite-internet-service/",
+      "d": "2026-07-02"
+    },
+    {
+      "t": "List of Vulcan launches (Wikipedia)",
+      "u": "https://en.wikipedia.org/wiki/List_of_Vulcan_launches",
+      "d": "2026-10"
+    },
+    {
+      "t": "Amazon Prime Big Deal Days 2026 (About Amazon)",
+      "u": "https://www.aboutamazon.com/news/retail/prime-big-deal-days-best-deals-savings-2026",
+      "d": "2026-10"
+    },
+    {
+      "t": "US Ecommerce Market Shares 2026 (eMarketer)",
+      "u": "https://www.emarketer.com/content/us-ecommerce-market-shares-2026",
+      "d": "2026-05"
+    },
+    {
+      "t": "Ecommerce statistics report (SaleHoo)",
+      "u": "https://www.salehoo.com/reports/ecommerce-statistics",
+      "d": "2026"
+    }
+  ]
+}

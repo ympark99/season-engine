@@ -1,0 +1,329 @@
+{
+  "m": "US",
+  "code": "LITE",
+  "name": "Lumentum",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 데이터센터용 InP 레이저(EML·CW)에서 코히런트와 함께 상위 공급자이고, 수요가 공급을 넘는 상태라 출하량이 한계다. 다음 분기 관건은 11월 5일 발표할 FY27 1분기 실적에서 가이던스(매출 12.25~12.75억 달러)와 OCS 첫 1억 달러대 분기가 확인되는지.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "고속 EML(200G/레인)과 OCS·CPO용 고출력 레이저로 AI 광연결 핵심 부품을 쥐고 있고 EML 생산능력이 장기계약으로 소진됨. 반면 InP·부품 공급 제약으로 수요 대비 출하가 모자라고, 중국 InP 팹의 신규 진입과 OCS·CPO 매출이 아직 초기라는 점은 위험."
+  },
+  "peers": [
+    {
+      "name": "Coherent",
+      "m": "US",
+      "code": "COHR"
+    },
+    {
+      "name": "Broadcom",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "Mitsubishi Electric",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Source Photonics",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "InnoLight (중국 모듈사)",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "EML·CW 레이저 (데이터센터)",
+      "me": "200G/레인 EML이 EML 매출의 25% 넘고, 800G 출하 분기 최대. 생산능력은 장기계약으로 2027년까지 배정(경영진 설명)",
+      "vs": "코히런트·미쓰비시전기·소스포토닉스 등과 경쟁, 상위 5개사가 2024년 EML 매출 약 76%(시장조사 보고서). 개별 점유율은 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        0,
+        4,
+        8
+      ]
+    },
+    {
+      "k": "공급 능력 (InP)",
+      "me": "수요 대비 약 30% 부족 출하라고 경영진이 언급, 2026년 말까지 EML 생산능력 50%+ 증설 목표",
+      "vs": "코히런트도 InP 레이저 공급이 데이터센터 성장을 제약한다고 언급",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ]
+    },
+    {
+      "k": "광회선 스위치 (OCS)",
+      "me": "OCS 출하가 직전 분기 대비 2배, 다년 수조 원대 구매계약 기반. FY27 1분기에 첫 1억 달러대 분기 목표",
+      "vs": "코히런트 OCS의 비교 가능한 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        2
+      ]
+    },
+    {
+      "k": "CPO용 초고출력 레이저",
+      "me": "2026년 말 의미 있는 매출 시작 목표, 스케일업 CPO 첫 출하는 2027년 말 목표",
+      "vs": "브로드컴 등 실리콘 포토닉스 업체도 InP 레이저에 의존한다는 분석(의견)",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        2,
+        3
+      ]
+    },
+    {
+      "k": "중국 경쟁 압력",
+      "me": "중국 신규 InP 팹이 위협이라고 언급, CEO는 출력 일관성이 차별점이라고 설명",
+      "vs": "중국 모듈사가 상위 10개 중 7곳 차지, 다만 내부 EML·DSP 칩은 서방 업체가 장악. 미국 FCC가 중국산 트랜시버 금지를 검토 중",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        6,
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q1fy27_earn",
+      "what": "FY27 1분기 실적 발표 (가이던스 매출 12.25~12.75억 달러·영업이익률 39.5~40.5%)",
+      "d": "2026-11-05",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        5,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "10월 5일 발표일 공지, 장 마감 후"
+        }
+      ]
+    },
+    {
+      "id": "ocs_100m",
+      "what": "OCS 첫 1억 달러대 매출 분기 달성",
+      "d": "2026-11-05",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "FY27 1분기 목표, 11월 실적에서 확인"
+        }
+      ]
+    },
+    {
+      "id": "t1p6_ramp",
+      "what": "1.6T 광모듈용 EML 초기 램프 확대",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-11",
+          "s": "진행",
+          "note": "1.6T 램프가 FY27 1분기부터 강해져 2027년까지 지속된다는 설명"
+        }
+      ]
+    },
+    {
+      "id": "inp_expand",
+      "what": "EML 생산능력 50%+ 증설 (2025년 말 대비)",
+      "d": "2026-12",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "2026년 말까지 증설 목표 — 달성 여부는 미확인"
+        }
+      ]
+    },
+    {
+      "id": "cpo_laser",
+      "what": "CPO용 초고출력 레이저 의미 있는 매출 (2026년 말 목표)",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 말 약 5,000만 달러 수준이라는 보도(목표)"
+        }
+      ]
+    },
+    {
+      "id": "q2fy27_earn",
+      "what": "FY27 2분기 실적 발표 (날짜 미공지)",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년 2분기 발표가 2월 초였던 점에 기댄 추정"
+        }
+      ]
+    },
+    {
+      "id": "q4fy26_earn",
+      "what": "FY26 4분기 실적 발표 — 매출 약 10억 달러(+109%), 비GAAP 총마진 50.4%",
+      "d": "2026-08-11",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-11",
+          "s": "완료",
+          "note": "기대 상회, 1분기 가이던스 상향 제시"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "FY26 4분기 매출",
+      "v": "약 10.1억 달러 (전년 대비 +109%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FY27 1분기 매출 가이던스",
+      "v": "12.25~12.75억 달러 / EPS 4.05~4.35",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "비GAAP 총마진 (FY26 4분기)",
+      "v": "50.4%",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "수요 대비 출하 부족",
+      "v": "약 30% (경영진 설명)",
+      "asof": "2026-02",
+      "src": [
+        4
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 수요>공급 구도의 A급 레이저 공급자, 11월 5일 실적에서 OCS 1억 달러대와 1.6T 램프 확인이 관건",
+      "src": [
+        0,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Lumentum Q4 earnings call highlights (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/lumentum-q4-earnings-call-highlights-2026-08-11/",
+      "d": "2026-08-11"
+    },
+    {
+      "t": "Lumentum Q1 가이던스 매출 12.25~12.75억 달러, EPS 4.05~4.35",
+      "u": "https://goldesel.de/aktien/news/lumentum-legt-nach-ki-optik-quartal-zu-q1-umsatz-12251275-mio-usd-eps-405435",
+      "d": "2026-08"
+    },
+    {
+      "t": "Lumentum CEO가 말한 네 가지 성장 동력 (TIKR)",
+      "u": "https://www.tikr.com/blog/lumentum-ceo-just-told-jpmorgan-that-the-four-biggest-growth-drivers-havent-hit-yet",
+      "d": "2026"
+    },
+    {
+      "t": "InP Shortage Emerges as AI Optical Interconnect Bottleneck (TrendForce)",
+      "u": "https://trendforce.com/news/2026/08/06/news-inp-shortage-emerges-as-ai-optical-interconnect-bottleneck/",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Lumentum InP AI optics shortage (Xenospectrum)",
+      "u": "https://xenospectrum.com/lumentum-inp-ai-optics-shortage/",
+      "d": "2026"
+    },
+    {
+      "t": "Lumentum Announces Reporting Date for Fiscal First Quarter 2027 Financial Results",
+      "u": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-Reporting-Date-for-Fiscal-First-Quarter-2027-Financial-Results/default.aspx",
+      "d": "2026-10-05"
+    },
+    {
+      "t": "Chinese Optical Modules Own 7 of the Top 10 Seats (PhotonCap)",
+      "u": "https://photoncap.net/p/chinese-optical-modules-own-7-of",
+      "d": "2026"
+    },
+    {
+      "t": "FCC mulls banning China-sourced optical transceivers (Borecraft)",
+      "u": "https://borecraft.com/2026/08/04/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "AI Datacenter Networking Vendor Spotlight – Lumentum, Key Laser Supplier (TechInsights)",
+      "u": "https://techinsights.com/ja/node/61482",
+      "d": "2026"
+    },
+    {
+      "t": "Lumentum stock rises again as annual sales top $3bn (optics.org)",
+      "u": "https://optics.org/news/lumentum-stock-rises-again-as-annual-sales-top-3bn",
+      "d": "2026-08"
+    }
+  ]
+}

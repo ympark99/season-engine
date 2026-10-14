@@ -1,0 +1,62 @@
+{
+  "m": "US", "code": "META", "name": "Meta Platforms", "theme": "인터넷",
+  "at": "2026-10-14", "full": "2026-10-14", "by": "Claude 정기 조사",
+  "position": "광고 매출은 구글을 넘어서는 흐름(전망)이고 스마트 글래스는 선두지만, AI 모델은 챗GPT·제미나이보다 이용 기반이 약하고 투자·소송 비용 부담이 커졌다. 다음 분기 관건은 10월 말 3분기 실적의 지출 가이던스와 AI 투자 대비 이익 방어.",
+  "grade": { "g": "B", "label": "경쟁력 양호",
+    "why": "광고 성장(2분기 매출 608억 달러, +28%)과 글래스 점유율은 강점. 다만 AI 챗봇 단독 앱 이용은 경쟁사에 크게 뒤지고, 법적 비용·구조조정 비용으로 2분기 영업이익이 줄었으며 규제·청소년 소송 위험이 남아 있다." },
+  "peers": [
+    { "name": "알파벳(구글)", "m": "US", "code": "GOOGL" },
+    { "name": "아마존", "m": "US", "code": "AMZN" },
+    { "name": "스냅", "m": "US", "code": "SNAP" },
+    { "name": "핀터레스트", "m": "US", "code": "PINS" },
+    { "name": "틱톡(바이트댄스)", "m": null, "code": null },
+    { "name": "오픈AI", "m": null, "code": null }
+  ],
+  "axes": [
+    { "k": "디지털 광고 점유율", "me": "2026년 전 세계 순광고매출 2,434.6억 달러 전망, 점유율 26.8%", "vs": "구글 2,395.4억 달러(26.4%), 아마존 약 9%, 틱톡 약 4.8% (모두 전망)", "verdict": "선두권", "conf": "추정", "src": [4] },
+    { "k": "AI 모델·챗봇", "me": "4월 비공개 모델 Muse Spark 출시(미국 한정). 앱 일 평균 사용 약 9.5분, 미국 일간 이용 점유율 17.7%", "vs": "제미나이 월 이용자 10억 명 돌파(8월), 챗GPT 주간 12억 명 주장. 모바일 일간 이용자는 챗GPT·제미나이가 메타 AI 앱보다 크게 많음", "verdict": "열세", "conf": "보도", "src": [2, 5] },
+    { "k": "스마트 글래스", "me": "레이밴·오클리 메타 2025년 700만 대 이상 판매(에실로룩소티카 발표), 시장 점유율 약 69%(IDC 추정)", "vs": "공급 부족으로 레이밴 디스플레이 해외 출시 연기", "verdict": "우위", "conf": "보도", "src": [6] },
+    { "k": "AI 인프라 투자", "me": "2026년 자본지출 1,300억~1,450억 달러 가이던스로 보도(출처마다 달라 확인 필요). 오하이오 프로메테우스 2026년 가동 목표", "vs": "투자 부담이 이익을 압박(2분기 EPS 시장 예상 하회)", "verdict": "불확실", "conf": "보도", "src": [0, 7] },
+    { "k": "규제·소송 위험", "me": "FTC 반독점 1심 승소(2025-11) 후 FTC 항소. EU DMA 광고 동의 모델 새 방식 도입했으나 소비자단체가 위반 주장", "vs": "청소년 중독 소송: 학군 첫 대표 사건 합의(5월), 개인 사건 배심 과실 평결(6백만 달러 구글 합산)", "verdict": "열세", "conf": "보도", "src": [8, 9, 10] },
+    { "k": "차세대 기기(리얼리티랩스)", "me": "2분기 리얼리티랩스 영업손실 46.2억 달러, 매출 4.3억 달러", "vs": "헤드셋 신제품은 2027년 이후로 보도", "verdict": "불확실", "conf": "보도", "src": [1, 11] }
+  ],
+  "checkpoints": [
+    { "id": "q3_earn", "what": "3분기 실적 — 매출 가이던스 610억~640억 달러 달성, 지출·자본지출 가이던스", "d": "2026-10", "kind": "실적", "status": "예정", "conf": "공시", "src": [0],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "정확한 발표일은 확인 안 됨(작년은 10월 29일). 2분기 콜에서 3분기 매출 610억~640억 달러 가이던스 제시" } ] },
+    { "id": "ftc_appeal", "what": "FTC 반독점 항소심 진행", "d": "2026-Q4", "kind": "규제", "status": "진행", "conf": "보도", "src": [8],
+      "log": [ { "d": "2026-10-14", "s": "진행", "note": "1월 FTC 항소 방침 발표 이후 진행 상황은 확인 안 됨, 일정 미확정" } ] },
+    { "id": "eu_dma", "what": "EU 집행위의 광고 동의 모델(DMA) 판단", "d": "2026-Q4", "kind": "규제", "status": "예정", "conf": "추정", "src": [9],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "3월 소비자단체가 집행위에 시정 요구, 집행위 결정은 확인 안 됨. 시기는 추정" } ] },
+    { "id": "youth_trials", "what": "청소년 중독 소송 — 투손 학군 연방 재판", "d": "2027-01", "kind": "규제", "status": "예정", "conf": "추정", "src": [10],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "단일 보도 기준, 일정 확인 필요" } ] },
+    { "id": "prometheus", "what": "오하이오 프로메테우스 AI 클러스터 가동", "d": "2026", "kind": "기타", "status": "예정", "conf": "보도", "src": [7],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "2025년 발표 기준 2026년 가동 목표, 실제 가동 소식은 확인 안 됨" } ] },
+    { "id": "muse_next", "what": "Muse 차세대 모델 및 오픈 가중치 버전 공개", "d": "2026-Q4", "kind": "출시", "status": "예정", "conf": "추정", "src": [2],
+      "log": [ { "d": "2026-10-14", "s": "예정", "note": "회사는 차세대 개발 중·오픈 버전 계획이라고만 밝혔고 날짜는 없음" } ] },
+    { "id": "connect_2026", "what": "메타 커넥트 2026 — 신형 글래스 공개", "d": "2026-09-23", "kind": "출시", "status": "완료", "conf": "보도", "src": [11],
+      "log": [ { "d": "2026-05-28", "s": "예정", "note": "9월 23~24일 개최 발표" }, { "d": "2026-10-14", "s": "완료", "note": "행사 일정 종료. 실제 발표 제품 내용은 이번 조사에서 확인하지 못함" } ] }
+  ],
+  "metrics": [
+    { "k": "2분기 매출", "v": "608억 달러 (+28%)", "asof": "2026-06", "src": [3] },
+    { "k": "2분기 영업이익", "v": "187.8억 달러 (−8%, 법적 비용 24억·구조조정 11.8억 달러 포함)", "asof": "2026-06", "src": [3] },
+    { "k": "일간 활성 이용자(패밀리)", "v": "36억 명 (+3%)", "asof": "2026-06", "src": [3] },
+    { "k": "리얼리티랩스 영업손실", "v": "46.2억 달러", "asof": "2026-06", "src": [3] }
+  ],
+  "updates": [
+    { "d": "2026-10-14", "note": "전체 조사 — 광고·글래스는 강하고 AI 챗봇은 열세, 10월 말 3분기 실적과 지출 가이던스가 다음 확인 지점", "src": [0, 3] }
+  ],
+  "sources": [
+    { "t": "Meta stock tumbles 11% after hours — AI costs, soft Q3 outlook (Stocktwits)", "u": "https://stocktwits.com/news-articles/default/equity/meta-stock-tumbles-11-after-hours-soaring-ai-costs-squeeze-profits-and-soft-q3-outlook-disappoints/cZNTe7URJT8", "d": "2026-07-29" },
+    { "t": "Facebook (META) Reality Labs lost $4.62 billion in Q2 2026 (Shacknews)", "u": "https://www.shacknews.com/article/150184/facebook-meta-reality-labs-q2-2026-losses", "d": "2026-07" },
+    { "t": "Meta Hasn't Given Up on Open Source: Muse Spark Launches (NYU Shanghai)", "u": "https://rits.shanghai.nyu.edu/ai/meta-hasnt-given-up-on-open-source-muse-spark-launches-as-open-weight-plans-continue", "d": "2026-04" },
+    { "t": "Meta Reports Second Quarter 2026 Revenue Of $60.8 Billion (Pulse 2.0)", "u": "https://pulse2.com/meta-reports-second-quarter-2026-revenue-of-60-8-billion-up-28-percent-year-over-year/", "d": "2026-07-29" },
+    { "t": "Meta to surpass Google in digital ad revenue for first time (Marketing Dive, eMarketer 전망)", "u": "https://www.marketingdive.com/news/meta-to-surpass-google-in-digital-ad-revenue-for-first-time-emarketer/817384/", "d": "2026" },
+    { "t": "ChatGPT and Gemini keep growing as Meta's Muse nears 2 million daily users", "u": "https://cryptobriefing.com/chatgpt-gemini-growth-meta-muse-2-million/", "d": "2026" },
+    { "t": "EssilorLuxottica's sales soar as Meta partnership fuels AI smart glasses", "u": "https://t2online.in/tech/tech-news/essilorluxottica-s-sales-soar-as-meta-partnership-fuels-ai-smart-glasses-revolution/2003603", "d": "2026" },
+    { "t": "Meta unveils plans for multi-gigawatt datacenter clusters (TechRadar)", "u": "https://www.techradar.com/pro/meta-unveils-new-plans-for-multi-gigawatt-datacenter-clusters-the-size-of-manhattan", "d": "2025" },
+    { "t": "FTC says it will appeal Meta antitrust decision (WTOP/AP)", "u": "https://wtop.com/social-media/2026/01/ftc-says-it-will-appeal-meta-antitrust-decision/", "d": "2026-01-21" },
+    { "t": "Meta's latest Consent or Pay model continues to violate GDPR, DMA (Freevacy)", "u": "https://www.freevacy.com/news/beuc/metas-latest-consent-or-pay-model-continues-to-violate-gdpr-dma/7225", "d": "2026-03" },
+    { "t": "Meta settles first US case over school costs tied to youth mental health (Insurance Journal)", "u": "https://www.insurancejournal.com/news/national/2026/05/22/871046.htm", "d": "2026-05-22" },
+    { "t": "Meta Connect Event Set for September 23-24 (Road to VR)", "u": "https://roadtovr.com/meta-connect-2026-date-announcement/", "d": "2026-05-28" }
+  ]
+}
