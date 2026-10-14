@@ -1,0 +1,355 @@
+{
+  "m": "US",
+  "code": "PLTR",
+  "name": "Palantir Technologies",
+  "theme": "AI 소프트웨어",
+  "at": "2026-10-15",
+  "full": "2026-10-15",
+  "by": "Claude 정기 조사",
+  "position": "AI 플랫폼(AIP)으로 미국 상업·정부 양쪽에서 성장이 가속 중이며 2026년 2분기 매출은 전년 대비 93% 늘었다. 다음 분기 관건은 3분기 매출 가이던스(21.6억달러대) 달성과 높은 성장률이 이어지는지, 그리고 국방 프로그램(Maven 등) 정식화 진척.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "미국 상업 매출 +149%, 순달러유지율 157%, 조정 영업이익률 62%로 성장과 수익성이 동시에 높고 정부 쪽 입지도 굳어지는 중. 다만 정부 계약 의존과 계약 상한액(ceiling)이 실제 매출이 아니라는 점, 높은 기대치(밸류에이션 부담 보도)가 약점."
+  },
+  "peers": [
+    {
+      "name": "Snowflake",
+      "m": "US",
+      "code": "SNOW"
+    },
+    {
+      "name": "C3.ai",
+      "m": "US",
+      "code": "AI"
+    },
+    {
+      "name": "Microsoft (Fabric)",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Databricks",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "성장 속도",
+      "me": "2026년 2분기 매출 19.35억달러, 전년 대비 +93%. 2026 연간 매출 가이던스 81.5억달러대로 상향",
+      "vs": "비교 대상 데이터 플랫폼 업체의 동일 분기 수치는 이번 조사에서 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        14
+      ]
+    },
+    {
+      "k": "미국 상업 AI 도입",
+      "me": "미국 상업 매출 7.64억달러(+149%), 미국 상업 계약총액 21.3억달러(+153%), 순달러유지율 157%",
+      "vs": "Snowflake·Databricks 는 데이터 인프라 중심으로 일부 겹치고 협력도 함. Palantir 는 여러 시스템에 걸친 운영 의사결정에서 강하다는 평가(블로그 비교)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "k": "미국 정부·국방",
+      "me": "미국 정부 매출 8.09억달러(+90%). Maven 은 프로그램 정식화(program of record) 절차 진행, 육군이 계약 관리",
+      "vs": "정부 AI 소프트웨어 분야에서 직접 비교할 확인된 경쟁사 수치 없음",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "조정 영업이익률 62%, 룰 오브 40 점수 155%",
+      "vs": "C3.ai 는 수익성·일관성 의문이 제기된다는 보도",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ]
+    },
+    {
+      "k": "고객 기반 확대",
+      "me": "전체 고객 1,049곳(+24%), 상업 고객 870곳(+26%) — 자료마다 증가율이 다름",
+      "vs": "경쟁사 고객 수 비교 자료 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        8
+      ]
+    },
+    {
+      "k": "계약 규모의 확실성",
+      "me": "Maven 관련 계약 상한 약 130억달러, 육군 계약 규모는 보도마다 상이(최대 100억달러 vs 약 13억달러 미만)",
+      "vs": "상한액은 정부가 반드시 쓸 금액이 아님",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2_earn",
+      "what": "2026년 2분기 실적 발표 — 매출 +93%, 연간 가이던스 상향",
+      "d": "2026-08-03",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-08-03",
+          "s": "완료",
+          "note": "매출 19.35억달러, 미국 상업 +149%, 연간 매출 가이던스 81.5억달러대로 상향"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 발표 — 매출 가이던스 21.60~21.64억달러 달성 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        3,
+        4,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "발표일 미확정 — 자료에 따라 11월 2일 또는 9일. 회사 공식 일정 발표는 확인 안 됨(작년엔 10월 중순 공지)"
+        }
+      ]
+    },
+    {
+      "id": "maven_por",
+      "what": "Maven 정식 프로그램(program of record) 전환",
+      "d": "2026-09",
+      "kind": "규제",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-03-09",
+          "s": "예정",
+          "note": "국방부 부장관 메모로 정식화 결정, 2026 회계연도 말(9월 30일)까지 완료 예상"
+        },
+        {
+          "d": "2026-10-15",
+          "s": "진행",
+          "note": "완료 발표는 이번 조사에서 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "fy26_guide",
+      "what": "2026 연간 매출 가이던스 81.5억달러대 달성(미국 상업 34.24억달러 이상)",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        14
+      ],
+      "log": [
+        {
+          "d": "2026-08-03",
+          "s": "예정",
+          "note": "2분기 실적에서 상향한 목표. 4분기 실적 발표 때 확인"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026년 4분기·연간 실적 발표",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "발표일 미확정"
+        }
+      ]
+    },
+    {
+      "id": "army_ea",
+      "what": "육군 전사 계약(Enterprise Agreement) 집행 규모 확인",
+      "d": "2027",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "규모가 보도마다 달라 공식 계약 문서 확인이 필요"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "분기 매출 (2026 Q2)",
+      "v": "19.35억달러 (+93%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        2
+      ]
+    },
+    {
+      "k": "미국 상업 매출 (2026 Q2)",
+      "v": "7.64억달러 (+149%)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "순달러유지율",
+      "v": "157%",
+      "asof": "2026-06",
+      "src": [
+        8
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "21.60~21.64억달러",
+      "asof": "2026-08",
+      "src": [
+        0,
+        14
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-15",
+      "note": "전체 조사 — AIP 기반 미국 상업·정부 동반 고성장, 다음 확인 지점은 11월 3분기 실적(날짜 미확정)",
+      "src": [
+        0,
+        3,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Palantir 2026 Q2 earnings press release (8-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001321655/000132165526000039/a2026q2ex991pressrelease.htm",
+      "d": "2026-08-03"
+    },
+    {
+      "t": "Palantir reports Q2 2026 US comm revenue growth",
+      "u": "https://lasvegassun.com/news/2026/aug/03/palantir-reports-q2-2026-us-comm-revenue-growth-of/",
+      "d": "2026-08-03"
+    },
+    {
+      "t": "Palantir's Q2 Revenue Jumps 93% as U.S. Commercial Sales Rise 149%",
+      "u": "https://letsdatascience.com/news/palantirs-q2-revenue-jumps-93-as-us-commercial-sales-rise-14-90b0812e",
+      "d": "2026-08"
+    },
+    {
+      "t": "PLTR earnings date (Benzinga)",
+      "u": "https://www.benzinga.com/quote/PLTR/earnings",
+      "d": "2026-10"
+    },
+    {
+      "t": "PLTR earnings date (Earnings Whispers)",
+      "u": "https://www.earningswhispers.com/stocks/PLTR",
+      "d": "2026-10"
+    },
+    {
+      "t": "Palantir's Maven AI set for long-term Pentagon use",
+      "u": "https://www.cdomagazine.tech/us-federal-news-bureau/palantirs-maven-ai-set-for-long-term-pentagon-use",
+      "d": "2026-03"
+    },
+    {
+      "t": "Pentagon formalizes Palantir's Maven AI as a core military system",
+      "u": "https://www.3dtested.com/tech-industry/artificial-intelligence/pentagon-formalizes-palantirs-maven-ai-as-a-core-military-system-with-multi-year-funding-platforms-investment-grows-to-usd13-billion-from-usd480-million-in-2024",
+      "d": "2026-03"
+    },
+    {
+      "t": "Palantir Aktie Milliarden Programm (Army 프레임워크)",
+      "u": "https://www.boerse-express.com/news/articles/palantir-aktie-milliarden-programm-fix-893231",
+      "d": "2026"
+    },
+    {
+      "t": "Palantir Closes 220 Deals Worth At Least $1 Million As Revenue Jumps 93% For Q2 2026",
+      "u": "https://pulse2.com/palantir-closes-220-deals-worth-at-least-1-million-as-revenue-jumps-93-for-q2-2026/",
+      "d": "2026-08"
+    },
+    {
+      "t": "Palantir Competitors (Lambda Finance)",
+      "u": "https://www.lambdafin.com/articles/palantir-competitors",
+      "d": "2026"
+    },
+    {
+      "t": "Data Platform Comparison: Palantir vs Snowflake",
+      "u": "https://techstackipo.com/compare/palantir-vs-snowflake",
+      "d": "2026-04"
+    },
+    {
+      "t": "Palantir Announces Date of Third Quarter 2025 Earnings Release and Webcast",
+      "u": "https://www.businesswire.com/news/home/20251013150098/en/",
+      "d": "2025-10-13"
+    },
+    {
+      "t": "Palantir Announces Date of Second Quarter 2026 Earnings Release and Webcast",
+      "u": "https://www.barchart.com/story/news/3260036/palantir-announces-date-of-second-quarter-2026-earnings-release-and-webcast",
+      "d": "2026-07-13"
+    },
+    {
+      "t": "Palantir's otherworldly AI growth meets a sobering valuation reality",
+      "u": "https://www.kavout.com/market-lens/palantir-s-otherworldly-ai-growth-meets-a-sobering-valuation-reality",
+      "d": "2026-08"
+    },
+    {
+      "t": "Palantir's Q2 earnings call produced its largest ever guidance raise",
+      "u": "https://www.tikr.com/blog/palantirs-q2-earnings-call-produced-its-largest-ever-guidance-raise-heres-what-changed",
+      "d": "2026-08"
+    }
+  ]
+}
