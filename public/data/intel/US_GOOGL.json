@@ -1,0 +1,334 @@
+{
+  "m": "US",
+  "code": "GOOGL",
+  "name": "Alphabet",
+  "theme": "인터넷",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "검색 매출이 AI 시대에도 17% 늘고 클라우드가 82% 성장하며 AI 인프라·모델 양쪽에서 선두권이지만, 챗봇 이용자 수는 ChatGPT가 앞서고 반독점 소송과 연 2,000억달러 안팎 설비투자(가이던스) 부담이 남아 있다. 다음 분기 관건은 3분기 실적에서 클라우드 성장·마진과 설비투자 증가 속도.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "검색·광고 매출이 고성장을 유지하고 클라우드 점유율이 15%로 올랐으며 Gemini 월 이용자 9.5억명, 자율주행 Waymo는 주당 약 50만 유료 탑승으로 앞서 있다. 다만 챗봇 이용 비중은 ChatGPT 대비 열세이고 반독점 항소·설비투자 급증으로 마진 압박 위험이 있다."
+  },
+  "peers": [
+    {
+      "name": "Microsoft",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Amazon (AWS)",
+      "m": "US",
+      "code": "AMZN"
+    },
+    {
+      "name": "Meta Platforms",
+      "m": "US",
+      "code": "META"
+    },
+    {
+      "name": "OpenAI (ChatGPT)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Tesla (로보택시)",
+      "m": "US",
+      "code": "TSLA"
+    }
+  ],
+  "axes": [
+    {
+      "k": "검색·광고",
+      "me": "검색 및 기타 매출 633억달러(+17%), YouTube 광고 약 111억달러(+13%)",
+      "vs": "AI 챗봇의 검색 대체 위험은 있으나 매출 성장은 가속 중",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "클라우드",
+      "me": "2분기 매출 248억달러(+82%), 영업이익 88억달러, 수주잔고 약 5,140억달러. Synergy 기준 점유율 15%(보도)",
+      "vs": "AWS 28%, Azure 20% 수준(2차 보도). 구글은 최고 점유율 경신",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "k": "AI 챗봇 이용자",
+      "me": "Gemini 월간 이용자 9.5억명(2026년 2분기, 회사 발표 인용 보도)",
+      "vs": "ChatGPT는 10억명 돌파, 웹 방문 비중 Similarweb 기준 ChatGPT 약 54.7% 대 Gemini 약 27.4%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ]
+    },
+    {
+      "k": "자율주행",
+      "me": "Waymo 주당 약 50만 유료 탑승, 연말 100만 목표",
+      "vs": "Tesla 로보택시는 5월 보도 기준 오스틴 소수 무감독 차량 수준",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ]
+    },
+    {
+      "k": "규제·소송 위험",
+      "me": "광고기술 사건에서 AdX 강제 매각은 기각, 6년간 행위 제한·감시인 부과. 구글은 항소 방침",
+      "vs": "검색 사건은 양측 항소 중(보도)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ]
+    },
+    {
+      "k": "설비투자 부담",
+      "me": "2026년 설비투자 가이던스 1,950억~2,050억달러로 상향, 2027년 추가 증가 전망",
+      "vs": "3분기 영업이익률은 외부 클라우드 용량 비용으로 소폭 압박 전망(회사 설명)",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 — 클라우드 성장률·수주잔고·설비투자",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 일정 미확인, 시장 달력은 10월 28일 예상"
+        }
+      ]
+    },
+    {
+      "id": "adtech_appeal",
+      "what": "광고기술 사건 비공개 판결문 공개본·항소 진행",
+      "d": "2026-Q4",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "구글 항소 방침, 법무부 법적 대응 검토 중"
+        }
+      ]
+    },
+    {
+      "id": "waymo_1m",
+      "what": "Waymo 주당 100만 탑승 목표",
+      "d": "2026-12",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "연말 목표, 최신 주간 수치는 확인 못함(초중반 약 50만)"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기 실적 및 2027년 설비투자 가이던스",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 설비투자 추가 증가 전망 언급, 날짜 미정"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표",
+      "d": "2026-07-22",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-07-22",
+          "s": "완료",
+          "note": "매출 1,198억달러(+24%), 클라우드 +82%, 설비투자 가이던스 상향"
+        }
+      ]
+    },
+    {
+      "id": "adtech_remedy",
+      "what": "광고기술 사건 구제조치 결정 (AdX 매각 기각)",
+      "d": "2026-09-02",
+      "kind": "규제",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-09-02",
+          "s": "완료",
+          "note": "매각 대신 접근 확대·감시인·6년 제한"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "1,198억달러 (+24%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "Google Cloud 매출·수주잔고",
+      "v": "248억달러 (+82%) · 약 5,140억달러",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "클라우드 인프라 점유율",
+      "v": "15% (AWS 28%, Azure 20%)",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "2026 설비투자 가이던스",
+      "v": "1,950억~2,050억달러",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "Gemini 월간 이용자",
+      "v": "9.5억명",
+      "asof": "2026-06",
+      "src": [
+        3
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 검색·클라우드 고성장으로 우위, 챗봇 점유율·규제·설비투자가 변수",
+      "src": [
+        0,
+        2,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Alphabet Form 8-K Q2 2026 results (Exhibit 99.1)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm",
+      "d": "2026-07-22"
+    },
+    {
+      "t": "Alphabet Q2 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/alphabet-q2-earnings-call-highlights-2026-07-22/",
+      "d": "2026-07-22"
+    },
+    {
+      "t": "Google Cloud 15% share, AWS falls (Synergy 2026 Q2 요약)",
+      "u": "https://tech-insider.org/google-cloud-15-percent-share-aws-falls-2026/",
+      "d": "2026"
+    },
+    {
+      "t": "Gemini Tops 950 Million Monthly Users, Threatens ChatGPT's Lead",
+      "u": "https://pasqualepillitteri.it/en/news/8853/gemini-950-million-users-chatgpt",
+      "d": "2026"
+    },
+    {
+      "t": "ChatGPT vs Gemini Market Share 2026",
+      "u": "https://www.techmagnate.com/?p=58427",
+      "d": "2026-06"
+    },
+    {
+      "t": "Google should relax ad tech rules, appoint antitrust monitor, US judge finds",
+      "u": "https://www.thestar.com.my/tech/tech-news/2026/09/17/google-should-relax-ad-tech-rules-appoint-antitrust-monitor-us-judge-finds",
+      "d": "2026-09-17"
+    },
+    {
+      "t": "Google dodges ad tech breakup as judge imposes six-year oversight",
+      "u": "https://www.pymnts.com/cpi-posts/google-dodges-ad-tech-breakup-as-judge-imposes-six-year-oversight/",
+      "d": "2026-09"
+    },
+    {
+      "t": "Waymo Hits Half a Million Weekly Rides as Robotaxi Lead Widens",
+      "u": "https://ai2.work/blog/waymo-hits-half-a-million-weekly-rides-as-robotaxi-lead-widens",
+      "d": "2026"
+    },
+    {
+      "t": "Waymo Co-CEO Outlines Path to 1 Million Weekly Trips in 2026",
+      "u": "https://amp.claimsjournal.com/news/national/2026/02/12/335668.htm",
+      "d": "2026-02-12"
+    },
+    {
+      "t": "Alphabet earnings calendar (Q3 2026 예상일)",
+      "u": "https://www.financecalendar.com/?p=2197",
+      "d": "2026"
+    },
+    {
+      "t": "Google Cloud grew last quarter (Motley Fool)",
+      "u": "https://www.fool.com/investing/2026/09/09/google-cloud-grew-quarter-why-amazon-microsoft/",
+      "d": "2026-09-09"
+    }
+  ]
+}
