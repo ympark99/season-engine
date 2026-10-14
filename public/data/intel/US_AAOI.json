@@ -1,0 +1,370 @@
+{
+  "m": "US",
+  "code": "AAOI",
+  "name": "Applied Optoelectronics",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "데이터센터용 800G·1.6T 광트랜시버를 미국 텍사스 자체 레이저 팹과 함께 키우는 중견 공급사로, 2분기 매출이 전년 대비 86% 늘고 비GAAP 흑자로 돌아섰다. 규모는 Innolight·Eoptolink 등 중국 업체에 크게 못 미치며, 다음 분기 관건은 3분기 가이던스(매출 2.55억~2.9억 달러) 달성과 1.6T 첫 납품, 연말 월 65만 개 생산능력 목표 진척.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "자체 InP 레이저 수직계열화와 미국 내 생산, 수요가 생산능력을 2027년 중반까지 웃돈다는 회사 설명은 강점. 다만 트랜시버 매출 규모는 상위 중국·미국 업체보다 훨씬 작고, 대형 고객 의존과 과거 펌웨어 문제로 인한 램프업 지연, 레이저 생산능력 제약이 약점."
+  },
+  "peers": [
+    {
+      "name": "Coherent",
+      "m": "US",
+      "code": "COHR"
+    },
+    {
+      "name": "Lumentum",
+      "m": "US",
+      "code": "LITE"
+    },
+    {
+      "name": "Innolight(중선쉬촹)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Eoptolink(이쉥광전)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Fabrinet",
+      "m": "US",
+      "code": "FN"
+    }
+  ],
+  "axes": [
+    {
+      "k": "수직계열화(자체 레이저)",
+      "me": "자체 레이저 팹(텍사스 슈거랜드)에서 칩부터 모듈까지 생산. 텍사스 레이저 생산능력을 2027년 중반까지 3배 이상으로 늘릴 목표",
+      "vs": "Innolight 등은 레이저·광칩을 Coherent·Lumentum 등 외부에서 조달(보도). Coherent·Lumentum도 자체 칩 보유",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "k": "800G·1.6T 램프업",
+      "me": "2분기 800G 매출 1,280만 달러(데이터센터 매출의 11.9%), 직전 분기 대비 2배 이상. 1.6T는 3분기 후반 출하 예상",
+      "vs": "상위 업체는 2025년에 이미 수십억 달러 규모 트랜시버 매출(Innolight 53억, Eoptolink 35억 달러)",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "k": "생산능력",
+      "me": "월 약 20만 개 수준, 연말 800G·1.6T 월 약 65만 개 생산 목표. 휴스턴 일대 90만 제곱피트로 확장, 수요가 2027년 중반까지 공급을 넘는다고 회사 설명",
+      "vs": "Innolight는 2025년 매출 53억 달러로 규모 격차 큼",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ]
+    },
+    {
+      "k": "공급망·지정학(미국 내 생산)",
+      "me": "미국 텍사스 중심 생산. FCC가 중국산 신규 트랜시버 수입 금지를 검토 중이라는 보도로 수혜 기대가 있으나 안은 미공개",
+      "vs": "Innolight는 글로벌 데이터센터 트랜시버 점유율 약 27%(보도)로 규제의 최대 대상. Counterpoint는 서방 업체가 단기에 중국 물량을 대체하기 어렵다고 분석",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "k": "수익성 모멘텀",
+      "me": "2분기 매출 1.919억 달러(전년 대비 +86%), 비GAAP 흑자 전환. 3분기 비GAAP 매출총이익률 29~30.5%·EPS 0.11~0.26달러 가이던스",
+      "vs": "경쟁사 수익성 비교 자료는 확인 못함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "레이저 공급 병목",
+      "me": "CFO가 InP 팹 용량을 업계 핵심 제약으로 지목",
+      "vs": "Coherent·Lumentum은 레이저·칩 공급자로 중국 모듈사도 의존(보도)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        10,
+        8
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 — 가이던스(매출 2.55억~2.9억 달러) 달성 여부",
+      "d": "2026-11-05",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        9,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "제3자 사이트 기준 11월 5일 예상, 회사 공식 일정 공지는 미확인"
+        }
+      ]
+    },
+    {
+      "id": "t16_ship",
+      "what": "1.6T 트랜시버 첫 대량 납품 (대형 하이퍼스케일 고객)",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "3분기 후반 출하 시작·연내 납품 완료 예상(회사 설명). 출하 시작 발표는 미확인"
+        }
+      ]
+    },
+    {
+      "id": "cap_650k",
+      "what": "800G·1.6T 월 약 65만 개 생산능력 도달 목표",
+      "d": "2026-12",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "연말까지 도달 목표"
+        }
+      ]
+    },
+    {
+      "id": "sl_fab",
+      "what": "슈거랜드 신규 시설 레이저 생산 확대",
+      "d": "2026-H2",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "신규 시설 2026년 중후반 확대 예정, 레이저 생산능력 2027년 중반까지 3배 이상 목표"
+        }
+      ]
+    },
+    {
+      "id": "fcc_rule",
+      "what": "FCC 중국산 광트랜시버 신규 모델 수입 금지안 공개 여부",
+      "d": "2026-Q4",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "8월 보도: 연말 공표 희망, 수정·철회 가능. 수혜 여부는 최종 범위에 달림"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기 실적 및 2027년 가이던스",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 일정 미공지"
+        }
+      ]
+    },
+    {
+      "id": "cap_2027",
+      "what": "휴스턴 일대 확장 완료 — 월 최대 70만 개, 레이저 팹 약 350% 증설 목표",
+      "d": "2027-12",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 말 목표"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 — 비GAAP 흑자 전환",
+      "d": "2026-08-06",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-06",
+          "s": "완료",
+          "note": "매출 1.919억 달러, 5분기 연속 최고 매출"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "1.919억 달러 (전년 대비 +86%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "2.55억~2.9억 달러, 비GAAP 매출총이익률 29~30.5%",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 800G 매출",
+      "v": "1,280만 달러 (데이터센터 매출의 11.9%)",
+      "asof": "2026-06",
+      "src": [
+        5
+      ]
+    },
+    {
+      "k": "연말 생산능력 목표",
+      "v": "800G·1.6T 월 약 65만 개",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 2분기 매출 +86%·흑자 전환, 다음 확인은 11월 3분기 실적과 1.6T 첫 납품, FCC 중국산 규제안",
+      "src": [
+        0,
+        1,
+        7
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Applied Optoelectronics 8-K — 2026년 2분기 실적 발표문",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826006055/aaoi_ex9901.htm",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "AAOI updates Q3 2026 earnings guidance (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/applied-optoelectronics-nasdaqaaoi-updates-q3-2026-earnings-guidance-2026-08-06/",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Applied Optoelectronics' 800G Ramp: Key Catalyst to Aid 2026 Growth (Nasdaq/Zacks)",
+      "u": "https://www.nasdaq.com/articles/applied-optoelectronics-800g-ramp-key-catalyst-aid-2026-growth",
+      "d": "2026"
+    },
+    {
+      "t": "AOI Expands Its Houston-Area Footprint to 900,000 Square Feet",
+      "u": "https://investors.ao-inc.com/node/16916",
+      "d": "2026"
+    },
+    {
+      "t": "AOI Awarded $20.9M Texas Semiconductor Innovation Fund Grant",
+      "u": "https://appliedoptoelectronics.gcs-web.com/node/16971",
+      "d": "2026"
+    },
+    {
+      "t": "LightTrends — May 2026 Optical Vendor Landscape (LightCounting)",
+      "u": "https://lightcounting.com/newsletter/en/may-2026-optical-vendor-landscape-376",
+      "d": "2026-05"
+    },
+    {
+      "t": "FCC mulls banning China-sourced optical transceivers (Borecraft)",
+      "u": "https://borecraft.com/2026/08/04/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "FCC Reportedly Drafting Ban on Chinese Optical Transceivers (eWeek)",
+      "u": "https://www.eweek.com/news/fcc-chinese-optical-transceiver-ban-ai-data-centers/",
+      "d": "2026-08"
+    },
+    {
+      "t": "Counterpoint Research — FCC China ban AI component",
+      "u": "https://counterpointresearch.com/en/insights/fcc-china-ban-ai-component",
+      "d": "2026-08"
+    },
+    {
+      "t": "Applied Optoelectronics 실적 발표 예정일 (Investor Signals)",
+      "u": "https://www.investorsignals.com/?p=51166",
+      "d": "2026-10"
+    },
+    {
+      "t": "Applied Optoelectronics CFO flags laser bottleneck (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/applied-optoelectronics-cfo-flags-laser-bottleneck-as-hyperscalers-push-800g-and-16t-optics-2026-03-03/",
+      "d": "2026-03-03"
+    },
+    {
+      "t": "AOI posts record Q1 revenue as 400G/800G AI optics demand accelerates (Converge Digest)",
+      "u": "https://convergedigest.com/aoi-posts-record-q1-revenue-as-400g-800g-ai-optics-demand-accelerates/",
+      "d": "2026-05"
+    }
+  ]
+}
