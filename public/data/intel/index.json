@@ -2970,6 +2970,54 @@
    }
   ]
  },
+ "US:MSTR": {
+  "name": "Strategy (구 MicroStrategy)",
+  "theme": "코인",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "grade": {
+   "g": "B",
+   "label": "경쟁력 양호",
+   "why": "보유량·달러 준비금·우선주 시장 접근성은 동종 비트코인 보유 기업 중 가장 크다. 다만 STRC가 액면 아래로 거래되고 mNAV가 낮아(6월 보도 1.03배) 신규 자금 조달 여력이 줄었고, 배당 재원으로 비트코인을 팔기 시작했으며 MSCI 지수 편출 위험이 남아 있다."
+  },
+  "cp": [
+   {
+    "id": "msci_result",
+    "d": "2026-10-16",
+    "what": "MSCI 비운영자산 보유 기업 협의 결과 발표 (11월 지수 정기변경 반영)",
+    "kind": "규제",
+    "status": "예정"
+   },
+   {
+    "id": "msci_effective",
+    "d": "2026-11",
+    "what": "MSCI 11월 정기변경 적용 (편출 여부)",
+    "kind": "규제",
+    "status": "예정"
+   },
+   {
+    "id": "q3_earn",
+    "d": "2026-10",
+    "what": "2026년 3분기 실적 — 비트코인 평가손익, 달러 준비금, 배당 재원",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "metaplanet_super",
+    "d": "2026-Q4",
+    "what": "Metaplanet의 미국 보유 플랫폼(Superplanet) 설립 종결 — 경쟁 구도 변화",
+    "kind": "기타",
+    "status": "예정"
+   },
+   {
+    "id": "q4_earn",
+    "d": "2027-Q1",
+    "what": "2026년 4분기·연간 실적",
+    "kind": "실적",
+    "status": "예정"
+   }
+  ]
+ },
  "US:MU": {
   "name": "Micron Technology",
   "theme": "메모리",

@@ -1,0 +1,348 @@
+{
+  "m": "US",
+  "code": "MSTR",
+  "name": "Strategy (구 MicroStrategy)",
+  "theme": "코인",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "기업 비트코인 보유량 1위(약 848,250 BTC)로 규모는 압도적이지만, 2026년 들어 우선주(STRC) 배당 재원을 위해 비트코인을 일부 매각하는 체제로 바뀌었고 달러 준비금(약 48.8억 달러)으로 버티는 구조다. 이번 분기 관건은 10월 중순 MSCI 협의 결과와 10월 말 3분기 실적(비트코인 평가손익).",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "보유량·달러 준비금·우선주 시장 접근성은 동종 비트코인 보유 기업 중 가장 크다. 다만 STRC가 액면 아래로 거래되고 mNAV가 낮아(6월 보도 1.03배) 신규 자금 조달 여력이 줄었고, 배당 재원으로 비트코인을 팔기 시작했으며 MSCI 지수 편출 위험이 남아 있다."
+  },
+  "peers": [
+    {
+      "name": "Twenty One Capital",
+      "m": "US",
+      "code": "XXI"
+    },
+    {
+      "name": "MARA Holdings",
+      "m": "US",
+      "code": "MARA"
+    },
+    {
+      "name": "Metaplanet",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "iShares Bitcoin Trust (비트코인 현물 ETF)",
+      "m": "US",
+      "code": "IBIT"
+    }
+  ],
+  "axes": [
+    {
+      "k": "비트코인 보유 규모",
+      "me": "848,250 BTC, 평균 매입단가 약 75,444달러(2026-10-11 공시, 표가 깨져 재확인 필요)",
+      "vs": "Twenty One Capital 약 43,514 BTC, Metaplanet 약 43,000 BTC(7월) — 목표는 연말 100,000 BTC",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        1,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "배당 재원·유동성",
+      "me": "달러 준비금 48.8억 달러(10/11), 2분기 말 대비 증가. 올해 누적 약 2.18억 달러어치 비트코인을 배당용으로 매각(7월 말 기준)",
+      "vs": "동종 기업 대부분은 우선주 배당 부담이 작거나 없음",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        9,
+        10
+      ]
+    },
+    {
+      "k": "자본 조달력(mNAV·STRC)",
+      "me": "6월 말 mNAV 1.03배, STRC 액면 100달러 대비 약 25% 할인(74달러대) 보도. STRC 배당률 12%로 인상",
+      "vs": "mNAV 1.22배 이상일 때만 보통주 발행 후 비트코인 매입이 이득이라는 분석 — 현재는 그 아래일 수 있음(10월 값 미확인)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8,
+        0
+      ]
+    },
+    {
+      "k": "지수·규제 위험(MSCI)",
+      "me": "1월 MSCI가 편출 계획을 철회했으나 9월 새 협의안(영업자산 50% 미만 기업 대상 재무비율 심사) 제시, 회사는 철회 요구",
+      "vs": "동종 기업도 같은 심사 대상",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        3,
+        4
+      ]
+    },
+    {
+      "k": "부채 구조",
+      "me": "전환사채 67억 달러로 분기 중 18% 감소",
+      "vs": "비교 가능한 동종 수치 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "비트코인 대체 수단(현물 ETF)",
+      "me": "주식으로 비트코인 노출 + 우선주 수익률 상품 제공",
+      "vs": "현물 ETF는 수수료·괴리가 낮은 직접 노출 수단 — 비교 수치 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "msci_result",
+      "what": "MSCI 비운영자산 보유 기업 협의 결과 발표 (11월 지수 정기변경 반영)",
+      "d": "2026-10-16",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "의견 접수 9/30 마감, 결과 10/16까지, 변경은 11월 정기변경 때 반영 (회사 반발 서한)"
+        }
+      ]
+    },
+    {
+      "id": "msci_effective",
+      "what": "MSCI 11월 정기변경 적용 (편출 여부)",
+      "d": "2026-11",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "협의 결과에 따라 달라짐"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 — 비트코인 평가손익, 달러 준비금, 배당 재원",
+      "d": "2026-10",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "10월 말 발표 관행 기준 추정, 정확한 날짜는 회사 확정 전"
+        }
+      ]
+    },
+    {
+      "id": "metaplanet_super",
+      "what": "Metaplanet의 미국 보유 플랫폼(Superplanet) 설립 종결 — 경쟁 구도 변화",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "4분기 종결 예상 보도"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026년 4분기·연간 실적",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "과거 발표 시기 기준 추정"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2026년 2분기 실적 발표 (달러 준비금 24억 달러, 비트코인 매각 공개)",
+      "d": "2026-07-30",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-07-30",
+          "s": "완료",
+          "note": "비트코인 평가손실 83.2억 달러, 올해 누적 BTC 수익률 4.5%"
+        }
+      ]
+    },
+    {
+      "id": "msci_close",
+      "what": "MSCI 협의 의견 접수 마감",
+      "d": "2026-09-30",
+      "kind": "규제",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-09-30",
+          "s": "완료",
+          "note": "회사는 협의안 철회 요구"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "비트코인 보유량",
+      "v": "848,250 BTC (평균단가 약 75,444달러)",
+      "asof": "2026-10-11",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "달러 준비금",
+      "v": "48.8억 달러 (현금 6.4억 달러)",
+      "asof": "2026-10-11",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "올해 누적 BTC 수익률",
+      "v": "4.5%",
+      "asof": "2026-07-30",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "전환사채 잔액",
+      "v": "67억 달러 (분기 중 −18%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 보유량 1위·달러 준비금 확대, 다만 배당용 BTC 매각과 MSCI 협의 결과(10/16)가 당면 관건",
+      "src": [
+        1,
+        4,
+        0
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Strategy Announces Second Quarter 2026 Financial Results",
+      "u": "https://www.strategy.com/press/strategy-announces-second-quarter-2026-financial-results_07-30-2026",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Strategy 8-K (10/5~10/11 매입·보유 현황)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001050446/000119312526419726/mstr-ex99_1.htm",
+      "d": "2026-10-12"
+    },
+    {
+      "t": "Strategy 8-K (10/1~10/4 매입·보유 현황)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001050446/000119312526413164/mstr-20261005.htm",
+      "d": "2026-10-05"
+    },
+    {
+      "t": "MSCI drops plan to exclude digital asset treasury firms, to launch broader review",
+      "u": "https://www.investing.com/news/stock-market-news/msci-drops-plan-to-exclude-digital-asset-treasury-firms-to-launch-broader-review-4433793",
+      "d": "2026"
+    },
+    {
+      "t": "Strategy hits back at MSCI proposal, calling it 'discriminatory' against DATs",
+      "u": "https://theblock.co/news/business/2026-09-01-strategy-hits-back-against-msci-413201",
+      "d": "2026-09-01"
+    },
+    {
+      "t": "Metaplanet expands bitcoin treasury strategy (Super League)",
+      "u": "https://cointelegraph.com/news/metaplanet-expands-bitcoin-treasury-strategy-super-league",
+      "d": "2026"
+    },
+    {
+      "t": "Japan's MetaPlanet Now 3rd Largest Bitcoin Treasury Company",
+      "u": "https://bitcointreasuries.net/news/japans-metaplanet-now-3rd-largest-bitcoin-treasury-company",
+      "d": "2026"
+    },
+    {
+      "t": "Strategy Death Spiral Debunked: STRC at $75 amid Bitcoin slump",
+      "u": "https://www.kucoin.com/blog/en-strategy-death-spiral-debunked-why-mstr-s-crypto-flywheel-paused-as-strc-preferred-stock-hits-75-amid-bitcoin-slump",
+      "d": "2026-06"
+    },
+    {
+      "t": "Strategy's Earnings Call Recap: STRC Credit Improves, MSTR/BTC Arbitrage Opens",
+      "u": "https://www.bitmex.com/zh-hant/blog/strategy-earning-recap",
+      "d": "2026"
+    },
+    {
+      "t": "Michael Saylor's Strategy sold 32 bitcoin for $2.5 million to fund dividend payments",
+      "u": "https://www.coindesk.com/markets/2026/06/01/strategy-sold-32-btc-for-usd2-5-million-in-late-may-filing-shows",
+      "d": "2026-06-01"
+    },
+    {
+      "t": "Strategy Sells 1,638 Bitcoin for $104.7M to Fund STRC Stock and Dividends",
+      "u": "https://www.kucoin.com/news/flash/strategy-sells-1-638-bitcoin-for-104-7m-to-fund-strc-stock-and-dividends",
+      "d": "2026-08"
+    },
+    {
+      "t": "Leaderboard: Top 26 Bitcoin Treasury Companies",
+      "u": "https://info.arkm.com/announcements/leaderboard-top-26-bitcoin-treasury-companies",
+      "d": "2026-01"
+    },
+    {
+      "t": "MSTR earnings (Q3 발표일 추정 정보)",
+      "u": "https://www.tipranks.com/stocks/MSTR/earnings",
+      "d": "2026-10"
+    }
+  ]
+}
