@@ -211,7 +211,7 @@ table.rtbl tr.rrow:hover td,table.rtbl tr.rrow.on td{background:var(--gold-soft)
 input.thin{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:3px 7px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .box{background:var(--soft);border-radius:14px;padding:14px 16px}
-.cpl{display:grid;gap:4px;max-height:220px;overflow-y:auto;scrollbar-width:thin}.cpl .cp{display:grid;grid-template-columns:62px minmax(70px,auto) 1fr auto;gap:8px;align-items:baseline;font-size:13px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.cpl{display:grid;gap:4px;max-height:220px;overflow-y:auto;scrollbar-width:thin}.cpl .cp{display:grid;grid-template-columns:minmax(62px,max-content) minmax(70px,auto) 1fr auto;gap:8px;align-items:baseline;font-size:13px;padding:3px 0;border-bottom:1px dashed var(--line)}
 .cpl .cp:last-child{border-bottom:0}.cpd{font-weight:800;font-variant-numeric:tabular-nums}.cpd.od{color:var(--pos)}.cpd.soon{color:var(--gold-ink)}
 .ivb{display:inline-block;font-size:11px;font-weight:800;border-radius:6px;padding:1px 7px;border:1px solid var(--line);white-space:nowrap}
 .ivb.up{color:var(--pos);border-color:var(--pos)}.ivb.dn{color:var(--neg);border-color:var(--neg)}.ivb.eq{color:var(--ink2)}.ivb.uk{color:var(--muted);border-style:dashed}
@@ -1914,12 +1914,16 @@ function drawFit(S){
   const fc=F.grade===3?'t-good':F.grade===2?'t-warn':F.grade===1?'t-crit':'t-mid';
   const ACT={봄:['진입 검토','t-good'],여름:['보유','t-good'],가을:['비중 축소','t-warn'],겨울:['회피','t-crit']};
   const a=F.grade>=2?ACT[S.season]:F.grade===1?['계절 신호 참고만','t-mid']:null;
-  $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}<span class="why">${esc(F.why)}</span>`;
+  $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}${gradeTag(S)}<span class="why">${esc(F.why)}</span>`;
 }
+/* 경쟁·기술 종합 등급 태그 (index.json 의 grade — 매일 아침 정기 조사가 판단) */
+function gradeTag(S){const g=INTEL?.[K(S)]?.grade;if(!g||!g.g)return '';const c={A:'t-good',B:'t-good',C:'t-mid',D:'t-crit'}[g.g]||'t-mid';
+  return `<span class="tag ${c} lnk" data-gsec="intel" title="${esc((g.label||'')+' — '+(g.why||''))} · 누르면 경쟁·기술 탭">${esc(g.label||'경쟁력')} ${esc(g.g)}</span>`}
 
 /* ---------- 경쟁·기술 (매일 아침 '경쟁·기술 갱신' 정기 작업이 public/data/intel 에 올린 조사 — 사이트는 읽기만) ---------- */
 let INTEL=null;
-async function loadIntelIdx(){try{const r=await fetch('data/intel/index.json',{cache:'no-store'});INTEL=r.ok?await r.json():{}}catch(e){INTEL={}}renderCP()}
+async function loadIntelIdx(){try{const r=await fetch('data/intel/index.json',{cache:'no-store'});INTEL=r.ok?await r.json():{}}catch(e){INTEL={}}renderCP();if(state.cur&&!$('ov').hidden)drawFit(state.cur)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-gsec]');if(t)showSec(t.dataset.gsec)});
 const todayISO=()=>{const t=new Date();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`};
 // 체크포인트 날짜 — YYYY-MM-DD · YYYY-MM(그 달 중) · YYYY-Qn(그 분기 중) → [시작, 끝, 표시]
 function cpSpan(d){d=String(d||'');let m;const yy=y=>y===String(new Date().getFullYear())?'':`${y.slice(2)}년 `;
@@ -1933,19 +1937,27 @@ function cpTag(c,today){const [a,e,lab]=cpSpan(c.d);if(!a)return {lab,cls:'',sor
   if(a<=today)return {lab:a===e?'오늘':lab,cls:'soon',sort:'1'+e,now:true};
   const n=dDiff(a,today);return {lab:a===e?`D-${n}`:`${lab} · D-${n}`,cls:n<=3?'soon':'',sort:'2'+a,n}}
 const stB=s=>`<span class="ivb st-${esc(s||'')}">${esc(s||'—')}</span>`;
-/* 대시보드 — 다가오는 체크포인트 (내 목록 · 14일 안 · 지났는데 안 끝난 것 · 지연) */
+/* 대시보드 — 다가오는 체크포인트 (내 목록) · 이번 주·이번 달·이번 분기·올해·지연 필터 (고른 필터는 기억) */
+const CPF=[['w','이번 주'],['m','이번 달'],['q','이번 분기'],['y','올해'],['late','지연']];
+function cpRangeEnd(k,today){const t=new Date(today+'T00:00:00Z'),y=t.getUTCFullYear(),mo=t.getUTCMonth(),iso=x=>x.toISOString().slice(0,10);
+  if(k==='w'){const dow=(t.getUTCDay()+6)%7;return iso(new Date(t.getTime()+(6-dow)*864e5))}   // 월요일 시작 · 일요일까지
+  if(k==='m')return iso(new Date(Date.UTC(y,mo+1,0)));
+  if(k==='q')return iso(new Date(Date.UTC(y,Math.floor(mo/3)*3+3,0)));
+  return `${y}-12-31`}
 function renderCP(){const el=$('cpbox');if(!el)return;
   if(!INTEL||!D){el.innerHTML='<h3>다가오는 체크포인트</h3><div class="muted">불러오는 중…</div>';return}
-  const today=todayISO(),mine=(D.stocks||[]).filter(x=>x.m===state.m),rows=[];let have=0;
+  const today=todayISO(),mine=(D.stocks||[]).filter(x=>x.m===state.m),all=[];let have=0;
   for(const S of mine){const it=INTEL[K(S)];if(!it)continue;have++;
-    for(const c of it.cp||[]){if(c.status==='완료'||c.status==='취소')continue;const t=cpTag(c,today);
-      if(t.over||t.now||c.status==='지연'||(t.n!=null&&t.n<=14))rows.push({S,c,t})}}
-  rows.sort((x,y)=>x.t.sort<y.t.sort?-1:x.t.sort>y.t.sort?1:0);
-  const wait=mine.length-have;
-  el.innerHTML=`<h3>다가오는 체크포인트 <span class="muted">${rows.length}건 · 14일 안·지난 미완료·지연 · 조사 ${have}/${mine.length}종목</span></h3>
+    for(const c of it.cp||[]){if(c.status==='완료'||c.status==='취소')continue;const [a,e]=cpSpan(c.d);all.push({S,c,a,e,t:cpTag(c,today)})}}
+  const late=x=>x.c.status==='지연'||(x.e&&x.e<today);
+  const pick=k=>k==='late'?all.filter(late):all.filter(x=>!late(x)&&x.a&&x.a<=cpRangeEnd(k,today));
+  const f=CPF.some(([k])=>k===PREF.cpf)?PREF.cpf:'m',rows=pick(f).sort((x,y)=>x.t.sort<y.t.sort?-1:x.t.sort>y.t.sort?1:0),wait=mine.length-have;
+  el.innerHTML=`<h3>다가오는 체크포인트 <span class="muted">조사 ${have}/${mine.length}종목</span></h3>
+    <div class="chips sm">${CPF.map(([k,l])=>`<button type="button" class="chip" data-cpf="${k}" aria-pressed="${k===f}">${l} <span class="num muted">${pick(k).length}</span></button>`).join('')}</div>
     ${rows.length?`<div class="cpl">${rows.map(({S,c,t})=>`<div class="cp"><span class="cpd ${t.cls}">${esc(t.lab)}</span>${idSpan(S.m,S.code,S.name)}<span>${esc(c.what)} <span class="muted">· ${esc(c.kind||'')}</span></span>${stB(c.status)}</div>`).join('')}</div>`
-      :`<div class="muted">${have?'14일 안에 다가오는 체크포인트가 없어':'아직 조사된 종목이 없어'}</div>`}
-    <div class="sub" style="margin-top:6px">매일 아침 '경쟁·기술 갱신' 정기 조사가 종목별 주요·양산 일정을 확인해 상태를 바꿔.${wait>0?` 아직 조사 안 된 ${wait}종목은 다음 아침 배치에서 처음 조사해.`:''} 종목을 누르면 상세 화면 '경쟁·기술' 탭에서 경쟁사·기술 비교와 진척 이력을 볼 수 있어.</div>`}
+      :`<div class="muted">${have?(f==='late'?'지연되거나 날짜가 지났는데 안 끝난 체크포인트가 없어':'이 기간에 다가오는 체크포인트가 없어'):'아직 조사된 종목이 없어'}</div>`}
+    <div class="sub" style="margin-top:6px">기간 필터는 오늘부터 그 기간 끝까지 시작하는 미완료 일정(날짜를 '10월 중'처럼 모르는 일정은 그 기간이 겹치면 포함) · 지연 = 상태가 지연이거나 날짜가 지났는데 안 끝난 것. 매일 아침 '경쟁·기술 갱신' 정기 조사가 상태를 바꿔.${wait>0?` 아직 조사 안 된 ${wait}종목은 다음 아침 배치에서 처음 조사해.`:''} 종목을 누르면 상세 화면 '경쟁·기술' 탭으로 가.</div>`;
+  el.querySelectorAll('[data-cpf]').forEach(b=>b.onclick=()=>{PREF.cpf=b.dataset.cpf;savePrefs();renderCP()})}
 /* 상세 화면 '경쟁·기술' 탭 */
 async function loadIntel(){const S=state.cur,el=$('d-s-intel');if(!S||!el)return;
   if(S.m==='IX'){el.innerHTML='<div class="sub">지수는 경쟁·기술 조사 대상이 아니야</div>';return}
@@ -1977,7 +1989,7 @@ function drawIntel(){const S=state.cur,el=$('d-s-intel'),j=state.intel?.j;if(!S|
       <td><details><summary>${esc(c.what)} <span class="muted">· ${esc(c.kind||'')}${(c.log||[]).length?` · 이력 ${c.log.length}`:''} ▾</span></summary>${(c.log||[]).map(g=>`<div class="lg">${esc(g.d||'')} ${g.s?stB(g.s):''} ${esc(g.note||'')}</div>`).join('')}</details></td>
       <td>${stB(c.status)}</td><td class="sub">${esc(c.conf||'')} ${sref(c.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">정리된 일정이 없어</div>'}
     <h4>기술·사업 비교</h4>
-    ${(j.axes||[]).length?`<div class="tbl-wrap"><table style="min-width:720px"><thead><tr><th>항목</th><th>${esc(j.name)}</th><th>경쟁사</th><th>판정</th><th>근거</th></tr></thead><tbody>${j.axes.map(a=>`<tr><td><b>${esc(a.k)}</b></td><td>${esc(a.me||'')}</td><td class="sub">${esc(a.vs||'')}</td><td>${vb(a.verdict)}</td><td class="sub">${esc(a.conf||'')} ${sref(a.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">비교 항목이 없어</div>'}
+    ${(j.axes||[]).length?`<div class="tbl-wrap"><table style="min-width:720px"><thead><tr><th>항목</th><th>판정</th><th>${esc(j.name)}</th><th>경쟁사</th><th>근거</th></tr></thead><tbody>${j.axes.map(a=>`<tr><td><b>${esc(a.k)}</b></td><td>${vb(a.verdict)}</td><td>${esc(a.me||'')}</td><td class="sub">${esc(a.vs||'')}</td><td class="sub">${esc(a.conf||'')} ${sref(a.src)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="muted">비교 항목이 없어</div>'}
     ${(j.metrics||[]).length?`<h4>숫자</h4><div class="tbl-wrap"><table style="min-width:420px"><tbody>${j.metrics.map(x=>`<tr><td>${esc(x.k)}</td><td class="r num"><b>${esc(x.v)}</b></td><td class="sub">${esc(x.asof||'')} ${sref(x.src)}</td></tr>`).join('')}</tbody></table></div>`:''}
     ${src.length?`<h4>출처</h4><div class="src">${src.map((x,i)=>`<div>[${i+1}] ${u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)}${x.d?` <span class="muted">${esc(x.d)}</span>`:''}</div>`).join('')}</div>`:''}
     <div class="sub" style="margin-top:8px">매일 아침 정기 조사가 종목·업종(경쟁사) 뉴스와 다가온 일정을 확인해 바뀐 것만 고치고, 변화 없는 종목도 주기적으로 전체를 다시 조사해. 판정: 우위·선두권·동등·열세·불확실 · 근거: 공시·보도·추정. 회사 목표치는 '목표'로 적어.</div>`}
