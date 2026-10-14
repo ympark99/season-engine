@@ -1,0 +1,360 @@
+{
+  "m": "US",
+  "code": "IREN",
+  "name": "IREN Limited",
+  "theme": "네오클라우드",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "마이크로소프트 97억달러 계약으로 AI 클라우드 사업의 첫 대형 고객을 확보하고 Horizon 1 인도까지 마쳤지만, 매출 규모와 수주잔고는 CoreWeave에 크게 못 미치는 후발 주자다. 다음 분기 관건은 Horizon 2~4 인도 일정과 11월 예정(미확정)인 FY27 1분기 실적에서 AI 클라우드 매출이 얼마나 붙는지.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "전력·부지 확보와 고객 선결제·투자등급 금융으로 자금 구조는 강점이고 엔비디아 GB300 인증과 Horizon 1 인도로 실행력도 확인됨. 다만 FY26 AI 클라우드 매출 1.29억달러 수준으로 CoreWeave 대비 규모가 매우 작고, 순손실과 고객 집중, 대규모 설비투자 목표의 실행 위험이 큼"
+  },
+  "peers": [
+    {
+      "name": "CoreWeave",
+      "m": "US",
+      "code": "CRWV"
+    },
+    {
+      "name": "Nebius Group",
+      "m": "US",
+      "code": "NBIS"
+    },
+    {
+      "name": "TeraWulf",
+      "m": "US",
+      "code": "WULF"
+    },
+    {
+      "name": "Cipher Mining",
+      "m": "US",
+      "code": "CIFR"
+    },
+    {
+      "name": "Applied Digital",
+      "m": "US",
+      "code": "APLD"
+    }
+  ],
+  "axes": [
+    {
+      "k": "고객·수주잔고 규모",
+      "me": "마이크로소프트와 약 97억달러 AI 클라우드 계약(2031년까지, 연 환산 약 19억달러). 회사는 2026년 용량 기준 계약 ARR 40억달러를 확보했다고 설명",
+      "vs": "CoreWeave 수주잔고 약 1,040억달러(2분기)",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        3,
+        6
+      ]
+    },
+    {
+      "k": "전력·부지 확보",
+      "me": "Childress(Horizon 1~4, IT 약 200MW), Sweetwater(1.4GW+0.6GW 계획), Kiowa·Bundey·Badajoz 개발 중. 누적 IT 용량 2026년 약 0.3GW, 2027년 약 0.8GW 목표",
+      "vs": "CoreWeave 가동 전력 1.5GW 초과, 연말 1.85GW 이상 목표",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        6,
+        10
+      ]
+    },
+    {
+      "k": "자금 조달 구조",
+      "me": "고객 선결제 19억달러, 마이크로소프트 계약 연동 36억달러 투자등급 금융(약 6%), 비투자등급 고객용 GPU 금융 28억달러(약 9%). 현금·확약 금융·선결제 합계 약 140억달러",
+      "vs": "CoreWeave는 부채 중심(1분기 기준 부채 251억달러)이며 2분기 이자비용 6.4억달러",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        0,
+        4,
+        7,
+        6
+      ]
+    },
+    {
+      "k": "실행·매출 전환 속도",
+      "me": "FY26 AI 클라우드 매출 1.288억달러, 4분기 7,050만달러. Horizon 1(50MW) 인도·인수 완료, 나머지 3개는 연내 인도 목표",
+      "vs": "CoreWeave 2분기 매출 25.8억달러(전년 대비 +112%)",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        11,
+        6
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "FY26 순손실 7.03억달러(비트코인 채굴 장비 폐기 관련 비현금 손상이 주원인), 4분기 조정 EBITDA 1,920만달러로 시장 예상 하회",
+      "vs": "CoreWeave 2분기 조정 영업이익 1.28억달러, 순손실 6.26억달러",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        11,
+        6
+      ]
+    },
+    {
+      "k": "엔비디아 플랫폼 인증",
+      "me": "GB300 NVL72 기준 NVIDIA Exemplar Cloud 지위 획득",
+      "vs": "경쟁사별 동일 인증 보유 현황은 확인 못함",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "horizon2_4",
+      "what": "Horizon 2~4(각 50MW) 마이크로소프트 인도",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "Horizon 1 인도 후 나머지 3개는 연내 인도 목표(일부 요약은 12월 분기 후반 집중으로 언급)"
+        }
+      ]
+    },
+    {
+      "id": "fy27_q1_earn",
+      "what": "FY27 1분기(7~9월) 실적 발표",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        8,
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 공식 일정 미발표. 추정 날짜가 11월 초와 11월 26일로 엇갈림. 통상 발표 2주 전 공지"
+        }
+      ]
+    },
+    {
+      "id": "cap_0p3gw",
+      "what": "누적 IT 용량 약 0.3GW 도달 목표",
+      "d": "2026",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 목표. 달성 여부는 Horizon 2~4 인도와 연동"
+        }
+      ]
+    },
+    {
+      "id": "fy27_contracts",
+      "what": "FY27 용량 대형 계약 체결(회사 설명: 후반 단계 협의 중)",
+      "d": "2027-H1",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "FY27 용량 상당 부분 협의 후반, 2028 용량 협의 시작. 체결 시점은 미확정"
+        }
+      ]
+    },
+    {
+      "id": "fy27_q2_earn",
+      "what": "FY27 2분기(10~12월) 실적 발표",
+      "d": "2027-02",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "과거 발표 주기(2월·5월·8월·11월) 기준 추정, 공식 일정 없음"
+        }
+      ]
+    },
+    {
+      "id": "h1_deliver",
+      "what": "Horizon 1(50MW) 마이크로소프트 인도·인수",
+      "d": "2026-08-13",
+      "kind": "양산",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-13",
+          "s": "완료",
+          "note": "마이크로소프트 인수 완료, GB300 NVL72 NVIDIA Exemplar Cloud 지위 획득"
+        }
+      ]
+    },
+    {
+      "id": "fy26_earn",
+      "what": "FY26 연간 실적 발표",
+      "d": "2026-08-27",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-08-27",
+          "s": "완료",
+          "note": "매출 7.07억달러, AI 클라우드 1.288억달러, 순손실 7.03억달러"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "FY26 AI 클라우드 매출",
+      "v": "1.288억달러 (총매출 7.07억달러)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "계약 ARR (2026년 용량)",
+      "v": "약 40억달러 (가동 중 ARR 약 10억달러)",
+      "asof": "2026-08",
+      "src": [
+        0,
+        3
+      ]
+    },
+    {
+      "k": "FY26 순손실",
+      "v": "7.03억달러 (대부분 비현금 손상)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "비교: CoreWeave 수주잔고",
+      "v": "약 1,040억달러",
+      "asof": "2026-06",
+      "src": [
+        6
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — Horizon 1 인도 완료, 나머지 3개 연내 인도와 FY27 1분기 실적(11월, 미확정)이 다음 확인 지점. 규모는 CoreWeave 대비 작음",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "IREN Reports FY26 Results",
+      "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+      "d": "2026-08-27"
+    },
+    {
+      "t": "IREN Delivers Horizon 1 to Microsoft and Achieves NVIDIA Exemplar Cloud Status on GB300 NVL72",
+      "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-delivers-horizon-1-microsoft-and-achieves-nvidia-exemplar",
+      "d": "2026-08-13"
+    },
+    {
+      "t": "IREN delivers first of four AI cloud deployments to Microsoft under $9.7 billion deal",
+      "u": "https://theblock.co/news/business/2026-08-17-iren-delivers-first-four-ai-cloud-deployments-microsoft-under-9-7-billion-deal-412016",
+      "d": "2026-08-17"
+    },
+    {
+      "t": "IREN Aims for $3.4B AI Cloud ARR by 2026: Can it Hit the Target?",
+      "u": "https://www.nasdaq.com/articles/iren-aims-34b-ai-cloud-arr-2026-can-it-hit-target",
+      "d": "2026"
+    },
+    {
+      "t": "IREN Stock Is Up 17% in 2026. Here's Where the Stock Could Go",
+      "u": "https://www.tikr.com/blog/iren-stock-is-up-17-in-2026-heres-where-the-stock-could-go",
+      "d": "2026-09-25"
+    },
+    {
+      "t": "Neocloud results Q2 2026: CoreWeave, Nebius, Cerebras",
+      "u": "https://www.datacenterdynamics.com/en/news/neocloud-results-q2-2026-coreweave-nebius-cerebras/",
+      "d": "2026-08"
+    },
+    {
+      "t": "CoreWeave Q2 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/coreweave-q2-earnings-call-highlights-2026-08-11/",
+      "d": "2026-08-11"
+    },
+    {
+      "t": "4 Top Neocloud Stocks: How CoreWeave, Nebius, TeraWulf, and IREN Are Financing the AI Boom",
+      "u": "https://marketwise.com/investing/neocloud-stocks-funding-coreweave-nebius-iren-terawulf/",
+      "d": "2026"
+    },
+    {
+      "t": "IREN earnings date estimate (days.to)",
+      "u": "https://days.to/iren-earnings",
+      "d": "2026-10"
+    },
+    {
+      "t": "The neoclouds build cash hoards faster than revenues",
+      "u": "https://www.nextplatform.com/cloud/2026/08/14/the-neoclouds-build-cash-hoards-faster-than-revenues/5288040",
+      "d": "2026-08-14"
+    },
+    {
+      "t": "IREN Reports Q1 FY26 Results",
+      "u": "https://www.nasdaq.com/press-release/iren-reports-q1-fy26-results-2025-11-06",
+      "d": "2025-11-06"
+    },
+    {
+      "t": "IREN Q4 FY2026 Revenue Meets Expectations; AI Cloud Revenue Doubles",
+      "u": "https://www.kucoin.com/news/flash/iren-q4-fy2026-revenue-meets-expectations-ai-cloud-revenue-doubles",
+      "d": "2026-08"
+    },
+    {
+      "t": "Better Neocloud Stock: CoreWeave vs. Nebius",
+      "u": "https://www.fool.com/investing/2026/08/04/better-neocloud-stock-nebius-vs-coreweave/",
+      "d": "2026-08-04"
+    }
+  ]
+}

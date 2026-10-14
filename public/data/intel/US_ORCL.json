@@ -1,0 +1,350 @@
+{
+  "m": "US",
+  "code": "ORCL",
+  "name": "Oracle",
+  "theme": "네오클라우드",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 학습·추론용 클라우드 인프라(OCI)에서 수주잔고 6,640억 달러로 규모는 상위권이지만, 클라우드 인프라 점유율은 AWS·Azure·구글에 못 미치는 2군이다. 다음 분기 관건은 연간 설비투자 900억~950억 달러 수준의 자금 조달과 신용등급(BBB-) 유지, 수주를 실제 가동 용량·매출로 바꾸는 속도.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "OCI 매출이 전년 대비 121% 늘고 수주잔고가 6,640억 달러로 커져 성장성은 최상위권. 다만 잉여현금흐름이 분기 -54억 달러, 총부채 약 1,300억 달러에 S&P 등급이 투자등급 최하단(BBB-)으로 내려가 재무 부담이 크고, 수주 상당수가 소수 AI 고객에 쏠려 있을 가능성이 있다(추정)."
+  },
+  "peers": [
+    {
+      "name": "CoreWeave",
+      "m": "US",
+      "code": "CRWV"
+    },
+    {
+      "name": "Nebius",
+      "m": "US",
+      "code": "NBIS"
+    },
+    {
+      "name": "Amazon (AWS)",
+      "m": "US",
+      "code": "AMZN"
+    },
+    {
+      "name": "Microsoft (Azure)",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Alphabet (Google Cloud)",
+      "m": "US",
+      "code": "GOOGL"
+    }
+  ],
+  "axes": [
+    {
+      "k": "클라우드 인프라 성장률",
+      "me": "2027 회계연도 1분기(6~8월) OCI 매출 74억 달러, 전년 대비 121% 증가(직전 분기 93%)",
+      "vs": "시장 전체 2분기 지출 1,430억 달러, 전년 대비 43% 증가",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "k": "수주잔고(RPO)",
+      "me": "6,640억 달러, 전년 대비 2,090억 달러 증가. 신규 계약 다수는 2028 회계연도 이후 매출·투자에 반영",
+      "vs": "CoreWeave 매출 백로그 약 1,042억 달러(2분기 말, 2차 자료), Nebius 계약 백로그 약 400억 달러(추적 자료 인용)",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        1,
+        2,
+        9,
+        10
+      ]
+    },
+    {
+      "k": "시장 점유율",
+      "me": "Synergy 분류상 2군(CoreWeave·OpenAI·Crusoe·Nebius 등과 같은 그룹), 개별 점유율 수치는 확인 못함",
+      "vs": "2분기 점유율 AWS 28%·Azure 20%·구글 15%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        6
+      ]
+    },
+    {
+      "k": "자금 조달·재무 체력",
+      "me": "2027 회계연도 1분기 설비투자 285억 달러, 잉여현금흐름 -54억 달러. 총부채 약 1,300억 달러, S&P BBB-(7월 하향), 무디스 부정적 전망",
+      "vs": "CoreWeave·Nebius도 부채·증자 의존이 크나 Oracle은 투자등급 안에서 회사채 시장 접근 가능",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "AI 대형 고객 의존·구축 실행",
+      "me": "OpenAI 스타게이트 4.5GW 계약. 애빌린 확장 600MW 철회 보도가 있었으나 회사는 계약 이행 중이라고 반박. 1GW 가까운 용량 인도 중",
+      "vs": "CoreWeave 2026년 매출 가이던스 124억~132억 달러, Nebius 연말 계약 전력 5GW 목표",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8,
+        2,
+        9,
+        10
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q1fy27_earn",
+      "what": "2027 회계연도 1분기 실적 발표 — 매출 193.5억 달러, OCI +121%, RPO 6,640억 달러",
+      "d": "2026-09-10",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        1,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-09-10",
+          "s": "완료",
+          "note": "발표 완료, 연간 매출 가이던스 900억 달러 이상·비GAAP EPS 8.10달러로 상향"
+        }
+      ]
+    },
+    {
+      "id": "q2fy27_earn",
+      "what": "2027 회계연도 2분기(9~11월) 실적 — 매출 성장 30~34% 가이던스 달성 여부",
+      "d": "2026-12",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정, 일부 일정표는 12월 10일로 추정"
+        }
+      ]
+    },
+    {
+      "id": "fy27_financing",
+      "what": "2027 회계연도 중 약 400억 달러 규모 부채·증자 조달 계획 실행",
+      "d": "2027-05",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2,
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 계획(보도). 올해 추가 회사채는 없다는 언급도 있어 방식·시기 불확실"
+        }
+      ]
+    },
+    {
+      "id": "capacity_1gw",
+      "what": "1GW 가까운 신규 용량 인도 (애빌린 등 스타게이트 부지 가동 확대)",
+      "d": "2026-H2",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2,
+        7,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-09-10",
+          "s": "진행",
+          "note": "경영진이 1GW에 근접한 인도를 언급"
+        }
+      ]
+    },
+    {
+      "id": "q3fy27_earn",
+      "what": "2027 회계연도 3분기(12~2월) 실적 — 설비투자·잉여현금흐름 추이",
+      "d": "2027-03",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "예년 일정 기준 추정, 발표일 미확정"
+        }
+      ]
+    },
+    {
+      "id": "credit_review",
+      "what": "신용평가사 등급·전망 점검 (S&P BBB-, 무디스 부정적 전망)",
+      "d": "2027",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        4,
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "추가 하향 시 투자등급 이탈 위험, 구체 일정 미확인"
+        }
+      ]
+    },
+    {
+      "id": "fy27_capex",
+      "what": "2027 회계연도 설비투자 900억~950억 달러 집행(자체 부담 700억 달러, 나머지는 고객 상환 예상)",
+      "d": "2027-05",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-09-10",
+          "s": "진행",
+          "note": "보도마다 수치가 조금 다름"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "OCI 매출 (2027 회계연도 1분기)",
+      "v": "74억 달러 (+121%)",
+      "asof": "2026-08",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "수주잔고(RPO)",
+      "v": "6,640억 달러",
+      "asof": "2026-08",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "분기 설비투자 / 잉여현금흐름",
+      "v": "285억 달러 / -54억 달러",
+      "asof": "2026-08",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "총부채",
+      "v": "약 1,300억 달러",
+      "asof": "2026-05",
+      "src": [
+        5
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — OCI 매출 +121%·RPO 6,640억 달러로 성장은 최상위권, 자금 조달과 BBB- 등급이 다음 관건",
+      "src": [
+        1,
+        2,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Oracle has $455bn in remaining performance obligations at end of Q1 2026",
+      "u": "https://www.datacenterdynamics.com/en/news/oracle-has-455bn-in-remaining-performance-obligations-at-end-of-q1-2026/",
+      "d": "2025-09"
+    },
+    {
+      "t": "Oracle's AI Cloud Backlog Hits $664B as OCI Revenue More Than Doubles",
+      "u": "https://ai2.work/blog/oracle-s-ai-cloud-backlog-hits-664b-as-oci-revenue-more-than-doubles",
+      "d": "2026-09"
+    },
+    {
+      "t": "Oracle reports Q1 FY27 earnings with $19.3B revenue and a staggering $664B in remaining obligations",
+      "u": "https://cryptobriefing.com/oracle-q1-fy27-earnings-revenue-rpo/",
+      "d": "2026-09"
+    },
+    {
+      "t": "Oracle forecasts $95 bn in capex for FY27, plans to raise $40 bn in debt and equity",
+      "u": "https://www.outlookbusiness.com/corporate/oracle-forecasts-95-bn-in-capex-for-fy27-plans-to-raise-40-bn-in-debt-and-equity",
+      "d": "2026-09"
+    },
+    {
+      "t": "Oracle under pressure after ratings downgrade over AI expansion",
+      "u": "https://www.computing.co.uk/news/2026/ai/oracle-under-pressure-after-ratings-downgrade-over-ai-expansion",
+      "d": "2026-07"
+    },
+    {
+      "t": "Oracle taps $25B bond as debt hits $130B and rating slips to junk's edge",
+      "u": "https://startupmap.iamsterdam.com/news/note/oracle-taps-25b-bond-as-debt-hits-130b-and-rating-slips-to-junk-s-edge",
+      "d": "2026"
+    },
+    {
+      "t": "Q2 Cloud Market Passes $143 Billion; Highest Growth Rate in Eight Years (Synergy Research)",
+      "u": "https://www.srgresearch.com/articles/q2-cloud-market-passes-143-billion-highest-growth-rate-in-eight-years",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Oracle hits back at Stargate data center cancellation reports — 4.5GW agreement still on track",
+      "u": "https://tomshardware.com/tech-industry/oracle-rebuts-incorrect-reporting-on-stargate-expansion",
+      "d": "2026"
+    },
+    {
+      "t": "Oracle and OpenAI scrap planned 600MW Abilene expansion",
+      "u": "https://www.tomshardware.com/tech-industry/oracle-and-openai-scrap-planned-600mw-abilene-expansion",
+      "d": "2026"
+    },
+    {
+      "t": "CoreWeave (CRWV) Q2 2026 earnings summary",
+      "u": "https://quartr.com/events/coreweave-inc-crwv-q2-2026_F6huCJA4",
+      "d": "2026-08"
+    },
+    {
+      "t": "Nebius Group N.V. Form 6-K (Q2 2026 results)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926094568/tm2622968d1_ex99-2.htm",
+      "d": "2026-08"
+    },
+    {
+      "t": "Oracle earnings date (days.to)",
+      "u": "https://days.to/oracle-earnings",
+      "d": "2026-10"
+    }
+  ]
+}
