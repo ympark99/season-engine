@@ -1,0 +1,311 @@
+{
+  "m": "US",
+  "code": "DNA",
+  "name": "Ginkgo Bioworks",
+  "theme": "기타",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "세포 프로그래밍 서비스에서 AI·자동화 자율 실험실(RAC·Nebula·클라우드 랩) 장비·도구 판매로 사업을 바꾸는 중이며, 매출은 절반으로 줄고 현금 소진이 이어진다. 다음 분기 관건은 3분기 실적에서 자동화 수주가 매출로 잡히는지와 올해 현금 소진 목표(1.25억~1.5억달러) 유지 여부.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "노보 노디스크의 자율 실험실 구매 선정 등 자동화 전환의 첫 상업 증거가 나왔고 대학·국립연구소 고객도 늘고 있다. 반면 2분기 매출이 전년 대비 48% 줄고 분기 영업 적자·현금 소진이 계속되며, 금액·인도 시점이 비공개라 전환의 재무 효과는 불확실하다."
+  },
+  "peers": [
+    {
+      "name": "트위스트 바이오사이언스",
+      "m": "US",
+      "code": "TWST"
+    },
+    {
+      "name": "리커전 파마슈티컬스",
+      "m": "US",
+      "code": "RXRX"
+    },
+    {
+      "name": "앱사이",
+      "m": "US",
+      "code": "ABSI"
+    },
+    {
+      "name": "코덱시스",
+      "m": "US",
+      "code": "CDXS"
+    },
+    {
+      "name": "에메랄드 클라우드 랩",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "자율 실험실·자동화(RAC)",
+      "me": "RAC 기반 자율 실험실로 노보 노디스크 월섬 R&D 거점 실험실 구축에 선정, MIT·칼텍 등 대학 네트워크 확대, 보스턴 Nebula 100개 이상 RAC 확장 추진",
+      "vs": "에메랄드 클라우드 랩 등 원격 실험실 업체와 경쟁(세부 비교 자료 없음)",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "사업 규모·매출 모멘텀",
+      "me": "2분기 매출 약 2,000만달러(전년 대비 −48%), 상반기 4,000만달러(−49%)",
+      "vs": "동종 비교 가능한 동일 사업 지표 확인 안 됨",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "k": "재무 체력(현금 소진)",
+      "me": "2분기 현금 소진 4,500만달러, 올해 소진 목표 1.25억~1.5억달러 유지. 현금 수치는 자료마다 다름",
+      "vs": "비교 대상 수치 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "AI·데이터 서비스(Datapoints)",
+      "me": "ADME 5종 패널을 199달러에 판매하는 데이터 서비스 운영",
+      "vs": "리커전·앱사이는 자체 파이프라인과 AI 중심 모델로 경쟁",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ]
+    },
+    {
+      "k": "DNA 합성·공급망 관계",
+      "me": "트위스트와 3년 재계약(고객 지위)",
+      "vs": "트위스트는 합성 분야에서 경쟁하면서 공급사이기도 함",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        7
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 발표 — 매출 반등·소진 목표 유지 여부",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "공식 발표일 미확정. 집계 사이트마다 11월 4일·6일·12일로 갈림"
+        }
+      ]
+    },
+    {
+      "id": "novo_lab",
+      "what": "노보 노디스크 월섬 자율 실험실 구축·인도",
+      "d": "2027",
+      "kind": "수주",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-09-15",
+          "s": "진행",
+          "note": "선정 발표, 금액·인도 시점 비공개"
+        }
+      ]
+    },
+    {
+      "id": "nebula",
+      "what": "보스턴 Nebula 자율 실험실 100개 이상 RAC 확장",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "확장 추진 보도, 완료 시점은 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "burn_guide",
+      "what": "2026년 연간 현금 소진 목표(1.25억~1.5억달러) 달성 확인",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-05",
+          "s": "예정",
+          "note": "2분기 실적에서 목표 유지. 연간 결과는 4분기 실적 때 확인"
+        }
+      ]
+    },
+    {
+      "id": "lab_network",
+      "what": "대학 자율 실험실 네트워크 확대(칼텍·MIT·메릴랜드·노스웨스턴) 발표",
+      "d": "2026-08-05",
+      "kind": "수주",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-08-05",
+          "s": "완료",
+          "note": "보도자료로 발표"
+        }
+      ]
+    },
+    {
+      "id": "novo_select",
+      "what": "노보 노디스크 월섬 실험실 구축사 선정 발표",
+      "d": "2026-09-15",
+      "kind": "수주",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-09-15",
+          "s": "완료",
+          "note": "RAC·Catalyst 소프트웨어 공급"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "약 2,000만달러 (−48%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "2분기 조정 EBITDA",
+      "v": "−3,600만달러",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 현금 소진",
+      "v": "4,500만달러",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "2026년 현금 소진 목표",
+      "v": "1.25억~1.5억달러",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 자율 실험실 전환이 노보 선정으로 첫 확인됐으나 매출 −48%·소진 지속, 3분기 실적(11월, 일자 미확정)이 다음 확인 지점",
+      "src": [
+        0,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Ginkgo Bioworks Q2 2026 Earnings Call Transcript",
+      "u": "https://www.marketbeat.com/earnings/reports/2026-8-5-ginkgo-bioworks-holdings-inc-stock/",
+      "d": "2026-08-05"
+    },
+    {
+      "t": "Ginkgo Bioworks Q2 earnings call highlights",
+      "u": "https://www.nasdaq.com/articles/ginkgo-bioworks-q2-earnings-call-highlights",
+      "d": "2026-08"
+    },
+    {
+      "t": "Ginkgo Bioworks Q2 Revenue Falls 48% Amid Strategic Pivot",
+      "u": "https://www.panabee.com/news/ginkgo-bioworks-earnings-q2-2026-report",
+      "d": "2026-08"
+    },
+    {
+      "t": "Ginkgo Bioworks Expands Autonomous Lab Network to Caltech, MIT, Maryland and Northwestern",
+      "u": "https://s28.q4cdn.com/823357996/files/doc_news/2026/Aug/05/Ginkgo-Bioworks-Expands-Autonomous-Lab-Network-to-Caltech-MIT-Maryland-and-Northwestern.pdf",
+      "d": "2026-08-05"
+    },
+    {
+      "t": "Ginkgo Novo Announcement",
+      "u": "https://s28.q4cdn.com/823357996/files/doc_news/2026/Sep/15/Ginkgo-Novo-Announcement.pdf",
+      "d": "2026-09-15"
+    },
+    {
+      "t": "Ginkgo Bioworks To Build Autonomous Lab At Novo's New U.S. R&D Site In Waltham",
+      "u": "https://pulse2.com/ginkgo-bioworks-novo/",
+      "d": "2026-09"
+    },
+    {
+      "t": "What does Ginkgo Bioworks strategic pivot mean for investors",
+      "u": "https://www.kavout.com/market-lens/what-does-ginkgo-bioworks-strategic-pivot-mean-for-investors",
+      "d": "2026"
+    },
+    {
+      "t": "Compare Ginkgo Bioworks vs Twist Bioscience",
+      "u": "https://www.cbinsights.com/compare/ginkgo-bioworks-vs-twist-bioscience",
+      "d": "2026"
+    },
+    {
+      "t": "Ginkgo Bioworks competitors",
+      "u": "https://www.distillintelligence.com/competitors/ginkgo-bioworks",
+      "d": "2026"
+    },
+    {
+      "t": "DNA Next Earnings Date",
+      "u": "https://nextearningsdate.com/ginkgo-bioworks-holdings.html",
+      "d": "2026-10"
+    }
+  ]
+}
