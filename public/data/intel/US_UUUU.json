@@ -1,0 +1,376 @@
+{
+  "m": "US",
+  "code": "UUUU",
+  "name": "Energy Fuels",
+  "theme": "희토류",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "우라늄 매출이 거의 전부인 상태에서 희토류는 NdPr 상업 생산 가능·터븀 파일럿 단계이며, ASM 인수를 마치고 VAC(자석) 인수를 앞둔 '광산-자석' 통합 전략을 진행 중이다. 다음 분기 관건은 Donald 프로젝트 최종투자결정(FID)과 VAC 인수 승인 진행, 11월 3분기 실적.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "운전자금 약 9.96억달러와 ASM 인수 완료, 중희토(Dy/Tb) 분리 설비 건설 착수는 강점. 다만 희토류 상업 매출은 아직 미미하고 중희토 본격 가동은 2027년 말~2028년 초이며, VAC·Donald 등 대형 일정이 아직 확정되지 않아 실행 위험이 큼"
+  },
+  "peers": [
+    {
+      "name": "MP Materials",
+      "m": "US",
+      "code": "MP"
+    },
+    {
+      "name": "USA Rare Earth",
+      "m": "US",
+      "code": "USAR"
+    },
+    {
+      "name": "Lynas Rare Earths",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Iluka Resources",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "중국 희토류 업체(중국 북방희토 등)",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "경희토(NdPr) 분리 규모",
+      "me": "White Mesa Phase 1 회로가 상업량 NdPr 생산 가능. Phase 2 목표는 연 약 6,300t NdPr",
+      "vs": "MP Materials는 2분기 NdPr 840t 생산(전년 대비 +41%), 매출 1.085억달러",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "k": "중희토(Dy/Tb)",
+      "me": "터븀 산화물 파일럿 생산(2026-03), 중희토 설비 건설 착수. 목표 Phase 1 개조 가동 2027년 말~2028년 초",
+      "vs": "MP는 가돌리늄 장기 공급계약 체결, Lynas는 말레이시아에서 사마륨 시작·Dy/Tb 분리는 목표 단계(자료마다 다름)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        2,
+        7,
+        8,
+        10,
+        12
+      ]
+    },
+    {
+      "k": "금속·합금·자석 수직계열화",
+      "me": "ASM 인수 완료(2026-08-28): 한국 금속공장 NdFeB 합금 연 약 1,300t → 3,600t 확장 목표. VAC 인수(약 19억달러)는 아직 미완료",
+      "vs": "MP는 Independence 자석 공장 가동 중, GM에 2026-4분기 첫 상업 납품 예상",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "k": "원료(모나자이트) 확보",
+      "me": "Donald(호주, Astron 합작)·Vara Mada(마다가스카르)·Dubbo 등 보유. Phase 2 필요량 대비 약 19,100tpa 부족(보도)",
+      "vs": "MP는 자체 광산 보유",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        5,
+        6,
+        3
+      ]
+    },
+    {
+      "k": "재무 여력",
+      "me": "2분기 말 운전자금 9.96억달러, 조건부 대출 약정 7.25억달러(OSC)",
+      "vs": "경쟁사 수치는 이번 조사에서 직접 비교 못 함",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "donald_fid",
+      "what": "Donald 프로젝트 최종투자결정(FID, Astron 합작)",
+      "d": "2026-Q3",
+      "kind": "수주",
+      "status": "지연",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "예정",
+          "note": "Astron: FID 목표 2026년 3분기, 2분기에서 연기됨. 대출 약 A$220M 협상 중"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "지연",
+          "note": "3분기가 지났으나 FID 발표는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 (우라늄 매출·희토류 진척)",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "전년도 3분기 실적은 11월 초 발표 — 올해 날짜는 미확정"
+        }
+      ]
+    },
+    {
+      "id": "mill_restart",
+      "what": "White Mesa 공장 가공 재개 (희토류 캠페인 여부에 연동)",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-06",
+          "s": "예정",
+          "note": "6월 이후 가공 중단, 4분기 재개 계획. 일부는 희토류 캠페인 가능성에 달림"
+        }
+      ]
+    },
+    {
+      "id": "kmp_expand",
+      "what": "한국 금속공장 NdFeB 합금 증설 가동 (1,300→3,600t)",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "빠르면 2026년 말 가동 목표"
+        }
+      ]
+    },
+    {
+      "id": "vac_close",
+      "what": "VAC(Vacuumschmelze) 인수 완료",
+      "d": "2027-Q1",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-06-24",
+          "s": "예정",
+          "note": "인수 합의: 현금 7.18억달러+신주 6,585만주. 완료 목표 2027년 초"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "10-Q상 아직 미완료, 규제 승인 상태 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "hree_phase1",
+      "what": "중희토(Dy/Tb) Phase 1 개조 가동",
+      "d": "2027-Q4",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07",
+          "s": "진행",
+          "note": "건설 착수. 설비 시운전 4분기 2027 보도, 회사는 2027년 말~2028년 초"
+        }
+      ]
+    },
+    {
+      "id": "asm_close",
+      "what": "ASM(Australian Strategic Materials) 인수 완료",
+      "d": "2026-08-28",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-08-28",
+          "s": "완료",
+          "note": "인수 완료 — 한국 금속공장·Dubbo 프로젝트 확보"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표",
+      "d": "2026-08-05",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-05",
+          "s": "완료",
+          "note": "매출 2,510만달러, 순손실, 운전자금 9.96억달러"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "2,510만달러 (대부분 우라늄)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "운전자금",
+      "v": "9.96억달러",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 우라늄 완제품 생산",
+      "v": "865,000파운드 (2026 연간 목표 도달)",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "비교: MP Materials 2분기 NdPr 생산",
+      "v": "840t",
+      "asof": "2026-06",
+      "src": [
+        8
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — ASM 인수 완료, VAC는 2027년 초 목표, Donald FID는 3분기 목표가 지났으나 미확인, 중희토 본격 가동은 2027년 말 이후",
+      "src": [
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Energy Fuels Announces Q2-2026 Results",
+      "u": "https://investingnews.com/energy-fuels-announces-q2-2026-results/",
+      "d": "2026-08-05"
+    },
+    {
+      "t": "Energy Fuels reports Q2 2026 results, $996 million working capital",
+      "u": "https://www.cruxinvestor.com/posts/energy-fuels-reports-second-quarter-2026-results-996-million-working-capital",
+      "d": "2026-08"
+    },
+    {
+      "t": "Energy Fuels reports Q2 results, advances rare earth expansion",
+      "u": "https://www.financialcontent.com/article/nnwire-2026-8-6-investornewsbreaks-energy-fuels-inc-nyse-american-uuuu-tsx-efr-reports-q2-results-advances-rare-earth-expansion",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Energy Fuels Completes Australian Strategic Materials Acquisition (NdFeB alloy 3,600t target)",
+      "u": "https://pulse2.com/energy-fuels-completes-australian-strategic-materials-acquisition-as-ndfeb-alloy-capacity-targets-3600-tonnes-annually/",
+      "d": "2026-08-28"
+    },
+    {
+      "t": "Energy Fuels agreement to buy VAC for $1.9bn",
+      "u": "https://www.mining-technology.com/news/energy-fuels-agreement-buy-vac-1-9bn/",
+      "d": "2026-06"
+    },
+    {
+      "t": "Astron advances toward Q3 2026 FID with A$220M financing for Donald Project",
+      "u": "https://kalkinemedia.com/au/news/announcements/astron-limited-advances-toward-q3-2026-final-investment-decision-with-a220-million-financing-for-donald-project",
+      "d": "2026-07"
+    },
+    {
+      "t": "Energy Fuels U.S. rare earth processing expansion (Phase 2 BFS)",
+      "u": "https://www.nasdaq.com/press-release/energy-fuels-us-rare-earth-processing-expansion-boasts-lower-expected-capex",
+      "d": "2026-01"
+    },
+    {
+      "t": "Energy Fuels begins heavy rare earth plant construction in Utah",
+      "u": "https://www.cruxinvestor.com/posts/energy-fuels-begins-heavy-rare-earth-plant-construction-in-utah-targeting-104-million-expansion",
+      "d": "2026-07"
+    },
+    {
+      "t": "MP Materials Reports Second Quarter 2026 Results",
+      "u": "https://mpmaterials.com/news/mp-materials-reports-second-quarter-2026-results",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Ignore MP Materials, buy this rare earth stock (MP·USA Rare Earth 비교)",
+      "u": "https://fool.com/investing/2026/09/12/ignore-mp-materials-buy-rare-earth-stock",
+      "d": "2026-09-12"
+    },
+    {
+      "t": "UUUU's Terbium Oxide Breakthrough",
+      "u": "https://www.nasdaq.com/articles/uuuus-terbium-oxide-breakthrough-turning-point-ev-magnet-supply",
+      "d": "2026-03"
+    },
+    {
+      "t": "Energy Fuels 10-Q (2026-06-30)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001385849/000138584926000029/efr-20260630.htm",
+      "d": "2026-08"
+    },
+    {
+      "t": "Rare Earths 2026: can the West break the Chinese monopoly (Lynas 등)",
+      "u": "https://skillings.net/rare-earths-2026-can-the-west-finally-break-the-chinese-monopoly",
+      "d": "2026"
+    }
+  ]
+}

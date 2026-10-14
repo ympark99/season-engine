@@ -1,0 +1,362 @@
+{
+  "m": "US",
+  "code": "ALAB",
+  "name": "Astera Labs",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "PCIe 6 리타이머·Scorpio 스위치로 AI 서버 연결 반도체 선두권이고, 2026년 하반기 Scorpio X(스케일업 스위치) 매출이 본격화되는 단계. 다음 분기 관건은 11월 3일 3분기 실적에서 5.4억~5.6억달러 가이던스 달성과 Scorpio X의 고객 확대.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "PCIe 6 제품이 매출 절반 이상이고 2분기 매출 3.92억달러(전년 대비 +104%), 총이익률 73.7%로 성장·수익성이 강함. 반면 Marvell·Broadcom·Credo가 PCIe 6 스위치·리타이머로 추격 중이고 UALink 스위치와 광 제품은 2027년 매출이라 아직 검증 전이며 소수 대형 고객 의존 위험이 있음"
+  },
+  "peers": [
+    {
+      "name": "Credo",
+      "m": "US",
+      "code": "CRDO"
+    },
+    {
+      "name": "Marvell Technology",
+      "m": "US",
+      "code": "MRVL"
+    },
+    {
+      "name": "Broadcom",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "Nvidia",
+      "m": "US",
+      "code": "NVDA"
+    }
+  ],
+  "axes": [
+    {
+      "k": "PCIe 6 리타이머",
+      "me": "Aries 6 — 2024년 3월 출시, 수백만 포트 출하(회사 설명). PCIe 6 제품(Scorpio·Aries)이 2분기 매출의 50% 초과",
+      "vs": "Credo Toucan PCIe 6 리타이머가 PCI-SIG 호환성 확보, Gen7 리타이머(Magpie) 발표. Broadcom·Marvell도 PCIe 6 리타이머 보유",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        0,
+        4,
+        8
+      ]
+    },
+    {
+      "k": "스케일업 스위치",
+      "me": "Scorpio X-Series 320레인 출하 시작, 2026년 하반기 양산 확대. 연말 최대 제품군이 된다는 것이 회사 목표",
+      "vs": "Marvell은 XConn 인수 후 PCIe 6 스위치 발표(샘플 2026년 3분기), Broadcom은 기존 PCIe 스위치 강자",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "k": "차세대 규격 (PCIe 7·UALink)",
+      "me": "Aries 7(PCIe 7, 구리·광) 2026년 4분기 샘플링 예정. UALink 스위치 초기 배치는 2027년",
+      "vs": "Credo가 Gen7 리타이머 발표로 가장 가까운 경쟁. Marvell·Broadcom도 차세대 연결 제품군 보유",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "CXL 메모리·맞춤형 연결",
+      "me": "Leo CXL 컨트롤러는 Microsoft Azure M 시리즈 VM용으로 연말 일반 제공 예정, NVLink Fusion 연동 맞춤 실리콘 매출은 2027년",
+      "vs": "동일 영역의 공개 경쟁 제품 비교는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        4,
+        9
+      ]
+    },
+    {
+      "k": "성장·수익성",
+      "me": "2분기 매출 3.924억달러(+104% YoY, +27% QoQ), 비GAAP 총이익률 73.7%, 영업이익률 39.1%",
+      "vs": "3분기 가이던스 5.4억~5.6억달러, 총이익률 약 72%, 영업이익률 약 43%(회사 전망)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "광 연결",
+      "me": "독립형 광섬유 커플러·근접 패키지 광학(NPO)은 2027년 매출 예상, CPO용 분리형 광섬유 커넥터도 2027년 양산 목표",
+      "vs": "Broadcom은 NPO·이더넷 광 제품을 이미 보유",
+      "verdict": "열세",
+      "conf": "추정",
+      "src": [
+        4,
+        5
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2_earn",
+      "what": "2026년 2분기 실적 발표 (매출 3.92억달러, 3분기 가이던스 상향)",
+      "d": "2026-08-04",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-04",
+          "s": "완료",
+          "note": "2분기 매출 3.924억달러, 3분기 5.4억~5.6억달러 전망 제시"
+        }
+      ]
+    },
+    {
+      "id": "aries7_ann",
+      "what": "Aries 7 (PCIe 7 구리·광) 제품군 발표",
+      "d": "2026-10-08",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-08",
+          "s": "완료",
+          "note": "4분기 샘플링 예정 발표"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 발표 — 가이던스(5.4억~5.6억달러) 달성 여부",
+      "d": "2026-11-03",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        6,
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-06",
+          "s": "예정",
+          "note": "11월 3일 장 마감 후 실적 발표·콜 공지"
+        }
+      ]
+    },
+    {
+      "id": "aries7_sample",
+      "what": "Aries 7 리타이머·리드라이버·스마트 케이블 모듈 샘플링",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-08",
+          "s": "예정",
+          "note": "선별 하이퍼스케일러·OEM·NPO 고객 대상 샘플링 예정"
+        }
+      ]
+    },
+    {
+      "id": "scorpio_x_top",
+      "what": "Scorpio X가 최대 제품군이 됨 (회사 목표)",
+      "d": "2026-Q4",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2,
+        3,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-05-05",
+          "s": "예정",
+          "note": "1분기 콜: 연말까지 Scorpio가 최대 제품군이 된다는 목표"
+        },
+        {
+          "d": "2026-08-04",
+          "s": "진행",
+          "note": "2분기: 목표보다 한 분기 빨리 최대 제품군이 될 것이라 언급(보도)"
+        }
+      ]
+    },
+    {
+      "id": "leo_azure",
+      "what": "Leo CXL 컨트롤러 Azure M 시리즈 VM 일반 제공",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "연말 GA 예정 (회사 설명)"
+        }
+      ]
+    },
+    {
+      "id": "ualink_2027",
+      "what": "UALink 기반 스위치 초기 배치",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-05-05",
+          "s": "예정",
+          "note": "기존 2026 샘플링에서 2027 초기 배치로 일정 후퇴(보도)"
+        }
+      ]
+    },
+    {
+      "id": "optical_2027",
+      "what": "광 커플러·CPO용 분리형 커넥터 양산 및 NVLink Fusion 맞춤 실리콘 매출",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 매출 개시 목표"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "3.924억달러 (전년 대비 +104%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "비GAAP 총이익률 / 영업이익률 (2분기)",
+      "v": "73.7% / 39.1%",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "5.4억~5.6억달러",
+      "asof": "2026-08",
+      "src": [
+        1,
+        6
+      ]
+    },
+    {
+      "k": "스케일업 시장 전망 (회사)",
+      "v": "2030년 약 200억달러",
+      "asof": "2026-05",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — PCIe 6 선두권·Scorpio X 확대 국면, 11월 3일 3분기 실적과 경쟁사 PCIe 6 스위치 추격이 관건",
+      "src": [
+        1,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Astera Labs 8-K 2026년 2분기 실적 (Exhibit 99.1)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001736297/000173629726000033/q226exhibit991.htm",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "Astera Labs Beat And Guided Higher, Then Fell (Trefis)",
+      "u": "https://www.trefis.com/stock/alab/articles/610418/astera-labs-beat-and-guided-higher-then-fell-because-the-rally-came-first/2026-08-06",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "Astera Labs Q1 FY 2026 Earnings Highlight Scale-Up Switching Ramp (Futurum)",
+      "u": "https://futurumgroup.com/insights/astera-labs-q1-fy-2026-earnings-highlight-scale-up-switching-ramp/",
+      "d": "2026-05"
+    },
+    {
+      "t": "Astera Labs Q1 2026 earnings call transcript (Motley Fool)",
+      "u": "https://www.fool.com/earnings/call-transcripts/2026/05/05/astera-labs-alab-q1-2026-earnings-transcript/",
+      "d": "2026-05-05"
+    },
+    {
+      "t": "Astera Labs Aries 7 Goes Optical. Can PCIe 7 Outgrow the Retimer Plateau? (Futurum)",
+      "u": "https://futurumgroup.com/?p=96490",
+      "d": "2026-10"
+    },
+    {
+      "t": "Astera Labs announces Aries 7 PCIe 7 signal conditioning portfolio",
+      "u": "https://finviz.com/news/400431/astera-labs-announces-aries-7-industrys-first-pcie-7-signal-conditioning-portfolio-across-copper-and-optical-interconnects",
+      "d": "2026-10-08"
+    },
+    {
+      "t": "Astera Labs announces conference call to review Q3 2026 results",
+      "u": "https://finviz.com/news/399499/astera-labs-announces-conference-call-to-review-third-quarter-2026-financial-results",
+      "d": "2026-10-06"
+    },
+    {
+      "t": "Astera Labs targets $10B AI connectivity opportunity as Scorpio X-Series ramps (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/astera-labs-targets-10b-ai-connectivity-opportunity-as-scorpio-x-series-ramps-2026-05-27/",
+      "d": "2026-05-27"
+    },
+    {
+      "t": "CRDO retimer business hits its stride (Zacks)",
+      "u": "https://www.zacks.com/stock/news/2948560/crdos-retimer-business-hits-its-stride-further-gains-ahead",
+      "d": "2026"
+    },
+    {
+      "t": "Astera Labs touts AI infrastructure tailwinds, Scorpio switch ramp (MarketBeat)",
+      "u": "https://www.marketbeat.com/instant-alerts/astera-labs-touts-ai-infrastructure-tailwinds-highlights-scorpio-switch-ramp-at-morgan-stanley-conference-2026-03-03/",
+      "d": "2026-03-03"
+    }
+  ]
+}

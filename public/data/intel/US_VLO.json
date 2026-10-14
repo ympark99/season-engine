@@ -1,0 +1,298 @@
+{
+  "m": "US",
+  "code": "VLO",
+  "name": "Valero Energy",
+  "theme": "에너지",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "미국 걸프 연안 중심의 대형 독립 정유사로, 2분기 디젤 마진 급등과 재생디젤 흑자 전환으로 이익이 크게 늘었다. 다음 분기 관건은 10월 22일 3분기 실적에서 마진 유지 여부, 포트아서 화재 복구비용 반영, 서부 해안 벤시아 가동 중단 이후의 처리량.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "걸프 연안 대형 설비와 낮은 부채(순부채비율 11%), 재생디젤 부문 흑자로 이익 체력이 좋다. 다만 이익이 정제마진에 크게 좌우되고 서부 해안 설비 축소, 포트아서 사고, 재생연료 정책 변경 위험이 남아 있다."
+  },
+  "peers": [
+    {
+      "name": "Marathon Petroleum",
+      "m": "US",
+      "code": "MPC"
+    },
+    {
+      "name": "Phillips 66",
+      "m": "US",
+      "code": "PSX"
+    },
+    {
+      "name": "HF Sinclair",
+      "m": "US",
+      "code": "DINO"
+    },
+    {
+      "name": "Chevron",
+      "m": "US",
+      "code": "CVX"
+    }
+  ],
+  "axes": [
+    {
+      "k": "정제마진·이익",
+      "me": "2분기 정제 영업이익 45억 달러(전년 13억), 순이익 37억 달러(주당 12.62달러). 디젤 마진이 약 29억 달러 기여",
+      "vs": "Marathon Petroleum 2분기 정제·마케팅 마진 배럴당 36.33달러(전년 17.58), 조정 EBITDA 85억 달러",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "k": "가동률·설비",
+      "me": "2분기 처리량 일평균 약 300만 배럴, 3분기 처리량은 280만~290만 배럴 가이던스. 3월 포트아서 수소처리기 폭발로 가동 중단 후 복구",
+      "vs": "Marathon 2분기 가동률 94%, 걸프 연안 100%",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "k": "재생디젤·SAF",
+      "me": "Diamond Green Diesel 합작 중심, 재생디젤 영업이익 1분기 1.39억 달러 → 2분기 7.17억 달러. 연 생산능력 약 12억 갤런, 포트아서 SAF 전환 최대 연 2.35억 갤런",
+      "vs": "동종 정유사 대비 비교 가능한 공개 수치는 확인 못함",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "서부 해안 노출",
+      "me": "벤시아 정제를 2026년 4월 중단(단계적 가동 정지 완료), 윌밍턴도 폐쇄 발표. 서부 처리량 급감",
+      "vs": "Marathon 서부 해안 가동률 93%, 배럴당 조정 EBITDA 27달러 이상",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        5,
+        4
+      ]
+    },
+    {
+      "k": "자본 환원·재무",
+      "me": "2분기 주주환원 26억 달러(조정 영업현금흐름의 59%), 분기 배당 1.20달러, 현금 79억 달러, 순부채비율 11%, 신규 50억 달러 자사주 매입 승인(보도)",
+      "vs": "경쟁사와의 직접 비교 수치는 확인 못함",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "k": "재생연료 정책",
+      "me": "EPA가 2026~2027 의무량 확정(바이오디젤 의무 대폭 상향), 단 SAF·재생디젤 RIN 배수는 2027-01-01부터 1.5로 축소",
+      "vs": "정책 영향의 회사별 비교 자료 확인 못함",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2_done",
+      "what": "2분기 실적 발표 — 순이익 37억 달러, 신규 자사주 매입 승인",
+      "d": "2026-07",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        1,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "주당 12.62달러, 정제 영업이익 45억 달러"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표(컨퍼런스콜 오전 10시 ET) — 마진 유지, 포트아서 복구비용, 자본지출 가이던스",
+      "d": "2026-10-22",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사가 10월 22일 발표 공지"
+        }
+      ]
+    },
+    {
+      "id": "pa_capex",
+      "what": "포트아서 화재 복구에 따른 2026 자본지출(약 20억 달러 전망) 상향 여부",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사는 비용·복구 일정이 분명해지면 가이던스 수정 예정이라고 언급"
+        }
+      ]
+    },
+    {
+      "id": "rin_mult",
+      "what": "SAF·재생디젤 RIN 배수 1.5로 축소 시행",
+      "d": "2027-01-01",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "EPA 최종 규정, 수입 RIN 절반 축소는 2028 의무량으로 연기"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026년 4분기·연간 실적 발표",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미공지 — 통상 1월 말~2월 초(추정)"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 순이익",
+      "v": "37억 달러 (주당 12.62달러, 전년 7.14억)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 정제 처리량",
+      "v": "일평균 약 300만 배럴, 운영비 배럴당 4.70달러",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "재생디젤 영업이익 (2분기)",
+      "v": "7.17억 달러 (전년 영업손실 0.79억)",
+      "asof": "2026-06",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "순부채비율 / 현금",
+      "v": "11% / 79억 달러",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 2분기 정제·재생디젤 호조로 이익 급증, 10월 22일 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Valero Energy Corporation to announce third quarter 2026 earnings results on October 22, 2026",
+      "u": "https://finviz.com/news/389791/valero-energy-corporation-to-announce-third-quarter-2026-earnings-results-on-october-22-2026",
+      "d": "2026-09"
+    },
+    {
+      "t": "Valero Energy Reports Second Quarter 2026 Results",
+      "u": "https://www.webull.com/news/15315900573115392",
+      "d": "2026-07"
+    },
+    {
+      "t": "Valero Energy Form 10-Q (2026-06-30)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026050937/vlo-20260630.htm",
+      "d": "2026-07"
+    },
+    {
+      "t": "Valero Energy Q2 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/valero-energy-q2-earnings-call-highlights-2026-08-01/",
+      "d": "2026-08-01"
+    },
+    {
+      "t": "Marathon Petroleum Q2 2026 earnings release (8-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001510295/000151029526000060/mpcq22026earningsrelease.htm",
+      "d": "2026-08"
+    },
+    {
+      "t": "Valero Q2 Net Income Reaches $3.7 Billion Amid Refining Margin Expansion",
+      "u": "https://www.panabee.com/news/valero-energy-earnings-q2-2026",
+      "d": "2026-07"
+    },
+    {
+      "t": "Valero to run refineries at up to 95% capacity in Q2 as margins stay strong",
+      "u": "https://prodadmin.pgjonline.com/news/2026/may/valero-to-run-refineries-at-up-to-95-capacity-in-q2-as-margins-stay-strong",
+      "d": "2026-05"
+    },
+    {
+      "t": "Valero Restarts Corpus CDU / Port Arthur restart after hydrotreater fire",
+      "u": "https://www.energyintel.com/0000017b-a7b4-de4c-a17b-e7f650fe0001",
+      "d": "2026-04"
+    },
+    {
+      "t": "EPA Releases Full Guidance on Record High RVO for 2026, 2027",
+      "u": "https://www.opis.com/resources/energy-market-news-from-opis/epa-releases-full-guidance-on-record-high-rvo-for-2026-2027/",
+      "d": "2026-03"
+    },
+    {
+      "t": "Biofuels outlook clarified with RVO boost",
+      "u": "https://cobank.com/knowledge-exchange/grain-and-farm-supply/biofuels-outlook-clarified-with-rvo-boost",
+      "d": "2026-04"
+    }
+  ]
+}
