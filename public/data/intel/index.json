@@ -1914,6 +1914,54 @@
    }
   ]
  },
+ "US:CRDO": {
+  "name": "Credo Technology Group",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "grade": {
+   "g": "B",
+   "label": "경쟁력 양호",
+   "why": "AEC 선두와 매출 +115% 성장, 비GAAP 총마진 68%로 강점. 반면 상위 4개 고객이 매출의 대부분을 차지하고 Marvell·Broadcom·Astera 등 대형 업체 진입, 마진 압박이 약점."
+  },
+  "cp": [
+   {
+    "id": "q2_earn",
+    "d": "2026-12",
+    "what": "FY27 2분기 실적 발표 (가이던스 매출 5.25억~5.35억달러)",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "optical_600",
+    "d": "2027-Q1",
+    "what": "FY27 광학 매출 6억달러 초과 목표 진행",
+    "kind": "실적",
+    "status": "진행"
+   },
+   {
+    "id": "aec_16t",
+    "d": "2026-H2",
+    "what": "1.6T AEC 매출 기여 시작",
+    "kind": "양산",
+    "status": "예정"
+   },
+   {
+    "id": "q3_earn",
+    "d": "2027-03",
+    "what": "FY27 3분기 실적 발표",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "ofc27",
+    "d": "2027-03",
+    "what": "OFC 2027 광통신 전시 신제품 공개",
+    "kind": "출시",
+    "status": "예정"
+   }
+  ]
+ },
  "US:CRWD": {
   "name": "CrowdStrike",
   "theme": "보안 SW",

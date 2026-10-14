@@ -1,0 +1,314 @@
+{
+  "m": "US",
+  "code": "CRDO",
+  "name": "Credo Technology Group",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "AI 데이터센터 랙 내부 연결용 AEC에서 점유율 선두(추정 약 80%, 2025-10 기준)이고 광 DSP·트랜시버로 확장 중이다. 다음 분기 관건은 마진 하락(비GAAP 68%→목표 67~69%)과 고객 편중 속에서 2분기 매출 5.25억~5.35억달러 가이던스 달성 및 1.6T·광학 매출 확대.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "AEC 선두와 매출 +115% 성장, 비GAAP 총마진 68%로 강점. 반면 상위 4개 고객이 매출의 대부분을 차지하고 Marvell·Broadcom·Astera 등 대형 업체 진입, 마진 압박이 약점."
+  },
+  "peers": [
+    {
+      "name": "Astera Labs",
+      "m": "US",
+      "code": "ALAB"
+    },
+    {
+      "name": "Marvell Technology",
+      "m": "US",
+      "code": "MRVL"
+    },
+    {
+      "name": "Broadcom",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "TE Connectivity",
+      "m": "US",
+      "code": "TEL"
+    },
+    {
+      "name": "Coherent",
+      "m": "US",
+      "code": "COHR"
+    }
+  ],
+  "axes": [
+    {
+      "k": "AEC 점유율",
+      "me": "AEC 최대 사업부, 5개 하이퍼스케일러와 거래, 점유율 약 80% 추정",
+      "vs": "Astera·Marvell·Broadcom 후발 진입",
+      "verdict": "선두권",
+      "conf": "추정",
+      "src": [
+        6,
+        0
+      ]
+    },
+    {
+      "k": "1.6T 제품",
+      "me": "1.6T ZeroFlap AEC와 3nm Bluebird DSP 기반 1.6T LRO 모듈 시연; 1.6T AEC 기여는 FY27 하반기 시작 목표",
+      "vs": "Marvell·Broadcom은 규모 우위",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "광학(DSP·트랜시버)",
+      "me": "FY27 광학 매출 6억달러 초과 목표, 광 DSP·리타이머 매출 분기 기록",
+      "vs": "Marvell·Broadcom·Coherent 등 기존 강자",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        2,
+        0
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "1분기 비GAAP 총마진 68.0%, 영업마진 48.2%",
+      "vs": "대형 반도체 업체보다 높은 수준이나 2분기 GAAP 마진 하락 가이던스",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "고객 집중도",
+      "me": "상위 4개 고객이 분기 매출의 약 1/3·28%·13%·10% (보도, 표현 모호)",
+      "vs": "다변화된 대형 경쟁사",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        2,
+        7
+      ]
+    },
+    {
+      "k": "지식재산 분쟁",
+      "me": "2026-03 TE Connectivity와 AEC 분쟁 라이선스·합의",
+      "vs": "—",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        3
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2_earn",
+      "what": "FY27 2분기 실적 발표 (가이던스 매출 5.25억~5.35억달러)",
+      "d": "2026-12",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정, 통상 11월 말~12월 초(추정)"
+        }
+      ]
+    },
+    {
+      "id": "optical_600",
+      "what": "FY27 광학 매출 6억달러 초과 목표 진행",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "1분기 광 DSP·리타이머 기록, 하반기 확대 목표"
+        }
+      ]
+    },
+    {
+      "id": "aec_16t",
+      "what": "1.6T AEC 매출 기여 시작",
+      "d": "2026-H2",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "FY27 하반기 기여 목표, FY28 본격 확대 목표"
+        }
+      ]
+    },
+    {
+      "id": "q3_earn",
+      "what": "FY27 3분기 실적 발표",
+      "d": "2027-03",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "날짜 미확정"
+        }
+      ]
+    },
+    {
+      "id": "ofc27",
+      "what": "OFC 2027 광통신 전시 신제품 공개",
+      "d": "2027-03",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "올해 OFC 2026에서 1.6T 제품 시연한 바 있음; 2027 일정 미확인"
+        }
+      ]
+    },
+    {
+      "id": "q1_earn",
+      "what": "FY27 1분기 실적 발표 (매출 4.79억달러, +115%)",
+      "d": "2026-09-02",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-09-02",
+          "s": "완료",
+          "note": "매출 4.79억달러, 비GAAP EPS 1.20달러, 발표 후 주가 급락(마진·고객편중 우려 보도)"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "FY27 1분기 매출",
+      "v": "4.79억달러 (전년 +114.7%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "비GAAP 총마진",
+      "v": "68.0% (GAAP 64.5%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 매출 가이던스",
+      "v": "5.25억~5.35억달러",
+      "asof": "2026-10",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "현금·단기투자",
+      "v": "약 7.64억달러",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — AEC 선두·매출 +115%, 마진 압박과 고객 집중이 관건",
+      "src": [
+        0,
+        2
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Credo Reports Q1 Fiscal 2027 Revenue Of $479 Million, Up 115% Year Over Year",
+      "u": "https://pulse2.com/credo-reports-q1-fiscal-2027-revenue-of-479-million-up-115-year-over-year/",
+      "d": "2026-09-02"
+    },
+    {
+      "t": "Credo Technology Group Holding Ltd Reports First Quarter of Fiscal Year 2027 Financial Results",
+      "u": "https://www.01net.it/credo-technology-group-holding-ltd-reports-first-quarter-of-fiscal-year-2027-financial-results/",
+      "d": "2026-09-02"
+    },
+    {
+      "t": "Credo (CRDO) Fiscal Q1 2027 Earnings Call: Revenue Jumps 115% as Optics Accelerates",
+      "u": "https://www.mitrade.com/insights/news/live-news/article-0-2050680-20260902",
+      "d": "2026-09-02"
+    },
+    {
+      "t": "Credo and TE Connectivity Reach Settlement in Active Electrical Cable Disputes",
+      "u": "https://s205.q4cdn.com/511065572/files/doc_news/Credo-and-TE-Connectivity-Reach-Settlement-in-Active-Electrical-Cable-Disputes-2026.pdf",
+      "d": "2026-03-27"
+    },
+    {
+      "t": "Credo to Showcase Optical Solutions for AI Scale Out Fabrics at OFC 2026",
+      "u": "https://www.businesswire.com/news/home/20260312238890/en/Credo-to-Showcase-Optical-Solutions-for-AI-Scale-Out-Fabrics-at-OFC-2026",
+      "d": "2026-03-12"
+    },
+    {
+      "t": "Credo: Explosive 50% Forward Annual Revenue Growth (Marvell·Broadcom 규모 위협 언급)",
+      "u": "https://seekingalpha.com/article/4879910-credo-stock-explosive-50-percent-forward-annual-revenue-growth",
+      "d": "2026"
+    },
+    {
+      "t": "Tech Investments — AEC 점유율 약 80% 추정 요약",
+      "u": "https://www.techinvestments.io/p/high-growth-stock-picks",
+      "d": "2025-10"
+    },
+    {
+      "t": "Credo Stock Falls After Earnings (주가 반응·마진 우려)",
+      "u": "https://trendspider.com/blog/crdo-stock-drops-despite-record-breaking-q4-earnings-beat/",
+      "d": "2026"
+    },
+    {
+      "t": "Credo Q1 FY26 earnings call transcript (4번째 하이퍼스케일러·1.6T 전환 시점)",
+      "u": "https://www.fool.com/earnings/call-transcripts/2025/09/03/credo-crdo-q1-2026-earnings-call-transcript",
+      "d": "2025-09-03"
+    }
+  ]
+}
