@@ -3,7 +3,7 @@
   "code": "TSLA",
   "name": "Tesla",
   "theme": "자동차",
-  "at": "2026-10-14",
+  "at": "2026-10-15",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "전기차 판매는 BYD와 반기 기준 근소한 차로 1·2위를 다투는 수준에서 정체(3분기 인도 486,532대, 전년 대비 약 −2%)인 반면, 자율주행·로봇에 대한 투자 부담이 커져 2분기 영업이익률이 1.4%까지 내려왔다. 다음 분기 관건은 10월 3분기 실적의 마진·현금흐름과 로보택시·Cybercab 확대 속도.",
@@ -113,14 +113,20 @@
     {
       "id": "q3_earn",
       "what": "3분기 실적 발표 — 마진·잉여현금흐름·설비투자",
-      "d": "2026-10",
+      "d": "2026-10-21",
       "kind": "실적",
       "status": "예정",
       "conf": "보도",
       "src": [
-        5
+        5,
+        16
       ],
       "log": [
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "2026-10-21 장 마감 후 발표, 콘퍼런스콜 오후 5:30(미 동부) 공지 보도 (이전 28일 추정은 정정)"
+        },
         {
           "d": "2026-10-14",
           "s": "예정",
@@ -154,9 +160,15 @@
       "status": "진행",
       "conf": "보도",
       "src": [
-        8
+        8,
+        17
       ],
       "log": [
+        {
+          "d": "2026-10-15",
+          "s": "진행",
+          "note": "오스틴에서 소수 대수 상업 투입 시작, 점진 확대 계획. NHTSA가 9월 3일 인증 적합성 감사 개시(AQ26002), 9월 30일 기한 특별명령 — 결과 미확인"
+        },
         {
           "d": "2026-10-14",
           "s": "진행",
@@ -319,6 +331,14 @@
   ],
   "updates": [
     {
+      "d": "2026-10-15",
+      "note": "3분기 실적 21일 확정 보도. Cybercab은 오스틴 소수 투입 단계이며 NHTSA 인증 감사 진행 중",
+      "src": [
+        16,
+        17
+      ]
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 판매는 BYD와 박빙·정체, 수익성 약화, 10월 3분기 실적과 로보택시 확대(FSD v15)가 다음 확인 지점",
       "src": [
@@ -408,6 +428,16 @@
       "t": "Tesla FSD Probe: NHTSA Grants 5-Week Breathing Room",
       "u": "https://www.heygotrade.com/en/news/tesla-fsd-probe-nhtsa-grants-5-week-breathing-room/",
       "d": "2026"
+    },
+    {
+      "t": "Tesla Q3 2026 earnings call date announced",
+      "u": "https://www.teslaoracle.com/?p=66789",
+      "d": "2026-10-14"
+    },
+    {
+      "t": "Tesla's Cybercab hits the road and a US regulatory probe",
+      "u": "https://www.malaymail.com/news/world/2026/09/05/teslas-cybercab-hits-the-road-and-a-us-regulatory-probe/234053",
+      "d": "2026-09-05"
     }
   ]
 }

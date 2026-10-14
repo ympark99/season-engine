@@ -3,7 +3,7 @@
   "code": "HPE",
   "name": "Hewlett Packard Enterprise",
   "theme": "AI 서버",
-  "at": "2026-10-14",
+  "at": "2026-10-15",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "AI 서버 주문이 분기 최대치를 기록하고 백로그가 역대 최고인 가운데, 공급 제약이 매출 인식의 병목이다. 다음 분기(12월 중 4분기 실적) 관건은 4분기 매출 가이던스(139억~148억 달러) 달성과 메모리 등 부품 부족 속 마진 유지.",
@@ -85,7 +85,8 @@
       "src": [
         9,
         10,
-        8
+        8,
+        12
       ]
     },
     {
@@ -161,18 +162,24 @@
     {
       "id": "helios",
       "what": "AMD Helios 랙 스케일 AI 시스템 고객 공급",
-      "d": "2026",
+      "d": "2026-Q4",
       "kind": "출시",
       "status": "예정",
       "conf": "보도",
       "src": [
-        9
+        9,
+        12
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "2026년부터 제공 계획, 구체 출하일 미확인"
+        },
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "Vultr 12억 달러 첫 Helios 주문 발표(9/30), 인도 2026년 4분기부터 예상, 랙 수·일정 미공개"
         }
       ]
     },
@@ -250,6 +257,13 @@
   ],
   "updates": [
     {
+      "d": "2026-10-15",
+      "note": "AMD Helios 첫 주문 12억 달러(Vultr, 9/30 발표), 인도 2026년 4분기 시작 예상 — 구체 출하 규모 미확인",
+      "src": [
+        12
+      ]
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 3분기 사상 최대 주문·백로그와 공급 제약 병존, 12월 4분기 실적이 다음 확인 지점",
       "src": [
@@ -319,6 +333,11 @@
       "t": "HPE earnings calendar (TipRanks)",
       "u": "https://www.tipranks.com/stocks/mx:hpe/earnings",
       "d": "2026-10"
+    },
+    {
+      "t": "HPE lands first AMD Helios order in $1.2B Vultr deal",
+      "u": "https://www.fierce-network.com/broadband/hpe-lands-first-amd-helios-order-12b-vultr-deal",
+      "d": "2026-09-30"
     }
   ]
 }

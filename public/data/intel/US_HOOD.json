@@ -3,7 +3,7 @@
   "code": "HOOD",
   "name": "Robinhood Markets",
   "theme": "코인",
-  "at": "2026-10-14",
+  "at": "2026-10-15",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "2분기 암호화폐 매출은 1억 달러(전년 대비 -38%)로 줄었지만 예측시장(1.56억 달러)·구독·은행 등으로 총매출 13.1억 달러(+32%)를 냈다. 코인 의존도는 낮아졌고, 다음 분기 관건은 10월 27일 3분기 실적에서 코인 약세 속 예측시장·Rothera 거래소의 지속성과 주별 규제 소송 흐름이다.",
@@ -126,6 +126,11 @@
           "d": "2026-10-01",
           "s": "예정",
           "note": "회사가 10월 27일 발표 공지"
+        },
+        {
+          "d": "2026-10-15",
+          "s": "예정",
+          "note": "10/27 장 마감 후 발표 재확인"
         }
       ]
     },
@@ -174,19 +179,25 @@
     },
     {
       "id": "rvii",
-      "what": "Robinhood Ventures Fund II 상장 (목표 최대 2억 달러)",
+      "what": "Robinhood Ventures Fund II 상장 (공모가 주당 25달러, 약 2.255억 달러 규모, NYSE RVII)",
       "d": "2026-H2",
       "kind": "출시",
-      "status": "예정",
+      "status": "완료",
       "conf": "보도",
       "src": [
-        11
+        11,
+        13
       ],
       "log": [
         {
           "d": "2026-08",
           "s": "예정",
           "note": "상장 신청서 제출"
+        },
+        {
+          "d": "2026-10-15",
+          "s": "완료",
+          "note": "공모가 25달러 결정, 약 2.255억 달러 규모(목표 최대 2억 달러 초과), 8월 중순 상장 예정 보도 — 실거래 개시는 미확인"
         }
       ]
     },
@@ -285,6 +296,14 @@
   ],
   "updates": [
     {
+      "d": "2026-10-15",
+      "note": "Ventures Fund II 공모가 주당 25달러·약 2.255억 달러 규모로 결정 보도(실거래 개시는 미확인), 신규 뉴스는 없고 10/27 3분기 실적이 다음 확인점",
+      "src": [
+        13,
+        0
+      ]
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 코인 매출은 약세지만 예측시장·구독으로 총매출 성장, 10월 27일 3분기 실적이 다음 확인 지점",
       "src": [
@@ -358,6 +377,11 @@
       "t": "Robinhood launches tokenized US stock trading for EU users",
       "u": "https://m.bankingexchange.com/news-feed/item/10349-robinhood-launches-tokenized-us-stock-trading-for-eu-users?Itemid=620",
       "d": "2025-06"
+    },
+    {
+      "t": "RVII 공모가 결정 보도",
+      "u": "https://pulse2.com/robinhood-ventures-fund-ii-prices-ipo-at-25-per-share-launching-with-225-5-million-fund/",
+      "d": "2026-08"
     }
   ]
 }

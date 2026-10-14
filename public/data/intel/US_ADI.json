@@ -3,10 +3,10 @@
   "code": "ADI",
   "name": "Analog Devices",
   "theme": "아날로그 반도체",
-  "at": "2026-10-14",
+  "at": "2026-10-15",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
-  "position": "산업·데이터센터·자동차 전반에서 고성능 아날로그 선두권으로, 회계 3분기 매출 40억 달러(+40%)로 사상 최대를 냈다. 다음 분기 관건은 4분기 매출 43억 달러 안팎 가이던스 달성과 Empower 인수 마무리, 경쟁사 TI의 3분기 발표(10월 21일)에서 보이는 수요 강도.",
+  "position": "산업·데이터센터·자동차 전반에서 고성능 아날로그 선두권으로, 회계 3분기 매출 40억 달러(+40%)로 사상 최대를 냈다. 다음 분기 관건은 4분기 매출 43억 달러 안팎 가이던스 달성과 Empower 인수(7월 마감) 통합, 경쟁사 TI의 3분기 발표(10월 21일)에서 보이는 수요 강도.",
   "grade": {
     "g": "A",
     "label": "경쟁력 우위",
@@ -170,18 +170,24 @@
     {
       "id": "empower_close",
       "what": "Empower Semiconductor 15억 달러 인수 마무리",
-      "d": "2026-H2",
+      "d": "2026-07-07",
       "kind": "기타",
-      "status": "진행",
+      "status": "완료",
       "conf": "공시",
       "src": [
-        5
+        5,
+        9
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "진행",
           "note": "공시상 2026년 하반기 마감 예정, 반독점 대기기간 만료 등 조건. 마감 발표는 아직 확인 안 됨"
+        },
+        {
+          "d": "2026-10-15",
+          "s": "완료",
+          "note": "2026-07-07 전액 현금 인수 완료 발표 확인, 10-Q에도 사업결합으로 반영 (기존 '하반기 마감 예정·미확인' 정정)"
         }
       ]
     },
@@ -240,6 +246,14 @@
   ],
   "updates": [
     {
+      "d": "2026-10-15",
+      "note": "Empower 인수 마감(7월 7일) 확인으로 체크포인트 정정, TI 3분기 콜 10월 21일 재확인",
+      "src": [
+        9,
+        4
+      ]
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 3분기 사상 최대 매출·4분기 43억 달러 가이던스, 다음 확인 지점은 TI 10월 21일 실적과 11월 ADI 4분기 실적",
       "src": [
@@ -294,6 +308,11 @@
       "t": "Analog Devices (ADI) Q3 2026 earnings summary",
       "u": "https://quartr.com/events/analog-devices-inc-adi-q3-2026_3YUiYcdh",
       "d": "2026-08"
+    },
+    {
+      "t": "Analog Devices Completes Acquisition of Empower Semiconductor",
+      "u": "https://www.analog.com/en/newsroom/press-releases/2026/7-7-26-adi-completes-acquisition-of-empower-semiconductor.html",
+      "d": "2026-07-07"
     }
   ]
 }
