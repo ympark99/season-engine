@@ -1,328 +1,327 @@
 {
-  "m": "US",
-  "code": "BE",
-  "name": "Bloom Energy",
-  "theme": "전력 인프라",
-  "at": "2026-10-14",
-  "full": "2026-10-14",
-  "by": "Claude 정기 조사",
-  "position": "고체산화물 연료전지(SOFC)로 데이터센터 현장 발전(온사이트 전력) 수요를 흡수하며 2분기 매출이 처음 10억달러를 넘었다. 다음 분기 관건은 3분기 실적에서 상향한 연간 가이던스 달성 경로와, 7월 공매도 보고서가 제기한 공급망(스칸듐) 의혹이 추가로 해소되는지.",
-  "grade": {
-    "g": "B",
-    "label": "경쟁력 양호",
-    "why": "2분기 매출 +165%, 주요 하이퍼스케일러 검증 완료, 오라클 최대 2.8GW 협약 등 수요·실적 모멘텀은 강함. 반면 가스터빈·왕복엔진 등 대체 수단과 경쟁하고, 생산능력 확대(연말 2GW 목표)와 공급망 의혹이 해소되지 않은 점이 위험."
+ "m": "US",
+ "code": "BE",
+ "name": "Bloom Energy",
+ "theme": "전력 인프라",
+ "at": "2026-10-14",
+ "full": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "position": "고체산화물 연료전지(SOFC)로 데이터센터 현장 발전(온사이트 전력) 수요를 흡수하며 2분기 매출이 처음 10억달러를 넘었다. 다음 분기 관건은 3분기 실적에서 상향한 연간 가이던스 달성 경로와, 7월 공매도 보고서가 제기한 공급망(스칸듐) 의혹이 추가로 해소되는지.",
+ "grade": {
+  "g": "B",
+  "label": "경쟁력 양호",
+  "why": "2분기 매출 +165%, 주요 하이퍼스케일러 검증 완료, 오라클 최대 2.8GW 협약 등 수요·실적 모멘텀은 강함. 반면 가스터빈·왕복엔진 등 대체 수단과 경쟁하고, 생산능력 확대(연말 2GW 목표)와 공급망 의혹이 해소되지 않은 점이 위험."
+ },
+ "peers": [
+  {
+   "name": "GE Vernova",
+   "m": "US",
+   "code": "GEV"
   },
-  "peers": [
+  {
+   "name": "Caterpillar",
+   "m": "US",
+   "code": "CAT"
+  },
+  {
+   "name": "Plug Power",
+   "m": "US",
+   "code": "PLUG"
+  },
+  {
+   "name": "FuelCell Energy",
+   "m": "US",
+   "code": "FCEL"
+  },
+  {
+   "name": "Wärtsilä",
+   "m": null,
+   "code": null
+  }
+ ],
+ "axes": [
+  {
+   "k": "데이터센터 수요 검증",
+   "me": "주요 미국 하이퍼스케일러 전부와 십여 곳 이상의 네오클라우드·AI 연구소·코로케이션 사업자가 자사 전력 솔루션을 검증·승인(회사 설명). 오라클과 최대 2.8GW 협약, 이 중 1.2GW는 계약·배치 중",
+   "vs": "가스터빈·왕복엔진 업체도 데이터센터 수주를 받고 있어 직접 비교 가능한 수치는 확인 안 됨",
+   "verdict": "선두권",
+   "conf": "공시",
+   "src": [
+    0,
+    1,
+    3
+   ]
+  },
+  {
+   "k": "납기(전력 투입 속도)",
+   "me": "연료전지는 모듈형 현장 설치. 2분기 가이던스 상향 근거로 '전력 투입 시간(time-to-power)' 고객용 확보 생산능력을 언급",
+   "vs": "대형 가스터빈은 지금 주문하면 2031년 인도라는 시장조사 자료가 있고, 왕복엔진은 12~18개월 납기로 알려짐(홍보성 자료일 수 있음)",
+   "verdict": "우위",
+   "conf": "추정",
+   "src": [
+    1,
+    9
+   ]
+  },
+  {
+   "k": "생산능력",
+   "me": "프리몬트 공장 연 1GW에서 2GW로 확장, 2026년 말 완료 목표. 증설 여지는 약 5GW까지(10-K)",
+   "vs": "2GW 달성은 아직 공식 확인 안 됨. 공매도 보고서는 연 5GW 생산 시 스칸듐 공급이 부족하다고 주장, 회사는 25GW 공급망 가시성이 있다고 반박",
+   "verdict": "불확실",
+   "conf": "공시",
+   "src": [
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "k": "수익성·실적 모멘텀",
+   "me": "2분기 매출 10.65억달러(+165.5%), 비GAAP 매출총이익률 34.3%, 영업현금흐름 2.26억달러. 연간 매출 가이던스 39~42억달러로 상향",
+   "vs": "비교 대상 종합 수치는 확인 안 됨",
+   "verdict": "우위",
+   "conf": "공시",
+   "src": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "k": "공급망·공시 신뢰",
+   "me": "7월 공매도 보고서가 스칸듐 중국 의존·수주잔고 대비 이행의무(RPO 4.93억달러, 3월 말) 불일치를 주장. 회사는 8-K로 '허위·오해 소지' 반박",
+   "vs": "독립 검증 결과는 확인 안 됨",
+   "verdict": "불확실",
+   "conf": "보도",
+   "src": [
+    4,
+    5
+   ]
+  },
+  {
+   "k": "온사이트 발전 대체재",
+   "me": "연료전지(천연가스·바이오가스·수소 연료 사용 가능)",
+   "vs": "GE Vernova·Caterpillar 등은 대규모 수주잔고 보유, Caterpillar 발전 부문 +72%·GE Vernova 가스 수주+슬롯예약 116GW(시장보고서 인용)",
+   "verdict": "동등",
+   "conf": "추정",
+   "src": [
+    8,
+    9
+   ]
+  }
+ ],
+ "checkpoints": [
+  {
+   "id": "q3_earn",
+   "what": "2026년 3분기 실적 발표 — 가이던스 상향 경로 확인",
+   "d": "2026-10",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    10
+   ],
+   "log": [
     {
-      "name": "GE Vernova",
-      "m": "US",
-      "code": "GEV"
-    },
-    {
-      "name": "Caterpillar",
-      "m": "US",
-      "code": "CAT"
-    },
-    {
-      "name": "Plug Power",
-      "m": "US",
-      "code": "PLUG"
-    },
-    {
-      "name": "FuelCell Energy",
-      "m": "US",
-      "code": "FCEL"
-    },
-    {
-      "name": "Wärtsilä",
-      "m": null,
-      "code": null
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "발표일 미확정 — 예상일 자료마다 10-27, 11-04 등으로 갈림"
     }
-  ],
-  "axes": [
+   ]
+  },
+  {
+   "id": "fremont_2gw",
+   "what": "프리몬트 공장 생산능력 2GW 확장 완료",
+   "d": "2026-12",
+   "kind": "양산",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    6
+   ],
+   "log": [
     {
-      "k": "데이터센터 수요 검증",
-      "me": "주요 미국 하이퍼스케일러 전부와 십여 곳 이상의 네오클라우드·AI 연구소·코로케이션 사업자가 자사 전력 솔루션을 검증·승인(회사 설명). 오라클과 최대 2.8GW 협약, 이 중 1.2GW는 계약·배치 중",
-      "vs": "가스터빈·왕복엔진 업체도 데이터센터 수주를 받고 있어 직접 비교 가능한 수치는 확인 안 됨",
-      "verdict": "선두권",
-      "conf": "공시",
-      "src": [
-        0,
-        1,
-        3
-      ]
-    },
-    {
-      "k": "납기(전력 투입 속도)",
-      "me": "연료전지는 모듈형 현장 설치. 2분기 가이던스 상향 근거로 '전력 투입 시간(time-to-power)' 고객용 확보 생산능력을 언급",
-      "vs": "대형 가스터빈은 지금 주문하면 2031년 인도라는 시장조사 자료가 있고, 왕복엔진은 12~18개월 납기로 알려짐(홍보성 자료일 수 있음)",
-      "verdict": "우위",
-      "conf": "추정",
-      "src": [
-        1,
-        9
-      ]
-    },
-    {
-      "k": "생산능력",
-      "me": "프리몬트 공장 연 1GW에서 2GW로 확장, 2026년 말 완료 목표. 증설 여지는 약 5GW까지(10-K)",
-      "vs": "2GW 달성은 아직 공식 확인 안 됨. 공매도 보고서는 연 5GW 생산 시 스칸듐 공급이 부족하다고 주장, 회사는 25GW 공급망 가시성이 있다고 반박",
-      "verdict": "불확실",
-      "conf": "공시",
-      "src": [
-        4,
-        5,
-        6
-      ]
-    },
-    {
-      "k": "수익성·실적 모멘텀",
-      "me": "2분기 매출 10.65억달러(+165.5%), 비GAAP 매출총이익률 34.3%, 영업현금흐름 2.26억달러. 연간 매출 가이던스 39~42억달러로 상향",
-      "vs": "비교 대상 종합 수치는 확인 안 됨",
-      "verdict": "우위",
-      "conf": "공시",
-      "src": [
-        0,
-        1,
-        2
-      ]
-    },
-    {
-      "k": "공급망·공시 신뢰",
-      "me": "7월 공매도 보고서가 스칸듐 중국 의존·수주잔고 대비 이행의무(RPO 4.93억달러, 3월 말) 불일치를 주장. 회사는 8-K로 '허위·오해 소지' 반박",
-      "vs": "독립 검증 결과는 확인 안 됨",
-      "verdict": "불확실",
-      "conf": "보도",
-      "src": [
-        4,
-        5
-      ]
-    },
-    {
-      "k": "온사이트 발전 대체재",
-      "me": "연료전지(천연가스·바이오가스·수소 연료 사용 가능)",
-      "vs": "GE Vernova·Caterpillar 등은 대규모 수주잔고 보유, Caterpillar 발전 부문 +72%·GE Vernova 가스 수주+슬롯예약 116GW(시장보고서 인용)",
-      "verdict": "동등",
-      "conf": "추정",
-      "src": [
-        8,
-        9
-      ]
+     "d": "2026-10-14",
+     "s": "진행",
+     "note": "10-K: 연말 완료 목표, 일정·예산 내라고 설명. 완료 확인은 아직 없음"
     }
-  ],
-  "checkpoints": [
+   ]
+  },
+  {
+   "id": "oracle_12gw",
+   "what": "오라클 1.2GW 계약분 배치 진행",
+   "d": "2027",
+   "kind": "수주",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    3
+   ],
+   "log": [
     {
-      "id": "q3_earn",
-      "what": "2026년 3분기 실적 발표 — 가이던스 상향 경로 확인",
-      "d": "2026-10",
-      "kind": "실적",
-      "status": "예정",
-      "conf": "추정",
-      "src": [
-        10,
-        11
-      ],
-      "log": [
-        {
-          "d": "2026-10-14",
-          "s": "예정",
-          "note": "발표일 미확정 — 예상일 자료마다 10-27, 11-04 등으로 갈림"
-        }
-      ]
-    },
-    {
-      "id": "fremont_2gw",
-      "what": "프리몬트 공장 생산능력 2GW 확장 완료",
-      "d": "2026-12",
-      "kind": "양산",
-      "status": "진행",
-      "conf": "공시",
-      "src": [
-        6
-      ],
-      "log": [
-        {
-          "d": "2026-10-14",
-          "s": "진행",
-          "note": "10-K: 연말 완료 목표, 일정·예산 내라고 설명. 완료 확인은 아직 없음"
-        }
-      ]
-    },
-    {
-      "id": "oracle_12gw",
-      "what": "오라클 1.2GW 계약분 배치 진행",
-      "d": "2027",
-      "kind": "수주",
-      "status": "진행",
-      "conf": "공시",
-      "src": [
-        3
-      ],
-      "log": [
-        {
-          "d": "2026-04-13",
-          "s": "진행",
-          "note": "초기 1.2GW 계약·배치 중, 내년까지 이어짐. 최대 2.8GW는 구매 의향"
-        }
-      ]
-    },
-    {
-      "id": "scandium",
-      "what": "공매도 보고서가 제기한 스칸듐·수주잔고 의혹 추가 해소 여부",
-      "d": "2026-Q4",
-      "kind": "규제",
-      "status": "예정",
-      "conf": "보도",
-      "src": [
-        4,
-        5
-      ],
-      "log": [
-        {
-          "d": "2026-07-09",
-          "s": "예정",
-          "note": "회사 8-K 반박. 독립 검증이나 규제 조치는 확인 안 됨"
-        }
-      ]
-    },
-    {
-      "id": "q4_earn",
-      "what": "2026년 4분기·연간 실적 발표",
-      "d": "2027-Q1",
-      "kind": "실적",
-      "status": "예정",
-      "conf": "추정",
-      "src": [
-        1
-      ],
-      "log": [
-        {
-          "d": "2026-10-14",
-          "s": "예정",
-          "note": "연간 매출 39~42억달러·비GAAP 영업이익 8~9억달러 가이던스 달성 여부"
-        }
-      ]
-    },
-    {
-      "id": "q2_earn",
-      "what": "2분기 실적 발표 — 매출 10억달러 돌파, 연간 가이던스 상향",
-      "d": "2026-07-28",
-      "kind": "실적",
-      "status": "완료",
-      "conf": "공시",
-      "src": [
-        0,
-        1
-      ],
-      "log": [
-        {
-          "d": "2026-07-28",
-          "s": "완료",
-          "note": "매출 10.65억달러, 연간 가이던스 39~42억달러로 상향"
-        }
-      ]
+     "d": "2026-04-13",
+     "s": "진행",
+     "note": "초기 1.2GW 계약·배치 중, 내년까지 이어짐. 최대 2.8GW는 구매 의향"
     }
-  ],
-  "metrics": [
+   ]
+  },
+  {
+   "id": "scandium",
+   "what": "공매도 보고서가 제기한 스칸듐·수주잔고 의혹 추가 해소 여부",
+   "d": "2026-Q4",
+   "kind": "규제",
+   "status": "예정",
+   "conf": "보도",
+   "src": [
+    4,
+    5
+   ],
+   "log": [
     {
-      "k": "2분기 매출",
-      "v": "10.65억달러 (+165.5%)",
-      "asof": "2026-06",
-      "src": [
-        0
-      ]
-    },
-    {
-      "k": "2026 연간 매출 가이던스",
-      "v": "39~42억달러 (기존 34~38억)",
-      "asof": "2026-07",
-      "src": [
-        1
-      ]
-    },
-    {
-      "k": "2분기 비GAAP 매출총이익률",
-      "v": "34.3%",
-      "asof": "2026-06",
-      "src": [
-        0
-      ]
-    },
-    {
-      "k": "2026 비GAAP EPS 가이던스",
-      "v": "2.55~2.85달러",
-      "asof": "2026-07",
-      "src": [
-        1
-      ]
+     "d": "2026-07-09",
+     "s": "예정",
+     "note": "회사 8-K 반박. 독립 검증이나 규제 조치는 확인 안 됨"
     }
-  ],
-  "updates": [
+   ]
+  },
+  {
+   "id": "q4_earn",
+   "what": "2026년 4분기·연간 실적 발표",
+   "d": "2027-Q1",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    1
+   ],
+   "log": [
     {
-      "d": "2026-10-14",
-      "note": "전체 조사 — 2분기 실적·가이던스 상향으로 수요 모멘텀 강하나 공급망 의혹·증설 이행이 관건",
-      "src": [
-        0,
-        4,
-        6
-      ]
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "연간 매출 39~42억달러·비GAAP 영업이익 8~9억달러 가이던스 달성 여부"
     }
-  ],
-  "sources": [
+   ]
+  },
+  {
+   "id": "q2_earn",
+   "what": "2분기 실적 발표 — 매출 10억달러 돌파, 연간 가이던스 상향",
+   "d": "2026-07-28",
+   "kind": "실적",
+   "status": "완료",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ],
+   "log": [
     {
-      "t": "Bloom Energy 8-K 2분기 2026 실적 보도자료",
-      "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026050150/ex991_q226financialresults.htm",
-      "d": "2026-07-28"
-    },
-    {
-      "t": "Bloom Energy Reports Record Second Quarter 2026 Financial Results and Raises Full Year 2026 Guidance",
-      "u": "https://www.businesswire.com/news/home/20260728460825/en/",
-      "d": "2026-07-28"
-    },
-    {
-      "t": "Bloom Energy Q2 earnings call highlights",
-      "u": "https://www.nasdaq.com/articles/bloom-energy-q2-earnings-call-highlights",
-      "d": "2026-07"
-    },
-    {
-      "t": "Bloom Energy and Oracle expand strategic partnership to deploy up to 2.8 GW",
-      "u": "https://www.bloomenergy.com/news/bloom-energy-and-oracle-expand-strategic-partnership-to-deploy-up-to-2-8-gw-to-accelerate-ai-infrastructure-build-out/",
-      "d": "2026-04-13"
-    },
-    {
-      "t": "Short seller Hunterbrook attacked Bloom Energy's supply chain claims",
-      "u": "https://www.barchart.com/story/news/3274458/short-seller-hunterbrook-attacked-bloom-energys-supply-chain-claims-be-stock-is-bruised-but-not-broken",
-      "d": "2026-07"
-    },
-    {
-      "t": "BE Stock Ends Higher: Bloom Energy Denies Supply Chain And Scandium Allegations",
-      "u": "https://stocktwits.com/news-articles/markets/equity/be-stock-ends-higher-bloom-energy-denies-supply-chain-and-scandium-allegations/cZmYXxmR7FR",
-      "d": "2026-07"
-    },
-    {
-      "t": "Bloom Energy Form 10-K FY2025",
-      "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
-      "d": "2026-02"
-    },
-    {
-      "t": "GE gas turbines to be rapidly deployed for onsite data center power",
-      "u": "https://www.power-eng.com/gas/ge-gas-turbines-to-be-rapidly-deployed-for-onsite-data-center-power/",
-      "d": "2025"
-    },
-    {
-      "t": "Data Center Onsite & Behind-the-Meter Power Market",
-      "u": "https://www.marketsandmarkets.com/Market-Reports/data-center-onsite-behind-the-meter-power-market-129738654.html",
-      "d": "2026"
-    },
-    {
-      "t": "BE next earnings date (projected)",
-      "u": "https://nextearningsdate.com/bloom-energy.html",
-      "d": "2026-10"
-    },
-    {
-      "t": "Bloom Energy earnings date - Earnings Whispers",
-      "u": "https://beta.earningswhispers.com/go/w/BE",
-      "d": "2026-10"
+     "d": "2026-07-28",
+     "s": "완료",
+     "note": "매출 10.65억달러, 연간 가이던스 39~42억달러로 상향"
     }
-  ]
+   ]
+  }
+ ],
+ "metrics": [
+  {
+   "k": "2분기 매출",
+   "v": "10.65억달러 (+165.5%)",
+   "asof": "2026-06",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "2026 연간 매출 가이던스",
+   "v": "39~42억달러 (기존 34~38억)",
+   "asof": "2026-07",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "2분기 비GAAP 매출총이익률",
+   "v": "34.3%",
+   "asof": "2026-06",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "2026 비GAAP EPS 가이던스",
+   "v": "2.55~2.85달러",
+   "asof": "2026-07",
+   "src": [
+    1
+   ]
+  }
+ ],
+ "updates": [
+  {
+   "d": "2026-10-14",
+   "note": "전체 조사 — 2분기 실적·가이던스 상향으로 수요 모멘텀 강하나 공급망 의혹·증설 이행이 관건",
+   "src": [
+    0,
+    4,
+    6
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Bloom Energy 8-K 2분기 2026 실적 보도자료",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026050150/ex991_q226financialresults.htm",
+   "d": "2026-07-28"
+  },
+  {
+   "t": "Bloom Energy Reports Record Second Quarter 2026 Financial Results and Raises Full Year 2026 Guidance",
+   "u": "https://www.businesswire.com/news/home/20260728460825/en/",
+   "d": "2026-07-28"
+  },
+  {
+   "t": "Bloom Energy Q2 earnings call highlights",
+   "u": "https://www.nasdaq.com/articles/bloom-energy-q2-earnings-call-highlights",
+   "d": "2026-07"
+  },
+  {
+   "t": "Bloom Energy and Oracle expand strategic partnership to deploy up to 2.8 GW",
+   "u": "https://www.bloomenergy.com/news/bloom-energy-and-oracle-expand-strategic-partnership-to-deploy-up-to-2-8-gw-to-accelerate-ai-infrastructure-build-out/",
+   "d": "2026-04-13"
+  },
+  {
+   "t": "Short seller Hunterbrook attacked Bloom Energy's supply chain claims",
+   "u": "https://www.barchart.com/story/news/3274458/short-seller-hunterbrook-attacked-bloom-energys-supply-chain-claims-be-stock-is-bruised-but-not-broken",
+   "d": "2026-07"
+  },
+  {
+   "t": "BE Stock Ends Higher: Bloom Energy Denies Supply Chain And Scandium Allegations",
+   "u": "https://stocktwits.com/news-articles/markets/equity/be-stock-ends-higher-bloom-energy-denies-supply-chain-and-scandium-allegations/cZmYXxmR7FR",
+   "d": "2026-07"
+  },
+  {
+   "t": "Bloom Energy Form 10-K FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+   "d": "2026-02"
+  },
+  {
+   "t": "GE gas turbines to be rapidly deployed for onsite data center power",
+   "u": "https://www.power-eng.com/gas/ge-gas-turbines-to-be-rapidly-deployed-for-onsite-data-center-power/",
+   "d": "2025"
+  },
+  {
+   "t": "Data Center Onsite & Behind-the-Meter Power Market",
+   "u": "https://www.marketsandmarkets.com/Market-Reports/data-center-onsite-behind-the-meter-power-market-129738654.html",
+   "d": "2026"
+  },
+  {
+   "t": "BE next earnings date (projected)",
+   "u": "https://nextearningsdate.com/bloom-energy.html",
+   "d": "2026-10"
+  },
+  {
+   "t": "Bloom Energy earnings date - Earnings Whispers",
+   "u": "https://beta.earningswhispers.com/go/w/BE",
+   "d": "2026-10"
+  }
+ ]
 }
