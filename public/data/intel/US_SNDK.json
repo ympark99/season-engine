@@ -1,0 +1,380 @@
+{
+  "m": "US",
+  "code": "SNDK",
+  "name": "Sandisk",
+  "theme": "메모리",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "NAND 매출 점유율은 5위(11%)지만 데이터센터 SSD 매출이 분기 29.8억달러로 두 배 이상 늘며 이익률이 크게 올랐다. 이번 분기 관건은 10월 29일 회계 1분기 실적이 매출 103~108억달러·총이익률 83~85% 가이던스를 맞추는지, 그리고 공급을 맡는 키옥시아 합작에 의존하는 구조다.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "데이터센터 SSD 급성장과 84.6% 총이익률, 장기 고객 계약 확대는 강점. 반면 NAND 점유율은 5위로 줄었고 생산은 키옥시아 합작에 의존하며, 가격 상승이 이익을 끌어 올린 만큼 시세 하락 시 변동이 크다."
+  },
+  "peers": [
+    {
+      "name": "삼성전자",
+      "m": "KR",
+      "code": "005930"
+    },
+    {
+      "name": "SK하이닉스",
+      "m": "KR",
+      "code": "000660"
+    },
+    {
+      "name": "마이크론",
+      "m": "US",
+      "code": "MU"
+    },
+    {
+      "name": "키옥시아",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "YMTC",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "NAND 점유율",
+      "me": "2분기 매출 기준 11%로 5위, 직전 분기보다 2%p 하락",
+      "vs": "삼성전자 28%, SK하이닉스 19%, 마이크론 15%, 키옥시아·YMTC 각 14%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "데이터센터 SSD",
+      "me": "회계 4분기 데이터센터 매출 약 29.8억달러(전분기 대비 +103%), 총 출하 비트 중 데이터센터 비중 38%",
+      "vs": "경쟁사의 같은 기준 공개 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        2
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "회계 4분기 총이익률 84.6%(GAAP·비GAAP 동일), 매출 89.65억달러",
+      "vs": "경쟁사와 같은 기준의 총이익률 비교는 확인 안 됨. 시장 NAND 평균가는 2분기 전분기 대비 +55%(Counterpoint)",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ]
+    },
+    {
+      "k": "공급 기반(키옥시아 합작)",
+      "me": "요카이치·키타카미 합작을 2034-12-31까지 연장, 2026~2029년 분할 약 12억달러 지급. 키타카미 K2 생산 시작(10-K)",
+      "vs": "삼성전자·SK하이닉스·마이크론은 자체 팹 중심. 키옥시아도 같은 합작 파트너라 투자 속도가 서로 영향",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        6,
+        11
+      ]
+    },
+    {
+      "k": "차세대 NAND(BiCS10)",
+      "me": "332단 TLC 샘플 출하 시작, BiCS8 대비 비트 밀도 59% 향상(회사 주장)",
+      "vs": "키옥시아가 같은 세대를 공동 개발. 타사 비교 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ]
+    },
+    {
+      "k": "HBF(고대역폭 플래시)",
+      "me": "SK하이닉스와 표준화 협력 MOU. 첫 제품 테이프아웃, 샘플 2027년·양산 2028년 보도(당초 2026년 하반기 샘플 목표)",
+      "vs": "경쟁사 HBF 일정은 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ]
+    },
+    {
+      "k": "장기 고객 계약",
+      "me": "공급의 50~67%가 다년 계약, 주요 8개 고객 계약 총액 약 939억달러(투자자의 날 요약)",
+      "vs": "키옥시아는 2028년까지 장기 계약 비중 약 50%를 목표로 제시",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q4fy26",
+      "what": "회계 4분기(FY26) 실적 발표",
+      "d": "2026-08-05",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-05",
+          "s": "완료",
+          "note": "매출 89.65억달러, 총이익률 84.6%, 다음 분기 매출 103~108억달러 가이던스"
+        }
+      ]
+    },
+    {
+      "id": "q1fy27",
+      "what": "회계 1분기(FY27) 실적 — 가이던스(매출 103~108억달러, 총이익률 83~85%) 달성 여부",
+      "d": "2026-10-29",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1,
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-09-29",
+          "s": "예정",
+          "note": "10월 29일 오후 1시 30분(태평양시) 컨퍼런스콜 공지"
+        }
+      ]
+    },
+    {
+      "id": "nand_q4_price",
+      "what": "4분기 NAND 계약가 흐름(엔터프라이즈 SSD 중심 상승 전망)",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "15~20% 상승 전망 보도(2차 인용, 원문 미확인)"
+        }
+      ]
+    },
+    {
+      "id": "ultraqlc256",
+      "what": "256TB UltraQLC 엔터프라이즈 SSD 출시",
+      "d": "2026",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2025-08-05",
+          "s": "예정",
+          "note": "2026년 상반기 U.2 128TB·256TB 제공 목표"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "실제 출하 여부는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "bics10",
+      "what": "BiCS10(332단) 양산 전환",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "현재 샘플 출하 단계, 양산 시점은 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "q2fy27",
+      "what": "회계 2분기(FY27) 실적",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "일정은 미확정, 제3자 달력은 1월 말로 추정"
+        }
+      ]
+    },
+    {
+      "id": "hbf_sample",
+      "what": "HBF 첫 샘플 제공",
+      "d": "2027",
+      "kind": "출시",
+      "status": "지연",
+      "conf": "보도",
+      "src": [
+        4,
+        5
+      ],
+      "log": [
+        {
+          "d": "2025-08-06",
+          "s": "예정",
+          "note": "2026년 하반기 샘플 목표"
+        },
+        {
+          "d": "2026-08-14",
+          "s": "지연",
+          "note": "샘플 2027년, 양산 2028년으로 보도됨(회사 확인 아님)"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "회계 4분기 매출",
+      "v": "89.65억달러 (전분기 +51%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "총이익률",
+      "v": "84.6%",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "데이터센터 매출",
+      "v": "약 29.8억달러 (전분기 +103%)",
+      "asof": "2026-08",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "NAND 매출 점유율",
+      "v": "11% (5위)",
+      "asof": "2026-Q2",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "회계 1분기 가이던스",
+      "v": "매출 103~108억달러, 비GAAP EPS 44~46달러",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 데이터센터 SSD로 이익률 급등, 점유율은 5위·다음 확인은 10월 29일 실적",
+      "src": [
+        0,
+        1,
+        3
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Sandisk Reports Fiscal Fourth Quarter 2026 Financial Results",
+      "u": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+      "d": "2026-08-05"
+    },
+    {
+      "t": "Sandisk to Report First Quarter Fiscal Year 2027 Results on October 29, 2026",
+      "u": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-09-29-sandisk-to-report-first-quarter-fiscal-year-2027-results-on-october-29-2026",
+      "d": "2026-09-29"
+    },
+    {
+      "t": "Sandisk: Datacenter Revenue More Than Doubles Sequentially To $2.98 Billion As Consumer Sales Fall 32%",
+      "u": "https://pulse2.com/sandisk-datacenter-revenue-more-than-doubles-sequentially-to-2-98-billion-as-consumer-sales-fall-32/amp/",
+      "d": "2026-08"
+    },
+    {
+      "t": "Counterpoint Research — Global NAND Memory Market Share",
+      "u": "https://counterpointresearch.com/default.htm/insights/global-nand-memory-market-share",
+      "d": "2026"
+    },
+    {
+      "t": "Sandisk reportedly tapes out first HBF product, targets 2027 samples and 2028 production (TrendForce)",
+      "u": "https://www.trendforce.com/news/2026/08/14/news-sandisk-reportedly-tapes-out-first-hbf-product-targets-2027-samples-and-2028-production/",
+      "d": "2026-08-14"
+    },
+    {
+      "t": "Sandisk to Collaborate with SK hynix to Drive Standardization of High Bandwidth Flash Memory Technology",
+      "u": "https://www.businesswire.com/news/home/20250806259749/en/Sandisk-to-Collaborate-with-SK-hynix-to-Drive-Standardization-of-High-Bandwidth-Flash-Memory-Technology",
+      "d": "2025-08-06"
+    },
+    {
+      "t": "Kioxia and Sandisk Extend Yokkaichi Joint Venture Agreement Through 2034",
+      "u": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-01-29-kioxia-and-sandisk-extend-yokkaichi-joint-venture-agreement-through-2034",
+      "d": "2026-01-29"
+    },
+    {
+      "t": "Sandisk (SNDK) Investor Day 2026 summary (Quartr)",
+      "u": "https://quartr.com/events/sandisk-corporation-sndk-investor-day-2026_F6lVAkBS",
+      "d": "2026-08"
+    },
+    {
+      "t": "Kioxia targets yearly capex in FY26-28 (TrendForce)",
+      "u": "https://www.trendforce.com/news/2026/06/03/news-kioxia-targets-%C2%A5470b-yearly-capex-in-fy26-28-up-66-from-fy25-reportedly-weighing-third-kitakami-fab-and-ma/",
+      "d": "2026-06-03"
+    },
+    {
+      "t": "Sandisk unveils 256TB SSD for AI workloads, shipping in 2026 (Blocks & Files)",
+      "u": "https://www.blocksandfiles.com/ai-ml/2025/08/05/sandisk-unveils-256-tb-ssd-for-ai-workloads-shipping-in-2026/1589534",
+      "d": "2025-08-05"
+    },
+    {
+      "t": "Why SSDs Are So Expensive in 2026: The NAND Squeeze",
+      "u": "https://capitalandcompute.net/md/why-are-ssds-so-expensive.md",
+      "d": "2026-09-30"
+    },
+    {
+      "t": "Sandisk Corp Form 10-K FY2026",
+      "u": "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026057406/sndk-20260703.htm",
+      "d": "2026-08"
+    },
+    {
+      "t": "Sandisk to Report Q1 FY2027 on October 29 (IR release)",
+      "u": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-report-first-quarter-fiscal-year-2027-results-october-29",
+      "d": "2026-09-29"
+    }
+  ]
+}
