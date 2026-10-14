@@ -57,8 +57,8 @@ async function build(m, books) {
     items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null }, eng.params, eng.cal));
   });
   for (const x of items) x.pb = new Map(pbScan(x.s, mcOpt(m, MC, x.code)).ent.map(e => [e.t, e]));   // 8호 눌림매매 — 날짜 인덱스 → 눌림 진입
-  for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 6호 대상 선정
-    try { const A = { s: x.s, season: x.season }; x.fit = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; } catch { x.fit = null; }
+  for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 6호 봄여름 대상 선정
+    try { const A = { s: x.s, season: x.season, cf: x.cf }; x.fit = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; } catch { x.fit = null; }
   }
   if (items.length < 30) throw new Error(`일봉이 있는 종목이 ${items.length}개뿐이야 — 유니버스 스캔이 끝난 뒤 돌려줘`);
   // 거래일 축 — 종목의 절반 이상이 봉을 가진 날만 (휴장일·한두 종목만 있는 날 제외). 장부가 없으면 최근 거래일 하루만(= 오늘 시작)

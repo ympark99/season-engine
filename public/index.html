@@ -133,6 +133,7 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-dip{background:#eaf1fd;color:#1b4b9c;border:1px solid #c6d8f7;margin:0 6px 0 0}
 .sig.sig-pb{background:#f1ebfc;color:#5b3aa0;border:1px solid #dacdf4;margin:0 6px 0 0}
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
+.scm{font-size:11px;font-weight:800;margin-left:3px;letter-spacing:-.2px}.scm.sc1{color:var(--summer-ink)}.scm.sc0{color:var(--muted);font-weight:600}
 .ucol{display:grid;gap:14px;align-content:start}.ucol .chg{max-height:220px}
 .ulg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"chg dip" "best pb";gap:14px;align-items:stretch}
 .ulg>.u-chg{grid-area:chg}.ulg>.u-dip{grid-area:dip}.ulg>.u-best{grid-area:best;align-self:start}.ulg>.u-pb{grid-area:pb;align-self:start}
@@ -648,7 +649,8 @@ body{margin:0}
             <tr><td>旺 → 衰</td><td>국면 고점 대비 d₁·σ 하락, 또는 20일선 이탈 + 20일선 하락</td><td>비중 절반 축소</td><td>d1</td></tr>
             <tr><td>衰 → 旺</td><td>국면 고점 재돌파 + 20일선 위</td><td>재확대</td><td>—</td></tr>
             <tr><td>衰 → 死</td><td>고점 대비 d₂·σ 하락, 또는 60일선 이탈 + 60일선 하락, 또는 衰 체류 &gt; TF일</td><td>전량 정리</td><td>d2 · TF</td></tr>
-            <tr><td>生 → 死</td><td>봄 진입가 대비 d₁·σ 되밀림, 또는 직전 겨울 저점 이탈, 또는 봄 진입가 대비 −15% (본주 종가 기준 손절)</td><td>손절</td><td>d1</td></tr>
+            <tr><td>生 → 死</td><td>봄 진입가 대비 d₁·σ 되밀림, 또는 직전 겨울 저점 이틀 연속 이탈, 또는 봄 진입가 대비 −15% (본주 종가 기준 손절 — 이건 그날 바로)</td><td>손절</td><td>d1</td></tr>
+            <tr><td>生 ✓확정</td><td>봄 판정은 그대로 두고 따로 표시: 반등 시작 후 90거래일 안에 반등 고점 대비 0.5σ 이상 눌렸다가(눌림 저점이 겨울 저점 위) 반등 고점을 다시 넘고 60일선 위 → 봄 확정. 반등이 실패하면(겨울 저점 이탈·기한 초과) 미확정으로</td><td>진입 비중 확대</td><td>—</td></tr>
             <tr><td>확정</td><td>같은 방향 신호가 hyst일 연속 + 직전 전환 뒤 TC일 경과해야 전환 확정</td><td>—</td><td>hyst · TC</td></tr>
           </tbody>
         </table></div>
@@ -802,12 +804,20 @@ function distHTML(title,cnt,n,meta){
 /* 종목 표시 — 미국은 티커, 한국은 종목명 (다른 쪽은 마우스를 올리면) */
 const idSpan=(m,code,name)=>m==='US'?`<span class="c lnk" title="${esc(name||'')}" ${openAttr(m,code,name)}>${esc(code)}</span>`:`<span class="nm lnk" title="${esc(code)}" ${openAttr(m,code,name)}>${esc(name||code)}</span>`;
 /* 바뀐 계절 필터 칩 (전체·봄·여름·가을·겨울) — state[key] 에 저장 */
+/* 봄 확정 — 봄 칩은 한 번 누르면 봄, 두 번 누르면 봄 확정, 세 번 누르면 전체 */
+const SPR='봄✓',scOk=x=>x?.sc===1||x?.sc?.ok===1;
+const sMatch=(x,field,f)=>!f||f==='전체'?true:f===SPR?x[field]==='봄'&&scOk(x):x[field]===f;
+const sLab=f=>f===SPR?'봄 확정':f;
+const nextS=(cur,v,none='')=>v==='봄'&&cur==='봄'?SPR:v==='봄'&&cur===SPR?none:v;
+const SPRT='한 번 누르면 봄 · 두 번 누르면 봄 확정 · 세 번 누르면 전체';
+/** 봄 확정 표시 (봄일 때만) — ✓ 확정 · ‧ 미확정 */
+const scMark=(season,sc)=>{if(season!=='봄'||sc==null)return '';const ok=sc===1||sc?.ok===1;return `<span class="scm sc${ok?1:0}" title="${ok?'봄 확정 — 반등 후 눌림(겨울 저점 위) → 반등 고점 재돌파':'봄 미확정 — 반등 고점을 눌림 뒤 다시 넘어야 확정'}">${ok?'✓확정':'미확정'}</span>`};
 function seasonChips(key,list,field){
   const cur=state[key]||'';
-  return `<div class="chips sm" data-sf="${key}">${['',...SEASONS].map(s=>{const n=s?list.filter(x=>x[field]===s).length:list.length;
-    return `<button type="button" class="chip" data-s="${s}" aria-pressed="${cur===s}">${s?`<span class="dot" style="background:${col(s)}"></span>${s}`:'전체'} <span class="num muted">${n}</span></button>`}).join('')}</div>`;
+  return `<div class="chips sm" data-sf="${key}">${['',...SEASONS].map(s=>{const spr=s==='봄'&&cur===SPR,n=s?list.filter(x=>spr?sMatch(x,field,SPR):x[field]===s).length:list.length;
+    return `<button type="button" class="chip" data-s="${s}" aria-pressed="${cur===s||spr}"${s==='봄'?` title="${SPRT}"`:''}>${s?`<span class="dot" style="background:${col(s)}"></span>${spr?'봄 ✓확정':s}`:'전체'} <span class="num muted">${n}</span></button>`}).join('')}</div>`;
 }
-const bindChips=(el,key,rer)=>el.querySelectorAll(`[data-sf="${key}"] button`).forEach(b=>b.onclick=e=>{e.stopPropagation();state[key]=b.dataset.s;rer()});
+const bindChips=(el,key,rer)=>el.querySelectorAll(`[data-sf="${key}"] button`).forEach(b=>b.onclick=e=>{e.stopPropagation();state[key]=nextS(state[key]||'',b.dataset.s);rer()});
 
 function renderRegime(){
   $('regime').innerHTML=renderIndices();
@@ -854,14 +864,14 @@ function renderUnivLists(){
   const d=(UNIV[state.m]||{}).daily;if(!d)return;
   const m=state.m,R=d.recent,days=(R?.days||[]).slice().reverse(),cf=state.cf||'',dp=d.dips||[],pb=d.pbs||[];
   const day=days.includes(state.cday)?state.cday:days[0];
-  const chg=R?R.rows.filter(c=>c.d===day):(d.changes||[]),cs=chg.filter(c=>!cf||c.to===cf);
+  const chg=R?R.rows.filter(c=>c.d===day):(d.changes||[]),cs=chg.filter(c=>sMatch(c,'to',cf));
   const fd=x=>x.slice(5).replace('-','.');
   const dayChips=days.length?`<div class="chips sm" data-cday>${days.map((x,k)=>`<button type="button" class="chip" data-d="${x}" aria-pressed="${x===day}">${fd(x)}${k?'':' 최신'} <span class="num muted">${R.rows.filter(c=>c.d===x).length}</span></button>`).join('')}</div>`:'';
   const th=c=>`<span class="sub thn">${esc(thName(c)||'')}</span>`;
   el.innerHTML=`<div class="box u-chg"><h3>국면이 바뀐 종목 <span class="muted">${R?`${fd(day)} ${chg.length}개 · 최근 5거래일 ${R.n}개`:`${d.changesN||0}개`} · 시가총액 순</span></h3>${dayChips}${seasonChips('cf',chg,'to')}
-      ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span></span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
-        :`<div class="muted">${cf?cf+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
-      <div class="sub" style="margin-top:6px">${R?'날짜 = 새 국면이 시작된 거래일 (최근 5거래일, 기본은 가장 최근 거래일) · 그 사이 두 번 바뀐 종목은 마지막 변경만':'종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목'} — 상세 화면의 국면 구간과 같은 기준 · 계절 칩 = 바뀐 계절</div></div>
+      ${cs.length?`<div class="chg chg4">${cs.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span><span class="pill p-${c.from}">${c.from}</span><span class="arrow"> → </span><span class="pill p-${c.to}">${c.to}</span>${scMark(c.to,c.sc)}</span><span class="num">${c.d?c.d.slice(5).replace('-','.')+' · ':''}${c.prob}%</span>`).join('')}</div>`
+        :`<div class="muted">${cf?sLab(cf)+'(으)로 바뀐 종목 없음':'바뀐 종목 없음'}</div>`}
+      <div class="sub" style="margin-top:6px">${R?'날짜 = 새 국면이 시작된 거래일 (최근 5거래일, 기본은 가장 최근 거래일) · 그 사이 두 번 바뀐 종목은 마지막 변경만':'종목 자신의 국면 이력에서 직전 스캔 뒤에 새 국면이 시작된 종목'} — 상세 화면의 국면 구간과 같은 기준 · 계절 칩 = 바뀐 계절 (봄 칩: 한 번 = 봄 · 두 번 = 봄 확정 · 세 번 = 전체)</div></div>
     <div class="box u-best" id="ubest"></div>
     <div class="box u-dip"><h3>저점매수 시그널 종목 (20거래일) <span class="muted">${d.dipsN??0}개 · 시가총액 순</span></h3>
       ${dp.length?`<div class="chg chg4">${dp.map(c=>`${idSpan(m,c.code,c.name)}${th(c.code)}<span>${c.now||!c.d?'<span class="sig sig-dip" style="margin:0">지금 조건</span>':`<span class="sub">${c.d.slice(5).replace('-','.')}까지 ${c.days}일</span>`}</span><span class="num" style="color:var(--neg)" title="최근 20거래일 중 가장 깊었을 때 20일선 대비">최저 ${c.min??c.dv}%</span>`).join('')}</div>`
@@ -890,7 +900,7 @@ function renderBest(){
   const hd=(k,t,r)=>`<th${r?' class="r"':''}><button type="button" class="sb2" data-bs="${k}">${t}<span class="ar">${B.s===k?(B.d<0?'▼':'▲'):''}</span></button></th>`;
   el.innerHTML=head+`<div class="chips sm" data-bk>${[['T','추세 90+',d.best.filter(x=>x.T>=90).length],['C','종합 90+',d.best.filter(x=>x.C>=90).length]].map(([k,t,n])=>`<button type="button" class="chip" data-k="${k}" aria-pressed="${B.k===k}">${t} <span class="num muted">${n}</span></button>`).join('')}<button type="button" class="chip fitchip${B.f?' on'+B.f:''}" id="bfit" aria-pressed="${!!B.f}" title="누를 때마다 계절 잘 맞음 → 계절 안 맞음 → 전체">${B.f===3?'계절 잘 맞음':B.f===1?'계절 안 맞음':'계절 일치'}${B.f?` <span class="num muted">${rs.length}</span>`:''}</button></div>
     ${rs.length?`<div class="tbl-wrap" style="max-height:360px;overflow-y:auto"><table class="acc bst"><thead><tr>${hd('sc','점수',1)}${hd('nm','종목')}${hd('th','섹터')}${hd('s','계절')}${hd('mc','시가총액',1)}</tr></thead><tbody>
-      ${rs.map(x=>`<tr><td class="r num" title="추세+저점 ${x.T} · 종합 ${x.C}${x.V!=null?` (가치 ${x.V})`:' (가치 점수 없음 — 종합 = 추세)'}"><b>${sc(x)}</b></td><td>${idSpan(m,x.code,x.name)}</td><td class="sub">${esc(thName(x.code)||'—')}</td><td><span class="pill p-${x.s}"><span class="han">${HAN[x.s]}</span>${x.s}</span>${x.ft!=null?` <span class="sub fit-${x.ft}" style="font-size:11px">${FIT_N[x.ft]}</span>`:''}</td><td class="r num">${capFmt(x.mc)}</td></tr>`).join('')}
+      ${rs.map(x=>`<tr><td class="r num" title="추세+저점 ${x.T} · 종합 ${x.C}${x.V!=null?` (가치 ${x.V})`:' (가치 점수 없음 — 종합 = 추세)'}"><b>${sc(x)}</b></td><td>${idSpan(m,x.code,x.name)}</td><td class="sub">${esc(thName(x.code)||'—')}</td><td><span class="pill p-${x.s}"><span class="han">${HAN[x.s]}</span>${x.s}</span>${scMark(x.s,x.sc)}${x.ft!=null?` <span class="sub fit-${x.ft}" style="font-size:11px">${FIT_N[x.ft]}</span>`:''}</td><td class="r num">${capFmt(x.mc)}</td></tr>`).join('')}
     </tbody></table></div>`:`<div class="muted">${B.f?'이 계절 적합도의 종목 없음':'90점 이상 종목 없음'}</div>`}
     <div class="sub" style="margin-top:6px">기준 ${esc(d.asof||'')} 스캔 · 추세+저점 = 내 종목 표와 같은 식 · 종합 = 추세 70 : 가치 30 (가치 점수가 없으면 추세 점수) · 계절 일치 = 상세 화면 맨 위 ‘계절 잘 맞음/보통/안 맞음’ 판정 · 머리글을 누르면 정렬</div>`;
   const sv=()=>{savePrefs();renderBest()};
@@ -1258,10 +1268,10 @@ function wtBar(){const t=Math.round(wTrend()*100);
   return `<span class="wtbar" title="종합 의견 = 추세+저점 × ${t}% + 가치 × ${100-t}%"><span class="wl">가치 <b class="num" id="wtv">${100-t}</b></span><input type="range" id="wt" min="0" max="100" step="10" value="${t}" aria-label="종합 의견 비율 — 왼쪽 가치, 오른쪽 추세" style="--p:${t}%"><span class="wl">추세 <b class="num" id="wtt">${t}</b></span></span>`}
 function renderFilters(){
   normSort();
-  const list=visible().filter(ok),cnt=s=>list.filter(x=>x.season===s).length;
+  const list=visible().filter(ok),cnt=s=>list.filter(x=>s==='봄'&&state.filter===SPR?sMatch(x,'season',SPR):x.season===s).length;
   const held=visible().filter(s=>W(s.code).cur>0).length;
   const nfav=visible().filter(isFav).length;
-  $('filters').innerHTML=['전체','★',...SEASONS].map(f=>`<button class="chip${f==='★'?' favchip':''}" data-f="${f}" aria-pressed="${state.filter===f}"${f==='★'?' aria-label="즐겨찾기만" title="즐겨찾기만"':''}>${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f} <span class="num muted">${f==='전체'?visible().length:f==='★'?nfav:f==='보유'?held:cnt(f)}</span></button>`).join('')
+  $('filters').innerHTML=['전체','★',...SEASONS].map(f=>`<button class="chip${f==='★'?' favchip':''}" data-f="${f}" aria-pressed="${state.filter===f||(f==='봄'&&state.filter===SPR)}"${f==='★'?' aria-label="즐겨찾기만" title="즐겨찾기만"':f==='봄'?` title="${SPRT}"`:''}>${SEASONS.includes(f)?`<span class="dot" style="background:${col(f)}"></span>`:''}${f==='봄'&&state.filter===SPR?'봄 ✓확정':f} <span class="num muted">${f==='전체'?visible().length:f==='★'?nfav:f==='보유'?held:cnt(f)}</span></button>`).join('')
     +(()=>{const f=state.fitf||0,lab=f===3?'계절 잘 맞음':f===1?'계절 안 맞음':'계절 일치',n=f?visible().filter(x=>x.fit?.grade===f).length:'';
       return `<button class="chip fitchip${f?' on'+f:''}" id="fitf" aria-pressed="${!!f}" title="누를 때마다 계절 잘 맞음 → 계절 안 맞음 → 전체">${lab}${n!==''?` <span class="num muted">${n}</span>`:''}</button>`})()
     +`<label class="chip" style="gap:6px">정렬 <select id="sortk" aria-label="정렬 기준" style="border:0;padding:0;background:transparent">${sortCols().map(c=>`<option value="${c.k}" ${PREF.sort.k===c.k?'selected':''}>${c.t}</option>`).join('')}</select></label>`
@@ -1269,7 +1279,7 @@ function renderFilters(){
     +thSelect('sth',state.sth||'',[],[...new Set(visible().map(stTh).filter(Boolean))])+wtBar();
   $('sortk').onchange=e=>{const c=COLS.find(x=>x.k===e.target.value);PREF.sort={k:c.k,d:c.str?1:-1};savePrefs();renderFilters();renderHead();renderRows()};
   $('sortd').onclick=()=>{PREF.sort={...PREF.sort,d:-PREF.sort.d};savePrefs();renderFilters();renderHead();renderRows()};
-  $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.f;renderFilters();renderRows()});
+  $('filters').querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{state.filter=nextS(state.filter,b.dataset.f,'전체');renderFilters();renderRows()});
   if($('sth'))$('sth').onchange=e=>{state.sth=e.target.value;renderRows()};
   if($('fitf'))$('fitf').onclick=()=>{state.fitf=state.fitf===3?1:state.fitf===1?0:3;renderFilters();renderRows()};
   const wt=$('wt');if(wt){wt.oninput=()=>{const t=+wt.value;PREF.wt=t;wt.style.setProperty('--p',t+'%');$('wtv').textContent=100-t;$('wtt').textContent=t;renderRows()};wt.onchange=()=>savePrefs()}
@@ -1285,7 +1295,7 @@ function renderHead(){
 function renderRows(flash){
   normSort();
   const busy=[...state.busy].map(k=>JSON.parse(k)).filter(b=>b.m===state.m),MC=hasMC(),NC=cols().length;
-  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='★'?isFav(s):state.filter==='보유'?W(s.code).cur>0:s.season===state.filter))&&thMatch(s.code,state.sth,s.theme)&&(!state.fitf||s.fit?.grade===state.fitf));
+  let list=visible().filter(s=>(state.filter==='전체'||(state.filter==='★'?isFav(s):state.filter==='보유'?W(s.code).cur>0:sMatch(s,'season',state.filter)))&&thMatch(s.code,state.sth,s.theme)&&(!state.fitf||s.fit?.grade===state.fitf));
   const c=COLS.find(x=>x.k===PREF.sort.k)||COLS.find(x=>x.k==='tgt'),d=PREF.sort.d;
   list.sort((a,b)=>{const va=c.v(a),vb=c.v(b);const r=c.str?String(va).localeCompare(String(vb),'ko'):va-vb;return r*d||(W(b.code).tgt-W(a.code).tgt)||a.code.localeCompare(b.code)});
   const wi=(code,k)=>{const v=W(code)[k];return `<input class="wt-in" inputmode="decimal" data-c="${code}" data-k="${k}" value="${v?v.toFixed(2):''}" placeholder="—" aria-label="${k==='tgt'?'목표':'현재'}비중 %">`};
@@ -1297,7 +1307,7 @@ function renderRows(flash){
       if(!ok(S))return `<tr>${pre(iId)}${idCell(S)}<td colspan="${NC-iId-3}" class="warn">${esc(S.error)}</td>${rm(S)}<td class="fillc"></td></tr>`;
       const A=actionOf(S),V=vcells(S),cell={
         fav:`<td class="fv"><button type="button" class="fav" data-fav="${K(S)}" aria-pressed="${isFav(S)}" aria-label="${esc(S.name||S.code)} 즐겨찾기" title="즐겨찾기">${isFav(S)?'★':'☆'}</button></td>`,
-        season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span><span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</div>${fitTag(S.fit)}</td>`,
+        season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span>${scMark(S.season,S.sc)}<span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</div>${fitTag(S.fit)}</td>`,
         id:idCell(S),sector:thCell(S.code,S.sector,S.theme),
         prob:`<td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>`,
         ps5:`<td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>`,
@@ -1310,7 +1320,7 @@ function renderRows(flash){
         cat:`<td>${(()=>{const c=catOf(S);return c?`<span class="catb"><span class="n">${esc(shortCat(c))}</span><span class="tag ${vcls(c.view)}">${esc(c.view)}</span></span>`:'<span class="muted">—</span>'})()}</td>`,
         tgt:`<td class="r">${wi(S.code,'tgt')}</td>`,cur:`<td class="r">${wi(S.code,'cur')}</td>`,rm:rm(S),fill:'<td class="fillc"></td>'};
       return `<tr data-k="${K(S)}"${K(S)===flash?' class="flash"':''}>${CS.map(c=>cell[c.k]||'<td></td>').join('')}</tr>`}).join('');
-  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="${NC}" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':state.filter+' 국면 종목 없음'}</td></tr>`
+  $('rows').innerHTML=html||(D.stocks.length?`<tr><td colspan="${NC}" class="muted" style="text-align:center;padding:28px">${state.filter==='전체'?(state.m==='US'?'미국':'한국')+' 종목 없음 — 검색해서 추가해줘':sLab(state.filter)+' 국면 종목 없음'}</td></tr>`
     :`<tr><td colspan="${NC}" style="text-align:center;padding:28px"><div class="muted" style="margin-bottom:10px">목록이 비었어. 검색해서 하나씩 추가하거나, 기본 20종목(정유·반도체·금융 등)을 한 번에 불러와.</div><button class="pbtn" id="seedbtn" aria-pressed="true">기본 20종목 불러오기</button><div class="sub" id="seedmsg" style="margin-top:8px"></div></td></tr>`);
   $('rows').querySelectorAll('tr[data-k]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('input,.rm,.thed,select,.fav'))return;openDetail(tr.dataset.k)});
   $('rows').querySelectorAll('.fav').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFav(b.dataset.fav)});
@@ -1391,12 +1401,12 @@ document.addEventListener('click',e=>{if(!e.target.closest('.search'))dd.hidden=
 
 /* ③ */
 function renderFlow(){
-  const ev=D.events.filter(e=>e.m===state.m),ff=state.ff||'',evs=ev.filter(e=>!ff||e.to===ff);
+  const ev=D.events.filter(e=>e.m===state.m),ff=state.ff||'',evs=ev.filter(e=>sMatch(e,'to',ff));
   const nm=x=>x.m==='US'?`<b title="${esc(x.name||'')}">${esc(x.code)}</b>`:`<b title="${esc(x.code)}">${esc(x.name||x.code)}</b>`;   // 미국은 티커
   $('feedn').textContent=`${ev.length}건`;
   $('feedf').innerHTML=seasonChips('ff',ev,'to');bindChips($('feedf'),'ff',renderFlow);
   $('feed').innerHTML=evs.length?evs.slice(0,80).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
-    <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span></span></div>`).join(''):`<div class="muted">${ff?ff+'(으)로 바뀐 전이 없음':'최근 20거래일 전이 없음'}</div>`;
+    <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span>${scMark(e.to,e.sc)}</span></div>`).join(''):`<div class="muted">${ff?sLab(ff)+'(으)로 바뀐 전이 없음':'최근 20거래일 전이 없음'}</div>`;
   // 저점매수 시그널 — 최근 20거래일 안에 겨울 20일+ · 20일선 −15% 이하가 나온 내 종목
   const md=visible().filter(s=>ok(s)&&s.dip20).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
   $('mydipn').textContent=`${md.length}종목`;
@@ -1934,7 +1944,7 @@ async function openDetail(key){
       .map(([k,v])=>`<div><dt>${k}</dt><dd class="num">${v}</dd></div>`).join('');
     const J=j.series;J.s=Array.from(J.s,x=>SEASONS[+x]);
     const h=[];let v=J.p[0];for(let t=0;t<J.d.length;t++){if(new Date(J.d[t]+'T00:00:00Z').getUTCDay()===5||t===J.d.length-1)v=J.p[t];h.push(v)}
-    J.h=h;state.series=J;state.mcap=j.mcap??null;state.lv=j.lv||null;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
+    J.h=h;state.sc=j.summary?j.summary.sc??null:undefined;state.series=J;state.mcap=j.mcap??null;state.lv=j.lv||null;drawDetail();state.hist=j.history||[];state.eff=j.effect||null;drawFit(S);drawHist();
   }catch(e){$('c-price').innerHTML=`<div class="loading">차트 데이터를 못 불러왔어 (${esc(e.message)})</div>`}
 }
 /* 국면 변경 내역 → 국면 효과 — 'N일 후'는 회귀가 섞여 국면 효과를 가린다. 국면에 머문 동안의 속도·위아래 폭·다음 국면으로 보여준다 */
@@ -1944,8 +1954,14 @@ function drawFit(S){
   const fc=F.grade===3?'t-good':F.grade===2?'t-warn':F.grade===1?'t-crit':'t-mid';
   const ACT={봄:['진입 검토','t-good'],여름:['보유','t-good'],가을:['비중 축소','t-warn'],겨울:['회피','t-crit']};
   const a=F.grade>=2?ACT[S.season]:F.grade===1?['계절 신호 참고만','t-mid']:null;
-  $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}${gradeTag(S)}<span class="why">${esc(F.why)}</span>`;
+  $('d-fit').innerHTML=`<span class="tag ${fc}">${esc(F.label)}</span><span class="tag p-${S.season}" style="font-weight:800">${HAN[S.season]} ${S.season}</span>${scTag(S)}${a?`<span class="tag ${a[1]}">${a[0]}</span>`:''}${gradeTag(S)}<span class="why">${esc(F.why)}</span>`;
 }
+/* 봄 확정 태그 — 봄일 때만. 확정: 확정일 · 미확정: 넘어야 할 반등 고점·눌림 저점·남은 기한 */
+function scTag(S){const c=state.sc!==undefined?state.sc:S.sc;if(S.season!=='봄'||!c)return '';const f=d=>d?d.slice(5).replace('-','.'):'',P=v=>v==null?'—':fmtP(v,S.m);
+  if(c.ok)return `<span class="tag t-good" title="반등 후 한 번 눌렸다가(겨울 저점 위) 반등 고점을 다시 넘어서 ${esc(c.d||'')} 봄 확정 — 확정 봄은 여름으로 갈 확률이 더 높아">✓ 봄 확정${c.d?' '+f(c.d):''}</span>`;
+  const why=c.was?`${f(c.was)}에 확정됐다가 풀림 — `:'';
+  const st=c.tgt==null?'반등 신호 대기':c.pull==null?`반등 고점 ${P(c.tgt)}에서 눌림 대기`:`눌림 ${P(c.pull)} → 반등 고점 ${P(c.tgt)} 재돌파 대기`;
+  return `<span class="tag t-mid" title="${esc(why)}봄 미확정 — 반등 후 한 번 눌렸다가(겨울 저점 ${P(c.wlo)} 위) 반등 고점을 다시 넘으면 확정${c.left!=null?` · 남은 기한 ${c.left}거래일`:''}">봄 미확정 · ${esc(st)}</span>`}
 /* 경쟁·기술 종합 등급 태그 (index.json 의 grade — 매일 아침 정기 조사가 판단) */
 function gradeTag(S){const g=isFund(S)?null:INTEL?.[K(S)]?.grade;if(!g||!g.g)return '';const c={A:'t-good',B:'t-good',C:'t-mid',D:'t-crit'}[g.g]||'t-mid';
   return `<span class="tag ${c} lnk" data-gsec="intel" title="${esc((g.label||'')+' — '+(g.why||''))} · 누르면 경쟁·기술 탭">${esc(g.label||'경쟁력')} ${esc(g.g)}</span>`}
@@ -2048,19 +2064,19 @@ function drawHist(){
   const PERS=E?.periods||[],FP=E?.follows?.[state.fper]?state.fper:(E?.follows?.['1Y']?'1Y':(PERS[PERS.length-1]||[])[0]);
   const F=E?.follows?.[FP]||null,STS=(E?.strats||[]).filter(x=>F&&F[x.id]);
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}</span>`:'';
-  // 토글 — 2배 레버리지(2) · 겨울 저점매수(D). 눌림매매 · 봄·여름만 보유 · 봄 진입·가을 매도에만 있음
+  // 토글 — 2배 레버리지(2) · 겨울 저점매수(D). 눌림매매 · 봄·여름만 보유에 둘 다, 종합매매는 2배만 (저점매수가 이미 들어 있음)
   const X2=state.x2||(state.x2={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={});   // XF — 일목기준선 횡보·가짜 돌파 필터
   const keyOf=id=>id+(X2[id]&&F?.[id+'2']?'2':'')+(XD[id]&&F?.[id+'D']?'D':'')+(XF[id]&&F?.[id+'F']?'F':''),R=id=>F[keyOf(id)]||F[id];
-  const SHORT={SS:{'2':'봄·여름 2배 보유 · 가을·겨울 현금',D:'봄·여름 보유 · 가을·겨울 현금 · 겨울 저점매수',
-      '2D':'봄·여름 2배 보유 · 가을·겨울 현금 · 겨울 저점매수(2배)'},
-    SF:{'2':'봄 전환 때 2배 진입 → 여름 유지 → 가을 전량 매도',D:'봄 전환 진입 + 겨울 저점매수 → 가을 전량 매도','2D':'봄 전환·겨울 저점매수 때 2배 진입 → 가을 전량 매도'},
+  const SHORT={SS:{'2':'봄 확정·여름 2배 보유 · 그 밖엔 현금',D:'봄 확정·여름 보유 · 그 밖엔 현금 · 겨울 저점매수',
+      '2D':'봄 확정·여름 2배 보유 · 그 밖엔 현금 · 겨울 저점매수(2배)'},
+    SF:{'2':'비중 × 2 — 미확정 봄 40% · 확정 봄 120% · 여름 200% · 가을 100% · 저점매수 200%'},
     PB:{'2':'급등 기준봉 뒤 눌림목 2배 매수 → 손절가 종가 이탈·국면 기준 익절',D:'눌림목 매수 + 겨울 저점매수',
       '2D':'눌림목·겨울 저점매수 때 2배 진입'},
     KJ:{F:'기준선 돌파·이틀 연속 위 마감 50% → 터치 25%×2 → 이탈 매도 · 횡보 중 추가매수·진입 제한, 돌파는 기준선 +1% 위 마감만'}};
   const DIPTXT='겨울 저점매수: 겨울이 20거래일 넘게 이어지고 종가가 20일선보다 15% 이상 아래면 매수 → 종가 60일선 회복 · 40거래일 · 매수가 대비 −15%(본주) 중 먼저 오는 날 매도.';
   const infoOf=x=>{const k=keyOf(x.id).slice(x.id.length);let t=x.desc;
-    if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄·여름이 되면 그대로 계절 보유로 넘어가 가을·겨울에 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 저점매수 매도 전에 봄으로 전환되면 그대로 보유하다 가을·겨울 전환 때 판다.`;
-    if(k.includes('2'))t+=' / 2배: 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외).';
+    if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄 확정·여름이 되면 그대로 계절 보유로 넘어가 그 밖으로 바뀌면 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 저점매수 매도 전에 봄으로 전환되면 그대로 보유하다 가을·겨울 전환 때 판다.`;
+    if(k.includes('2'))t+=x.id==='SF'?' / 2배: 모든 비중을 2배로 (비중이 바뀌는 날 맞춤, 차입 비용 제외).':' / 2배: 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 차입 비용 제외).';
     if(x.id==='KJ')t=t.replace(/ \/ 필터: .*/,'')+(k.includes('F')?' / '+x.desc.split(' / ').find(z=>z.startsWith('필터'))+' (켜짐)':' / 필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어.');return t};
   // 최대수익 · 최대손실 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
   const vals=STS.map(x=>R(x.id)),mxs=vals.map(o=>o.maxAmt),lss=vals.map(o=>o.lossAmt);
@@ -2079,7 +2095,7 @@ function drawHist(){
   const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
     <div class="fxg">${STS.map(card).join('')}</div>${E?.kjMax&&!F.KJ&&['2Y','3Y','5Y'].includes(FP)?`<div class="sub" style="margin-top:6px">일목기준선 매매는 1년까지만 계산해 (지지·저항 계산 때 받은 약 1년 2개월 일봉 사용) — 연초·1개월~1년 기간에서 볼 수 있어.</div>`:''}
     <div class="ipop" id="ipop" role="dialog" aria-modal="true" aria-labelledby="ipop-h" hidden><div class="ipbox"><b id="ipop-h"></b><p id="ipop-t"></p><button type="button" class="pbtn" id="ipop-x">닫기</button></div></div>
-    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유·레버리지는 그날 봄·여름이면 100% 매수, 봄 진입·가을 매도는 봄 전환이 와야 매수, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 눌림매매는 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다. 눌림매매·봄·여름만 보유·봄 진입·가을 매도의 버튼: 2배 = 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2), 저점매수 = 겨울 저점매수를 함께 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 규칙이 나와. 레버리지 차입 비용은 넣지 않았어.</div>`:'';
+    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 봄·여름만 보유는 그날 봄 확정·여름이면 100% 매수, 레버리지는 봄·여름이면 100% 매수, 종합매매는 그날 상태의 비중(미확정 봄 20%·확정 봄 60%·여름 100%·가을 50%·겨울 0%·저점매수 100%)으로 바로 시작, 생왕쇠사는 진입 조건(겨울→봄, 여름 전환)이 와야 매수, 계속 보유는 바로 매수. 이후 매매는 국면 판정일(손절은 이탈일) 종가. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 눌림매매는 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다. 눌림매매·봄·여름만 보유·종합매매의 버튼: 2배 = 보유 구간을 2배 레버리지로 (구간 단순 수익률 × 2, 종합매매는 비중 × 2), 저점매수 = 겨울 저점매수를 함께 (종합매매에는 이미 들어 있음) (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 규칙이 나와. 레버리지 차입 비용은 넣지 않았어.</div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -2090,16 +2106,30 @@ function drawHist(){
       <td class="num">${rc(t.mx)} / ${rc(t.mdd)}${bar(t.mx,t.mdd)}</td><td class="nx">${nxt(t.next)}</td>
       ${U?`<td class="r num">${u?`${rc(u.mo)} · ${u.up??'—'}%`:'—'}</td>`:''}</tr>`}).join('')}</tbody></table></div>
     <div class="sub">월 환산 = 그 계절에 머문 날들을 이어 붙여 20거래일(한 달) 평균 몇 % 속도로 움직였나 (복리). 막대는 국면 안에서 평균적으로 위로 열린 폭(빨강)과 아래로 빠진 폭(파랑) — 여름은 빨강, 겨울은 파랑이 길어야 엔진이 맞는 거야. 다음 국면은 그 계절이 끝나고 어디로 갔나${U?` · 유니버스는 ${E.univ.n}종목 같은 기간 기준`:''}.</div>`;
-  const rows=`<div class="fxt">③ 구간별 내역</div>
+  // ③ 봄 확정 — 봄 구간을 확정(반등 후 눌림 → 반등 고점 재돌파)·미확정으로 나눠 결과 비교
+  const SP=H.filter(h=>h.s==='봄'&&h.sc!=null),SPd=SP.filter(h=>!h.ongoing),cO=SPd.filter(h=>h.sc===1),cX=SPd.filter(h=>h.sc===0);
+  const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null,toS=a=>a.length?Math.round(100*a.filter(h=>h.next==='여름').length/a.length):null,upR=(a,k)=>a.length?Math.round(100*a.filter(h=>h[k]>0).length/a.length):null;
+  const pc=v=>v==null?'<span class="muted">—</span>':v+'%',nn=a=>`<span class="muted">(${a.length})</span>`;
+  const spr=SP.length?`<div class="fxt">③ 봄 확정 <span class="muted" style="font-weight:500">반등 후 한 번 눌렸다가(겨울 저점 위) 반등 고점을 다시 넘은 봄</span></div>
+    <div class="tbl-wrap" style="margin-bottom:6px"><table style="min-width:640px"><thead><tr><th>끝난 봄</th><th class="r">횟수</th><th class="r">여름으로 간 비율</th><th class="r">봄 수익률 평균<br><span class="muted" style="font-weight:500">봄 시작 → 끝</span></th><th class="r">확정 후 수익률 평균<br><span class="muted" style="font-weight:500">확정일 → 끝</span></th><th class="r">확정 후 상승 마감</th><th class="r">확정까지 평균</th></tr></thead><tbody>
+      <tr><td><span class="scm sc1" style="margin:0">✓ 확정</span></td><td class="r num">${cO.length}</td><td class="r num"><b>${pc(toS(cO))}</b></td><td class="r num">${rc(avg(cO.map(h=>h.rEnd))==null?null:+avg(cO.map(h=>h.rEnd)).toFixed(2))}</td><td class="r num"><b>${rc(avg(cO.map(h=>h.cr))==null?null:+avg(cO.map(h=>h.cr)).toFixed(2))}</b></td><td class="r num">${pc(upR(cO,'cr'))}</td><td class="r num">${cO.length?Math.round(avg(cO.map(h=>h.cw)))+'일':'—'}</td></tr>
+      <tr><td><span class="scm sc0" style="margin:0">미확정으로 끝남</span></td><td class="r num">${cX.length}</td><td class="r num">${pc(toS(cX))}</td><td class="r num">${rc(avg(cX.map(h=>h.rEnd))==null?null:+avg(cX.map(h=>h.rEnd)).toFixed(2))}</td><td class="r num"><span class="muted">—</span></td><td class="r num"><span class="muted">—</span></td><td class="r num"><span class="muted">—</span></td></tr>
+    </tbody></table></div>
+    <div class="tbl-wrap" style="max-height:260px;overflow-y:auto;margin-bottom:6px"><table style="min-width:720px"><thead><tr><th>봄 시작</th><th>확정일</th><th class="r">확정까지</th><th class="r">확정가</th><th class="r">확정 후 수익률</th><th class="r">봄 전체 수익률</th><th>다음 국면</th><th>비고</th></tr></thead><tbody>
+    ${SP.map(h=>`<tr class="${h.ongoing?'ong':''}"><td class="num">${f(h.a)}</td><td class="num">${h.sc?`<b style="color:var(--summer-ink)">${f(h.cd)}</b>`:'<span class="muted">미확정</span>'}</td><td class="r num">${h.sc?h.cw+'일':'—'}</td><td class="r num">${h.sc?fmtP(h.cp,S.m):'—'}</td>
+      <td class="r num">${h.sc?rc(h.cr):'<span class="muted">—</span>'}${h.ongoing&&h.sc?' <span class="muted">(현재)</span>':''}</td><td class="r num">${rc(h.rEnd)}${h.ongoing?' <span class="muted">(현재)</span>':''}</td>
+      <td>${h.ongoing?'<b style="color:var(--gold-ink)">진행 중</b>':h.next||'<span class="muted">—</span>'}</td><td class="sub">${h.lost?'확정 뒤 다시 풀림':''}</td></tr>`).join('')}</tbody></table></div>
+    <div class="sub">봄 판정은 그대로 두고, 그 위에 '확정'만 따로 본다. 확정 = 반등 시작 후 90거래일 안에 반등 고점 대비 0.5σ 이상 눌렸다가(눌림 저점이 겨울 저점 위) 반등 고점을 다시 넘고 60일선 위. 내 종목 백테스트에서 확정 봄은 59%가 여름으로 갔고, 미확정까지 포함한 봄은 43%. 확정 후 수익률 = 확정일 종가 → 다음 국면이 판정된 날 종가. 풀림 = 확정 뒤 겨울 저점 이탈 등으로 반등이 실패한 경우(계절은 아직 봄일 수 있음).</div>`:'';
+  const rows=`<div class="fxt">④ 구간별 내역</div>
     <div class="tbl-wrap" style="max-height:380px;overflow-y:auto"><table style="min-width:820px"><thead><tr><th>국면</th><th>진입일</th><th>전환일</th><th class="r">기간</th><th class="r">진입 확률</th><th class="r">국면 중 수익률</th><th class="r">월 환산</th>${E?.ix?`<th class="r">지수 대비</th>`:''}<th class="r">국면 중 최저 / 최고</th><th>다음 국면</th></tr></thead><tbody>
-    ${H.map(h=>`<tr class="${h.ongoing?'ong':''}"><td>${pill(h.s)}${h.from?` <span class="muted" style="font-size:11.5px">← ${h.from}</span>`:''}</td>
+    ${H.map(h=>`<tr class="${h.ongoing?'ong':''}"><td>${pill(h.s)}${h.s==='봄'&&h.sc!=null?scMark('봄',h.sc):''}${h.from?` <span class="muted" style="font-size:11.5px">← ${h.from}</span>`:''}</td>
       <td class="num">${f(h.a)}</td><td class="num">${h.ongoing?'<b style="color:var(--gold-ink)">진행 중</b>':f(h.x)}</td><td class="r num">${h.days}일</td><td class="r num">${Math.round(h.ps0)}%</td>
       <td class="r num">${rc(h.rEnd)}${h.ongoing?' <span class="muted">(현재)</span>':''}</td>
       <td class="r num">${h.mo!=null?rc(h.mo):`<span class="muted">${h.ongoing?'진행 중':'10일 미만'}</span>`}</td>
       ${E?.ix?`<td class="r num">${rc(h.ex,'%p')}</td>`:''}
       <td class="r num">${rc(h.mdd)} / ${rc(h.mx)}</td><td>${h.next||'<span class="muted">—</span>'}</td></tr>`).join('')||'<tr><td colspan="10" class="muted">5년 안에 판정된 국면 구간이 없어</td></tr>'}</tbody></table></div>
     <div class="sub" style="margin-top:8px">국면 중 수익률 = 진입일 종가 → 다음 국면이 판정된 날 종가 (진입일에 사서 국면이 바뀐 걸 확인한 날 판 셈). 월 환산은 10거래일 이상 구간만${E?.ix?` · 지수 대비 = 같은 기간 ${E.ix==='SPX'?'S&P 500':E.ix==='KOSPI'?'코스피':E.ix} 수익률을 뺀 값`:''}. 최저·최고는 국면 기간 중 종가 기준.</div>`;
-  $('d-s-season').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${sum}${rows}`;
+  $('d-s-season').innerHTML=`<div class="hh"><h4>국면 효과 <span class="sub" style="font-weight:400">최근 5년 ${H.length}구간 · 진입일 종가 기준</span></h4></div>${sum}${spr}${rows}`;
   $('d-s-strat').innerHTML=cards||'<div class="sub">전략 비교 데이터가 아직 없어</div>';
   $('d-s-strat').querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{state.fper=b.dataset.fp;drawHist();if(state.eqSel?.length)eqLoad(b.dataset.fp)});
   $('d-s-strat').querySelectorAll('[data-sel]').forEach(c=>{const go=()=>{const id=c.dataset.sel,a=state.eqSel||(state.eqSel=[]),i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);drawHist();if(a.length)eqLoad(FP);else drawDetail()};
@@ -2250,7 +2280,7 @@ function drawDetail(){
   document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.y===state.years)));
   $('d-ta').setAttribute('aria-pressed',String(state.ta));$('d-ta').lastChild.textContent=state.ta?'기술적 분석 닫기':'기술적 분석 열기';
   const N=J.d.length,A=N-1,win=Math.min(N,state.years==='ytd'?Math.max(2,N-J.d.findIndex(d=>d>=J.d[A].slice(0,4)+'-01-01')+1):WIN[state.years]),i0=N-win;
-  const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]){runs.push({s:J.s[a],a,b:t-1});a=t}}
+  const runs=[];{let a=0;for(let t=1;t<=N;t++)if(t===N||J.s[t]!==J.s[a]||(J.f&&J.s[t]==='봄'&&J.f[t]!==J.f[a])){runs.push({s:J.s[a],a,b:t-1,cf:J.s[a]==='봄'&&J.f?J.f[a]:null});a=t}}   // 봄은 확정(1)·미확정(0)으로 나눠 칠함
   const dd=d=>d.slice(2).replace(/-/g,'.'),pcs=v=>`<span class="${v>0?'up':v<0?'dn':''}">${v>0?'+':''}${v.toFixed(2)}%</span>`;
   if(A>0){const c0=J.c[A-1],ch=(J.c[A]/c0-1)*100,ci=ch>0?'up':ch<0?'dn':'',cap=state.mcap??S.mcap;
     $('d-px').innerHTML=`<div class="px"><b>${fmtP(J.c[A],S.m)}</b><span class="${ci}">${ch>0?'▲':ch<0?'▼':''} ${fmtP(Math.abs(J.c[A]-c0),S.m)} (${ch>0?'+':''}${ch.toFixed(2)}%)</span></div>
@@ -2263,8 +2293,11 @@ function drawDetail(){
   const Wd=640,ml=62,mr=EQ.length?60:18,pw=Wd-ml-mr,x=i=>ml+(i-i0)/(win-1)*pw;
   const bands=(top,bot,label)=>{let o='',lb='';for(const r of runs){if(r.b<i0)continue;const a=Math.max(r.a,i0),b=r.b;
     const x0=a===i0?ml:(x(a-1)+x(a))/2,x1=b===A?ml+pw:(x(b)+x(b+1))/2;
-    o+=`<rect x="${x0.toFixed(1)}" y="${top}" width="${(x1-x0).toFixed(1)}" height="${bot-top}" style="fill:var(--${KEY[r.s]}-bg)"/>`;
-    if(label&&x1-x0>44)lb+=`<text x="${((x0+x1)/2).toFixed(1)}" y="${top+20}" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--${KEY[r.s]}-ink)">${r.s}</text>`}return o+lb};
+    const un=r.cf==='0',ok=r.cf==='1';
+    o+=`<rect x="${x0.toFixed(1)}" y="${top}" width="${(x1-x0).toFixed(1)}" height="${bot-top}" style="fill:${un?'url(#spr-un)':`var(--${KEY[r.s]}-bg)`}"><title>${r.s}${ok?' 확정':un?' 미확정':''} ${J.d[a]}~${J.d[b]}</title></rect>`;
+    if(ok&&label)o+=`<line x1="${x0.toFixed(1)}" x2="${x0.toFixed(1)}" y1="${top}" y2="${bot}" style="stroke:var(--spring-ink);stroke-width:1;stroke-dasharray:2 3;opacity:.7"/>`;
+    if(label&&x1-x0>44)lb+=`<text x="${((x0+x1)/2).toFixed(1)}" y="${top+20}" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--${KEY[r.s]}-ink)${un?';opacity:.65':''}">${r.s}${ok?'✓':''}</text>`}
+    return `<defs><pattern id="spr-un" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--spring-bg);fill-opacity:.45"/><line x1="0" y1="0" x2="0" y2="6" style="stroke:var(--spring-ink);stroke-width:1;opacity:.18"/></pattern></defs>`+o+lb};
   const H=300,mt=40,mb=8,ph=H-mt-mb,ps=J.c.slice(i0);let lo=Math.min(...ps),hi=Math.max(...ps);
   const st=niceStep((hi-lo)/4||1);lo=Math.floor(lo/st)*st;hi=Math.ceil(hi/st)*st;const y=v=>mt+(hi-v)/(hi-lo)*ph;
   let g='';for(let v=lo;v<=hi+1e-9;v+=st)g+=`<line x1="${ml}" x2="${ml+pw}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" style="stroke:var(--line)"/><text x="${ml-8}" y="${(y(v)+4).toFixed(1)}" text-anchor="end" class="t-muted num" style="font-size:12px">${S.m==='KR'?Math.round(v).toLocaleString('ko-KR'):v>=1000?v.toLocaleString('en-US'):v.toFixed(v<10?2:1)}</text>`;
