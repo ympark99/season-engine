@@ -1,0 +1,346 @@
+{
+  "m": "US",
+  "code": "CIEN",
+  "name": "Ciena",
+  "theme": "광통신·네트워크",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "코히어런트 광전송 선두권으로 AI 데이터센터 상호연결 수요를 타고 3분기 매출 16.7억달러(+37%), 수주잔고 85억달러까지 늘었다. 다음 분기 관건은 부품 공급 제약 속에서 4분기 매출 17.5억달러(±0.5억) 가이던스와 수주잔고 100억달러 목표를 달성하는지.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "1.6T 단일 캐리어 코히어런트(WaveLogic 6)에서 선두권이고 클라우드 사업자 매출이 80% 넘게 늘며 수주잔고가 쌓이는 중. 다만 매출 10% 초과 고객이 2곳이라 집중도가 높고, 부품 공급 제약과 가이던스가 컨센서스 수준에 그쳐 주가 변동 위험이 있음."
+  },
+  "peers": [
+    {
+      "name": "Nokia (Infinera 인수)",
+      "m": "US",
+      "code": "NOK"
+    },
+    {
+      "name": "Lumentum",
+      "m": "US",
+      "code": "LITE"
+    },
+    {
+      "name": "Coherent",
+      "m": "US",
+      "code": "COHR"
+    },
+    {
+      "name": "Marvell",
+      "m": "US",
+      "code": "MRVL"
+    },
+    {
+      "name": "Huawei",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "코히어런트 기술",
+      "me": "WaveLogic 6 — 업계 첫 단일 캐리어 1.6Tb/s 코히어런트 발표, WL6 Extreme 도입이 WL5 Extreme 때보다 빠르다고 회사 설명",
+      "vs": "Nokia는 Infinera 인수로 광 사업 확대, 800G ZR/ZR+ 플러그어블 양산 출하",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        5,
+        2,
+        10
+      ]
+    },
+    {
+      "k": "클라우드·AI 수요",
+      "me": "상호연결·클라우드 사업자 직접 매출 전년 대비 80% 이상 증가, 광 네트워킹 매출 11.9억달러(전체의 71.3%)",
+      "vs": "Nokia 광 네트워크 1분기 매출 8.21억유로(+20%)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        2,
+        9
+      ]
+    },
+    {
+      "k": "데이터센터 내부 확장",
+      "me": "2025-10 Nubis 인수(약 2.7억달러), 2026-02 Vesta 200 6.4T 광 엔진 발표 — 전력 최대 70% 절감 주장(회사)",
+      "vs": "Marvell·Coherent·Lumentum 등이 이미 데이터센터 내부 광부품 시장에서 경쟁, 비교 수치 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "k": "수주잔고·성장 가시성",
+      "me": "수주잔고 85억달러(분기 +8억), 연말 100억달러 초과 전망, 2027 회계연도 매출 83~84억달러 전망(+30% 이상)",
+      "vs": "경쟁사 동일 기준 비교 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        2,
+        3
+      ]
+    },
+    {
+      "k": "공급망·고객 집중",
+      "me": "핵심 부품 장기공급계약을 2029년까지 확정했으나 공급이 성장의 주 제약. 매출 10% 초과 고객 2곳",
+      "vs": "경쟁사 비교 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "통신사 시장",
+      "me": "WaveLogic 6 Vodafone Idea 도입 등 통신사 수주 이어짐",
+      "vs": "Nokia·Huawei와 경쟁, 점유율 수치는 확인 안 됨",
+      "verdict": "동등",
+      "conf": "추정",
+      "src": [
+        11
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2026 회계 3분기 실적 발표 (매출 16.7억달러, 수주잔고 85억달러)",
+      "d": "2026-09-03",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-09-03",
+          "s": "완료",
+          "note": "매출 +37%, FY26 가이던스 64.2억달러로 상향, 발표 후 주가 약 10% 하락 보도"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026 회계 4분기·연간 실적 — 4분기 매출 17.5억달러(±0.5억) 가이던스 달성 여부, 수주잔고 100억달러 초과 여부",
+      "d": "2026-12",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "정확한 발표일은 확인 안 됨 — 통상 12월 초"
+        }
+      ]
+    },
+    {
+      "id": "fy27_guide",
+      "what": "2027 회계연도 가이던스 구체화 — 현재 예비 전망 매출 83~84억달러(+30% 이상), 영업이익률 25~27%",
+      "d": "2026-12",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "9월 예비 전망 제시, 4분기 실적에서 갱신 예상"
+        }
+      ]
+    },
+    {
+      "id": "vesta_ramp",
+      "what": "Vesta 200 6.4T CPX 광 엔진 샘플·고객 평가",
+      "d": "2026",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        7,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-03-06",
+          "s": "예정",
+          "note": "1분기 콜: 2026 캘린더 2분기 샘플 목표"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "샘플 출하 확정 보도는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "wl6_ramp",
+      "what": "WaveLogic 6 Extreme 출하 확대",
+      "d": "2027-H1",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "WL5 Extreme 때보다 빠른 도입이라고 회사가 설명"
+        }
+      ]
+    },
+    {
+      "id": "q1_fy27",
+      "what": "2027 회계 1분기 실적",
+      "d": "2027-03",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정 — 통상 3월 초"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "3분기 매출",
+      "v": "16.7억달러 (+37%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "수주잔고",
+      "v": "85억달러 (분기 +8억달러)",
+      "asof": "2026-08",
+      "src": [
+        2
+      ]
+    },
+    {
+      "k": "4분기 매출 가이던스",
+      "v": "17.5억달러 ±0.5억 (총마진 약 45%)",
+      "asof": "2026-09",
+      "src": [
+        1,
+        12
+      ]
+    },
+    {
+      "k": "FY2027 매출 전망",
+      "v": "83~84억달러 (+30% 이상)",
+      "asof": "2026-09",
+      "src": [
+        3
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — AI 데이터센터 수요로 3분기 매출 +37%·수주잔고 85억달러, 공급 제약과 고객 집중이 관건",
+      "src": [
+        0,
+        2,
+        3
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Ciena 8-K 2026 3분기 실적 보도자료",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000936395/000162828026060245/ex9912026q3earningspressre.htm",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "Ciena Reports Fiscal Third Quarter 2026 Financial Results",
+      "u": "https://s25.q4cdn.com/550667411/files/doc_news/Ciena-Reports-Fiscal-Third-Quarter-2026-Financial-Results-2026.pdf",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "Transcript: Ciena Q3 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/transcript-ciena-q3-earnings-call-highlights-2026-09-03/",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "Ciena Q3 earnings call flags supply as key constraint on 2027 growth",
+      "u": "https://www.zacks.com/stock/news/2985102/ciena-q3-earnings-call-flags-supply-as-key-constraint-on-2027-growth",
+      "d": "2026-09"
+    },
+    {
+      "t": "Ciena outlines $5.7B-$6.1B fiscal 2026 revenue target",
+      "u": "https://seekingalpha.com/news/4530607-ciena-outlines-5_7b-6_1b-fiscal-2026-revenue-target-with-24-percent-growth-driven-by-ai",
+      "d": "2025-12"
+    },
+    {
+      "t": "Ciena advances AI infrastructure with 1.6T coherent transmission and Nubis acquisition",
+      "u": "https://convergedigest.com/ciena-advances-ai-infrastructure-with-1-6t-coherent-transmission-and-nubis-acquisition/",
+      "d": "2025-09"
+    },
+    {
+      "t": "Ciena Form 10-K FY2025",
+      "u": "https://www.sec.gov/Archives/edgar/data/936395/000162828025056698/cien-20251101.htm",
+      "d": "2025-12"
+    },
+    {
+      "t": "Ciena Vesta 200 6.4T CPX 발표",
+      "u": "https://www.businesswire.com/news/home/20260225663726/en/Vesta",
+      "d": "2026-02-25"
+    },
+    {
+      "t": "Ciena Q1 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/ciena-q1-earnings-call-highlights-2026-03-06/",
+      "d": "2026-03-06"
+    },
+    {
+      "t": "Nokia Corporation Interim Report for Q1 2026",
+      "u": "https://www.nokia.com/newsroom/nokia-corporation-interim-report-for-q1-2026/",
+      "d": "2026-04"
+    },
+    {
+      "t": "Nokia goes all in on optics as Infinera bet sparks 20% revenue surge",
+      "u": "https://www.datacenterdynamics.com/en/news/nokia-goes-all-in-on-optics-as-infinera-bet-sparks-20-revenue-surge/",
+      "d": "2026-04"
+    },
+    {
+      "t": "Ciena's WaveLogic 6 Gains Traction With Vodafone Idea Deployment",
+      "u": "https://www.nasdaq.com/articles/cienas-wavelogic-6-gains-traction-vodafone-idea-deployment",
+      "d": "2026"
+    },
+    {
+      "t": "Ciena posts record Q3 revenue but falls 10% as Q4 guidance matches consensus",
+      "u": "https://app.sentisense.ai/stories/ciena-posts-record-q3-revenue-on-ai-demand-as-stock-fluctuates-09032026",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "Ciena to Acquire Nubis Communications",
+      "u": "https://www.businesswire.com/news/home/20250922219077/en/Ciena-to-Acquire-Nubis-Communications-to-Expand-its-Inside-the-Data-Center-Strategy-and-Further-Address-Growing-AI-Workloads",
+      "d": "2025-09-22"
+    }
+  ]
+}
