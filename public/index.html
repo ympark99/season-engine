@@ -879,24 +879,23 @@ function renderUnivLists(){
 const FIT_N={3:'잘 맞음',2:'보통',1:'안 맞음',0:'표본 부족'};
 function renderBest(){
   const el=$('ubest');if(!el||!UNIV)return;
-  const d=(UNIV[state.m]||{}).daily,m=state.m,B=PREF.best=Object.assign({k:'T',f:'',s:'sc',d:-1},PREF.best);
+  const d=(UNIV[state.m]||{}).daily,m=state.m,B=PREF.best=Object.assign({k:'T',f:0,s:'sc',d:-1},PREF.best);
   const head=`<h3>베스트 종목 <span class="muted">${B.k==='T'?'추세+저점':'종합'} 90점 이상</span></h3>`;
   if(!d?.best){el.innerHTML=head+`<div class="muted">다음 유니버스 스캔부터 표시 (${m==='KR'?'평일 16:10':'평일 06:10'} KST)</div>`;return}
   const all=d.best.filter(x=>(B.k==='T'?x.T:x.C)>=90),sc=x=>B.k==='T'?x.T:x.C;
-  const fits=['',3,2,1,0],cnt=f=>f===''?all.length:all.filter(x=>x.ft===f).length;
-  const rs=all.filter(x=>B.f===''||x.ft===+B.f);
+  if(B.f!==3&&B.f!==1)B.f=0;
+  const rs=all.filter(x=>!B.f||x.ft===B.f);
   const key={sc:x=>sc(x),nm:x=>(m==='US'?x.code:x.name)||x.code,th:x=>thName(x.code)||'',s:x=>SEASONS.indexOf(x.s),mc:x=>x.mc??-1}[B.s]||(x=>sc(x));
   rs.sort((a,b)=>{const p=key(a),q=key(b);const r=typeof p==='string'?p.localeCompare(q,'ko'):p-q;return B.d*r||sc(b)-sc(a)||(b.mc??-1)-(a.mc??-1)});
   const hd=(k,t,r)=>`<th${r?' class="r"':''}><button type="button" class="sb2" data-bs="${k}">${t}<span class="ar">${B.s===k?(B.d<0?'▼':'▲'):''}</span></button></th>`;
-  el.innerHTML=head+`<div class="chips sm" data-bk>${[['T','추세 90+',d.best.filter(x=>x.T>=90).length],['C','종합 90+',d.best.filter(x=>x.C>=90).length]].map(([k,t,n])=>`<button type="button" class="chip" data-k="${k}" aria-pressed="${B.k===k}">${t} <span class="num muted">${n}</span></button>`).join('')}</div>
-    <div class="chips sm" data-bf>${fits.map(f=>`<button type="button" class="chip" data-f="${f}" aria-pressed="${String(B.f)===String(f)}">${f===''?'계절 일치 전체':FIT_N[f]} <span class="num muted">${cnt(f)}</span></button>`).join('')}</div>
+  el.innerHTML=head+`<div class="chips sm" data-bk>${[['T','추세 90+',d.best.filter(x=>x.T>=90).length],['C','종합 90+',d.best.filter(x=>x.C>=90).length]].map(([k,t,n])=>`<button type="button" class="chip" data-k="${k}" aria-pressed="${B.k===k}">${t} <span class="num muted">${n}</span></button>`).join('')}<button type="button" class="chip fitchip${B.f?' on'+B.f:''}" id="bfit" aria-pressed="${!!B.f}" title="누를 때마다 계절 잘 맞음 → 계절 안 맞음 → 전체">${B.f===3?'계절 잘 맞음':B.f===1?'계절 안 맞음':'계절 일치'}${B.f?` <span class="num muted">${rs.length}</span>`:''}</button></div>
     ${rs.length?`<div class="tbl-wrap" style="max-height:360px;overflow-y:auto"><table class="acc bst"><thead><tr>${hd('sc','점수',1)}${hd('nm','종목')}${hd('th','섹터')}${hd('s','계절')}${hd('mc','시가총액',1)}</tr></thead><tbody>
       ${rs.map(x=>`<tr><td class="r num" title="추세+저점 ${x.T} · 종합 ${x.C}${x.V!=null?` (가치 ${x.V})`:' (가치 점수 없음 — 종합 = 추세)'}"><b>${sc(x)}</b></td><td>${idSpan(m,x.code,x.name)}</td><td class="sub">${esc(thName(x.code)||'—')}</td><td><span class="pill p-${x.s}"><span class="han">${HAN[x.s]}</span>${x.s}</span>${x.ft!=null?` <span class="sub fit-${x.ft}" style="font-size:11px">${FIT_N[x.ft]}</span>`:''}</td><td class="r num">${capFmt(x.mc)}</td></tr>`).join('')}
-    </tbody></table></div>`:`<div class="muted">${B.f!==''?'이 계절 적합도의 종목 없음':'90점 이상 종목 없음'}</div>`}
+    </tbody></table></div>`:`<div class="muted">${B.f?'이 계절 적합도의 종목 없음':'90점 이상 종목 없음'}</div>`}
     <div class="sub" style="margin-top:6px">기준 ${esc(d.asof||'')} 스캔 · 추세+저점 = 내 종목 표와 같은 식 · 종합 = 추세 70 : 가치 30 (가치 점수가 없으면 추세 점수) · 계절 일치 = 상세 화면 맨 위 ‘계절 잘 맞음/보통/안 맞음’ 판정 · 머리글을 누르면 정렬</div>`;
   const sv=()=>{savePrefs();renderBest()};
   el.querySelectorAll('[data-bk] button').forEach(b=>b.onclick=()=>{B.k=b.dataset.k;sv()});
-  el.querySelectorAll('[data-bf] button').forEach(b=>b.onclick=()=>{B.f=b.dataset.f===''?'':+b.dataset.f;sv()});
+  $('bfit').onclick=()=>{B.f=B.f===3?1:B.f===1?0:3;sv()};
   el.querySelectorAll('[data-bs]').forEach(b=>b.onclick=()=>{const k=b.dataset.bs;if(B.s===k)B.d=-B.d;else{B.s=k;B.d=k==='nm'||k==='th'||k==='s'?1:-1}sv()});
 }
 let UROWS=null;
