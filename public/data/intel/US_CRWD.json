@@ -1,0 +1,52 @@
+{
+  "m": "US", "code": "CRWD", "name": "CrowdStrike", "theme": "보안 SW",
+  "at": "2026-10-14", "full": "2026-10-14", "by": "Claude 정기 조사",
+  "position": "엔드포인트 보호 가트너 리더 6곳 중 선두권이고, 2분기(2026-07 마감)에 순신규 ARR이 사상 최대 3.33억 달러로 가속해 플랫폼 확장(Falcon Flex·차세대 SIEM)이 성과를 내는 중이다. 다음 분기 관건은 3분기 순신규 ARR이 가이던스(중간값 약 3.45억 달러, 제3자 집계)를 넘기는지와 마이크로소프트·팔로알토와의 SIEM·AI 에이전트 보안 경쟁.",
+  "grade": {
+    "g": "A", "label": "경쟁력 우위",
+    "why": "ARR 58.4억 달러(+25%)에 순신규 ARR이 +51%로 가속하고 Flex 계정 ARR이 +101%로 번지는 등 모멘텀이 강하다. 가트너 엔드포인트 리더 중 마이크로소프트와 함께 점유 상위로 보도됐다. 반면 SIEM은 팔로알토 XSIAM 등과 경합 중이고 정확한 점유율 수치는 확인되지 않았으며, 3분기 실적(12월)에서 가속이 이어지는지가 변수."
+  },
+  "peers": [
+    {"name": "Microsoft (Defender)", "m": "US", "code": "MSFT"},
+    {"name": "Palo Alto Networks", "m": "US", "code": "PANW"},
+    {"name": "SentinelOne", "m": "US", "code": "S"},
+    {"name": "Zscaler", "m": "US", "code": "ZS"},
+    {"name": "Sophos", "m": null, "code": null},
+    {"name": "Trend Micro (TrendAI)", "m": null, "code": null}
+  ],
+  "axes": [
+    {"k": "엔드포인트 보호", "me": "가트너 2026 엔드포인트 보호 매직 쿼드런트 리더. 마이크로소프트와 합쳐 약 40% 점유로 보도되며 2025 대비 격차를 넓힌 것으로 전해짐", "vs": "마이크로소프트·팔로알토·SentinelOne·Sophos·TrendAI도 리더", "verdict": "선두권", "conf": "보도", "src": [2]},
+    {"k": "플랫폼 확장 (Falcon Flex)", "me": "Flex 계정 ARR 22.9억 달러 초과(+101%), 2분기 Flex 계정 935개 이상 추가, 신규 고객 Flex 거래가 순신규 ARR의 34%", "vs": "경쟁사 동일 지표 공개 없음", "verdict": "선두권", "conf": "공시", "src": [0, 1]},
+    {"k": "차세대 SIEM·SOC 자동화", "me": "Next-Gen SIEM에 Charlotte 에이전트 SOAR·Onum·연합 검색 탑재. 2025 회계 1분기 기준 SIEM ARR 100% 이상 성장 보도", "vs": "팔로알토 Cortex XSIAM, Rapid7 등과 경합. PeerSpot 관심도 CrowdStrike 3.3% vs XSIAM 2.4% (사용자 관심 지표, 점유율 아님)", "verdict": "동등", "conf": "보도", "src": [7, 8]},
+    {"k": "AI 에이전트 보안", "me": "Fal.Con 2026에서 Falcon Guardian(엔드포인트 런타임 AI 에이전트 보호), NVIDIA 협업 SafeMind, Charlotte AI AgentWorks 공개", "vs": "경쟁사 대비 비교 자료는 확인 안 됨", "verdict": "불확실", "conf": "보도", "src": [3]},
+    {"k": "성장·실적 모멘텀", "me": "2분기 매출 14.7억 달러(+26%), ARR 58.4억 달러(+25%), 순신규 ARR 3.33억 달러 사상 최대(+51%). 연간 순신규 ARR 성장 가이던스 중간값 34%로 상향", "vs": "경쟁사 동기 수치 대조는 하지 않음", "verdict": "선두권", "conf": "공시", "src": [0]}
+  ],
+  "checkpoints": [
+    {"id": "q3_fy27_earn", "what": "회계 2027 3분기(2026-10 마감) 실적 — 순신규 ARR 가이던스(중간값 약 3.45억 달러, 제3자 집계) 달성 여부", "d": "2026-12", "kind": "실적", "status": "예정", "conf": "추정", "src": [1, 5, 6], "log": [{"d": "2026-10-14", "s": "예정", "note": "정확한 발표일 회사 공지 전. 달력 사이트는 12-01~12-02로 표기(미확정)"}]},
+    {"id": "q4_fy27_earn", "what": "회계 2027 4분기·연간 실적 및 회계 2028 가이던스", "d": "2027-03", "kind": "실적", "status": "예정", "conf": "추정", "src": [0], "log": [{"d": "2026-10-14", "s": "예정", "note": "발표일 미공지 — 통상 3월 초·중순 보고 패턴에 따른 추정"}]},
+    {"id": "q1_fy28_earn", "what": "회계 2028 1분기 실적", "d": "2027-06", "kind": "실적", "status": "예정", "conf": "추정", "src": [0], "log": [{"d": "2026-10-14", "s": "예정", "note": "발표일 미공지 — 통상 6월 초 보고 패턴에 따른 추정"}]},
+    {"id": "q2_fy28_earn", "what": "회계 2028 2분기 실적", "d": "2027-08", "kind": "실적", "status": "예정", "conf": "추정", "src": [0], "log": [{"d": "2026-10-14", "s": "예정", "note": "발표일 미공지 — 통상 8월 말 보고 패턴에 따른 추정"}]},
+    {"id": "q2_fy27_earn", "what": "회계 2027 2분기 실적 발표 (순신규 ARR 사상 최대, 가이던스 상향)", "d": "2026-08-26", "kind": "실적", "status": "완료", "conf": "공시", "src": [0], "log": [{"d": "2026-08-26", "s": "완료", "note": "순신규 ARR 3.33억 달러(+51%), 연간 순신규 ARR 성장 가이던스 중간값 34%로 상향"}]},
+    {"id": "falcon_2026", "what": "Fal.Con 2026 (라스베이거스) — Falcon Guardian·SafeMind 등 에이전트 보안 공개", "d": "2026-09-03", "kind": "출시", "status": "완료", "conf": "보도", "src": [3, 4], "log": [{"d": "2026-09-03", "s": "완료", "note": "8/31~9/3 개최. 제품 상세·출시 시점은 확인 안 됨"}]}
+  ],
+  "metrics": [
+    {"k": "총 ARR", "v": "58.4억 달러 (+25%)", "asof": "2026-07", "src": [0]},
+    {"k": "순신규 ARR (2분기)", "v": "3.33억 달러 (+51%)", "asof": "2026-07", "src": [0]},
+    {"k": "분기 매출", "v": "14.7억 달러 (+26%)", "asof": "2026-07", "src": [0]},
+    {"k": "Falcon Flex 계정 ARR", "v": "22.9억 달러 초과 (+101%)", "asof": "2026-07", "src": [0, 1]}
+  ],
+  "updates": [
+    {"d": "2026-10-14", "note": "전체 조사 — 2분기 순신규 ARR 사상 최대로 가속, 다음 확인 지점은 12월 3분기 실적", "src": [0, 1]}
+  ],
+  "sources": [
+    {"t": "CrowdStrike Reports Second Quarter Fiscal Year 2027 Financial Results", "u": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial", "d": "2026-08-26"},
+    {"t": "CrowdStrike's Q2 earnings beat by $45M on net new ARR, the guide went up again", "u": "https://www.tikr.com/blog/crowdstrikes-q2-earnings-beat-by-45-million-on-net-new-arr-the-guide-went-up-again", "d": "2026-08"},
+    {"t": "Gartner names 6 leaders in $18bn endpoint protection market", "u": "https://itchanneloxygen.com/gartner-names-6-leaders-in-18bn-endpoint-protection-market-who-are-they/", "d": "2026"},
+    {"t": "Fal.Con 2026 best-of recap (Falcon Guardian, SafeMind)", "u": "https://www.crowdstrike.com/en-us/resources/crowdcasts/best-of-fal-con/", "d": "2026-09"},
+    {"t": "CrowdStrike Fal.Con 2026 Sells Out at Record Pace", "u": "https://secure.businesswire.com/news/home/20260803165504/en/CrowdStrike-Fal.Con-2026-Sells-Out-at-Record-Pace-as-the-Industry-Races-to-Secure-AI", "d": "2026-08-03"},
+    {"t": "CrowdStrike Q3 FY2027 earnings board meeting (Trendlyne)", "u": "https://us.trendlyne.com/us/equity/board-meeting/CRWD/1552130/crowdstrike-holdings-inc-ordinary-shares-class-a-board_meeting/", "d": "2026"},
+    {"t": "When is CrowdStrike Earnings Q3 FY2027 (days.to)", "u": "https://days.to/when-is/crowdstrike-earnings", "d": "2026"},
+    {"t": "XSIAM vs CrowdStrike SIEM vs InsightIDR 2026", "u": "https://tech-insider.org/xsiam-vs-crowdstrike-siem-vs-insightidr-2026/", "d": "2026-08"},
+    {"t": "PANW Bets on Cortex XSIAM: Is This the Next Growth Engine?", "u": "https://www.nasdaq.com/articles/panw-bets-cortex-xsiam-next-growth-engine", "d": "2025"}
+  ]
+}
