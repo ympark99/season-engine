@@ -794,12 +794,14 @@ function renderHeader(){
 /* ① */
 const LAB={봄:'무릎',여름:'성장',가을:'어깨',겨울:'쇠퇴'};
 /* 계절 분포 카드 4개 + 막대 — 유니버스 분포(① 맨 위)와 내 목록 분포(② 맨 위)가 같은 모양 */
-function distHTML(title,cnt,n,meta){
-  const N=n||1,c=s=>cnt?.[s]||0,pct=s=>100*c(s)/N;
-  return `<div class="regsub">${title} <span class="sub" style="font-weight:500">${meta||''}</span></div><div class="regime">${SEASONS.map(s=>`<div class="rcell"><div class="k"><span class="han" style="color:var(--${KEY[s]}-ink)">${HAN[s]}</span>${s} · ${LAB[s]}</div>
-    <div class="v num">${pct(s).toFixed(1)}%</div><div class="c num">${c(s)}종목 / ${n||0}</div></div>`).join('')}</div>
+/** sprU = 미확정 봄 수 (있으면 봄은 확정만, 미확정 봄은 겨울 칸에 합쳐서 셈 — 유니버스 분포) */
+function distHTML(title,cnt,n,meta,sprU){
+  const N=n||1,c=s=>cnt?.[s]||0,pct=s=>100*c(s)/N,SU=sprU!=null;
+  const nm=s=>SU&&s==='봄'?'봄(확정)':SU&&s==='겨울'?'겨울+봄(미확정)':s;
+  return `<div class="regsub">${title} <span class="sub" style="font-weight:500">${meta||''}</span></div><div class="regime">${SEASONS.map(s=>`<div class="rcell"${SU&&(s==='봄'||s==='겨울')?` title="${s==='봄'?'반등 후 눌림 → 반등 고점 재돌파로 확정된 봄만':'겨울 + 아직 확정 안 된 봄 '+sprU+'종목'}"`:''}><div class="k"><span class="han" style="color:var(--${KEY[s]}-ink)">${HAN[s]}</span>${nm(s)} · ${LAB[s]}</div>
+    <div class="v num">${pct(s).toFixed(1)}%</div><div class="c num">${c(s)}종목 / ${n||0}${SU&&s==='겨울'&&sprU?` <span class="muted">(미확정 봄 ${sprU})</span>`:''}</div></div>`).join('')}</div>
     <div class="stack" aria-hidden="true">${SEASONS.map(s=>`<span style="width:${pct(s)}%;background:${col(s)}"></span>`).join('')}</div>
-    <div class="stack-lbl num"><span>강세폭(봄+여름) <b style="color:var(--summer-ink)">${(pct('봄')+pct('여름')).toFixed(1)}%</b></span><span>종목 수 기준</span><span>위험폭(가을+겨울) <b style="color:var(--winter-ink)">${(pct('가을')+pct('겨울')).toFixed(1)}%</b></span></div>`;
+    <div class="stack-lbl num"><span>강세폭(${SU?'확정 봄':'봄'}+여름) <b style="color:var(--summer-ink)">${(pct('봄')+pct('여름')).toFixed(1)}%</b></span><span>종목 수 기준</span><span>위험폭(가을+겨울${SU?'+미확정 봄':''}) <b style="color:var(--winter-ink)">${(pct('가을')+pct('겨울')).toFixed(1)}%</b></span></div>`;
 }
 /* 종목 표시 — 미국은 티커, 한국은 종목명 (다른 쪽은 마우스를 올리면) */
 const idSpan=(m,code,name)=>m==='US'?`<span class="c lnk" title="${esc(name||'')}" ${openAttr(m,code,name)}>${esc(code)}</span>`:`<span class="nm lnk" title="${esc(code)}" ${openAttr(m,code,name)}>${esc(name||code)}</span>`;
@@ -840,8 +842,8 @@ function renderUnivDist(){
   const warn=[d.failedN?`<span class="warn sub">조회 실패 ${d.failedN}종목</span>`:'',
     d.lastFail&&d.lastFail.asof>d.asof?`<span class="warn sub">${esc(d.lastFail.asof)} 스캔이 ${d.lastFail.ok}/${d.lastFail.total}만 성공해서 이전 결과를 유지 중 (${esc((d.lastFail.failed[0]||{}).error||'')})</span>`:'',
     st&&!st.done?`<span class="warn sub">스캔 진행 중 ${st.i}/${d.total}</span>`:''].filter(Boolean).join(' ');
-  el.innerHTML=distHTML('유니버스 분포',d.cnt,d.n,meta)+(warn?`<div style="margin-top:6px">${warn}</div>`:'')
-    +(Object.keys(d.bySet||{}).length?`<div class="sub" style="margin-top:6px">${Object.entries(d.bySet).map(([k,v])=>`${esc(SN[k]||k)} ${v.n}종목 · 강세폭 ${v.bull}%`).join(' · ')}</div>`:'')
+  el.innerHTML=distHTML('유니버스 분포',d.cnt,d.n,meta,d.sprU)+(warn?`<div style="margin-top:6px">${warn}</div>`:'')
+    +(Object.keys(d.bySet||{}).length?`<div class="sub" style="margin-top:6px">${Object.entries(d.bySet).map(([k,v])=>`${esc(SN[k]||k)} ${v.n}종목 · 강세폭${d.sprU!=null?'(확정 봄+여름)':''} ${v.bull}%`).join(' · ')}</div>`:'')
     +'<div style="height:14px"></div>';
 }
 
