@@ -1,0 +1,358 @@
+{
+  "m": "KR",
+  "code": "005930",
+  "name": "삼성전자",
+  "theme": "메모리",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "DRAM·NAND 매출 점유율 1위를 지키며 3분기 잠정 영업이익이 사상 최대로 나왔지만, 가장 중요한 HBM에서는 SK하이닉스에 아직 뒤진 채 격차를 줄이는 중이다. 이번 분기 관건은 10월 29일 확정 실적과 HBM4 공급 확대 속도, 파운드리 적자 축소.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "DRAM(39.4%)·NAND(29.3%) 매출 점유율 1위이고 3분기 잠정 영업이익이 급증했다. HBM4를 가장 먼저 양산 출하해 SK하이닉스와의 HBM 격차(1분기 37%p에서 2분기 17%p)도 빠르게 좁혔다. 다만 HBM 점유율은 여전히 2위이고 파운드리는 적자 구간이며 테슬라 2나노 물량은 2027년 이후라 아직 증명되지 않았다."
+  },
+  "peers": [
+    {
+      "name": "SK하이닉스",
+      "m": "KR",
+      "code": "000660"
+    },
+    {
+      "name": "마이크론",
+      "m": "US",
+      "code": "MU"
+    },
+    {
+      "name": "키옥시아",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "YMTC",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "TSMC",
+      "m": "US",
+      "code": "TSM"
+    }
+  ],
+  "axes": [
+    {
+      "k": "DRAM 점유율",
+      "me": "2분기 매출 점유율 39.4% (1분기 38.5%)",
+      "vs": "SK하이닉스 24.9%, 마이크론 23.3%",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "HBM 점유율·HBM4",
+      "me": "HBM4를 업계 처음 양산 출하하고 엔비디아 공급에 진입. 2분기 SK하이닉스와의 점유율 격차 17%p",
+      "vs": "SK하이닉스는 1분기 격차 37%p에서 줄었지만 선두 유지, 하반기 HBM4 공급 확대 추진",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "k": "NAND",
+      "me": "2분기 매출 점유율 29.3%로 1위 (점유율은 소폭 하락)",
+      "vs": "SK하이닉스(솔리다임 포함) 매출 약 142.7억달러, 마이크론 3위. 출하량 기준 YMTC 14%",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "k": "실적 모멘텀",
+      "me": "3분기 잠정 영업이익 107.4조원(전년 대비 782.5% 증가), 매출 195조원",
+      "vs": "시장 예상 약 106.6조원을 소폭 상회, 매출은 예상 하회",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        2,
+        3
+      ]
+    },
+    {
+      "k": "파운드리 (2나노·테슬라)",
+      "me": "텍사스 테일러 2나노로 테슬라 AI5 생산 예정, 2027년부터 본격 양산 관측. 테일러 팹에 2030년까지 약 370억달러 투자 중",
+      "vs": "TSMC 등 선두와의 직접 비교 수치는 확인 못 함",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        10,
+        11
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_final",
+      "what": "3분기 확정 실적 발표 (잠정 107.4조원 대비 부문별 내역·HBM4 코멘트)",
+      "d": "2026-10-29",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "잠정 실적은 10월 8일 공개, 확정 실적은 10월 29일 예정으로 보도"
+        }
+      ]
+    },
+    {
+      "id": "hbm4_scale",
+      "what": "HBM4 엔비디아 등 공급 확대 (SK하이닉스도 하반기 확대 추진)",
+      "d": "2026-Q4",
+      "kind": "수주",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        3,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "진행",
+          "note": "2월 양산 출하 이후 3분기 실적에 HBM4 판매 반영 보도"
+        }
+      ]
+    },
+    {
+      "id": "foundry_bep",
+      "what": "파운드리 흑자 전환 (이르면 4분기 기대)",
+      "d": "2026-Q4",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "흑자 전환 시점은 기대 수준이며 확정 아님"
+        }
+      ]
+    },
+    {
+      "id": "q4_prelim",
+      "what": "4분기 잠정 실적 발표",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "분기 잠정 실적을 분기 종료 직후 공개해 온 관행에 따른 추정, 정확한 날짜 미확정"
+        }
+      ]
+    },
+    {
+      "id": "hbm4e",
+      "what": "HBM4E 고객 검증·양산 전환 (SK하이닉스도 샘플 경쟁)",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5,
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "샘플 출하와 양산 수율은 별개라 수율이 관건"
+        }
+      ]
+    },
+    {
+      "id": "tesla_ai5",
+      "what": "테일러 2나노 테슬라 AI5 본격 양산",
+      "d": "2027",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10,
+        11
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "AI5 테이프아웃 완료, 본격 양산은 2027년으로 관측"
+        }
+      ]
+    },
+    {
+      "id": "q3_prelim",
+      "what": "3분기 잠정 실적 발표 (영업이익 107.4조원)",
+      "d": "2026-10-08",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        2,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-08",
+          "s": "완료",
+          "note": "영업이익 107.4조원, 매출 195조원 공개"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "DRAM 매출 점유율 (2분기)",
+      "v": "39.4% (SK하이닉스 24.9%, 마이크론 23.3%)",
+      "asof": "2026-06",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "NAND 매출 점유율 (2분기)",
+      "v": "29.3%",
+      "asof": "2026-06",
+      "src": [
+        7,
+        8
+      ]
+    },
+    {
+      "k": "3분기 잠정 영업이익",
+      "v": "107.4조원 (전년 대비 +782.5%), 매출 195조원",
+      "asof": "2026-09",
+      "src": [
+        2,
+        3
+      ]
+    },
+    {
+      "k": "HBM 점유율 격차 (SK하이닉스 대비)",
+      "v": "1분기 37%p에서 2분기 17%p",
+      "asof": "2026-06",
+      "src": [
+        5
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — DRAM·NAND 1위에 3분기 잠정 영업이익 107.4조원, HBM 격차는 좁혀졌으나 아직 2위. 10월 29일 확정 실적이 다음 확인 지점",
+      "src": [
+        2,
+        3,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Samsung extends lead in global DRAM market with 39% share",
+      "u": "https://www.koreatimes.co.kr/business/20260907/samsung-extends-lead-in-global-dram-market-with-39-share-report",
+      "d": "2026-09-07"
+    },
+    {
+      "t": "DRAM industry revenue surges 59.5% in Q2 as supply lags demand",
+      "u": "https://evertiq.com/news/2026-09-07-dram-industry-revenue-surges-595-in-q2-as-supply-lags-demand",
+      "d": "2026-09-07"
+    },
+    {
+      "t": "Samsung Electronics estimates Q3 operating profit (Korea Times)",
+      "u": "https://www.koreatimes.co.kr/business/companies/20261008/samsung-electronics-estimates-803-bil-in-q3-operating-profit",
+      "d": "2026-10-08"
+    },
+    {
+      "t": "Preliminary Q3 results show operating profit up 782% on-year",
+      "u": "https://biz.heraldcorp.com/article/10896441",
+      "d": "2026-10-08"
+    },
+    {
+      "t": "삼성전자, HBM4 세계 첫 양산…엔비디아 공급 뚫었다",
+      "u": "https://v.daum.net/v/20260212162019401",
+      "d": "2026-02-12"
+    },
+    {
+      "t": "HBM 점유율 격차 37%→17%…삼전·닉스, 3분기 차이 더 좁아질까",
+      "u": "https://news.mtn.co.kr/news-detail/2026092916234288957",
+      "d": "2026-09-29"
+    },
+    {
+      "t": "\"삼성전자에 왕좌 못 줘\" SK하이닉스, HBM4 하반기 공급 확대 본격화",
+      "u": "https://v.daum.net/v/20260729121250148",
+      "d": "2026-07-29"
+    },
+    {
+      "t": "Top five NAND flash brands post 77% revenue surge in Q2 (TrendForce)",
+      "u": "https://www.trendforce.com/presscenter/news/20260818-13186.html",
+      "d": "2026-08-18"
+    },
+    {
+      "t": "Top five NAND flash brands post 77% revenue surge in Q2",
+      "u": "https://evertiq.com/news/2026-08-18-top-five-nand-flash-brands-post-77-revenue-surge-in-q2",
+      "d": "2026-08-18"
+    },
+    {
+      "t": "YMTC NAND market share hits 14% as AI servers swallow half of all flash",
+      "u": "https://hwbusters.com/news/ymtc-nand-market-share-hits-14-as-ai-servers-swallow-half-of-all-flash/",
+      "d": "2026"
+    },
+    {
+      "t": "테일러 팹 채워야 하는 삼성 파운드리…내년 '테슬라 칩' 승부 걸린 이유",
+      "u": "https://www.ddaily.co.kr/page/view/2026081915021003509",
+      "d": "2026-08-19"
+    },
+    {
+      "t": "삼성전자 파운드리, 테슬라 AI5 생산 초읽기",
+      "u": "https://www.heraldk.com/article/2026071319224401352",
+      "d": "2026-07-13"
+    },
+    {
+      "t": "삼성전자, 엔비디아에 차세대 HBM4 공급…기술경쟁력 회복",
+      "u": "https://www.mt.co.kr/industry/2025/10/31/2025103113433974880",
+      "d": "2025-10-31"
+    },
+    {
+      "t": "가전 재편부터 총파업, 모바일 수익성까지…삼성전자 컨콜에 쏠리는 눈",
+      "u": "https://news.tf.co.kr/read/economy/2318307.htm",
+      "d": "2026-04"
+    },
+    {
+      "t": "HBM3E 수요가 변수…내년 HBM 왕좌 노리는 삼성",
+      "u": "https://newstomato.com/ReadNews.aspx?no=1309456",
+      "d": "2026"
+    }
+  ]
+}
