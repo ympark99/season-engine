@@ -1,0 +1,349 @@
+{
+  "m": "US",
+  "code": "NOW",
+  "name": "ServiceNow",
+  "theme": "소프트웨어",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "기업 IT 서비스 관리(ITSM) 시장 점유율 선두(IDC 기준 약 40%)이자 AI 에이전트 매출 10억달러(ACV)를 넘긴 플랫폼 사업자로, 세일즈포스·마이크로소프트의 에이전트 공세와 'AI가 SaaS를 대체한다'는 우려가 주가를 누르고 있다. 다음 분기 관건은 10월 28일 3분기 실적에서 구독 매출 성장 20%(회사 전망)와 Armis 인수 후 마진이 유지되는지.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "ITSM 점유율 선두와 Gartner AI ITSM 단독 리더, 구독 매출 +24.5%·cRPO +21%로 실적 모멘텀은 견조. 반면 Salesforce·Microsoft의 에이전트 경쟁, 좌석 기반 과금 침식 우려, 대형 인수(Armis)에 따른 마진 전망 하향은 부담."
+  },
+  "peers": [
+    {
+      "name": "Salesforce",
+      "m": "US",
+      "code": "CRM"
+    },
+    {
+      "name": "Microsoft",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Atlassian",
+      "m": "US",
+      "code": "TEAM"
+    },
+    {
+      "name": "Workday",
+      "m": "US",
+      "code": "WDAY"
+    },
+    {
+      "name": "BMC Helix",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "ITSM 시장 점유율",
+      "me": "IDC 기준 ITSM 소프트웨어 시장 약 40%",
+      "vs": "BMC Helix·Atlassian은 크게 뒤처짐(보도)",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        2,
+        10
+      ]
+    },
+    {
+      "k": "AI 에이전트 상용화",
+      "me": "ServiceNow AI 연간계약가치(ACV) 10억달러 돌파, 에이전트 배포 9개월 새 9배(회사 설명)",
+      "vs": "Salesforce Agentforce ARR 15억달러 초과(보도), Microsoft 365 Copilot 유료 좌석 3천만 초과(보도)",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "AI ITSM 평가",
+      "me": "Gartner 2025 AI Applications in ITSM 매직쿼드런트에서 유일한 리더",
+      "vs": "Salesforce Agentforce IT Service는 출시 6개월 시점 가입 약 200곳(보도)",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        9,
+        2
+      ]
+    },
+    {
+      "k": "실적 모멘텀",
+      "me": "2분기 구독매출 38.77억달러 +24.5%, cRPO 132억달러 +21%, 3분기 구독매출 전망 +20%(고정환율)",
+      "vs": "마이크로소프트·세일즈포스와 직접 비교 가능한 동일 지표는 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        1,
+        8
+      ]
+    },
+    {
+      "k": "가격·중소기업 시장",
+      "me": "좌석당 가격이 높은 편, 신규 사업의 50%가 비좌석 과금이라는 회사 설명",
+      "vs": "Jira Service Management·Freshservice가 더 낮은 가격으로 중견 시장 공략(추정)",
+      "verdict": "열세",
+      "conf": "추정",
+      "src": [
+        10,
+        7
+      ]
+    },
+    {
+      "k": "보안·자산 가시성 확장",
+      "me": "Veza(3/2)·Armis(4/20) 인수 완료, 보안·위험 자동화 출시",
+      "vs": "독립 보안 업체와의 비교 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        3,
+        6
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "2026년 3분기 실적 발표 (구독매출 39.75~39.80억달러 전망, 영업이익률 31% 전망)",
+      "d": "2026-10-28",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-07",
+          "s": "예정",
+          "note": "회사가 10월 28일 장 마감 후 발표·콘퍼런스콜 공지"
+        }
+      ]
+    },
+    {
+      "id": "armis_margin",
+      "what": "Armis 인수 반영 후 연간 영업이익률 31.5%·FCF 마진 35% 전망 유지 여부",
+      "d": "2026-10-28",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "1분기 이후 마진 전망이 32%→31.5%, 36%→35%로 낮아짐(보도). 3분기 콜에서 재확인"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "2026년 4분기·연간 실적 및 2027 전망",
+      "d": "2027-01",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "예년 1월 말 발표 패턴, 정확한 날짜는 미공지"
+        }
+      ]
+    },
+    {
+      "id": "ai_ct_aug",
+      "what": "AI Control Tower 확장 기능(Australia 릴리스) 제공",
+      "d": "2026-08",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-05-05",
+          "s": "예정",
+          "note": "Knowledge 2026에서 8월 제공 예고"
+        },
+        {
+          "d": "2026-10-14",
+          "s": "완료",
+          "note": "8월 제공 예정이었던 기능, 개별 출시 확인 문서는 못 찾음"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2026년 2분기 실적 발표",
+      "d": "2026-07-22",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-07-22",
+          "s": "완료",
+          "note": "구독매출·cRPO 전망 상회, 연간 구독매출 전망 소폭 상향"
+        }
+      ]
+    },
+    {
+      "id": "next_release",
+      "what": "차기 플랫폼 릴리스 및 에이전트 기능 확대",
+      "d": "2026-H2",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "Australia 릴리스 후속 일정은 공식 문서 확인 못 함"
+        }
+      ]
+    },
+    {
+      "id": "itsm_salesforce",
+      "what": "Salesforce Agentforce IT Service의 ITSM 침투 속도",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "4월 기준 가입 약 200곳 — 4분기 고객 사례 확대 여부 점검"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 구독매출",
+      "v": "38.77억달러 (+24.5%)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "cRPO",
+      "v": "132억달러 (+21%)",
+      "asof": "2026-06",
+      "src": [
+        1,
+        8
+      ]
+    },
+    {
+      "k": "ServiceNow AI ACV",
+      "v": "10억달러 돌파",
+      "asof": "2026-06",
+      "src": [
+        1,
+        5
+      ]
+    },
+    {
+      "k": "ITSM 시장 점유율",
+      "v": "약 40%",
+      "asof": "2026-04",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — ITSM 선두·AI ACV 10억달러, 10월 28일 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        1
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "ServiceNow to Announce Third Quarter 2026 Financial Results on October 28",
+      "u": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-to-Announce-Third-Quarter-2026-Financial-Results-on-October-28/default.aspx",
+      "d": "2026-10-07"
+    },
+    {
+      "t": "ServiceNow Form 8-K (2026년 2분기 실적)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
+      "d": "2026-07-22"
+    },
+    {
+      "t": "Salesforce vs ServiceNow ITSM battle (The Register)",
+      "u": "https://www.theregister.com/2026/04/11/salesforce_vs_servicenow_itsm_battle/",
+      "d": "2026-04-11"
+    },
+    {
+      "t": "ServiceNow Form 8-K (2026년 1분기, Armis·Veza 인수 완료)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000054/erq1fy26.htm",
+      "d": "2026-04"
+    },
+    {
+      "t": "Agentic AI adoption boosts NOW's growth prospects against MSFT, CRM (Zacks)",
+      "u": "https://www.zacks.com/stock/news/2981296/agentic-ai-adoption-boosts-nows-growth-prospects-against-msft-crm",
+      "d": "2026"
+    },
+    {
+      "t": "ServiceNow just hit $1B in AI revenue (SalesforceBen)",
+      "u": "https://salesforceben.com/servicenow-just-hit-1b-in-ai-revenue-should-salesforce-be-concerned",
+      "d": "2026"
+    },
+    {
+      "t": "ServiceNow Knowledge 2026: AI Control Tower, Action Fabric (Constellation Research)",
+      "u": "https://www.constellationr.com/index%2ephp/insights/news/servicenow-knowledge-2026-ai-control-tower-action-fabric-autonomous-workforce-and",
+      "d": "2026-05"
+    },
+    {
+      "t": "Software stocks are in a bear market (Barchart)",
+      "u": "https://www.barchart.com/story/news/37341905/software-stocks-are-in-a-bear-market-should-you-buy-the-dip-in-servicenow",
+      "d": "2026"
+    },
+    {
+      "t": "ServiceNow Q2 2026 report (TipRanks)",
+      "u": "https://www.tipranks.com/stocks/now/earnings/q2-2026-report",
+      "d": "2026-07"
+    },
+    {
+      "t": "Salesforce has come up with the most credible threat yet to ServiceNow (The Register)",
+      "u": "https://www.theregister.com/2025/12/05/salesforce_agentforce_vs_servicenow/",
+      "d": "2025-12-05"
+    },
+    {
+      "t": "What should ServiceNow do about ITSM stagnation?",
+      "u": "https://pulserevops.com/knowledge/q1623",
+      "d": "2026"
+    }
+  ]
+}

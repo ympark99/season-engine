@@ -3039,6 +3039,54 @@
    }
   ]
  },
+ "US:NOW": {
+  "name": "ServiceNow",
+  "theme": "소프트웨어",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "grade": {
+   "g": "B",
+   "label": "경쟁력 양호",
+   "why": "ITSM 점유율 선두와 Gartner AI ITSM 단독 리더, 구독 매출 +24.5%·cRPO +21%로 실적 모멘텀은 견조. 반면 Salesforce·Microsoft의 에이전트 경쟁, 좌석 기반 과금 침식 우려, 대형 인수(Armis)에 따른 마진 전망 하향은 부담."
+  },
+  "cp": [
+   {
+    "id": "q3_earn",
+    "d": "2026-10-28",
+    "what": "2026년 3분기 실적 발표 (구독매출 39.75~39.80억달러 전망, 영업이익률 31% 전망)",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "armis_margin",
+    "d": "2026-10-28",
+    "what": "Armis 인수 반영 후 연간 영업이익률 31.5%·FCF 마진 35% 전망 유지 여부",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "q4_earn",
+    "d": "2027-01",
+    "what": "2026년 4분기·연간 실적 및 2027 전망",
+    "kind": "실적",
+    "status": "예정"
+   },
+   {
+    "id": "next_release",
+    "d": "2026-H2",
+    "what": "차기 플랫폼 릴리스 및 에이전트 기능 확대",
+    "kind": "출시",
+    "status": "예정"
+   },
+   {
+    "id": "itsm_salesforce",
+    "d": "2026-Q4",
+    "what": "Salesforce Agentforce IT Service의 ITSM 침투 속도",
+    "kind": "기타",
+    "status": "예정"
+   }
+  ]
+ },
  "US:NVDA": {
   "name": "NVIDIA",
   "theme": "AI 반도체",
