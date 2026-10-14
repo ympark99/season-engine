@@ -1,0 +1,290 @@
+{
+  "m": "US",
+  "code": "SOXL",
+  "name": "Direxion Daily Semiconductor Bull 3X ETF",
+  "theme": "AI 반도체",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "반도체 지수의 일간 3배 수익을 노리는 레버리지 ETF 중 자산 규모가 가장 큰 축이지만, 장기 보유 시 일간 재설정 손실이 생기는 단기 매매용 상품이다. 다음 분기 관건은 기초 지수 구성 종목(엔비디아·TSMC·메모리 업체)의 10~11월 실적과 지수 변동성.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "3배 레버리지 반도체 ETF 중 규모가 크고 보수 0.75%로 알려져 있어 유동성 면에서 강점. 다만 일간 재설정에 따른 복리 손실, 연 변동성 약 110%(한 출처), 기초지수 구성 쏠림 때문에 장기 보유용으로는 불리"
+  },
+  "peers": [
+    {
+      "name": "SMH (VanEck Semiconductor ETF)",
+      "m": "US",
+      "code": "SMH"
+    },
+    {
+      "name": "SOXX (iShares Semiconductor ETF)",
+      "m": "US",
+      "code": "SOXX"
+    },
+    {
+      "name": "SOXS (Direxion 반도체 인버스 3배)",
+      "m": "US",
+      "code": "SOXS"
+    },
+    {
+      "name": "USD (ProShares Ultra Semiconductors)",
+      "m": "US",
+      "code": "USD"
+    }
+  ],
+  "axes": [
+    {
+      "k": "자산 규모",
+      "me": "약 130억~260억달러로 출처마다 다름 (2026-04말 약 169.5억달러, 2026-06 약 226억달러 보도)",
+      "vs": "비레버리지 SMH 약 744억달러, SOXX 약 459억달러 (한 출처)",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        6
+      ]
+    },
+    {
+      "k": "비용·분배",
+      "me": "총보수 0.75% (출처 1곳은 0.89%), 분기 분배 — 최근 주당 약 0.093달러(2026-09-22)",
+      "vs": "SMH 약 0.35%, SOXX 약 0.34%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        1,
+        7
+      ]
+    },
+    {
+      "k": "레버리지 구조",
+      "me": "기초지수 일간 3배, 자산 약 30%를 현금·국채로 보유해 매일 재조정 — 상승장 재조정 손실 지적",
+      "vs": "SMH·SOXX는 레버리지 없음. 경쟁 3배 상품은 이번 조사에서 규모 확인 못 함",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        5,
+        1
+      ]
+    },
+    {
+      "k": "변동성·낙폭",
+      "me": "최근 1년 변동성 약 110%, 한 달 새 약 20% 하락 사례 보도",
+      "vs": "SMH 변동성 약 33%",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        1,
+        6
+      ]
+    },
+    {
+      "k": "구성 종목 분산",
+      "me": "상위 비중이 시점별로 크게 다름 — 마이크론 약 7.9~11.9%, 브로드컴 약 3.9~6.8%, 엔비디아 약 3.8~6.6%",
+      "vs": "SMH는 엔비디아 약 17.6%로 집중",
+      "verdict": "동등",
+      "conf": "추정",
+      "src": [
+        8,
+        9,
+        1
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "tsmc_q3",
+      "what": "TSMC 3분기 실적 발표 (반도체 업황 확인)",
+      "d": "2026-10-15",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "제3자 일정표 기준 10월 15일 — TSMC 공식 일정 반영 여부는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "asml_q3",
+      "what": "ASML 3분기 실적 발표",
+      "d": "2026-10-15",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "제3자 일정표 기준 10월 15일"
+        }
+      ]
+    },
+    {
+      "id": "soxl_dist_q4",
+      "what": "SOXL 분기 분배금 지급",
+      "d": "2026-Q4",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "분기 분배 이력 기준 추정 — 금액·일정 미확정"
+        }
+      ]
+    },
+    {
+      "id": "nvda_q3",
+      "what": "엔비디아 3분기(FY2027) 실적 발표",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "11월 17~18일 추정 — 회사 확정 전"
+        }
+      ]
+    },
+    {
+      "id": "ice_rebal",
+      "what": "ICE 반도체 지수 정기 재조정·재구성",
+      "d": "2026-Q4",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "지수는 분기 재조정·연간 재구성이라는 오래된 자료만 확인 — 이번 일정은 확인 안 됨"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "순자산 (6월 기준 한 출처)",
+      "v": "약 226.2억달러",
+      "asof": "2026-06-10",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "총보수",
+      "v": "0.75%",
+      "asof": "2026-10",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "최근 분배금",
+      "v": "주당 약 0.093달러",
+      "asof": "2026-09-22",
+      "src": [
+        7
+      ]
+    },
+    {
+      "k": "1년 변동성",
+      "v": "약 110% (SMH 약 33%)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 3배 레버리지 반도체 ETF로 규모는 크나 변동성·재조정 손실이 핵심 약점. 10/15 TSMC·ASML, 11월 엔비디아 실적이 다음 확인 지점",
+      "src": [
+        0,
+        3,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Direxion Daily Semiconductor Bull 3X Shares (SOXL) - Walnut Invest",
+      "u": "https://walnutinvest.com/etf/soxl",
+      "d": "2026"
+    },
+    {
+      "t": "SMH vs SOXX vs SOXL: Which Semiconductor ETF to Buy in May 2026",
+      "u": "https://www.heygotrade.com/en/blog/smh-vs-soxx-vs-soxl-semiconductor-etf-buy-may-2026/",
+      "d": "2026-05"
+    },
+    {
+      "t": "SMH vs SOXX: Which Semiconductor ETF Should You Buy in 2026?",
+      "u": "https://www.etf.com/sections/news/smh-vs-soxx-which-semiconductor-etf-should-you-buy-2026",
+      "d": "2026"
+    },
+    {
+      "t": "TSMC's October 15 earnings call puts Nvidia, Broadcom and AMD investors on watch",
+      "u": "https://cryptobriefing.com/tsmc-q3-earnings-nvidia-broadcom-amd/",
+      "d": "2026-10"
+    },
+    {
+      "t": "NVIDIA earnings date (days.to)",
+      "u": "https://days.to/nvidia-earnings",
+      "d": "2026"
+    },
+    {
+      "t": "SOXL's $13.6 Billion Fund Faces Rebalancing Drag as Memory Cycle Enters Critical Phase",
+      "u": "https://finance.yahoo.com/news/soxl-13-6-billion-fund-145735009.html",
+      "d": "2026"
+    },
+    {
+      "t": "This 3x semiconductor ETF turned $10,000 into $56,000 then lost a fifth in one month",
+      "u": "https://247wallst.com/investing/etf/2026/08/04/this-3x-semiconductor-etf-turned-10000-into-56000-then-lost-a-fifth-in-one-month/",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "SOXL dividend history - Dividend Vision",
+      "u": "https://www.dividendvision.com/dividends/soxl-dividend-history",
+      "d": "2026-10"
+    },
+    {
+      "t": "Direxion Daily Semiconductor Bull 3X ETF (SOXL) - Frenzycap",
+      "u": "https://www.frenzycap.com/quote/SOXL",
+      "d": "2026-06-12"
+    },
+    {
+      "t": "SOXL holdings - ChartRow",
+      "u": "https://chartrow.com/quote/soxl/holdings",
+      "d": "2026-08-13"
+    },
+    {
+      "t": "ASML Holding financial results 2026-10-15",
+      "u": "https://www.akrostec.com/indices/KGAIS/events/2026-10-15t00-00-00z-asml-holding-nv-asml-financial-results-2d2fa93e",
+      "d": "2026-10-15"
+    }
+  ]
+}
