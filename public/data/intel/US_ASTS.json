@@ -1,0 +1,386 @@
+{
+  "m": "US",
+  "code": "ASTS",
+  "name": "AST SpaceMobile",
+  "theme": "우주",
+  "at": "2026-10-14",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
+  "position": "일반 스마트폰과 직접 연결되는 광대역 위성 사업에서 FCC 상업 허가(248기)와 약 37억달러 현금을 확보했지만, 상업 서비스는 2027년 목표로 아직 매출 규모가 작다. 다음 분기 관건은 BlueBird 7 손실 이후 발사 속도를 되찾고 연간 매출 가이던스(1.5억~2억달러)를 달성하는지.",
+  "grade": {
+    "g": "C",
+    "label": "경쟁력 보통",
+    "why": "저대역 주파수 FCC 허가·대형 안테나 기술·미국 통신사 제휴와 풍부한 현금은 강점. 다만 상업 서비스 전이라 매출이 작고, 발사 차질로 위성 수 목표가 밀렸으며, 이미 6백기 이상 운영 중인 스페이스X와 격차가 크다."
+  },
+  "peers": [
+    {
+      "name": "SpaceX (Starlink Direct to Cell)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "EchoStar",
+      "m": "US",
+      "code": "SATS"
+    },
+    {
+      "name": "Globalstar",
+      "m": "US",
+      "code": "GSAT"
+    },
+    {
+      "name": "Iridium",
+      "m": "US",
+      "code": "IRDM"
+    },
+    {
+      "name": "Lynk Global",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Amazon (Kuiper)",
+      "m": "US",
+      "code": "AMZN"
+    }
+  ],
+  "axes": [
+    {
+      "k": "서비스 상용화 진척",
+      "me": "FCC가 2026-04 상업 직접통신 서비스 허가(248기 규모, 700·800MHz 저대역). 2026년 베타, 상업 서비스는 2027년 목표",
+      "vs": "스페이스X는 600기 이상 위성으로 이미 다수 국가에서 서비스 중(보도)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "k": "위성 확보·발사",
+      "me": "2027년 초 약 45기 궤도 목표, 조립 월 6기 목표. 4월 BlueBird 7이 뉴글렌 발사 이상으로 손실, 8월 말 보도상 BlueBird 12·13 전개",
+      "vs": "스페이스X는 자체 발사체로 수급 통제",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "k": "주파수·규제",
+      "me": "FCC 허가로 버라이즌·AT&T 저대역 주파수와 연계, 124기 2030-08·248기 2033-08 구축 기한. S대역 우선권 확보 계약",
+      "vs": "스페이스X는 에코스타 AWS-4·H블록 약 170억달러 매입(FCC 승인 보도는 단일 출처)",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        0,
+        7,
+        8,
+        11
+      ]
+    },
+    {
+      "k": "재무 체력",
+      "me": "2분기 매출 3,150만달러(가이던스 연 1.5억~2억달러 유지), 분기 설비투자 약 6억달러, 7월 전환사채 후 현금 37억달러 이상",
+      "vs": "스페이스X는 비상장이라 비교 가능한 공시 없음",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "통신사 제휴",
+      "me": "미국 버라이즌·AT&T·퍼스트넷 연계, 보다폰과 유럽 합작 SatCo(2034년까지 유통 계약). 계약 잔고 약 13억달러",
+      "vs": "스페이스X는 T-모바일·보스트 등 다수 통신사 보유",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        10
+      ]
+    },
+    {
+      "k": "차세대 경쟁 위협",
+      "me": "대형 안테나 기반 광대역(스마트폰 직결) 차별화",
+      "vs": "스페이스X가 2026년 말 시험 목표인 차세대 직접통신(목표 150Mbps) 준비",
+      "verdict": "불확실",
+      "conf": "추정",
+      "src": [
+        5,
+        6
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 매출 가이던스 연 1.5억~2억달러 달성 경로",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        9,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일은 11월 9~10일 사이로 출처가 엇갈림, 미확정"
+        }
+      ]
+    },
+    {
+      "id": "next_launch",
+      "what": "BlueBird 14 이후 다음 위성 발사 (스페이스X 팰컨9)",
+      "d": "2026-10",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "8월 말 보도: 팰컨9 시험 연소 완료, 10월 발사 관측이나 날짜 미발표"
+        }
+      ]
+    },
+    {
+      "id": "beta",
+      "what": "2026년 베타 서비스 (통신사 파트너와 비상업 사용)",
+      "d": "2026",
+      "kind": "출시",
+      "status": "진행",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-08-10",
+          "s": "진행",
+          "note": "2분기 콜: 2026년 베타, 상업 서비스는 2027년 목표"
+        }
+      ]
+    },
+    {
+      "id": "rev_fy",
+      "what": "연간 매출 1.5억~2억달러 가이던스 (4분기 비중 큼)",
+      "d": "2026-Q4",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-10",
+          "s": "예정",
+          "note": "가이던스 유지, 분기마다 증가하며 4분기에 집중될 전망"
+        }
+      ]
+    },
+    {
+      "id": "sat45",
+      "what": "궤도 위성 약 45기 목표",
+      "d": "2027-Q1",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2027년 초 목표. 기존 2026년 말 45~60기 계획에서 후퇴"
+        }
+      ]
+    },
+    {
+      "id": "commercial",
+      "what": "미국 상업 서비스 개시",
+      "d": "2027",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        1,
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "목표 시점 2027년"
+        }
+      ]
+    },
+    {
+      "id": "q2_earn",
+      "what": "2분기 실적 발표 (매출 3,150만달러, 시장 예상 하회)",
+      "d": "2026-08-10",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-08-10",
+          "s": "완료",
+          "note": "매출 3,150만달러, 순손실 2.31억달러(BlueBird 7 관련 손실 포함)"
+        }
+      ]
+    },
+    {
+      "id": "bb12_13",
+      "what": "BlueBird 12·13 궤도 진입 및 안테나 전개",
+      "d": "2026-08",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-08-31",
+          "s": "완료",
+          "note": "대형 안테나 전개 성공 보도"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 매출",
+      "v": "3,150만달러 (시장 예상 하회)",
+      "asof": "2026-06",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "연간 매출 가이던스",
+      "v": "1.5억~2억달러",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "현금(7월 전환사채 반영)",
+      "v": "37억달러 이상",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "계약 잔고",
+      "v": "약 13억달러",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "3분기 설비투자 가이던스",
+      "v": "3.5억~4.25억달러",
+      "asof": "2026-08",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — FCC 상업 허가·현금 확보로 기반은 갖췄으나 상업 서비스는 2027년, 11월 초중순 3분기 실적과 10월 발사가 다음 확인 지점",
+      "src": [
+        0,
+        1,
+        9
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "FCC Grants AST SpaceMobile Commercial Authorization for Direct-to-Device Service",
+      "u": "https://www.satellitetoday.com/connectivity/2026/04/22/fcc-grants-ast-spacemobile-commercial-authorization-for-direct-to-device-service/",
+      "d": "2026-04-22"
+    },
+    {
+      "t": "AST SpaceMobile Q2 earnings call highlights",
+      "u": "https://www.nasdaq.com/articles/ast-spacemobile-q2-earnings-call-highlights",
+      "d": "2026-08"
+    },
+    {
+      "t": "AST SpaceMobile Form 8-K (2026 실적 발표 첨부)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001780312/000119312526342540/asts-ex99_1.htm",
+      "d": "2026-08-10"
+    },
+    {
+      "t": "New Glenn Grounded and AST SpaceMobile Satellite Lost After Launch Anomaly",
+      "u": "https://www.satellitetoday.com/launch/2026/04/20/new-glenn-grounded-and-ast-spacemobile-satellite-lost-after-launch-anomaly/",
+      "d": "2026-04-20"
+    },
+    {
+      "t": "AST SpaceMobile updates on progress (BlueBird 12·13, 다음 Falcon 9)",
+      "u": "https://www.advanced-television.com/?p=291170",
+      "d": "2026-08-31"
+    },
+    {
+      "t": "SpaceX Reveals Starlink Spectrum Plans Following $17 Billion Deal",
+      "u": "https://driveteslacanada.ca/news/spacex-reveals-starlink-spectrum-plans-following-17-billion-deal-first-phone-trials-in-late-2026/",
+      "d": "2026"
+    },
+    {
+      "t": "SpaceX unveils 150Mbps performance target for upgraded direct-to-cell Starlink",
+      "u": "https://news.satnews.com/2026/02/25/spacex-unveils-150mbps-performance-target-for-upgraded-direct-to-cell-starlink",
+      "d": "2026-02-25"
+    },
+    {
+      "t": "SpaceX strikes $17B deal to buy EchoStar's spectrum",
+      "u": "https://techcrunch.com/2025/09/08/spacex-strikes-17b-deal-to-buy-echostars-spectrum-for-starlinks-direct-to-phone-service/",
+      "d": "2025-09-08"
+    },
+    {
+      "t": "FCC Approves SpaceX Starlink Direct-to-Phone 5G Spectrum Deal",
+      "u": "https://www.basenor.com/blogs/news/fcc-approves-spacex-starlink-direct-to-phone-5g-spectrum-deal",
+      "d": "2026-05"
+    },
+    {
+      "t": "AST SpaceMobile 실적 발표 일정 (AJ Bell)",
+      "u": "https://www.ajbell.co.uk/market-research/sub/NASDAQ:ASTS/company-info",
+      "d": "2026"
+    },
+    {
+      "t": "Vodafone and AST SpaceMobile European Joint Venture SatCo",
+      "u": "https://www.satellitetoday.com/connectivity/2025/06/30/vodafone-and-ast-spacemobile-european-joint-venture-satco-plans-d2d-offering-in-2026/",
+      "d": "2025-06-30"
+    },
+    {
+      "t": "AST SpaceMobile Form 8-K (2025 Q2, S-band EllioSat)",
+      "u": "https://www.sec.gov/Archives/edgar/data/1780312/000095017025106610/asts-ex99_1.htm",
+      "d": "2025-08"
+    }
+  ]
+}
