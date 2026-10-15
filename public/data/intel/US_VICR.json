@@ -1,0 +1,317 @@
+{
+  "m": "US",
+  "code": "VICR",
+  "name": "Vicor",
+  "theme": "기타",
+  "at": "2026-10-16",
+  "full": "2026-10-16",
+  "by": "Claude 정기 조사",
+  "position": "48V 전력 모듈 강자이자 수직 전력 공급(VPD) 특허 보유사로, 수주잔고 3.8억달러와 라이선스 수익이 늘고 있다. 다만 MPS·인피니언 같은 대형 경쟁사와 특허 분쟁 중이며 VPD 양산은 2027년 하반기로 보도된다. 이번 분기 관건은 10월 20일 3분기 실적과 라이선스·ITC 진행.",
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "수주잔고 급증, 매출총이익률 58%, 특허·라이선스 수익은 강점. 반면 AI GPU 전력 시장에서 MPS 등에 점유를 내준 이력이 있고 VPD 대규모 양산은 아직 2027년 이후, 생산능력(두 번째 팹)도 과제"
+  },
+  "peers": [
+    {
+      "name": "Monolithic Power Systems",
+      "m": "US",
+      "code": "MPWR"
+    },
+    {
+      "name": "Infineon",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Texas Instruments",
+      "m": "US",
+      "code": "TXN"
+    },
+    {
+      "name": "Analog Devices",
+      "m": "US",
+      "code": "ADI"
+    },
+    {
+      "name": "Delta Electronics",
+      "m": null,
+      "code": null
+    }
+  ],
+  "axes": [
+    {
+      "k": "수주잔고·수요",
+      "me": "2분기 수주잔고 3.8억달러(전분기 대비 +26%), 수주 대 매출 비율 1 초과",
+      "vs": "경쟁사 비교 수치는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "2분기 매출총이익률 58.0%, 순이익 4,980만달러",
+      "vs": "경쟁사와 같은 기준의 비교 자료는 확인 안 됨",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "수직 전력 공급(VPD) 기술",
+      "me": "선도 고객용 초기 칩셋 개발 완료, 전류밀도 3A/mm² 수준. 2세대 목표는 더 높은 성능",
+      "vs": "인피니언은 엔비디아와 800V 구조를 개발 중(로드맵), MPS는 VPD·800V 샘플링으로 소개됨",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "k": "특허·라이선스",
+      "me": "ITC가 2026-02 최종 결정에서 특허 2건 유효·침해 인정, 수입금지 명령. 첫 비독점 VPD 라이선스로 3분기 매출에 5백만달러, 이후 분기 1천만달러 예상",
+      "vs": "일부 폭스콘 계열은 특허 하나에 라이선스가 있다고 판정(회사는 항소 예정)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        1,
+        4
+      ]
+    },
+    {
+      "k": "AI GPU 전력 점유",
+      "me": "과거 엔비디아 H100 소켓에서 MPS에 밀린 것으로 보도(2023)",
+      "vs": "MPS가 2026년 VPD·800V 선도로 소개됨, 법적 분쟁도 진행",
+      "verdict": "열세",
+      "conf": "추정",
+      "src": [
+        6,
+        8
+      ]
+    },
+    {
+      "k": "생산능력",
+      "me": "첫 번째 칩 팹이 가동률 한계에 근접, 2.5십억달러 매출 목표를 위해 두 번째 시설 필요(회사 목표)",
+      "vs": "경쟁사 비교 없음",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_earn",
+      "what": "3분기 실적 발표 — 매출 전분기 대비 30% 초과 증가 전망(상향) 확인",
+      "d": "2026-10-20",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0,
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-06",
+          "s": "예정",
+          "note": "10월 20일 7시(미 동부) 발표, 8시 콜"
+        },
+        {
+          "d": "2026-09-30",
+          "s": "예정",
+          "note": "3분기 성장 전망 20% 초과에서 30% 초과로 상향(라이선스 수익)"
+        }
+      ]
+    },
+    {
+      "id": "itc_1526",
+      "what": "ITC 신규 조사('734 특허, VPD 시스템) — 인피니언·MPS 등 피조사",
+      "d": "2026-10",
+      "kind": "규제",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-10-09",
+          "s": "진행",
+          "note": "ITC 조사 개시, 일정 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "vpd_perf",
+      "what": "VPD 성능 상향(3A/mm² 초과) 목표",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07-21",
+          "s": "예정",
+          "note": "올해 말~내년 초 성능 상향 목표"
+        }
+      ]
+    },
+    {
+      "id": "hyperscaler",
+      "what": "하이퍼스케일러·OEM 추가 고객 협의 진전",
+      "d": "2026-Q4",
+      "kind": "수주",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07-21",
+          "s": "예정",
+          "note": "연말까지 하이퍼스케일러 1곳, OEM 몇 곳과 협의 예상"
+        }
+      ]
+    },
+    {
+      "id": "vpd_prod",
+      "what": "VPD 양산 프로그램 시작 가능 시점",
+      "d": "2027-H2",
+      "kind": "양산",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        2
+      ],
+      "log": [
+        {
+          "d": "2026-07-21",
+          "s": "예정",
+          "note": "내년 3분기 말~4분기 생산 가능성 언급, 확정 아님"
+        }
+      ]
+    },
+    {
+      "id": "guide_raise",
+      "what": "3분기 매출 전망 상향 발표",
+      "d": "2026-09-30",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-09-30",
+          "s": "완료",
+          "note": "성장 전망 30% 초과로 상향"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 수주잔고",
+      "v": "3.8억달러 (+26% 전분기)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 제품·로열티 매출",
+      "v": "1.434억달러",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "2분기 매출총이익률",
+      "v": "58.0%",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "현금",
+      "v": "약 4.536억달러",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-16",
+      "note": "전체 조사 — 수주잔고·라이선스 수익 증가, 10월 20일 실적과 ITC 신규 조사가 다음 확인 지점",
+      "src": [
+        0,
+        3,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Vicor Corporation to Hold Third Quarter Earnings Conference Call and Webcast on October 20, 2026",
+      "u": "https://www.globenewswire.com/news-release/2026/10/06/3375864/0/en/index.html",
+      "d": "2026-10-06"
+    },
+    {
+      "t": "Vicor Corporation Reports Results for the Second Quarter Ended June 30, 2026",
+      "u": "https://www.barchart.com/story/news/3378938/vicor-corporation-reports-results-for-the-second-quarter-ended-june-30-2026",
+      "d": "2026-07-21"
+    },
+    {
+      "t": "Vicor Q2 earnings call highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/vicor-q2-earnings-call-highlights-2026-07-21/",
+      "d": "2026-07-21"
+    },
+    {
+      "t": "Vicor Corporation raises Q3 2026 revenue guidance",
+      "u": "https://finviz.com/news/397273/vicor-corporation-raises-q3-2026-revenue-guidance",
+      "d": "2026-09-30"
+    },
+    {
+      "t": "ITC bars importation of power modules and unlicensed computing systems that infringe Vicor patents",
+      "u": "https://macaubusiness.com/itc-bars-importation-of-power-modules-and-unlicensed-computing-systems-that-infringe-vicor-patents/",
+      "d": "2026-02"
+    },
+    {
+      "t": "USITC institutes investigation of VPD modules and computing systems infringing a Vicor patent",
+      "u": "https://finviz.com/news/401187/usitc-institutes-investigation-of-vertical-power-delivery-vpd-modules-and-computing-systems-infringing-a-vicor-patent",
+      "d": "2026-10"
+    },
+    {
+      "t": "Monolithic Power Systems, Inc. v. Vicor Corporation (D. Del. 1:26-cv-00513)",
+      "u": "https://dockets.justia.com/docket/delaware/dedce/1%3A2026cv00513/93044",
+      "d": "2026-05"
+    },
+    {
+      "t": "Infineon to revolutionize power delivery architecture for future AI server racks with NVIDIA",
+      "u": "https://www.nasdaq.com/press-release/infineon-revolutionize-power-delivery-architecture-future-ai-server-racks-nvidia-2025",
+      "d": "2025-05"
+    },
+    {
+      "t": "Energizing AI power delivery competition (SemiAnalysis)",
+      "u": "https://newsletter.semianalysis.com/p/energizing-ai-power-delivery-competition",
+      "d": "2023"
+    }
+  ]
+}
