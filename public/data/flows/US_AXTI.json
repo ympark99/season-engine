@@ -1,0 +1,91 @@
+{
+ "m": "US",
+ "code": "AXTI",
+ "name": "AXT INC",
+ "at": "2026-10-16",
+ "by": "Claude 정기 조사",
+ "summary": "인듐인화물(InP)·갈륨비소(GaAs)·게르마늄(Ge) 웨이퍼 기판과 그 원재료(고순도 갈륨 등)를 판다. 2025년 매출 8,830만$(−11%)의 67%가 기판이다. 전량을 중국에서 만들고, 매출의 62%가 중국이다. 10%를 넘는 고객은 없지만, AI 광통신 수요로 루멘텀과 2031년까지 InP 장기 공급 계약을 맺었다. 원재료는 지분을 가진 중국 원재료 자회사들에서 받는다.",
+ "cust": [
+  {
+   "name": "Lumentum",
+   "code": "LITE",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "2031년까지 InP 기판 최소 물량 예약, 보증금 8,700만$(4,350만$×2) — AXT 공시"
+  },
+  {
+   "name": "상위 5개 고객 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 29,
+   "conf": "공시",
+   "note": "2025 10-K — 상위 5곳 합계 29%, 10% 넘는 단일 고객 없음"
+  },
+  {
+   "name": "원재료 고객 3곳 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2025 10-K — 자회사 원재료 매출의 25%가 고객 3곳"
+  }
+ ],
+ "supp": [
+  {
+   "name": "중국 원재료 자회사 (Tongmei 산하)",
+   "code": null,
+   "m": null,
+   "item": "갈륨·InP 원료·게르마늄",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 고순도 갈륨·InP 원료·비소·게르마늄·pBN 도가니 등을 지분 보유 원재료 회사에서 조달(이사회 참여)"
+  },
+  {
+   "name": "중국 수출 허가",
+   "code": null,
+   "m": null,
+   "item": "수출 허가(공급 제약)",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 전량 중국 생산이라 갈륨·게르마늄·InP 수출 통제의 영향을 받음"
+  }
+ ],
+ "segs": [
+  {
+   "name": "기판 (InP·GaAs·Ge)",
+   "code": null,
+   "m": null,
+   "amt": 58.9,
+   "share": 67,
+   "note": "2025 — 게르마늄 원가 급등으로 일부러 판매 축소, −13%"
+  },
+  {
+   "name": "원재료·기타",
+   "code": null,
+   "m": null,
+   "amt": 29.4,
+   "share": 33,
+   "note": "2025 — 고순도 갈륨 등 외부 판매"
+  },
+  {
+   "name": "Tongmei (중국 자회사)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "연결 자회사 — 베이징 InP 라인, 커촨반 상장 추진"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "AXT 2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm"
+  },
+  {
+   "t": "AXT–Lumentum InP 장기 공급 계약",
+   "u": "https://www.barchart.com/story/news/3533758/axt-inc-announces-long-term-supplier-agreement-with-lumentum"
+  }
+ ]
+}

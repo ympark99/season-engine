@@ -1,0 +1,94 @@
+{
+ "m": "KR",
+ "code": "252990",
+ "name": "샘씨엔에스",
+ "at": "2026-10-16",
+ "by": "Claude 정기 조사",
+ "summary": "메모리 웨이퍼 테스트용 프로브카드의 핵심 부품인 세라믹 STF를 만든다. 2025년 매출 780억원(+46%)의 71%가 NAND용, 27%가 DRAM용이다. 직접 고객은 국내외 프로브카드 업체이고 최종 사용자는 반도체 제조사다(최종 사용자 기준 국내 63%·해외 37%). 원재료 140억원을 사 오는데, 매입처는 영업기밀로 공개하지 않는다.",
+ "cust": [
+  {
+   "name": "국내외 프로브카드 업체 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2025 사업보고서 — 프로브카드 업체에 100% 직접 판매. 매출 지역: 국내 494억·해외 286억"
+  },
+  {
+   "name": "Technoprobe",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "보도",
+   "note": "이탈리아 프로브카드 1위 — 메모리용 프로브카드에 세라믹 STF를 독점 납품한다는 분석"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "m": "KR",
+   "share": null,
+   "conf": "보도",
+   "note": "최종 사용자 — 삼성전기 사업부에서 출발, 삼성전자 프로브카드의 전략적 세라믹 STF 공급사로 소개됨"
+  }
+ ],
+ "supp": [
+  {
+   "name": "세라믹 원재료 매입처 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "세라믹 STF 원재료",
+   "share": 100,
+   "conf": "공시",
+   "note": "2025 사업보고서 — 원재료 140억원, 품목·매입처는 영업기밀"
+  }
+ ],
+ "segs": [
+  {
+   "name": "NAND 프로브카드용 세라믹 STF",
+   "code": null,
+   "m": null,
+   "amt": 553.34,
+   "share": 70.95,
+   "note": "2025 — 2024년 402억원"
+  },
+  {
+   "name": "DRAM 프로브카드용 세라믹 STF",
+   "code": null,
+   "m": null,
+   "amt": 213.35,
+   "share": 27.36,
+   "note": "2025 — 2024년 122억원에서 +75%"
+  },
+  {
+   "name": "비메모리용 세라믹 STF",
+   "code": null,
+   "m": null,
+   "amt": 2.4,
+   "share": 0.31,
+   "note": "2025"
+  },
+  {
+   "name": "기타",
+   "code": null,
+   "m": null,
+   "amt": 10.76,
+   "share": 1.38,
+   "note": "2025"
+  }
+ ],
+ "unitSeg": "억원",
+ "sources": [
+  {
+   "t": "샘씨엔에스 2025 사업보고서 (DART)",
+   "u": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260316001120"
+  },
+  {
+   "t": "세라믹 STF 고객 인증 보도",
+   "u": "https://newstomato.com/ReadNews.aspx?no=1289574"
+  },
+  {
+   "t": "고객 구조 분석 (2024)",
+   "u": "https://file.alphasquare.co.kr/media/pdfs/company-report/메리츠20240607샘씨엔에스.pdf"
+  }
+ ]
+}

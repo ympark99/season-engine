@@ -1,0 +1,111 @@
+{
+ "m": "US",
+ "code": "ADI",
+ "name": "ANALOG DEVICES INC",
+ "at": "2026-10-16",
+ "by": "Claude 정기 조사",
+ "summary": "아날로그·혼성신호·전력 칩을 산업(45%)·자동차(30%)·소비자·통신에 판다. FY2025(10월 결산) 매출 110.2억$(+17%). 유통사 한 곳이 24%, 다른 한 곳이 13%로 판매가 유통망에 크게 기대고 있다. 웨이퍼의 절반 이상은 TSMC 등 외부 파운드리에서 사 오고, 나머지는 자체 팹에서 만든다.",
+ "cust": [
+  {
+   "name": "유통사 1 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 24,
+   "conf": "공시",
+   "note": "FY2025 10-K — 24% (FY24 24%, FY23 25%)"
+  },
+  {
+   "name": "유통사 3 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 13,
+   "conf": "공시",
+   "note": "FY2025 10-K — 13% (FY24 12%)"
+  },
+  {
+   "name": "Arrow Electronics",
+   "code": "ARW",
+   "m": "US",
+   "share": null,
+   "conf": "보도",
+   "note": "ADI가 Arrow를 유일한 글로벌 유통 파트너로 지정(지역 유통사는 유지). FY2019 10-K엔 매출의 30% — 유통사 1일 가능성이 높음"
+  },
+  {
+   "name": "산업·자동차 OEM (분산)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 그 밖에 매출 10%를 넘는 고객 없음"
+  }
+ ],
+ "supp": [
+  {
+   "name": "TSMC",
+   "code": "TSM",
+   "m": "US",
+   "item": "웨이퍼(파운드리)",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 웨이퍼의 절반 넘게 TSMC 등 외부 파운드리에서 조달, 대만해협 위험 명시"
+  },
+  {
+   "name": "후공정 외주 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "조립·테스트",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 조립·테스트를 외부 업체에 폭넓게 맡기고, 말레이시아 페낭·필리핀·태국 자체 시설도 운영"
+  }
+ ],
+ "segs": [
+  {
+   "name": "산업",
+   "code": null,
+   "m": null,
+   "amt": 4929.4,
+   "share": 45,
+   "note": "FY2025 +15%"
+  },
+  {
+   "name": "자동차",
+   "code": null,
+   "m": null,
+   "amt": 3277.9,
+   "share": 30,
+   "note": "FY2025 +16%"
+  },
+  {
+   "name": "소비자",
+   "code": null,
+   "m": null,
+   "amt": 1434.6,
+   "share": 13,
+   "note": "FY2025 +19%"
+  },
+  {
+   "name": "통신",
+   "code": null,
+   "m": null,
+   "amt": 1377.9,
+   "share": 13,
+   "note": "FY2025 +26% — 데이터센터·유무선 인프라"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Analog Devices FY2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/6281/000000628125000153/adi-20251101.htm"
+  },
+  {
+   "t": "Arrow 글로벌 유통 파트너 지정 보도",
+   "u": "https://www.electronicspecifier.com/?p=60764"
+  },
+  {
+   "t": "FY2019 10-K (Arrow 30%)",
+   "u": "https://www.sec.gov/Archives/edgar/data/6281/000000628119000144/adi-20191102.htm"
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "m": "US",
+ "code": "VICR",
+ "name": "VICOR CORP",
+ "at": "2026-10-16",
+ "by": "Claude 정기 조사",
+ "summary": "데이터센터·AI 가속기용 고밀도 전력 모듈(어드밴스드)과 범용 전원 모듈(브릭)을 판다. 2025년 매출 약 4.07억$의 61%가 어드밴스드 제품(로열티 포함)이다. 특허 라이선스 수입이 5,740만$(14%)까지 커졌다. 어드밴스드 매출은 한 곳 또는 소수 고객에 몰려 있는데, 회사는 이를 '선도 컴퓨팅 고객'이라고만 부른다.",
+ "cust": [
+  {
+   "name": "선도 컴퓨팅 고객 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2025 10-K — 어드밴스드 매출 대부분이 한 곳 또는 소수 고객(직접·위탁생산사 경유·로열티). 2026년 이 고객의 5세대 수직 전력 공급(VPD) 양산이 실적 전망의 핵심"
+  },
+  {
+   "name": "AI 장비 업체 라이선시 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "보도",
+   "note": "2025-09 VPD 기술 비독점 라이선스 — 외부 공급사 모듈을 쓰고 비코에 로열티 지급"
+  },
+  {
+   "name": "OEM·위탁생산사·유통사 (브릭 제품)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 브릭 제품은 특수 전자기기 업체부터 대형 OEM과 그 위탁생산사까지, 일부는 재고 유통사 경유"
+  }
+ ],
+ "supp": [
+  {
+   "name": "단일 공급 부품 업체 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "핵심 부품",
+   "share": null,
+   "conf": "공시",
+   "note": "10-K — 어드밴스드 제품의 핵심 부품 일부는 단일 공급원, 재고로 대응"
+  }
+ ],
+ "segs": [
+  {
+   "name": "어드밴스드 제품 (로열티 포함)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": 61.0,
+   "note": "2025 — AI·데이터센터 고밀도 전력 모듈 (2024 55%)"
+  },
+  {
+   "name": "브릭 제품",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": 39.0,
+   "note": "2025 — 범용 DC-DC 모듈, 10년 넘은 제품군"
+  },
+  {
+   "name": "특허 라이선스 수입",
+   "code": null,
+   "m": null,
+   "amt": 57.4,
+   "share": 14.1,
+   "note": "2025 — 어드밴스드·브릭 수치 안에 포함 (2024 4,660만$, 2023 1,590만$)"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Vicor 2025 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/751978/000119312526085102/vicr-20251231.htm"
+  },
+  {
+   "t": "3분기 실적: IP 라이선스·어드밴스드 성장",
+   "u": "https://finviz.com/news/200245/vicr-q3-deep-dive-ip-licensing-and-advanced-power-modules-propel-growth-amid-ai-opportunity"
+  },
+  {
+   "t": "AI·용량·로열티 전망",
+   "u": "https://www.chartmill.com/news/external/80627/vicor-stock-outlook-as-ai-demand-capacity-and-royalties-align"
+  }
+ ]
+}

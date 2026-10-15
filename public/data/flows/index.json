@@ -46,5 +46,21 @@
  "KR:006400": {
   "at": "2026-10-15",
   "name": "삼성SDI"
+ },
+ "US:ADI": {
+  "at": "2026-10-16",
+  "name": "ANALOG DEVICES INC"
+ },
+ "US:VICR": {
+  "at": "2026-10-16",
+  "name": "VICOR CORP"
+ },
+ "US:AXTI": {
+  "at": "2026-10-16",
+  "name": "AXT INC"
+ },
+ "KR:252990": {
+  "at": "2026-10-16",
+  "name": "샘씨엔에스"
  }
 }
