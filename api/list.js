@@ -92,8 +92,11 @@ async function list(req, res) {
   const regime = {}, events = [];
   for (const m of ['US', 'KR']) {
     const xs = stocks.filter(s => s.m === m && !s.error);
-    const cnt = Object.fromEntries(SEASONS.map(s => [s, xs.filter(x => x.season === s).length]));
-    regime[m] = { n: xs.length, cnt, asof: xs.reduce((a, x) => (x.lastDate > a ? x.lastDate : a), '') || null };
+    // 확정 봄만 봄으로 — 미확정 봄은 겨울 칸(겨울+봄 미확정)에 (유니버스 분포와 같은 기준)
+    const ds = x => (x.season === '봄' && x.sc && x.sc.ok === 0 ? '겨울' : x.season);
+    const cnt = Object.fromEntries(SEASONS.map(s => [s, xs.filter(x => ds(x) === s).length]));
+    const sprU = xs.filter(x => ds(x) !== x.season).length;
+    regime[m] = { n: xs.length, cnt, sprU, asof: xs.reduce((a, x) => (x.lastDate > a ? x.lastDate : a), '') || null };
   }
   for (const s of stocks) for (const e of s.events || []) events.push({ m: s.m, code: s.code, name: s.name, ...e });
   stocks.forEach(s => delete s.events);

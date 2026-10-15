@@ -830,7 +830,7 @@ function renderRegime(){
 function renderMyDist(){
   const el=$('mydist');if(!el||!D)return;
   const R=D.regime[state.m];
-  el.innerHTML=distHTML('내 목록 분포',R.cnt,R.n,`${R.n}종목`);
+  el.innerHTML=distHTML('내 목록 분포',R.cnt,R.n,`${R.n}종목`,R.sprU);
 }
 /* ① 맨 위 — 유니버스 전종목 분포 */
 function renderUnivDist(){
