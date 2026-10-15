@@ -1,5 +1,5 @@
-// /api/portfolio — 전략실 (8개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
-//   GET ?m=US                → 전략 8개 요약 + 벤치마크 + 장세
+// /api/portfolio — 전략실 (7개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
+//   GET ?m=US                → 전략 7개 요약 + 벤치마크 + 장세 + 전략별 평가금액 곡선(기간별 수익 차트용)
 //   GET ?m=US&s=S1           → 전략 하나 상세 (보유·매매 내역 전체·일별 평가금액·벤치마크 곡선)
 //   POST {step:'run', m, reset}  (관리자) — 지금 이어 돌리기 / reset 이면 장부를 지우고 오늘(최근 거래일)부터 다시 시작
 // 시장 지표 3종(mkt:ind:{m})과 국면 효과 유니버스 기준선(mkt:eff:{m})도 같은 데이터로 여기서 계산한다.
@@ -7,7 +7,7 @@ import * as store from '../lib/store.js';
 import { engineState, isAdmin, send, body, KEEP } from '../lib/service.js';
 import { Series } from '../lib/engine.js';
 import { classifyOf } from '../lib/engine2.js';
-import { STRATS, CAPITAL, prepItem, runDays, summaryOf, periodsOf, newBook } from '../lib/portfolio.js';
+import { STRATS, CAPITAL, LAB_V, prepItem, runDays, summaryOf, periodsOf, newBook } from '../lib/portfolio.js';
 import { pbScan, mcOpt } from '../lib/pullback.js';
 import { marketIndicators } from '../lib/indicators.js';
 import { universeEffect, effectOf } from '../lib/effect.js';
@@ -54,10 +54,11 @@ async function build(m, books) {
   codes.forEach((code, k) => {
     const b = bars[k];
     if (!b?.d?.length || b.d.length < 300) return;
-    items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null }, eng.params, eng.cal));
+    items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null,
+      sh: MC?.rows?.[code]?.[0] || 0, fx: m === 'US' ? MC?.fx || 0 : 1 }, eng.params, eng.cal));      // 시가총액(원) = 상장주식수 × 종가 × 환율 — 비중 상한용
   });
-  for (const x of items) x.pb = new Map(pbScan(x.s, mcOpt(m, MC, x.code)).ent.map(e => [e.t, e]));   // 8호 눌림매매 — 날짜 인덱스 → 눌림 진입
-  for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 6호 봄여름 대상 선정
+  for (const x of items) x.pb = new Map(pbScan(x.s, mcOpt(m, MC, x.code)).ent.map(e => [e.t, e]));   // 7호 눌림매매 — 날짜 인덱스 → 눌림 진입
+  for (const x of items) {                                          // 계절 적합도 (상세 화면 맨 위 태그와 같은 판정) — 1호·4호·5호 대상 선정
     try { const A = { s: x.s, season: x.season, cf: x.cf }; x.fit = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; } catch { x.fit = null; }
   }
   if (items.length < 30) throw new Error(`일봉이 있는 종목이 ${items.length}개뿐이야 — 유니버스 스캔이 끝난 뒤 돌려줘`);
@@ -76,7 +77,7 @@ async function build(m, books) {
   const mh = await macroHistory(m, macro), mdates = Object.keys(mh).sort();
   const macroOf = D => { let k = -1; for (let i = 0; i < mdates.length && mdates[i] <= D; i++) k = i; if (k < 0) return null; const d = mdates[k]; return (Date.parse(D) - Date.parse(d)) / 864e5 <= 7 ? { risk: mh[d], d } : null; };
 
-  // 매크로 범주 뷰 → 종목별 (4호 가감용)
+  // 매크로 범주 뷰 → 종목별 (예전 시황종합 가감용 — 지금은 안 씀)
   const views = Object.fromEntries((macro?.categories || []).map(c => [c.key, c.view]));
   const cats = {}; for (const [k, v] of Object.entries(catsJ?.map || {})) { const [mm, code] = k.split(':'); if (mm === m && views[v]) cats[code] = views[v]; }
 
@@ -93,6 +94,7 @@ export async function run(m, { reset = false } = {}) {
   if (!reset) {
     const got = await store.mget(STRATS.map(st => BOOK(m, st.id)));
     STRATS.forEach((st, i) => { if (got[i]?.daily) books[st.id] = got[i]; });
+    if (STRATS.some(st => books[st.id] && books[st.id].v !== LAB_V)) for (const k of Object.keys(books)) delete books[k];   // 규칙이 바뀌면 오늘부터 다시
   }
   const data = await build(m, books);
   const done = runDays(data, books);
@@ -109,7 +111,10 @@ export async function run(m, { reset = false } = {}) {
     return { code, name, periods: periodsOf(series), cum: +(100 * (series[series.length - 1][1] / CAPITAL - 1)).toFixed(2) };
   });
   const lastRegime = done.length ? done[done.length - 1].regime : books.S1.regime || null;
-  const out = { m, at: new Date().toISOString(), start: books.S1.start || ref[0] || null, capital: CAPITAL, asof: books.S1.last, processed: done.length, ms: Date.now() - t0,
+  const curves = { dates: ref, eq: Object.fromEntries(STRATS.map(st => [st.id, books[st.id].daily.map(x => x[1])])),
+    bench: BENCH[m].map(([code, name], k) => { const o = data.ix[k]; if (!o || !ref.length) return { code, name, v: [] }; const i0 = o.s.at(ref[0]); if (i0 < 0) return { code, name, v: [] };
+      return { code, name, v: ref.map(d => Math.round(CAPITAL * o.s.p[Math.max(0, o.s.at(d))] / o.s.p[i0])) }; }) };
+  const out = { v: LAB_V, curves, m, at: new Date().toISOString(), start: books.S1.start || ref[0] || null, capital: CAPITAL, asof: books.S1.last, processed: done.length, ms: Date.now() - t0,
     regime: lastRegime, macro: data.macroNow, live: !!data.live, liveScoreAt: data.live ? 'fund' : null,
     strategies: STRATS.map(st => summaryOf(st, books[st.id], m)), benches };
   await store.set(SUM(m), out);
@@ -135,7 +140,7 @@ export default async function handler(req, res) {
       const st = STRATS.find(x => x.id === req.query.s);
       if (!st) return send(res, 404, { error: '없는 전략' });
       const [book, sum] = await store.mget([BOOK(m, st.id), SUM(m)]);
-      if (!book) return send(res, 200, { empty: true, m });
+      if (!book || book.v !== LAB_V) return send(res, 200, { empty: true, m });
       const ixb = await store.mget(BENCH[m].map(([c]) => store.barsKey('IX', c)));
       const dates = book.daily.map(x => x[0]);
       const curves = BENCH[m].map(([code, name], k) => {
@@ -148,6 +153,7 @@ export default async function handler(req, res) {
     }
     if (req.method === 'GET') {
       const r = await store.get(SUM(m));
+      if (r && r.v !== LAB_V) return send(res, 200, { empty: true, pending: true, m });   // 규칙이 바뀌어 다음 실행 때 오늘부터 다시 시작
       return send(res, 200, r || { empty: true, m });
     }
     if (req.method !== 'POST') return send(res, 405, { error: 'POST 만' });

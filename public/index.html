@@ -1704,11 +1704,11 @@ function tuneCard(BT){
 }
 function stratOpsCard(SM){
   return `<section class="card"><h2>전략실 실행</h2>
-    <p class="lead">8개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
+    <p class="lead">7개 전략 장부는 매일 파이프라인 마지막 단계에서 <b>새 거래일만</b> 이어 붙여. 과거 재현은 하지 않아 — 장부를 처음 만든 거래일부터 시작하고, 매일 그날의 실시간 국면·대장 점수로 판단해. [오늘부터 다시 시작]은 장부를 지우고 최근 거래일부터 새로 시작해.</p>
     <div class="ops"><button class="pbtn" id="stRun" aria-pressed="true">지금 이어 돌리기 (${state.m==='US'?'미국':'한국'})</button><button class="pbtn" id="stReset">오늘부터 다시 시작</button><span class="sub" id="stmsg">${SM&&!SM.empty?`${SM.asof} 까지 · ${kst(SM.at)} 갱신 · 이번에 ${SM.processed}일 처리 (${(SM.ms/1000).toFixed(1)}초)`:'아직 장부 없음'}</span></div></section>`;
 }
 async function runStrat(reset){
-  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 8개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
+  if(reset&&!confirm(`${state.m==='US'?'미국':'한국'} 전략 장부 7개를 지우고 최근 거래일부터 다시 시작할까? 지금까지 기록은 사라져.`))return;
   const msg=$('stmsg');msg.textContent='돌리는 중…';
   try{const r=await post('/api/portfolio',{m:state.m,step:'run',reset});msg.textContent=`${r.asof} 까지 · ${r.processed}일 처리`;ST=null;STD=null;loadInd();if(!$('strat').hidden)loadStrat(true)}
   catch(e){msg.textContent='실패: '+e.message}
@@ -2357,6 +2357,7 @@ function renderStrat(){
   const el=$('stbody');if(!el)return;
   if(!ST){el.innerHTML='<div class="loading">불러오는 중…</div>';return}
   if(ST.err){el.innerHTML=`<div class="warn">${esc(ST.err)}</div>`;return}
+  if(ST.empty&&ST.pending){el.innerHTML='<div class="sdet"><h2>전략실</h2><p class="muted">전략 규칙이 바뀌었어 (상위점수·추세+가치·가치투자·여름풀매수·봄확정·저점매수·눌림매매 7개, 3개월 +30% 목표·종목 0~5개·계좌 손실 한도). 다음 파이프라인 실행 때 그날 거래일부터 1,000만원으로 다시 시작해.</p></div>';return}
   if(ST.empty){el.innerHTML='<div class="sdet"><h2>전략실</h2><p class="muted">아직 장부가 없어. 매일 파이프라인 마지막 단계에서 자동으로 만들어지고, 엔진 탭 → <b>전략실 실행</b>에서 바로 만들 수도 있어.</p></div>';return}
   const R=ST.regime,mk=state.m==='US'?'미국':'한국';
   const card=x=>`<button class="stc" data-st="${x.id}" aria-pressed="${state.sid===x.id}">
@@ -2372,12 +2373,14 @@ function renderStrat(){
       <span class="sub">기준 ${ST.asof} · ${ST.start} 시작 · 전략별 초기자본 1,000만원 · 갱신 ${kst(ST.at)}</span></div>
     <div class="stgrid">${ST.strategies.map(card).join('')}</div>
     <div id="stdet"></div>
-    <div class="sdet"><h3 style="margin-top:0">기간별 수익 — 전략 vs 벤치마크</h3>
+    <div class="sdet"><h3 style="margin-top:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap">기간별 수익 — 전략 vs 벤치마크 <button type="button" class="pbtn" id="stchart" aria-pressed="${!!state.stChart}">${state.stChart?'차트 닫기':'차트로 비교'}</button></h3>
+      ${state.stChart?stratChart(ST):''}
       <div class="tbl-wrap"><table class="acc ptbl" style="min-width:860px"><thead><tr><th></th>${PER.map(([,t])=>`<th class="r">${t}</th>`).join('')}</tr></thead><tbody>
       ${rows.map(r=>`<tr class="${r.bm?'bm':''}"><td><b>${esc(r.nm)}</b>${r.bm?' <span class="muted">지수</span>':''}</td>${PER.map(([k])=>{const v=r.P&&r.P[k];return `<td class="r num">${v?`${ppC(v.pct)}${pp(v.pct)}</span><small>${wonS(v.amt)}</small>`:'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
       <div class="sub" style="margin-top:8px">수익금은 1,000만원 기준. 벤치마크는 같은 날 지수를 1,000만원어치 샀다고 본 값이야. 1일·1주 등은 거래일 기준(1주 5일·1개월 21일·3개월 63일·6개월 126일·1년 252일), 올해는 작년 마지막 거래일 대비.</div>
       <p class="sub" style="margin-top:10px">과거 재현 없이 ${ST.start}부터 매일 그날의 국면·대장 점수·장세로 판단한 걸 그대로 기록해 (한 번 기록된 날은 다시 계산하지 않아). 기간이 아직 안 찬 칸은 —. 체결은 신호가 난 날 종가·소수점 주식·수수료와 세금(미국 0.1%씩, 국내 매수 0.05%·매도 0.25%)만 반영했어. 미국 전략은 달러 수익률을 원화 1,000만원에 그대로 적용(환율 미반영). 미래 수익을 보장하지 않아.</p></div>`;
   el.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{state.sid=state.sid===b.dataset.st?null:b.dataset.st;state.stab=state.stab||'hold';renderStrat()});
+  $('stchart').onclick=()=>{state.stChart=!state.stChart;renderStrat()};
   if(state.sid)loadStratDetail();
 }
 async function loadStratDetail(){
@@ -2421,7 +2424,7 @@ function renderStratDetail(){
       ${rows.map(r=>`<tr class="${r.bm?'bm':''}"><td><b>${esc(r.nm)}</b></td>${PER.map(([k])=>{const v=r.P&&r.P[k];return `<td class="r num">${v?`${ppC(v.pct)}${pp(v.pct)}</span><small>${wonS(v.amt)}</small>`:'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
       <div class="sub" style="margin-top:8px">평가금액 ${won(X.eq)} · 최대낙폭 ${X.mdd}% · 거래 ${X.trades}건 · 매도 승률 ${X.win==null?'—':X.win+'%'} · 주식 비중 ${X.invested}%${X.cap<1?` (상한 ${Math.round(X.cap*100)}%)`:''}</div>
       <h3>전략 기준</h3><p class="sub" style="margin:0">${esc(X.desc)}</p><ul class="crit">${X.criteria.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>
-      <ul class="crit"><li>종목 수 최대 10개, 보통 5개까지 — 6번째부터는 매력도가 아주 높은 종목만</li><li>비중 = 매력도가 기준을 넘는 정도에 비례(8%~40%). 매력적인 종목이 적으면 나머지는 현금</li><li>정기 리밸런싱 없음 — 매도 신호·노출 상한·더 매력적인 종목으로 교체(매력도 15 이상 차이)일 때만 거래. 매수 뒤 3거래일은 신호성 매도 보류(손절·겨울 제외), 판 종목은 5거래일 재매수 금지</li></ul>`;
+      <ul class="crit"><li>목표: 3개월(63거래일) +30% (가치투자 제외) · 계좌 손실 한도: 최근 3개월 고점 대비 −20% → 전량 현금, 20거래일 쉼</li><li>정기 리밸런싱 없음 — 매도 신호·익절·손절·비중 상한일 때만 거래. 목표 달성(3개월 +30%)·방어(−10% 이하) 때는 새로 사지 않는 것으로 주식 비중을 낮춤. 매수 뒤 3거래일은 신호성 매도 보류(손절·겨울 제외), 판 종목은 5거래일 재매수 금지</li></ul>`;
   }
   box.innerHTML=`<div class="sdet"><h2>${X.no}호 · ${esc(X.name)} <span class="sub" style="font-weight:400">${esc(X.tag)} · ${state.m==='US'?'미국':'한국'}</span></h2>
     <div class="sub">누적 ${pp(X.cum)} · ${won(X.eq)} · 기준 ${X.asof}${X.note?` · ${esc(X.note)}`:''}</div>
@@ -2429,6 +2432,21 @@ function renderStratDetail(){
   box.querySelectorAll('[data-stab]').forEach(b=>b.onclick=()=>{state.stab=b.dataset.stab;renderStratDetail()});
   box.querySelectorAll('[data-sf]').forEach(b=>b.onclick=()=>{state.sf=b.dataset.sf;state.slim=80;renderStratDetail()});
   if($('smore'))$('smore').onclick=()=>{state.slim=(state.slim||80)+80;renderStratDetail()};
+}
+/* 기간별 수익 차트 — 전략 7개 + 벤치마크 누적 수익률 (같은 날짜 축) */
+function stratChart(X){
+  const C=X?.curves;if(!C||!C.dates||C.dates.length<2)return '<div class="muted" style="padding:10px 0">시작한 지 하루라 아직 곡선이 없어 — 거래일이 쌓이면 전략·벤치마크를 함께 그려줘.</div>';
+  const C0=10000000,dates=C.dates,N=dates.length;
+  const series=[...X.strategies.map((s2,i)=>({nm:`${s2.no}호 ${s2.name}`,v:(C.eq[s2.id]||[]).map(x=>100*(x/C0-1)),c:EQC[i%EQC.length],w:2})),
+    ...(C.bench||[]).filter(b=>b.v&&b.v.length===N).map((b,i)=>({nm:b.name,v:b.v.map(x=>100*(x/C0-1)),c:i?'var(--muted)':'var(--ink2)',w:1.4,dash:'4 3'}))].filter(s2=>s2.v.length===N);
+  const all=series.flatMap(s2=>s2.v);let lo=Math.min(0,...all),hi=Math.max(0,...all);
+  const stp=niceStep((hi-lo)/4||1);lo=Math.floor(lo/stp)*stp;hi=Math.ceil(hi/stp)*stp;
+  const Wd=680,H=280,ml=52,mr=14,mt=14,mb=28,pw=Wd-ml-mr,ph=H-mt-mb,x=i=>ml+i/(N-1)*pw,y=v=>mt+(hi-v)/(hi-lo||1)*ph;
+  let g='';for(let v=lo;v<=hi+1e-9;v+=stp)g+=`<line x1="${ml}" x2="${ml+pw}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" style="stroke:var(--line)${Math.abs(v)<1e-9?';stroke-width:1.6':''}"/><text x="${ml-6}" y="${(y(v)+4).toFixed(1)}" text-anchor="end" class="t-muted num" style="font-size:11.5px">${v>0?'+':''}${stp<1?v.toFixed(stp<0.1?2:1):Math.round(v)}%</text>`;
+  let xl='';for(let k=0;k<5;k++){const i=Math.round(k*(N-1)/4);xl+=`<text x="${x(i).toFixed(1)}" y="${H-8}" text-anchor="${k===0?'start':k===4?'end':'middle'}" class="t-muted num" style="font-size:11.5px">${dates[i].slice(5).replace('-','.')}</text>`}
+  const paths=series.slice().reverse().map(s2=>`<path d="${s2.v.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join('')}" style="fill:none;stroke:${s2.c};stroke-width:${s2.w};stroke-linejoin:round${s2.dash?`;stroke-dasharray:${s2.dash}`:''}"><title>${esc(s2.nm)}</title></path>`).join('');
+  const lg=series.map(s2=>`<span><i style="background:${s2.c}"></i>${esc(s2.nm)} <b class="num">${pp(s2.v[N-1])}</b></span>`).join('');
+  return `<div class="chart"><svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="전략별·벤치마크 누적 수익률">${g}${paths}${xl}</svg></div><div class="legend" style="margin-bottom:10px"><div class="items" style="flex-wrap:wrap">${lg}</div><span class="muted">${dates[0]} = 0% · 점선 = 지수</span></div>`;
 }
 /* 전략 vs 벤치마크 누적 수익률 곡선 */
 function benchChart(dates,eq,bms,label){
