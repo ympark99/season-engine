@@ -3,7 +3,7 @@
   "code": "SPCX",
   "name": "Space Exploration Technologies (SpaceX)",
   "theme": "우주",
-  "at": "2026-10-14",
+  "at": "2026-10-16",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "2026-06 나스닥 상장(티커 SPCX, 공모가 135달러 보도) 후 첫 분기 실적에서 매출이 92% 늘었고 스타링크 가입자 1,200만으로 발사·위성통신 양쪽에서 압도적 선두권이다. 다음 분기 관건은 스타십 후속 비행(우주선 포획 시도 등), AI 부문 적자 폭, 11월 3분기 실적과 12월 보호예수 해제 물량.",
@@ -170,13 +170,19 @@
       "status": "예정",
       "conf": "추정",
       "src": [
-        10
+        10,
+        13
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "공식 일정 미확인, 예측 시장은 10월 하순~11월 중순에 몰림"
+        },
+        {
+          "d": "2026-10-16",
+          "s": "예정",
+          "note": "머스크 발언으로 11월 중순 전후 거론(추수감사절 직전, 4~6주 뒤). 10월 19일 이후는 항공 계획상 잠정 목표일일 뿐, 공식 확정 아님"
         }
       ]
     },
@@ -207,13 +213,19 @@
       "status": "예정",
       "conf": "보도",
       "src": [
-        8
+        8,
+        14
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "연내 개시 예정으로 보도, 정확한 날짜 미확인"
+        },
+        {
+          "d": "2026-10-16",
+          "s": "예정",
+          "note": "연내 초기 서비스 개시 입장 유지(중반 목표는 놓침), 위성 396기 배치"
         }
       ]
     },
@@ -274,6 +286,14 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-16",
+      "note": "Flight 15 시점이 10월 하순에서 11월 중순 전후로 밀릴 가능성(머스크 발언 보도, 공식 날짜 없음). 첫 상단 단 포획 시도 예정",
+      "src": [
+        15,
+        13
+      ]
+    },
     {
       "d": "2026-10-14",
       "note": "전체 조사 — 상장(SPCX) 확인. 스타링크 1,200만·매출 +92%로 선두, 스타십 궤도 도달. 11월 실적과 보호예수 해제가 다음 확인점",
@@ -349,6 +369,21 @@
       "t": "Elon Musk's SpaceX posts $541M loss; Starlink subscribers surge (AP)",
       "u": "https://www.fox35orlando.com/news/elon-musks-spacex-posts-541m-loss-starlink-subscribers-surge",
       "d": "2026-08"
+    },
+    {
+      "t": "Starship Flight 15 일정 보도",
+      "u": "https://www.spacelaunchschedule.com/news/starship-flight-15-launch-date-how-to-watch/",
+      "d": "2026-10-16"
+    },
+    {
+      "t": "Amazon Leo 서비스 보도",
+      "u": "https://lightreading.com/satellite/amazon-leo-still-tracking-for-2026-service-launch-as-satellite-production-ramps",
+      "d": "2026-10-16"
+    },
+    {
+      "t": "SpaceX 브리프",
+      "u": "https://keeptrack.space/x-report/spacex-brief-2026-10-13",
+      "d": "2026-10-16"
     }
   ]
 }
