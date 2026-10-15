@@ -2378,7 +2378,7 @@ function renderStrat(){
       <div class="tbl-wrap"><table class="acc ptbl" style="min-width:860px"><thead><tr><th></th>${PER.map(([,t])=>`<th class="r">${t}</th>`).join('')}</tr></thead><tbody>
       ${rows.map(r=>`<tr class="${r.bm?'bm':''}"><td><b>${esc(r.nm)}</b>${r.bm?' <span class="muted">지수</span>':''}</td>${PER.map(([k])=>{const v=r.P&&r.P[k];return `<td class="r num">${v?`${ppC(v.pct)}${pp(v.pct)}</span><small>${wonS(v.amt)}</small>`:'—'}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
       <div class="sub" style="margin-top:8px">수익금은 1,000만원 기준. 벤치마크는 같은 날 지수를 1,000만원어치 샀다고 본 값이야. 1일·1주 등은 거래일 기준(1주 5일·1개월 21일·3개월 63일·6개월 126일·1년 252일), 올해는 작년 마지막 거래일 대비.</div>
-      <p class="sub" style="margin-top:10px">과거 재현 없이 ${ST.start}부터 매일 그날의 국면·대장 점수·장세로 판단한 걸 그대로 기록해 (한 번 기록된 날은 다시 계산하지 않아). 기간이 아직 안 찬 칸은 —. 체결은 신호가 난 날 종가·소수점 주식·수수료와 세금(미국 0.1%씩, 국내 매수 0.05%·매도 0.25%)만 반영했어. 미국 전략은 달러 수익률을 원화 1,000만원에 그대로 적용(환율 미반영). 미래 수익을 보장하지 않아.</p></div>`;
+      <p class="sub" style="margin-top:10px">과거 재현 없이 ${ST.start}부터 매일 그날의 국면·대장 점수·장세로 판단한 걸 그대로 기록해 (한 번 기록된 날은 다시 계산하지 않아). 기간이 아직 안 찬 칸은 —. 체결은 신호가 난 날 종가·소수점 주식, 거래비용(수수료·세금)은 넣지 않았어. 미국 전략은 달러 수익률을 원화 1,000만원에 그대로 적용(환율 미반영). 미래 수익을 보장하지 않아.</p></div>`;
   el.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{state.sid=state.sid===b.dataset.st?null:b.dataset.st;state.stab=state.stab||'hold';renderStrat()});
   $('stchart').onclick=()=>{state.stChart=!state.stChart;renderStrat()};
   if(state.sid)loadStratDetail();
@@ -2415,7 +2415,7 @@ function renderStratDetail(){
       ${L.slice(0,lim).map(t=>`<tr><td class="num">${t.d}</td><td class="${/매수/.test(t.side)?'side-b':'side-s'}">${t.side}${t.w!=null?` <span class="muted">${t.w}%</span>`:''}</td><td class="sub">${esc(t.sector||'—')}</td><td><span class="lnk" ${openAttr(m,t.code,t.name)}>${esc(t.name)}</span></td>
         <td class="r num">${px(t.px)}</td><td class="r num">${won(t.amt)}</td><td class="r num">${t.ret==null?'—':ppC(t.ret)+pp(t.ret)+'</span>'}</td><td class="r num">${t.days==null?'—':t.days+'일'}</td><td class="why-c">${esc(t.why)}</td></tr>`).join('')||'<tr><td colspan="9" class="muted">없음</td></tr>'}</tbody></table></div>
       ${L.length>lim?`<div style="margin-top:8px"><button class="pbtn" id="smore">${Math.min(80,L.length-lim)}건 더 보기</button> <span class="sub">${L.length}건 중 ${lim}</span></div>`:''}
-      <div class="sub" style="margin-top:6px">매도 수익률은 수수료·세금을 뺀 매도가 대비 평균 매수단가. 금액은 1,000만원 장부 기준.</div>`;
+      <div class="sub" style="margin-top:6px">매도 수익률은 매도가 대비 평균 매수단가 (거래비용 없음). 금액은 1,000만원 장부 기준.</div>`;
   }else{
     const bm=(STD.benches||[]).filter(b=>b.series&&b.series.length);
     const rows=[{nm:`${X.no}호 ${X.name}`,P:X.periods},...(ST?.benches||[]).filter(b=>!b.missing).map(b=>({nm:b.name,P:b.periods,bm:true}))];
