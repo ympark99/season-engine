@@ -2093,9 +2093,9 @@ const EQY={YTD:'ytd','1M':'1m','3M':'3m','6M':'6m','1Y':'1y','2Y':'2y','3Y':'3y'
 async function eqLoad(per){const S=state.cur;if(!S||!per)return;state.eqPer=per;if(EQY[per])state.years=EQY[per];
   if(!state.curves[per]){drawDetail();try{const j=await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}&curve=${per}`);if(state.cur!==S)return;state.curves[per]=j.curves||{eq:{}}}catch(e){state.curves[per]={eq:{},err:e.message}}}
   if(state.cur===S&&state.eqPer===per)drawDetail()}
-/* 전략 비교 변형 키 = 전략id + '_' + 켜진 토글 글자 (T 익절 · S 손절 · D 저점매수 · F 필터 — 서버 lib/effect.js OPTS 가 정한 조합만 있음). 익절(T)은 전체 공통 */
-const SFXN={T:'익절',S:'손절',D:'저점',F:'필터'};
-const varKey=id=>{const L=(state.eff?.opts||{})[id]||'';let k='';for(const c of L)if(c==='T'?state.xt:((c==='S'?state.xs:c==='D'?state.xd:state.xf)||{})[id])k+=c;return k?id+'_'+k:id};
+/* 전략 비교 변형 키 = 전략id + '_' + 켜진 토글 글자 (T 익절 · S 손절 · D 저점매수 · A 추가매수 · F 필터 — 서버 lib/effect.js OPTS 가 정한 조합만 있음). 익절(T)은 전체 공통 */
+const SFXN={T:'익절',S:'손절',D:'저점',A:'추가매수',F:'필터'};
+const varKey=id=>{const L=(state.eff?.opts||{})[id]||'';let k='';for(const c of L)if(c==='T'?state.xt:((c==='S'?state.xs:c==='D'?state.xd:c==='A'?state.xa:state.xf)||{})[id])k+=c;return k?id+'_'+k:id};
 const eqKey=(id,eq)=>{const k=varKey(id);return eq[k]?k:id};
 const sfxName=(nm,key)=>nm+[...key.split('_')[1]||''].map(c=>' +'+SFXN[c]).join('');
 const eqName=id=>{const x=(state.eff?.strats||[]).find(z=>z.id===id);return sfxName(x?x.name:id,eqKey(id,state.curves?.[state.eqPer]?.eq||{}))};
@@ -2111,19 +2111,19 @@ function drawHist(){
     +`<button type="button" class="pbtn sep" data-xt aria-pressed="${!!state.xt}" title="켜면 단기진입·저점매수를 뺀 모든 전략에 +15% 절반 · +30% 전량 익절을 더해">익절</button>`
     +`<button type="button" class="pbtn" data-xsort aria-pressed="${!!state.xsort}" title="누를 때마다 최종 수익 내림차순 → 오름차순 → 기본 순서">수익정렬${['','▼','▲'][state.xsort||0]}</button></span>`:'';
   // 토글 — 익절(T, 위 버튼 하나로 전체 공통) · 손절(S: 계속 보유·봄·여름만 보유·종합매매) · 저점매수(D: 봄·여름만 보유·눌림매매·단기진입) · 필터(F: 일목기준선)
-  const XS=state.xs||(state.xs={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={});
+  const XS=state.xs||(state.xs={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={}),XA=state.xa||(state.xa={});
   const keyOf=id=>{const k=varKey(id);return F&&F[k]?k:id},R=id=>F[keyOf(id)];
   const ORD=['H','SS','ST','KJ','SF','PB','DB'],ordOf=id=>{const i=ORD.indexOf(id);return i<0?99:i};
   const STS=(E?.strats||[]).filter(x=>F&&F[x.id]).sort((a,b)=>ordOf(a.id)-ordOf(b.id));
   if(state.xsort)STS.sort((a,b)=>(R(b.id).cum-R(a.id).cum)*(state.xsort===1?1:-1));   // 수익정렬 — 한 번 내림차순 · 두 번 오름차순 · 세 번 기본 순서
   const DIPTXT='겨울 저점매수: 겨울이 20거래일 넘게 이어지고 종가가 20일선보다 15% 이상 아래면 매수 → 종가 60일선 회복 · 40거래일 · 매수가 대비 −15%(본주) 중 먼저 오는 날 매도.';
   const STOPTXT={H:'계속 보유: 진입가 −15% 종가 이탈 시 그날 전량 매도하고 끝 (현금 유지).',SS:"봄·여름만 보유: 진입가 −15% 종가 이탈 시 전량 매도하고, 다음 '봄 확정'(새로 확정되는 날)에 다시 진입.",SF:'종합매매: 평단 −15% 종가 이탈 시 전량 매도하고, 다음 봄(새 봄 시작)부터 원래 비중 규칙대로 다시 진입.'};
-  const KJSHORT='기준선 돌파·이틀 연속 위 마감 50% → 터치 25%×2 → 이탈 매도 · 횡보 중 추가매수·진입 제한, 돌파는 기준선 +1% 위 마감만';
+  const KJSHORT='기준선 돌파·이틀 연속 위 마감 · 횡보 중 진입 제한, 돌파는 기준선 +1% 위 마감만';
   const shortOf=(x,k)=>{const add=[];if(k.includes('T'))add.push('익절 +15% 절반·+30% 전량');if(k.includes('S'))add.push('손절 −15%');if(k.includes('D'))add.push('겨울 저점매수');
-    return (x.id==='KJ'&&k.includes('F')?KJSHORT:x.short||x.desc)+(add.length?' · '+add.join(' · '):'')};
+    return (x.id==='KJ'&&k.includes('A')?'기준선 돌파·이틀 연속 위 마감 50% → 터치 25%×2 → 이탈 전량 매도'+(k.includes('F')?' · 횡보 중 추가매수·진입 제한':''):x.id==='KJ'&&k.includes('F')?KJSHORT+' (100% 진입)':x.short||x.desc)+(add.length?' · '+add.join(' · '):'')};
   const infoOf=x=>{const k=keyOf(x.id).split('_')[1]||'';let t=x.desc;
-    if(x.id==='KJ'){const ps=x.desc.split(' / ').filter(z=>!z.startsWith('필터:')&&!z.startsWith('익절:')),ex=n=>x.desc.split(' / ').find(z=>z.startsWith(n));
-      return [...ps,...(k.includes('T')?[ex('익절:')]:['익절 꺼짐 — 위 [익절] 버튼으로 켜면 평단 +15% 절반 · +30% 전량']),...(k.includes('F')?[ex('필터:')+' (켜짐)']:['필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어'])].join(' / ')}
+    if(x.id==='KJ'){const ps=x.desc.split(' / ').filter(z=>!z.startsWith('필터:')&&!z.startsWith('익절:')&&!z.startsWith('추가매수:')),ex=n=>x.desc.split(' / ').find(z=>z.startsWith(n));
+      return [...ps,...(k.includes('A')?[ex('추가매수:')+' (켜짐)']:['추가매수 꺼짐 — 카드의 [추가매수] 버튼을 켜면 옛 방식(진입 50% + 터치 25%×2 추가)으로 계산해']),...(k.includes('T')?[ex('익절:')]:['익절 꺼짐 — 위 [익절] 버튼으로 켜면 평단 +15% 절반 · +30% 전량']),...(k.includes('F')?[ex('필터:')+' (켜짐)']:['필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어'])].join(' / ')}
     t=t.replace(/\. \[(익절|손절)\][^/]*/g,'').replace(/ \[(익절|손절)\][^/]*/g,'');   // 설명 속 버튼 안내는 켜진 것만 아래에 다시 붙인다
     if(k.includes('T')&&x.id!=='ST')t+=' / 익절: 진입가(종합매매는 평단) 대비 +15%에서 절반, +30%에서 전량 매도.'+(x.id==='SF'?' 가을 50% 같은 계절 매도는 그대로 같이 적용돼 (익절로 줄어든 보유분의 50%).':x.id==='SS'||x.id==='PB'?' 계절·손절가 매도 조건과 함께 적용 — 먼저 오는 쪽으로 판다.':'')+(x.id==='SS'||x.id==='SF'?' 익절 뒤엔 다음 진입 신호(비중이 올라가는 전환)까지 쉬어.':'');
     if(k.includes('S'))t+=' / 손절: '+STOPTXT[x.id];
@@ -2134,9 +2134,10 @@ function drawHist(){
   const mark=(arr,v)=>{const hi=Math.max(...arr),lo=Math.min(...arr);return arr.length<2||hi===lo?'':v===hi?' hi':v===lo?' lo':''};
   const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
   const card=x=>{const o=R(x.id),key=keyOf(x.id),k=key.split('_')[1]||'';
-    const has=c=>((E.opts||{})[x.id]||'').includes(c)&&(c==='F'?x.id==='KJ'&&!!F.KJ_F:true);
+    const has=c=>((E.opts||{})[x.id]||'').includes(c)&&(c==='F'?x.id==='KJ'&&!!F.KJ_F:c==='A'?x.id==='KJ'&&!!F.KJ_A:true);
     const tg=(has('S')?` <button type="button" class="lv2" data-xs="${x.id}" aria-pressed="${!!XS[x.id]}" aria-label="손절 −15%">손절</button><button type="button" class="ibtn" data-sinfo="${x.id}" aria-label="${esc(x.name)} 손절 규칙">i</button>`:'')
       +(has('D')?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'')
+      +(has('A')?` <button type="button" class="lv2" data-ka="${x.id}" aria-pressed="${!!XA[x.id]}" aria-label="추가매수 (옛 방식)">추가매수</button>`:'')
       +(has('F')?` <button type="button" class="lv2" data-kf="${x.id}" aria-pressed="${!!XF[x.id]}" aria-label="횡보·가짜 돌파 필터">필터</button>`:'');
     const nm=sfxName(x.name,key);
     const si=(state.eqSel||[]).indexOf(x.id),sc=si>=0?EQC[si%EQC.length]:'';
@@ -2190,6 +2191,7 @@ function drawHist(){
   $('d-s-strat').querySelectorAll('[data-xsort]').forEach(b=>b.onclick=()=>{state.xsort=((state.xsort||0)+1)%3;drawHist()});
   $('d-s-strat').querySelectorAll('[data-xs]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.xs;state.xs=state.xs||{};state.xs[k]=!state.xs[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-dip]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.dip;state.xd=state.xd||{};state.xd[k]=!state.xd[k];drawHist()});
+  $('d-s-strat').querySelectorAll('[data-ka]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.ka;state.xa=state.xa||{};state.xa[k]=!state.xa[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-kf]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.kf;state.xf=state.xf||{};state.xf[k]=!state.xf[k];drawHist()});
   const ip=$('ipop');if(ip){const close=()=>{ip.hidden=true};
     $('d-s-strat').querySelectorAll('[data-info]').forEach(b=>b.onclick=e=>{e.stopPropagation();const x=(E.strats||[]).find(z=>z.id===b.dataset.info);if(!x)return;
