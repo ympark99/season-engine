@@ -133,6 +133,11 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-dip{background:#eaf1fd;color:#1b4b9c;border:1px solid #c6d8f7;margin:0 6px 0 0}
 .sig.sig-pb{background:#f1ebfc;color:#5b3aa0;border:1px solid #dacdf4;margin:0 6px 0 0}
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
+.updd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
+.updd h2{font-size:18px;margin:0 0 4px}.updd h3{font-size:14px;margin:16px 0 6px}.updd ul{margin:4px 0 0;padding-left:18px}.updd li{margin:3px 0;font-size:13.5px;line-height:1.55}
+.updd .sumt{font-size:14px;line-height:1.65;margin:6px 0 0}.mtag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;background:var(--soft);color:var(--ink2)}
+.updd .lst{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}.updd .lst span{white-space:nowrap}
+details.updold>summary{cursor:pointer;font-weight:700;padding:10px 0}
 .scm{font-size:11px;font-weight:800;margin-left:3px;letter-spacing:-.2px}.scm.sc1{color:var(--summer-ink)}.scm.sc0{color:var(--muted);font-weight:600}
 .ucol{display:grid;gap:14px;align-content:start}.ucol .chg{max-height:220px}
 .ulg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"chg dip" "best pb";gap:14px;align-items:stretch}
@@ -552,6 +557,7 @@ body{margin:0}
     </div>
     <div class="ctrls">
       <div class="seg" role="group" aria-label="화면">
+        <button id="tab-upd" aria-pressed="false">업데이트</button>
         <button id="tab-dash" aria-pressed="true">대시보드</button>
         <button id="tab-strat" aria-pressed="false">전략</button>
         <button id="tab-eng" aria-pressed="false">엔진</button>
@@ -611,6 +617,10 @@ body{margin:0}
       <div class="body" id="macro"></div>
     </details>
 
+  </main>
+
+  <main id="upd" hidden>
+    <div id="updbody"><div class="loading">불러오는 중…</div></div>
   </main>
 
   <main id="strat" hidden>
@@ -1988,9 +1998,10 @@ function cpTag(c,today){const [a,e,lab]=cpSpan(c.d);if(!a)return {lab,cls:'',sor
   const n=dDiff(a,today);return {lab:a===e?`D-${n}`:`${lab} · D-${n}`,cls:n<=3?'soon':'',sort:'2'+a,n}}
 const stB=s=>`<span class="ivb st-${esc(s||'')}">${esc(s||'—')}</span>`;
 /* 대시보드 — 다가오는 체크포인트 (내 목록) · 이번 주·이번 달·이번 분기·올해·지연 필터 (고른 필터는 기억) */
-const CPF=[['w','이번 주'],['m','이번 달'],['q','이번 분기'],['y','올해'],['late','지연']];
+const CPF=[['w','이번 주'],['nw','다음 주'],['m','이번 달'],['q','이번 분기'],['y','올해'],['late','지연']];
 function cpRangeEnd(k,today){const t=new Date(today+'T00:00:00Z'),y=t.getUTCFullYear(),mo=t.getUTCMonth(),iso=x=>x.toISOString().slice(0,10);
   if(k==='w'){const dow=(t.getUTCDay()+6)%7;return iso(new Date(t.getTime()+(6-dow)*864e5))}   // 월요일 시작 · 일요일까지
+  if(k==='nw'){const dow=(t.getUTCDay()+6)%7;return iso(new Date(t.getTime()+(13-dow)*864e5))}   // 다음 주 일요일까지
   if(k==='m')return iso(new Date(Date.UTC(y,mo+1,0)));
   if(k==='q')return iso(new Date(Date.UTC(y,Math.floor(mo/3)*3+3,0)));
   return `${y}-12-31`}
@@ -2002,13 +2013,15 @@ function renderCP(){const el=$('cpbox');if(!el)return;
   const late=x=>x.c.status==='지연'||(x.e&&x.e<today);
   // 일정 날짜의 정밀도(일·월·분기·반기·연)가 필터보다 거칠지 않고, 그 기간 끝 안에 끝나는 것만 — 이번 주 = 날짜 · 이번 달 = +'10월 중' · 이번 분기 = +'4분기 중'·'하반기 중' · 올해 = +'올해 중'
   const prec=d=>/^\d{4}-\d{2}-\d{2}$/.test(d)?0:/^\d{4}-\d{2}$/.test(d)?1:/^\d{4}-(Q[1-4]|H[12])$/.test(d)?2:3,LV={w:0,m:1,q:2,y:3};
-  const pick=k=>k==='late'?all.filter(late):all.filter(x=>!late(x)&&x.e&&x.e<=cpRangeEnd(k,today)&&prec(String(x.c.d))<=LV[k]);
+  const nwFrom=(()=>{const t=new Date(today+'T00:00:00Z'),dow=(t.getUTCDay()+6)%7;return new Date(t.getTime()+(7-dow)*864e5).toISOString().slice(0,10)})();   // 다음 주 월요일
+  const pick=k=>k==='late'?all.filter(late):k==='nw'?all.filter(x=>!late(x)&&x.a&&x.a>=nwFrom&&x.e<=cpRangeEnd('nw',today)&&prec(String(x.c.d))===0)
+    :all.filter(x=>!late(x)&&x.e&&x.e<=cpRangeEnd(k,today)&&prec(String(x.c.d))<=LV[k]);
   const f=CPF.some(([k])=>k===PREF.cpf)?PREF.cpf:'m',rows=pick(f).sort((x,y)=>x.t.sort<y.t.sort?-1:x.t.sort>y.t.sort?1:0),wait=mine.length-have;
   el.innerHTML=`<h3>다가오는 체크포인트 <span class="muted">조사 ${have}/${mine.length}종목</span></h3>
     <div class="chips sm">${CPF.map(([k,l])=>`<button type="button" class="chip" data-cpf="${k}" aria-pressed="${k===f}">${l} <span class="num muted">${pick(k).length}</span></button>`).join('')}</div>
     ${rows.length?`<div class="cpl">${rows.map(({S,c,t})=>`<div class="cp"><span class="cpd ${t.cls}">${esc(t.lab)}</span>${idSpan(S.m,S.code,S.name)}<span>${esc(c.what)} <span class="muted">· ${esc(c.kind||'')}</span></span>${stB(c.status)}</div>`).join('')}</div>`
       :`<div class="muted">${have?(f==='late'?'지연되거나 날짜가 지났는데 안 끝난 체크포인트가 없어':'이 기간에 다가오는 체크포인트가 없어'):'아직 조사된 종목이 없어'}</div>`}
-    <div class="sub" style="margin-top:6px">기간 필터는 그 기간이 끝나기 전에 끝나는 미완료 일정 — 이번 주 = 이번 주 안 날짜, 이번 달 = '10월 중' 포함, 이번 분기 = '4분기 중'·'하반기 중' 포함, 올해 = '올해 중' 포함 · 지연 = 상태가 지연이거나 날짜가 지났는데 안 끝난 것 · ETF 는 제외. 매일 아침 '경쟁·기술 갱신' 정기 조사가 상태를 바꿔.${wait>0?` 아직 조사 안 된 ${wait}종목은 다음 아침 배치에서 처음 조사해.`:''} 종목을 누르면 상세 화면 '경쟁·기술' 탭으로 가.</div>`;
+    <div class="sub" style="margin-top:6px">기간 필터는 그 기간이 끝나기 전에 끝나는 미완료 일정 — 이번 주 = 이번 주 안 날짜, 다음 주 = 다음 주 월~일 날짜, 이번 달 = '10월 중' 포함, 이번 분기 = '4분기 중'·'하반기 중' 포함, 올해 = '올해 중' 포함 · 지연 = 상태가 지연이거나 날짜가 지났는데 안 끝난 것 · ETF 는 제외. 매일 아침 '경쟁·기술 갱신' 정기 조사가 상태를 바꿔.${wait>0?` 아직 조사 안 된 ${wait}종목은 다음 아침 배치에서 처음 조사해.`:''} 종목을 누르면 상세 화면 '경쟁·기술' 탭으로 가.</div>`;
   el.querySelectorAll('[data-cpf]').forEach(b=>b.onclick=()=>{PREF.cpf=b.dataset.cpf;savePrefs();renderCP()})}
 /* ETF·ETN 은 경쟁·기술 분석 대상이 아님 (이름으로 판별 — 국내는 운용사 브랜드) */
 const isFund=S=>/\b(ETF|ETN)\b/i.test(S?.name||'')||(S?.m==='KR'&&/^(KODEX|TIGER|ACE|RISE|SOL|HANARO|KOSEF|ARIRANG|PLUS|KIWOOM|TIMEFOLIO|1Q|WON|BNK|FOCUS|TRUSTON|마이다스|에셋플러스)\b/i.test(S?.name||''));
@@ -2433,6 +2446,39 @@ function renderStratDetail(){
   box.querySelectorAll('[data-sf]').forEach(b=>b.onclick=()=>{state.sf=b.dataset.sf;state.slim=80;renderStratDetail()});
   if($('smore'))$('smore').onclick=()=>{state.slim=(state.slim||80)+80;renderStratDetail()};
 }
+/* 업데이트 — 정기 작업 두 개(매크로·매출 흐름도 / 경쟁·기술)가 매일 올리는 요약을 날짜별로 합쳐 보여줌 (미국·한국 한곳에) */
+let UPD=null;
+async function loadUpd(force){
+  if(UPD&&!force){renderUpd();return}
+  const get=async f=>{try{const r=await fetch('data/updates/'+f,{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}};
+  const [M,I]=await Promise.all([get('macro.json'),get('intel.json')]);
+  const by={};for(const x of M?.days||[])(by[x.d]||(by[x.d]={})).macro=x;for(const x of I?.days||[])(by[x.d]||(by[x.d]={})).intel=x;
+  UPD=Object.keys(by).sort().reverse().map(d=>({d,...by[d]}));renderUpd();
+}
+function renderUpd(){
+  const el=$('updbody');if(!el)return;
+  if(!UPD){el.innerHTML='<div class="loading">불러오는 중…</div>';return}
+  if(!UPD.length){el.innerHTML='<div class="updd"><h2>업데이트</h2><div class="muted">아직 정기 작업 요약이 없어. 매일 아침 정기 작업이 끝나면 여기에 올라와.</div></div>';return}
+  const mt=m=>`<span class="mtag">${m==='KR'?'한국':m==='US'?'미국':'공통'}</span>`;
+  const nm=x=>x.code?idSpan(x.m,x.code,x.name):esc(x.name||'');
+  const wk='일월화수목금토',dd=d=>{const t=new Date(d+'T00:00:00Z');return `${d.slice(5).replace('-','.')} (${wk[t.getUTCDay()]})`};
+  const tm=a=>a?new Date(a).toLocaleTimeString('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}):'';
+  const rk=v=>v==null?'—':(v>0?'+':v<0?'−':'')+Math.abs(v);
+  const day=x=>{const M=x.macro,I=x.intel,news=[...(M?.news||[]).map(n=>`<li>${mt(n.m)}<b>${esc(n.t)}</b>${n.note?` — ${esc(n.note)}`:''}</li>`),...(I?.news||[]).map(n=>`<li>${mt(n.m)}${nm(n)} — ${esc(n.note||'')}</li>`)];
+    const cps=I?.checkpoints||[],ni=I?.newIntel||[],fl=M?.flows||[];
+    return `<h2>${dd(x.d)} 업데이트 <span class="sub" style="font-weight:400">${M?`매크로 ${tm(M.at)}`:'매크로 없음'} · ${I?`종목 조사 ${tm(I.at)}`:'종목 조사 없음'}</span></h2>
+      ${M?`<h3>매크로 요약 <span class="sub" style="font-weight:400">위험도 미국 <b>${rk(M.risk?.US)}</b> · 한국 <b>${rk(M.risk?.KR)}</b>${M.risk?.chg?` · ${esc(M.risk.chg)}`:''}</span></h3><p class="sumt">${esc(M.summary||'')}</p>
+        ${(M.changes||[]).length?`<h3>매크로 변화</h3><ul>${M.changes.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>`:''}`:''}
+      ${news.length?`<h3>바뀐 소식</h3><ul>${news.join('')}</ul>`:''}
+      ${cps.length?`<h3>체크포인트 업데이트 <span class="muted" style="font-weight:400">${cps.length}개</span></h3><div class="tbl-wrap"><table class="acc" style="min-width:640px"><thead><tr><th>종목</th><th>체크포인트</th><th>일정</th><th>상태</th><th>무엇이 바뀌었나</th></tr></thead><tbody>
+        ${cps.map(c=>`<tr><td>${mt(c.m)}${nm(c)}</td><td>${esc(c.what||'')}</td><td class="num">${esc(c.d||'—')}</td><td>${c.from&&c.from!==c.to?`${stB(c.from)} → `:c.from?'':'<span class="sub">신규</span> '}${stB(c.to)}</td><td class="sub" style="white-space:normal">${esc(c.note||'')}</td></tr>`).join('')}</tbody></table></div>`:''}
+      ${I?.summary?`<div class="sub" style="margin-top:8px">종목 조사: ${esc(I.summary)}</div>`:''}
+      ${ni.length?`<h3>신규 조사 종목 <span class="muted" style="font-weight:400">${ni.length}개</span></h3><div class="lst">${ni.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}
+      ${fl.length?`<h3>매출 흐름도 작성 종목 <span class="muted" style="font-weight:400">${fl.length}개</span></h3><div class="lst">${fl.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}`};
+  const [first,...rest]=UPD.slice(0,30);
+  el.innerHTML=`<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
+    <div class="sub" style="margin:6px 2px 20px">매일 아침 정기 작업 두 개 — '경쟁·기술 갱신'(종목 조사·체크포인트)과 '유닉스 서버 갱신'(매크로·매출 흐름도) — 이 끝나면 그날 요약을 여기에 올려. 최근 30일. 종목을 누르면 상세 화면으로 가. 투자 자문이 아니라 데이터 정리야.</div>`;
+}
 /* 기간별 수익 차트 — 전략 7개 + 벤치마크 누적 수익률 (같은 날짜 축) */
 function stratChart(X){
   const C=X?.curves;if(!C||!C.dates||C.dates.length<2)return '<div class="muted" style="padding:10px 0">시작한 지 하루라 아직 곡선이 없어 — 거래일이 쌓이면 전략·벤치마크를 함께 그려줘.</div>';
@@ -2467,8 +2513,8 @@ function renderAll(){loadFund();if(D&&!(TH&&TH.m===state.m))ensureTH().then(()=>
 async function reload(flash){D=await api('/api/list');FAV=new Set(D.fav||[]);BYKEY={};D.stocks.forEach(s=>BYKEY[K(s)]=s);(MKT||[]).forEach(x=>{if(x.season)BYKEY[K(x)]=x});renderAll();if(flash)renderRows(flash)}
 document.querySelectorAll('#mktseg button').forEach(b=>b.onclick=()=>{state.m=b.dataset.m;state.filter='전체';syncMkt();renderAll();if(!$('eng').hidden)renderEngine()});
 let engDone=false;
-[['tab-dash','dash'],['tab-strat','strat'],['tab-eng','eng']].forEach(([t,p],_,all)=>$(t).onclick=()=>{all.forEach(([t2,p2])=>{$(t2).setAttribute('aria-pressed',String(t2===t));$(p2).hidden=p2!==p});
-  if(p==='eng'&&!engDone){engDone=true;renderEngine()}if(p==='strat')loadStrat()});
+[['tab-upd','upd'],['tab-dash','dash'],['tab-strat','strat'],['tab-eng','eng']].forEach(([t,p],_,all)=>$(t).onclick=()=>{all.forEach(([t2,p2])=>{$(t2).setAttribute('aria-pressed',String(t2===t));$(p2).hidden=p2!==p});
+  if(p==='eng'&&!engDone){engDone=true;renderEngine()}if(p==='strat')loadStrat();if(p==='upd')loadUpd()});
 document.querySelectorAll('.pbtn[data-y]').forEach(b=>b.onclick=()=>{state.years=b.dataset.y;drawDetail()});
 $('d-ta').onclick=()=>{state.ta=!state.ta;drawDetail()};
 const tgFlip=g=>{const k=g.dataset.tg;PREF[k]=k==='vp'?!PREF.vp:PREF.sr===false;savePrefs();drawDetail()};   // 차트 토글(매물대·지지·저항) — 켜고 끈 상태는 기억

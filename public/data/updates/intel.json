@@ -1,0 +1,110 @@
+{
+ "days": [
+  {
+   "d": "2026-10-16",
+   "at": "2026-10-16T06:55:00+09:00",
+   "summary": "83종목·35개 업종 확인. 신규 3종목 전체 조사, 변화가 있던 5종목 깊은 갱신(ARM·SPCX·META·TSLA·MRNA). 앞으로 7일 안 체크포인트 12개.",
+   "news": [
+    {
+     "m": "US",
+     "code": "ARM",
+     "name": "Arm Holdings",
+     "note": "퀄컴 2차 소송 평결 — Arm 라이선스 위반 인정됐지만 배상액 2달러로 재무 영향 미미, 신의성실 협상 판단이 다음 쟁점"
+    },
+    {
+     "m": "US",
+     "code": "TSLA",
+     "name": "Tesla",
+     "note": "Cybercab 생산 시작이 회사 8-K에 기재됨 · 3분기 실적 10/21 장 마감 후"
+    },
+    {
+     "m": "US",
+     "code": "META",
+     "name": "Meta Platforms",
+     "note": "3분기 실적 발표일 10/21 확정(회사 공시)"
+    },
+    {
+     "m": "US",
+     "code": "SPCX",
+     "name": "SpaceX",
+     "note": "스타십 Flight 15가 10월 하순에서 11월 중순 전후로 밀릴 가능성 보도(공식 날짜 없음)"
+    },
+    {
+     "m": "US",
+     "code": "MRNA",
+     "name": "Moderna",
+     "note": "흑색종 3상 데이터 ESMO 발표 10/24 예정 · COO 복귀"
+    }
+   ],
+   "checkpoints": [
+    {
+     "m": "US",
+     "code": "ARM",
+     "name": "Arm Holdings",
+     "what": "퀄컴 대 Arm 2차 소송 배심 평결",
+     "d": "2026-10-09",
+     "from": "예정",
+     "to": "완료",
+     "note": "평결 나옴 — 배상액 명목상 2달러"
+    },
+    {
+     "m": "US",
+     "code": "META",
+     "name": "Meta Platforms",
+     "what": "3분기 실적",
+     "d": "2026-10-21",
+     "from": "예정",
+     "to": "예정",
+     "note": "발표일 10/21 장 마감 후로 확정"
+    },
+    {
+     "m": "US",
+     "code": "TSLA",
+     "name": "Tesla",
+     "what": "Cybercab 생산",
+     "d": null,
+     "from": "진행",
+     "to": "진행",
+     "note": "근거가 보도 → 회사 공시(8-K)로 바뀜"
+    },
+    {
+     "m": "US",
+     "code": "SPCX",
+     "name": "SpaceX",
+     "what": "스타십 Flight 15",
+     "d": "2026-Q4",
+     "from": "예정",
+     "to": "예정",
+     "note": "11월 중순 전후로 밀릴 가능성(공식 확정 아님)"
+    },
+    {
+     "m": "US",
+     "code": "MRNA",
+     "name": "Moderna",
+     "what": "흑색종 3상 데이터 ESMO 발표·투자자 웹캐스트",
+     "d": "2026-10-24",
+     "from": null,
+     "to": "예정",
+     "note": "새로 추가"
+    }
+   ],
+   "newIntel": [
+    {
+     "m": "KR",
+     "code": "475150",
+     "name": "SK이터닉스"
+    },
+    {
+     "m": "US",
+     "code": "VICR",
+     "name": "Vicor"
+    },
+    {
+     "m": "US",
+     "code": "AXTI",
+     "name": "AXT Inc"
+    }
+   ]
+  }
+ ]
+}
