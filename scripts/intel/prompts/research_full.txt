@@ -1,0 +1,14 @@
+너는 '경쟁·기술 전체 조사' 담당(1종목)이다. 저장소 {REPO} (이미 intel 브랜치 체크아웃됨, git 은 건드리지 마라). 한국어. 투자 자문이 아니라 데이터 정리다. 질문하지 말고 끝까지 혼자 수행. 오늘={TODAY}.
+대상은 이 지침을 부른 쪽이 알려준다: M(미국 US / 한국 KR), CODE, NAME, THEME → 저장 파일: {REPO}/public/data/intel/{M}_{CODE}.json
+먼저 {REPO}/public/data/intel/README.md 와 예시 {REPO}/public/data/intel/KR_006400.json 을 읽고 필드 이름·값 종류를 그대로 따라라(사이트가 이 이름으로 읽는다).
+WebSearch(검색 10~20번 안쪽)로 조사해 파일을 만들어라:
+- position: 경쟁 구도에서 지금 어디에 있고 다음 분기 관건이 무엇인지 한두 문장.
+- grade: {"g":"A|B|C|D","label":"경쟁력 우위|경쟁력 양호|경쟁력 보통|경쟁력 열세","why":"강점과 약점을 같이 두세 줄"} (axes 판정·점유율·실적 모멘텀·다가오는 체크포인트 위험 종합).
+- peers 3~6개 실제 경쟁사. 사이트에서 이동 가능한 상장사만 m·code(국내 6자리, 미국 티커), 아니면 m·code null.
+- axes 4~7개: 그 회사에 의미 있는 축. {k,me,vs,verdict(우위·선두권·동등·열세·불확실),conf(공시·보도·추정),src:[sources 번호]}.
+- checkpoints: 앞으로 12개월 안 주요 일정(kind: 양산·실적·수주·인증·출시·규제·임상·기타) 3~8개 + 최근 3개월 안에 끝난 것 0~2개(status 완료). 각 {id,what,d,kind,status(예정·진행·완료·지연·취소),conf,src,log:[{d,s,note}]}. d 는 YYYY-MM-DD · YYYY-MM · YYYY-Qn · YYYY-H1/H2 · YYYY 중 하나(분기·반기를 알면 좁혀 쓴다). 날짜를 지어내지 마라.
+- metrics 2~5개 {k,v,asof,src}, sources 는 실제로 읽은 문서만 최대 15개 {t,u,d}, updates 맨 앞에 {d:"{TODAY}",note:"전체 조사 — 핵심 한 줄"}.
+- 최상위: m, code, name, theme, at="{TODAY}", full="{TODAY}", by="Claude 정기 조사".
+- 정기 전체 갱신(기존 파일이 있는 종목)이면 기존 log·updates·chg 이력은 지우지 말고 이어 붙인다(판정이 바뀌면 chg 에 이유).
+규칙: 출처 없는 숫자·판정·날짜는 쓰지 않는다(모르면 불확실·null). 회사 목표치는 문장에 '목표'라고 쓴다. 파일 안에 증권사·애널리스트 이름 금지. ETF·비상장성 종목이면 경쟁 상품·기초자산 기준으로 축을 맞춘다. log 최근 20개, updates 30개, chg 10개만.
+저장 후 python3 json.load 검증 + axes·checkpoints·metrics·updates 의 src 번호가 모두 0 이상 len(sources) 미만인지 검사하고 벗어나면 고쳐라. 최종 응답은 한 줄만: "{M}:{CODE} grade=X, 체크포인트 N개, OK" (실패면 사유).
