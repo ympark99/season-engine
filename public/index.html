@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>생왕쇠사 국면판</title>
-<meta name="description" content="생왕쇠사 국면 엔진 — KIS 일봉 기반 종목 국면·확률 대시보드와 전략실">
+<title>계절엔진</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"%3E%3Cpath d="M22.70 2.01A20 20 0 0 1 41.99 21.30L31.49 21.67A9.5 9.5 0 0 0 22.33 12.51Z" fill="%232A9A70"/%3E%3Cpath d="M41.99 22.70A20 20 0 0 1 22.70 41.99L22.33 31.49A9.5 9.5 0 0 0 31.49 22.33Z" fill="%235CBC91"/%3E%3Cpath d="M21.30 41.99A20 20 0 0 1 2.01 22.70L12.51 22.33A9.5 9.5 0 0 0 21.67 31.49Z" fill="%23F2CB66"/%3E%3Cpath d="M2.01 21.30A20 20 0 0 1 21.30 2.01L21.67 12.51A9.5 9.5 0 0 0 12.51 21.67Z" fill="%23EA95A0"/%3E%3Ccircle cx="22" cy="22" r="3.6" fill="%23C39A2E"/%3E%3C/svg%3E">
+<meta name="description" content="계절엔진 — KIS 일봉 기반 종목 국면·확률 대시보드와 전략실">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
@@ -56,10 +57,7 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-
 /* header */
 .top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 20px;margin-bottom:14px}
 .brand{display:flex;align-items:center;gap:12px}
-.seal{display:grid;grid-template-columns:1fr 1fr;width:44px;height:44px;border-radius:10px;overflow:hidden;flex:none}
-.seal span{display:grid;place-items:center;font-size:12px;color:#fff}
-.seal span:nth-child(1){background:var(--spring-ink)}.seal span:nth-child(2){background:var(--summer)}
-.seal span:nth-child(3){background:var(--winter)}.seal span:nth-child(4){background:var(--autumn)}
+.seal{width:44px;height:44px;flex:none}
 h1{font-size:22px;margin:0;letter-spacing:-.02em;line-height:1.2}
 .sub{color:var(--muted);font-size:12.5px}
 .ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -144,10 +142,10 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 details.updold>summary{cursor:pointer;font-weight:700;padding:10px 0}
 .scm{font-size:11px;font-weight:800;margin-left:3px;letter-spacing:-.2px}.scm.sc1{color:var(--summer-ink)}.scm.sc0{color:var(--muted);font-weight:600}
 .ucol{display:grid;gap:14px;align-content:start}.ucol .chg{max-height:220px}
-.ulg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"chg dip" "best pb";gap:14px;align-items:stretch}
-.ulg>.u-chg{grid-area:chg}.ulg>.u-dip{grid-area:dip}.ulg>.u-best{grid-area:best;align-self:start}.ulg>.u-pb{grid-area:pb;align-self:start}
+.ulg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"chg best" "dip pb";gap:14px;align-items:stretch}
+.ulg>.u-chg{grid-area:chg}.ulg>.u-dip{grid-area:dip}.ulg>.u-best{grid-area:best;align-self:stretch}.ulg>.u-pb{grid-area:pb;align-self:start}
 .ulg>.u-chg,.ulg>.u-dip{display:flex;flex-direction:column;min-height:0}.ulg>.u-chg .chg,.ulg>.u-dip .chg{max-height:none;flex:1 1 0;min-height:240px}
-@media (max-width:760px){.ulg{grid-template-columns:minmax(0,1fr);grid-template-areas:"chg" "best" "dip" "pb"}.ulg>.u-chg .chg,.ulg>.u-dip .chg{flex:none;max-height:260px}}
+@media (max-width:760px){.ulg{grid-template-columns:minmax(0,1fr);grid-template-areas:"chg" "dip" "best" "pb"}.ulg>.u-chg .chg,.ulg>.u-dip .chg{flex:none;max-height:260px}}
 table.bst{min-width:0}.bst th,.bst td{padding:7px 8px}.bst td.sub{white-space:normal;max-width:120px}.bst th button.sb2 .ar{font-size:10px;margin-left:2px;color:var(--muted)}
 table.stbl td.code,table.stbl td.name{padding-right:4px}
 table.stbl td.thc{padding-left:4px;max-width:150px}
@@ -552,9 +550,9 @@ body{margin:0}
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <div class="seal han" aria-hidden="true"><span>生</span><span>旺</span><span>死</span><span>衰</span></div>
+      <svg class="seal" viewBox="0 0 44 44" aria-hidden="true"><path d="M22.70 2.01A20 20 0 0 1 41.99 21.30L31.49 21.67A9.5 9.5 0 0 0 22.33 12.51Z" style="fill:var(--spring-ink)"/><path d="M41.99 22.70A20 20 0 0 1 22.70 41.99L22.33 31.49A9.5 9.5 0 0 0 31.49 22.33Z" style="fill:var(--summer)"/><path d="M21.30 41.99A20 20 0 0 1 2.01 22.70L12.51 22.33A9.5 9.5 0 0 0 21.67 31.49Z" style="fill:var(--autumn)"/><path d="M2.01 21.30A20 20 0 0 1 21.30 2.01L21.67 12.51A9.5 9.5 0 0 0 12.51 21.67Z" style="fill:var(--winter)"/><circle cx="22" cy="22" r="3.6" style="fill:var(--gold)"/></svg>
       <div>
-        <h1>생왕쇠사 국면판</h1>
+        <h1>계절엔진</h1>
         <div class="sub num" id="asofline">데이터 불러오는 중…</div>
         <div class="sub" id="dataline"></div>
       </div>
