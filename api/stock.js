@@ -43,6 +43,10 @@ export default async function handler(req, res) {
   try {
     if (req.query.flow) return await flow(req, res);
     const { m, code } = req.query;
+    if (req.query.bars) {                                                       // ?bars=1 — 저장된 일봉 원본(날짜·종가·거래량)만 (오프라인 백테스트용)
+      const b = await store.getBars(m, code);
+      return b ? send(res, 200, { m, code, d: b.d, c: b.c, v: b.v }) : send(res, 404, { error: '저장된 일봉이 없어' });
+    }
     const IXC = { US: 'SPX', KR: 'KOSPI' }[m];
     const [bars, eng, sum, rec, ixb, ueff, shm, lv] = await Promise.all([store.getBars(m, code), engineState(), m === 'IX' ? null : store.get(`fund:sum:${m}`), m === 'KR' ? store.get(`fund:KR:${code}`) : null,
       IXC ? store.getBars('IX', IXC) : null, IXC ? store.get(`mkt:eff:${m}`) : null, IXC ? store.get(`mcap:${m}`) : null, IXC ? store.get(`lv:${m}:${code}`) : null]);
