@@ -1,0 +1,210 @@
+{
+ "m": "US",
+ "code": "SPCX",
+ "name": "SPACE EXPLORATION TECHNOLOGIES CORP",
+ "at": "2026-10-17",
+ "by": "Claude 정기 조사",
+ "summary": "2025년 매출 186.7억$ 중 61%가 스타링크(Connectivity: 소비자 가입자, 기업·정부)이고, 우주(발사·개발) 22%, AI(xAI·X 광고·Grok·클라우드) 17%다. 2026년 2분기에는 Anthropic에 GPU 컴퓨팅을 빌려주는 클라우드 매출이 새로 붙어 AI 비중이 33%로 뛰었다. 매출 10% 이상 고객은 이름을 밝히지 않은 '고객 A'(3개 사업부 모두, 미 정부로 추정)와 '고객 B'(AI 사업부) 둘이다. 2026년 6월 상장해 공시 자료는 S-1/424B4와 10-Q 한 분기뿐이다.",
+ "cust": [
+  {
+   "name": "Anthropic",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2026년 5월 클라우드 서비스 계약 — COLOSSUS·COLOSSUS II의 엔비디아 GPU 약 32.5만 개, 2029년 5월까지 월 12.5억$ (90일 통보로 해지 가능). 2분기 AI 인프라 매출이 16억$ 늘었고, AI 사업부 '고객 B'가 2분기 매출의 19.5%를 차지했다. 다만 10-Q는 고객 B의 이름을 밝히지 않았다"
+  },
+  {
+   "name": "NASA",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "ISS 화물 보급(CRS)·유인 수송(Commercial Crew)·아르테미스 달 착륙선(Starship HLS) — 2025년 우주 매출 증가 요인으로 CRS 연장 계약을 들었다"
+  },
+  {
+   "name": "미 전쟁부(국방부)·우주군",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "발사 계약은 모두 확정가 계약이다. 전쟁부 계약 매출이 우주 사업부 실적을 움직였다고 밝혔고, 우주군 Rocket Cargo 사업도 있다"
+  },
+  {
+   "name": "국가정찰국(NRO)·정보기관·GSA",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "424B4에 NRO가 발사 고객으로, GSA와 정보기관이 직접 계약 상대로 나온다(발사·위성 배치·AI 제품)"
+  },
+  {
+   "name": "스타링크 소비자 가입자 (1,200만 회선)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2026년 6월 말 가입자 1,200만으로 1년 새 101% 늘었다(ARPU는 22% 하락). 소비자 매출은 2025년 72.1억$, 2026년 2분기 24.9억$"
+  },
+  {
+   "name": "상업 위성 발사 고객 (SES·Eutelsat/OneWeb·Axiom Space)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "424B4에 발사 고객으로 이름이 나온다. 발사 서비스 매출은 2025년 25.8억$"
+  },
+  {
+   "name": "Cursor (Anysphere)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "2026년 4월 GPU 클러스터 컴퓨팅 제공·모델 공동 개발 계약. 2분기 금액은 중요하지 않은 수준이며, 600억$ 가치로 인수를 진행 중이다(3분기 종결 예정)"
+  },
+  {
+   "name": "미국 정부 ('고객 A'로 추정)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "추정",
+   "note": "공시상 '고객 A'는 3개 사업부 모두에서 매출을 내고 2025년 매출의 20.9%(2026년 2분기 18.3%)를 차지한다. 회사가 미 정부 계약에서 상당한 매출을 낸다고 밝혀 미 정부로 유추했다. 공시·보도로 확인된 것은 아님"
+  }
+ ],
+ "supp": [
+  {
+   "name": "NVIDIA",
+   "code": "NVDA",
+   "m": "US",
+   "item": "AI GPU (COLOSSUS 데이터센터)",
+   "share": null,
+   "conf": "공시",
+   "note": "424B4: COLOSSUS·COLOSSUS II의 클라우드 용량에 엔비디아 GPU 약 32.5만 개가 들어간다. AI 사업부 설비투자는 2026년 상반기 235.5억$"
+  },
+  {
+   "name": "Tesla",
+   "code": "TSLA",
+   "m": "US",
+   "item": "메가팩(ESS)·사이버트럭",
+   "share": null,
+   "conf": "공시",
+   "note": "특수관계자 거래 — 2026년 상반기 메가팩 3.29억$, 2025년 말까지 메가팩 5.06억$·사이버트럭 1.31억$를 샀다"
+  },
+  {
+   "name": "Valor Equity Partners",
+   "code": null,
+   "m": null,
+   "item": "AI 인프라 하드웨어 리스 (세일앤리스백)",
+   "share": null,
+   "conf": "공시",
+   "note": "이사 Antonio Gracias의 회사(특수관계자). 2026년 6월 말 리스 관련 부채가 133억$이고, 상반기 이자비용은 5.13억$"
+  },
+  {
+   "name": "Solaris Energy Infrastructure",
+   "code": "SEI",
+   "m": "US",
+   "item": "데이터센터용 가스터빈 발전설비 임대",
+   "share": null,
+   "conf": "공시",
+   "note": "합작사 Stateline Power(Solaris 50.1%)가 MZX(COLOSSUS II)에 발전설비를 장비 임대한다. 터빈 본체는 Caterpillar 자회사 Solar Turbines 제품으로 보도됐다"
+  },
+  {
+   "name": "STMicroelectronics",
+   "code": "STM",
+   "m": "US",
+   "item": "스타링크 위성·단말용 RF 칩",
+   "share": null,
+   "conf": "보도",
+   "note": "2026년 5월 ST가 2021년 이후 스타링크용 칩셋 75억 개를 공급했다고 밝혔다. 2025년 LEO 칩 매출은 약 6억$였다"
+  },
+  {
+   "name": "Dell Technologies · Super Micro Computer",
+   "code": "DELL",
+   "m": "US",
+   "item": "AI 서버 랙 조립 (COLOSSUS)",
+   "share": null,
+   "conf": "보도",
+   "note": "2024년 머스크가 COLOSSUS 랙의 절반은 Dell, 나머지 절반은 Supermicro(SMCI)가 맡는다고 밝혔다. 2025년에는 Dell GB200 서버 50억$ 규모 계약설이 보도됐다"
+  },
+  {
+   "name": "TSMC",
+   "code": "TSM",
+   "m": "US",
+   "item": "첨단 반도체 위탁생산 (간접)",
+   "share": null,
+   "conf": "추정",
+   "note": "공시에 '직접 칩 공급사들이 소수의 첨단 팹에 의존한다'고 나온다. 엔비디아 GPU를 TSMC가 생산하므로 유추했다. 공시·보도로 확인된 것은 아님"
+  },
+  {
+   "name": "스타링크 단말 위탁생산사 (대만 Wistron NeWeb 등)",
+   "code": null,
+   "m": null,
+   "item": "사용자 단말·라우터 조립",
+   "share": null,
+   "conf": "추정",
+   "note": "Starlink Kit 생산비가 원가 증가 요인으로 공시됐고(2분기 +1.48억$), 대만 업체가 단말을 위탁생산한다는 업계 보도가 있으나 이름이 엇갈린다. 공시·보도로 확인된 것은 아님"
+  }
+ ],
+ "segs": [
+  {
+   "name": "Connectivity — 소비자 (스타링크 개인 가입)",
+   "code": null,
+   "m": null,
+   "amt": 7208,
+   "share": 38.6,
+   "note": "2025년. 2026년 2분기 2,485 (+44%)"
+  },
+  {
+   "name": "Connectivity — 기업·정부 (항공·해상·Starshield·모바일)",
+   "code": null,
+   "m": null,
+   "amt": 4179,
+   "share": 22.4,
+   "note": "2025년, 단말 제품 매출 15.1억$ 포함(제품 매출은 전부 Connectivity). 2026년 2분기 1,806 (+108%)"
+  },
+  {
+   "name": "Space — 발사 서비스 (Falcon·Dragon)",
+   "code": null,
+   "m": null,
+   "amt": 2576,
+   "share": 13.8,
+   "note": "2025년. 2026년 2분기 648. 자체 스타링크 발사는 매출에 포함되지 않는다"
+  },
+  {
+   "name": "Space — 발사·개발 (Starship HLS 등 개발 계약)",
+   "code": null,
+   "m": null,
+   "amt": 1510,
+   "share": 8.1,
+   "note": "2025년. 2026년 2분기 314"
+  },
+  {
+   "name": "AI — 광고 (X)",
+   "code": null,
+   "m": null,
+   "amt": 1844,
+   "share": 9.9,
+   "note": "2025년. 2026년 2분기 367 (광고 플랫폼 전환으로 -14%)"
+  },
+  {
+   "name": "AI — AI 솔루션·인프라 (Grok·X 구독·클라우드)",
+   "code": null,
+   "m": null,
+   "amt": 1357,
+   "share": 7.3,
+   "note": "2025년. 2026년 2분기 2,194 — Anthropic 클라우드 개시로 AI 인프라 매출이 16억$ 늘었다"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  { "t": "10-Q (2026년 2분기, 2026-08-04)", "u": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm" },
+  { "t": "투자설명서 424B4 (IPO, 2026-06-12)", "u": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm" },
+  { "t": "SEC EDGAR 공시 목록 (CIK 1181412)", "u": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001181412" },
+  { "t": "ST Microelectronics delivers 7.5bn Starlink chips (2026-05)", "u": "https://www.advanced-television.com/2026/05/07/st-microelectronics-delivers-7-5bn-starlink-chips/" },
+  { "t": "STMicro space business >$3B over three years (Via Satellite, 2026-05)", "u": "https://www.satellitetoday.com/technology/2026/05/04/stmicroelectronics-expects-its-space-business-to-reach-more-than-3b-over-three-years/" },
+  { "t": "Dell & Super Micro to support Musk's xAI Supercomputer", "u": "https://datacentremagazine.com/data-centres/dell-super-micro-to-support-musks-xai-supercomputer" },
+  { "t": "xAI could sign $5B deal with Dell for GB200 servers (TechRadar)", "u": "https://www.techradar.com/pro/xai-could-sign-a-usd5-billion-deal-with-dell-for-thousands-of-servers-with-nvidias-gb200-blackwell-ai-gpu-accelerators" },
+  { "t": "xAI gas turbines at Colossus 2 (DCD)", "u": "https://www.datacenterdynamics.com/en/news/xai-deploys-19-natural-gas-turbines-at-colossus-2-data-center-in-southaven-mississippi-report/" },
+  { "t": "SpaceX supply chain and key suppliers in 2026 (KuCoin flash)", "u": "https://www.kucoin.com/news/flash/spacex-s-supply-chain-and-key-suppliers-in-2026" }
+ ]
+}
