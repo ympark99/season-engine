@@ -3,10 +3,10 @@
   "code": "MRNA",
   "name": "Moderna",
   "theme": "제약·바이오",
-  "at": "2026-10-16",
+  "at": "2026-10-18",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
-  "position": "mRNA 플랫폼으로 8월 미국 첫 mRNA 독감백신(mFLUSIVA) 승인과 개인맞춤 암백신 흑색종 3상 성공이라는 두 가지 큰 진전을 얻었지만, 2분기 매출은 약 1.5억달러·순손실 약 8억달러로 아직 적자 구조다. 다음 분기 관건은 10월 말 3분기 실적에서 독감백신 출시 초기 반응과 연말 현금 가이던스(47~52억달러) 유지 여부.",
+  "position": "mRNA 플랫폼으로 8월 미국 첫 mRNA 독감백신(mFLUSIVA) 승인과 개인맞춤 암백신 흑색종 3상 성공이라는 두 가지 큰 진전을 얻었지만, 2분기 매출은 약 1.5억달러·순손실 약 8억달러로 아직 적자 구조다. 다음 분기 관건은 11월 6일 3분기 실적에서 독감백신 출시 초기 반응과 연말 현금 가이던스(47~52억달러) 유지 여부.",
   "grade": {
     "g": "C",
     "label": "경쟁력 보통",
@@ -108,20 +108,24 @@
   "checkpoints": [
     {
       "id": "q3_earn",
-      "what": "3분기 실적 발표 — 독감백신 초기 출시 반응·연말 현금 가이던스",
-      "d": "2026-10",
+      "what": "3분기 실적 발표(11-06 오전 8시 ET 콘퍼런스콜) — 독감백신 초기 출시 반응·연말 현금 가이던스",
+      "d": "2026-11-06",
       "kind": "실적",
       "status": "예정",
-      "conf": "보도",
+      "conf": "공시",
       "src": [
-        10,
-        11
+        14
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "발표일 미확정: 10월 29일(표기) 또는 30일(예상) 자료 상충"
+        },
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "회사 공지로 2026-11-06 확정; 이전 표기는 10-29/30(외부 추정)"
         }
       ]
     },
@@ -343,6 +347,13 @@
   ],
   "updates": [
     {
+      "d": "2026-10-18",
+      "note": "3분기 실적 발표일 2026-11-06 확정(회사 공지, 기존 10-29/30 추정 상충 해소). mFLUSIVA 출시·ESMO(10-24)·mRNA-3927 결과는 새 공식 소식 없음",
+      "src": [
+        14
+      ]
+    },
+    {
       "d": "2026-10-16",
       "note": "COO 복귀(10-05 효력, 생산 총괄) 보도, 흑색종 3상 데이터 ESMO 발표 10-24 예정(보도)이며 같은 날 투자자 웹캐스트; 3분기 실적일은 10-29/30 상충 그대로",
       "src": [
@@ -429,6 +440,11 @@
       "t": "Moderna announces FDA advisory committee votes unanimously in favor of mRNA-1010",
       "u": "https://www.newswire.com/news/moderna-announces-fda-advisory-committee-votes-unanimously-in-favor-of-the",
       "d": "2026-06"
+    },
+    {
+      "t": "Moderna to Report Third Quarter 2026 Financial Results on Friday, November 6, 2026",
+      "u": "https://www.newswire.com/news/moderna-to-report-third-quarter-2026-financial-results-on-friday-november-6-2026",
+      "d": "2026-10-13"
     }
   ]
 }

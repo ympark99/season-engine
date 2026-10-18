@@ -1,0 +1,354 @@
+{
+  "m": "US",
+  "code": "SNOW",
+  "name": "SNOWFLAKE INC",
+  "theme": "AI 소프트웨어",
+  "at": "2026-10-18",
+  "full": "2026-10-18",
+  "by": "Claude 정기 조사",
+  "position": "클라우드 데이터 웨어하우스 선두권에서 AI 에이전트(CoCo·CoWork)로 제품 매출 성장이 37%로 다시 빨라졌지만, 규모·성장 모두 Databricks(런레이트 70억달러+, 80%+ 성장)에 앞서기 어렵다. 다음 분기 관건은 3분기 제품 매출 가이던스(15.88억~15.93억달러, 37~38%) 달성과 AI 비중 확대에 따른 총마진 하락 폭.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "제품 매출 성장 37%로 가속, NRR 126%, 연간 가이던스 상향(60.7억달러)·AI 에이전트 채택 확대로 모멘텀이 강하다. 다만 Databricks가 더 크고 더 빨리 크며, AI 비중 증가로 제품 총마진이 낮아지고 GAAP 기준은 아직 적자"
+  },
+  "peers": [
+    {
+      "name": "Databricks",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Alphabet (Google BigQuery)",
+      "m": "US",
+      "code": "GOOGL"
+    },
+    {
+      "name": "Microsoft (Fabric)",
+      "m": "US",
+      "code": "MSFT"
+    },
+    {
+      "name": "Amazon (Redshift)",
+      "m": "US",
+      "code": "AMZN"
+    },
+    {
+      "name": "Oracle",
+      "m": "US",
+      "code": "ORCL"
+    },
+    {
+      "name": "Datadog (관측성 — Observe 인수로 경쟁)",
+      "m": "US",
+      "code": "DDOG"
+    }
+  ],
+  "axes": [
+    {
+      "k": "성장 모멘텀",
+      "me": "2분기(7월 말) 제품 매출 14.9억달러, +37%로 가속. 3분기 가이던스 +37~38%",
+      "vs": "Databricks 런레이트 70억달러+, 2분기 +80%+ (2월 54억달러·+65%에서 가속)",
+      "verdict": "열세",
+      "conf": "공시",
+      "src": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "k": "규모·대기업 고객",
+      "me": "FY27 제품 매출 가이던스 60.7억달러, 연 100만달러+ 고객 828곳(+27%), Forbes G2000 829곳, 고객 14,554곳",
+      "vs": "Databricks 런레이트 70억달러+로 규모가 이미 비슷하거나 앞섬",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "k": "AI 에이전트 채택",
+      "me": "코딩 에이전트 CoCo 9,100개 계정(분기 +2,000), 업무 에이전트 CoWork 5,800개 계정. 성장 가속의 약 절반이 AI 제품 덕이라는 분석",
+      "vs": "Databricks는 웨어하우스(Lakehouse) 런레이트 15억달러+·+100%, Lakebase 1억달러+ — 직접 비교 가능한 AI 매출 공개 없음",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "오픈 포맷·상호운용 (Iceberg)",
+      "me": "Iceberg v3 지원 GA, Horizon Catalog(Apache Polaris) 외부 엔진 읽기·쓰기, Datastream(Kafka 호환) 비공개 프리뷰",
+      "vs": "Databricks는 Delta·Unity Catalog 기반으로 같은 영역 경쟁 — 공개 비교 자료 없음",
+      "verdict": "동등",
+      "conf": "보도",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "수익성·마진",
+      "me": "non-GAAP 제품 총마진 74.7%(전년 76.4%), 연간 74.0% 가이던스(AI 비중 증가). non-GAAP 영업이익률 연 14.5%로 상향, 2분기 GAAP 영업손실 2.63억달러, FY28 4분기 GAAP 흑자가 회사 목표",
+      "vs": "Databricks는 최근 12개월 조정 FCF 흑자라고 밝힘(비상장, 세부 미공개)",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "k": "멀티클라우드·하이퍼스케일러 관계",
+      "me": "AWS·Azure·GCP 모두에서 동작. AWS와 5년 60억달러 약정(Graviton·GPU), AWS 마켓플레이스 누적 판매 70억달러+",
+      "vs": "BigQuery·Fabric·Redshift는 자사 클라우드에 묶여 번들 가격 경쟁. 3개 클라우드 모두 지원하는 곳은 Snowflake·Databricks 정도",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        5,
+        11
+      ]
+    },
+    {
+      "k": "모델 파트너십",
+      "me": "OpenAI와 최대 2억달러 다년 계약(2026-02), Anthropic과도 2억달러 규모 계약 보도. Cortex에서 OpenAI·Anthropic·Meta·Mistral 모델 제공",
+      "vs": "경쟁사 모델 제휴와의 공개 비교 자료 없음",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        6
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q2fy27_results",
+      "what": "2분기(FY27) 실적 — 제품 매출 +37%, 연간 가이던스 60.7억달러로 상향",
+      "d": "2026-09-02",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "완료",
+          "note": "제품 매출 14.9억달러(+37%), RPO 90억달러(+30%), NRR 126%, 연 가이던스 58.4억→60.7억달러"
+        }
+      ]
+    },
+    {
+      "id": "q3fy27_results",
+      "what": "3분기(FY27, 10월 말 마감) 실적 — 제품 매출 가이던스 15.88억~15.93억달러(+37~38%) 달성 여부",
+      "d": "2026-Q4",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        8
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "공식 날짜 미발표. 작년 3분기 실적은 12월 3일 발표"
+        }
+      ]
+    },
+    {
+      "id": "q4fy27_results",
+      "what": "4분기(FY27) 실적·FY28 연간 가이던스 — 60.7억달러 목표 달성과 AI 비중 확대 속 총마진 가이던스",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        7
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "회계연도 1월 31일 마감 — 공식 날짜 미발표"
+        }
+      ]
+    },
+    {
+      "id": "q1fy28_results",
+      "what": "1분기(FY28) 실적",
+      "d": "2027-Q2",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "작년 1분기 실적은 2026-05-27 발표 — 공식 날짜 미발표"
+        }
+      ]
+    },
+    {
+      "id": "summit_2027",
+      "what": "Snowflake Summit 2027 — 신제품(에이전트·Datastream 등) 발표",
+      "d": "2027-Q2",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        10
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "2026년 Summit은 6월 1~4일 샌프란시스코 — 2027년 일정 미발표"
+        }
+      ]
+    },
+    {
+      "id": "q2fy28_results",
+      "what": "2분기(FY28) 실적",
+      "d": "2027-Q3",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "올해 2분기 실적은 2026-09-02 발표 — 공식 날짜 미발표"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "2분기 제품 매출",
+      "v": "14.9억달러 (+37%)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "순매출유지율(NRR)",
+      "v": "126%",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "잔여계약의무(RPO)",
+      "v": "90억달러 (+30%)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FY27 제품 매출 가이던스",
+      "v": "60.7억달러 (+36%, 기존 58.4억달러)",
+      "asof": "2026-09",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "CoCo 사용 계정",
+      "v": "9,100개 (분기 +2,000)",
+      "asof": "2026-07",
+      "src": [
+        1
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-18",
+      "note": "전체 조사 — 제품 매출 성장 37%로 가속·가이던스 상향으로 A(경쟁력 우위), Databricks 추격(런레이트 70억달러+·80%+)과 AI발 총마진 하락이 변수",
+      "src": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Snowflake: Q2 Fiscal 2027 Revenue Rises 35% To $1.55 Billion As Product Revenue Guidance Is Raised",
+      "u": "https://pulse2.com/snowflake-q2-fiscal-2027-revenue-rises-35-to-1-55-billion-as-product-revenue-guidance-is-raised/",
+      "d": "2026-09-03"
+    },
+    {
+      "t": "5 Interesting Learnings from Snowflake at $6 Billion in Revenue (Q2 FY27)",
+      "u": "https://www.saastr.com/5-interesting-learnings-from-snowflake-at-6-billion-in-revenue-37-growth-and-accelerating-126-nrr-and-a-gross-margin-guided-down-to-pay-for-ai/",
+      "d": "2026-09"
+    },
+    {
+      "t": "Databricks tops USD $7 billion run-rate after funding",
+      "u": "https://itbrief.co.nz/story/databricks-tops-usd-7-billion-run-rate-after-funding",
+      "d": "2026-08-14"
+    },
+    {
+      "t": "Databricks Grows >65% YoY, Surpasses $5.4 Billion Revenue Run-Rate",
+      "u": "https://databricks.com/company/newsroom/press-releases/databricks-grows-65-yoy-surpasses-5-4-billion-revenue-run-rate",
+      "d": "2026-02-09"
+    },
+    {
+      "t": "Snowflake Summit 2026: Context, custom model training, Iceberg V3",
+      "u": "https://www.constellationr.com/index%2ephp/insights/news/snowflake-summit-2026-context-custom-model-training-iceberg-v3",
+      "d": "2026-06-02"
+    },
+    {
+      "t": "Snowflake Expands AWS Collaboration with $6B Commitment to Accelerate Enterprise Agentic AI Adoption",
+      "u": "https://www.snowflake.com/en/news/press-releases/snowflake-expands-aws-collaboration-with-6b-commitment-to-accelerate-enterprise-agentic-ai-adoption/",
+      "d": "2026-05-27"
+    },
+    {
+      "t": "Snowflake bypasses Microsoft to strike multi-year deal with OpenAI",
+      "u": "https://siliconangle.com/2026/02/02/snowflake-bypasses-microsoft-strike-multi-year-deal-openai/",
+      "d": "2026-02-02"
+    },
+    {
+      "t": "Snowflake Inc. Form 10-Q (quarter ended 2026-07-31)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001640147/000164014726000037/snow-20260731.htm",
+      "d": "2026-09"
+    },
+    {
+      "t": "Snowflake to Announce Financial Results for the Third Quarter of Fiscal 2026 on December 3, 2025",
+      "u": "https://investors.snowflake.com/news/news-details/2025/Snowflake-to-Announce-Financial-Results-for-the-Third-Quarter-of-Fiscal-2026-on-December-3-2025/default.aspx",
+      "d": "2025-11-03"
+    },
+    {
+      "t": "Snowflake to Announce Financial Results for the First Quarter of Fiscal 2027 on May 27 2026",
+      "u": "https://secure.businesswire.com/news/home/20260504115344/en/Snowflake-to-Announce-Financial-Results-for-the-First-Quarter-of-Fiscal-2027-on-May-27-2026",
+      "d": "2026-05-04"
+    },
+    {
+      "t": "Événements Snowflake (Summit 26 · BUILD, 2026-06-01~04 San Francisco)",
+      "u": "https://www.snowflake.com/fr/events/",
+      "d": "2026"
+    },
+    {
+      "t": "Snowflake competitors compared (BigQuery·Redshift·Fabric·Databricks)",
+      "u": "https://www.doit.com/blog/snowflake-competitors-compared",
+      "d": "2026"
+    }
+  ]
+}

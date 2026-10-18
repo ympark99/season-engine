@@ -1,0 +1,176 @@
+{
+  "m": "US",
+  "code": "TEAM",
+  "name": "ATLASSIAN CORP",
+  "theme": "소프트웨어",
+  "at": "2026-10-18",
+  "full": "2026-10-18",
+  "by": "Claude 정기 조사",
+  "position": "Jira·Confluence 기반 개발·협업 도구 선두권이며 클라우드 매출 +31%·RPO +44%로 비교 대상 SaaS(monday.com·GitLab·ServiceNow)보다 빠르게 크고 있지만, ITSM에서는 ServiceNow에 규모가 밀리고 FY27 가이던스(구독 ARR +18%, 총매출 +13%)는 감속이다. 다음 분기 관건은 11월 5일 1분기 실적에서 클라우드 +28.5% 가이던스 달성 여부와 Rovo(AI)·10월 가격 인상이 좌석 확대로 이어지는지.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "클라우드 +31%, RPO +44%, $1M+ ARR 고객 700곳 이상, 비GAAP 영업이익률 30%로 실적 모멘텀과 수익성이 동종 대비 강하고 Rovo가 Fortune 500의 80% 이상에 쓰인다. 다만 FY27은 Data Center 매출 −17%로 총매출 성장률이 13%까지 내려가는 감속 구간이고, ITSM에선 ServiceNow 대비 고객당 지출 규모가 작으며 AI가 좌석 기반 모델을 대체할 수 있다는 우려가 남아 있다"
+  },
+  "peers": [
+    { "name": "ServiceNow", "m": "US", "code": "NOW" },
+    { "name": "monday.com", "m": "US", "code": "MNDY" },
+    { "name": "GitLab", "m": "US", "code": "GTLB" },
+    { "name": "Microsoft (GitHub)", "m": "US", "code": "MSFT" },
+    { "name": "Linear", "m": null, "code": null }
+  ],
+  "axes": [
+    {
+      "k": "클라우드 성장 속도",
+      "me": "4분기(FY26) 클라우드 매출 12.13억달러 +31%, RPO 48.2억달러 +44%. FY27 클라우드 +25.5% 목표(데이터센터 이전이 중~고 한 자릿수 기여)",
+      "vs": "ServiceNow 2분기 매출 +24%, monday.com +22%, GitLab +21%",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [0, 1, 8, 9, 10]
+    },
+    {
+      "k": "개발팀 업무관리 (Jira·AI 코딩 연동)",
+      "me": "Jira에 Claude·Cursor·Jira Coding Agent 연동, MCP·Teamwork Graph CLI 월간 사용자 100만 돌파(분기 2배), MCP로 만든 Jira 작업·Confluence 페이지 약 4배. 2026 Gartner DevSecOps·개발 생산성 플랫폼 리더",
+      "vs": "GitLab은 순ARR 성장 40% 넘게 가속, 순유지율 117%. GitHub·AI 네이티브 도구와의 공개 점유율 비교는 확인 안 됨",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [0, 1, 10]
+    },
+    {
+      "k": "ITSM (Jira Service Management)",
+      "me": "2026 Gartner ITSM 리더, 서비스 컬렉션 매출 성장 4분기 가속(비율 미공개), 에이전트 자동화 6개월 새 약 3배",
+      "vs": "ServiceNow 2분기 매출 39.87억달러 +24%. 과거 조사 기준 고객당 평균 ITSM 지출 ServiceNow 약 36만달러 vs JSM 약 3.3만달러(2022~23년 자료)",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [0, 1, 8, 11]
+    },
+    {
+      "k": "AI 수익화 (Rovo)",
+      "me": "Rovo는 Fortune 500의 80% 이상이 사용, Rovo 보조 작업 분기 +50%, 도입 고객 ARR 성장 비도입 대비 2배 이상. 2분기 FY26 AI 월간 사용자 500만. 사용량 초과 과금·Flex 계약 시험 중",
+      "vs": "Microsoft Copilot·ServiceNow Now Assist 등과 같은 기준 비교 자료 없음. Rovo 총 사용자·크레딧 매출 수치는 4분기에 미공개",
+      "verdict": "불확실",
+      "conf": "공시",
+      "src": [1, 3, 13]
+    },
+    {
+      "k": "엔터프라이즈 침투",
+      "me": "$1M+ ARR 고객 700곳 이상, $3M+ 고객 +50%·$5M+ 고객 +70%, 사상 최대 기업 계약 체결. Fortune 500의 85%가 쓰지만 매출 비중은 약 10%",
+      "vs": "ServiceNow는 대형 고객당 지출 규모가 훨씬 큼(과거 조사)",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [1, 3, 11]
+    },
+    {
+      "k": "수익성·현금창출",
+      "me": "FY26 비GAAP 영업이익률 30%, 잉여현금흐름 13.19억달러(마진 20%), 자사주 18억달러 매입. FY27 비GAAP 영업이익률 25% 목표(현금보상 전환 약 3%p 부담)",
+      "vs": "GitLab 비GAAP 영업이익률 15%, monday.com 17%",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [0, 1, 9, 10]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "team26_eu",
+      "what": "Team '26 Europe(암스테르담) — 사람·에이전트 협업 프로토콜 발표",
+      "d": "2026-10-06",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "보도",
+      "src": [12],
+      "log": [
+        { "d": "2026-10-18", "s": "완료", "note": "10월 6~8일 개최, 핵심 발표는 사람·에이전트 멀티플레이어 협업 프로토콜" }
+      ]
+    },
+    {
+      "id": "cloud_price_up",
+      "what": "클라우드 정가 인상 시행 (Jira·Confluence·JSM·Teamwork Collection 등, 신규·갱신 적용)",
+      "d": "2026-10-13",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "공시",
+      "src": [6, 7],
+      "log": [
+        { "d": "2026-10-18", "s": "완료", "note": "10월 13일 시행. 파트너 집계 기준 Jira·Confluence 약 7~10%, JSM 7.5~10%" }
+      ]
+    },
+    {
+      "id": "q1fy27_earn",
+      "what": "FY27 1분기(7~9월) 실적 — 매출 17.05~17.15억달러·클라우드 +28.5% 가이던스 달성 여부",
+      "d": "2026-11-05",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [4, 0],
+      "log": [
+        { "d": "2026-10-18", "s": "예정", "note": "회사 발표: 11월 5일 장 마감 후, 데이터센터 −4% 가이던스" }
+      ]
+    },
+    {
+      "id": "q2fy27_earn",
+      "what": "FY27 2분기(10~12월) 실적 — 10월 가격 인상 효과·Rovo 수익화 첫 확인",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [13],
+      "log": [
+        { "d": "2026-10-18", "s": "예정", "note": "전년 2분기 실적이 2월 초 발표된 패턴 기준, 날짜 미발표" }
+      ]
+    },
+    {
+      "id": "q3fy27_earn",
+      "what": "FY27 3분기(1~3월) 실적",
+      "d": "2027-Q2",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [1],
+      "log": [
+        { "d": "2026-10-18", "s": "예정", "note": "날짜 미발표. 하반기 클라우드 성장률은 상반기보다 낮을 것이라고 회사가 설명" }
+      ]
+    },
+    {
+      "id": "fy27_result",
+      "what": "FY27 연간 실적 — 구독 ARR +18%·총매출 +13%·클라우드 +25.5% 목표 달성 여부, FY28 성장 재가속 전망",
+      "d": "2027-Q3",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [1],
+      "log": [
+        { "d": "2026-10-18", "s": "예정", "note": "회계연도 6월 말 종료, 연간 실적은 8월 발표 패턴(날짜 미발표). 회사는 FY28 총매출 성장 재가속 목표" }
+      ]
+    }
+  ],
+  "metrics": [
+    { "k": "클라우드 매출 (4분기 FY26)", "v": "12.13억달러 (+31%)", "asof": "2026-06", "src": [0] },
+    { "k": "구독 ARR", "v": "66.06억달러 (+23%)", "asof": "2026-06", "src": [0] },
+    { "k": "잔여이행의무(RPO)", "v": "48.17억달러 (+44%)", "asof": "2026-06", "src": [0] },
+    { "k": "FY27 가이던스 (목표)", "v": "총매출 +13%, 클라우드 +25.5%, 데이터센터 −17%, 구독 ARR +18%", "asof": "2026-08", "src": [0, 1] },
+    { "k": "$1M+ ARR 고객 수", "v": "700곳 이상", "asof": "2026-06", "src": [1] }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-18",
+      "note": "전체 조사 — 클라우드 +31%·RPO +44%로 등급 A(경쟁력 우위). FY27은 데이터센터 축소로 감속 가이던스, 11월 5일 1분기 실적이 다음 확인 지점",
+      "src": [0, 1, 4]
+    }
+  ],
+  "sources": [
+    { "t": "Atlassian Announces Fourth Quarter and Fiscal Year 2026 Results (8-K Ex.99.1)", "u": "https://www.sec.gov/Archives/edgar/data/0001650372/000165037226000031/ex991q4fy26.htm", "d": "2026-08-06" },
+    { "t": "Atlassian Q4 FY26 Shareholder Letter (8-K)", "u": "https://www.sec.gov/Archives/edgar/data/0001650372/000165037226000031/teamq42026shareholderlet.htm", "d": "2026-08-06" },
+    { "t": "Atlassian Q4 Earnings Call Highlights", "u": "https://www.nasdaq.com/articles/atlassian-q4-earnings-call-highlights", "d": "2026-08-07" },
+    { "t": "Atlassian Q4 FY 2026: Can Rovo Turn AI Usage Into Durable Growth?", "u": "https://futurumgroup.com/insights/atlassian-q4-fy-2026-can-rovo-turn-ai-usage-into-durable-growth/", "d": "2026-08" },
+    { "t": "Atlassian Announces Date for First Quarter of Fiscal Year 2027 Financial Results", "u": "https://finviz.com/news/398890/atlassian-announces-date-for-first-quarter-of-fiscal-year-2027-financial-results", "d": "2026-10-05" },
+    { "t": "Atlassian is ending Data Center: next steps for you", "u": "https://www.eficode.com/insights/blog/atlassian-is-ending-data-center-next-steps-for-you", "d": "2025" },
+    { "t": "Atlassian Cloud future pricing FAQs", "u": "https://www.atlassian.com/licensing/future-pricing/cloud-pricing/faqs", "d": "2026" },
+    { "t": "Atlassian price updates effective October 2026", "u": "https://www.adaptavist.com/blog/atlassian-price-updates-effective-october-2026", "d": "2026" },
+    { "t": "ServiceNow Q2 2026 Results (8-K)", "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm", "d": "2026-07" },
+    { "t": "monday.com Announces Second Quarter 2026 Results", "u": "https://ir.monday.com/news-and-events/news-releases/news-details/2026/monday-com-Announces-Second-Quarter-2026-Results/default.aspx", "d": "2026-08" },
+    { "t": "GitLab Reports Second Quarter Fiscal Year 2027 Financial Results", "u": "https://secure.businesswire.com/news/home/20260901768402/en/GitLab-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results", "d": "2026-09-01" },
+    { "t": "ITSM: A Two-Horse Race — 60% Market Share (Atlassian & ServiceNow)", "u": "https://contegix.com/blog/itsm-two-horse-race-60-market-share-atlassian-servicenow", "d": "2023" },
+    { "t": "Team '26 Europe — diginomica event hub", "u": "https://diginomica.com/virtual-event/team-26-europe", "d": "2026-10" },
+    { "t": "TEAM Q2 2026 Shareholder Letter", "u": "https://s206.q4cdn.com/270053503/files/doc_financials/2026/q2/up/TEAM-Q2-2026-Shareholder-Letter-1.pdf", "d": "2026-02" }
+  ]
+}
