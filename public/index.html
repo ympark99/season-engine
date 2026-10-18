@@ -429,9 +429,9 @@ details[open]>summary.fold::after{content:' ▴'}
 .ibtn{font:inherit;font-size:10.5px;font-weight:800;width:17px;height:17px;line-height:13px;padding:0;margin-left:5px;border-radius:50%;border:1.5px solid var(--muted);background:transparent;color:var(--ink2);cursor:pointer;vertical-align:1px;font-style:italic}
 .ibtn:hover,.ibtn:focus-visible{border-color:var(--gold);color:var(--gold)}
 .ipop{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px}.ipop[hidden]{display:none}
-.ipbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:440px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.35)}.ipbox b{font-size:15px}.ipbox p{white-space:pre-line;font-size:13.5px;line-height:1.6;color:var(--ink2);margin:8px 0 12px}
+.ipbox{max-height:85vh;overflow-y:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:440px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.35)}.ipbox b{font-size:15px}.ipbox p{white-space:pre-line;font-size:13.5px;line-height:1.6;color:var(--ink2);margin:8px 0 12px}
 .fxb{font-size:10.5px;font-weight:800;border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:3px}
-.fxm{display:grid;grid-template-columns:auto auto;gap:6px}
+.fxm{display:grid;grid-template-columns:auto auto auto;gap:6px}
 .fxm span{background:var(--card);border-radius:8px;padding:4px 8px;display:flex;flex-direction:column;gap:0;min-width:74px}
 .fxm i{font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap}.fxm b{font-size:13.5px;font-weight:800;white-space:nowrap}.fxm em{font-style:normal;font-size:11.5px;color:var(--ink2)}
 .lv2{font:inherit;font-size:11px;font-weight:800;padding:1px 8px;margin-left:4px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;vertical-align:1px}
@@ -456,6 +456,7 @@ details[open]>summary.fold::after{content:' ▴'}
 .fxbar i{position:absolute;top:0;bottom:0}
 .hist .nx{color:var(--ink2)}.hist .nx b{color:var(--ink)}
 @media (max-width:520px){.fxc{grid-template-columns:1fr auto}.fxc .fxm{grid-column:1/-1}}
+.fxg{container-type:inline-size}@container (max-width:780px){.fxc{grid-template-columns:1fr auto}.fxc .fxm{grid-column:1/-1}}   /* 최대수익·최대손실·최대하락 세 칸 — 좁으면 아래 줄로 */
 .up{color:var(--pos)}.dn{color:var(--neg)}
 @media (max-width:760px){.ixgrid,.ixgrid.two{grid-template-columns:1fr}}
 .sig{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:1px}
@@ -1999,8 +2000,8 @@ function scTag(S){const c=state.sc!==undefined?state.sc:S.sc;if(S.season!=='봄'
   const why=c.was?`${f(c.was)}에 확정됐다가 풀림 — `:'';
   const st=c.tgt==null?'반등 신호 대기':c.pull==null?`반등 고점 ${P(c.tgt)}에서 눌림 대기`:`눌림 ${P(c.pull)} → 반등 고점 ${P(c.tgt)} 재돌파 대기`;
   return `<span class="tag t-mid" title="${esc(why)}봄 미확정 — 반등 후 한 번 눌렸다가(겨울 저점 ${P(c.wlo)} 위) 반등 고점을 다시 넘으면 확정${c.left!=null?` · 남은 기한 ${c.left}거래일`:''}">봄 미확정 · ${esc(st)}</span>`}
-/* 경쟁·기술 종합 등급 태그 (index.json 의 grade — 매일 아침 정기 조사가 판단) */
-function gradeTag(S){const g=isFund(S)?null:INTEL?.[K(S)]?.grade;if(!g||!g.g)return '';const c={A:'t-good',B:'t-good',C:'t-mid',D:'t-crit'}[g.g]||'t-mid';
+/* 경쟁·기술 종합 등급 태그 (index.json 의 grade S·A·B·C·F — 매일 아침 정기 조사가 판단) */
+function gradeTag(S){const g=isFund(S)?null:INTEL?.[K(S)]?.grade;if(!g||!g.g)return '';const c={S:'t-good',A:'t-good',B:'t-good',C:'t-mid',F:'t-crit',D:'t-crit'}[g.g]||'t-mid';
   return `<span class="tag ${c} lnk" data-gsec="intel" title="${esc((g.label||'')+' — '+(g.why||''))} · 누르면 경쟁·기술 탭">${esc(g.label||'경쟁력')} ${esc(g.g)}</span>`}
 
 /* ---------- 경쟁·기술 (매일 아침 '경쟁·기술 갱신' 정기 작업이 public/data/intel 에 올린 조사 — 사이트는 읽기만) ---------- */
@@ -2114,10 +2115,19 @@ function drawHist(){
   const XS=state.xs||(state.xs={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={}),XA=state.xa||(state.xa={});
   const keyOf=id=>{const k=varKey(id);return F&&F[k]?k:id},R=id=>F[keyOf(id)];
   const ORD=['H','SS','ST','KJ','SF','PB','DB'],ordOf=id=>{const i=ORD.indexOf(id);return i<0?99:i};
-  const STS=(E?.strats||[]).filter(x=>F&&F[x.id]).sort((a,b)=>ordOf(a.id)-ordOf(b.id));
+  const STS=(E?.strats||[]).filter(x=>F&&F[x.id]&&R(x.id).trades>0).sort((a,b)=>ordOf(a.id)-ordOf(b.id));
   if(state.xsort)STS.sort((a,b)=>(R(b.id).cum-R(a.id).cum)*(state.xsort===1?1:-1));   // 수익정렬 — 한 번 내림차순 · 두 번 오름차순 · 세 번 기본 순서
   const DIPTXT='겨울 저점매수: 겨울이 20거래일 넘게 이어지고 종가가 20일선보다 15% 이상 아래면 매수 → 종가 60일선 회복 · 40거래일 · 매수가 대비 −15%(본주) 중 먼저 오는 날 매도.';
   const STOPTXT={H:'계속 보유: 진입가 −15% 종가 이탈 시 그날 전량 매도하고 끝 (현금 유지).',SS:"봄·여름만 보유: 진입가 −15% 종가 이탈 시 전량 매도하고, 다음 '봄 확정'(새로 확정되는 날)에 다시 진입.",SF:'종합매매: 평단 −15% 종가 이탈 시 전량 매도하고, 다음 봄(새 봄 시작)부터 원래 비중 규칙대로 다시 진입.'};
+  const STINFO=['모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 이 기간에 매매가 한 번도 없었던 전략은 가려.',
+    '시작일 진입: 계속 보유는 바로 매수, 봄·여름만 보유는 그날 봄 확정·여름이면 100% 매수, 종합매매는 그날 상태의 비중(미확정 봄 20%·확정 봄 60%·여름 100%·가을 50%·겨울 0%·저점매수 100%)으로 바로 시작, 단기진입·눌림매매·저점매수는 신호가 올 때만 매수. 이후 매매는 국면 판정일(익절·손절은 그 조건이 된 날) 종가.',
+    '단기진입 = 여름 중 종가가 직전 20거래일 최고 종가를 처음 돌파하면서 거래량이 20일 평균의 2배 이상인 날 100% 진입 → +10% 절반 · +20% 전량 익절 · 진입가 −15% 손절.',
+    '눌림매매 = 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다.',
+    '최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때. 최대하락 = 기간 중 평가금액 고점 대비 가장 크게 빠졌던 금액과 비율. 날짜는 마우스를 올리면 보여. 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략.',
+    '평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영).',
+    '버튼: 위 [익절] = 단기진입·저점매수를 뺀 모든 전략에 +15% 절반 · +30% 전량 익절을 더함 (계절 매도 조건이 있으면 둘 다 적용). [수익정렬] = 한 번 최종 수익 내림차순 · 두 번 오름차순 · 세 번 기본 순서. 카드의 [저점매수] = 겨울 저점매수를 함께 (종합매매에는 이미 들어 있음), [필터] = 일목기준선 횡보 필터 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 그 전략 규칙이 나와.',
+    '카드의 [손절] = 진입가 −15% 종가 이탈 시 전량 매도 (계속 보유·봄·여름만 보유·종합매매). 그 뒤 되돌아오는 규칙:'];
+  const DDINFO='최대하락 = 기간 중 평가금액이 그때까지의 고점에서 가장 크게 빠졌던 순간의 하락 금액과 하락률 (고점 대비).\n\n예: 1,000만원 → 1,400만원(고점) → 1,050만원이면 최대하락 −350만원 · −25%. 시드 대비 손실인 최대손실과 달리, 수익 중에 얼마나 반납했는지를 보여줘.\n\n날짜(가장 깊었던 날)는 마우스를 올리면 보여.';
   const KJSHORT='기준선 돌파·이틀 연속 위 마감 · 횡보 중 진입 제한, 돌파는 기준선 +1% 위 마감만';
   const shortOf=(x,k)=>{const add=[];if(k.includes('T'))add.push('익절 +15% 절반·+30% 전량');if(k.includes('S'))add.push('손절 −15%');if(k.includes('D'))add.push('겨울 저점매수');
     return (x.id==='KJ'&&k.includes('A')?'기준선 돌파·이틀 연속 위 마감 50% → 터치 25%×2 → 이탈 전량 매도'+(k.includes('F')?' · 횡보 중 추가매수·진입 제한':''):x.id==='KJ'&&k.includes('F')?KJSHORT+' (100% 진입)':x.short||x.desc)+(add.length?' · '+add.join(' · '):'')};
@@ -2129,13 +2139,13 @@ function drawHist(){
     if(k.includes('S'))t+=' / 손절: '+STOPTXT[x.id];
     if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄 확정·여름이 되면 그대로 계절 보유로 넘어가 그 밖으로 바뀌면 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 단기진입 신호 때는 단기진입 규칙, 보유 중이 아닐 때 저점매수 조건이 오면 저점매수 규칙으로 들어간다.`;
     return t};
-  // 최대수익 · 최대손실 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
-  const vals=STS.map(x=>R(x.id)),mxs=vals.map(o=>o.maxAmt),lss=vals.map(o=>o.lossAmt);
+  // 최대수익 · 최대손실 · 최대하락 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
+  const vals=STS.map(x=>R(x.id)),mxs=vals.map(o=>o.maxAmt),lss=vals.map(o=>o.lossAmt),dds=vals.map(o=>o.mddAmt??0);
   const mark=(arr,v)=>{const hi=Math.max(...arr),lo=Math.min(...arr);return arr.length<2||hi===lo?'':v===hi?' hi':v===lo?' lo':''};
   const wc=v=>`<span class="${v>0?'up':v<0?'dn':''}">${wonS(v)}</span>`;
   const card=x=>{const o=R(x.id),key=keyOf(x.id),k=key.split('_')[1]||'';
     const has=c=>((E.opts||{})[x.id]||'').includes(c)&&(c==='F'?x.id==='KJ'&&!!F.KJ_F:c==='A'?x.id==='KJ'&&!!F.KJ_A:true);
-    const tg=(has('S')?` <button type="button" class="lv2" data-xs="${x.id}" aria-pressed="${!!XS[x.id]}" aria-label="손절 −15%">손절</button><button type="button" class="ibtn" data-sinfo="${x.id}" aria-label="${esc(x.name)} 손절 규칙">i</button>`:'')
+    const tg=(has('S')?` <button type="button" class="lv2" data-xs="${x.id}" aria-pressed="${!!XS[x.id]}" aria-label="손절 −15%">손절</button>`:'')
       +(has('D')?` <button type="button" class="lv2" data-dip="${x.id}" aria-pressed="${!!XD[x.id]}" aria-label="겨울 저점매수 추가">저점매수</button>`:'')
       +(has('A')?` <button type="button" class="lv2" data-ka="${x.id}" aria-pressed="${!!XA[x.id]}" aria-label="추가매수 (옛 방식)">추가매수</button>`:'')
       +(has('F')?` <button type="button" class="lv2" data-kf="${x.id}" aria-pressed="${!!XF[x.id]}" aria-label="횡보·가짜 돌파 필터">필터</button>`:'');
@@ -2144,11 +2154,10 @@ function drawHist(){
     return `<div class="fxc" data-sel="${x.id}" role="button" tabindex="0" aria-pressed="${si>=0}" title="누르면 위 차트에 날짜별 평가금액을 겹쳐 그려"${sc?` style="border-color:${sc};box-shadow:inset 0 0 0 1.5px ${sc}"`:''}><div class="k">${sc?`<i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${sc};margin-right:6px;vertical-align:-1px"></i>`:''}<b>${esc(nm)}</b><button type="button" class="ibtn" data-info="${x.id}" aria-label="${esc(x.name)} 설명">i</button>${tg}<span class="muted">${esc(shortOf(x,k))}</span>
       <span class="fxa">평단 <b class="num">${o.avg==null?'—':fmtP(o.avg,S.m)}</b> · ${esc(o.pos)} · 매매 ${o.trades}회${o.stop!=null?` · 손절가 <b class="num">${fmtP(o.stop,S.m)}</b>`:''}${o.tgt!=null?` · 목표 <b class="num">${fmtP(o.tgt,S.m)}</b>`:''}${o.kj!=null?` · 기준선 <b class="num">${fmtP(o.kj,S.m)}</b>`:''}</span></div>
       <div class="v num">${wc(o.pnl)}<span class="fxr">${rc(o.cum)} · 평가 ${won(o.eq)}</span></div>
-      <div class="fxm"><span class="${mark(mxs,o.maxAmt)}" title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span class="${mark(lss,o.lossAmt)}" title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span></div></div>`};
-  const cards=F?`<div class="fxt fxh"><span>① 전략 비교 <span class="muted" style="font-weight:500">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></span>${psel}</div>
-    <div class="fxg">${STS.map(card).join('')}</div>${E?.kjMax&&!F.KJ&&['2Y','3Y','5Y'].includes(FP)?`<div class="sub" style="margin-top:6px">일목기준선 매매는 1년까지만 계산해 (지지·저항 계산 때 받은 약 1년 2개월 일봉 사용) — 연초·1개월~1년 기간에서 볼 수 있어.</div>`:''}
-    <div class="ipop" id="ipop" role="dialog" aria-modal="true" aria-labelledby="ipop-h" hidden><div class="ipbox"><b id="ipop-h"></b><p id="ipop-t"></p><button type="button" class="pbtn" id="ipop-x">닫기</button></div></div>
-    <div class="sub" style="margin-top:6px">모든 전략이 시작일 종가에 시드 1,000만원 현금으로 새로 시작해. 시작일 진입: 계속 보유는 바로 매수, 봄·여름만 보유는 그날 봄 확정·여름이면 100% 매수, 종합매매는 그날 상태의 비중(미확정 봄 20%·확정 봄 60%·여름 100%·가을 50%·겨울 0%·저점매수 100%)으로 바로 시작, 단기진입·눌림매매·저점매수는 신호가 올 때만 매수. 이후 매매는 국면 판정일(익절·손절은 그 조건이 된 날) 종가. 단기진입 = 여름 중 종가가 직전 20거래일 최고 종가를 처음 돌파하면서 거래량이 20일 평균의 2배 이상인 날 100% 진입 → +10% 절반 · +20% 전량 익절 · 진입가 −15% 손절. 최대수익·최대손실 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략. 최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때 (날짜는 마우스를 올리면 보여). 평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영). 눌림매매는 이 종목에 급등 기준봉 뒤 눌림목이 나올 때만 사고, 손절가(기준봉 시작가·진입가 −8% 중 높은 값) 종가 이탈 또는 국면 기준(봄·여름 진입은 가을·겨울 전환, 가을·겨울 진입은 다음 베이스라인 도달)으로 판다. 버튼: 위 [익절] = 단기진입·저점매수를 뺀 모든 전략에 +15% 절반 · +30% 전량 익절을 더함 (계절 매도 조건이 있으면 둘 다 적용), 카드의 [손절] = 진입가 −15% 종가 이탈 시 전량 매도 (계속 보유·봄·여름만 보유·종합매매, 옆 i 에 되돌아오는 규칙), [저점매수] = 겨울 저점매수를 함께 (종합매매에는 이미 들어 있음), [필터] = 일목기준선 횡보 필터 (켜면 테두리도 그 기준으로 다시 매김). [수익정렬] = 한 번 최종 수익 내림차순 · 두 번 오름차순 · 세 번 기본 순서. 전략 이름 옆 i 를 누르면 규칙이 나와.</div>`:'';
+      <div class="fxm"><span class="${mark(mxs,o.maxAmt)}" title="${o.maxD||''}"><i>최대수익</i><b class="num up">${wonS(o.maxAmt)}</b><em class="num">${sgn(o.maxRet)}%</em></span><span class="${mark(lss,o.lossAmt)}" title="${o.lossD||''}"><i>최대손실</i><b class="num dn">${wonS(o.lossAmt)}</b><em class="num">${sgn(o.maxLoss)}%</em></span><span class="${mark(dds,o.mddAmt??0)}" title="${o.mddD||''}"><i>최대하락<button type="button" class="ibtn" data-ddinfo aria-label="최대하락 설명">i</button></i><b class="num dn">${o.mddAmt==null?'—':wonS(o.mddAmt)}</b><em class="num">${o.mdd==null?'—':sgn(o.mdd)+'%'}</em></span></div></div>`};
+  const cards=F?`<div class="hh"><h4>전략 비교<button type="button" class="ibtn" data-stinfo aria-label="전략 비교 설명">i</button> <span class="sub" style="font-weight:400">시드 ${won(E.seed||1e7)} · ${f(F.from)} 종가(${fmtP(F.p0,S.m)}, ${F.s0||''}) ~ ${f(F.to)} · ${F.days}거래일 · 거래비용 ${E.cost}%</span></h4>${psel}</div>
+    <div class="fxg">${STS.map(card).join('')||'<div class="muted">이 기간엔 매매한 전략이 없어</div>'}</div>${E?.kjMax&&!F.KJ&&['2Y','3Y','5Y'].includes(FP)?`<div class="sub" style="margin-top:6px">일목기준선 매매는 1년까지만 계산해 (지지·저항 계산 때 받은 약 1년 2개월 일봉 사용) — 연초·1개월~1년 기간에서 볼 수 있어.</div>`:''}
+    <div class="ipop" id="ipop" role="dialog" aria-modal="true" aria-labelledby="ipop-h" hidden><div class="ipbox"><b id="ipop-h"></b><p id="ipop-t"></p><button type="button" class="pbtn" id="ipop-x">닫기</button></div></div>`:'';
   const bar=(mx,md)=>{if(mx==null||md==null)return '';const t=Math.abs(mx)+Math.abs(md)||1,w=Math.round(100*Math.abs(mx)/t);
     return `<span class="fxbar" aria-hidden="true"><i style="left:0;width:${w}%;background:var(--pos)"></i><i style="right:0;width:${100-w}%;background:var(--neg)"></i></span>`};
   const nxt=o=>{const e=Object.entries(o||{}).sort((x,y)=>y[1]-x[1]);return e.length?e.map(([k,v],i)=>i?`${k} ${v}`:`<b>${k} ${v}</b>`).join(' · '):'<span class="muted">—</span>'};
@@ -2196,7 +2205,9 @@ function drawHist(){
   const ip=$('ipop');if(ip){const close=()=>{ip.hidden=true};
     $('d-s-strat').querySelectorAll('[data-info]').forEach(b=>b.onclick=e=>{e.stopPropagation();const x=(E.strats||[]).find(z=>z.id===b.dataset.info);if(!x)return;
       $('ipop-h').textContent=sfxName(x.name,keyOf(x.id));$('ipop-t').textContent=infoOf(x).split(' / ').join('\n\n');ip.hidden=false;$('ipop-x').focus()});
-    $('d-s-strat').querySelectorAll('[data-sinfo]').forEach(b=>b.onclick=e=>{e.stopPropagation();$('ipop-h').textContent='손절 규칙 — 진입가 −15% 종가 이탈';$('ipop-t').textContent=Object.values(STOPTXT).join('\n\n');ip.hidden=false;$('ipop-x').focus()});
+    const pop=(h,t)=>{$('ipop-h').textContent=h;$('ipop-t').textContent=t;ip.hidden=false;$('ipop-x').focus()};
+    $('d-s-strat').querySelectorAll('[data-stinfo]').forEach(b=>b.onclick=e=>{e.stopPropagation();pop('전략 비교',[...STINFO,...Object.values(STOPTXT).map(x=>'· '+x)].join('\n\n'))});
+    $('d-s-strat').querySelectorAll('[data-ddinfo]').forEach(b=>b.onclick=e=>{e.stopPropagation();pop('최대하락',DDINFO)});
     $('ipop-x').onclick=close;ip.onclick=e=>{if(e.target===ip)close()};ip.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
   if(state.eqSel?.length&&state.curves?.[state.eqPer])drawDetail();   // 익절·손절·저점매수·필터 토글이 바뀌면 차트 곡선도 그 기준으로
 }
