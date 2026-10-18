@@ -1,0 +1,47 @@
+{
+ "m": "US",
+ "code": "PLTR",
+ "name": "PALANTIR TECH INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "summary": "미국 국방부·육군·정보기관 같은 정부 기관과 기업에 데이터 분석·AI 운영 소프트웨어(Gotham·Foundry·AIP·Apollo)를 구독으로 판다. 2026년 2분기 매출 19.4억$(+93%) 가운데 81%가 미국에서 나왔다(미국 정부 8.1억$, 미국 기업 7.6억$). 매출의 10%를 넘는 단일 고객은 없다. 서비스는 AWS·Microsoft Azure 같은 외부 클라우드 위에서 돌아서 클라우드 호스팅 비용이 원가의 주요 항목이다.",
+ "cust": [
+  {"name": "미국 연방정부 (국방부·육군·정보기관 등)", "code": null, "m": null, "share": 41.8, "conf": "공시", "note": "2026년 2분기 실적 발표 — 미국 정부 매출 8.09억$(+90%). 10-Q 기준 매출의 10%를 넘는 단일 고객은 없음"},
+  {"name": "미국 육군 (엔터프라이즈 계약)", "code": null, "m": null, "share": null, "conf": "보도", "note": "2025년 여름 최대 100억$·10년 엔터프라이즈 계약. 흩어져 있던 기존 계약들을 하나로 묶은 것"},
+  {"name": "미국 국방부 (Maven Smart System)", "code": null, "m": null, "share": null, "conf": "보도", "note": "AI 표적·상황 인식 플랫폼. 2024년 4.8억$, 2025년 최대 7.95억$로 증액. 2026년에는 국방부 전체의 정식 사업(program of record)으로 바꾸는 중이라는 보도"},
+  {"name": "영국 정부 (국방부·NHS)", "code": null, "m": null, "share": null, "conf": "보도", "note": "영국은 FY2025 매출의 10%(4.27억$, 10-K 공시, 기업 고객 포함). 국방부 후속 계약 2.406억£(2026.4~2029.3), NHS 연합 데이터 플랫폼 3.3억£(2023 보도)"},
+  {"name": "미국 기업 고객 (분산)", "code": null, "m": null, "share": 39.5, "conf": "공시", "note": "2026년 2분기 미국 기업 매출 7.64억$(+149%). 전체 고객 1,049곳, 상위 20곳의 연 평균 매출 1.24억$"},
+  {"name": "Lowe's", "code": "LOW", "m": "US", "share": null, "conf": "보도", "note": "2025.10 엔비디아 발표 — Palantir·엔비디아 기술로 글로벌 공급망 디지털 복제본을 처음 구축한 고객 중 하나"},
+  {"name": "Airbus (Skywise)", "code": null, "m": null, "share": null, "conf": "보도", "note": "2026년 1분기 회사 사업 보고 자료 — 항공 데이터 플랫폼 Skywise 다년 재계약"},
+  {"name": "고객 I (미국 국방부·육군으로 추정)", "code": null, "m": null, "share": null, "conf": "추정", "note": "10-Q는 이 고객이 매출채권의 27%(2026.6 기준)라고만 밝힘. 육군 100억$ 계약 등 가장 큰 계약이 국방 쪽이라 그쪽으로 추정. 공시·보도로 확인된 것은 아님"}
+ ],
+ "supp": [
+  {"name": "Amazon Web Services", "code": "AMZN", "m": "US", "item": "클라우드 호스팅·컴퓨팅 인프라", "share": null, "conf": "공시", "note": "10-Q 위험 요인에 'AWS·Microsoft 등이 운영하는 인프라에 의존'한다고 이름이 나옴. Palantir Cloud와 AI 기능을 이곳에 호스팅"},
+  {"name": "Microsoft (Azure)", "code": "MSFT", "m": "US", "item": "클라우드 호스팅(Azure·Azure Government)", "share": null, "conf": "공시", "note": "10-Q에 AWS와 함께 핵심 클라우드 제공자로 나옴. 2024년에는 Azure OpenAI를 기밀 정부 클라우드에서 함께 제공하는 제휴도 보도"},
+  {"name": "Oracle (OCI)", "code": "ORCL", "m": "US", "item": "클라우드 인프라·정부/소버린 클라우드", "share": null, "conf": "보도", "note": "2024.7 Oracle 발표 — Foundry·AIP를 OCI 전 지역(정부·EU 소버린·에어갭 리전 포함)에서 제공하고 함께 영업"},
+  {"name": "NVIDIA", "code": "NVDA", "m": "US", "item": "GPU 가속 컴퓨팅·CUDA-X·Nemotron 오픈 모델", "share": null, "conf": "보도", "note": "2025.10 GTC 워싱턴 발표 — Palantir 온톨로지·AIP에 엔비디아 가속 컴퓨팅·라이브러리·모델을 넣고 Blackwell 도입도 추진"},
+  {"name": "Anthropic (Claude)", "code": null, "m": null, "item": "AI 언어 모델", "share": null, "conf": "보도", "note": "2024.11 3사 발표 — Claude 모델을 AWS 위 Palantir AIP(IL6 인증 환경)로 미국 국방·정보기관에 제공. 2026년에는 국방 쪽 사용을 줄인다는 보도도 있음"},
+  {"name": "10년 최소 56억$ 클라우드 약정 상대 (AWS로 추정)", "code": "AMZN", "m": "US", "item": "클라우드 호스팅 (2026.3~2036.2 최소 지출 약정)", "share": null, "conf": "추정", "note": "10-Q는 '한 외부 클라우드 업체와 계약을 고쳐 10년간 최소 56억$를 쓰기로 했다'고만 씀. 위험 요인에 가장 먼저 이름이 나오는 AWS로 추정. 공시·보도로 확인된 것은 아님"}
+ ],
+ "segs": [
+  {"name": "미국 정부", "code": null, "m": null, "amt": 809, "share": 41.8, "note": "2026년 2분기 — 국방부·육군·정보기관 등, +90%"},
+  {"name": "미국 기업", "code": null, "m": null, "amt": 764, "share": 39.5, "note": "2026년 2분기 — AIP 수요로 +149%"},
+  {"name": "해외 정부", "code": null, "m": null, "amt": 181, "share": 9.4, "note": "2026년 2분기 — 정부 매출 9.90억$에서 미국 정부 몫을 뺀 값 (영국 국방부·NHS 등)"},
+  {"name": "해외 기업", "code": null, "m": null, "amt": 181, "share": 9.4, "note": "2026년 2분기 — 기업 매출 9.45억$에서 미국 기업 몫을 뺀 값"},
+  {"name": "정부 부문 (FY2025 연간)", "code": null, "m": null, "amt": 2402, "share": 53.7, "note": "10-K — 2025년 연 매출 44.75억$ 중 정부, +53%"},
+  {"name": "기업 부문 (FY2025 연간)", "code": null, "m": null, "amt": 2073, "share": 46.3, "note": "10-K — 2025년 연 매출 중 기업, +60%. 제품별(Gotham·Foundry·AIP·Apollo) 매출은 공시하지 않음"}
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {"t": "Palantir 2026년 2분기 10-Q", "u": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm"},
+  {"t": "Palantir 2026년 2분기 실적 발표 (8-K 99.1)", "u": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000039/a2026q2ex991pressrelease.htm"},
+  {"t": "Palantir FY2025 10-K", "u": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm"},
+  {"t": "Palantir 2026년 1분기 사업 보고 자료", "u": "https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf"},
+  {"t": "미국 육군 100억$ 엔터프라이즈 계약", "u": "https://app.govly.com/public/signals/177815"},
+  {"t": "국방부 Maven 확대 (Military.com, 2026.3)", "u": "https://www.military.com/feature/2026/03/22/pentagon-expands-palantirs-role-ai-contract.html"},
+  {"t": "영국 국방부 Palantir 엔터프라이즈 계약 공고", "u": "https://www.find-tender.service.gov.uk/procurement/ocds-h6vhtk-05f7e9"},
+  {"t": "NVIDIA–Palantir 제휴 발표 (2025.10)", "u": "https://investor.nvidia.com/news/press-release-details/2025/Palantir-and-NVIDIA-Team-Up-to-Operationalize-AI--Turning-Enterprise-Data-Into-Dynamic-Decision-Intelligence/default.aspx"},
+  {"t": "Oracle–Palantir 제휴 발표 (2024.7)", "u": "https://www.oracle.com/news/announcement/oracle-and-palantir-unlock-new-innovation-in-cloud-and-ai-to-power-businesses-and-governments-around-the-world-2024-07-09"},
+  {"t": "Anthropic–Palantir–AWS 제휴 발표 (2024.11)", "u": "https://www.nasdaq.com/press-release/anthropic-and-palantir-partner-bring-claude-ai-models-aws-us-government-intelligence"}
+ ]
+}
