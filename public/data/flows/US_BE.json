@@ -1,0 +1,48 @@
+{
+  "m": "US", "code": "BE", "name": "Bloom Energy",
+  "at": "2026-10-19", "by": "Claude 정기 조사",
+  "summary": "고체산화물 연료전지(SOFC) 발전 시스템을 AI 데이터센터·전력회사·대형 시설에 팔아 매출을 낸다. 제품 매출이 대부분(2026 상반기 87%)이고, 판매는 Brookfield 합작 펀드나 AEP 같은 전력회사·금융사가 사서 Oracle·Google 같은 최종 사용자에게 전력을 공급하는 구조가 많으며, 소수 고객 집중도가 매우 높다(2026년 2분기 한 고객이 매출 73%).",
+  "cust": [
+    { "name": "Brookfield 합작 펀드 (Fund JVs)", "code": "BAM", "m": "US", "share": 43, "conf": "공시", "note": "2025 10-K: 관계사 Fund JV에 제품 8.098억·설치 0.523억 달러 판매, 2025년 매출 43% 고객. 2026 상반기 관계사 매출 3.76억 달러(21%)" },
+    { "name": "Oracle (최종 사용자)", "code": "ORCL", "m": "US", "share": null, "conf": "공시", "note": "10-Q: AI 데이터센터 온사이트 전력 파트너십, '고객의 고객'으로 워런트 지급(2026.5 행사). 2026.4 최대 2.8GW 공급 계약 발표" },
+    { "name": "AEP (American Electric Power)", "code": "AEP", "m": "US", "share": null, "conf": "보도", "note": "2024.11 최대 1GW 공급 계약(10-K 기재), 2026.1 AEP 자회사가 와이오밍 Cheyenne 발전소용 연료전지 약 26.5억 달러 구매 공시" },
+    { "name": "Google (최종 사용자, AEP Cheyenne 프로젝트)", "code": "GOOGL", "m": "US", "share": null, "conf": "보도", "note": "AEP의 702MW Cheyenne 연료전지 발전소 전력을 20년 구매하는 고객이 Google로 보도(2026)" },
+    { "name": "SK에코플랜트 (한국 유통·Korean JV 파트너)", "code": null, "m": "KR", "share": null, "conf": "공시", "note": "10-K: 한국 등 우선 유통사·Korean JV 파트너, 2025.7까지 관계사. 2023년 매출 37% 관계사 고객" },
+    { "name": "Equinix", "code": "EQIX", "m": "US", "share": null, "conf": "보도", "note": "2025.2 IR: 19개 데이터센터에 누적 100MW 넘게 공급 계약" },
+    { "name": "2026년 2분기 매출 73% 고객 (AEP 계열 추정)", "code": "AEP", "m": "US", "share": null, "conf": "추정", "note": "10-Q/A는 관계사가 아닌 단일 고객이 2분기 매출 73%라고만 밝힘. 2026.1 AEP의 26.5억 달러 구매와 시기·규모가 맞아 유추. 공시·보도로 확인된 것은 아님" },
+    { "name": "2025년 매출 13%·12% 고객 (SK에코플랜트·AEP 추정)", "code": null, "m": null, "share": null, "conf": "추정", "note": "10-K는 13%·12% 고객의 이름을 밝히지 않음. 한국 유통 구조와 AEP 초기 100MW 납품으로 유추. 공시·보도로 확인된 것은 아님" }
+  ],
+  "supp": [
+    { "name": "서진시스템", "code": "178320", "m": "KR", "item": "SOFC 모듈·부품 (베트남 공장 생산)", "share": null, "conf": "공시", "note": "DART 공시: 2026.7 785억, 2026.10 1,064억 원 규모 Bloom 공급 계약, 최근 3년 동종 계약 이행" },
+    { "name": "LS ELECTRIC", "code": "010120", "m": "KR", "item": "데이터센터 프로젝트용 수배전반·배전 변압기", "share": null, "conf": "공시", "note": "DART 공시: 2026.10 1,853억 원(펜실베이니아 데이터센터) 등, 2025.4 이후 누적 수주 5억 달러 넘음 보도" },
+    { "name": "MTAR Technologies (인도)", "code": null, "m": null, "item": "핫박스 등 연료전지 핵심 부품", "share": null, "conf": "보도", "note": "인도 상장사(NSE: MTARTECH). Bloom향 핫박스 생산능력 연 8천→1.2만 대 확대 보도" },
+    { "name": "비나텍", "code": "126340", "m": "KR", "item": "슈퍼커패시터 (데이터센터 비상전원)", "share": null, "conf": "보도", "note": "2025.5 180억 원 Bloom 공급 계약 보도. 2026.9 412억 원 계약 언급은 방송 소개글뿐이라 미확인" },
+    { "name": "Bloom SK Fuel Cell (Korean JV)", "code": null, "m": "KR", "item": "한국 내 연료전지 조립·생산", "share": null, "conf": "공시", "note": "10-K: SK에코플랜트와의 한국 합작법인, Bloom이 연결하는 VIE" },
+    { "name": "한선엔지니어링", "code": null, "m": "KR", "item": "계장용 피팅·밸브·배관 부품 (Bloom SK Fuel Cell향)", "share": null, "conf": "보도", "note": "2026.9 Bloom·Bloom SK Fuel Cell향 공급 확대 보도" }
+  ],
+  "segs": [
+    { "name": "제품 (2025)", "code": null, "m": null, "amt": 1531.3, "share": 75.7, "note": "Energy Server 판매. 2025 총매출 2,024.0" },
+    { "name": "설치 (2025)", "code": null, "m": null, "amt": 204.1, "share": 10.1, "note": "설치 공사" },
+    { "name": "서비스 (2025)", "code": null, "m": null, "amt": 228.3, "share": 11.3, "note": "유지보수 계약" },
+    { "name": "전력 판매 (2025)", "code": null, "m": null, "amt": 60.4, "share": 3.0, "note": "PPA·Managed Services 전력 판매" },
+    { "name": "제품 (2026 상반기)", "code": null, "m": null, "amt": 1588.8, "share": 87.5, "note": "2026 상반기 총매출 1,816.4 (2분기 1,065.4)" },
+    { "name": "설치 (2026 상반기)", "code": null, "m": null, "amt": 76.9, "share": 4.2, "note": "10-Q" },
+    { "name": "서비스 (2026 상반기)", "code": null, "m": null, "amt": 130.9, "share": 7.2, "note": "10-Q" },
+    { "name": "전력 판매 (2026 상반기)", "code": null, "m": null, "amt": 19.8, "share": 1.1, "note": "10-Q" }
+  ],
+  "unitSeg": "백만 달러",
+  "sources": [
+    { "t": "Bloom Energy 2025 10-K", "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm" },
+    { "t": "Bloom Energy 2026년 2분기 10-Q", "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm" },
+    { "t": "Bloom Energy 2026년 2분기 10-Q/A (고객 집중도 정정)", "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050325/be-20260630.htm" },
+    { "t": "Bloom Energy 2026년 2분기 실적 발표", "u": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx" },
+    { "t": "AEP 8-K (2026.1, 연료전지 구매)", "u": "https://www.sec.gov/Archives/edgar/data/4904/000000490426000003/aep-20260104.htm" },
+    { "t": "AEP, Google용 와이오밍 연료전지 발전소 (Quartz)", "u": "https://qz.com/aep-google-wyoming-fuel-cell-plant-4-billion-101426" },
+    { "t": "Oracle, Bloom 공급 계약 2.8GW로 확대 (DCD)", "u": "https://www.datacenterdynamics.com/en/news/oracle-expands-fuel-cell-supply-deal-with-bloom-energy-to-28gw/" },
+    { "t": "Bloom, Equinix 100MW 넘는 공급 (Business Wire)", "u": "https://www.businesswire.com/news/home/20250220371127/en/Bloom-Energy-Expands-Data-Center-Power-Agreement-with-Equinix-Surpassing-100MW" },
+    { "t": "서진시스템, Bloom과 1,064억 원 SOFC 공급 계약 (CBC뉴스)", "u": "https://www.cbci.co.kr/news/articleView.html?idxno=614408" },
+    { "t": "LS일렉트릭, Bloom 누적 수주 5억 달러 (한국금융신문)", "u": "https://www.fntimes.com/html/view.php?ud=202610131645242822fa6b69a559_18" },
+    { "t": "비나텍, Bloom과 수출 계약 (전북일보)", "u": "https://www.jjan.kr/articleAmp/20250521580310" },
+    { "t": "MTAR 핫박스 증설 (EnkiAI)", "u": "https://enkiai.com/fuel-cells/bloom-energy-fuel-cell-2026-1-gw-aep-supply-pact/" }
+  ]
+}

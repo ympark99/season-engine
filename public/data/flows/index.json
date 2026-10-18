@@ -78,5 +78,9 @@
  "US:STM": {
   "at": "2026-10-19",
   "name": "STMICROELECTRONICS NY SHS-EACH REPR 1 OR"
+ },
+ "US:BE": {
+  "at": "2026-10-19",
+  "name": "Bloom Energy"
  }
 }
