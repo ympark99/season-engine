@@ -1,0 +1,44 @@
+{
+  "m": "US",
+  "code": "FPS",
+  "name": "FORGENT POWER SOLUTIONS INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "summary": "변압기·스위치기어·패널·eHouse·파워스키드 같은 배전 장비를 주문 제작해 데이터센터(FY2026 매출의 59%)·전력망(21%)·산업(10%) 고객에게 팔고, 매출의 70%가 맞춤형 제품, 25%가 통합 파워트레인 솔루션에서 나온다(FY2026 매출 14.2억 달러, 사업부는 단일). 개별 거래처·매입처 이름은 공시되지 않아 공시 자료가 제한적이다.",
+  "cust": [
+    { "name": "고객 A (비공개, 매출 10% 이상 단일 고객)", "code": null, "m": null, "share": 11, "conf": "공시", "note": "FY2026 10-K: 매출 10%를 넘는 고객이 1곳, 매출의 약 11%·매출채권의 15%. FY2025에는 10% 이상 고객 없음" },
+    { "name": "데이터센터 고객 (기술 기업·데이터센터 건설사·OEM/통합업체 경유)", "code": null, "m": null, "share": 59, "conf": "공시", "note": "FY2026 10-K 최종 시장별 매출 비중 59%. 데이터센터 매출은 전년 대비 161% 증가(Q4 실적 발표)" },
+    { "name": "전력망 고객 (유틸리티·독립 발전사업자·송배전 시공사)", "code": null, "m": null, "share": 21, "conf": "공시", "note": "FY2026 10-K 최종 시장별 매출 비중 21%. S-1에서는 유틸리티 22곳의 승인 공급사라고 밝힘" },
+    { "name": "산업 고객 (에너지 다소비 제조 시설)", "code": null, "m": null, "share": 10, "conf": "공시", "note": "FY2026 10-K 최종 시장별 매출 비중 10%. 기타 시장도 10%이며 매출은 거의 모두 북미에서 발생" },
+    { "name": "하이퍼스케일러 1곳 (비공개, 마스터 서비스 계약)", "code": null, "m": null, "share": null, "conf": "보도", "note": "FY2026 4분기 실적 발표(2026-09)에서 하이퍼스케일러와 MSA를 맺었다고 밝힘. 향후 발주 조건을 정한 계약이며 물량 보장은 아님. 상대 이름은 비공개" },
+    { "name": "프런티어 AI 연구소 1곳 (비공개, 첫 직접 수주)", "code": null, "m": null, "share": null, "conf": "보도", "note": "FY2026 4분기 실적 발표: 1GW가 넘는 캠퍼스에 쓸 중전압 변압기·스위치기어를 처음으로 직접 수주. 상대 이름은 비공개" },
+    { "name": "OpenAI·xAI·Anthropic 중 한 곳 (위 프런티어 AI 연구소 후보)", "code": null, "m": null, "share": null, "conf": "추정", "note": "미국에서 1GW 이상 자체 캠퍼스를 짓는 프런티어 AI 연구소가 이 몇 곳뿐이라는 업계 구조로 좁힌 것이며, 공시·보도로 확인된 것은 아님" }
+  ],
+  "supp": [
+    { "name": "원자재 공급사 다수 (비공개)", "code": null, "m": null, "item": "구리·알루미늄·전기강판·탄소강·특수 절연재", "share": null, "conf": "공시", "note": "10-K: 주요 원자재는 국내외 다수 공급사에서 장기 계약 없이 구매 주문 방식으로 조달하고, 일부는 연초에 가격을 고정" },
+    { "name": "차단기·보호기기 부품 공급사 (비공개, 일부 해외)", "code": null, "m": null, "item": "차단기·보호기기·퓨즈·전선·유리섬유·수지", "share": null, "conf": "공시", "note": "10-K: 차단기 같은 핵심 부품 일부를 미국 밖 공급사에서 사 오며 무역 정책 위험이 있다고 기재" },
+    { "name": "소수의 외주 부품 제조사·해외 위탁 생산업체 (비공개)", "code": null, "m": null, "item": "특정 부품 외주 생산, 일부 해외 시장용 완제품 위탁 생산", "share": null, "conf": "공시", "note": "10-K 위험 요인: 특정 부품은 소수 외주 업체에 의존하고, 일부 해외 시장에서는 위탁 생산 업체가 완제품을 만든다" },
+    { "name": "Cleveland-Cliffs (방향성 전기강판 후보)", "code": "CLF", "m": "US", "item": "변압기용 방향성 전기강판", "share": null, "conf": "추정", "note": "변압기 철심용 방향성 전기강판을 미국에서 만드는 곳이 사실상 이 회사뿐이라는 공급 구조로 유추했으며, 공시·보도로 확인된 것은 아님" },
+    { "name": "ABB·Siemens·Eaton 등 (차단기 후보)", "code": null, "m": null, "item": "스위치기어·스위치보드용 차단기", "share": null, "conf": "추정", "note": "독립 스위치기어 제조사는 대형 전기기기 업체의 차단기를 사서 조립하는 경우가 많다는 업계 구조로 유추했으며, 공시·보도로 확인된 것은 아님" }
+  ],
+  "segs": [
+    { "name": "맞춤형 제품 (Custom Products)", "code": null, "m": null, "amt": 990.5, "share": 70, "note": "FY2026(2026-06 결산). 프로젝트별로 설계하는 변압기·스위치기어·패널 등, FY2025 590.6" },
+    { "name": "파워트레인 솔루션 (Powertrain Solutions)", "code": null, "m": null, "amt": 357.4, "share": 25, "note": "FY2026. eHouse·파워스키드 등 통합 시스템, 주로 데이터센터·전력망용. 전년 99.5에서 259% 증가" },
+    { "name": "표준 제품 (Standard Products)", "code": null, "m": null, "amt": 42.5, "share": 3, "note": "FY2026. 유통업체가 재고로 두는 범용 제품" },
+    { "name": "서비스 (설치·시운전·유지보수)", "code": null, "m": null, "amt": 29.7, "share": 2, "note": "FY2026. 현장 시운전·수리·개조 서비스" },
+    { "name": "MGM Transformer (연결 자회사)", "code": null, "m": null, "amt": null, "share": null, "note": "2023-10 Neos가 인수한 변압기 업체로 회사의 모태. 별도 매출은 공시하지 않음(단일 사업부)" },
+    { "name": "PwrQ (Allied Trading·Ares Energy·EMK Solutions, 연결 자회사)", "code": null, "m": null, "amt": null, "share": null, "note": "2024-03 인수. 별도 매출은 공시하지 않음" },
+    { "name": "States Manufacturing (연결 자회사)", "code": null, "m": null, "amt": null, "share": null, "note": "2024-05 인수. 별도 매출은 공시하지 않음" },
+    { "name": "VanTran (TriMagna Industries, 연결 자회사)", "code": null, "m": null, "amt": null, "share": null, "note": "2024-06 인수한 변압기 업체. 별도 매출은 공시하지 않음" }
+  ],
+  "unitSeg": "백만 달러",
+  "sources": [
+    { "t": "Forgent 10-K (FY2026, 2026-06-30 결산)", "u": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000035/fps-20260630.htm" },
+    { "t": "Forgent FY2026 4분기·연간 실적 발표 (8-K Ex.99.1, 2026-09-15)", "u": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000034/exhibit991earningsrelease_.htm" },
+    { "t": "Forgent S-1 (IPO, 2026-01)", "u": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526008865/d890989ds1.htm" },
+    { "t": "SEC EDGAR 공시 목록 (CIK 2080126)", "u": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002080126" },
+    { "t": "Forgent Power Solutions Q4 2026 Earnings Call Transcript (Motley Fool)", "u": "https://www.fool.com/earnings/call-transcripts/2026/09/16/forgent-power-solutions-fps-q4-2026-earnings-call-transcript/" },
+    { "t": "Is Forgent Power Solutions' Next Big Thing Already Here? (Trefis, 2026-10-07)", "u": "https://www.trefis.com/stock/fps/articles/617818/is-forgent-power-solutions-next-big-thing-already-here/2026-10-07" },
+    { "t": "How Forgent Power is trying to ride the data center wave to an IPO (Latitude Media)", "u": "https://www.latitudemedia.com/news/how-forgent-power-is-trying-to-ride-the-data-center-wave-to-an-ipo/" }
+  ]
+}
