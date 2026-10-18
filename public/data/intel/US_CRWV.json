@@ -3,7 +3,7 @@
   "code": "CRWV",
   "name": "CoreWeave",
   "theme": "네오클라우드",
-  "at": "2026-10-14",
+  "at": "2026-10-19",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "AI 전용 GPU 클라우드 중 매출·백로그·가동 전력 모두 선두권이지만, 부채 약 350억 달러와 분기 순손실이 커 자금 조달과 데이터센터 가동 속도가 약점이다. 다음 분기 관건은 3분기 실적(매출 가이던스 34.5억~36억 달러)에서 가동 전력 확대와 영업이익률 개선이 이어지는지.",
@@ -77,13 +77,14 @@
     },
     {
       "k": "차세대 GPU 도입",
-      "me": "NVIDIA Vera Rubin NVL72를 클라우드 중 처음 가동·검증했다고 회사가 밝힘",
+      "me": "NVIDIA Vera Rubin NVL72를 9월 30일 상용 제공 시작(첫 고객 Cognition, 제한적 제공), 클라우드 중 처음 가동·검증했다고 회사가 밝힘",
       "vs": "경쟁사의 Rubin 도입 시점은 이번 조사에서 확인 안 됨",
       "verdict": "불확실",
       "conf": "공시",
       "src": [
         0,
-        4
+        4,
+        6
       ]
     },
     {
@@ -153,11 +154,12 @@
       "what": "Vera Rubin NVL72 고객 워크로드 상용 도입",
       "d": "2026-H2",
       "kind": "출시",
-      "status": "진행",
+      "status": "완료",
       "conf": "공시",
       "src": [
         0,
-        4
+        4,
+        6
       ],
       "log": [
         {
@@ -169,6 +171,11 @@
           "d": "2026-10-14",
           "s": "진행",
           "note": "2분기 콜에서 NVL72 가동·검증 완료로 설명"
+        },
+        {
+          "d": "2026-10-19",
+          "s": "완료",
+          "note": "9월 30일 Vera Rubin NVL72 제공 시작 발표, Cognition이 첫 상용 워크로드 가동 (회사는 제한적 제공이라고 표현)"
         }
       ]
     },
@@ -292,6 +299,13 @@
   ],
   "updates": [
     {
+      "d": "2026-10-19",
+      "note": "Vera Rubin NVL72 상용 제공 시작 발표(9월 30일, 첫 고객 Cognition, 제한적 제공) — 체크포인트 완료 처리. 경쟁사 Rubin 도입 시점은 아직 확인 안 돼 판정·등급(B) 유지",
+      "src": [
+        6
+      ]
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 백로그·전력 규모는 선두권이나 부채 350억 달러와 순손실이 부담, 다음 확인은 11월 3분기 실적",
       "src": [
@@ -331,6 +345,11 @@
       "t": "CRWV Next Earnings Date (예상일, 미확정)",
       "u": "https://nextearningsdate.com/coreweave.html",
       "d": "2026-10"
+    },
+    {
+      "t": "CoreWeave delivers NVIDIA Vera Rubin NVL72 at production scale, starting with Cognition (CoreWeave 보도자료)",
+      "u": "https://coreweave.com/news/coreweave-delivers-nvidia-vera-rubin-nvl72-performance-at-production-scale-starting-with-cognition",
+      "d": "2026-09-30"
     }
   ]
 }

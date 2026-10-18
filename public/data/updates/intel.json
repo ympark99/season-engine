@@ -1,233 +1,337 @@
 {
- "days": [
-  {
-   "d": "2026-10-18",
-   "at": "2026-10-18T07:00:00+09:00",
-   "summary": "87종목·36개 업종 확인. 신규 4종목 전체 조사, 변화가 있던 7종목 깊은 갱신(AAPL·278470·AAOI·APH·STX·MRNA·475830). 앞으로 7일 안 체크포인트 11개.",
-   "news": [
+  "days": [
     {
-     "m": "US",
-     "code": "AAPL",
-     "name": "Apple",
-     "note": "폴더블 iPhone Duo 예약 10/16·판매 10/23, 가격표가 여러 매체에서 일치 · 초기 공급 부족 가능성 보도"
+      "d": "2026-10-19",
+      "at": "2026-10-19T07:00:00+09:00",
+      "summary": "87종목·36개 업종 확인. 신규 조사 0종목, 변화가 있던 4종목 깊은 갱신(417200·PLTR·CRWV·RKLB). 앞으로 7일 안 체크포인트 11개.",
+      "news": [
+        {
+          "m": "KR",
+          "code": "417200",
+          "name": "LS머트리얼즈",
+          "note": "10/13 공시로 AIDC 연료전지용 UC 공급계약 약 688.8억원 확인(납품 2027-04~2028-03), 신규 수요처 판정 선두권으로 상향"
+        },
+        {
+          "m": "US",
+          "code": "PLTR",
+          "name": "Palantir",
+          "note": "Maven 정식 프로그램 전환이 8/25 보도로 확인되어 체크포인트 완료(공식 발표 원문은 미확인)"
+        },
+        {
+          "m": "US",
+          "code": "CRWV",
+          "name": "CoreWeave",
+          "note": "9/30 Vera Rubin NVL72 상용 제공 시작 발표(첫 고객 Cognition, 제한적 제공)"
+        },
+        {
+          "m": "US",
+          "code": "RKLB",
+          "name": "Rocket Lab",
+          "note": "10/14 회사 공시로 Neutron 첫 발사가 2027년으로 조정"
+        }
+      ],
+      "checkpoints": [
+        {
+          "m": "KR",
+          "code": "417200",
+          "name": "LS머트리얼즈",
+          "what": "AIDC 대형 UC 공급계약",
+          "d": "2026-10",
+          "from": null,
+          "to": "완료",
+          "note": "10/13 공시 확인"
+        },
+        {
+          "m": "KR",
+          "code": "417200",
+          "name": "LS머트리얼즈",
+          "what": "AIDC 연료전지용 UC 초도 물량 납품",
+          "d": "2026-11",
+          "from": null,
+          "to": "예정",
+          "note": "새로 추가"
+        },
+        {
+          "m": "KR",
+          "code": "417200",
+          "name": "LS머트리얼즈",
+          "what": "AIDC UC 대형 계약분 납품 시작",
+          "d": "2027-04-16",
+          "from": null,
+          "to": "예정",
+          "note": "새로 추가"
+        },
+        {
+          "m": "KR",
+          "code": "417200",
+          "name": "LS머트리얼즈",
+          "what": "동일 고객 추가 UC 공급 계약",
+          "d": "2026",
+          "from": null,
+          "to": "예정",
+          "note": "새로 추가"
+        },
+        {
+          "m": "US",
+          "code": "PLTR",
+          "name": "Palantir",
+          "what": "Maven 정식 프로그램 전환",
+          "d": "2026-09",
+          "from": "예정",
+          "to": "완료",
+          "note": "8/25 보도로 확인"
+        },
+        {
+          "m": "US",
+          "code": "CRWV",
+          "name": "CoreWeave",
+          "what": "Vera Rubin NVL72 상용 제공",
+          "d": "2026-10",
+          "from": "예정",
+          "to": "완료",
+          "note": "9/30 발표, 제한적 제공"
+        },
+        {
+          "m": "US",
+          "code": "RKLB",
+          "name": "Rocket Lab",
+          "what": "Neutron 첫 발사",
+          "d": "2027",
+          "from": "지연",
+          "to": "지연",
+          "note": "2026-Q4에서 2027년으로 회사 공시 조정"
+        }
+      ],
+      "newIntel": []
     },
     {
-     "m": "KR",
-     "code": "278470",
-     "name": "에이피알",
-     "note": "해외 팝업 투어 일정(뉴욕·LA·런던·파리) 보도로 확인, 코스트코 입점은 미확인"
+      "d": "2026-10-18",
+      "at": "2026-10-18T07:00:00+09:00",
+      "summary": "87종목·36개 업종 확인. 신규 4종목 전체 조사, 변화가 있던 7종목 깊은 갱신(AAPL·278470·AAOI·APH·STX·MRNA·475830). 앞으로 7일 안 체크포인트 11개.",
+      "news": [
+        {
+          "m": "US",
+          "code": "AAPL",
+          "name": "Apple",
+          "note": "폴더블 iPhone Duo 예약 10/16·판매 10/23, 가격표가 여러 매체에서 일치 · 초기 공급 부족 가능성 보도"
+        },
+        {
+          "m": "KR",
+          "code": "278470",
+          "name": "에이피알",
+          "note": "해외 팝업 투어 일정(뉴욕·LA·런던·파리) 보도로 확인, 코스트코 입점은 미확인"
+        },
+        {
+          "m": "US",
+          "code": "AAOI",
+          "name": "Applied Optoelectronics",
+          "note": "3분기 실적 발표일 11/5 장 마감 후로 회사 공지"
+        },
+        {
+          "m": "US",
+          "code": "APH",
+          "name": "Amphenol",
+          "note": "2대1 액면분할 승인으로 3분기 EPS 가이던스가 분할 후 기준 0.70~0.71달러로 재표기"
+        },
+        {
+          "m": "US",
+          "code": "STX",
+          "name": "Seagate",
+          "note": "9월 분기 실적 발표일 10/27로 회사 공지 확정"
+        },
+        {
+          "m": "US",
+          "code": "MRNA",
+          "name": "Moderna",
+          "note": "3분기 실적 발표일 11/6로 회사 공지 확정"
+        },
+        {
+          "m": "KR",
+          "code": "475830",
+          "name": "오름테라퓨틱",
+          "note": "ORM-1153 1상 첫 환자 투여 완료(10/14 발표)"
+        }
+      ],
+      "checkpoints": [
+        {
+          "m": "US",
+          "code": "AAPL",
+          "name": "Apple",
+          "what": "폴더블 예약",
+          "d": "2026-10-16",
+          "from": "예정",
+          "to": "예정",
+          "note": "일정·가격이 복수 매체로 확인됨, 예약 개시 확인 보도는 아직 없음"
+        },
+        {
+          "m": "US",
+          "code": "AAOI",
+          "name": "Applied Optoelectronics",
+          "what": "3분기 실적",
+          "d": "2026-11-05",
+          "from": "예정",
+          "to": "예정",
+          "note": "발표일 11/5 확정(회사 공지)"
+        },
+        {
+          "m": "US",
+          "code": "STX",
+          "name": "Seagate",
+          "what": "9월 분기 실적",
+          "d": "2026-10-27",
+          "from": "예정",
+          "to": "예정",
+          "note": "발표일 10/27 확정(회사 공지)"
+        },
+        {
+          "m": "US",
+          "code": "MRNA",
+          "name": "Moderna",
+          "what": "3분기 실적",
+          "d": "2026-11-06",
+          "from": "예정",
+          "to": "예정",
+          "note": "기존 10월 말 추정 → 11/6 확정"
+        },
+        {
+          "m": "KR",
+          "code": "475830",
+          "name": "오름테라퓨틱",
+          "what": "ORM-1153 1상 첫 환자 투여",
+          "d": "2026-10-14",
+          "from": "예정",
+          "to": "완료",
+          "note": "첫 환자 투여 완료 발표"
+        }
+      ],
+      "newIntel": [
+        {
+          "m": "US",
+          "code": "SNOW",
+          "name": "Snowflake"
+        },
+        {
+          "m": "KR",
+          "code": "251970",
+          "name": "펌텍코리아"
+        },
+        {
+          "m": "US",
+          "code": "STM",
+          "name": "STMicroelectronics"
+        },
+        {
+          "m": "US",
+          "code": "TEAM",
+          "name": "Atlassian"
+        }
+      ]
     },
     {
-     "m": "US",
-     "code": "AAOI",
-     "name": "Applied Optoelectronics",
-     "note": "3분기 실적 발표일 11/5 장 마감 후로 회사 공지"
-    },
-    {
-     "m": "US",
-     "code": "APH",
-     "name": "Amphenol",
-     "note": "2대1 액면분할 승인으로 3분기 EPS 가이던스가 분할 후 기준 0.70~0.71달러로 재표기"
-    },
-    {
-     "m": "US",
-     "code": "STX",
-     "name": "Seagate",
-     "note": "9월 분기 실적 발표일 10/27로 회사 공지 확정"
-    },
-    {
-     "m": "US",
-     "code": "MRNA",
-     "name": "Moderna",
-     "note": "3분기 실적 발표일 11/6로 회사 공지 확정"
-    },
-    {
-     "m": "KR",
-     "code": "475830",
-     "name": "오름테라퓨틱",
-     "note": "ORM-1153 1상 첫 환자 투여 완료(10/14 발표)"
+      "d": "2026-10-16",
+      "at": "2026-10-16T06:55:00+09:00",
+      "summary": "83종목·35개 업종 확인. 신규 3종목 전체 조사, 변화가 있던 5종목 깊은 갱신(ARM·SPCX·META·TSLA·MRNA). 앞으로 7일 안 체크포인트 12개.",
+      "news": [
+        {
+          "m": "US",
+          "code": "ARM",
+          "name": "Arm Holdings",
+          "note": "퀄컴 2차 소송 평결 — Arm 라이선스 위반 인정됐지만 배상액 2달러로 재무 영향 미미, 신의성실 협상 판단이 다음 쟁점"
+        },
+        {
+          "m": "US",
+          "code": "TSLA",
+          "name": "Tesla",
+          "note": "Cybercab 생산 시작이 회사 8-K에 기재됨 · 3분기 실적 10/21 장 마감 후"
+        },
+        {
+          "m": "US",
+          "code": "META",
+          "name": "Meta Platforms",
+          "note": "3분기 실적 발표일 10/21 확정(회사 공시)"
+        },
+        {
+          "m": "US",
+          "code": "SPCX",
+          "name": "SpaceX",
+          "note": "스타십 Flight 15가 10월 하순에서 11월 중순 전후로 밀릴 가능성 보도(공식 날짜 없음)"
+        },
+        {
+          "m": "US",
+          "code": "MRNA",
+          "name": "Moderna",
+          "note": "흑색종 3상 데이터 ESMO 발표 10/24 예정 · COO 복귀"
+        }
+      ],
+      "checkpoints": [
+        {
+          "m": "US",
+          "code": "ARM",
+          "name": "Arm Holdings",
+          "what": "퀄컴 대 Arm 2차 소송 배심 평결",
+          "d": "2026-10-09",
+          "from": "예정",
+          "to": "완료",
+          "note": "평결 나옴 — 배상액 명목상 2달러"
+        },
+        {
+          "m": "US",
+          "code": "META",
+          "name": "Meta Platforms",
+          "what": "3분기 실적",
+          "d": "2026-10-21",
+          "from": "예정",
+          "to": "예정",
+          "note": "발표일 10/21 장 마감 후로 확정"
+        },
+        {
+          "m": "US",
+          "code": "TSLA",
+          "name": "Tesla",
+          "what": "Cybercab 생산",
+          "d": null,
+          "from": "진행",
+          "to": "진행",
+          "note": "근거가 보도 → 회사 공시(8-K)로 바뀜"
+        },
+        {
+          "m": "US",
+          "code": "SPCX",
+          "name": "SpaceX",
+          "what": "스타십 Flight 15",
+          "d": "2026-Q4",
+          "from": "예정",
+          "to": "예정",
+          "note": "11월 중순 전후로 밀릴 가능성(공식 확정 아님)"
+        },
+        {
+          "m": "US",
+          "code": "MRNA",
+          "name": "Moderna",
+          "what": "흑색종 3상 데이터 ESMO 발표·투자자 웹캐스트",
+          "d": "2026-10-24",
+          "from": null,
+          "to": "예정",
+          "note": "새로 추가"
+        }
+      ],
+      "newIntel": [
+        {
+          "m": "KR",
+          "code": "475150",
+          "name": "SK이터닉스"
+        },
+        {
+          "m": "US",
+          "code": "VICR",
+          "name": "Vicor"
+        },
+        {
+          "m": "US",
+          "code": "AXTI",
+          "name": "AXT Inc"
+        }
+      ]
     }
-   ],
-   "checkpoints": [
-    {
-     "m": "US",
-     "code": "AAPL",
-     "name": "Apple",
-     "what": "폴더블 예약",
-     "d": "2026-10-16",
-     "from": "예정",
-     "to": "예정",
-     "note": "일정·가격이 복수 매체로 확인됨, 예약 개시 확인 보도는 아직 없음"
-    },
-    {
-     "m": "US",
-     "code": "AAOI",
-     "name": "Applied Optoelectronics",
-     "what": "3분기 실적",
-     "d": "2026-11-05",
-     "from": "예정",
-     "to": "예정",
-     "note": "발표일 11/5 확정(회사 공지)"
-    },
-    {
-     "m": "US",
-     "code": "STX",
-     "name": "Seagate",
-     "what": "9월 분기 실적",
-     "d": "2026-10-27",
-     "from": "예정",
-     "to": "예정",
-     "note": "발표일 10/27 확정(회사 공지)"
-    },
-    {
-     "m": "US",
-     "code": "MRNA",
-     "name": "Moderna",
-     "what": "3분기 실적",
-     "d": "2026-11-06",
-     "from": "예정",
-     "to": "예정",
-     "note": "기존 10월 말 추정 → 11/6 확정"
-    },
-    {
-     "m": "KR",
-     "code": "475830",
-     "name": "오름테라퓨틱",
-     "what": "ORM-1153 1상 첫 환자 투여",
-     "d": "2026-10-14",
-     "from": "예정",
-     "to": "완료",
-     "note": "첫 환자 투여 완료 발표"
-    }
-   ],
-   "newIntel": [
-    {
-     "m": "US",
-     "code": "SNOW",
-     "name": "Snowflake"
-    },
-    {
-     "m": "KR",
-     "code": "251970",
-     "name": "펌텍코리아"
-    },
-    {
-     "m": "US",
-     "code": "STM",
-     "name": "STMicroelectronics"
-    },
-    {
-     "m": "US",
-     "code": "TEAM",
-     "name": "Atlassian"
-    }
-   ]
-  },
-  {
-   "d": "2026-10-16",
-   "at": "2026-10-16T06:55:00+09:00",
-   "summary": "83종목·35개 업종 확인. 신규 3종목 전체 조사, 변화가 있던 5종목 깊은 갱신(ARM·SPCX·META·TSLA·MRNA). 앞으로 7일 안 체크포인트 12개.",
-   "news": [
-    {
-     "m": "US",
-     "code": "ARM",
-     "name": "Arm Holdings",
-     "note": "퀄컴 2차 소송 평결 — Arm 라이선스 위반 인정됐지만 배상액 2달러로 재무 영향 미미, 신의성실 협상 판단이 다음 쟁점"
-    },
-    {
-     "m": "US",
-     "code": "TSLA",
-     "name": "Tesla",
-     "note": "Cybercab 생산 시작이 회사 8-K에 기재됨 · 3분기 실적 10/21 장 마감 후"
-    },
-    {
-     "m": "US",
-     "code": "META",
-     "name": "Meta Platforms",
-     "note": "3분기 실적 발표일 10/21 확정(회사 공시)"
-    },
-    {
-     "m": "US",
-     "code": "SPCX",
-     "name": "SpaceX",
-     "note": "스타십 Flight 15가 10월 하순에서 11월 중순 전후로 밀릴 가능성 보도(공식 날짜 없음)"
-    },
-    {
-     "m": "US",
-     "code": "MRNA",
-     "name": "Moderna",
-     "note": "흑색종 3상 데이터 ESMO 발표 10/24 예정 · COO 복귀"
-    }
-   ],
-   "checkpoints": [
-    {
-     "m": "US",
-     "code": "ARM",
-     "name": "Arm Holdings",
-     "what": "퀄컴 대 Arm 2차 소송 배심 평결",
-     "d": "2026-10-09",
-     "from": "예정",
-     "to": "완료",
-     "note": "평결 나옴 — 배상액 명목상 2달러"
-    },
-    {
-     "m": "US",
-     "code": "META",
-     "name": "Meta Platforms",
-     "what": "3분기 실적",
-     "d": "2026-10-21",
-     "from": "예정",
-     "to": "예정",
-     "note": "발표일 10/21 장 마감 후로 확정"
-    },
-    {
-     "m": "US",
-     "code": "TSLA",
-     "name": "Tesla",
-     "what": "Cybercab 생산",
-     "d": null,
-     "from": "진행",
-     "to": "진행",
-     "note": "근거가 보도 → 회사 공시(8-K)로 바뀜"
-    },
-    {
-     "m": "US",
-     "code": "SPCX",
-     "name": "SpaceX",
-     "what": "스타십 Flight 15",
-     "d": "2026-Q4",
-     "from": "예정",
-     "to": "예정",
-     "note": "11월 중순 전후로 밀릴 가능성(공식 확정 아님)"
-    },
-    {
-     "m": "US",
-     "code": "MRNA",
-     "name": "Moderna",
-     "what": "흑색종 3상 데이터 ESMO 발표·투자자 웹캐스트",
-     "d": "2026-10-24",
-     "from": null,
-     "to": "예정",
-     "note": "새로 추가"
-    }
-   ],
-   "newIntel": [
-    {
-     "m": "KR",
-     "code": "475150",
-     "name": "SK이터닉스"
-    },
-    {
-     "m": "US",
-     "code": "VICR",
-     "name": "Vicor"
-    },
-    {
-     "m": "US",
-     "code": "AXTI",
-     "name": "AXT Inc"
-    }
-   ]
-  }
- ]
+  ]
 }

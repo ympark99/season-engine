@@ -3,7 +3,7 @@
   "code": "PLTR",
   "name": "Palantir Technologies",
   "theme": "AI 소프트웨어",
-  "at": "2026-10-15",
+  "at": "2026-10-19",
   "full": "2026-10-15",
   "by": "Claude 정기 조사",
   "position": "AI 플랫폼(AIP)으로 미국 상업·정부 양쪽에서 성장이 가속 중이며 2026년 2분기 매출은 전년 대비 93% 늘었다. 다음 분기 관건은 3분기 매출 가이던스(21.6억달러대) 달성과 높은 성장률이 이어지는지, 그리고 국방 프로그램(Maven 등) 정식화 진척.",
@@ -63,14 +63,15 @@
     },
     {
       "k": "미국 정부·국방",
-      "me": "미국 정부 매출 8.09억달러(+90%). Maven 은 프로그램 정식화(program of record) 절차 진행, 육군이 계약 관리",
+      "me": "미국 정부 매출 8.09억달러(+90%). Maven 은 국방부 정식 프로그램(program of record)이 됐다는 보도(8월 25일), 육군이 계약 관리",
       "vs": "정부 AI 소프트웨어 분야에서 직접 비교할 확인된 경쟁사 수치 없음",
       "verdict": "선두권",
       "conf": "보도",
       "src": [
         1,
         5,
-        6
+        6,
+        15
       ]
     },
     {
@@ -151,13 +152,14 @@
     {
       "id": "maven_por",
       "what": "Maven 정식 프로그램(program of record) 전환",
-      "d": "2026-09",
+      "d": "2026-08",
       "kind": "규제",
-      "status": "진행",
+      "status": "완료",
       "conf": "보도",
       "src": [
         5,
-        6
+        6,
+        15
       ],
       "log": [
         {
@@ -169,6 +171,11 @@
           "d": "2026-10-15",
           "s": "진행",
           "note": "완료 발표는 이번 조사에서 확인 안 됨"
+        },
+        {
+          "d": "2026-10-19",
+          "s": "완료",
+          "note": "8월 25일자 보도로 Maven 정식 프로그램(program of record) 전환 확인(당초 예상 기한 2026-09). 국방부 공식 발표 원문은 미확인"
         }
       ]
     },
@@ -266,6 +273,13 @@
   ],
   "updates": [
     {
+      "d": "2026-10-19",
+      "note": "Maven 국방부 정식 프로그램 전환 보도 확인(8월 25일자) — 체크포인트 완료 처리. 3분기 실적 발표일은 여전히 공식 공지 미확인, 등급 A 유지",
+      "src": [
+        15
+      ]
+    },
+    {
       "d": "2026-10-15",
       "note": "전체 조사 — AIP 기반 미국 상업·정부 동반 고성장, 다음 확인 지점은 11월 3분기 실적(날짜 미확정)",
       "src": [
@@ -350,6 +364,11 @@
       "t": "Palantir's Q2 earnings call produced its largest ever guidance raise",
       "u": "https://www.tikr.com/blog/palantirs-q2-earnings-call-produced-its-largest-ever-guidance-raise-heres-what-changed",
       "d": "2026-08"
+    },
+    {
+      "t": "Palantir's Maven Is Now an Official Pentagon Program (Motley Fool)",
+      "u": "https://fool.com/investing/2026/08/25/palantirs-maven-is-now-an-official-pentagon-progra",
+      "d": "2026-08-25"
     }
   ]
 }

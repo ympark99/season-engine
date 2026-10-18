@@ -1,62 +1,361 @@
 {
-  "m": "US", "code": "RKLB", "name": "Rocket Lab", "theme": "우주",
-  "at": "2026-10-14", "full": "2026-10-14", "by": "Claude 정기 조사",
-  "position": "소형 발사 Electron은 올해 17번째 발사까지 이어가며 독주하고 우주선·방산 수주 잔고도 크게 늘었지만, 중형 발사체 Neutron 첫 발사가 연내 어려울 수 있어 SpaceX와의 격차를 줄일 시점이 늦어지고 있다. 다음 분기 관건은 Neutron 발사대 인도 일정과 3분기 실적(매출 2.5억~2.65억 달러 가이던스) 달성 여부.",
-  "grade": {
-    "g": "B", "label": "경쟁력 양호",
-    "why": "소형 발사 빈도와 우주선·방산 수주(잔고 23.6억 달러)는 강점. 반면 Neutron이 시험 중 탱크 파손 후 일정이 밀려 연내 발사가 불투명하고, 대형 계약 일부가 Neutron 탑재를 전제로 해 일정 위험이 크며 영업 손실도 지속 중"
+ "m": "US",
+ "code": "RKLB",
+ "name": "Rocket Lab",
+ "theme": "우주",
+ "at": "2026-10-19",
+ "full": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "position": "소형 발사 Electron은 올해 17번째 발사까지 이어가며 독주하고 우주선·방산 수주 잔고도 크게 늘었지만, 중형 발사체 Neutron 첫 발사가 10월 14일 회사 공시로 2027년으로 공식 조정돼 SpaceX와의 격차를 줄일 시점이 늦어졌다. 다음 관건은 3분기 실적(매출 2.5억~2.65억 달러 가이던스) 달성 여부와 Neutron 구체 일정 제시.",
+ "grade": {
+  "g": "B",
+  "label": "경쟁력 양호",
+  "why": "소형 발사 빈도와 우주선·방산 수주(잔고 23.6억 달러)는 강점. 반면 Neutron 첫 발사가 2026년 4분기에서 2027년으로 공식 연기(구체 날짜 미제시)됐고, 대형 계약 일부가 Neutron 탑재를 전제로 해 일정 위험이 크며 영업 손실도 지속 중"
+ },
+ "peers": [
+  {
+   "name": "SpaceX",
+   "m": null,
+   "code": null
   },
-  "peers": [
-    {"name": "SpaceX", "m": null, "code": null},
-    {"name": "Blue Origin", "m": null, "code": null},
-    {"name": "Firefly Aerospace", "m": "US", "code": "FLY"},
-    {"name": "Redwire", "m": "US", "code": "RDW"},
-    {"name": "Intuitive Machines", "m": "US", "code": "LUNR"}
-  ],
-  "axes": [
-    {"k": "소형 발사 (Electron)", "me": "2026년 9월 19일 기준 올해 17번째, 통산 96번째 Electron 발사. 2025년 21회에서 올해 연간 최다 기록 경신 전망", "vs": "상업 소형 발사 분야에서 같은 빈도의 경쟁 발사체는 확인 안 됨. 대형 발사는 SpaceX가 올해 8월 말까지 Falcon 9 100회 이상", "verdict": "선두권", "conf": "보도", "src": [2, 7]},
-    {"k": "중형 발사 (Neutron)", "me": "1단 탱크가 1월 수압시험 중 파손, 제조 결함 확인 후 설계 수정·재인증 진행. 회사는 4분기 발사대 인도를 목표로 하나 연내 발사 창이 좁아진다고 공시", "vs": "SpaceX Falcon 9은 이미 고빈도 운용, Blue Origin New Glenn은 4월 3차 발사에서 궤도 오류, 8월 엔진 문제 확인", "verdict": "열세", "conf": "공시", "src": [0, 1, 7]},
-    {"k": "우주선·위성 제작", "me": "SDA 전송층 Tranche 2 베타 위성 18기($5억 계약, 회사 페이지상 발사 2027년 중반), 2026년 8월 우주군 SB-AMTI용 $3.97억 계약 수주", "vs": "SB-AMTI 첫 대형 계약은 SpaceX가 $41.6억으로 수주, 우주군은 3개사에 총 $6.15억 배분", "verdict": "동등", "conf": "보도", "src": [4, 5, 6]},
-    {"k": "수주 잔고·성장", "me": "2분기 매출 2.34억 달러(+62%), 수주 잔고 23.6억 달러(+137%), 3분기 매출 가이던스 2.5억~2.65억 달러", "vs": "경쟁사와 같은 기준의 비교 수치는 확인 안 됨", "verdict": "불확실", "conf": "공시", "src": [3]},
-    {"k": "수익성", "me": "2분기 순손실 4,930만 달러, 조정 EBITDA 손실 880만 달러. 3분기 조정 EBITDA 손실 1,700만~2,300만 달러 가이던스", "vs": "경쟁사와 같은 기준의 비교 수치는 확인 안 됨", "verdict": "불확실", "conf": "공시", "src": [3]},
-    {"k": "방산 페이로드 (Geost)", "me": "2025년 8월 Geost를 2.75억 달러에 인수해 발사·위성·탑재체까지 수직 계열화", "vs": "경쟁사의 동급 수직 계열화 수준은 확인 안 됨", "verdict": "불확실", "conf": "보도", "src": [2]}
-  ],
-  "checkpoints": [
-    {"id": "neutron_pad", "what": "Neutron 발사대(Wallops) 인도", "d": "2026-Q4", "kind": "양산", "status": "진행", "conf": "공시", "src": [0, 1],
-     "log": [{"d": "2026-08-10", "s": "진행", "note": "2분기 공시: 1단 탱크 생산이 4분기 발사대 인도 목표와 맞춰짐, 연내 발사 창은 좁아짐"}]},
-    {"id": "neutron_first", "what": "Neutron 첫 발사", "d": "2026-Q4", "kind": "출시", "status": "지연", "conf": "공시", "src": [0, 1],
-     "log": [
-       {"d": "2026-01", "s": "지연", "note": "1단 탱크 수압시험 중 파손으로 일정 후퇴"},
-       {"d": "2026-10-14", "s": "지연", "note": "연내 발사 약속은 철회된 상태, 2027년 초 가능성 거론. 확정 날짜 없음"}]},
-    {"id": "q3_earn", "what": "3분기 실적 발표 (매출 가이던스 2.5억~2.65억 달러)", "d": "2026-11-09", "kind": "실적", "status": "예정", "conf": "추정", "src": [8],
-     "log": [{"d": "2026-10-14", "s": "예정", "note": "집계 사이트의 예상일이며 회사 공식 확정은 확인 안 됨"}]},
-    {"id": "sda_t2tl_beta", "what": "SDA 전송층 Tranche 2 베타 위성 18기 발사", "d": "2027-06", "kind": "출시", "status": "예정", "conf": "추정", "src": [6],
-     "log": [{"d": "2026-10-14", "s": "예정", "note": "회사 미션 페이지상 2027년 중반 발사 예정, SDA 원래 목표(2026-09)보다 늦음"}]},
-    {"id": "sbamti", "what": "SB-AMTI 위성(Neutron 탑재 예정) 제작 진행", "d": "2026-Q4", "kind": "수주", "status": "진행", "conf": "보도", "src": [5],
-     "log": [{"d": "2026-08-04", "s": "진행", "note": "우주군 $3.97억 고정가 계약 공개, 추가 위성 옵션 포함"}]},
-    {"id": "electron_record", "what": "Electron 연간 최다 발사 기록 경신", "d": "2026-Q4", "kind": "기타", "status": "진행", "conf": "보도", "src": [2],
-     "log": [{"d": "2026-09-19", "s": "진행", "note": "올해 17번째 발사, 2025년 21회 대비 남은 횟수가 관건"}]},
-    {"id": "q2_earn", "what": "2분기 실적 발표 (매출 2.34억 달러, 잔고 23.6억 달러)", "d": "2026-08-10", "kind": "실적", "status": "완료", "conf": "공시", "src": [3],
-     "log": [{"d": "2026-08-10", "s": "완료", "note": "매출 전년 대비 +62%, 수주 잔고 +137%"}]}
-  ],
-  "metrics": [
-    {"k": "2분기 매출", "v": "2.34억 달러 (+62%)", "asof": "2026-06", "src": [3]},
-    {"k": "수주 잔고", "v": "23.6억 달러 (+137%)", "asof": "2026-06", "src": [3]},
-    {"k": "3분기 매출 가이던스", "v": "2.5억~2.65억 달러", "asof": "2026-08", "src": [3]},
-    {"k": "Electron 2026년 발사 횟수", "v": "17회 (통산 96회)", "asof": "2026-09-19", "src": [2]}
-  ],
-  "updates": [
-    {"d": "2026-10-14", "note": "전체 조사 — Electron과 수주 잔고는 강하나 Neutron 연내 발사가 불투명해 11월 실적 발표가 다음 확인 지점", "src": [0, 3]}
-  ],
-  "sources": [
-    {"t": "Window for 2026 launch debut of Rocket Lab's Neutron rocket 'is narrowing'", "u": "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/", "d": "2026-08-10"},
-    {"t": "Rocket Lab Corp - Form 10-Q (2026-06-30)", "u": "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000062/rklb-20260630.htm", "d": "2026-08"},
-    {"t": "Rocket Lab reaches 95 Electron missions as 2026 launch cadence accelerates", "u": "https://newspaceeconomy.ca/2026/09/11/rocket-lab-reaches-95-electron-missions-as-2026-launch-cadence-accelerates/", "d": "2026-09-11"},
-    {"t": "Rocket Lab Announces Second Quarter 2026 Financial Results", "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts", "d": "2026-08-10"},
-    {"t": "Rocket Lab wins another massive government contract", "u": "https://www.fool.com/investing/2026/08/06/rocket-lab-wins-another-massive-government-contract/", "d": "2026-08-06"},
-    {"t": "Rocket Lab wins one of its biggest contracts ever (SB-AMTI)", "u": "https://www.nasdaq.com/articles/rocket-lab-wins-one-its-biggest-contracts-ever", "d": "2026-08"},
-    {"t": "Tranche 2 Transport Layer Beta - Rocket Lab", "u": "https://rocketlabusa.com/missions/upcoming-missions/tranch-2-transport-layer-beta", "d": "2026"},
-    {"t": "Week in review 2026-08-30 (SpaceX, New Glenn)", "u": "https://keeptrack.space/week-in-review/week-in-review-2026-08-30", "d": "2026-08-30"},
-    {"t": "RKLB Rocket Lab Corporation - Earnings Whispers", "u": "https://beta.earningswhispers.com/go/w/RKLB", "d": "2026-10"}
-  ]
+  {
+   "name": "Blue Origin",
+   "m": null,
+   "code": null
+  },
+  {
+   "name": "Firefly Aerospace",
+   "m": "US",
+   "code": "FLY"
+  },
+  {
+   "name": "Redwire",
+   "m": "US",
+   "code": "RDW"
+  },
+  {
+   "name": "Intuitive Machines",
+   "m": "US",
+   "code": "LUNR"
+  }
+ ],
+ "axes": [
+  {
+   "k": "소형 발사 (Electron)",
+   "me": "2026년 9월 19일 기준 올해 17번째, 통산 96번째 Electron 발사. 2025년 21회에서 올해 연간 최다 기록 경신 전망",
+   "vs": "상업 소형 발사 분야에서 같은 빈도의 경쟁 발사체는 확인 안 됨. 대형 발사는 SpaceX가 올해 8월 말까지 Falcon 9 100회 이상",
+   "verdict": "선두권",
+   "conf": "보도",
+   "src": [
+    2,
+    7
+   ]
+  },
+  {
+   "k": "중형 발사 (Neutron)",
+   "me": "1단 탱크가 1월 수압시험 중 파손된 데 이어 점검에서 복합소재 문제가 확인돼(회사는 해결했다고 밝힘) 10월 14일 첫 발사 목표를 2026년 4분기에서 2027년으로 조정, 구체 날짜는 미제시",
+   "vs": "SpaceX Falcon 9은 이미 고빈도 운용, Blue Origin New Glenn은 4월 3차 발사에서 궤도 오류, 8월 엔진 문제 확인",
+   "verdict": "열세",
+   "conf": "공시",
+   "src": [
+    0,
+    1,
+    9,
+    10,
+    7
+   ]
+  },
+  {
+   "k": "우주선·위성 제작",
+   "me": "SDA 전송층 Tranche 2 베타 위성 18기($5억 계약, 회사 페이지상 발사 2027년 중반), 2026년 8월 우주군 SB-AMTI용 $3.97억 계약 수주",
+   "vs": "SB-AMTI 첫 대형 계약은 SpaceX가 $41.6억으로 수주, 우주군은 3개사에 총 $6.15억 배분",
+   "verdict": "동등",
+   "conf": "보도",
+   "src": [
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "k": "수주 잔고·성장",
+   "me": "2분기 매출 2.34억 달러(+62%), 수주 잔고 23.6억 달러(+137%), 3분기 매출 가이던스 2.5억~2.65억 달러",
+   "vs": "경쟁사와 같은 기준의 비교 수치는 확인 안 됨",
+   "verdict": "불확실",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "수익성",
+   "me": "2분기 순손실 4,930만 달러, 조정 EBITDA 손실 880만 달러. 3분기 조정 EBITDA 손실 1,700만~2,300만 달러 가이던스",
+   "vs": "경쟁사와 같은 기준의 비교 수치는 확인 안 됨",
+   "verdict": "불확실",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "방산 페이로드 (Geost)",
+   "me": "2025년 8월 Geost를 2.75억 달러에 인수해 발사·위성·탑재체까지 수직 계열화",
+   "vs": "경쟁사의 동급 수직 계열화 수준은 확인 안 됨",
+   "verdict": "불확실",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  }
+ ],
+ "checkpoints": [
+  {
+   "id": "neutron_pad",
+   "what": "Neutron 발사대(Wallops) 인도",
+   "d": "2026-Q4",
+   "kind": "양산",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ],
+   "log": [
+    {
+     "d": "2026-08-10",
+     "s": "진행",
+     "note": "2분기 공시: 1단 탱크 생산이 4분기 발사대 인도 목표와 맞춰짐, 연내 발사 창은 좁아짐"
+    }
+   ]
+  },
+  {
+   "id": "neutron_first",
+   "what": "Neutron 첫 발사 (회사 목표 2027년)",
+   "d": "2027",
+   "kind": "출시",
+   "status": "지연",
+   "conf": "공시",
+   "src": [
+    0,
+    1,
+    9
+   ],
+   "log": [
+    {
+     "d": "2026-01",
+     "s": "지연",
+     "note": "1단 탱크 수압시험 중 파손으로 일정 후퇴"
+    },
+    {
+     "d": "2026-10-14",
+     "s": "지연",
+     "note": "연내 발사 약속은 철회된 상태, 2027년 초 가능성 거론. 확정 날짜 없음"
+    },
+    {
+     "d": "2026-10-14",
+     "s": "지연",
+     "note": "회사 공시로 첫 발사 목표를 2027년으로 공식 조정(이전 2026-Q4), 구체 날짜 미제시"
+    }
+   ]
+  },
+  {
+   "id": "q3_earn",
+   "what": "3분기 실적 발표 (매출 가이던스 2.5억~2.65억 달러)",
+   "d": "2026-11-09",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    8
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "집계 사이트의 예상일이며 회사 공식 확정은 확인 안 됨"
+    }
+   ]
+  },
+  {
+   "id": "sda_t2tl_beta",
+   "what": "SDA 전송층 Tranche 2 베타 위성 18기 발사",
+   "d": "2027-06",
+   "kind": "출시",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    6
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "회사 미션 페이지상 2027년 중반 발사 예정, SDA 원래 목표(2026-09)보다 늦음"
+    }
+   ]
+  },
+  {
+   "id": "sbamti",
+   "what": "SB-AMTI 위성(Neutron 탑재 예정) 제작 진행",
+   "d": "2026-Q4",
+   "kind": "수주",
+   "status": "진행",
+   "conf": "보도",
+   "src": [
+    5
+   ],
+   "log": [
+    {
+     "d": "2026-08-04",
+     "s": "진행",
+     "note": "우주군 $3.97억 고정가 계약 공개, 추가 위성 옵션 포함"
+    }
+   ]
+  },
+  {
+   "id": "electron_record",
+   "what": "Electron 연간 최다 발사 기록 경신",
+   "d": "2026-Q4",
+   "kind": "기타",
+   "status": "진행",
+   "conf": "보도",
+   "src": [
+    2
+   ],
+   "log": [
+    {
+     "d": "2026-09-19",
+     "s": "진행",
+     "note": "올해 17번째 발사, 2025년 21회 대비 남은 횟수가 관건"
+    }
+   ]
+  },
+  {
+   "id": "q2_earn",
+   "what": "2분기 실적 발표 (매출 2.34억 달러, 잔고 23.6억 달러)",
+   "d": "2026-08-10",
+   "kind": "실적",
+   "status": "완료",
+   "conf": "공시",
+   "src": [
+    3
+   ],
+   "log": [
+    {
+     "d": "2026-08-10",
+     "s": "완료",
+     "note": "매출 전년 대비 +62%, 수주 잔고 +137%"
+    }
+   ]
+  }
+ ],
+ "metrics": [
+  {
+   "k": "2분기 매출",
+   "v": "2.34억 달러 (+62%)",
+   "asof": "2026-06",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "수주 잔고",
+   "v": "23.6억 달러 (+137%)",
+   "asof": "2026-06",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "3분기 매출 가이던스",
+   "v": "2.5억~2.65억 달러",
+   "asof": "2026-08",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "Electron 2026년 발사 횟수",
+   "v": "17회 (통산 96회)",
+   "asof": "2026-09-19",
+   "src": [
+    2
+   ]
+  }
+ ],
+ "updates": [
+  {
+   "d": "2026-10-19",
+   "note": "10/14 회사 공시로 Neutron 첫 발사 목표가 2026년 4분기→2027년으로 공식 조정(기존엔 보도 수준), 복합소재 문제 확인 후 해결했다고 밝힘. 이미 반영된 위험이라 등급 B 유지, 11월 실적이 다음 확인점",
+   "src": [
+    9,
+    10
+   ]
+  },
+  {
+   "d": "2026-10-14",
+   "note": "전체 조사 — Electron과 수주 잔고는 강하나 Neutron 연내 발사가 불투명해 11월 실적 발표가 다음 확인 지점",
+   "src": [
+    0,
+    3
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Window for 2026 launch debut of Rocket Lab's Neutron rocket 'is narrowing'",
+   "u": "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/",
+   "d": "2026-08-10"
+  },
+  {
+   "t": "Rocket Lab Corp - Form 10-Q (2026-06-30)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000062/rklb-20260630.htm",
+   "d": "2026-08"
+  },
+  {
+   "t": "Rocket Lab reaches 95 Electron missions as 2026 launch cadence accelerates",
+   "u": "https://newspaceeconomy.ca/2026/09/11/rocket-lab-reaches-95-electron-missions-as-2026-launch-cadence-accelerates/",
+   "d": "2026-09-11"
+  },
+  {
+   "t": "Rocket Lab Announces Second Quarter 2026 Financial Results",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-announces-second-quarter-2026-financial-results-posts",
+   "d": "2026-08-10"
+  },
+  {
+   "t": "Rocket Lab wins another massive government contract",
+   "u": "https://www.fool.com/investing/2026/08/06/rocket-lab-wins-another-massive-government-contract/",
+   "d": "2026-08-06"
+  },
+  {
+   "t": "Rocket Lab wins one of its biggest contracts ever (SB-AMTI)",
+   "u": "https://www.nasdaq.com/articles/rocket-lab-wins-one-its-biggest-contracts-ever",
+   "d": "2026-08"
+  },
+  {
+   "t": "Tranche 2 Transport Layer Beta - Rocket Lab",
+   "u": "https://rocketlabusa.com/missions/upcoming-missions/tranch-2-transport-layer-beta",
+   "d": "2026"
+  },
+  {
+   "t": "Week in review 2026-08-30 (SpaceX, New Glenn)",
+   "u": "https://keeptrack.space/week-in-review/week-in-review-2026-08-30",
+   "d": "2026-08-30"
+  },
+  {
+   "t": "RKLB Rocket Lab Corporation - Earnings Whispers",
+   "u": "https://beta.earningswhispers.com/go/w/RKLB",
+   "d": "2026-10"
+  },
+  {
+   "t": "Rocket Lab Provides Update on Neutron Development and Adjusts Target Launch Timing",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-provides-update-neutron-development-and-adjusts",
+   "d": "2026-10-14"
+  },
+  {
+   "t": "Another 'Neutron' rocket delay slows Rocket Lab's SpaceX chase",
+   "u": "https://lightreading.com/satellite/rocket-lab-s-first-neutron-rocket-launch-delayed-to-2027",
+   "d": "2026-10"
+  }
+ ]
 }
