@@ -1,0 +1,204 @@
+{
+ "m": "US",
+ "code": "STM",
+ "name": "STMICROELECTRONICS NY SHS",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "summary": "자동차·산업·개인전자·통신장비(데이터센터·LEO 위성) 업체에 아날로그·MEMS·센서, 전력반도체(SiC 포함), STM32 마이크로컨트롤러, RF·광통신 칩을 판다. 2025년 매출 118억$ 중 72%가 OEM 직판, 28%가 유통 채널이고, 최대 고객 애플이 17.7%를 차지했다. 2026년에는 AWS(데이터센터 칩, 신주인수권 계약)와 SpaceX 스타링크(LEO 위성용 RF 칩) 매출이 늘어 2분기 매출이 1년 전보다 26% 많은 34.9억$였다.",
+ "cust": [
+  {
+   "name": "Apple",
+   "code": "AAPL",
+   "m": "US",
+   "share": 17.7,
+   "conf": "공시",
+   "note": "2025년 20-F에 최대 고객으로 나오며, 비중은 2023년 12.3%, 2024년 14.5%, 2025년 17.7%다. 4개 사업부 모두에서 매출이 잡힌다(센서·아날로그 등 개인전자 쪽)"
+  },
+  {
+   "name": "SpaceX (스타링크)",
+   "code": "SPCX",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "20-F의 주요 고객 명단에 들어 있다. ST는 2026년 5월 2021년 이후 스타링크용 칩셋 75억 개를 공급했다고 밝혔고, 2025년 LEO 매출이 약 6억$, 2026년에는 10억$ 가까이로 늘 것으로 보도됐다(위성·단말 RF 프런트엔드, 위성 간 레이저 링크)"
+  },
+  {
+   "name": "Amazon Web Services (AWS)",
+   "code": "AMZN",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "2026년 2월 9일 6-K: 여러 해에 걸친 수십억$ 규모 공급 계약(고속 연결용 혼성신호 칩, MCU, 아날로그·전력 IC). AWS의 구매 실적에 따라 행사권이 생기는 신주인수권 2,480만 주(행사가 28.38$)를 발행했고, 그 가치만큼 매출에서 차감한다(상반기 600만$). ST는 2026년 데이터센터 매출을 10억$ 이상으로 잡았다"
+  },
+  {
+   "name": "Tesla",
+   "code": "TSLA",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "20-F의 주요 고객 명단(가나다순 10곳)에 들어 있다. 전기차 인버터용 SiC 전력반도체 등 자동차 제품"
+  },
+  {
+   "name": "Mobileye",
+   "code": "MBLY",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "20-F의 주요 고객 명단에 들어 있다. ST는 Mobileye와 ADAS용 EyeQ 칩을 공동 개발하고 생산해 왔다(20-F가 자동차 성장 요인으로 ADAS 고객 프로그램을 꼽음)"
+  },
+  {
+   "name": "Bosch · Continental · Denso · Vitesco (자동차 1차 협력사)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "20-F의 주요 고객 명단에 들어 있다. 차량용 MCU·전력·아날로그 칩을 완성차에 앞서 납품받는 1차 부품사들(Continental 자동차 부문은 Aumovio로, Vitesco는 Schaeffler로 넘어감)"
+  },
+  {
+   "name": "삼성전자 · HP",
+   "code": "005930",
+   "m": "KR",
+   "share": null,
+   "conf": "공시",
+   "note": "20-F의 주요 고객 명단에 들어 있다. 개인전자와 컴퓨터·주변기기 쪽 고객(코드는 삼성전자, HP는 미국 상장 HPQ)"
+  },
+  {
+   "name": "유통 채널 (대리점·판매대리인)",
+   "code": null,
+   "m": null,
+   "share": 28,
+   "conf": "공시",
+   "note": "2025년 매출의 28%(32.6억$)가 유통 채널로 나갔고, 2026년 2분기에는 30%였다. 20-F는 유통사 이름을 밝히지 않는다(부품 유통 사이트에는 Arrow·Avnet·Future Electronics·DigiKey·Mouser가 공인 유통사로 표시됨)"
+  }
+ ],
+ "supp": [
+  {
+   "name": "Sanan Optoelectronics (싼안광뎬, Sanan ST 합작사)",
+   "code": null,
+   "m": null,
+   "item": "중국 충칭 200mm SiC 소자 전용 파운드리",
+   "share": null,
+   "conf": "공시",
+   "note": "2023년 6월 세운 합작사가 ST 고유 공정으로 ST에만 SiC 소자를 만들어 준다(중국 고객용). 총 32억$ 규모 구축(20-F). 상하이 상장사(600703)"
+  },
+  {
+   "name": "Hua Hong Semiconductor (화훙반도체)",
+   "code": null,
+   "m": null,
+   "item": "40nm STM32 마이크로컨트롤러 웨이퍼 위탁생산 (중국 우시 300mm 팹)",
+   "share": null,
+   "conf": "보도",
+   "note": "2024년 11월 제휴를 발표했고, 2026년 3월 중국산 STM32 웨이퍼를 처음 출하했다. 크롤 팹과 같은 마스크를 쓰며, 후공정은 ST 선전 공장과 중국 현지 OSAT가 맡는다. 홍콩 상장사(1347)"
+  },
+  {
+   "name": "Samsung Foundry (삼성전자)",
+   "code": "005930",
+   "m": "KR",
+   "item": "18nm FD-SOI(ePCM) 차세대 STM32 웨이퍼",
+   "share": null,
+   "conf": "보도",
+   "note": "2024년 3월 ST 보도자료: 삼성 파운드리와 공동 개발한 공정으로, 삼성이 칩을 공급하고 ST 크롤 300mm 팹에서도 만든다. 첫 제품 STM32V8은 2025년 11월 발표"
+  },
+  {
+   "name": "GlobalFoundries",
+   "code": "GFS",
+   "m": "US",
+   "item": "프랑스 크롤 300mm 공동 팹 (FD-SOI)",
+   "share": null,
+   "conf": "공시",
+   "note": "20-F: 75억€ 규모 공동 팹 계획으로 프랑스 정부가 최대 약 29억€를 지원하며, 2025년 ST가 1.26억€를 현금으로 받았다"
+  },
+  {
+   "name": "SiCrystal (ROHM 그룹)",
+   "code": null,
+   "m": null,
+   "item": "150mm SiC 기판 웨이퍼",
+   "share": null,
+   "conf": "보도",
+   "note": "2024년 ST 6-K: 독일 뉘른베르크에서 만드는 150mm SiC 기판을 여러 해에 걸쳐 최소 2.3억$어치 사는 확대 계약을 맺었다. ROHM은 도쿄 상장사(6963)"
+  },
+  {
+   "name": "Wolfspeed (옛 Cree)",
+   "code": "WOLF",
+   "m": "US",
+   "item": "150mm SiC 기판·에피 웨이퍼",
+   "share": null,
+   "conf": "보도",
+   "note": "2019년 맺은 다년 공급 계약을 늘려 총액이 8억$를 넘었다고 보도됐다. 지금도 이어지는지는 확인하지 못했다(ST는 스웨덴 노르셰핑과 이탈리아 카타니아에서 SiC 기판을 직접 만들기도 한다)"
+  },
+  {
+   "name": "후공정 외주 업체 (중국 현지 OSAT, 이름 비공개)",
+   "code": null,
+   "m": null,
+   "item": "조립·패키징·테스트",
+   "share": null,
+   "conf": "보도",
+   "note": "20-F는 웨이퍼 생산과 조립·테스트 일부를 외부 파운드리·후공정 업체에 맡긴다고만 적었다. 화훙 생산 STM32의 패키징·테스트는 현지 OSAT 협력사가 맡는다고 보도됐다"
+  },
+  {
+   "name": "ASML",
+   "code": "ASML",
+   "m": "US",
+   "item": "노광장비(스캐너·스테퍼)",
+   "share": null,
+   "conf": "추정",
+   "note": "20-F가 전공정 장비로 스테퍼·스캐너를 꼽고, 크롤·아그라테 300mm 팹을 돌리는데 노광 스캐너는 ASML이 사실상 독점이라 유추했다. 공시·보도로 확인된 것은 아님"
+  }
+ ],
+ "segs": [
+  {
+   "name": "아날로그·MEMS·센서 (AM&S)",
+   "code": null,
+   "m": null,
+   "amt": 5085,
+   "share": 43.1,
+   "note": "2025년. 아날로그, MEMS, 이미징 센서. 2026년 2분기 14.3억$로 1년 전보다 26% 늘었다(이미징·MEMS). 2026년 2월 NXP MEMS 센서 사업을 인수해 이 부문을 키웠다"
+  },
+  {
+   "name": "마이크로컨트롤러·임베디드 (EMP)",
+   "code": null,
+   "m": null,
+   "amt": 3580,
+   "share": 30.3,
+   "note": "2025년. 범용 STM32 MCU, 차량용 MCU, 맞춤형 프로세서, 보안 칩. 2026년 2분기 11.5억$로 1년 전보다 35.5% 늘었다"
+  },
+  {
+   "name": "전력·개별소자 (P&D)",
+   "code": null,
+   "m": null,
+   "amt": 1685,
+   "share": 14.3,
+   "note": "2025년. SiC·GaN 전력반도체 등. 판가 하락으로 1년 새 31.5% 줄었고, 2026년 2분기에도 9,900만$ 영업손실이었다"
+  },
+  {
+   "name": "RF·광통신 (RFOC)",
+   "code": null,
+   "m": null,
+   "amt": 1436,
+   "share": 12.2,
+   "note": "2025년. LEO 위성(스타링크)용 RF 칩, 데이터센터 광 인터커넥트. 2026년 2분기 4.5억$로 1년 전보다 32% 늘었고 영업이익률은 21.2%다"
+  },
+  {
+   "name": "기타",
+   "code": null,
+   "m": null,
+   "amt": 14,
+   "share": 0.1,
+   "note": "2025년"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  { "t": "STMicroelectronics 2025 연차보고서 (Form 20-F)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000093278726000009/stm-20251231.htm" },
+  { "t": "2026년 2분기 실적 발표 (6-K, 2026-07-23)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000093278726000052/c3403c-q226earningspressre.htm" },
+  { "t": "2026년 2분기·상반기 보고서 (6-K, 2026-07-30)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000093278726000058/stm-6k_q2x2026.htm" },
+  { "t": "AWS 협력 확대·신주인수권 발행 (6-K, 2026-02-09)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000094787126000099/ss5924399_6k.htm" },
+  { "t": "STMicro space business >$3B over three years (Via Satellite, 2026-05)", "u": "https://www.satellitetoday.com/technology/2026/05/04/stmicroelectronics-expects-its-space-business-to-reach-more-than-3b-over-three-years/" },
+  { "t": "ST delivers 7.5bn Starlink chips (Advanced Television, 2026-05)", "u": "https://www.advanced-television.com/2026/05/07/st-microelectronics-delivers-7-5bn-starlink-chips/" },
+  { "t": "ST launches locally made STM32 MCUs in China via Huahong (TrendForce, 2026-03)", "u": "https://www.trendforce.com/news/2026/03/23/news-stmicroelectronics-launches-locally-made-stm32-mcus-in-china-via-huahong-partnership/" },
+  { "t": "ST microcontrollers go to 18nm FD-SOI with Samsung (eeNews Europe)", "u": "https://www.eenewseurope.com/en/st-microcontrollers-go-to-18nm-fdsoi-with-phase-change-memory/" },
+  { "t": "ROHM(SiCrystal) SiC 기판 공급 계약 확대 (6-K, 2024)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000094787124000407/ss3292488_6k.htm" },
+  { "t": "ST expands 150mm SiC wafer deal with Cree/Wolfspeed (eeNews Europe)", "u": "https://www.eenewseurope.com/en/stmicroelectronics-expands-150mm-sic-wafer-deal-with-cree/" },
+  { "t": "SEC EDGAR 제출 목록 (CIK 0000932787)", "u": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000932787" }
+ ]
+}
