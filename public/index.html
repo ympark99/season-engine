@@ -2094,9 +2094,9 @@ const EQY={YTD:'ytd','1M':'1m','3M':'3m','6M':'6m','1Y':'1y','2Y':'2y','3Y':'3y'
 async function eqLoad(per){const S=state.cur;if(!S||!per)return;state.eqPer=per;if(EQY[per])state.years=EQY[per];
   if(!state.curves[per]){drawDetail();try{const j=await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}&curve=${per}`);if(state.cur!==S)return;state.curves[per]=j.curves||{eq:{}}}catch(e){state.curves[per]={eq:{},err:e.message}}}
   if(state.cur===S&&state.eqPer===per)drawDetail()}
-/* 전략 비교 변형 키 = 전략id + '_' + 켜진 토글 글자 (T 익절 · S 손절 · D 저점매수 · A 추가매수 · F 필터 — 서버 lib/effect.js OPTS 가 정한 조합만 있음). 익절(T)은 전체 공통 */
-const SFXN={T:'익절',S:'손절',D:'저점',A:'추가매수',F:'필터'};
-const varKey=id=>{const L=(state.eff?.opts||{})[id]||'';let k='';for(const c of L)if(c==='T'?state.xt:((c==='S'?state.xs:c==='D'?state.xd:c==='A'?state.xa:state.xf)||{})[id])k+=c;return k?id+'_'+k:id};
+/* 전략 비교 변형 키 = 전략id + '_' + 켜진 토글 글자 (T 익절 · S 손절 · D 저점매수 · A 추가매수 · F 필터 · R 트레일링스탑 — 서버 lib/effect.js OPTS 가 정한 조합만 있음). 익절(T)·TS(R)는 전체 공통 */
+const SFXN={T:'익절',S:'손절',D:'저점',A:'추가매수',F:'필터',R:'TS'};
+const varKey=id=>{const L=(state.eff?.opts||{})[id]||'';let k='';for(const c of L)if(c==='T'?state.xt:c==='R'?state.xr:((c==='S'?state.xs:c==='D'?state.xd:c==='A'?state.xa:state.xf)||{})[id])k+=c;return k?id+'_'+k:id};
 const eqKey=(id,eq)=>{const k=varKey(id);return eq[k]?k:id};
 const sfxName=(nm,key)=>nm+[...key.split('_')[1]||''].map(c=>' +'+SFXN[c]).join('');
 const eqName=id=>{const x=(state.eff?.strats||[]).find(z=>z.id===id);return sfxName(x?x.name:id,eqKey(id,state.curves?.[state.eqPer]?.eq||{}))};
@@ -2110,6 +2110,7 @@ function drawHist(){
   const F=E?.follows?.[FP]||null;
   const psel=PERS.length?`<span class="fxper" role="group" aria-label="기준 시작일·옵션">${PERS.map(([k,l])=>`<button type="button" class="pbtn" data-fp="${k}" aria-pressed="${k===FP}">${l}</button>`).join('')}`
     +`<button type="button" class="pbtn sep" data-xt aria-pressed="${!!state.xt}" title="켜면 단기진입·저점매수를 뺀 모든 전략에 +15% 절반 · +30% 전량 익절을 더해">익절</button>`
+    +`<button type="button" class="pbtn" data-xr aria-pressed="${!!state.xr}" title="트레일링스탑 — 켜면 저점매수를 뺀 모든 전략에 보유 중 최고 종가 대비 −15% 아래로 마감한 날 그 −15% 가격에 전량 매도를 더해">TS</button>`
     +`<button type="button" class="pbtn" data-xsort aria-pressed="${!!state.xsort}" title="누를 때마다 최종 수익 내림차순 → 오름차순 → 기본 순서">수익정렬${['','▼','▲'][state.xsort||0]}</button></span>`:'';
   // 토글 — 익절(T, 위 버튼 하나로 전체 공통) · 손절(S: 계속 보유·봄·여름만 보유·종합매매) · 저점매수(D: 봄·여름만 보유·눌림매매·단기진입) · 필터(F: 일목기준선)
   const XS=state.xs||(state.xs={}),XD=state.xd||(state.xd={}),XF=state.xf||(state.xf={}),XA=state.xa||(state.xa={});
@@ -2126,17 +2127,20 @@ function drawHist(){
     '최대수익·최대손실 = 기간 중 평가금액이 시드보다 가장 높았을 때·가장 낮았을 때. 최대하락 = 기간 중 평가금액 고점 대비 가장 크게 빠졌던 금액과 비율. 날짜는 마우스를 올리면 보여. 칸 테두리: 빨강 = 그 칸에서 가장 좋은 전략, 파랑 = 가장 나쁜 전략.',
     '평단은 지금 들고 있는 물량 기준 (현금이면 —). 미국 종목도 원화 시드로 수익률만 적용 (환율 미반영).',
     '버튼: 위 [익절] = 단기진입·저점매수를 뺀 모든 전략에 +15% 절반 · +30% 전량 익절을 더함 (계절 매도 조건이 있으면 둘 다 적용). [수익정렬] = 한 번 최종 수익 내림차순 · 두 번 오름차순 · 세 번 기본 순서. 카드의 [저점매수] = 겨울 저점매수를 함께 (종합매매에는 이미 들어 있음), [필터] = 일목기준선 횡보 필터 (켜면 테두리도 그 기준으로 다시 매김). 전략 이름 옆 i 를 누르면 그 전략 규칙이 나와.',
+    'TS(트레일링스탑) = 위 [TS] 를 켜면 저점매수를 뺀 모든 전략에 적용. 매수 뒤 최고 종가(고점)를 계속 기억하고, 종가가 그 고점 대비 −15% 아래로 마감한 날 전량 매도 — 체결은 그날 종가가 아니라 고점 −15% 가격으로 계산해 (일봉 저가가 5년치가 없어 판정은 종가로). 15%는 AI 기술주 기준: 내 종목 78개 5년 백테스트에서 10·12·15% 중 수익을 가장 덜 깎았고 (10%는 하루 변동에 자주 걸림), 최대하락은 평균 약 −44% → −34%로 줄었어. 대신 계속 보유처럼 크게 오르는 종목은 중간에 털려 수익이 많이 줄 수 있어. 다시 들어가는 규칙은 전략마다 달라 (전략 i 에 나와). 익절·손절과 같이 켜면 먼저 오는 쪽으로 판다.',
     '카드의 [손절] = 진입가 −15% 종가 이탈 시 전량 매도 (계속 보유·봄·여름만 보유·종합매매). 그 뒤 되돌아오는 규칙:'];
   const DDINFO='최대하락 = 기간 중 평가금액이 그때까지의 고점에서 가장 크게 빠졌던 순간의 하락 금액과 하락률 (고점 대비).\n\n예: 1,000만원 → 1,400만원(고점) → 1,050만원이면 최대하락 −350만원 · −25%. 시드 대비 손실인 최대손실과 달리, 수익 중에 얼마나 반납했는지를 보여줘.\n\n날짜(가장 깊었던 날)는 마우스를 올리면 보여.';
+  const TSTXT={H:'보유 중 최고 종가 대비 −15% 아래로 마감한 날, 그 −15% 가격에 전량 매도하고 끝 (현금 유지).',SS:'보유 중 최고 종가 대비 −15% 아래 마감 시 그 가격에 전량 매도, 다음 봄 확정·여름 전환 때 다시 진입.',ST:'보유 중 최고 종가 대비 −15% 아래 마감 시 그 가격에 전량 매도, 다음 단기진입 신호 때 다시 진입 (+10%·+20% 익절, −15% 손절과 함께 — 먼저 오는 쪽).',SF:'보유 중 최고 종가 대비 −15% 아래 마감 시 그 가격에 전량 매도, 비중이 올라가는 다음 전환(예: 가을→겨울→봄)부터 원래 비중 규칙대로.',PB:'보유 중 최고 종가 대비 −15% 아래 마감 시 그 가격에 전량 매도, 다음 눌림목 때 다시 진입.',KJ:'보유 중 최고 종가 대비 −15% 아래 마감 시 그 가격에 전량 매도, 다음 기준선 돌파 때 다시 진입.'};
   const KJSHORT='기준선 돌파·이틀 연속 위 마감 · 횡보 중 진입 제한, 돌파는 기준선 +1% 위 마감만';
-  const shortOf=(x,k)=>{const add=[];if(k.includes('T'))add.push('익절 +15% 절반·+30% 전량');if(k.includes('S'))add.push('손절 −15%');if(k.includes('D'))add.push('겨울 저점매수');
+  const shortOf=(x,k)=>{const add=[];if(k.includes('T'))add.push('익절 +15% 절반·+30% 전량');if(k.includes('R'))add.push('TS 고점 −15%');if(k.includes('S'))add.push('손절 −15%');if(k.includes('D'))add.push('겨울 저점매수');
     return (x.id==='KJ'&&k.includes('A')?'기준선 돌파·이틀 연속 위 마감 50% → 터치 25%×2 → 이탈 전량 매도'+(k.includes('F')?' · 횡보 중 추가매수·진입 제한':''):x.id==='KJ'&&k.includes('F')?KJSHORT+' (100% 진입)':x.short||x.desc)+(add.length?' · '+add.join(' · '):'')};
   const infoOf=x=>{const k=keyOf(x.id).split('_')[1]||'';let t=x.desc;
     if(x.id==='KJ'){const ps=x.desc.split(' / ').filter(z=>!z.startsWith('필터:')&&!z.startsWith('익절:')&&!z.startsWith('추가매수:')),ex=n=>x.desc.split(' / ').find(z=>z.startsWith(n));
-      return [...ps,...(k.includes('A')?[ex('추가매수:')+' (켜짐)']:['추가매수 꺼짐 — 카드의 [추가매수] 버튼을 켜면 옛 방식(진입 50% + 터치 25%×2 추가)으로 계산해']),...(k.includes('T')?[ex('익절:')]:['익절 꺼짐 — 위 [익절] 버튼으로 켜면 평단 +15% 절반 · +30% 전량']),...(k.includes('F')?[ex('필터:')+' (켜짐)']:['필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어'])].join(' / ')}
+      return [...ps,...(k.includes('R')?['TS: '+TSTXT.KJ]:[]),...(k.includes('A')?[ex('추가매수:')+' (켜짐)']:['추가매수 꺼짐 — 카드의 [추가매수] 버튼을 켜면 옛 방식(진입 50% + 터치 25%×2 추가)으로 계산해']),...(k.includes('T')?[ex('익절:')]:['익절 꺼짐 — 위 [익절] 버튼으로 켜면 평단 +15% 절반 · +30% 전량']),...(k.includes('F')?[ex('필터:')+' (켜짐)']:['필터 꺼짐 — 카드의 [필터] 버튼으로 횡보·가짜 돌파 필터를 켜서 비교할 수 있어'])].join(' / ')}
     t=t.replace(/\. \[(익절|손절)\][^/]*/g,'').replace(/ \[(익절|손절)\][^/]*/g,'');   // 설명 속 버튼 안내는 켜진 것만 아래에 다시 붙인다
     if(k.includes('T')&&x.id!=='ST')t+=' / 익절: 진입가(종합매매는 평단) 대비 +15%에서 절반, +30%에서 전량 매도.'+(x.id==='SF'?' 가을 50% 같은 계절 매도는 그대로 같이 적용돼 (익절로 줄어든 보유분의 50%).':x.id==='SS'||x.id==='PB'?' 계절·손절가 매도 조건과 함께 적용 — 먼저 오는 쪽으로 판다.':'')+(x.id==='SS'||x.id==='SF'?' 익절 뒤엔 다음 진입 신호(비중이 올라가는 전환)까지 쉬어.':'');
     if(k.includes('S'))t+=' / 손절: '+STOPTXT[x.id];
+    if(k.includes('R'))t+=' / TS: '+TSTXT[x.id];
     if(k.includes('D'))t+=x.id==='SS'?` / ${DIPTXT} 저점매수 매도 전에 봄 확정·여름이 되면 그대로 계절 보유로 넘어가 그 밖으로 바뀌면 판다.`:x.id==='PB'?` / ${DIPTXT} 눌림목과 저점매수 중 먼저 온 쪽으로 들어가고, 들어간 쪽의 매도 규칙을 따른다.`:` / ${DIPTXT} 단기진입 신호 때는 단기진입 규칙, 보유 중이 아닐 때 저점매수 조건이 오면 저점매수 규칙으로 들어간다.`;
     return t};
   // 최대수익 · 최대손실 · 최대하락 칸별로 가장 좋은 값 빨강, 가장 나쁜 값 파랑 (같은 값이면 모두)
@@ -2197,6 +2201,7 @@ function drawHist(){
   $('d-s-strat').querySelectorAll('[data-sel]').forEach(c=>{const go=()=>{const id=c.dataset.sel,a=state.eqSel||(state.eqSel=[]),i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);drawHist();if(a.length)eqLoad(FP);else drawDetail()};
     c.onclick=e=>{if(e.target.closest('button'))return;go()};c.onkeydown=e=>{if(e.target===c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();go()}}});
   $('d-s-strat').querySelectorAll('[data-xt]').forEach(b=>b.onclick=()=>{state.xt=!state.xt;drawHist()});
+  $('d-s-strat').querySelectorAll('[data-xr]').forEach(b=>b.onclick=()=>{state.xr=!state.xr;drawHist()});
   $('d-s-strat').querySelectorAll('[data-xsort]').forEach(b=>b.onclick=()=>{state.xsort=((state.xsort||0)+1)%3;drawHist()});
   $('d-s-strat').querySelectorAll('[data-xs]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.xs;state.xs=state.xs||{};state.xs[k]=!state.xs[k];drawHist()});
   $('d-s-strat').querySelectorAll('[data-dip]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.dip;state.xd=state.xd||{};state.xd[k]=!state.xd[k];drawHist()});

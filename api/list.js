@@ -74,7 +74,7 @@ async function list(req, res) {
     if (A) {
       const fc = fits[i];
       if (fc && fc.ld === r.lastDate && fc.rev === JUDGE_REV) r.fit = fc.fit;
-      else try { const f = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP).fit; r.fit = f ? { grade: f.grade, label: f.label, why: f.why } : null; fitPut.push([fitKeys[i], { ld: r.lastDate, rev: JUDGE_REV, fit: r.fit }]); }
+      else try { const f = effectOf(A, historyOf(A, eng.cal, KEEP), null, KEEP, {}, null, true).fit; r.fit = f ? { grade: f.grade, label: f.label, why: f.why } : null; fitPut.push([fitKeys[i], { ld: r.lastDate, rev: JUDGE_REV, fit: r.fit }]); }
       catch { r.fit = null; }
     }
     const f = fund[`${it.m}:${it.code}`] || null;
