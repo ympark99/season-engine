@@ -31,8 +31,12 @@ for f in sorted(glob.glob(os.path.join(REPO, 'public/data/intel/[A-Z][A-Z]_*.jso
         chk('metric', m.get('src'))
     for u in d.get('updates', []):
         chk('upd', u.get('src'))
-    if not d.get('grade'):
+    g = (d.get('grade') or {}).get('g')
+    if not g:
         print(name, 'NO_GRADE')
+        bad += 1
+    elif g not in ('S', 'A', 'B', 'C', 'F'):
+        print(name, 'BAD_GRADE', g)
         bad += 1
 print('bad', bad)
 raise SystemExit(1 if bad else 0)

@@ -3,7 +3,7 @@
 먼저 {REPO}/public/data/intel/README.md 를 읽고 형식을 지켜라. 기존 파일을 읽고 '바뀐 부분만' 고친다:
  - updates 맨 앞에 {d:"{TODAY}", note, src:[sources 번호]} (같은 소식을 이미 쓴 항목이 있으면 추가하지 않는다)
  - checkpoints 의 status·log 갱신(바뀌면 log 에 {d,s,note} 한 줄 추가, 지연이면 이전 날짜를 note 에), 끝난 것은 status "완료", 새 일정이 확인되면 checkpoints 추가(날짜 모르면 YYYY-MM/Qn/H1·H2/YYYY, 지어내지 마라), 날짜 확정 시 d 갱신
- - axes verdict 가 바뀌면 chg 에 {d,note} 로 이유, metrics 갱신, sources 에 새 출처 추가(번호는 뒤에 붙임), grade 판단이 바뀌면 grade 와 updates 에 이유
+ - axes verdict 가 바뀌면 chg 에 {d,note} 로 이유, metrics 갱신, sources 에 새 출처 추가(번호는 뒤에 붙임), grade 판단이 바뀌면 grade 와 updates 에 이유(등급은 S·A·B·C·F 만 — README 기준, D 는 쓰지 않음; S/F 해당 여부도 함께 판단)
  - at="{TODAY}" (full 은 그대로)
  - 필요하면 WebSearch 몇 번으로 근거를 보강하되 res 의 출처를 우선 쓴다. 출처 없는 숫자·판정·날짜는 쓰지 않는다. 증권사·애널리스트 이름 금지. 회사 목표치는 '목표'. log 최근 20개, updates 30개, chg 10개만.
  저장 후 python3 json.load 검증 + axes·checkpoints·metrics·updates 의 src 번호가 모두 0 이상 len(sources) 미만인지 검사. 최종 응답은 한 줄: "{M}:{CODE} 갱신 — 요약".
