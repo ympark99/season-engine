@@ -14,6 +14,7 @@ os.makedirs(W, exist_ok=True)
 idx = json.load(open(os.path.join(D, 'index.json')))
 meta = idx.get('_meta', {})
 refresh = meta.get('refreshDays', 7)
+full_off = bool(meta.get('fullOff'))   # True 면 정기 전체 갱신 멈춤 (신규 종목 전체 조사·매일 확인·깊은 갱신은 그대로)
 
 stocks, err = None, None
 for i in range(4):
@@ -50,7 +51,7 @@ for x in targets:
     k = f"{x['m']}:{x['code']}"
     if (x['m'], x['code']) in newkeys or k not in idx:
         continue
-    if (t0 - datetime.date.fromisoformat(idx[k]['full'])).days >= refresh:
+    if not full_off and (t0 - datetime.date.fromisoformat(idx[k]['full'])).days >= refresh:
         due.append(x)
 dueset = {(x['m'], x['code']) for x in due}
 
@@ -76,7 +77,7 @@ for f in os.listdir(pd):
     t = open(os.path.join(pd, f)).read().replace('{TODAY}', today).replace('{REPO}', REPO).replace('{WORK}', W)
     open(f'{W}/prompts/{f}', 'w').write(t)
 
-print(f'today={today} refreshDays={refresh}')
+print(f'today={today} refreshDays={refresh}' + (' · 정기 전체 갱신 멈춤(fullOff)' if full_off else ''))
 print(f'대상 {len(targets)}종목, 업종 {len({x["theme"] for x in targets})}개, ETF 제외 {excluded}')
 print('신규(5번 전체 조사):', [(x['m'], x['code'], x['name'], x['theme']) for x in new])
 print('정기 전체 갱신(5번):', [(x['m'], x['code'], x['name'], x['theme']) for x in due])

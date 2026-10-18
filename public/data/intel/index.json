@@ -4341,6 +4341,7 @@
     "full": 0,
     "sectors": 33
    }
-  ]
+  ],
+  "fullOff": true
  }
 }
