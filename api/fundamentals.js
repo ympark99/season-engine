@@ -416,7 +416,7 @@ function peerOmOf(sum, theme) {
 const RF_KEY = 'val:rf', FRED = { US: ['DGS10', '미국 10년물'], KR: ['IRLTLT01KRM156N', '한국 장기금리(월간)'] };
 async function rfAll() {
   const cur = (await store.get(RF_KEY)) || {};
-  if (cur.at && Date.now() - Date.parse(cur.at) < 20 * 3600e3) return cur;
+  if (cur.at && Date.now() - Date.parse(cur.at) < 20 * 3600e3 && cur.US?.avg3 != null && cur.KR?.avg3 != null) return cur;   // 3년 평균이 없는 예전 기록이면 바로 다시
   if (!(await store.setNX('lock:rf', 1, 300))) return cur;
   for (const [m, [id, src]] of Object.entries(FRED)) {
     try {
