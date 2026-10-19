@@ -2126,9 +2126,9 @@ function drawIntel(){const S=state.cur,el=$('d-s-intel'),j=state.intel?.j;if(!S|
 /* ---------- 상세 '밸류에이션' 탭 (lib/valuation.js 가 계산, 경쟁·기술 갱신이 가정·근거를 public/data/val 에 넣음) ---------- */
 const VTYPE={cyc:'경기민감',growth:'고성장',mature:'성숙·안정',loss:'적자',na:'DCF 대상 아님'};
 const VTYPE_RULE={cyc:'3~5년 차 마진 → 사이클 중간값 회귀',growth:'10년 · 성장률 둔화 + 마진 → 성숙 마진',mature:'5년 · 성장률만 둔화, 마진 유지',loss:'필요한 매출 규모만 계산',na:'밴드만'};
-const ronicOf=w=>Math.max(w+0.02,0.12);
+const ronicOf=(w,prem)=>prem!=null?w+prem:Math.max(w+0.02,0.12);
 /* lib/valuation.js pvOf 와 같은 식 — 슬라이더로 할인율·영구성장률을 바꿀 때 화면에서 다시 계산 */
-function valPv(S,w,g,I){let v=0;S.fcf.forEach((f,i)=>{v+=f/(1+w)**S.t[i]});const base=S.conv!=null?S.nopatT*S.conv:S.nopatT*(1-g/ronicOf(w));v+=base*(1+g)/(w-g)/(1+w)**S.t[S.t.length-1];return Math.max(0,(v+I.netCash)*I.mul/I.shares)}
+function valPv(S,w,g,I){let v=0;S.fcf.forEach((f,i)=>{v+=f/(1+w)**S.t[i]});const base=S.conv!=null?S.nopatT*S.conv:S.nopatT*(1-g/ronicOf(w,S.prem));v+=base*(1+g)/(w-g)/(1+w)**S.t[S.t.length-1];return Math.max(0,(v+I.netCash)*I.mul/I.shares)}
 const vAmt=(v,m)=>v==null?'—':m==='KR'?(Math.abs(v)>=10000?(v/10000).toFixed(1)+'조':Math.round(v).toLocaleString('ko-KR')+'억'):(Math.abs(v)>=1000?'$'+(v/1000).toFixed(1)+'B':'$'+Math.round(v)+'M');
 const vPct=(v,d=0)=>v==null?'—':(100*v).toFixed(d)+'%';
 async function loadVal(){const S=state.cur,el=$('d-s-val');if(!S||!el)return;
@@ -2158,7 +2158,7 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <tr><td>매출</td>${rows.map(r=>`<td class="r num">${vAmt(r.rev,m)}</td>`).join('')}</tr>
     <tr><td>영업이익률</td>${rows.map(r=>`<td class="r num">${vPct(r.om)}</td>`).join('')}</tr>
     <tr><td>FCF</td>${rows.map(r=>`<td class="r num"><b class="${r.fcf<0?'dn':''}">${vAmt(r.fcf,m)}</b></td>`).join('')}</tr></tbody></table></div>
-    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%) · 영구가치 비중 ${SC.tvPct??'—'}%${SC.why?` · ${esc(SC.why)}`:''}<br>FCF = ${m==='US'?`영업이익 × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`} · 마지막 해 세후 영업이익으로 영구가치${m==='US'?` (재투자율 = 영구성장률 ÷ ${vPct(ronicOf(w))})`:''} · ${m==='US'||I.netBy==='조사'?`순현금 ${vAmt(I.netCash,m)}${I.netBy==='조사'?' (조사)':''} · `:''}주식 ${m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR')}주</div>`;
+    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%) · 영구가치 비중 ${SC.tvPct??'—'}%${SC.why?` · ${esc(SC.why)}`:''}<br>FCF = ${m==='US'?`영업이익 × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`} · 마지막 해 세후 영업이익으로 영구가치${m==='US'||I.krTV?` (재투자율 = 영구성장률 ÷ 재투자수익률 ${vPct(ronicOf(w,SC.prem),1)}${I.prem!=null?` = 할인율 + 초과수익 ${vPct(I.prem,1)}${I.roic!=null?` (${esc(I.roicBy||'')} ${vPct(I.roic,1)})`:''}`:''})`:''}${I.gWhy?` · 영구성장률 ${vPct(j.g,1)} (${esc(I.gWhy)})`:''} · ${m==='US'||I.netBy==='조사'?`순현금 ${vAmt(I.netCash,m)}${I.netBy==='조사'?' (조사)':''} · `:''}주식 ${m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR')}주</div>`;
   const W=I.wacc,wr=`<div class="box"><div class="vctl"><label for="v-w">할인율 (WACC)</label><input type="range" id="v-w" min="6" max="18" step="0.5" value="${(w*100).toFixed(1)}"><b class="num" id="v-wl">${vPct(w,1)}</b>
       <label for="v-g">영구성장률</label><input type="range" id="v-g" min="0" max="4.5" step="0.5" value="${(g*100).toFixed(1)}"><b class="num" id="v-gl">${vPct(g,1)}</b></div>
     <div class="sub" style="margin-top:8px">기본값${W.by==='조사'?' (조사로 정함)':''}: 무위험금리 ${vPct(W.rf,2)} (${esc(W.rfBy||'')}) + 베타 ${W.badj}${W.beta!=null?` (${esc(W.betaBy||'')} ${W.beta} → 평균 쪽 보정)`:' (기본)'} × 위험프리미엄 ${vPct(W.erp,1)} = 자기자본비용 ${vPct(W.ke,1)}${W.wd>0?` → 부채 비중 ${vPct(W.wd,1)}${W.debtBy?` (${esc(W.debtBy)})`:''} · 세후 타인자본비용 ${vPct(W.kd,1)} (${esc(W.kdBy||'')}) 반영 ${vPct(W.raw,1)}`:''}${Math.abs(W.raw-W.w)>=0.0005?` → 소프트 캡 ${vPct(W.w,1)}`:''} · 영구성장률 ${vPct(j.g,1)} (${j.inp.gBy}${j.type==='cyc'?', 경기민감 −0.5%p':''}) · 기준 실적 ${esc(I.q||'')} (직전 4분기 매출 ${vAmt(I.rev0,m)}, 영업이익률 ${vPct(I.om0)}) · <button type="button" class="pbtn" id="v-rst" style="padding:1px 10px;font-size:12px">기본값으로</button></div></div>`;
@@ -2170,7 +2170,7 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <h4>민감도</h4>${sens}${band}${facts}${valHist(j,m)}${notes}${foot}`;
   el.querySelectorAll('#v-seg [data-k]').forEach(b=>b.onclick=()=>{st.sc=b.dataset.k;drawVal()});
   const upd=()=>{const W2=st.w??j.w,G2=st.g??j.g;$('v-top').innerHTML=valTop(j,st,px,m);$('v-wl').textContent=vPct(W2,1);$('v-gl').textContent=vPct(G2,1);$('v-scv').textContent=f(valV(j,st)[st.sc||'base'])};
-  const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;if(W2-G2<0.01){if(key==='g')st.g=W2-0.01;else st.w=G2+0.01}upd()}};
+  const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;const GP=j.sens?.gap??0.02;if(W2-G2<GP){if(key==='g')st.g=W2-GP;else st.w=G2+GP}upd()}};
   sl('v-w','w');sl('v-g','g');if($('v-rst'))$('v-rst').onclick=()=>{st.w=null;st.g=null;$('v-w').value=(j.w*100).toFixed(1);$('v-g').value=(j.g*100).toFixed(1);upd()};
 }
 function valV(j,st){const w=st.w??j.w,g=st.g??j.g,V={};for(const k of ['bull','base','bear'])V[k]=valPv(j.sc[k],w,g,j.inp);return V}
