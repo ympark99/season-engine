@@ -198,7 +198,45 @@
      "note": "2026-Q4에서 2027년으로 회사 공시 조정"
     }
    ],
-   "newIntel": []
+   "newIntel": [],
+   "newVal": [
+    {
+     "m": "KR",
+     "code": "005930",
+     "name": "삼성전자",
+     "note": "경기민감 · 장기 마진 20%"
+    },
+    {
+     "m": "KR",
+     "code": "006400",
+     "name": "삼성SDI",
+     "note": "장기 마진 8%"
+    },
+    {
+     "m": "US",
+     "code": "BE",
+     "name": "Bloom Energy",
+     "note": "고성장 · 장기 마진 25%"
+    },
+    {
+     "m": "US",
+     "code": "CRWD",
+     "name": "CrowdStrike",
+     "note": "고성장 · 장기 마진 30%"
+    },
+    {
+     "m": "US",
+     "code": "LITE",
+     "name": "Lumentum",
+     "note": "고성장 · 장기 마진 40%"
+    },
+    {
+     "m": "US",
+     "code": "SNDK",
+     "name": "Sandisk",
+     "note": "경기민감 · 장기 마진 30%"
+    }
+   ]
   },
   {
    "d": "2026-10-18",

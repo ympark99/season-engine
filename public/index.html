@@ -2784,7 +2784,7 @@ function renderUpd(){
   const tm=a=>a?new Date(a).toLocaleTimeString('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}):'';
   const rk=v=>v==null?'—':(v>0?'+':v<0?'−':'')+Math.abs(v);
   const day=x=>{const M=x.macro,I=x.intel,news=[...(M?.news||[]).map(n=>`<li>${mt(n.m)}<b>${esc(n.t)}</b>${n.note?` — ${esc(n.note)}`:''}</li>`),...(I?.news||[]).map(n=>`<li>${mt(n.m)}${nm(n)} — ${esc(n.note||'')}</li>`)];
-    const cps=I?.checkpoints||[],ni=I?.newIntel||[],fl=M?.flows||[];
+    const cps=I?.checkpoints||[],ni=I?.newIntel||[],nv=I?.newVal||[],fl=M?.flows||[];
     return `<h2>${dd(x.d)} 업데이트 <span class="sub" style="font-weight:400">${M?`매크로 ${tm(M.at)}`:'매크로 없음'} · ${I?`종목 조사 ${tm(I.at)}`:'종목 조사 없음'}</span></h2>
       ${M?`<h3>매크로 요약 <span class="sub" style="font-weight:400">위험도 미국 <b>${rk(M.risk?.US)}</b> · 한국 <b>${rk(M.risk?.KR)}</b>${M.risk?.chg?` · ${esc(M.risk.chg)}`:''}</span></h3><p class="sumt">${esc(M.summary||'')}</p>
         ${(M.changes||[]).length?`<h3>매크로 변화</h3><ul>${M.changes.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>`:''}`:''}
@@ -2793,6 +2793,7 @@ function renderUpd(){
         ${cps.map(c=>`<tr><td>${mt(c.m)}${nm(c)}</td><td>${esc(c.what||'')}</td><td class="num">${esc(c.d||'—')}</td><td>${c.from&&c.from!==c.to?`${stB(c.from)} → `:c.from?'':'<span class="sub">신규</span> '}${stB(c.to)}</td><td class="sub" style="white-space:normal">${esc(c.note||'')}</td></tr>`).join('')}</tbody></table></div>`:''}
       ${I?.summary?`<div class="sub" style="margin-top:8px">종목 조사: ${esc(I.summary)}</div>`:''}
       ${ni.length?`<h3>신규 조사 종목 <span class="muted" style="font-weight:400">${ni.length}개</span></h3><div class="lst">${ni.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}
+      ${nv.length?`<h3>밸류에이션 가정 조사 종목 <span class="muted" style="font-weight:400">${nv.length}개</span></h3><div class="lst">${nv.map(x=>`<span>${mt(x.m)}${nm(x)}${x.note?` <span class="sub">${esc(x.note)}</span>`:''}</span>`).join('')}</div>`:''}
       ${fl.length?`<h3>매출 흐름도 작성 종목 <span class="muted" style="font-weight:400">${fl.length}개</span></h3><div class="lst">${fl.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}`};
   const [first,...rest]=UPD.slice(0,30);
   el.innerHTML=`<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
