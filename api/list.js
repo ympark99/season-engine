@@ -19,6 +19,7 @@ import { krQuote, usQuote } from '../lib/kis.js';
 import { collectOne, scoreAll } from './fundamentals.js';
 import { AI_SETS } from '../lib/aiset.js';
 import { mcOpt } from '../lib/pullback.js';
+import { SKEY as OPT_SKEY } from '../lib/options.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -64,6 +65,7 @@ async function list(req, res) {
   const fund = {};
   for (const s of [fUS, fKR]) for (const r of s?.rows || []) fund[`${s.m}:${r.code}`] = r;
 
+  const opt = (await store.get(OPT_SKEY).catch(() => null)) || {};               // 미국 옵션 수급 한 줄 (장 마감 뒤 크론)
   const lvs = await store.mget(items.map(it => `lv:${it.m}:${it.code}`));       // 차트 지지·저항 (매일 파이프라인이 계산)
   const fitKeys = items.map(it => `fit:${it.m}:${it.code}`), fits = await store.mget(fitKeys), fitPut = [];
   const stocks = items.map((it, i) => {
@@ -86,6 +88,8 @@ async function list(req, res) {
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
     if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
+    const o = it.m === 'US' ? opt[it.code] : null;
+    if (o && !o.none) r.op = { d: o.d, px: o.px, flip: o.flip, gex: o.gex, cpP: o.cpP, pcV: o.pcV, cw: o.cw, pw: o.pw };
     return r;
   });
   if (fitPut.length) await Promise.all(fitPut.map(([k, v]) => store.set(k, v)));

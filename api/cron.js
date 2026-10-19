@@ -4,6 +4,7 @@
 // GET /api/cron?op=est&t=COHR    — 미국 컨센서스 한 종목 바로 조회 (연결 시험용) · t 없이 부르면 전체 갱신(하루 한 번)
 // GET /api/cron?op=score&m=US  — 저장된 재료로 대장 점수만 다시 매기기
 // GET /api/cron?op=fwd            — 미국 선행 지표(요약표) 다시 받기 한 번 (7일 지난 종목만, 천천히)
+// GET /api/cron?op=opt          — 미국 옵션 수급 날짜별 기록 (장 마감 뒤 크론 · lib/options.js)
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
@@ -12,6 +13,7 @@ import { step, pipeState } from '../lib/pipeline.js';
 import { selfBase, chainLog } from '../lib/selfcall.js';
 import { searchId, fetchEstimates, summarize, collectEstimates } from '../lib/estimates.js';
 import { targetsOf, scoreAll, refreshForward } from './fundamentals.js';
+import { snapshotAll } from '../lib/options.js';
 
 export default async function handler(req, res) {
   try {
@@ -23,7 +25,7 @@ export default async function handler(req, res) {
         adminToken: !!process.env.ADMIN_TOKEN, cronSecret: !!process.env.CRON_SECRET, youAreAdmin: isAdmin(req),
         selfHost: (selfBase() || '').replace(/^https:\/\//, '') || null, protectionBypass: !!process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
         krFundHeaders: !!process.env.KR_FUND_HEADERS,
-        pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null,
+        pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null, opt: await store.get('cron:opt').catch(() => null),
       });
     }
     if (op === 'fwd') {                                                                 // 미국 선행 지표만 다시 받기 — 하루 600종목·요청 사이 2.5초 제한은 refreshForward 안에서
@@ -68,6 +70,15 @@ export default async function handler(req, res) {
       // 크론이 인증에 막히는 경우(CRON_SECRET 미설정 등)를 화면에서 알 수 있게 남긴다
       await store.set('cron:denied', { at: new Date().toISOString(), m, hasSecret: !!sec, hasAuthHeader: !!req.headers.authorization, ua: String(req.headers['user-agent'] || '').slice(0, 40) }).catch(() => {});
       return send(res, 401, { error: 'cron 전용' });
+    }
+    if (op === 'opt') {                                                                 // 미국 옵션 수급 — 장 마감 뒤 내 목록 미국 종목 + SPY·QQQ 체인을 받아 날짜별 기록 (예비 크론이 남은 종목 이어서)
+      if (!(await store.setNX('lock:opt:US', 1, 290))) return send(res, 200, { busy: true });
+      try {
+        const codes = (await store.listAll()).filter(x => x.m === 'US').map(x => x.code);
+        const r = await snapshotAll(codes, 240000);
+        await store.set('cron:opt', { at: new Date().toISOString(), ...r }).catch(() => {});
+        return send(res, 200, r);
+      } finally { await store.del('lock:opt:US'); }
     }
     const from = isAdmin(req) && !okCron ? '수동' : req.query.bk ? `예비 크론 ${req.query.bk}` : '크론';
     const budgetMs = Math.min(285, Math.max(30, +req.query.budget || 285)) * 1000;   // 화면 버튼은 짧게, 크론은 최대 4분 45초 (함수 한도 300초)

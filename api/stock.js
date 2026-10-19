@@ -17,6 +17,7 @@ import { srPlan, levelsFor, lvStale, OKEY } from '../lib/levels.js';
 import { addKijun } from '../lib/kijun.js';
 import { bandOf, bandFor } from '../lib/band.js';
 import { flowOf, saveFlowOvr, enqueue, queueText } from '../lib/flow.js';
+import { optFor } from '../lib/options.js';
 
 /** GET ?flow=1 — 매출 흐름도 (버튼 누를 때만, 7일 저장) · POST ?flow=1 — 매출처·사업 구성 직접 수정 (관리자) */
 async function flow(req, res) {
@@ -43,6 +44,10 @@ export default async function handler(req, res) {
   try {
     if (req.query.flow) return await flow(req, res);
     const { m, code } = req.query;
+    if (req.query.opt) {                                                        // ?opt=1 — 미국 옵션 수급 (CBOE 체인 → 서버 계산, 15분~3시간 캐시) + 날짜별 기록·사건
+      if (m !== 'US' || !/^[A-Z.\-]{1,10}$/.test(String(code || ''))) return send(res, 400, { error: '미국 종목만' });
+      return send(res, 200, await optFor(String(code)));
+    }
     if (req.query.bars) {                                                       // ?bars=1 — 저장된 일봉 원본(날짜·종가·거래량)만 (오프라인 백테스트용)
       const b = await store.getBars(m, code);
       return b ? send(res, 200, { m, code, d: b.d, c: b.c, v: b.v }) : send(res, 404, { error: '저장된 일봉이 없어' });

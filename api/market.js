@@ -5,6 +5,7 @@ import { engineState, KEEP, send } from '../lib/service.js';
 import { analyzeV2 as analyze } from '../lib/engine2.js';
 import { INDICES, refreshIndex, indexParams } from '../lib/market.js';
 import { historyOf } from '../lib/history.js';
+import { SKEY, MKT_OPT } from '../lib/options.js';
 
 export default async function handler(req, res) {
   try {
@@ -33,6 +34,7 @@ export default async function handler(req, res) {
       }));
       return { ...base, ...summary, src: b.src?.label || null, scale: { k: ip.k, vol: ip.vol }, stats, recent: history.slice(0, 4), error: errs[ix.code] ? `갱신 실패(이전 값 표시): ${errs[ix.code]}` : undefined };
     });
-    send(res, 200, { now: new Date().toISOString(), indices: out });
+    const os = (await store.get(SKEY).catch(() => null)) || {};                      // 시장 옵션 수급 (SPY·QQQ — 장 마감 뒤 크론 기록)
+    send(res, 200, { now: new Date().toISOString(), indices: out, opt: Object.fromEntries(MKT_OPT.map(c => [c, os[c] && !os[c].none ? os[c] : null])) });
   } catch (e) { send(res, 500, { error: e.message }); }
 }
