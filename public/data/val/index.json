@@ -235,6 +235,10 @@
   "at": "2026-10-19",
   "name": "OKTA INC"
  },
+ "US:ORCL": {
+  "at": "2026-10-19",
+  "name": "ORACLE CORP"
+ },
  "US:PLTR": {
   "at": "2026-10-19",
   "name": "PALANTIR TECH INC"
@@ -254,6 +258,10 @@
  "US:SNOW": {
   "at": "2026-10-19",
   "name": "SNOWFLAKE INC"
+ },
+ "US:SPCX": {
+  "at": "2026-10-19",
+  "name": "SPACE EXPLORATION TECHNOLOGIES CORP"
  },
  "US:STM": {
   "at": "2026-10-19",

@@ -1,0 +1,209 @@
+{
+ "m": "US",
+ "code": "ORCL",
+ "name": "ORACLE CORP",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2027 회계연도 1분기(2026-08-31 마감, 9/10 발표) 실적 뒤",
+ "mid": {
+  "om": 25,
+  "why": "OCI가 매출의 대부분이 되면 AI 인프라 조정 매출총이익률 목표 30~40%(회사)가 전사 마진을 끌어내림. 소프트웨어 사업의 높은 마진과 섞어 컨센서스와 같은 GAAP형 기준 25%로 수렴 가정. 서버 자동값 15%는 '동종 중앙값 -30%' 계산이라 과도하게 낮음(추정)",
+  "conf": "추정",
+  "src": [
+   0,
+   1,
+   2
+  ]
+ },
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "RPO 6,640억 달러가 계획대로 가동되고 FY30 매출이 회사 목표 2,250억 달러를 웃돌며 인프라 마진이 30%대 후반 유지",
+   "g": [
+    null,
+    null,
+    null,
+    30,
+    22,
+    15,
+    10,
+    6,
+    4,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    33,
+    32,
+    31,
+    30,
+    29,
+    28,
+    28
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "FY30 매출이 회사 목표(2,250억 달러) 부근에서 이후 성장 둔화, 인프라 비중 확대로 마진 25%로 하향 수렴",
+   "g": [
+    null,
+    null,
+    null,
+    22,
+    16,
+    12,
+    8,
+    5,
+    3,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    25
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "소수 AI 고객 의존·자금조달 부담으로 인도가 지연되고 증설 속도가 줄어 FY30 매출이 목표 미달, 가격경쟁으로 마진 15%대까지 하락",
+   "g": [
+    null,
+    null,
+    null,
+    14,
+    8,
+    5,
+    3,
+    2,
+    2,
+    2
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    24,
+    21,
+    19,
+    18,
+    17,
+    16,
+    15
+   ]
+  }
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "conv": null,
+ "sbc": null,
+ "wc": null,
+ "facts": [
+  {
+   "k": "연간 가이던스",
+   "v": "FY27 매출 900억 달러 이상, 비GAAP EPS 8.10달러, 2분기 매출 성장 30~34%",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "설비투자 계획",
+   "v": "FY27 설비투자 900억~950억 달러(순현금 기준 700억 달러 이하), 1분기 285억 달러",
+   "conf": "공시",
+   "src": [
+    0,
+    4
+   ]
+  },
+  {
+   "k": "수주잔고",
+   "v": "RPO 6,640억 달러, 약 절반이 36개월 안에 매출 전환 예상. 신규 계약 대부분은 선수금·고객 장비 지참 방식이라 FY28 이후 반영",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "장기 목표",
+   "v": "FY30 매출 2,250억 달러·OCI 1,660억 달러 목표, 주당이익 21달러 목표",
+   "conf": "공시",
+   "src": [
+    2,
+    3
+   ]
+  },
+  {
+   "k": "AI 인프라 마진 목표",
+   "v": "AI 인프라 조정 매출총이익률 30~40% 목표. 1분기 전사 매출총이익률 60.0%로 7%p 하락, 추가 하락 예상",
+   "conf": "보도",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "현금흐름·재무",
+   "v": "1분기 영업현금흐름 약 230억 달러, 잉여현금흐름 약 -54억 달러, 총부채 약 1,300억 달러, 400억 달러 조달 계획",
+   "conf": "보도",
+   "src": [
+    0,
+    4,
+    5
+   ]
+  },
+  {
+   "k": "마진",
+   "v": "비GAAP 영업이익률 약 42%(1분기), 서버 기준 GAAP형 34.2%",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Oracle (ORCL) Q1 2027 Earnings Results & Call Transcript",
+   "u": "https://www.marketbeat.com/earnings/reports/2026-9-10-oracle-co-stock/",
+   "d": "2026-09-10"
+  },
+  {
+   "t": "Oracle Q1 Earnings Call Centers on AI Capacity and Raised Outlook",
+   "u": "https://finance.yahoo.com/technology/ai/articles/oracle-q1-earnings-call-centers-140000080.html",
+   "d": "2026-09"
+  },
+  {
+   "t": "Oracle bets big on cloud as it targets $225b in sales by 2030",
+   "u": "https://www.cloudcomputing-news.net/news/oracle-bets-big-on-cloud-as-it-targets-225b-in-sales-by-2030/",
+   "d": "2025-10"
+  },
+  {
+   "t": "Oracle stock jumps 4% as company says cloud revenue will skyrocket to $166B by 2030",
+   "u": "https://finance.yahoo.com/news/oracle-stock-jumps-4-as-company-says-cloud-revenue-will-skyrocket-to-166b-by-2030-182501729.html",
+   "d": "2025-10"
+  },
+  {
+   "t": "Oracle forecasts $95 bn in capex for FY27, plans to raise $40 bn in debt and equity",
+   "u": "https://www.outlookbusiness.com/corporate/oracle-forecasts-95-bn-in-capex-for-fy27-plans-to-raise-40-bn-in-debt-and-equity",
+   "d": "2026-09"
+  },
+  {
+   "t": "Oracle under pressure after ratings downgrade over AI expansion",
+   "u": "https://www.computing.co.uk/news/2026/ai/oracle-under-pressure-after-ratings-downgrade-over-ai-expansion",
+   "d": "2026-07"
+  }
+ ]
+}
