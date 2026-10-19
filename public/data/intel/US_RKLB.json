@@ -3,10 +3,10 @@
  "code": "RKLB",
  "name": "Rocket Lab",
  "theme": "우주",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "full": "2026-10-14",
  "by": "Claude 정기 조사",
- "position": "소형 발사 Electron은 올해 17번째 발사까지 이어가며 독주하고 우주선·방산 수주 잔고도 크게 늘었지만, 중형 발사체 Neutron 첫 발사가 10월 14일 회사 공시로 2027년으로 공식 조정돼 SpaceX와의 격차를 줄일 시점이 늦어졌다. 다음 관건은 3분기 실적(매출 2.5억~2.65억 달러 가이던스) 달성 여부와 Neutron 구체 일정 제시.",
+ "position": "소형 발사 Electron은 올해 17번째 발사까지 이어가며 독주하고 우주선·방산 수주 잔고도 크게 늘었지만, 중형 발사체 Neutron 첫 발사가 10월 14일 회사 공시로 2027년으로 공식 조정돼 SpaceX와의 격차를 줄일 시점이 늦어졌다. 9월 24일 Iridium 주주가 약 80억 달러 인수안을 승인해 위성통신 서비스로 확장이 가까워졌으나 규제 승인과 재무 부담이 남았다. 다음 관건은 3분기 실적(매출 2.5억~2.65억 달러 가이던스) 달성 여부와 Neutron 구체 일정 제시.",
  "grade": {
   "g": "B",
   "label": "경쟁력 양호",
@@ -125,6 +125,25 @@
      "d": "2026-08-10",
      "s": "진행",
      "note": "2분기 공시: 1단 탱크 생산이 4분기 발사대 인도 목표와 맞춰짐, 연내 발사 창은 좁아짐"
+    }
+   ]
+  },
+  {
+   "id": "iridium_close",
+   "what": "Iridium 인수 종결 (약 80억 달러, 회사 목표 2027년 중반)",
+   "d": "2027",
+   "kind": "규제",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    11,
+    12
+   ],
+   "log": [
+    {
+     "d": "2026-09-24",
+     "s": "진행",
+     "note": "Iridium 주주총회 찬성 약 99.6%로 합병안 승인. 규제 승인·관례적 종결 조건 남음, 종결 목표 2027년 중반"
     }
    ]
   },
@@ -281,9 +300,26 @@
    "src": [
     2
    ]
+  },
+  {
+   "k": "Iridium 인수 규모",
+   "v": "약 80억 달러 (주당 현금 27달러+주식, 명목 54달러)",
+   "asof": "2026-09-24",
+   "src": [
+    11,
+    12
+   ]
   }
  ],
  "updates": [
+  {
+   "d": "2026-10-20",
+   "note": "9/24 Iridium 주주총회가 Rocket Lab 인수안을 약 99.6% 찬성으로 승인(주당 현금 27달러+주식, 총 약 80억 달러, 종결 목표 2027년 중반·규제 승인 남음). 위성통신 서비스 확장 기회와 함께 재무 부담·통합 위험이 새 확인 대상. 등급 B 유지",
+   "src": [
+    11,
+    12
+   ]
+  },
   {
    "d": "2026-10-19",
    "note": "10/14 회사 공시로 Neutron 첫 발사 목표가 2026년 4분기→2027년으로 공식 조정(기존엔 보도 수준), 복합소재 문제 확인 후 해결했다고 밝힘. 이미 반영된 위험이라 등급 B 유지, 11월 실적이 다음 확인점",
@@ -356,6 +392,16 @@
    "t": "Another 'Neutron' rocket delay slows Rocket Lab's SpaceX chase",
    "u": "https://lightreading.com/satellite/rocket-lab-s-first-neutron-rocket-launch-delayed-to-2027",
    "d": "2026-10"
+  },
+  {
+   "t": "Iridium Stockholders Approve Acquisition by Rocket Lab (Rocket Lab IR)",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/iridium-stockholders-approve-acquisition-rocket-lab",
+   "d": "2026-09-24"
+  },
+  {
+   "t": "Iridium Stockholders Clear Rocket Lab Acquisition",
+   "u": "https://www.govconwire.com/articles/iridium-stockholders-approve-rocket-lab-acquisition",
+   "d": "2026-09"
   }
  ]
 }
