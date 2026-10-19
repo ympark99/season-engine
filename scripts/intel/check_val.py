@@ -64,7 +64,7 @@ for f in files:
             bad.append(f'{name} {k}={d[k]!r}')
     rng('debt', d.get('debt'), 0, 1e9, name)
     rng('kd', d.get('kd'), 0, 20, name)
-    for k, lo, hi in (('capexR', 0, 80), ('daR', 0, 50), ('tax', 0, 40), ('g', 0, 4.5), ('wacc', 6, 18), ('conv', 10, 120)):
+    for k, lo, hi in (('capexR', 0, 80), ('daR', 0, 50), ('tax', 0, 40), ('g', 0, 4.5), ('wacc', 6, 18), ('conv', 10, 120), ('sbc', 0, 40), ('wc', -100, 150)):
         rng(k, d.get(k), lo, hi, name)
     sc = d.get('scen') or {}
     ps = []
