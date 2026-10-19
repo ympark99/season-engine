@@ -60,7 +60,8 @@ async function remove(req, res) {
 async function list(req, res) {
   const [items, eng, cron] = await Promise.all([store.listAll(), engineState(), store.mget(['cron:KR', 'cron:US'])]);
   const bars = await store.mgetBars(items);
-  const [fUS, fKR, shUS, shKR, oUS, oKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR', 'theme:ovr:US', 'theme:ovr:KR']);
+  const [fUS, fKR, shUS, shKR, oUS, oKR, vUS, vKR] = await store.mget(['fund:sum:US', 'fund:sum:KR', 'mcap:US', 'mcap:KR', 'theme:ovr:US', 'theme:ovr:KR', 'val:sum:US', 'val:sum:KR']);
+  const VAL = { US: vUS?.rows || {}, KR: vKR?.rows || {} };
   const OVR = { US: oUS || {}, KR: oKR || {} }, SOVR = { US: await loadSecOvr('US'), KR: await loadSecOvr('KR') };
   const SH = { US: shUS, KR: shKR };
   const fund = {};
@@ -89,6 +90,9 @@ async function list(req, res) {
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
     if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
+    const va = VAL[it.m]?.[it.code];                                            // 밸류에이션 요약 (펀더멘털 점수 계산 때 같이) — 괴리는 오늘 종가로
+    if (va && !r.error) r.val = { type: va.type, base: va.base, buy: va.buy, sm: va.sm, d: va.d, res: va.res, rv: va.rv,
+      gap: va.base > 0 && r.last > 0 ? Math.round(1000 * (r.last / va.base - 1)) / 10 : null };
     const o = it.m === 'US' ? opt[it.code] : null;
     if (o && !o.none) r.op = { d: o.d, px: o.px, flip: o.flip, gex: o.gex, cpP: o.cpP, pcV: o.pcV, cw: o.cw, pw: o.pw, f: o.f || null };
     return r;

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
 <style>
 :root{
+  --vbuy:#2E9B5F;--vbuy-soft:rgba(46,155,95,.16);
   --fl-rev:#4A78D6;--fl-pro:#2E9B5F;--fl-cost:#D2564F;
   --bg:#EDEFF3;--card:#FFFFFF;--soft:#F6F7F9;--ink:#161B29;--ink2:#495064;--muted:#8A90A0;--line:#E3E6EC;
   --gold:#C39A2E;--gold-soft:#FBF3DE;--gold-ink:#8F6C12;--navy:#26458E;
@@ -31,7 +32,7 @@
   --spring-bg:rgba(90,200,155,.10);--summer-bg:rgba(63,169,121,.16);--autumn-bg:rgba(201,162,64,.15);--winter-bg:rgba(197,107,119,.15);
   --spring-pill:#1C3A30;--summer-pill:#18382A;--autumn-pill:#3A3118;--winter-pill:#3D2227;
   --pos:#F07480;--neg:#7EA6F5;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--overlay:rgba(0,0,0,.6);
-  --fl-rev:#6F97EC;--fl-pro:#4CC285;--fl-cost:#EC7B73;
+  --fl-rev:#6F97EC;--fl-pro:#4CC285;--fl-cost:#EC7B73;--vbuy:#4CC285;--vbuy-soft:rgba(76,194,133,.16);
 }}
 :root[data-theme="dark"]{
   --bg:#10131A;--card:#191D27;--soft:#20252F;--ink:#E9EBF1;--ink2:#B4BAC8;--muted:#838A9B;--line:#2A303C;
@@ -42,7 +43,7 @@
   --spring-bg:rgba(90,200,155,.10);--summer-bg:rgba(63,169,121,.16);--autumn-bg:rgba(201,162,64,.15);--winter-bg:rgba(197,107,119,.15);
   --spring-pill:#1C3A30;--summer-pill:#18382A;--autumn-pill:#3A3118;--winter-pill:#3D2227;
   --pos:#F07480;--neg:#7EA6F5;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--overlay:rgba(0,0,0,.6);
-  --fl-rev:#6F97EC;--fl-pro:#4CC285;--fl-cost:#EC7B73;
+  --fl-rev:#6F97EC;--fl-pro:#4CC285;--fl-cost:#EC7B73;--vbuy:#4CC285;--vbuy-soft:rgba(76,194,133,.16);
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -230,6 +231,22 @@ input.thin{font:inherit;font-size:12px;border:1px solid var(--line);background:v
 .ivb.up{color:var(--pos);border-color:var(--pos)}.ivb.dn{color:var(--neg);border-color:var(--neg)}.ivb.eq{color:var(--ink2)}.ivb.uk{color:var(--muted);border-style:dashed}
 .ivb.st-진행{color:var(--gold-ink);border-color:var(--gold)}.ivb.st-완료{color:var(--muted)}.ivb.st-지연{color:#fff;background:var(--pos);border-color:var(--pos)}.ivb.st-취소{color:var(--muted);text-decoration:line-through}
 .itl h4{margin:14px 0 6px}.itl .pos{font-size:14.5px;line-height:1.55;margin:4px 0 2px}.peers{display:flex;flex-wrap:wrap;gap:8px}.peer{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px}
+.vl h4{margin:16px 0 8px;font-size:14px}.vl .box{padding:12px 14px}
+.vtags{display:flex;flex-wrap:wrap;gap:6px}.vtag{font-size:11.5px;font-weight:700;border-radius:6px;padding:1px 7px;border:1px solid var(--line);color:var(--ink2);background:var(--card)}
+.vtag.gold{color:var(--gold-ink);border-color:var(--gold)}.vtag.warn{color:var(--pos);border-color:var(--pos)}
+.vverd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.vbig{font-size:26px;font-weight:750;letter-spacing:-.02em}
+.vkpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.vkpi>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 10px}
+.vkpi span{display:block;font-size:11.5px;color:var(--muted);font-weight:600}.vkpi b{font-size:16px}
+@media (max-width:520px){.vkpi{grid-template-columns:repeat(2,1fr)}}
+.vlg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink2)}.vlg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.vrev{font-size:14.5px;line-height:1.6;margin-bottom:4px}.vsh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.vsrc{display:inline-block;font-size:10.5px;font-weight:700;border-radius:5px;padding:0 5px;margin-top:2px;color:var(--muted);border:1px dashed var(--line)}.vsrc.c{color:var(--ink2);border-style:solid}.vsrc.r{color:var(--gold-ink);border:1px solid var(--gold)}
+.vctl{display:grid;grid-template-columns:110px 1fr 52px;gap:6px 10px;align-items:center;font-size:12.5px}.vctl input{width:100%}
+td.vhl{background:var(--gold-soft);font-weight:700}
+.vev{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:12.5px;padding:7px 0;border-top:1px solid var(--line)}.vev:first-child{border-top:0}
+.vcf{font-size:11px;font-weight:800;border-radius:6px;padding:0 6px;border:1px solid var(--line);color:var(--ink2);margin-right:6px}.vcf.g{color:var(--summer-ink);border-color:var(--summer-ink)}.vcf.b{color:var(--gold-ink);border-color:var(--gold)}.vcf.e{color:var(--muted);border-style:dashed}
+.vl .src{font-size:12px;line-height:1.6}.vl a{color:var(--ink2)}
+.lnkb{border:0;background:none;padding:0;color:var(--navy);text-decoration:underline;font-size:inherit}
 .itl table td{vertical-align:top}.itl details summary{cursor:pointer;list-style:none}.itl details summary::-webkit-details-marker{display:none}.itl .lg{font-size:12px;color:var(--ink2);margin:4px 0 0 4px}.itl .src{font-size:12px;line-height:1.6}.itl a{color:var(--ink2)}
 .box h3{margin:0 0 8px;font-size:13px;color:var(--ink2);font-weight:600}
 .big{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1}
@@ -730,11 +747,12 @@ Vercel Cron  평일 16:10 KST 한국 · 화~토 07:10 KST 미국 — 목록·지
     <h4 style="margin:0 0 8px;font-size:15px">국면 구간 (길이 = 기간)</h4>
     <div class="segbar" id="d-seg"></div>
     <div class="dfund" id="d-fund" hidden></div>
-    <div class="btns dtabs" id="d-tabs" role="tablist" aria-label="상세 섹션"><button type="button" class="pbtn" role="tab" data-sec="season">계절분석</button><button type="button" class="pbtn" role="tab" data-sec="strat">전략비교</button><button type="button" class="pbtn" role="tab" data-sec="chart">차트분석</button><button type="button" class="pbtn" role="tab" data-sec="fin">재무분석</button><button type="button" class="pbtn" role="tab" data-sec="intel">경쟁·기술</button><button type="button" class="pbtn" role="tab" data-sec="opt" id="d-tab-opt">옵션</button></div>
+    <div class="btns dtabs" id="d-tabs" role="tablist" aria-label="상세 섹션"><button type="button" class="pbtn" role="tab" data-sec="season">계절분석</button><button type="button" class="pbtn" role="tab" data-sec="strat">전략비교</button><button type="button" class="pbtn" role="tab" data-sec="chart">차트분석</button><button type="button" class="pbtn" role="tab" data-sec="fin">재무분석</button><button type="button" class="pbtn" role="tab" data-sec="val">밸류에이션</button><button type="button" class="pbtn" role="tab" data-sec="intel">경쟁·기술</button><button type="button" class="pbtn" role="tab" data-sec="opt" id="d-tab-opt">옵션</button></div>
     <div class="dsec hist" id="d-s-season" role="tabpanel"></div>
     <div class="dsec hist" id="d-s-strat" role="tabpanel" hidden></div>
     <div class="dsec dfund" id="d-s-chart" role="tabpanel" hidden></div>
     <div class="dsec dfund" id="d-s-fin" role="tabpanel" hidden></div>
+    <div class="dsec dfund vl" id="d-s-val" role="tabpanel" hidden></div>
     <div class="dsec itl" id="d-s-intel" role="tabpanel" hidden></div>
     <div class="dsec hist" id="d-s-opt" role="tabpanel" hidden></div>
     <div class="why"><h4>엔진 근거</h4><dl id="d-why"></dl>
@@ -1298,7 +1316,7 @@ function vcells(S){
   return {
     stance:`<td><span class="stance s-${v.tone}" title="${esc(tip)}">${esc(v.stance)}</span><span class="sub"> ${v.combined??''}</span></td>`,
     trend:`<td class="num tr" title="${t.bonus?`저점매수 가점 +${t.bonus} 포함`:''}">${dipTag(t.dip)}${pbTag(S)}${kjTag(S)}${sc(t.score)}</td>`,
-    value:`<td class="num tr">${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
+    value:`<td class="num tr">${valTag(S)}${a.score==null?'<span class="muted" title="펀더멘털 미수집">—</span>':sc(a.score)}</td>`};
 }
 /* 비율 막대 — 왼쪽 가치 · 오른쪽 추세, 10단위. 손잡이를 오른쪽으로 밀수록 추세 비중↑ */
 function wtBar(){const t=Math.round(wTrend()*100);
@@ -1881,7 +1899,8 @@ function drawFundBlock(j,S){
       ${(F.flags||[]).length?`<div style="margin-top:6px">${F.flags.map(f=>`<span class="sig ${/정점|비쌈|희석|하향|레버리지|편차|쇼크/.test(f)?'sig-weak':'sig-up'}">${esc(f)}</span>`).join(' ')}</div>`:''}
       <div class="ipop" id="fpop" role="dialog" aria-modal="true" aria-labelledby="fpop-h" hidden><div class="ipbox"><b id="fpop-h"></b><p id="fpop-t"></p><button type="button" class="pbtn" id="fpop-x">닫기</button></div></div>`
     :'<div class="sub">펀더멘털 점수 없음 — 아직 수집 전이거나 재료를 못 받은 종목 (내 목록에 추가하면 바로 모으고, 실패하면 다음 수집 때 다시)</div>'}
-    ${bandBlock(j,S)}${F?fwdTbl(F,S.m):''}${estTable(j&&j.est)}${gxBlock(F,j,S)}`;
+    ${valLine(S)}${F?fwdTbl(F,S.m):''}${estTable(j&&j.est)}${gxBlock(F,j,S)}`;
+  fin.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showSec(b.dataset.go));
   const fp=$('fpop');
   if(fp){const close=()=>{fp.hidden=true};
     fin.querySelectorAll('[data-fi]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.fi;$('fpop-h').textContent=FNM[k];$('fpop-t').textContent=fundInfo(k,F,S.m);fp.hidden=false;$('fpop-x').focus()});
@@ -1925,21 +1944,21 @@ function techBlock(j,S){
 const lvTag=v=>v.src==='chart'?`차트 ${v.name}${v.n>1?` · ${v.n}회 반등`:''}`:`${v.n}회 터치`;
 const dist2=(p,b)=>p==null||!b?'':` <span class="muted">${p>b?'+':''}${(100*(p/b-1)).toFixed(1)}%</span>`;
 /* 국내 PER·PBR 밴드 — 자기 과거(월말) 대비 지금 위치 */
-function bandBlock(j,S){
-  const B=j&&j.band;if(!B||S.m!=='KR'||(!B.per&&!B.pbr))return '';
+function bandBlock(B,S){
+  if(!B||(!B.per&&!B.pbr))return '';const QB=!!B.q;
   const one=(t,X)=>{if(!X)return '';const pct=X.pct;
     const W=300,H=70,pad=4,v=X.hist.map((y,i)=>[i,y]).filter(z=>z[1]!=null);if(v.length<3)return `<div class="sub">${t} — 기록 부족</div>`;
     const ys=v.map(z=>z[1]).concat(X.now??[]),lo=Math.min(...ys),top=Math.max(X.now??0,X.p80??0)*1.8,hi=Math.min(Math.max(...ys),top>lo?top:Infinity),n=X.hist.length,xx=i=>pad+i/(n-1)*(W-2*pad),yy=y=>H-pad-(Math.min(y,hi)-lo)/((hi-lo)||1)*(H-2*pad);   // 이익 바닥 해의 튀는 PER 은 위를 잘라 보여줌
     const path=v.map((z,k)=>`${k&&v[k-1][0]===z[0]-1?'L':'M'}${xx(z[0]).toFixed(1)},${yy(z[1]).toFixed(1)}`).join('');
     const band=(a,b,c)=>a==null||b==null?'':`<rect x="${pad}" y="${yy(b).toFixed(1)}" width="${W-2*pad}" height="${Math.max(0,yy(a)-yy(b)).toFixed(1)}" style="fill:${c}"/>`;
     const tone=pct==null?'':pct<=20?SRC.sup:pct>=80?SRC.res:'';
-    return `<div style="flex:1 1 300px;min-width:260px"><div class="sub"><b>${t}</b> 지금 <b class="num">${X.now??'—'}배</b> · 자기 ${X.from.slice(0,4)}~ 백분위 <b class="num" style="color:${tone||'inherit'}">${pct??'—'}%</b> <span class="muted">(최저 ${X.min} · 중앙 ${X.med} · 최고 ${X.max})</span></div>
+    return `<div style="flex:1 1 300px;min-width:260px"><div class="sub"><b>${t}</b> 지금 <b class="num">${X.now??'—'}배</b> · 자기 ${X.from.slice(0,QB?7:4).replace('-','.')}~ ${QB?'분기말 ':''}백분위 <b class="num" style="color:${tone||'inherit'}">${pct??'—'}%</b> <span class="muted">(최저 ${X.min} · 중앙 ${X.med} · 최고 ${X.max})</span></div>
       <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="${t} 월별 추이">${band(X.min,X.p20,'rgba(31,138,76,.13)')}${band(X.p80,Math.min(X.max,hi),'rgba(194,86,26,.12)')}<path d="${path}" style="fill:none;stroke:var(--navy);stroke-width:1.6"/>${X.now!=null?`<circle cx="${xx(n-1).toFixed(1)}" cy="${yy(X.now).toFixed(1)}" r="4" style="fill:var(--gold);stroke:var(--card);stroke-width:1.5"/>`:''}</svg>
       ${X.gBase1y!=null?`<div class="sub muted">밴드에 반영된 1년 뒤 ${t==='PER'?'EPS':'BPS'} ${X.gBase1y>0?'+':''}${X.gBase1y}%</div>`:''}</div>`};
   const sf=B.self;
-  return `<h4 style="margin:12px 0 6px;font-size:14px">PER·PBR 밴드 — 자기 과거 대비 ${sf?`<span class="sub">합산 ${sf.pct}% (${esc(sf.basis)}${sf.cyc?' · 경기민감/금융이라 PBR 75%':''}) → 가치 점수 '자기 밴드 위치' 35%</span>`:''}</h4>
+  return `<h4 style="margin:12px 0 6px;font-size:14px">PER·PBR 밴드 — 자기 과거 대비 ${sf?`<span class="sub">합산 ${sf.pct}% (${esc(sf.basis)}${sf.cyc?' · 경기민감/금융이라 PBR 75%':''})${QB?'':" → 가치 점수 '자기 밴드 위치' 35%"}</span>`:''}</h4>
     <div style="display:flex;gap:16px;flex-wrap:wrap">${one('PER',B.per)}${one('PBR',B.pbr)}</div>
-    <div class="sub" style="margin-top:4px">월말 수정주가 ÷ 그달 EPS(BPS), 연결 기준. 0% = 역대 가장 쌈, 100% = 가장 비쌈. 초록 띠 = 하위 20%(쌈), 주황 띠 = 상위 20%(비쌈), 금색 점 = 지금. 이익이 바닥인 해는 PER 이 튀어서 200배 넘는 달은 계산에서 빼고, 차트는 위를 잘라 보여줘</div>`;
+    <div class="sub" style="margin-top:4px">${QB?'분기말 주가 ÷ 직전 4분기 EPS(분기말 BPS) — 최근 분기 기록뿐이라 한 사이클을 다 못 덮을 수 있어. 지금 = 오늘 종가 기준.':'월말 수정주가 ÷ 그달 EPS(BPS), 연결 기준.'} 0% = 역대 가장 쌈, 100% = 가장 비쌈. 초록 띠 = 하위 20%(쌈), 주황 띠 = 상위 20%(비쌈), 금색 점 = 지금. 이익이 바닥인 해는 PER 이 튀어서 200배 넘는 달은 계산에서 빼고, 차트는 위를 잘라 보여줘</div>`;
 }
 /* 미국 성장주 지표 · 애널리스트 · 공매도 (숏스퀴즈) */
 function gxBlock(F,j,S){
@@ -1974,7 +1993,7 @@ function estTable(E){
 async function openDetail(key){
   const S=BYKEY[key];state.cur=S;state.years=state.years||'1y';state.ta=false;state.series=null;
   $('ov').hidden=false;document.body.style.overflow='hidden';
-  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin','intel','opt'].forEach(k=>$('d-s-'+k).innerHTML='');state.intel=null;state.opt=null;$('d-tab-opt').hidden=!optOk(S);showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;state.st5=undefined;state.eqSel=[];state.curves={};state.eqPer=null;$('d-name').textContent=S.name;
+  const IX=S.m==='IX';$('d-eye').textContent=IX?`지수 국면 · ${S.code}${S.src?' · '+S.src:''}`:`국면 확률 · ${S.code}`;$('d-catrow').hidden=IX;['season','strat','chart','fin','val','intel','opt'].forEach(k=>$('d-s-'+k).innerHTML='');state.intel=null;state.val=null;state.dj=null;state.opt=null;$('d-tab-opt').hidden=!optOk(S);showSec(PREF.dsec||state.dsec||'season');state.flowData=null;setFlow(false);$('d-fit').innerHTML='';state.hist=null;state.eff=null;state.st5=undefined;state.eqSel=[];state.curves={};state.eqPer=null;$('d-name').textContent=S.name;
   const pill=$('d-pill');pill.className=`pill p-${S.season}`;pill.textContent=S.season;
   $('d-prob').textContent=S.prob+'%';$('d-px').innerHTML='';state.mcap=null;$('d-pret').innerHTML='';$('d-meta').textContent=`진입일 ${S.entry} · 경과 ${S.age}d`;
   const f=d=>d.slice(2).replace(/-/g,'.');
@@ -1986,8 +2005,8 @@ async function openDetail(key){
   $('d-cat').onchange=e=>{PREF.cat=PREF.cat||{};PREF.cat[K(S)]=e.target.value;savePrefs();$('d-catv').textContent='직접 지정';renderRows();renderMacro()};
   $('d-x').focus();
   $('d-fund').hidden=true;state.lv=null;
-  try{const j=S._pre||await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}`);delete S._pre;if(state.cur!==S)return;
-    drawFundBlock(j,S);if(j.sector&&!IX)$('d-eye').textContent=`국면 확률 · ${S.code} · ${j.sector}`;
+  try{const j=S._pre||await api(`/api/stock?m=${S.m}&code=${encodeURIComponent(S.code)}`);delete S._pre;if(state.cur!==S)return;state.dj=j;
+    drawFundBlock(j,S);if(state.dsec==='val')drawVal();if(j.sector&&!IX)$('d-eye').textContent=`국면 확률 · ${S.code} · ${j.sector}`;
     $('d-why').innerHTML=[['종가 ('+S.lastDate.slice(5)+')',fmtP(S.last,S.m)],['국면 진입 후',sgn(S.sinceEntry)+'%'],['국면 내 정점 대비',sgn(S.fromPeak)+'%'],
       ['이평(5·20·60)',S.align===1?'정배열':S.align===-1?'역배열':'혼조'],['52주 고점 대비',S.dd>-0.5?'신고가':sgn(S.dd)+'%'],['데이터',`${S.firstDate.slice(0,7)}~ · ${S.bars}봉`],
       ...(IX&&S.scale?[['임계값 보정',`×${S.scale.k} (일간 변동성 ${S.scale.vol}%)`]]:[]),['z<sub>'+S.season+'</sub> (기존 식)',S.z.toFixed(2)],['logit (보정 식)',S.logit!=null?S.logit.toFixed(2):'—'],['P<sub>s</sub> · 5일 변화',S.psRaw.toFixed(1)+'%'+(S.ps5!=null?` · ${S.ps5>0?'+':''}${S.ps5.toFixed(0)}p`:'')]]
@@ -2103,6 +2122,105 @@ function drawIntel(){const S=state.cur,el=$('d-s-intel'),j=state.intel?.j;if(!S|
     ${(j.metrics||[]).length?`<h4>숫자</h4><div class="tbl-wrap"><table style="min-width:420px"><tbody>${j.metrics.map(x=>`<tr><td>${esc(x.k)}</td><td class="r num"><b>${esc(x.v)}</b></td><td class="sub">${esc(x.asof||'')} ${sref(x.src)}</td></tr>`).join('')}</tbody></table></div>`:''}
     ${src.length?`<h4>출처</h4><div class="src">${src.map((x,i)=>`<div>[${i+1}] ${u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)}${x.d?` <span class="muted">${esc(x.d)}</span>`:''}</div>`).join('')}</div>`:''}
     <div class="sub" style="margin-top:8px">매일 아침 정기 조사가 종목·업종(경쟁사) 뉴스와 다가온 일정을 확인해 바뀐 것만 고치고, 변화 없는 종목도 주기적으로 전체를 다시 조사해. 판정: 우위·선두권·동등·열세·불확실 · 근거: 공시·보도·추정. 회사 목표치는 '목표'로 적어.</div>`}
+
+/* ---------- 상세 '밸류에이션' 탭 (lib/valuation.js 가 계산, 경쟁·기술 갱신이 가정·근거를 public/data/val 에 넣음) ---------- */
+const VTYPE={cyc:'경기민감',growth:'고성장',mature:'성숙·안정',loss:'적자',na:'DCF 대상 아님'};
+const VTYPE_RULE={cyc:'3~5년 차 마진 → 사이클 중간값 회귀',growth:'10년 · 성장률 둔화 + 마진 → 성숙 마진',mature:'5년 · 성장률만 둔화, 마진 유지',loss:'필요한 매출 규모만 계산',na:'밴드만'};
+const ronicOf=w=>Math.max(w+0.02,0.12);
+/* lib/valuation.js pvOf 와 같은 식 — 슬라이더로 할인율·영구성장률을 바꿀 때 화면에서 다시 계산 */
+function valPv(S,w,g,I){let v=0;S.fcf.forEach((f,i)=>{v+=f/(1+w)**S.t[i]});const base=S.conv!=null?S.nopatT*S.conv:S.nopatT*(1-g/ronicOf(w));v+=base*(1+g)/(w-g)/(1+w)**S.t[S.t.length-1];return Math.max(0,(v+I.netCash)*I.mul/I.shares)}
+const vAmt=(v,m)=>v==null?'—':m==='KR'?(Math.abs(v)>=10000?(v/10000).toFixed(1)+'조':Math.round(v).toLocaleString('ko-KR')+'억'):(Math.abs(v)>=1000?'$'+(v/1000).toFixed(1)+'B':'$'+Math.round(v)+'M');
+const vPct=(v,d=0)=>v==null?'—':(100*v).toFixed(d)+'%';
+async function loadVal(){const S=state.cur,el=$('d-s-val');if(!S||!el)return;
+  if(S.m==='IX'||isFund(S)){el.innerHTML=`<div class="sub">${S.m==='IX'?'지수':'ETF·ETN'}는 밸류에이션 대상이 아니야</div>`;return}
+  const k=K(S);if(state.val?.k===k){drawVal();return}
+  el.innerHTML='<div class="loading">밸류에이션 계산 중…</div>';
+  let j=null,err=null;try{j=await api(`/api/fundamentals?val=${encodeURIComponent(S.code)}&m=${S.m}`)}catch(e){err=e.message}
+  if(state.cur!==S)return;state.val={k,j,err,w:null,g:null,sc:'base'};drawVal()}
+function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!st)return;
+  if(st.err||!st.j){el.innerHTML=`<div class="warn">${esc(st.err||'밸류에이션을 못 불러왔어')}</div>`;return}
+  const j=st.j,m=S.m,f=v=>v==null?'—':fmtP(v,m),B=j.band||(m==='KR'?state.dj?.band:null),src=j.sources||[],u=x=>/^https?:\/\//.test(x||'')?x:null;
+  const sref=a=>(a||[]).filter(i=>src[i]).map(i=>{const x=src[i];return u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener" title="${esc(x.t)}">[${i+1}]</a>`:`<span title="${esc(x.t)}">[${i+1}]</span>`}).join('');
+  const px=S.last??j.px,I=j.inp;
+  const peakSig=B?.per?.pct!=null&&B?.pbr?.pct!=null&&B.per.pct<=30&&B.pbr.pct>=80;
+  const head=`<div class="hh"><h4>밸류에이션 <span class="sub" style="font-weight:400">계산 ${esc(j.d||'—')}${j.resAt?` · 조사 가정 ${esc(j.resAt)}${j.research?.basis?` (${esc(j.research.basis)})`:''}`:' · <b>조사 전 — 자동 가정</b>'}</span></h4></div>
+    <div class="vtags"><span class="vtag gold" title="${esc(j.typeWhy||'')}">유형: ${esc(VTYPE[j.type]||j.type)}${j.typeBy==='조사'?' (조사)':''}</span><span class="vtag">${esc(VTYPE_RULE[j.type]||'')}</span>${peakSig?'<span class="vtag warn" title="PER 은 자기 과거 하위 30% 안, PBR 은 상위 20% 안 — 이익이 정점일 때 흔한 모양">사이클 정점 신호</span>':''}</div>
+    ${j.typeWhy?`<div class="sub" style="margin-top:4px">${esc(j.typeWhy)}</div>`:''}`;
+  const band=bandBlock(B,S),facts=valFacts(j,sref),notes=(j.notes||[]).length?`<div class="sub" style="margin-top:8px">${j.notes.map(esc).join(' · ')}</div>`:'';
+  const foot=`<div class="sub" style="margin-top:10px">계산은 서버가 해 (같은 재료·가정이면 늘 같은 값). 1~2년 차는 애널리스트 컨센서스(낙관 = 최고 추정, 비관 = 최저 추정 쪽), 그 뒤는 유형별 규칙 또는 '경쟁·기술 갱신'이 실적 발표 뒤 조사한 가정. 날짜별 적정가를 기록해서 나중에 '적정가보다 비쌀 때 실제로 빠졌나' 검증해. 투자 권유 아님.</div>`;
+  if(j.type==='na'||j.base==null&&!j.loss){el.innerHTML=head+`<div class="box" style="margin-top:8px">${esc(j.why||'DCF 대상 아님')}</div>${band}${facts}${foot}`;return}
+  if(j.loss){el.innerHTML=head+`<div class="box" style="margin-top:8px"><div class="sub">${esc(j.why)}</div>${valRev(j,m)}</div>${band}${facts}${notes}${foot}`;return}
+  const w=st.w??j.w,g=st.g??j.g,V=valV(j,st);
+  const verdict=`<div class="box" style="margin-top:8px" id="v-top">${valTop(j,st,px,m)}</div>`;
+  const sk=st.sc||'base',SC=j.sc[sk];
+  const rows=SC.rows,srcTag=s=>`<span class="vsrc ${s==='컨센'?'c':s==='조사'?'r':''}">${s}</span>`;
+  const scTbl=`<div class="tbl-wrap"><table class="acc" style="min-width:${120+rows.length*76}px"><thead><tr><th>결산</th>${rows.map(r=>`<th class="r">${r.e.slice(0,7).replace('-','.')}<br>${srcTag(r.src)}</th>`).join('')}</tr></thead><tbody>
+    <tr><td>매출</td>${rows.map(r=>`<td class="r num">${vAmt(r.rev,m)}</td>`).join('')}</tr>
+    <tr><td>영업이익률</td>${rows.map(r=>`<td class="r num">${vPct(r.om)}</td>`).join('')}</tr>
+    <tr><td>FCF</td>${rows.map(r=>`<td class="r num"><b class="${r.fcf<0?'dn':''}">${vAmt(r.fcf,m)}</b></td>`).join('')}</tr></tbody></table></div>
+    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%) · 영구가치 비중 ${SC.tvPct??'—'}%${SC.why?` · ${esc(SC.why)}`:''}<br>FCF = ${m==='US'?`영업이익 × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`} · 마지막 해 세후 영업이익으로 영구가치${m==='US'?` (재투자율 = 영구성장률 ÷ ${vPct(ronicOf(w))})`:''} · ${m==='US'?`순현금 ${vAmt(I.netCash,m)} · `:''}주식 ${m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR')}주</div>`;
+  const W=I.wacc,wr=`<div class="box"><div class="vctl"><label for="v-w">할인율 (WACC)</label><input type="range" id="v-w" min="6" max="16" step="0.5" value="${(w*100).toFixed(1)}"><b class="num" id="v-wl">${vPct(w,1)}</b>
+      <label for="v-g">영구성장률</label><input type="range" id="v-g" min="0" max="4.5" step="0.5" value="${(g*100).toFixed(1)}"><b class="num" id="v-gl">${vPct(g,1)}</b></div>
+    <div class="sub" style="margin-top:8px">기본값${W.by==='조사'?' (조사로 정함)':''}: 무위험금리 ${vPct(W.rf,1)} + 베타 ${W.badj}${W.beta!=null?` (2년 일봉 ${W.beta} → 평균 쪽 보정)`:' (기본)'} × 위험프리미엄 ${vPct(W.erp,1)} = ${vPct(W.ke,1)}${W.wd>0?` → 부채 비중 ${vPct(W.wd,1)} 반영 ${vPct(W.raw,1)}`:''}${W.raw!==W.w?` → ${vPct(W.w,1)}로 자름 (8~14%)`:''} · 영구성장률 ${vPct(j.g,1)} (${j.inp.gBy}${j.type==='cyc'?', 경기민감 −0.5%p':''}) · 기준 실적 ${esc(I.q||'')} (직전 4분기 매출 ${vAmt(I.rev0,m)}, 영업이익률 ${vPct(I.om0)}) · <button type="button" class="pbtn" id="v-rst" style="padding:1px 10px;font-size:12px">기본값으로</button></div></div>`;
+  const sens=j.sens?`<div class="tbl-wrap"><table class="acc" style="min-width:360px"><thead><tr><th>WACC \\ g</th>${j.sens.gs.map(x=>`<th class="r">${vPct(x,1)}</th>`).join('')}</tr></thead><tbody>${j.sens.ws.map((ww,i)=>`<tr><td>${vPct(ww,1)}</td>${j.sens.v[i].map((v,k)=>{const on=Math.abs(ww-j.w)<1e-6&&Math.abs(j.sens.gs[k]-j.g)<1e-6;return `<td class="r num ${on?'vhl':''} ${v==null?'':v>=px?'up':'dn'}">${f(v)}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="sub" style="margin-top:6px">기본 시나리오 적정가. 세로 = 할인율, 가로 = 영구성장률 (기본값 ± 범위). 금색 = 기본값 · <span class="up">빨강</span> = 현재가 이상 · <span class="dn">파랑</span> = 현재가 미만</div>`:'';
+  el.innerHTML=head+verdict+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
+    <h4 class="vsh">시나리오 <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
+    <h4>할인율·가정 <span class="sub" style="font-weight:400">움직이면 적정가가 바로 바뀌어 (역DCF·민감도 표는 기본값 기준)</span></h4>${wr}
+    <h4>민감도</h4>${sens}${band}${facts}${valHist(j,m)}${notes}${foot}`;
+  el.querySelectorAll('#v-seg [data-k]').forEach(b=>b.onclick=()=>{st.sc=b.dataset.k;drawVal()});
+  const upd=()=>{const W2=st.w??j.w,G2=st.g??j.g;$('v-top').innerHTML=valTop(j,st,px,m);$('v-wl').textContent=vPct(W2,1);$('v-gl').textContent=vPct(G2,1);$('v-scv').textContent=f(valV(j,st)[st.sc||'base'])};
+  const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;if(W2-G2<0.01){if(key==='g')st.g=W2-0.01;else st.w=G2+0.01}upd()}};
+  sl('v-w','w');sl('v-g','g');if($('v-rst'))$('v-rst').onclick=()=>{st.w=null;st.g=null;$('v-w').value=(j.w*100).toFixed(1);$('v-g').value=(j.g*100).toFixed(1);upd()};
+}
+function valV(j,st){const w=st.w??j.w,g=st.g??j.g,V={};for(const k of ['bull','base','bear'])V[k]=valPv(j.sc[k],w,g,j.inp);return V}
+/* 결론 상자 — 슬라이더를 움직이면 이것만 다시 그린다 */
+function valTop(j,st,px,m){const f=v=>v==null?'—':fmtP(v,m),w=st.w??j.w,g=st.g??j.g,V=valV(j,st);
+  const pw=j.sc.bull.p+j.sc.base.p+j.sc.bear.p||100,wv=(V.bull*j.sc.bull.p+V.base*j.sc.base.p+V.bear*j.sc.bear.p)/pw;
+  const sm=Math.min(0.6,Math.max(0.2,V.base>0?(V.base-V.bear)/V.base:0.2)),buy=V.base*(1-sm),gap=V.base>0&&px?100*(px/V.base-1):null;
+  const lo=Math.min(V.bear,px||V.bear,buy)*0.85,hi=Math.max(V.bull,px||0)*1.08,X=v=>14+572*(v-lo)/((hi-lo)||1);
+  const near=Math.abs(X(V.base)-X(V.bear))<90||Math.abs(X(V.base)-X(V.bull))<90,LY={bear:72,base:near?89:72,bull:72},lx=v=>Math.min(555,Math.max(45,X(v))).toFixed(1);   // 이름표가 겹치면 기본을 한 줄 아래로
+  const dot=(k,c)=>`<g><title>${j.sc[k].n} 시나리오 ${f(V[k])} (확률 ${j.sc[k].p}%)</title><circle cx="${X(V[k]).toFixed(1)}" cy="45" r="11" fill="transparent"/><circle cx="${X(V[k]).toFixed(1)}" cy="45" r="6" style="fill:${c};stroke:var(--soft);stroke-width:2"/><text x="${lx(V[k])}" y="${LY[k]}" text-anchor="middle" font-size="12" style="fill:var(--ink2)">${j.sc[k].n} ${f(V[k])}</text></g>`;
+  const strip=`<svg viewBox="0 0 600 ${near?96:80}" width="100%" role="img" aria-label="시나리오 적정가 범위와 현재가"><rect x="14" y="40" width="572" height="10" rx="5" style="fill:var(--line)"/>
+    <rect x="14" y="40" width="${Math.max(0,X(buy)-14).toFixed(1)}" height="10" rx="5" style="fill:var(--vbuy-soft);stroke:var(--vbuy)"><title>매수 구간 ${f(buy)} 이하</title></rect>
+    <line x1="${X(V.bear).toFixed(1)}" x2="${X(V.bull).toFixed(1)}" y1="45" y2="45" style="stroke:var(--ink2);stroke-width:2"/>
+    ${dot('bear','var(--neg)')}${dot('base','var(--gold)')}${dot('bull','var(--pos)')}
+    ${px?`<g><title>현재가 ${f(px)}</title><line x1="${X(px).toFixed(1)}" x2="${X(px).toFixed(1)}" y1="22" y2="58" style="stroke:var(--ink);stroke-width:2.5"/><text x="${Math.min(560,Math.max(40,X(px))).toFixed(1)}" y="15" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--ink)">현재가 ${f(px)}</text></g>`:''}</svg>`;
+  return `<div class="vverd"><span class="sub">현재가 <b style="color:var(--ink)">${f(px)}</b></span><span class="sub">기본 적정가</span><span class="vbig num">${f(V.base)}</span>${gap!=null?`<span class="num ${gap>0?'up':'dn'}" style="font-weight:700">현재가가 ${Math.abs(gap).toFixed(0)}% ${gap>0?'비쌈':'쌈'}</span>`:''}${px&&px<=buy?'<span class="sig sig-up">매수 구간</span>':''}</div>
+    ${strip}
+    <div class="vlg"><span><i style="background:var(--vbuy-soft);border:1px solid var(--vbuy)"></i>매수 구간 = 기본 × (1 − 안전마진)</span><span><i style="background:var(--ink)"></i>현재가</span><span>점 = 시나리오별 적정가</span></div>
+    <div class="vkpi"><div><span>확률 가중 적정가</span><b class="num">${f(wv)}</b></div><div><span>안전마진</span><b class="num">${Math.round(sm*100)}%</b></div><div><span>매수 구간</span><b class="num">≤ ${f(buy)}</b></div><div><span>할인율 · 영구성장</span><b class="num">${vPct(w,1)} · ${vPct(g,1)}</b></div></div>
+    <div class="sub" style="margin-top:6px">안전마진 = max(20%, (기본 − 비관) ÷ 기본), 최대 60% — 시나리오끼리 차이가 큰 종목일수록 매수 구간이 깊어져</div>`;
+}
+/* 역DCF 문장 + 비교 막대 */
+function valRev(j,m){const R=j.rv;if(!R)return '<div class="sub">현재가가 없어 계산 못 함</div>';
+  let cmp='';
+  if(R.kind==='peakYears'){const P=j.inp.peakYears,N=R.val,mx=Math.max(8,(N??15)+1,P??0);const bar=(y,lab,v,c,t)=>`<g><title>${t}</title><text x="0" y="${y+11}" font-size="12" style="fill:var(--ink2)">${lab}</text><rect x="110" y="${y}" width="${Math.max(4,450*(v??mx)/mx).toFixed(1)}" height="14" rx="4" style="fill:${c}"/><text x="${(116+450*(v??mx)/mx).toFixed(1)}" y="${y+11}" font-size="12" font-weight="700" style="fill:var(--ink)">${v==null?'15년+':v+'년'}</text></g>`;
+    cmp=`<svg viewBox="0 0 620 ${P!=null?62:30}" width="100%" role="img" aria-label="필요한 정점 유지 기간">${bar(6,'지금 주가가 요구',N,'var(--pos)','지금 주가를 맞추는 정점 마진 유지 기간')}${P!=null?bar(34,'과거 사이클',P,'var(--muted)',j.inp.peakWhy||'과거 정점 마진 지속 기간 (조사)'):''}</svg>${P==null?'<div class="sub">과거 사이클의 정점 지속 기간은 아직 조사 전이야 — 경쟁·기술 갱신이 실적 발표 뒤 채워</div>':j.inp.peakWhy?`<div class="sub">${esc(j.inp.peakWhy)}</div>`:''}`}
+  else if(R.kind==='cagr'){const c=j.sc?.base?.rows;const g1=c&&c.length>1?c[1].rev/c[0].rev-1:null;cmp=`<div class="sub">비교: 컨센서스 다음 해 매출 성장 ${g1==null?'—':vPct(g1,1)} · 10년 연 ${vPct(R.val,1)}면 매출이 지금의 ${R.val==null?'—':((1+R.val)**10).toFixed(1)}배</div>`}
+  else if(R.kind==='impliedG')cmp=`<div class="sub">비교: 기본 가정 영구성장률 ${vPct(j.g,1)} · 장기 명목 성장률(약 3~4%)보다 높으면 기대가 많이 들어간 가격이야</div>`;
+  else if(R.kind==='reqRev')cmp=`<div class="sub">성숙 마진 ${vPct(R.tgt)} (${esc(j.inp?.midBy||'자동')}) · 필요한 매출 ${vAmt(R.val,m)}</div>`;
+  return `<div class="vrev">${esc(R.txt)}</div>${cmp}`}
+/* 조사 가정 · 근거 */
+function valFacts(j,sref){const F=j.facts||[],src=j.sources||[];const I=j.inp;
+  const auto=I?`<div class="sub" style="margin-top:6px">${I.midBy==='조사'?'':'자동 가정 — '}${j.type==='cyc'?'사이클 중간값':j.type==='growth'||j.type==='loss'?'성숙 마진':'유지 마진'} ${vPct(I.mid)}${I.midWhy?` (${esc(I.midWhy)})`:''}</div>`:'';
+  if(!F.length)return `<h4>조사 가정 · 근거</h4><div class="box"><div class="sub">아직 조사 전이야 — 내 목록 종목은 '경쟁·기술 갱신'이 실적 발표 뒤(또는 처음 조사 때) 가이던스·설비투자·계약·경쟁사 증설·과거 사이클 마진을 조사해 가정을 넣어.</div>${auto}</div>`;
+  const cf=c=>`<span class="vcf ${c==='공시'?'g':c==='보도'?'b':'e'}">${esc(c||'추정')}</span>`;
+  return `<h4>조사 가정 · 근거 <span class="sub" style="font-weight:400">${esc(j.resBy||'')}</span></h4><div class="box" style="padding:6px 14px">${F.map(x=>`<div class="vev"><span>${cf(x.conf)}${esc(x.k?x.k+' — ':'')}${esc(x.v||'')}</span><span class="sub">${sref(x.src)}</span></div>`).join('')}${auto}</div>
+    ${src.length?`<div class="src" style="margin-top:6px">${src.map((x,i)=>`<div>[${i+1}] ${/^https?:\/\//.test(x.u||'')?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)}${x.d?` <span class="muted">${esc(x.d)}</span>`:''}</div>`).join('')}</div>`:''}`}
+/* 날짜별 기록 — 현재가 vs 기본 적정가 */
+function valHist(j,m){const H=(j.hist||[]).filter(h=>h[1]>0&&h[2]>0);if(H.length<5)return '';
+  const W=600,Hh=110,ys=H.flatMap(h=>[h[1],h[2]]),lo=Math.min(...ys)*0.95,hi=Math.max(...ys)*1.05,x=i=>30+(W-40)*i/(H.length-1),y=v=>Hh-14-(Hh-24)*(v-lo)/((hi-lo)||1);
+  const line=(k,c)=>`<polyline points="${H.map((h,i)=>x(i).toFixed(1)+','+y(h[k]).toFixed(1)).join(' ')}" style="fill:none;stroke:${c};stroke-width:2"/>`;
+  return `<h4>날짜별 기록 <span class="sub" style="font-weight:400">${H[0][0]} ~ ${H[H.length-1][0]} · 나중에 검증용</span></h4><svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="현재가와 기본 적정가 추이">${line(2,'var(--gold)')}${line(1,'var(--ink2)')}
+    ${H.map((h,i)=>`<rect x="${(x(i)-4).toFixed(1)}" y="0" width="8" height="${Hh}" fill="transparent"><title>${h[0]} · 종가 ${fmtP(h[1],m)} · 기본 적정가 ${fmtP(h[2],m)}</title></rect>`).join('')}</svg>
+    <div class="vlg"><span><i style="background:var(--ink2)"></i>종가</span><span><i style="background:var(--gold)"></i>기본 적정가</span></div>`}
+/* 재무분석 탭의 한 줄 요약 + 목록 태그 */
+function valLine(S){const v=S.val;if(!v||v.base==null)return '';
+  return `<div class="sub" style="margin:8px 0 2px">밸류에이션 (${esc(VTYPE[v.type]||'')}) — 기본 적정가 <b style="color:var(--ink)">${fmtP(v.base,S.m)}</b>${v.gap!=null?` · 현재가가 <b class="${v.gap>0?'up':'dn'}">${Math.abs(v.gap)}% ${v.gap>0?'비쌈':'쌈'}</b>`:''} · 매수 구간 ≤ ${fmtP(v.buy,S.m)} · <button type="button" class="lnkb" data-go="val">밸류에이션 탭에서 보기</button></div>`}
+function valTag(S){const v=S.val;if(!v||v.base==null||v.gap==null)return '';const t=`기본 적정가 ${fmtP(v.base,S.m)} · 매수 구간 ≤ ${fmtP(v.buy,S.m)} (${VTYPE[v.type]||''}${v.res?' · 조사 가정':' · 자동 가정'})`;
+  if(S.last<=v.buy)return `<span class="sig sig-up" style="margin:0 6px 0 0" title="${esc(t)}">매수 구간</span>`;
+  return v.gap>=15?`<span class="sig sig-weak" style="margin:0 6px 0 0" title="${esc(t)}">적정가 +${Math.round(v.gap)}%</span>`:`<span class="sig" style="margin:0 6px 0 0;background:var(--soft);color:var(--ink2)" title="${esc(t)}">적정가 ${v.gap>0?'+':''}${Math.round(v.gap)}%</span>`}
 
 /* ---------- 옵션 신호 (lib/optsig.js) — 계절 상태 × 옵션 특징. 검증 통과(pass)한 규칙만 신호로 켜짐 ---------- */
 const OST_NAME={SU:'봄 미확정',SC:'봄 확정',U:'여름',A:'가을',W:'겨울'};
@@ -2361,10 +2479,10 @@ function drawHist(){
   if(state.eqSel?.length&&state.curves?.[state.eqPer])drawDetail();   // 익절·손절·저점매수·필터 토글이 바뀌면 차트 곡선도 그 기준으로
 }
 /* 상세 섹션 탭 — 계절분석 · 전략비교 · 차트분석 · 재무분석 (마지막으로 본 탭 기억) */
-const SECS=['season','strat','chart','fin','intel','opt'];
+const SECS=['season','strat','chart','fin','val','intel','opt'];
 function showSec(k){k=SECS.includes(k)?k:'season';if(k==='opt'&&!optOk(state.cur))k='season';state.dsec=k;if(PREF.dsec!==k){PREF.dsec=k;try{savePrefs()}catch(e){}}
   document.querySelectorAll('#d-tabs [data-sec]').forEach(b=>{const on=b.dataset.sec===k;b.setAttribute('aria-selected',String(on));b.setAttribute('aria-pressed',String(on))});
-  SECS.forEach(x=>{$('d-s-'+x).hidden=x!==k});if(k==='intel')loadIntel();if(k==='opt')loadOpt()}
+  SECS.forEach(x=>{$('d-s-'+x).hidden=x!==k});if(k==='intel')loadIntel();if(k==='val')loadVal();if(k==='opt')loadOpt()}
 document.querySelectorAll('#d-tabs [data-sec]').forEach(b=>b.onclick=()=>showSec(b.dataset.sec));
 
 /* 매출 흐름도 — 버튼을 누를 때만 서버에서 만든다 (7일 저장). 켜져 있는 동안 가격 차트·국면 확률 자리를 대신한다 */
