@@ -39,6 +39,10 @@
   "at": "2026-10-19",
   "name": "산일전기"
  },
+ "KR:064290": {
+  "at": "2026-10-19",
+  "name": "인텍플러스"
+ },
  "KR:082740": {
   "at": "2026-10-19",
   "name": "한화엔진"
@@ -54,6 +58,14 @@
  "KR:145020": {
   "at": "2026-10-19",
   "name": "휴젤"
+ },
+ "KR:218410": {
+  "at": "2026-10-19",
+  "name": "RFHIC"
+ },
+ "KR:240810": {
+  "at": "2026-10-19",
+  "name": "원익IPS"
  },
  "KR:251970": {
   "at": "2026-10-19",
@@ -123,6 +135,10 @@
   "at": "2026-10-19",
   "name": "Advanced Micro Devices"
  },
+ "US:AMZN": {
+  "at": "2026-10-19",
+  "name": "AMAZON COM INC"
+ },
  "US:ANET": {
   "at": "2026-10-19",
   "name": "ARISTA NETWORKS INC"
@@ -174,6 +190,14 @@
  "US:DNA": {
   "at": "2026-10-19",
   "name": "GINKGO BIOWORKS HOLDINGS INC"
+ },
+ "US:FPS": {
+  "at": "2026-10-19",
+  "name": "FORGENT POWER SOLUTIONS INC"
+ },
+ "US:GOOGL": {
+  "at": "2026-10-19",
+  "name": "Alphabet"
  },
  "US:HPE": {
   "at": "2026-10-19",
@@ -266,6 +290,10 @@
  "US:STM": {
   "at": "2026-10-19",
   "name": "STMICROELECTRONICS"
+ },
+ "US:TEAM": {
+  "at": "2026-10-19",
+  "name": "ATLASSIAN CORP"
  },
  "US:TEM": {
   "at": "2026-10-19",

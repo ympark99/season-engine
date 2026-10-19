@@ -1,0 +1,154 @@
+{
+ "m": "US",
+ "code": "TEAM",
+ "name": "ATLASSIAN CORP",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY26 4분기 실적(2026-08-06) 및 FY27 가이던스 뒤",
+ "mid": {
+  "om": 27,
+  "why": "비GAAP 영업이익률 FY26 30%, FY27 목표 25%(현금보상 전환 약 3%p 부담). 컨센서스 FY29 약 27%대 + 클라우드 이전 완료 후 레버리지를 감안해 중간값 27%",
+  "conf": "추정",
+  "src": [
+   0,
+   1,
+   2
+  ]
+ },
+ "sbc": 14,
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "Rovo·가격 인상이 좌석 확대로 이어져 FY28 이후 총매출 성장 재가속, 비GAAP 마진 30%대 복귀",
+   "g": [
+    null,
+    null,
+    null,
+    15,
+    11
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    33,
+    34
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "FY27 감속(총매출 +13%) 뒤 데이터센터 축소 영향 해소로 성장 한 자릿수 후반~10%대, 마진 25~27% 유지",
+   "g": [
+    null,
+    null,
+    null,
+    12,
+    9
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    27,
+    27
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "AI 에이전트가 좌석 기반 과금을 잠식하고 경쟁 심화로 성장 한 자릿수 초반, 마진 20%대 초반",
+   "g": [
+    null,
+    null,
+    null,
+    8,
+    5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    22,
+    22
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "FY26 4분기",
+   "v": "매출 17.66억$ +28%, 클라우드 +31%, 구독 ARR 66억$ +23%",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "RPO",
+   "v": "48억$ +44%",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "FY27 가이던스",
+   "v": "총매출 약 +13%, 구독 ARR 약 +18%, 비GAAP 영업이익률 약 25%, GAAP 약 4.5%",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "FY26 현금",
+   "v": "잉여현금흐름 13.2억$",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "주식보상 부담",
+   "v": "4분기 비GAAP 영업이익률 36% vs GAAP 12%, FY27 목표 25% vs 4.5% — 격차 약 20%p 대부분 주식보상 등. 장기 sbc 14%는 격차 축소를 가정한 추정",
+   "conf": "추정",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "장기 마진 목표",
+   "v": "다년 영업이익률 목표는 확인되지 않음",
+   "conf": "추정",
+   "src": [
+    3
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Atlassian Corp Form 8-K Ex.99.1 - Q4 FY26 Results",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001650372/000165037226000031/ex991q4fy26.htm",
+   "d": "2026-08-06"
+  },
+  {
+   "t": "Atlassian Announces Fourth Quarter and Fiscal Year 2026 Results",
+   "u": "https://www.businesswire.com/news/home/20260806396002/en/Atlassian-Announces-Fourth-Quarter-and-Fiscal-Year-2026-Results",
+   "d": "2026-08-06"
+  },
+  {
+   "t": "Atlassian Q4 FY26 Shareholder Letter (8-K)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001650372/000165037226000031/teamq42026shareholderlet.htm",
+   "d": "2026-08-06"
+  },
+  {
+   "t": "Atlassian Jumped More Than 30% After Guiding Next Year's Growth Down to 18%",
+   "u": "https://www.fool.com/investing/2026/08/09/atlassian-jumped-more-than-30-after-guiding-next-y/",
+   "d": "2026-08-09"
+  }
+ ]
+}
