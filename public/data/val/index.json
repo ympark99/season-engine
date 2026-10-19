@@ -75,6 +75,10 @@
   "at": "2026-10-19",
   "name": "Analog Devices"
  },
+ "US:ALAB": {
+  "at": "2026-10-19",
+  "name": "ASTERA LABS INC"
+ },
  "US:APH": {
   "at": "2026-10-19",
   "name": "AMPHENOL CORP"
@@ -95,9 +99,17 @@
   "at": "2026-10-19",
   "name": "COHERENT CORP"
  },
+ "US:CRDO": {
+  "at": "2026-10-19",
+  "name": "CREDO TECHNOLOGY GROUP HOLDING LTD"
+ },
  "US:CRWD": {
   "at": "2026-10-19",
   "name": "CrowdStrike"
+ },
+ "US:CRWV": {
+  "at": "2026-10-19",
+  "name": "COREWEAVE INC"
  },
  "US:DELL": {
   "at": "2026-10-19",
@@ -110,6 +122,10 @@
  "US:INTC": {
   "at": "2026-10-19",
   "name": "Intel"
+ },
+ "US:IREN": {
+  "at": "2026-10-19",
+  "name": "IREN LIMITED"
  },
  "US:LITE": {
   "at": "2026-10-19",
@@ -143,6 +159,10 @@
   "at": "2026-10-19",
   "name": "NIKE INC"
  },
+ "US:NVDA": {
+  "at": "2026-10-19",
+  "name": "NVIDIA CORP"
+ },
  "US:OKTA": {
   "at": "2026-10-19",
   "name": "OKTA INC"
@@ -170,6 +190,10 @@
  "US:TEM": {
   "at": "2026-10-19",
   "name": "TEMPUS AI INC"
+ },
+ "US:TSLA": {
+  "at": "2026-10-19",
+  "name": "Tesla"
  },
  "US:UUUU": {
   "at": "2026-10-19",

@@ -1,0 +1,159 @@
+{
+ "m": "US",
+ "code": "TSLA",
+ "name": "Tesla",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2026 2분기 실적(영업이익률 1.4%) 뒤, 3분기 실적(10-21 예정) 전 가정",
+ "mid": {
+  "om": 9,
+  "why": "2022년 연간 영업이익률 16.8%(정점)와 2026 2분기 1.4%(저점) 사이. 컨센서스 2027~28년 8.8~10.6%의 중간 수준에서 유지된다고 보고, AI·로봇 투자 부담이 남는 점을 반영해 정점보다 낮게 둠",
+  "conf": "추정",
+  "src": [
+   2,
+   1
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "FSD v15 이후 무감독 로보택시가 2027년 안에 대규모로 확대되고 에너지저장 마진이 중저 20%대로 안정",
+   "g": [
+    null,
+    null,
+    null,
+    12,
+    8
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    13,
+    14
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "전기차 판매 정체 속 에너지저장·소프트웨어가 보완하고 설비투자 부담이 2~3년 이어지다 마진이 서서히 회복",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    9,
+    9
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "BYD 등과의 가격 경쟁으로 차량 마진이 낮은 채 유지되고 로보택시 확대가 지연되며 대규모 투자 부담만 남음",
+   "g": [
+    null,
+    null,
+    null,
+    5,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    5,
+    5
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "2분기 실적",
+   "v": "영업이익 약 3.98억$, 영업이익률 1.4%, 총이익률 16.8%",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "설비투자",
+   "v": "2분기 57.9억$(전년 +142%), 2026 연간 250억$ 초과 목표, 이후 2~3년 증가 전망",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "잉여현금흐름",
+   "v": "2분기 약 -10.9억$, 최대 300억$ 차입 한도 확보 보도",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "장기 에너지 마진",
+   "v": "에너지 부문 매출총이익률이 중저 20%대로 정상화될 것으로 회사 설명(보도)",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "과거 정점 마진",
+   "v": "2022년 연간 영업이익률 16.8%, 영업이익 137억$",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "3분기 인도",
+   "v": "486,532대(전년 약 -2%), 에너지저장 13.7GWh",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "로보택시",
+   "v": "무감독 약 25대, 대규모 확대는 FSD v15 이후(2027년 초 이전 늦은 시점)로 회사가 미룸",
+   "conf": "보도",
+   "src": [
+    4
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Tesla Q2 2026 earnings 요약 (capex·FCF·마진)",
+   "u": "https://evwire.com/p/tesla-record-capex-q2-2026-ai-compute-fab-solar",
+   "d": "2026-07"
+  },
+  {
+   "t": "Tesla beats revenue expectations but misses on earnings in Q2 2026",
+   "u": "https://driveteslacanada.ca/news/tesla-q2-2026-earnings-results-beat-revenue-miss-eps/",
+   "d": "2026-07"
+  },
+  {
+   "t": "TSLA Q4 2022 Update",
+   "u": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q4-2022-Update",
+   "d": "2023-01"
+  },
+  {
+   "t": "Tesla Delivers 486,532 Vehicles And Deploys 13.7 GWh Of Energy Storage In Q3 2026",
+   "u": "https://pulse2.com/tesla-delivers-486532-vehicles-and-deploys-13-7-gwh-of-energy-storage-in-q3-2026",
+   "d": "2026-10-02"
+  },
+  {
+   "t": "Tesla robotaxi fleet hits 25 as Musk defers scale to FSD v15",
+   "u": "https://www.automotiveworld.com/news/tesla-robotaxi-fleet-hits-25-as-musk-defers-scale-to-fsd-v15/",
+   "d": "2026"
+  }
+ ]
+}
