@@ -1,7 +1,15 @@
 {
+ "KR:000150": {
+  "at": "2026-10-19",
+  "name": "두산"
+ },
  "KR:000660": {
   "at": "2026-10-19",
   "name": "SK하이닉스"
+ },
+ "KR:000990": {
+  "at": "2026-10-19",
+  "name": "DB하이텍"
  },
  "KR:005930": {
   "at": "2026-10-19",
@@ -15,21 +23,65 @@
   "at": "2026-10-19",
   "name": "LG이노텍"
  },
+ "KR:050890": {
+  "at": "2026-10-19",
+  "name": "쏠리드"
+ },
  "KR:082740": {
   "at": "2026-10-19",
   "name": "한화엔진"
+ },
+ "KR:126340": {
+  "at": "2026-10-19",
+  "name": "비나텍"
+ },
+ "KR:131290": {
+  "at": "2026-10-19",
+  "name": "티에스이"
  },
  "KR:145020": {
   "at": "2026-10-19",
   "name": "휴젤"
  },
+ "KR:251970": {
+  "at": "2026-10-19",
+  "name": "펌텍코리아"
+ },
+ "KR:298040": {
+  "at": "2026-10-19",
+  "name": "효성중공업"
+ },
+ "KR:329180": {
+  "at": "2026-10-19",
+  "name": "HD현대중공업"
+ },
+ "KR:417200": {
+  "at": "2026-10-19",
+  "name": "LS머트리얼즈"
+ },
  "KR:475150": {
   "at": "2026-10-19",
   "name": "SK이터닉스"
  },
+ "KR:475830": {
+  "at": "2026-10-19",
+  "name": "오름테라퓨틱"
+ },
+ "US:AAOI": {
+  "at": "2026-10-19",
+  "name": "APPLIED OPTOELECTRONICS INC"
+ },
+ "US:ADI": {
+  "at": "2026-10-19",
+  "name": "Analog Devices"
+ },
  "US:APH": {
   "at": "2026-10-19",
   "name": "AMPHENOL CORP"
+ },
+ "US:AXTI": {
+  "at": "2026-10-19",
+  "name": "AXT INC"
  },
  "US:BE": {
   "at": "2026-10-19",
@@ -39,13 +91,41 @@
   "at": "2026-10-19",
   "name": "CIENA CORP"
  },
+ "US:COHR": {
+  "at": "2026-10-19",
+  "name": "COHERENT CORP"
+ },
  "US:CRWD": {
   "at": "2026-10-19",
   "name": "CrowdStrike"
  },
+ "US:DELL": {
+  "at": "2026-10-19",
+  "name": "Dell Technologies"
+ },
+ "US:HPE": {
+  "at": "2026-10-19",
+  "name": "HEWLETT PACKARD ENTERPRISE CO"
+ },
+ "US:INTC": {
+  "at": "2026-10-19",
+  "name": "Intel"
+ },
  "US:LITE": {
   "at": "2026-10-19",
   "name": "Lumentum"
+ },
+ "US:META": {
+  "at": "2026-10-19",
+  "name": "META PLATFORMS INC"
+ },
+ "US:MRNA": {
+  "at": "2026-10-19",
+  "name": "MODERNA INC"
+ },
+ "US:MRVL": {
+  "at": "2026-10-19",
+  "name": "Marvell Technology"
  },
  "US:MSFT": {
   "at": "2026-10-19",
@@ -55,9 +135,17 @@
   "at": "2026-10-19",
   "name": "MAXLINEAR INC"
  },
+ "US:NBIS": {
+  "at": "2026-10-19",
+  "name": "Nebius Group"
+ },
  "US:NKE": {
   "at": "2026-10-19",
   "name": "NIKE INC"
+ },
+ "US:OKTA": {
+  "at": "2026-10-19",
+  "name": "OKTA INC"
  },
  "US:PLTR": {
   "at": "2026-10-19",
@@ -67,12 +155,28 @@
   "at": "2026-10-19",
   "name": "ROCKET LAB CORPORATION"
  },
+ "US:SMTC": {
+  "at": "2026-10-19",
+  "name": "SEMTECH CORP"
+ },
  "US:SNDK": {
   "at": "2026-10-19",
   "name": "Sandisk"
  },
+ "US:STM": {
+  "at": "2026-10-19",
+  "name": "STMICROELECTRONICS"
+ },
  "US:TEM": {
   "at": "2026-10-19",
   "name": "TEMPUS AI INC"
+ },
+ "US:UUUU": {
+  "at": "2026-10-19",
+  "name": "Energy Fuels Inc"
+ },
+ "US:VICR": {
+  "at": "2026-10-19",
+  "name": "VICOR CORP"
  }
 }

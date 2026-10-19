@@ -1,0 +1,153 @@
+{
+ "m": "US",
+ "code": "SMTC",
+ "name": "SEMTECH CORP",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2027 회계 2분기 실적(2026-08-25) 뒤",
+ "mid": {
+  "om": 30,
+  "why": "조정 기준(주식보상 제외). 3분기 가이던스 조정 영업이익률 약 31%, 2분기 24.4%. 고성장 뒤 경쟁(Marvell·Broadcom·Credo)으로 컨센서스 정점 40%대에서 30% 안팎으로 내려온다고 봄. 장기 목표는 확인 못함",
+  "conf": "추정",
+  "src": [
+   0,
+   3
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "sbc": null,
+ "wc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "1.6T FiberEdge·CopperEdge 점유율 확대가 이어지고 2028 회계연도 수요가 생산능력을 넘어 가격·마진 유지",
+   "g": [
+    null,
+    null,
+    null,
+    40,
+    35,
+    28
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    44,
+    43,
+    42
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "2028 회계연도까지 백로그로 성장하나 이후 경쟁 심화·3.2T 전환 경쟁으로 마진이 서서히 내려옴",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    38,
+    35,
+    33
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "하이퍼스케일러 설비투자 둔화 또는 경쟁사 신제품으로 1.6T 점유율이 목표에 못 미치고 마진이 빠르게 하락",
+   "g": [
+    null,
+    null,
+    null,
+    12,
+    8,
+    6
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    34,
+    30,
+    27
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "2분기 실적",
+   "v": "매출 3.419억$ (+33%), 조정 매출총이익률 54.5%, 조정 영업이익률 24.4%",
+   "conf": "공시",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "3분기 가이던스",
+   "v": "매출 4.1억$ ±0.05억, 조정 매출총이익률 약 58.3%, 조정 영업이익률 약 31%",
+   "conf": "공시",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "데이터센터",
+   "v": "2분기 약 1억$ (+91% YoY), 3분기 전분기 대비 약 +45% 가이던스",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "백로그",
+   "v": "기록적 백로그, 2027 회계 잔여분 사실상 수주 완료, 2028 목표의 70% 이상 확보(한 보도)",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "생산능력",
+   "v": "2028 회계연도 수요가 생산능력을 넘을 수 있어 제조 파트너와 추가 확보 협의. 설비투자 수치는 확인 못함",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "장기 마진 목표·고객 집중도",
+   "v": "확인 못함(null)",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Semtech Announces Second Quarter of Fiscal Year 2027 Results",
+   "u": "https://www.semtech.com/company/press/semtech-announces-second-quarter-of-fiscal-year-2027-results",
+   "d": "2026-08-25"
+  },
+  {
+   "t": "SMTC Q2 earnings call spotlights 1.6T data center growth (Zacks)",
+   "u": "https://www.zacks.com/stock/news/2980324/smtc-q2-earnings-call-spotlights-16t-data-center-growth",
+   "d": "2026-08"
+  },
+  {
+   "t": "Semtech's Q2 Earnings Surpass Estimates (Nasdaq/Zacks)",
+   "u": "https://www.nasdaq.com/articles/semtechs-q2-earnings-surpass-estimates-revenues-increase-y-y",
+   "d": "2026-08"
+  },
+  {
+   "t": "Semtech: Operating Margin Swings 2,260 Basis Points As Revenue Jumps 33%",
+   "u": "https://pulse2.com/semtech-operating-margin-swings-2260-basis-points-as-revenue-jumps-33/",
+   "d": "2026-08"
+  }
+ ]
+}
