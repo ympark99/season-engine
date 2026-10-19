@@ -17,7 +17,7 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr, loadOvr, themeOf, GROUPS } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
 import { collectEstimates, loadEstimates, estForward, fwdTable } from '../lib/estimates.js';
-import { valuate, betaOf, usBand, valIndex, researchOf } from '../lib/valuation.js';
+import { valuate, betaOf, usBand, valIndex, researchOf, intelIndex } from '../lib/valuation.js';
 
 /** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
 export async function targetsOf(m) {
@@ -439,7 +439,7 @@ async function valueMine(m, recs) {
   const mine = (await store.listAll()).filter(it => it?.m === m), have = new Map(recs.map(r => [r.code, r]));
   const list = mine.filter(it => have.has(it.code));
   if (!list.length) return { n: 0 };
-  const [E, ix, shm, idx, RF, sum] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex(), rfAll(), store.get(S_SUM(m))]);
+  const [E, ix, shm, idx, RF, sum, II] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex(), rfAll(), store.get(S_SUM(m)), intelIndex()]);
   const [bars, hists, Rs] = await Promise.all([store.mgetBars(list.map(it => ({ m, code: it.code }))), store.mget(list.map(it => V_HIST(m, it.code))),
     Promise.all(list.map(it => researchOf(m, it.code, idx)))]);
   const out = {}, today = kstDate(), puts = [];
@@ -447,7 +447,7 @@ async function valueMine(m, recs) {
     const r = have.get(list[i].code), b = bars[i], px = b?.c?.length ? b.c[b.c.length - 1] : null;
     if (!px) continue;
     const R = Rs[i];
-    const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, r.theme), lite: true });
+    const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, r.theme), grade: II?.[`${m}:${r.code}`]?.grade?.g || null, lite: true });
     out[r.code] = { d: today, px, type: v.type, base: v.base ?? null, bull: v.bull ?? null, bear: v.bear ?? null, wv: v.wv ?? null, sm: v.sm ?? null, buy: v.buy ?? null,
       rv: v.rv ? { k: v.rv.kind, v: v.rv.val } : null, res: !!R };
     const h = hists[i] || [];
@@ -465,8 +465,8 @@ export async function valueOne(m, code) {
   const px = bars?.c?.length ? bars.c[bars.c.length - 1] : null;
   const theme = ovr[code] || row?.theme || themeOf(m, code, secOvr[code] || row?.sector || sectorOf(m, code, {}));
   if (!rec) return { m, code, px, theme, type: 'na', why: '재무 기록이 아직 없어 — 다음 수집 때 생겨 (내 목록 종목은 바로 모아)' };
-  const [E, R, RF] = await Promise.all([m === 'US' ? loadEstimates() : null, researchOf(m, code), rfAll()]);
-  const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme) });
+  const [E, R, RF, II] = await Promise.all([m === 'US' ? loadEstimates() : null, researchOf(m, code), rfAll(), intelIndex()]);
+  const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme), grade: II?.[`${m}:${code}`]?.grade?.g || null });
   const band = m === 'US' ? usBand(rec, px, theme) : rec.band ? bandOf(rec, theme, px) : null;
   const hist = (await store.get(V_HIST(m, code))) || [];
   return { ...v, code, theme, band, hist: hist.slice(-260),
