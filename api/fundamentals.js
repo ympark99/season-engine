@@ -17,6 +17,7 @@ import { sectorOf } from '../lib/sectors.js';
 import { loadSecOvr, loadOvr, themeOf, GROUPS } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
 import { collectEstimates, loadEstimates, estForward, fwdTable } from '../lib/estimates.js';
+import { valuate, betaOf, usBand, valIndex, researchOf } from '../lib/valuation.js';
 
 /** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
 export async function targetsOf(m) {
@@ -400,7 +401,51 @@ export async function scoreAll(m) {
     funding: rows.reduce((a, x) => { a[x.funding || '미상'] = (a[x.funding || '미상'] || 0) + 1; return a; }, {}),
     peak: rows.filter(x => x.flags.includes('이익 정점 경계')).length, rows };
   await store.set(S_SUM(m), sum);
+  try { await valueMine(m, recs); } catch (e) { console.error('valueMine', m, e.message); }   // 밸류에이션은 실패해도 점수는 그대로
   return sum;
+}
+
+/* ---------- 밸류에이션 (lib/valuation.js) ---------- */
+const IXC = { US: 'SPX', KR: 'KOSPI' };
+const V_SUM = m => `val:sum:${m}`, V_HIST = (m, c) => `val:h:${m}:${c}`;
+
+/** 내 목록 종목만 — 적정가 요약(val:sum:m, 목록 태그용)과 날짜별 기록(val:h:m:code, 나중에 '적정가보다 비쌀 때 실제로 빠졌나' 검증용) */
+async function valueMine(m, recs) {
+  const mine = (await store.listAll()).filter(it => it?.m === m), have = new Map(recs.map(r => [r.code, r]));
+  const list = mine.filter(it => have.has(it.code));
+  if (!list.length) return { n: 0 };
+  const [E, ix, shm, idx] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex()]);
+  const [bars, hists, Rs] = await Promise.all([store.mgetBars(list.map(it => ({ m, code: it.code }))), store.mget(list.map(it => V_HIST(m, it.code))),
+    Promise.all(list.map(it => researchOf(m, it.code, idx)))]);
+  const out = {}, today = kstDate(), puts = [];
+  for (let i = 0; i < list.length; i++) {
+    const r = have.get(list[i].code), b = bars[i], px = b?.c?.length ? b.c[b.c.length - 1] : null;
+    if (!px) continue;
+    const R = Rs[i];
+    const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, lite: true });
+    out[r.code] = { d: today, px, type: v.type, base: v.base ?? null, bull: v.bull ?? null, bear: v.bear ?? null, wv: v.wv ?? null, sm: v.sm ?? null, buy: v.buy ?? null,
+      rv: v.rv ? { k: v.rv.kind, v: v.rv.val } : null, res: !!R };
+    const h = hists[i] || [];
+    if (v.base != null && h[h.length - 1]?.[0] !== today) puts.push(store.set(V_HIST(m, r.code), [...h, [today, px, v.base, v.bear, v.bull, v.wv]].slice(-400)));
+  }
+  await Promise.all([...puts, store.set(V_SUM(m), { at: new Date().toISOString(), rows: out })]);
+  return { n: Object.keys(out).length };
+}
+
+/** 상세 화면 '밸류에이션' 탭 — 한 종목 전체 계산 (시나리오·역DCF·민감도·밴드·조사 근거) */
+export async function valueOne(m, code) {
+  const [rec, sum, bars, ix, shm, secOvr, ovr] = await Promise.all([store.get(KEY(m, code)), store.get(S_SUM(m)), store.getBars(m, code), store.getBars('IX', IXC[m]),
+    store.get(`mcap:${m}`), loadSecOvr(m), loadOvr(m)]);
+  const row = sum?.rows?.find(r => r.code === code) || null;
+  const px = bars?.c?.length ? bars.c[bars.c.length - 1] : null;
+  const theme = ovr[code] || row?.theme || themeOf(m, code, secOvr[code] || row?.sector || sectorOf(m, code, {}));
+  if (!rec) return { m, code, px, theme, type: 'na', why: '재무 기록이 아직 없어 — 다음 수집 때 생겨 (내 목록 종목은 바로 모아)' };
+  const E = m === 'US' ? await loadEstimates() : null, R = await researchOf(m, code);
+  const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null });
+  const band = m === 'US' ? usBand(rec, px, theme) : rec.band ? bandOf(rec, theme, px) : null;
+  const hist = (await store.get(V_HIST(m, code))) || [];
+  return { ...v, code, theme, band, hist: hist.slice(-260),
+    facts: R?.facts || [], sources: R?.sources || [], resAt: R?.at || null, resBy: R?.by || null };
 }
 
 export default async function handler(req, res) {
@@ -415,6 +460,10 @@ export default async function handler(req, res) {
       const code = String(req.query.probe);
       if ((req.query.m || 'KR') === 'KR') { const n = normalizeKr(await fetchKrInfo(code)); return send(res, 200, { norm: n, metrics: krMetrics(n) }); }
       return send(res, 200, await fetchForward(code.toUpperCase()));
+    }
+    if (req.method === 'GET' && req.query.val) {                                         // 상세 '밸류에이션' 탭
+      const m = req.query.m === 'KR' ? 'KR' : 'US', code = m === 'KR' ? String(req.query.val) : String(req.query.val).toUpperCase();
+      return send(res, 200, await valueOne(m, code));
     }
     if (req.method === 'GET' && req.query.code) {
       const m = req.query.m === 'KR' ? 'KR' : 'US', code = m === 'KR' ? String(req.query.code) : String(req.query.code).toUpperCase();

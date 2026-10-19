@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """경쟁·기술 갱신 — 1·2번(대상·분류) 준비.
 사용: python3 scripts/intel/plan.py [YYYY-MM-DD]   (오늘 날짜, 기본=KST 오늘)
-결과: /tmp/intel_work/ 에 targets.json, new.json, due.json, groups.json, gNN.json 을 만들고 요약을 출력한다.
+결과: /tmp/intel_work/ 에 targets.json, new.json, due.json, groups.json, gNN.json, val.json 을 만들고 요약을 출력한다.
+val.json = 오늘 밸류에이션 가정을 조사할 종목 (5-1번 · prompts/val_research.txt). 기준은 public/data/val/README.md.
 """
 import json, os, re, sys, time, datetime, subprocess, collections, urllib.request
 
@@ -37,7 +38,7 @@ if stocks is None:
 
 brand = re.compile(r'^(KODEX|TIGER|ACE|RISE|SOL|HANARO|KOSEF|ARIRANG|PLUS|KIWOOM|TIMEFOLIO)', re.I)
 def is_etf(x):
-    return bool(re.search(r'\bET[FN]\b', x['name'], re.I)) or (x['m'] == 'KR' and bool(brand.match(x['name'])))
+    return bool(re.search(r'\bET[FN]\b|PROSHARES|ULTRAPRO|DIREXION|ISHARES|\bSPDR\b', x['name'], re.I)) or (x['m'] == 'KR' and bool(brand.match(x['name'])))   # 미국 레버리지 ETF 는 이름에 ETF 가 없기도 함
 
 pick = ('m', 'code', 'name', 'theme')
 targets = [{k: x[k] for k in pick} for x in stocks if x['m'] in ('US', 'KR') and not is_etf(x)]
@@ -71,6 +72,54 @@ json.dump(new, open(f'{W}/new.json', 'w'), ensure_ascii=False)
 json.dump(due, open(f'{W}/due.json', 'w'), ensure_ascii=False)
 os.makedirs(f'{W}/res', exist_ok=True)
 
+# 5-1. 밸류에이션 가정 조사 대상 — 신규 · 실적 발표 체크포인트 완료 뒤 · 120일 경과 · 파일 없는 기존 종목(하루 VAL_BACKFILL 개)
+VD = os.path.join(REPO, 'public/data/val')
+VAL_NA = {'은행·금융지주', '은행', '증권', '증권·운용', '보험', '리츠', '코인', '지주'}
+VAL_STALE, VAL_BACKFILL = 120, 15
+os.makedirs(VD, exist_ok=True)
+
+
+def earn_done(m, c):
+    """경쟁·기술 파일에서 실적 체크포인트가 완료된 가장 늦은 날짜"""
+    try:
+        d = json.load(open(os.path.join(D, f'{m}_{c}.json')))
+    except Exception:
+        return None
+    best = None
+    for cp in d.get('checkpoints', []):
+        if cp.get('kind') != '실적' or cp.get('status') != '완료':
+            continue
+        ds = [g.get('d') for g in cp.get('log', []) if g.get('s') == '완료' and g.get('d')] or [cp.get('d')]
+        for x in ds:
+            if x and re.match(r'^\d{4}-\d{2}-\d{2}$', x) and x <= today and (best is None or x > best):
+                best = x
+    return best
+
+
+val_due, backfill = [], []
+for x in targets:
+    if x['theme'] in VAL_NA:
+        continue
+    f = os.path.join(VD, f"{x['m']}_{x['code']}.json")
+    at = None
+    if os.path.exists(f):
+        try:
+            at = json.load(open(f)).get('at')
+        except Exception:
+            at = None
+    if (x['m'], x['code']) in newkeys:
+        val_due.append({**x, 'why': '신규'})
+    elif not at:
+        backfill.append({**x, 'why': '파일 없음'})
+    else:
+        e = earn_done(x['m'], x['code'])
+        if e and e > at:
+            val_due.append({**x, 'why': f'실적 발표 완료 {e} 뒤'})
+        elif (t0 - datetime.date.fromisoformat(at)).days >= VAL_STALE:
+            val_due.append({**x, 'why': f'{VAL_STALE}일 경과'})
+val_due += backfill[:VAL_BACKFILL]
+json.dump(val_due, open(f'{W}/val.json', 'w'), ensure_ascii=False)
+
 pd = os.path.join(REPO, 'scripts/intel/prompts')
 os.makedirs(f'{W}/prompts', exist_ok=True)
 for f in os.listdir(pd):
@@ -81,6 +130,7 @@ print(f'today={today} refreshDays={refresh}' + (' · 정기 전체 갱신 멈춤
 print(f'대상 {len(targets)}종목, 업종 {len({x["theme"] for x in targets})}개, ETF 제외 {excluded}')
 print('신규(5번 전체 조사):', [(x['m'], x['code'], x['name'], x['theme']) for x in new])
 print('정기 전체 갱신(5번):', [(x['m'], x['code'], x['name'], x['theme']) for x in due])
+print(f'밸류에이션 조사(5-1번) {len(val_due)}종목 (파일 없는 기존 종목 남은 수 {max(0, len(backfill) - VAL_BACKFILL)}):', [(x['m'], x['code'], x['name'], x['why']) for x in val_due])
 print(f'매일 확인 업종 그룹 {len(names)}개:')
 for n, th in names.items():
     print(f'  {n} {th} ({len(g[th])})')

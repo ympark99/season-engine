@@ -8,6 +8,7 @@ DS투자증권 양형모 「순환주기론」 생왕쇠사 엔진의 재구성�
 public/index.html        화면
 public/data/macro.json   매크로 감시·범주 뷰 (Claude 가 검색·코멘트로 갱신)
 public/data/ds.json      DS 시장 지표 3종 (코멘트 수치)
+public/data/val/         밸류에이션 조사 가정 (경쟁·기술 갱신이 실적 발표 뒤 채움, 형식은 그 폴더 README)
 api/list.js              GET  목록 판정
 api/stock.js             GET  상세 차트 (2년)
 api/add.js               POST 종목 추가 → KIS 즉시 조회 (관리자)
@@ -16,6 +17,7 @@ api/cron.js              Vercel Cron — 평일 16:10 KST 한국 / 화~토 07:10
 api/train.js             POST DS 판정 재현 학습 (관리자)
 api/meta.js · health.js  엔진 상태 · 설정 점검
 lib/engine.js            판정·Ps·학습
+lib/valuation.js         밸류에이션 — 유형별 3시나리오 DCF·역DCF·민감도·안전마진·미국 PER·PBR 밴드 (/api/fundamentals?val=)
 lib/kis.js               KIS 일봉 (국내 FHKST03010100 · 해외 HHDFS76240000). 주문 기능 없음
 lib/store.js             Upstash Redis REST (패키지 의존성 없음)
 lib/labels.js            리포트·스크린샷 속 DS 실제 판정 (학습 정답지)
