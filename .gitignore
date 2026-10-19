@@ -2,3 +2,5 @@ node_modules/
 .vercel/
 .env
 .env.local
+infra/redis/.env
+infra/redis/backup/

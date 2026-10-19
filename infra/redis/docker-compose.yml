@@ -1,0 +1,28 @@
+# 오라클 VM 에서 Redis + Upstash REST 호환 어댑터(SRH) + HTTPS(Caddy) 를 띄운다.
+# 사용: .env 를 채운 뒤 `docker compose up -d`  (README.md 참고)
+services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec", "--requirepass", "${REDIS_PASSWORD}", "--maxmemory", "${REDIS_MAXMEMORY:-1gb}", "--maxmemory-policy", "noeviction"]
+    volumes: ["redis-data:/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$REDIS_PASSWORD ping | grep PONG"]
+      interval: 10s
+    environment: { REDIS_PASSWORD: "${REDIS_PASSWORD}" }
+  srh:
+    image: hiett/serverless-redis-http:latest
+    restart: always
+    depends_on: [redis]
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: ${SRH_TOKEN}
+      SRH_CONNECTION_STRING: redis://:${REDIS_PASSWORD}@redis:6379
+  caddy:
+    image: caddy:2-alpine
+    restart: always
+    depends_on: [srh]
+    ports: ["80:80", "443:443"]
+    environment: { DOMAIN: "${DOMAIN}" }
+    volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro", "caddy-data:/data"]
+volumes: { redis-data: {}, caddy-data: {} }
