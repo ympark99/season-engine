@@ -407,6 +407,25 @@ export async function scoreAll(m) {
 
 /* ---------- 밸류에이션 (lib/valuation.js) ---------- */
 const IXC = { US: 'SPX', KR: 'KOSPI' };
+/** 무위험금리 — 미국 10년물(일간)·한국 장기금리(월간, OECD) 를 하루 한 번 받아 val:rf 에 둔다. 실패하면 마지막 값, 그것도 없으면 lib/valuation.js 기본값 */
+const RF_KEY = 'val:rf', FRED = { US: ['DGS10', '미국 10년물'], KR: ['IRLTLT01KRM156N', '한국 장기금리(월간)'] };
+async function rfAll() {
+  const cur = (await store.get(RF_KEY)) || {};
+  if (cur.at && Date.now() - Date.parse(cur.at) < 20 * 3600e3) return cur;
+  if (!(await store.setNX('lock:rf', 1, 300))) return cur;
+  for (const [m, [id, src]] of Object.entries(FRED)) {
+    try {
+      const r = await fetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}`, { signal: AbortSignal.timeout(8000) });
+      if (!r.ok) continue;
+      const rows = (await r.text()).trim().split('\n').slice(1).map(l => l.split(',')).filter(([, v]) => v && v !== '.' && Number.isFinite(+v));
+      const [d, v] = rows[rows.length - 1] || [];
+      if (+v > 0.5 && +v < 15) cur[m] = { v: +(+v / 100).toFixed(4), d, src };
+    } catch { /* 이전 값 유지 */ }
+  }
+  cur.at = new Date().toISOString();
+  await store.set(RF_KEY, cur);
+  return cur;
+}
 const V_SUM = m => `val:sum:${m}`, V_HIST = (m, c) => `val:h:${m}:${c}`;
 
 /** 내 목록 종목만 — 적정가 요약(val:sum:m, 목록 태그용)과 날짜별 기록(val:h:m:code, 나중에 '적정가보다 비쌀 때 실제로 빠졌나' 검증용) */
@@ -414,7 +433,7 @@ async function valueMine(m, recs) {
   const mine = (await store.listAll()).filter(it => it?.m === m), have = new Map(recs.map(r => [r.code, r]));
   const list = mine.filter(it => have.has(it.code));
   if (!list.length) return { n: 0 };
-  const [E, ix, shm, idx] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex()]);
+  const [E, ix, shm, idx, RF] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex(), rfAll()]);
   const [bars, hists, Rs] = await Promise.all([store.mgetBars(list.map(it => ({ m, code: it.code }))), store.mget(list.map(it => V_HIST(m, it.code))),
     Promise.all(list.map(it => researchOf(m, it.code, idx)))]);
   const out = {}, today = kstDate(), puts = [];
@@ -422,7 +441,7 @@ async function valueMine(m, recs) {
     const r = have.get(list[i].code), b = bars[i], px = b?.c?.length ? b.c[b.c.length - 1] : null;
     if (!px) continue;
     const R = Rs[i];
-    const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, lite: true });
+    const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, rf: RF[m], lite: true });
     out[r.code] = { d: today, px, type: v.type, base: v.base ?? null, bull: v.bull ?? null, bear: v.bear ?? null, wv: v.wv ?? null, sm: v.sm ?? null, buy: v.buy ?? null,
       rv: v.rv ? { k: v.rv.kind, v: v.rv.val } : null, res: !!R };
     const h = hists[i] || [];
@@ -440,8 +459,8 @@ export async function valueOne(m, code) {
   const px = bars?.c?.length ? bars.c[bars.c.length - 1] : null;
   const theme = ovr[code] || row?.theme || themeOf(m, code, secOvr[code] || row?.sector || sectorOf(m, code, {}));
   if (!rec) return { m, code, px, theme, type: 'na', why: '재무 기록이 아직 없어 — 다음 수집 때 생겨 (내 목록 종목은 바로 모아)' };
-  const E = m === 'US' ? await loadEstimates() : null, R = await researchOf(m, code);
-  const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null });
+  const [E, R, RF] = await Promise.all([m === 'US' ? loadEstimates() : null, researchOf(m, code), rfAll()]);
+  const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m] });
   const band = m === 'US' ? usBand(rec, px, theme) : rec.band ? bandOf(rec, theme, px) : null;
   const hist = (await store.get(V_HIST(m, code))) || [];
   return { ...v, code, theme, band, hist: hist.slice(-260),
