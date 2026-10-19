@@ -71,13 +71,25 @@
   "at": "2026-10-19",
   "name": "효성중공업"
  },
+ "KR:327260": {
+  "at": "2026-10-19",
+  "name": "RF머트리얼즈"
+ },
  "KR:329180": {
   "at": "2026-10-19",
   "name": "HD현대중공업"
  },
+ "KR:356860": {
+  "at": "2026-10-19",
+  "name": "티엘비"
+ },
  "KR:417200": {
   "at": "2026-10-19",
   "name": "LS머트리얼즈"
+ },
+ "KR:425420": {
+  "at": "2026-10-19",
+  "name": "티에프이"
  },
  "KR:475150": {
   "at": "2026-10-19",
@@ -159,6 +171,10 @@
   "at": "2026-10-19",
   "name": "Dell Technologies"
  },
+ "US:DNA": {
+  "at": "2026-10-19",
+  "name": "GINKGO BIOWORKS HOLDINGS INC"
+ },
  "US:HPE": {
   "at": "2026-10-19",
   "name": "HEWLETT PACKARD ENTERPRISE CO"
@@ -194,6 +210,10 @@
  "US:MSFT": {
   "at": "2026-10-19",
   "name": "Microsoft"
+ },
+ "US:MU": {
+  "at": "2026-10-19",
+  "name": "Micron Technology"
  },
  "US:MXL": {
   "at": "2026-10-19",
