@@ -1,0 +1,167 @@
+{
+ "m": "US",
+ "code": "CIEN",
+ "name": "CIENA CORP",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2026 회계 3분기 실적(2026-09-03) 뒤, 4분기 실적(12월 예정) 전",
+ "mid": {
+  "om": 22,
+  "why": "성숙 마진 가정. FY27 회사 전망 영업이익률 25~27%(조정)는 AI 수요 정점 구간이라 보고, 광전송 장비 업종 장기 마진은 이보다 낮은 20%대 초반으로 둠. 경쟁(Nokia·Huawei 등) 심화 시 하락",
+  "conf": "추정",
+  "src": [
+   0,
+   1
+  ]
+ },
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "수주잔고 100억달러 초과, 핵심 부품 공급 해소로 FY29에도 높은 성장 지속, 데이터센터 내부 광엔진까지 확장",
+   "g": [
+    null,
+    null,
+    null,
+    25,
+    18,
+    12
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    30,
+    29,
+    28
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "FY27~28 컨센서스 이후 부품 공급 제약과 매출 기저 확대로 성장이 둔화되고 마진은 점차 중간값으로 수렴",
+   "g": [
+    null,
+    null,
+    null,
+    18,
+    12,
+    8,
+    6
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    27,
+    26,
+    25,
+    24
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "하이퍼스케일러 투자 둔화 또는 고객 집중(10% 초과 고객 2곳) 이탈과 경쟁 심화로 FY29부터 성장 정체·마진 하락",
+   "g": [
+    null,
+    null,
+    null,
+    6,
+    0,
+    -3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    21,
+    18,
+    16
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "4분기 가이던스",
+   "v": "매출 17.5억$ ±0.5억$, 조정 매출총이익률 약 45%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "FY26 전망",
+   "v": "연간 매출 중간값 약 64.2억$, 조정 영업이익률 20~21%",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "FY27 전망",
+   "v": "매출 83~84억$(+30% 이상), 매출총이익률 45~46%, 영업이익률 25~27%",
+   "conf": "공시",
+   "src": [
+    1,
+    2
+   ]
+  },
+  {
+   "k": "수주잔고",
+   "v": "85억$, 연말 100억$ 초과 전망",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "공급 제약",
+   "v": "부품 공급이 FY27 성장의 핵심 제약, 핵심 부품 장기공급계약 2029년까지 확정",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "고객 집중",
+   "v": "매출 10% 초과 고객 2곳",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "설비투자·장기 마진 목표",
+   "v": "확인 안 됨 — 설비투자 비율 서버 자동값 사용",
+   "conf": "추정",
+   "src": []
+  }
+ ],
+ "sources": [
+  {
+   "t": "Ciena 8-K 2026 3분기 실적 보도자료",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000936395/000162828026060245/ex9912026q3earningspressre.htm",
+   "d": "2026-09-03"
+  },
+  {
+   "t": "Transcript: Ciena Q3 earnings call highlights",
+   "u": "https://www.marketbeat.com/instant-alerts/transcript-ciena-q3-earnings-call-highlights-2026-09-03/",
+   "d": "2026-09-03"
+  },
+  {
+   "t": "Ciena Q3 earnings call flags supply as key constraint on 2027 growth",
+   "u": "https://www.zacks.com/stock/news/2985102/ciena-q3-earnings-call-flags-supply-as-key-constraint-on-2027-growth",
+   "d": "2026-09"
+  },
+  {
+   "t": "Ciena Form 10-K FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/936395/000162828025056698/cien-20251101.htm",
+   "d": "2025-12"
+  }
+ ]
+}
