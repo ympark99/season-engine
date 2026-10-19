@@ -423,6 +423,7 @@ details[open]>summary.fold::after{content:' ▴'}
 .fxt{font-size:12px;font-weight:700;color:var(--gold-ink);margin:14px 0 7px}
 .ocards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:8px 0 4px}.ocard{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
 .ocard i{font-style:normal;font-size:11.5px;color:var(--muted)}.ocard b{font-size:16px;font-weight:800}.ocard em{font-style:normal;font-size:11.5px;color:var(--ink2);line-height:1.4}.ocard.dn{border-color:var(--neg)}.ocard.up{border-color:var(--pos)}
+.osig{border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0}.osig.up{border-color:var(--pos)}.osig.dn{border-color:var(--neg)}
 .oread{font-size:13.5px;line-height:1.55;color:var(--ink2);margin:2px 0 6px}
 .fxh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .fxper{display:flex;flex-wrap:wrap;gap:4px}.fxper .pbtn{padding:3px 9px;font-size:11.5px}.fxper .pbtn.sep{margin-left:10px}
@@ -1343,7 +1344,7 @@ function renderRows(flash){
       if(!ok(S))return `<tr>${pre(iId)}${idCell(S)}<td colspan="${NC-iId-3}" class="warn">${esc(S.error)}</td>${rm(S)}<td class="fillc"></td></tr>`;
       const A=actionOf(S),V=vcells(S),cell={
         fav:`<td class="fv"><button type="button" class="fav" data-fav="${K(S)}" aria-pressed="${isFav(S)}" aria-label="${esc(S.name||S.code)} 즐겨찾기" title="즐겨찾기">${isFav(S)?'★':'☆'}</button></td>`,
-        season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span>${scMark(S.season,S.sc)}<span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}${stTag(S,1)}${optTag(S)}</div>${fitTag(S.fit)}</td>`,
+        season:`<td><div class="sn"><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span>${scMark(S.season,S.sc)}<span class="pb num">${S.prob}%</span>${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}${stTag(S,1)}${optTag(S)}${optSigTag(S)}</div>${fitTag(S.fit)}</td>`,
         id:idCell(S),sector:thCell(S.code,S.sector,S.theme),
         prob:`<td class="r num wt">${S.prob}%${S.signal?`<span class="sig sig-${S.signal.k}" title="${esc(S.signal.why)}">${esc(S.signal.t)}</span>`:''}</td>`,
         ps5:`<td class="r num" style="color:${S.ps5==null?'var(--muted)':S.ps5<0?'var(--neg)':'var(--pos)'}">${S.ps5==null?'—':(S.ps5>0?'+':'')+S.ps5.toFixed(0)}</td>`,
@@ -1539,7 +1540,7 @@ function renderInd(){
 async function renderEngine(){
   $('engdyn').innerHTML='<div class="loading">불러오는 중…</div>';
   let M;try{M=await api('/api/meta')}catch(e){$('engdyn').innerHTML=`<div class="warn">${esc(e.message)}</div>`;return}
-  const [BT,UV,HL,SM]=await Promise.all([api('/api/backtest?m='+state.m).catch(()=>null),api('/api/universe').catch(()=>null),api('/api/health').catch(()=>null),api('/api/portfolio?m='+state.m).catch(()=>null)]);
+  const [BT,UV,HL,SM,OB]=await Promise.all([api('/api/backtest?m='+state.m).catch(()=>null),api('/api/universe').catch(()=>null),api('/api/health').catch(()=>null),api('/api/portfolio?m='+state.m).catch(()=>null),api('/api/stock?optbt=1').catch(()=>null)]);
   const P=M.params;
   const pr=[['W','돌파 창 길이','봉'],['b','겨울 탈출 돌파폭','σ'],['u','여름 승격 상승폭','σ'],['d1','가을 전이 낙폭 (하한 1.5)','σ'],['d2','겨울 전이 낙폭','σ'],['TF','가을 체류 한도','봉'],['TC','전환 후 최소 유지','봉'],['hyst','연속 확인일 (하한 2)','일'],['lowGate','52주 저점 대비 최소 상승','%'],['slopeWin','기울기 측정 창','봉']];
   const fv=(k,u)=>P[k]==null?'—':u==='%'?(P[k]*100).toFixed(0)+'%':u==='σ'?(+P[k]).toFixed(2)+'σ':u==='일'?P[k]+'일':P[k]+'봉';
@@ -1549,7 +1550,8 @@ async function renderEngine(){
     <div class="tbl-wrap"><table style="min-width:420px"><thead><tr><th>파라미터</th><th>의미</th><th class="r">값</th></tr></thead><tbody>
     ${pr.map(([k,n,u])=>`<tr><td><code>${k}</code></td><td>${n}</td><td class="r num wt">${fv(k,u)}</td></tr>`).join('')}</tbody></table></div></section>
   ${calCard(M)}`
-  +pipeCard(HL)+univOpsCard(UV)+accCard(BT)+tuneCard(BT)+stratOpsCard(SM);
+  +pipeCard(HL)+univOpsCard(UV)+accCard(BT)+tuneCard(BT)+stratOpsCard(SM)+optBtCard(OB);
+  if($('optBtBtn'))$('optBtBtn').onclick=runOptBt;
   $('scanUS').onclick=()=>runScan('US');$('scanKR').onclick=()=>runScan('KR');$('memBtn').onclick=runMembers;
   if($('pipeBtn')){$('pipeBtn').onclick=runPipe;$('pipeStage').onclick=()=>runPipeLoop('stage');$('pipeAll').onclick=()=>runPipeLoop('all');$('pipeStop').onclick=()=>{PIPE_STOP=true;$('pipemsg').textContent='이번 조각이 끝나면 멈춰…'}}
   if($('stRun'))$('stRun').onclick=()=>runStrat(false);if($('stReset'))$('stReset').onclick=()=>runStrat(true);
@@ -2102,6 +2104,39 @@ function drawIntel(){const S=state.cur,el=$('d-s-intel'),j=state.intel?.j;if(!S|
     ${src.length?`<h4>출처</h4><div class="src">${src.map((x,i)=>`<div>[${i+1}] ${u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)}${x.d?` <span class="muted">${esc(x.d)}</span>`:''}</div>`).join('')}</div>`:''}
     <div class="sub" style="margin-top:8px">매일 아침 정기 조사가 종목·업종(경쟁사) 뉴스와 다가온 일정을 확인해 바뀐 것만 고치고, 변화 없는 종목도 주기적으로 전체를 다시 조사해. 판정: 우위·선두권·동등·열세·불확실 · 근거: 공시·보도·추정. 회사 목표치는 '목표'로 적어.</div>`}
 
+/* ---------- 옵션 신호 (lib/optsig.js) — 계절 상태 × 옵션 특징. 검증 통과(pass)한 규칙만 신호로 켜짐 ---------- */
+const OST_NAME={SU:'봄 미확정',SC:'봄 확정',U:'여름',A:'가을',W:'겨울'};
+const OFEAT={above:'플립 위',below:'플립 아래',gexP:'GEX ≥ 0',gexN:'GEX < 0',callSkew:'콜 쏠림',putSkew:'풋 쏠림',flipUp:'플립 회복',flipDn:'플립 이탈',gexPos:'GEX 양전',gexNeg:'GEX 음전',gexNegGrow:'음의 GEX 확대',callOIup:'콜 미결제약정 증가',putOIup:'풋 미결제약정 증가',cwUp:'콜 월 상향',cwDn:'콜 월 하향'};
+const ostOf=S=>S.season==='봄'?(S.sc?.ok?'SC':'SU'):{여름:'U',가을:'A',겨울:'W'}[S.season];
+const ruleHit=(r,st,F)=>!!F&&r.st.includes(st)&&r.when.some(g=>g.every(k=>F[k]));
+const whenTxt=r=>r.when.map(g=>g.map(k=>OFEAT[k]||k).join(' + ')).join(' 또는 ');
+const OSTAT={pass:['검증 통과 · 신호 켜짐','t-good'],fail:['검증 결과 효과 없음','t-mid'],wait:['검증 중 (표본 모으는 중)','t-mid']};
+/* 목록 태그 — 통과한 규칙 중 오늘 맞는 것만 */
+function optSigTag(S){const R=D?.optSig?.rules;if(!R||!S.op?.f)return '';const st=ostOf(S);
+  return R.filter(r=>r.status==='pass'&&ruleHit(r,st,S.op.f)).map(r=>`<span class="sig sig-kj ${r.dir==='up'?'k-up':'k-dn'}" title="${esc(`옵션 신호 (검증 통과) — ${r.name}: ${whenTxt(r)} · ${r.use}`)}">${r.dir==='up'?'▲':'▼'}${esc(r.name)}</span>`).join('')}
+/* 옵션 탭 안 — 오늘 특징 · 맞는 규칙 · 전체 규칙과 검증 상태 */
+function optSigBlock(S,j){const G=j.sig,F=j.feat||{},st=ostOf(S);if(!G)return '';
+  const fs=Object.keys(F).map(k=>`<span class="sig sig-kj ${/^(above|gexP|callSkew|flipUp|gexPos|callOIup|cwUp)$/.test(k)?'k-up':'k-dn'}">${OFEAT[k]||k}</span>`).join('')||'<span class="muted">특징 없음</span>';
+  const on=G.rules.filter(r=>ruleHit(r,st,F));
+  const pill=r=>{const [t,c]=OSTAT[r.status]||OSTAT.wait;return `<span class="tag ${c}" style="font-size:11px">${t}${r.status==='wait'?` · ${r.n}/${G.pass.n}`:''}</span>`};
+  const h5=r=>r.h5?`<span class="num ${r.h5.edge>0?'up':r.h5.edge<0?'dn':''}">${r.h5.edge>0?'+':''}${r.h5.edge}%p</span> <span class="muted">t ${r.h5.t??'—'} · 상승 ${r.h5.up??'—'}% (기준 ${r.h5.upBase??'—'}%)</span>`:'<span class="muted">—</span>';
+  return `<div class="fxt">옵션 신호 <span class="muted" style="font-weight:500">오늘 계절 ${OST_NAME[st]||S.season} · 검증 ${G.at?`${G.at.slice(5,10).replace('-','.')} (기록 ${G.days}일)`:'아직 안 돌았음'}</span></div>
+    <div class="chips" style="margin-bottom:6px">${fs}</div>
+    ${on.length?on.map(r=>`<div class="osig ${r.status==='pass'?(r.dir==='up'?'up':'dn'):''}"><b>${r.dir==='up'?'▲':'▼'} ${esc(r.name)}</b> ${pill(r)}<div class="sub">${esc(whenTxt(r))} → ${esc(r.use)}</div></div>`).join(''):'<div class="sub">오늘 맞는 규칙 없음</div>'}
+    <details style="margin-top:8px"><summary class="sub" style="cursor:pointer">전체 규칙 ${G.rules.length}개와 검증 상태 ▾</summary>
+    <div class="tbl-wrap" style="margin-top:6px"><table style="min-width:760px"><thead><tr><th>규칙</th><th>계절</th><th>조건</th><th>쓰는 법</th><th>상태</th><th>5일 초과수익 (같은 계절 대비)</th></tr></thead><tbody>
+    ${G.rules.map(r=>`<tr${ruleHit(r,st,F)?' style="background:var(--soft)"':''}><td><b class="${r.dir==='up'?'up':'dn'}">${r.dir==='up'?'▲':'▼'} ${esc(r.name)}</b></td><td class="sub">${r.st.length===5?'전체':r.st.map(x=>OST_NAME[x]).join('·')}</td><td class="sub" style="white-space:normal;min-width:180px">${esc(whenTxt(r))}</td><td class="sub" style="white-space:normal;min-width:200px">${esc(r.use)}</td><td>${pill(r)}</td><td class="num">${h5(r)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="sub" style="margin-top:6px">검증: 매주 유니버스(S&P 500·나스닥 100·AI 밸류체인) + 내 종목의 날짜별 옵션 기록으로 규칙이 맞은 날 이후 1·2·5·10거래일 수익률을, 같은 계절 상태(봄 미확정·봄 확정·여름·가을·겨울)인 날 전체 평균과 비교해. 통과 = 표본 ${G.pass.n}개·날짜 ${G.pass.dates}일 이상 + 5일 초과수익 ${G.pass.edge}%p 이상(하락 규칙은 −) + 날짜 묶음 t ${G.pass.t} 이상 + 상승 비율 차 ${G.pass.hit}%p 이상. 통과한 규칙만 목록 태그·신호로 켜져.</div></details>`}
+/* 엔진 탭 카드 — 옵션 신호 백테스트 전체 결과 */
+function optBtCard(B){const has=B&&!B.empty;
+  const row=r=>{const c=h=>{const x=r.h[h];return x?`<td class="r num ${x.edge>0?'up':x.edge<0?'dn':''}" title="평균 ${x.avg}% · 기준 ${x.base}% · t ${x.t} · 상승 ${x.up}% (기준 ${x.upBase}%)">${x.edge>0?'+':''}${x.edge}</td>`:'<td class="r muted">—</td>'};
+    const [t,cl]=OSTAT[r.status]||OSTAT.wait;return `<tr><td><b class="${r.dir==='up'?'up':'dn'}">${r.dir==='up'?'▲':'▼'} ${esc(r.name)}</b></td><td class="sub">${r.st.length===5?'전체':r.st.map(x=>OST_NAME[x]).join('·')}</td><td class="r num">${r.n}</td><td class="r num">${r.dates}</td>${[1,2,5,10].map(c).join('')}<td class="r num">${r.h[5]?.t??'—'}</td><td class="r num">${r.dd10??'—'} <span class="muted">(${r.dd10Base??'—'})</span></td><td><span class="tag ${cl}" style="font-size:11px">${t}</span></td></tr>`};
+  return `<section class="card"><details${has?'':' open'}><summary class="fold"><h2 style="display:inline">옵션 신호 검증</h2> <span class="sub">${has?`${kst(B.at)} · 기록 ${B.days}일 (${B.from}~${B.to}) · ${B.codes}종목 · ${B.rows.toLocaleString()}행`:'아직 결과 없음'}</span></summary>
+    <p class="lead">계절 상태 × 옵션 특징 규칙 ${has?B.rules.length:15}개를, 규칙이 맞은 날 이후 수익률 − 같은 계절 상태 전체 평균(초과수익, %p)으로 검증해. 하락 규칙(▼)은 음수가 맞는 방향이야. t = 날짜별로 묶은 t값, 10일 최대낙폭은 (같은 계절 기준). 매주 토요일 자동 + 아래 버튼으로 수동.</p>
+    ${has?`<div class="tbl-wrap"><table style="min-width:780px"><thead><tr><th>규칙</th><th>계절</th><th class="r">표본</th><th class="r">날짜</th><th class="r">1일</th><th class="r">2일</th><th class="r">5일</th><th class="r">10일</th><th class="r">t(5일)</th><th class="r">10일 최대낙폭</th><th>상태</th></tr></thead><tbody>${B.rules.map(row).join('')}</tbody></table></div>`:'<div class="sub">미국 장 마감 뒤 옵션 기록이 쌓이기 시작해 — 표본이 차면 통과 여부가 나와.</div>'}
+    <div class="btns" style="margin-top:10px"><button type="button" class="pbtn" id="optBtBtn">지금 검증 돌리기 (관리자)</button><span class="sub" id="optBtMsg"></span></div></details></section>`}
+async function runOptBt(){const b=$('optBtBtn'),m=$('optBtMsg');b.disabled=true;m.textContent=' 도는 중… (최대 4분)';
+  try{const r=await api('/api/cron?op=optbt');m.textContent=r.busy?' 다른 호출이 돌고 있어':` 완료 — 기록 ${r.days}일 · ${r.codes}종목 · 통과 ${r.pass.length}개`;setTimeout(renderEngine,800)}catch(e){m.textContent=' 실패: '+e.message}finally{b.disabled=false}}
 /* ---------- 옵션 (미국 — CBOE 지연 체인을 서버가 계산 · lib/options.js) ---------- */
 const usd=v=>v==null?'—':(v<0?'−':'')+'$'+(Math.abs(v)>=1e9?(Math.abs(v)/1e9).toFixed(2)+'B':Math.abs(v)>=1e6?(Math.abs(v)/1e6).toFixed(1)+'M':Math.abs(v)>=1e3?(Math.abs(v)/1e3).toFixed(0)+'K':Math.abs(v).toFixed(0));
 const kn=v=>v==null?'—':Math.abs(v)>=1e6?(v/1e6).toFixed(2)+'M':Math.abs(v)>=1e3?(v/1e3).toFixed(1)+'K':String(Math.round(v));
@@ -2168,7 +2203,7 @@ function drawOpt(){const S=state.cur,el=$('d-s-opt');if(!el||!S)return;
   const ev=(j.ev||[]).length?`<div class="fxt">사건</div><div class="chips">${j.ev.map(e=>`<span class="sig sig-kj ${e.k==='up'?'k-up':'k-dn'}" title="${esc(e.why)}">${f(e.d)} ${esc(e.t)}</span>`).join('')}</div>`:'';
   const oc=j.oiChg?`<div class="fxt">미결제약정 변화 <span class="muted" style="font-weight:500">${f(j.oiChg.from)} → ${f(s.d)} · 콜 ${j.oiChg.dC>=0?'+':''}${kn(j.oiChg.dC)} · 풋 ${j.oiChg.dP>=0?'+':''}${kn(j.oiChg.dP)} (전체 만기 합, 행사가별)</span></div><div class="tbl-wrap"><table style="min-width:420px"><thead><tr><th>행사가</th><th class="r">변화</th><th class="r">지금</th></tr></thead><tbody>
     ${j.oiChg.top.length?'':'<tr><td colspan="3" class="muted">변화 없음</td></tr>'}${j.oiChg.top.map(c=>`<tr><td><span class="${c.cp==='C'?'up':'dn'}"><b>${c.cp==='C'?'콜':'풋'}</b></span> ${P(c.K)}${dp(c.K)}</td><td class="r num ${c.dv>0?'up':'dn'}">${c.dv>0?'+':''}${kn(c.dv)}</td><td class="r num">${kn(c.now)}</td></tr>`).join('')}</tbody></table></div>`:'';
-  el.innerHTML=head+cards+strikeBox+ev+oc+trend+expTbl+topTbl+`<div class="ipop" id="opop" role="dialog" aria-modal="true" aria-labelledby="opop-h" hidden><div class="ipbox"><b id="opop-h">옵션 수급</b><p id="opop-t"></p><button type="button" class="pbtn" id="opop-x">닫기</button></div></div><div class="sub" style="margin-top:8px">원본: CBOE 지연 옵션 시세(장중 약 15분 지연) — 서버가 받아서 계산하고 원본은 저장하지 않아. 차트분석 [기술적 분석 열기] → 차트 안 [옵션] 버튼으로 감마 플립·콜 월·풋 월·맥스 페인·예상 변동폭을 가격 차트에 겹쳐 볼 수 있어.</div>`;
+  el.innerHTML=head+cards+optSigBlock(S,j)+strikeBox+ev+oc+trend+expTbl+topTbl+`<div class="ipop" id="opop" role="dialog" aria-modal="true" aria-labelledby="opop-h" hidden><div class="ipbox"><b id="opop-h">옵션 수급</b><p id="opop-t"></p><button type="button" class="pbtn" id="opop-x">닫기</button></div></div><div class="sub" style="margin-top:8px">원본: CBOE 지연 옵션 시세(장중 약 15분 지연) — 서버가 받아서 계산하고 원본은 저장하지 않아. 차트분석 [기술적 분석 열기] → 차트 안 [옵션] 버튼으로 감마 플립·콜 월·풋 월·맥스 페인·예상 변동폭을 가격 차트에 겹쳐 볼 수 있어.</div>`;
   el.querySelectorAll('[data-obar]').forEach(b=>b.onclick=()=>{PREF.obar=b.dataset.obar;savePrefs();drawOpt()});
   el.querySelectorAll('[data-oscope]').forEach(b=>b.onclick=()=>{PREF.oscope=b.dataset.oscope;savePrefs();drawOpt()});
   el.querySelector('[data-oref]')?.addEventListener('click',()=>loadOpt(true));
@@ -2182,6 +2217,7 @@ const OINFO=['감마 플립 = 주가를 위아래로 바꿔 가며 딜러의 감
   '예상 변동폭 = 다음 만기 ATM 콜+풋(스트래들) 가격. 옵션 시장이 그 만기까지 예상하는 움직임 폭 (실적 발표 전 특히 유용).',
   '맥스 페인 = 그 만기에 옵션 매수자 손실이 가장 큰 가격. 만기 직전 며칠에만 약하게 작동해.',
   '추이·사건·미결제약정 변화는 매일 장 마감 뒤 저장한 기록으로 계산 — 플립 회복·이탈, GEX 부호 전환, 콜 월 이동, 전날 대비 행사가별 미결제약정 증감(새 포지션이 쌓인 곳).',
+  '옵션 신호 = 계절 상태(봄 미확정·봄 확정·여름·가을·겨울) × 옵션 특징(플립 위·아래·회복·이탈, GEX, 콜·풋 쏠림, 미결제약정 증감, 콜 월 이동) 규칙 15개. 매주 유니버스 기록으로 검증해서 통과한 규칙만 목록 태그·신호로 켜져 (엔진 탭 \'옵션 신호 검증\').',
   '단기 방향 예측력은 아직 검증 전이야 — 기록이 2~3개월 쌓이면 지표별 이후 1·2·5일 수익률로 백테스트해서 단기진입·TS 같은 신호에 쓸지 정할 거야.'];
 /* 가격 차트 위 옵션 레벨 — 기술적 분석 + 차트 안 [옵션] 토글. 기록이 있으면 날짜별 선, 없으면 오른쪽 끝 구간에만 */
 function optSvg(J,i0,A,x,y,lo,hi,ml,pw){const S=state.cur,o=state.opt?.j;if(!state.ta||PREF.op===false||!optOk(S)||!o?.sum)return '';

@@ -46,6 +46,7 @@
     { "path": "/api/cron?op=step&m=US&bk=18", "schedule": "30 3 * * 2-6" },
     { "path": "/api/cron?op=opt", "schedule": "40 21 * * 1-5" },
     { "path": "/api/cron?op=opt&bk=1", "schedule": "40 22 * * 1-5" },
-    { "path": "/api/cron?op=opt&bk=2", "schedule": "40 23 * * 1-5" }
+    { "path": "/api/cron?op=opt&bk=2", "schedule": "40 23 * * 1-5" },
+    { "path": "/api/cron?op=optbt", "schedule": "20 4 * * 6" }
   ]
 }

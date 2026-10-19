@@ -18,6 +18,7 @@ import { addKijun } from '../lib/kijun.js';
 import { bandOf, bandFor } from '../lib/band.js';
 import { flowOf, saveFlowOvr, enqueue, queueText } from '../lib/flow.js';
 import { optFor } from '../lib/options.js';
+import { BT_KEY } from '../lib/optsig.js';
 
 /** GET ?flow=1 — 매출 흐름도 (버튼 누를 때만, 7일 저장) · POST ?flow=1 — 매출처·사업 구성 직접 수정 (관리자) */
 async function flow(req, res) {
@@ -44,6 +45,7 @@ export default async function handler(req, res) {
   try {
     if (req.query.flow) return await flow(req, res);
     const { m, code } = req.query;
+    if (req.query.optbt) return send(res, 200, (await store.get(BT_KEY)) || { empty: true });   // ?optbt=1 — 옵션 신호 백테스트 결과 (엔진 탭)
     if (req.query.opt) {                                                        // ?opt=1 — 미국 옵션 수급 (CBOE 체인 → 서버 계산, 15분~3시간 캐시) + 날짜별 기록·사건
       if (m !== 'US' || !/^[A-Z.\-]{1,10}$/.test(String(code || ''))) return send(res, 400, { error: '미국 종목만' });
       return send(res, 200, await optFor(String(code)));

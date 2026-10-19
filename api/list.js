@@ -20,6 +20,7 @@ import { collectOne, scoreAll } from './fundamentals.js';
 import { AI_SETS } from '../lib/aiset.js';
 import { mcOpt } from '../lib/pullback.js';
 import { SKEY as OPT_SKEY } from '../lib/options.js';
+import { rulesView } from '../lib/optsig.js';
 
 /** POST /api/add {items:[{m,code,name,excd?}]} — KIS 에서 5년+워밍업 일봉을 바로 조회해서 목록에 추가 */
 async function add(req, res) {
@@ -89,7 +90,7 @@ async function list(req, res) {
     const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
     if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
     const o = it.m === 'US' ? opt[it.code] : null;
-    if (o && !o.none) r.op = { d: o.d, px: o.px, flip: o.flip, gex: o.gex, cpP: o.cpP, pcV: o.pcV, cw: o.cw, pw: o.pw };
+    if (o && !o.none) r.op = { d: o.d, px: o.px, flip: o.flip, gex: o.gex, cpP: o.cpP, pcV: o.pcV, cw: o.cw, pw: o.pw, f: o.f || null };
     return r;
   });
   if (fitPut.length) await Promise.all(fitPut.map(([k, v]) => store.set(k, v)));
@@ -106,7 +107,8 @@ async function list(req, res) {
   stocks.forEach(s => delete s.events);
   events.sort((a, b) => (a.d < b.d ? 1 : -1));
   const fav = (await store.get(FAV_KEY))?.keys || [];
-  send(res, 200, { now: new Date().toISOString(), fav, engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
+  const optSig = await rulesView().catch(() => null);                           // 옵션 신호 규칙 + 검증 상태 (통과한 것만 목록 태그)
+  send(res, 200, { now: new Date().toISOString(), fav, optSig, engine: { calAt: eng.calAt, tunedAt: eng.tunedAt, cal: eng.cal?.src === 'truth' }, cron: { KR: cron[0], US: cron[1] }, regime, events, stocks,
     fund: { US: fUS ? { at: fUS.at, n: fUS.n } : null, KR: fKR ? { at: fKR.at, n: fKR.n } : null },
     mcap: { US: shUS ? { fx: shUS.fx, fxAt: shUS.fxAt, at: shUS.at } : null, KR: shKR ? { at: shKR.at } : null } });
 }

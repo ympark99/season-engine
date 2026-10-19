@@ -4,7 +4,8 @@
 // GET /api/cron?op=est&t=COHR    — 미국 컨센서스 한 종목 바로 조회 (연결 시험용) · t 없이 부르면 전체 갱신(하루 한 번)
 // GET /api/cron?op=score&m=US  — 저장된 재료로 대장 점수만 다시 매기기
 // GET /api/cron?op=fwd            — 미국 선행 지표(요약표) 다시 받기 한 번 (7일 지난 종목만, 천천히)
-// GET /api/cron?op=opt          — 미국 옵션 수급 날짜별 기록 (장 마감 뒤 크론 · lib/options.js)
+// GET /api/cron?op=opt          — 미국 옵션 수급 날짜별 기록 (장 마감 뒤 크론 · 내 종목 + 유니버스 · lib/options.js)
+// GET /api/cron?op=optbt        — 옵션 신호 백테스트 (매주 · lib/optsig.js) — 결과는 GET /api/stock?optbt=1
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
@@ -14,6 +15,8 @@ import { selfBase, chainLog } from '../lib/selfcall.js';
 import { searchId, fetchEstimates, summarize, collectEstimates } from '../lib/estimates.js';
 import { targetsOf, scoreAll, refreshForward } from './fundamentals.js';
 import { snapshotAll } from '../lib/options.js';
+import { runBacktest } from '../lib/optsig.js';
+import { members, listOf } from '../lib/universe.js';
 
 export default async function handler(req, res) {
   try {
@@ -75,10 +78,16 @@ export default async function handler(req, res) {
       if (!(await store.setNX('lock:opt:US', 1, 290))) return send(res, 200, { busy: true });
       try {
         const codes = (await store.listAll()).filter(x => x.m === 'US').map(x => x.code);
-        const r = await snapshotAll(codes, 240000);
+        const univ = listOf('US', await members()).map(x => x.code);                 // 유니버스 — 압축 한 줄만 (옵션 신호 백테스트 표본)
+        const r = await snapshotAll(codes, univ, 240000);
         await store.set('cron:opt', { at: new Date().toISOString(), ...r }).catch(() => {});
         return send(res, 200, r);
       } finally { await store.del('lock:opt:US'); }
+    }
+    if (op === 'optbt') {                                                               // 옵션 신호 백테스트 — 매주 + 관리자 수동 (lib/optsig.js)
+      if (!(await store.setNX('lock:optbt', 1, 290))) return send(res, 200, { busy: true });
+      try { const r = await runBacktest(); return send(res, 200, { at: r.at, days: r.days, codes: r.codes, rows: r.rows, pass: r.rules.filter(x => x.status === 'pass').map(x => x.id), ms: r.ms }); }
+      finally { await store.del('lock:optbt'); }
     }
     const from = isAdmin(req) && !okCron ? '수동' : req.query.bk ? `예비 크론 ${req.query.bk}` : '크론';
     const budgetMs = Math.min(285, Math.max(30, +req.query.budget || 285)) * 1000;   // 화면 버튼은 짧게, 크론은 최대 4분 45초 (함수 한도 300초)
