@@ -1,0 +1,138 @@
+{
+ "m": "US",
+ "code": "BE",
+ "name": "Bloom Energy",
+ "basis": "2026년 2분기 실적(2026-07-28)·연간 가이던스 상향 뒤",
+ "type": "growth",
+ "typeWhy": "데이터센터 현장 발전 수요로 매출이 연 30~60% 늘고 있고 마진이 아직 올라가는 중 — 고성장",
+ "mid": {
+  "om": 25,
+  "why": "2026 가이던스 비GAAP 영업이익률 약 21%(영업이익 8~9억$ ÷ 매출 39~42억$), 2분기 22.5% → 규모가 커지며 성숙 마진 25%로 가정. 비GAAP(주식보상 제외) 기준이라 GAAP보다 높음",
+  "conf": "추정",
+  "src": [
+   0,
+   1
+  ]
+ },
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "오라클 2.8GW 전량 배치·하이퍼스케일러 추가 수주, 2GW 이후 증설까지 이어져 성장 유지",
+   "g": [],
+   "om": [
+    22,
+    26,
+    28,
+    30,
+    30
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "가이던스대로 2026년 마진 21%, 생산능력 2GW 확장(2026년 말) 뒤 점진 개선",
+   "g": [],
+   "om": [
+    21,
+    23,
+    24
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "가스터빈 등 대체재 경쟁·공급망(스칸듐) 이슈로 수주 둔화, 마진 정체",
+   "g": [],
+   "om": [
+    20,
+    19,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "2026 가이던스",
+   "v": "매출 39~42억$ · 비GAAP 영업이익 8~9억$ · 비GAAP EPS 2.55~2.85$ (두 번 상향)",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "최근 마진",
+   "v": "2분기 비GAAP 영업이익률 22.5% (1분기 17.3%), 비GAAP 매출총이익률 34.3%",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "수주",
+   "v": "오라클과 최대 2.8GW 협약, 이 중 1.2GW 계약·배치 중",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "생산능력",
+   "v": "프리몬트 연 1GW → 2GW 확장, 2026년 말 완료 목표 (최대 약 5GW까지 여지)",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "위험",
+   "v": "공매도 보고서가 스칸듐 중국 의존·수주잔고(RPO) 불일치 주장, 회사는 반박",
+   "conf": "보도",
+   "src": [
+    4
+   ]
+  },
+  {
+   "k": "컨센서스와 차이",
+   "v": "애널리스트 EPS 를 영업이익률로 되돌리면 28~33%가 나와 가이던스(약 21%)보다 높음 → 앞 3년 마진을 가이던스 쪽으로 덮어씀",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Bloom Energy 8-K 2분기 2026 실적 보도자료",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026050150/ex991_q226financialr",
+   "d": "2026-07-28"
+  },
+  {
+   "t": "Bloom Energy 8-K 2분기 2026 보충 자료",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026050150/ex992q226supplementalfin.htm",
+   "d": "2026-07-28"
+  },
+  {
+   "t": "Bloom Energy and Oracle expand strategic partnership",
+   "u": "https://www.bloomenergy.com/news/bloom-energy-and-oracle-expand-strategic-partnership-to-d",
+   "d": "2026-04-13"
+  },
+  {
+   "t": "Bloom Energy Form 10-K FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+   "d": "2026-02"
+  },
+  {
+   "t": "Short seller attacked Bloom Energy's supply chain claims",
+   "u": "https://www.barchart.com/story/news/3274458/short-seller-hunterbrook-attacked-bloom-energy",
+   "d": "2026-07"
+  }
+ ],
+ "by": "Claude 조사",
+ "at": "2026-10-19"
+}

@@ -59,6 +59,8 @@ for f in files:
     rng('mid.om', (mid or {}).get('om'), -50, 95, name)
     rng('trough.om', (d.get('trough') or {}).get('om'), -80, 95, name)
     rng('peak.years', (d.get('peak') or {}).get('years'), 0, 20, name)
+    if d.get('netCash') is not None and not isnum(d['netCash']):
+        bad.append(f'{name} netCash={d["netCash"]!r}')
     for k, lo, hi in (('capexR', 0, 80), ('daR', 0, 50), ('tax', 0, 40), ('g', 0, 4.5), ('wacc', 8, 14), ('conv', 10, 120)):
         rng(k, d.get(k), lo, hi, name)
     sc = d.get('scen') or {}
