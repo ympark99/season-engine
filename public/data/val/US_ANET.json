@@ -1,0 +1,155 @@
+{
+ "m": "US",
+ "code": "ANET",
+ "name": "ARISTA NETWORKS INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2026년 2분기 실적(2026-08-04) 뒤, 3분기 실적(11-03) 전",
+ "type": null,
+ "typeWhy": null,
+ "mid": {
+  "om": 38,
+  "why": "회사 2026년 영업이익률 가이던스 48~49%(비GAAP)에서, 엔비디아 이더넷 진입·매출총이익률 하락(63.4%, 전년 65.6%)·고객 집중으로 장기엔 10%p 안팎 하락 가정. 장기 마진 목표는 확인되지 않음. 주식보상 제외 기준",
+  "conf": "추정",
+  "src": [
+   0,
+   1
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "sbc": null,
+ "wc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "AI 백엔드 800G·1.6T와 스케일업 진입이 겹쳐 2029년 이후에도 마진 46% 안팎 유지, 오라클·구글 등 신규 대형 고객 추가",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    47,
+    47,
+    46,
+    45,
+    45,
+    44,
+    44
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "서버 자동 경로 유지 — 2028년 이후 성장 둔화와 경쟁으로 마진이 장기 중간값 쪽으로 내려옴",
+   "g": [],
+   "om": []
+  },
+  "bear": {
+   "p": 25,
+   "why": "상위 2개 고객(2025년 매출 합 42%) 설비투자 둔화 + 엔비디아 이더넷에 점유율을 내주며 2029년부터 성장 한 자릿수, 마진 30%대 초반",
+   "g": [
+    null,
+    null,
+    null,
+    8,
+    6,
+    5,
+    4,
+    3,
+    3,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    40,
+    37,
+    34,
+    32,
+    31,
+    30,
+    30
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "연간 가이던스",
+   "v": "2026년 매출 약 126억 달러(+약 40%), 영업이익률 48~49%, 매출총이익률 62~64%, AI 패브릭 매출 최소 35억 달러",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "3분기 가이던스",
+   "v": "매출 약 33억 달러, 비GAAP 영업이익률 48~49%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "2분기 실적",
+   "v": "매출 30.36억 달러(+37.7%), 비GAAP 영업이익률 49.9%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "구매 약정",
+   "v": "약 97억 달러로 확대(메모리·실리콘 등 공급 확보)",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "고객 집중도",
+   "v": "2025년 매출 중 한 고객 26%, 다른 고객 16%(합 42%). 회사는 10% 고객이 1~2곳 더 나올 수 있다고 언급",
+   "conf": "보도",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "경쟁",
+   "v": "엔비디아 이더넷 스위치 매출 +181%, 데이터센터 점유율 20.4% vs Arista 18.7%",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "장기 마진 목표",
+   "v": "확인되지 않음(null) — 2026년 가이던스 외 다년 목표 없음",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Arista Networks Inc. Reports Second Quarter 2026 Financial Results",
+   "u": "https://s21.q4cdn.com/861911615/files/doc_news/Arista-Networks-Inc--Reports-Second-Quarter-2026-Financial-Results-2026.pdf",
+   "d": "2026-08-04"
+  },
+  {
+   "t": "Arista Q2 2026 earnings (SEC 8-K exhibit 99.1)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001596532/000159653226000174/ex991q226-earningsrelease.htm",
+   "d": "2026-08-04"
+  },
+  {
+   "t": "IDC — Ethernet Switch Market Surges 43.4% to $18.9B in 2Q26",
+   "u": "https://www.idc.com/resource-center/blog/ethernet-switch-market-surges-43-4-to-18-9b-in-2q26-as-ai-infrastructure-demand-drives-record-datacenter-spending/",
+   "d": "2026-09-11"
+  }
+ ]
+}

@@ -15,9 +15,17 @@
   "at": "2026-10-19",
   "name": "삼성전자"
  },
+ "KR:006110": {
+  "at": "2026-10-19",
+  "name": "삼아알미늄"
+ },
  "KR:006400": {
   "at": "2026-10-19",
   "name": "삼성SDI"
+ },
+ "KR:010140": {
+  "at": "2026-10-19",
+  "name": "삼성중공업"
  },
  "KR:011070": {
   "at": "2026-10-19",
@@ -26,6 +34,10 @@
  "KR:050890": {
   "at": "2026-10-19",
   "name": "쏠리드"
+ },
+ "KR:062040": {
+  "at": "2026-10-19",
+  "name": "산일전기"
  },
  "KR:082740": {
   "at": "2026-10-19",
@@ -46,6 +58,14 @@
  "KR:251970": {
   "at": "2026-10-19",
   "name": "펌텍코리아"
+ },
+ "KR:252990": {
+  "at": "2026-10-19",
+  "name": "샘씨엔에스"
+ },
+ "KR:278470": {
+  "at": "2026-10-19",
+  "name": "에이피알"
  },
  "KR:298040": {
   "at": "2026-10-19",
@@ -71,6 +91,10 @@
   "at": "2026-10-19",
   "name": "APPLIED OPTOELECTRONICS INC"
  },
+ "US:AAPL": {
+  "at": "2026-10-19",
+  "name": "APPLE INC"
+ },
  "US:ADI": {
   "at": "2026-10-19",
   "name": "Analog Devices"
@@ -79,9 +103,25 @@
   "at": "2026-10-19",
   "name": "ASTERA LABS INC"
  },
+ "US:AMAT": {
+  "at": "2026-10-19",
+  "name": "APPLIED MATERIALS INC"
+ },
+ "US:AMD": {
+  "at": "2026-10-19",
+  "name": "Advanced Micro Devices"
+ },
+ "US:ANET": {
+  "at": "2026-10-19",
+  "name": "ARISTA NETWORKS INC"
+ },
  "US:APH": {
   "at": "2026-10-19",
   "name": "AMPHENOL CORP"
+ },
+ "US:ARM": {
+  "at": "2026-10-19",
+  "name": "ARM HOLDINGS PLC"
  },
  "US:AXTI": {
   "at": "2026-10-19",
@@ -111,6 +151,10 @@
   "at": "2026-10-19",
   "name": "COREWEAVE INC"
  },
+ "US:DDOG": {
+  "at": "2026-10-19",
+  "name": "DATADOG INC"
+ },
  "US:DELL": {
   "at": "2026-10-19",
   "name": "Dell Technologies"
@@ -130,6 +174,10 @@
  "US:LITE": {
   "at": "2026-10-19",
   "name": "Lumentum"
+ },
+ "US:MCHP": {
+  "at": "2026-10-19",
+  "name": "MICROCHIP TECHNOLOGY"
  },
  "US:META": {
   "at": "2026-10-19",
@@ -183,6 +231,10 @@
   "at": "2026-10-19",
   "name": "Sandisk"
  },
+ "US:SNOW": {
+  "at": "2026-10-19",
+  "name": "SNOWFLAKE INC"
+ },
  "US:STM": {
   "at": "2026-10-19",
   "name": "STMICROELECTRONICS"
@@ -190,6 +242,10 @@
  "US:TEM": {
   "at": "2026-10-19",
   "name": "TEMPUS AI INC"
+ },
+ "US:TER": {
+  "at": "2026-10-19",
+  "name": "TERADYNE INC"
  },
  "US:TSLA": {
   "at": "2026-10-19",
@@ -202,5 +258,9 @@
  "US:VICR": {
   "at": "2026-10-19",
   "name": "VICOR CORP"
+ },
+ "US:VLO": {
+  "at": "2026-10-19",
+  "name": "Valero Energy"
  }
 }
