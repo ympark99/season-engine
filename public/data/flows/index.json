@@ -82,5 +82,13 @@
  "US:BE": {
   "at": "2026-10-19",
   "name": "Bloom Energy"
+ },
+ "US:NOW": {
+  "at": "2026-10-20",
+  "name": "SERVICENOW INC"
+ },
+ "US:SNOW": {
+  "at": "2026-10-20",
+  "name": "SNOWFLAKE INC"
  }
 }

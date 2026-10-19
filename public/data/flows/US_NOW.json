@@ -1,0 +1,49 @@
+{
+ "m": "US",
+ "code": "NOW",
+ "name": "SERVICENOW INC",
+ "at": "2026-10-20",
+ "by": "Claude 정기 조사",
+ "summary": "전 세계 대기업·정부 기관에 IT·고객·직원 업무와 보안을 자동화하는 클라우드 소프트웨어(ServiceNow AI Platform, Now Assist·AI 에이전트 포함)를 구독으로 판다. 2026년 2분기 매출 39.87억$(+24%) 가운데 97%가 구독이고, 북미가 63%다. 매출의 75%는 직접 영업에서 나오고, 미국 연방정부 판매는 대부분 유통·리셀러를 거치는데 그중 한 연방 채널 파트너가 매출의 13%를 차지한다. 서비스는 제3자 데이터센터에 코로케이션한 자체 장비와 퍼블릭 클라우드(Azure 등) 위에서 돈다.",
+ "cust": [
+  {"name": "직접 영업 고객 (전 세계 대기업·기관)", "code": null, "m": null, "share": 75, "conf": "공시", "note": "2026년 2분기 10-Q — 직접 영업 조직 매출이 전체의 75%(SI·MSP 경유 포함). 연 계약액 500만$ 넘는 고객 658곳(+약 23%)"},
+  {"name": "미국 연방 채널 파트너 겸 SI 1곳 (이름 비공개)", "code": null, "m": null, "share": 13, "conf": "공시", "note": "2026년 2분기 10-Q — 이 한 곳이 2026년 2분기·상반기 매출의 13%, 매출채권의 12%. FY2025 10-K 기준 연 매출의 11%"},
+  {"name": "미국 연방정부 기관 (최종 사용자)", "code": null, "m": null, "share": null, "conf": "공시", "note": "10-K — 미국 정부 판매의 '상당 부분'은 유통·리셀러·서비스 파트너를 거쳐 간접 판매. 연방 예산 주기로 3분기(9월 분기)에 12개월 계약이 몰림"},
+  {"name": "미국 주정부 (거의 50개 주 전부)", "code": null, "m": null, "share": null, "conf": "보도", "note": "2026년 2분기 실적 발표 — 미국 50개 주 거의 모두가 ServiceNow AI Platform으로 민원·행정 업무를 운영"},
+  {"name": "Leidos", "code": "LDOS", "m": "US", "share": null, "conf": "보도", "note": "2026년 2분기 실적 발표 — 국가안보 기술 기업 Leidos가 ServiceNow AI Platform 도입"},
+  {"name": "글로벌 SI 파트너 (Accenture·Cognizant·Deloitte·EY·Infosys·KPMG 등)", "code": "ACN", "m": "US", "share": null, "conf": "공시", "note": "FY2025 10-K에 이름이 나오는 구축·재판매 파트너. 이들 몫은 직접 영업 매출(75%)에 포함. 2026년 Accenture와 보안 공동 상품 출시"},
+  {"name": "AWS Marketplace 경유 고객", "code": "AMZN", "m": "US", "share": null, "conf": "보도", "note": "2026년 2분기 실적 발표 — AWS Marketplace 누적 거래액 10억$ 돌파. 2023.11 AWS와 5년 전략 협약"},
+  {"name": "Carahsoft (위 연방 채널 파트너로 추정)", "code": null, "m": null, "share": null, "conf": "추정", "note": "10-K·10-Q는 '미국 연방 채널 파트너 겸 SI 1곳'이라고만 씀. Carahsoft가 ServiceNow의 대표 연방 유통사이고 공개된 연방 계약 금액 상당 부분이 Carahsoft를 거친다는 보도가 있어 그쪽으로 추정. 공시·보도로 확인된 것은 아님"}
+ ],
+ "supp": [
+  {"name": "제3자 코로케이션 데이터센터 운영사 (여러 곳, 이름 비공개)", "code": null, "m": null, "item": "데이터센터 공간·전력·상면(코로케이션), 데이터센터 간 연결", "share": null, "conf": "공시", "note": "10-K — 자체 관리 장비를 전 세계 여러 제3자 데이터센터에 코로케이션해 서비스. 구독 원가의 주요 항목이 데이터센터 용량·코로케이션 비용"},
+  {"name": "Microsoft (Azure)", "code": "MSFT", "m": "US", "item": "퍼블릭 클라우드 호스팅(Azure·Azure Government)", "share": null, "conf": "보도", "note": "2019.7 발표 — Azure를 '선호 클라우드'로 정해 Azure Government(미국)·호주에서 먼저 제공, 2021년 프랑스 리전 추가. 2026년 Microsoft Agent 365 연동도 발표"},
+  {"name": "Amazon Web Services", "code": "AMZN", "m": "US", "item": "클라우드 서비스·Amazon Bedrock AI 모델", "share": null, "conf": "보도", "note": "10-K에 AWS가 AI·클라우드 기술 제휴사로 나옴. 2023.11 5년 전략 협약, 2024.12 Bedrock 모델을 Now Platform에서 쓰는 커넥터 발표"},
+  {"name": "Google (Google Cloud)", "code": "GOOGL", "m": "US", "item": "클라우드·AI 기술", "share": null, "conf": "공시", "note": "FY2025 10-K가 AI·클라우드 상호운용을 위한 기술 제휴사로 AWS·Microsoft·NVIDIA와 함께 이름을 듦. 실제 매입 규모는 공시 없음"},
+  {"name": "NVIDIA", "code": "NVDA", "m": "US", "item": "GPU 가속 컴퓨팅·NIM 추론 마이크로서비스", "share": null, "conf": "보도", "note": "2024.3 GTC 발표 — Now LLM을 NVIDIA NIM으로 서비스. 2026년 2분기 실적 발표에 AI Control Tower를 NVIDIA Enterprise AI Factory 설계에 통합했다고 나옴"},
+  {"name": "Anthropic (Claude)", "code": null, "m": null, "item": "AI 언어 모델", "share": null, "conf": "보도", "note": "2026.1 다년 계약 발표 — Claude가 Build Agent 기본 모델. 계약 기간·금액은 비공개. 2026.5 Action Fabric 첫 디자인 파트너"},
+  {"name": "OpenAI", "code": null, "m": null, "item": "AI 언어 모델", "share": null, "conf": "보도", "note": "2026.1 제휴 발표 — ServiceNow 제품 안에서 고객이 OpenAI 모델을 쓰도록 제공. 조건은 비공개"},
+  {"name": "퍼블릭 클라우드 이전 약정 상대 (Microsoft Azure·AWS로 추정)", "code": "MSFT", "m": "US", "item": "자체 호스팅 인스턴스의 퍼블릭 클라우드 이전 (IaaS)", "share": null, "conf": "추정", "note": "10-K는 '퍼블릭 클라우드 업체들과 계약해 자체 호스팅 인스턴스를 점점 더 옮긴다'고만 씀. 호스팅 제휴가 보도된 Azure와 전략 협약 상대 AWS로 추정. 공시·보도로 확인된 것은 아님"}
+ ],
+ "segs": [
+  {"name": "구독 매출", "code": null, "m": null, "amt": 3877, "share": 97.2, "note": "2026년 2분기 — +24.5%(고정환율 +23%). ServiceNow AI 연 계약액 10억$ 돌파"},
+  {"name": "전문 서비스·기타", "code": null, "m": null, "amt": 110, "share": 2.8, "note": "2026년 2분기 — 구축·교육, +8.5%. 매출총이익은 적자"},
+  {"name": "북미", "code": null, "m": null, "amt": 2522, "share": 63.3, "note": "2026년 2분기 — 사용자 위치 기준, +26%. 북미의 95%가 미국"},
+  {"name": "EMEA", "code": null, "m": null, "amt": 997, "share": 25.0, "note": "2026년 2분기 — 유럽·중동·아프리카, +20%"},
+  {"name": "아시아태평양·기타", "code": null, "m": null, "amt": 468, "share": 11.7, "note": "2026년 2분기 — +25%"},
+  {"name": "구독 매출 (FY2025 연간)", "code": null, "m": null, "amt": 12883, "share": 97.0, "note": "10-K — 2025년 연 매출 132.78억$ 중 구독, +21%"},
+  {"name": "전문 서비스·기타 (FY2025 연간)", "code": null, "m": null, "amt": 395, "share": 3.0, "note": "10-K — 2025년, +17%. 제품(워크플로)별 매출은 공시하지 않음. 2026.4 Armis(약 76억$) 인수로 보안 사업 확대"}
+ ],
+ "unitSeg": "백만$",
+ "sources": [
+  {"t": "ServiceNow 2026년 2분기 10-Q", "u": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000076/now-20260630.htm"},
+  {"t": "ServiceNow 2026년 2분기 실적 발표 (8-K 99.1)", "u": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000072/erq2fy26.htm"},
+  {"t": "ServiceNow FY2025 10-K", "u": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000007/now-20251231.htm"},
+  {"t": "Carahsoft–ServiceNow 제휴 확대 발표 (2026.3)", "u": "https://newsroom.servicenow.com/press-releases/details/2026/Carahsoft-and-ServiceNow-Expand-Partnership-to-Reach-New-Industries-in-the-U-S--and-Canada/default.aspx"},
+  {"t": "ServiceNow, Microsoft Azure에 플랫폼 제공 (SiliconANGLE, 2019.7)", "u": "https://siliconangle.com/2019/07/09/servicenows-software-service-platform-lands-microsofts-azure-cloud/"},
+  {"t": "ServiceNow–AWS 협력 확대 (KMWorld)", "u": "https://www.kmworld.com/Articles/News/News/ServiceNow-expands-partnership-with-AWS-to-provide-new-capabilities-to-accelerate-AI-transformation-167227.aspx"},
+  {"t": "ServiceNow–NVIDIA 제휴 확대 발표 (2024.3)", "u": "https://newsroom.servicenow.com/press-releases/details/2024/ServiceNow-advances-enterprise-grade-generative-AI-through-expanded-partnership-with-NVIDIA-03-19-2024-traffic/default.aspx"},
+  {"t": "ServiceNow–Anthropic 제휴 발표 (2026.1)", "u": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-and-Anthropic-partner-to-help-customers-build-AI-powered-applications-accelerate-time-to-value-and-apply-trusted-AI-to-critical-industries/default.aspx"},
+  {"t": "ServiceNow, Anthropic과 또 AI 제휴 (TechCrunch, 2026.1)", "u": "https://techcrunch.com/2026/01/28/servicenow-inks-another-ai-partnership-this-time-with-anthropic"}
+ ]
+}

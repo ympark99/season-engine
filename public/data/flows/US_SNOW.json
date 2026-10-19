@@ -1,0 +1,49 @@
+{
+ "m": "US",
+ "code": "SNOW",
+ "name": "SNOWFLAKE INC",
+ "at": "2026-10-20",
+ "by": "Claude 정기 조사",
+ "summary": "기업이 데이터를 저장·분석하고 AI(Cortex·Snowflake Intelligence 등)를 돌리는 클라우드 데이터 플랫폼을 쓴 만큼(컴퓨팅·저장·전송) 받는 소비형으로 판다. 2026년 2분기(FY2027 2Q) 매출 15.47억$(+35%) 중 96%가 제품 매출이고 74%가 미국 고객에서 나왔다. 고객 14,554곳 중 Forbes Global 2000 기업 829곳이 상반기 매출의 약 41%를 차지하며, 매출의 10%를 넘는 단일 고객은 없다. 플랫폼은 AWS·Azure·GCP 위에서 돌고 대부분이 AWS라 클라우드 비용과 Anthropic·OpenAI 같은 AI 모델 비용이 원가의 핵심이다.",
+ "cust": [
+  {"name": "Forbes Global 2000 기업 고객 (829곳)", "code": null, "m": null, "share": 41, "conf": "공시", "note": "2026년 2분기 10-Q — 2026.7 기준 829곳, 2026년 상반기(2~7월) 매출의 약 41%. 매출의 10% 이상인 단일 고객은 없음"},
+  {"name": "AWS Marketplace 경유 고객", "code": "AMZN", "m": "US", "share": null, "conf": "보도", "note": "2025.12 Snowflake·AWS 발표 — 2025년 AWS Marketplace를 통한 Snowflake 판매가 20억$를 넘고 거래 증가율이 전년 대비 2배. AWS는 판매 통로이고 실제 사용자는 각 기업"},
+  {"name": "Capital One", "code": "COF", "m": "US", "share": null, "conf": "공시", "note": "FY2026 4분기 실적 발표(8-K)에 Thomson Reuters와 함께 데이터·분석 기반을 Snowflake로 키우는 고객으로 이름이 나옴. 금액은 비공개"},
+  {"name": "Thomson Reuters", "code": "TRI", "m": "US", "share": null, "conf": "공시", "note": "FY2026 4분기 실적 발표(8-K)에 고객 사례로 이름이 나옴. 금액은 비공개"},
+  {"name": "1Password·Indeed·Sayari", "code": null, "m": null, "share": null, "conf": "공시", "note": "2026년 2분기 실적 발표 — 데이터·AI 기반으로 Snowflake를 택한 신규 고객 사례. 금액은 비공개"},
+  {"name": "OpenAI", "code": null, "m": null, "share": null, "conf": "보도", "note": "2026.2 2억$ 제휴 발표 때 OpenAI가 Snowflake를 사내 데이터 플랫폼으로 쓴다고 밝힘 (고객이면서 AI 모델 공급사)"},
+  {"name": "미국 정부 기관 (최종 사용자)", "code": null, "m": null, "share": null, "conf": "공시", "note": "10-K — 정부 매출의 상당 부분이 유통·리셀러 파트너를 거쳐 간접 판매된다고 기재. 정부 매출 금액은 공시하지 않음"},
+  {"name": "공공 부문 유통사 (Carahsoft로 추정)", "code": null, "m": null, "share": null, "conf": "추정", "note": "10-K는 정부 판매를 유통·리셀러 파트너가 맡는다고만 씀. 미국 정부 IT 조달에서 Snowflake를 취급하는 대표 유통사가 Carahsoft라 그쪽으로 추정. 공시·보도로 확인된 것은 아님"}
+ ],
+ "supp": [
+  {"name": "Amazon Web Services", "code": "AMZN", "m": "US", "item": "클라우드 인프라(컴퓨팅·저장, Graviton 칩 포함)", "share": null, "conf": "공시", "note": "10-K — '사업의 상당 부분(substantial majority)이 AWS 위에서 운영'. 2026.5 보도·10-Q — 2026.4 개정 계약으로 5년(~2031.3) 최소 60억$ 지출 약정, 6월 저장 용량 10년 추가 약정(약 0.58억$)"},
+  {"name": "Microsoft (Azure)", "code": "MSFT", "m": "US", "item": "클라우드 인프라", "share": null, "conf": "공시", "note": "10-K·10-Q — 플랫폼이 AWS·Azure·GCP 퍼블릭 클라우드 위에서 운영되며 이들은 동시에 경쟁사라고 기재"},
+  {"name": "Google Cloud (GCP)", "code": "GOOGL", "m": "US", "item": "클라우드 인프라", "share": null, "conf": "공시", "note": "10-K·10-Q — AWS·Azure와 함께 플랫폼이 돌아가는 퍼블릭 클라우드로 이름이 나옴"},
+  {"name": "Anthropic (Claude)", "code": null, "m": null, "item": "AI 언어 모델 (Cortex AI·Snowflake Intelligence)", "share": null, "conf": "공시", "note": "2026년 2분기 10-Q에 'Anthropic·OpenAI 같은 프런티어 AI 모델 공급사' 서비스에 원가가 좌우된다고 이름이 나옴. 2025.12 다년 2억$ 제휴 확대 발표"},
+  {"name": "OpenAI", "code": null, "m": null, "item": "AI 언어 모델 (GPT 계열)", "share": null, "conf": "공시", "note": "10-Q에 Anthropic과 함께 이름이 나옴. 2026.2 다년 2억$ 제휴 발표 — Cortex AI에서 3대 클라우드 전체에 OpenAI 모델 제공"},
+  {"name": "NVIDIA", "code": "NVDA", "m": "US", "item": "GPU 가속 컴퓨팅·AI 소프트웨어(NeMo 등)", "share": null, "conf": "보도", "note": "2023~2024 Snowflake Summit 제휴 발표 — 엔비디아 가속 컴퓨팅·NeMo를 Snowflake 안에서 쓰도록 통합. 10-Q는 클라우드 비용에 AI 추론·GPU 비용이 포함된다고 기재"},
+  {"name": "AI 서비스 3.9억$ 약정 상대 (Anthropic으로 추정)", "code": null, "m": null, "item": "AI 모델 서비스 (2025.12~2028.11 최소 3.9억$)", "share": null, "conf": "추정", "note": "10-Q는 '2025.12 시작한 3년 AI 서비스 계약을 고쳐 총 최소 3.9억$로 늘렸다'고만 씀. 시작 시점이 Anthropic 2억$ 제휴(2025.12.3 발표)와 겹쳐 그쪽으로 추정. 공시·보도로 확인된 것은 아님"},
+  {"name": "다른 클라우드 약정 2건 상대 (Microsoft Azure·Google Cloud로 추정)", "code": null, "m": null, "item": "클라우드 인프라 (2023.6~2028.5 최소 10억$, 2025.11~2030.10 최소 5.3억$)", "share": null, "conf": "추정", "note": "10-K는 상대를 밝히지 않음. 같은 시기 AWS 약정은 별도(2023년 25억$, 2026년 60억$)로 보도돼 나머지 두 곳(Azure·GCP)으로 추정. 어느 쪽이 어느 계약인지 포함해 공시·보도로 확인된 것은 아님"}
+ ],
+ "segs": [
+  {"name": "제품 매출 (플랫폼 사용료)", "code": null, "m": null, "amt": 1491.9, "share": 96.4, "note": "2026년 2분기(5~7월) — 컴퓨팅·저장·데이터 전송 사용량 기준, +37%"},
+  {"name": "전문 서비스·기타", "code": null, "m": null, "amt": 54.9, "share": 3.6, "note": "2026년 2분기 — 컨설팅·교육 등"},
+  {"name": "미국", "code": null, "m": null, "amt": 1152.2, "share": 74.5, "note": "2026년 2분기 — 고객(리셀러 경유 시 최종 고객) 위치 기준, +34%"},
+  {"name": "EMEA (유럽·중동·아프리카)", "code": null, "m": null, "amt": 258.7, "share": 16.7, "note": "2026년 2분기 — 10%를 넘는 개별 국가는 없음"},
+  {"name": "아시아태평양·일본", "code": null, "m": null, "amt": 94.9, "share": 6.1, "note": "2026년 2분기"},
+  {"name": "기타 미주", "code": null, "m": null, "amt": 41.0, "share": 2.6, "note": "2026년 2분기 — 미국 외 미주"},
+  {"name": "제품 매출 (FY2026 연간)", "code": null, "m": null, "amt": 4472.3, "share": 95.5, "note": "10-K — 2026.1 끝난 회계연도 매출 46.84억$ 중 제품, +29%"},
+  {"name": "전문 서비스·기타 (FY2026 연간)", "code": null, "m": null, "amt": 211.6, "share": 4.5, "note": "10-K — FY2026 연간"}
+ ],
+ "unitSeg": "백만$",
+ "sources": [
+  {"t": "Snowflake FY2027 2분기 10-Q (2026.7 분기)", "u": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000037/snow-20260731.htm"},
+  {"t": "Snowflake FY2027 2분기 실적 발표 (8-K 99.1)", "u": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm"},
+  {"t": "Snowflake FY2026 10-K", "u": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm"},
+  {"t": "Snowflake FY2026 4분기 실적 발표 (8-K 99.1)", "u": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm"},
+  {"t": "Snowflake AWS 60억$ 5년 약정 (GeekWire, 2026.5)", "u": "https://www.geekwire.com/2026/snowflake-commits-6b-to-amazon-web-services-over-5-years-in-latest-ai-infrastructure-deal/"},
+  {"t": "Anthropic–Snowflake 2억$ 제휴 확대 (2025.12)", "u": "https://anthropic.com/news/snowflake-anthropic-expanded-partnership"},
+  {"t": "Snowflake–OpenAI 2억$ 제휴 (2026.2)", "u": "https://investors.snowflake.com/news/news-details/2026/Snowflake-and-OpenAI-Forge-200-Million-Partnership-to-Bring-Enterprise-Ready-AI-to-the-Worlds-Most-Trusted-Data-Platform/default.aspx"},
+  {"t": "Snowflake AWS Marketplace 판매 20억$ 돌파 (2025.12)", "u": "https://press.aboutamazon.com/aws/2025/12/snowflake-doubles-aws-marketplace-growth-yoy-eclipses-2-billion-in-sales-as-new-integrations-accelerate-enterprise-data-and-ai-adoption"}
+ ]
+}
