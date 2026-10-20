@@ -13,6 +13,7 @@ import { send, body, isAdmin } from '../lib/service.js';
 import { scanBatch, scanState, members, UNIV_SETS, SET_NAME, sectorMap, themesFor, buildRotation, rejudge, fillMissing, ensureRecent } from '../lib/universe.js';
 import { JUDGE_REV } from '../lib/engine2.js';
 import { AI_SETS } from '../lib/aiset.js';
+import { SIG_REV } from '../lib/sectorsig.js';
 import { THEMES, GROUPS, themeOf, ovrKey, loadOvr, secOvrKey, loadSecOvr, THEME_REV } from '../lib/themes.js';
 
 const mOf = v => (v === 'KR' ? 'KR' : v === 'US' ? 'US' : null);
@@ -49,7 +50,7 @@ export default async function handler(req, res) {
       if (!(await store.get(`univ:fillok:${m}:${AI_SETS[m].items.length}`)) && await store.setNX(`lock:fill:${m}`, 1, 280)) {
         try { const f = await fillMissing(m, 150000); if (f.got) rot = null; if (!f.left) await store.set(`univ:fillok:${m}:${AI_SETS[m].items.length}`, 1, 6 * 3600); } catch (e) { console.error('fill', m, e.message); } finally { await store.del(`lock:fill:${m}`); }
       }
-      if (!rot || rot.rev !== THEME_REV || !('sig' in rot) || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
+      if (!rot || rot.rev !== THEME_REV || rot.sigRev !== SIG_REV || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
       if (!rot) return send(res, 200, { m, empty: true });
       const ovr = await loadOvr(m);
       for (const x of rot.mem) if (ovr[x.c]) x.th = ovr[x.c];
