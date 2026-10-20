@@ -22,7 +22,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "14A 핵심 외부 고객(Tesla·Terafab 보도 등) 실제 확정·양산 + 서버 CPU 공급 부족이 이어져 파운드리 가동률·마진 개선",
+   "why": "14A 핵심 외부 고객(Tesla·Terafab 보도 등) 실제 확정·양산 + 서버 CPU 공급 부족이 이어져 파운드리 가동률·마진 개선 · 첨단 패키징 대형 계약 확정 포함",
    "g": [
     null,
     null,
@@ -133,6 +133,14 @@
    "src": [
     6
    ]
+  },
+  {
+   "k": "자회사·지분 정리",
+   "v": "Altera 지분 51% 매각(순대가 43억 달러), Mobileye 주식 9억 달러 매각, NVIDIA 50억 달러·SoftBank 20억 달러 지분 투자 유치(2026 proxy 기재). 잔여 지분 가치는 서버 재무제표 순현금에 반영",
+   "conf": "공시",
+   "src": [
+    8
+   ]
   }
  ],
  "sources": [
@@ -170,6 +178,47 @@
    "t": "Stock-Based Compensation for Intel (INTC)",
    "u": "https://tickerleague.com/companies/INTC/financials/sbc-expense",
    "d": "2026-10"
+  },
+  {
+   "t": "Intel advanced packaging gains traction vs TSMC as Google, Amazon weigh EMIB adoption (TrendForce)",
+   "u": "https://www.trendforce.com/news/2026/04/07/news-intel-advanced-packaging-reportedly-gains-traction-vs-tsmc-as-google-amazon-weigh-emib-adoption/",
+   "d": "2026-04-07"
+  },
+  {
+   "t": "Intel (INTC) 2026 proxy statement (Stock Titan)",
+   "u": "https://www.stocktitan.net/sec-filings/INTC/def-14a-intel-corp-definitive-proxy-statement-9f8b9f4b919f.html",
+   "d": "2026"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "파운드리 14A 외부 고객(Tesla·Terafab 등)",
+    "p": 25,
+    "why": "14A 핵심 외부 고객 확정·2029 양산이 성공 조건. 회사가 고객·마일스톤 미달 시 14A 중단 가능성을 경고. 성공 시 파운드리 가동률·마진 개선(bull 경로 FY29~ 성장 18%·영업이익률 31% 반영). 공식 확정 계약 없음",
+    "conf": "보도",
+    "src": [
+     5,
+     3
+    ]
+   },
+   {
+    "name": "첨단 패키징(EMIB-T) 외부 고객",
+    "p": 30,
+    "why": "CFO가 연 수십억 달러 매출 규모 패키징 계약 체결이 가까웠다고 언급(매출총이익률 약 40% 가능). 고객명은 회사가 공개 안 함·보도는 Google·Amazon 협의 수준, EMIB-T 양산은 2027 보도. 확정 계약 전이라 bull 에만 반영",
+    "conf": "보도",
+    "src": [
+     7
+    ]
+   },
+   {
+    "name": "AI 추론 가속기(Crescent Island·Jaguar Shores)",
+    "p": 10,
+    "why": "2026 하반기 고객 테스트 단계, 출하 실적·고객 계약 확인 안 됨. 성공 시 규모 추정 불가라 시나리오에 수치 반영 안 함",
+    "conf": "추정",
+    "src": []
+   }
+  ]
+ }
 }

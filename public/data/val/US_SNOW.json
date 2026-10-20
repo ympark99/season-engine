@@ -193,6 +193,14 @@
     1,
     2
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "Observe(관측성)·Postgres 는 인수·출시는 확인되나 별도 매출·계약 미공개 — base 에 넣지 않고 bull 성장 경로에만 포함(별도 가산 없음)",
+   "conf": "추정",
+   "src": [
+    6
+   ]
   }
  ],
  "sources": [
@@ -225,6 +233,34 @@
    "t": "Databricks tops USD $7 billion run-rate after funding",
    "u": "https://itbrief.co.nz/story/databricks-tops-usd-7-billion-run-rate-after-funding",
    "d": "2026-08-14"
+  },
+  {
+   "t": "Snowflake Inc. Form 10-K (FY2026, 2026-01-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm",
+   "d": "2026-03"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Observe 인수 — AI 관측성(Datadog 영역 진출)",
+    "p": 20,
+    "why": "2026-02 약 5.96억달러에 인수 완료. 성공 조건은 기존 고객에 교차판매로 관측성 매출을 별도 사업 규모로 키우는 것인데 Datadog 등 선두와 경쟁하고 매출 공개는 없음. 규모 미확인이라 bull 에만 반영(이미 AI·제품 성장 가속 경로에 포함)",
+    "conf": "공시",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Snowflake Postgres — 운영 DB(Crunchy Data 기반)",
+    "p": 20,
+    "why": "2025-06 1.645억달러에 Crunchy Data 인수, 현재 정식 출시(GA). 성공 조건은 분석 중심에서 트랜잭션 DB로 확장해 하이퍼스케일러·Databricks Lakebase 와 경쟁하는 것. 매출 미공개라 규모 미확인, bull 에만 반영",
+    "conf": "공시",
+    "src": [
+     6
+    ]
+   }
+  ]
+ }
 }

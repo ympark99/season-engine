@@ -2,9 +2,9 @@
  "m": "US",
  "code": "RKLB",
  "name": "ROCKET LAB CORPORATION",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "2026년 2분기 실적(2026-08-10)·Neutron 일정 조정(2026-10-14) 뒤",
+ "basis": "2026년 2분기 실적(2026-08-10)·Neutron 일정 조정(2026-10-14)·Iridium 인수 계약(2026-06-29) 뒤",
  "mid": {
   "om": 15,
   "why": "적자 고성장 기업이라 성숙 마진을 가정. 서버 자동값(15%)을 유지 — 발사·위성 수직계열 방산 업종 성숙 마진은 확인된 수치가 없어 추정",
@@ -18,14 +18,36 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 4.5,
  "wc": null,
  "scen": {
   "bull": {
-   "p": 25,
-   "why": "Neutron이 2027년 안에 첫 발사·안정 운용에 들어가고 수주잔고가 매출로 전환돼 컨센서스 상단 성장",
-   "g": [],
-   "om": []
+   "p": 20,
+   "why": "Neutron이 2027년 안에 첫 발사·안정 운용에 들어가고 Iridium 인수가 2027년 중반 종결돼 구독형 위성통신 매출(2025년 8.7억$, 영업 EBITDA 마진 57%)이 합쳐지며 발사 내재화로 마진 확대",
+   "g": [
+    null,
+    null,
+    null,
+    40,
+    35,
+    28,
+    22,
+    15,
+    10,
+    7
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    16,
+    20,
+    23,
+    25,
+    26,
+    27,
+    28
+   ]
   },
   "base": {
    "p": 50,
@@ -34,7 +56,7 @@
    "om": []
   },
   "bear": {
-   "p": 25,
+   "p": 30,
    "why": "Neutron 추가 지연·개발비 증가로 2027년 이후 적자 장기화, 대형 계약 일부 Neutron 전제라 일정 위험",
    "g": [],
    "om": []
@@ -79,6 +101,41 @@
    "v": "회사 공식 장기 영업이익률 목표는 확인하지 못함",
    "conf": "추정",
    "src": []
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 71백만$ ÷ 매출 601.8백만$ ≈ 11.8%, 2026년 1분기 가이던스 16~18백만$(서버 계산 최근 8.4%). 장기 4.5%는 성숙 우주·방산 대비 높은 편으로 둔 추정",
+   "conf": "추정",
+   "src": [
+    5,
+    6
+   ]
+  },
+  {
+   "k": "Iridium 인수",
+   "v": "주당 54$(현금 27$+주식), 기업가치 약 80억$, 인수금융 브리지론 36억$, 종결 목표 2027년 중반. Iridium 2025년 매출 8.717억$·영업 EBITDA 4.95억$(57%). 금액 단위 시너지 추정치는 확인 못 함",
+   "conf": "공시",
+   "src": [
+    4,
+    0
+   ]
+  },
+  {
+   "k": "Neutron 의존 계약",
+   "v": "우주군 수주 약 6.63억$ 중 3.97억$는 Neutron 탑재 전제(보도). 첫 발사 2027년으로 연기",
+   "conf": "보도",
+   "src": [
+    7,
+    1
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "시장은 영업이익률 15%에서 매출이 지금의 약 58배(성장 약 12.5년 지속)를 전제 — 확인된 근거는 Neutron 상업화와 Iridium 합병분(매출 약 9억$)뿐이며 이 정도로는 부분만 설명, 나머지는 확인된 근거 없음",
+   "conf": "추정",
+   "src": [
+    4
+   ]
   }
  ],
  "sources": [
@@ -101,6 +158,51 @@
    "t": "Rocket Lab Corp - Form 8-K 2026-08-10 Ex.99.1",
    "u": "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000061/rklb-08102026ex991.htm",
    "d": "2026-08-10"
+  },
+  {
+   "t": "Rocket Lab to Buy Iridium for $8 Billion",
+   "u": "https://thedeepdive.ca/rocket-lab-to-buy-iridium-for-8-billion-adding-a-satellite-network-to-its-launch-business/",
+   "d": "2026-06-29"
+  },
+  {
+   "t": "Rocket Lab Announces Fourth Quarter and Full Year 2025 Financial Results",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-announces-fourth-quarter-and-full-year-2025-financial",
+   "d": "2026-02"
+  },
+  {
+   "t": "Rocket Lab Corp - Form DEF 14A",
+   "u": "https://www.sec.gov/Archives/edgar/data/1819994/000162828026023922/rklb-20260406.htm",
+   "d": "2026-04-06"
+  },
+  {
+   "t": "Rocket Lab Q2 2026 earnings coverage (Space Force awards, backlog)",
+   "u": "https://app.sentisense.ai/stories/rocket-lab-beats-revenue-estimates-secures-space-force-contract-targets-growth-w-08172026",
+   "d": "2026-08-17"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Neutron 중형 발사체",
+    "p": 50,
+    "why": "2027년 첫 발사 성공과 재사용·고빈도 운용이 조건. 우주군 수주 중 3.97억$가 Neutron 전제라 성공 시 대형 위성군·정부 발사 시장 진입. 일정 연기 이력(2026-4분기→2027)",
+    "conf": "공시",
+    "src": [
+     1,
+     7
+    ]
+   },
+   {
+    "name": "Iridium 인수(위성통신 서비스)",
+    "p": 55,
+    "why": "주주 승인 완료, 규제 승인·재원 조달(브리지론 36억$) 필요, 종결 목표 2027년 중반. 성공 시 연 8.7억$ 규모 반복 매출과 자사 발사 내재화",
+    "conf": "공시",
+    "src": [
+     4,
+     0
+    ]
+   }
+  ]
+ }
 }

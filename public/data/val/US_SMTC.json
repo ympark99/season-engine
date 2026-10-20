@@ -24,7 +24,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "1.6T FiberEdge·CopperEdge 점유율 확대가 이어지고 2028 회계연도 수요가 생산능력을 넘어 가격·마진 유지",
+   "why": "1.6T FiberEdge·CopperEdge 점유율 확대가 이어지고 2028 회계연도 수요가 생산능력을 넘어 가격·마진 유지 · 고출력 CW 레이저 매출이 회계 2028 상반기 시작(회사 전망, 모듈사 5~6곳 평가 중)",
    "g": [
     null,
     null,
@@ -135,6 +135,15 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "CW 레이저는 2028 회계 상반기 매출 시작 전망이나 금액 근거 없어 base 에 넣지 않음. 셀룰러 모듈 매각은 매출총이익률 500bp+ 개선 효과를 회사가 제시. 장기 마진 목표·고객 집중도 수치는 확인 못함(기존 3대 고객 외 확대 언급)",
+   "conf": "보도",
+   "src": [
+    6,
+    7
+   ]
   }
  ],
  "sources": [
@@ -167,6 +176,40 @@
    "t": "Semtech cash flow statement (stockanalysis.com)",
    "u": "https://stockanalysis.com/stocks/smtc/financials/cash-flow-statement/",
    "d": "2026-10"
+  },
+  {
+   "t": "Semtech Corp Q2 2027 Earnings Call Highlights (Yahoo Finance)",
+   "u": "https://finance.yahoo.com/markets/stocks/articles/semtech-corp-smtc-q2-2027-050104885.html",
+   "d": "2026-08"
+  },
+  {
+   "t": "Semtech (SMTC) Q2 2027 Earnings Call Transcript (Motley Fool)",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/09/01/semtech-smtc-q2-2027-earnings-call-transcript/",
+   "d": "2026-09-01"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "고출력 CW 레이저·SOA (광트랜시버용)",
+    "p": 30,
+    "why": "회사 전망상 회계 2028 상반기 매출 시작, 모듈사 5~6곳이 평가 중. 트랜시버당 부품 금액을 한 자릿수 후반 달러에서 두 자릿수 후반 달러로 키울 수 있다고 회사가 설명. 성공 조건은 고객 인증 통과와 추가 생산능력 확보. 매출 규모 수치는 확인 못함(bull 경로 성장률에만 간접 반영)",
+    "conf": "공시",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "공동패키지광학(CPO)·HieFo 고출력 DWDM 레이저",
+    "p": 10,
+    "why": "2028년 확대 기회로 제시된 먼 미래 항목. 2차 요약 자료 수준이라 근거 약함, 규모 확인 못함. bull 에도 별도 숫자 넣지 않음",
+    "conf": "추정",
+    "src": [
+     6
+    ]
+   }
+  ]
+ }
 }

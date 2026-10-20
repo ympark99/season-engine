@@ -129,7 +129,9 @@
    "v": "2026-10-13 SEMICON West 행사에서 2030년 비GAAP 총이익률 54%, 영업이익률 40% 목표(2025년 48.8%·30.2%), 서비스 매출 120억$ 초과, 디스플레이·광 20억$ 초과, WFE 점유율 2%p 이상 상승 목표. 전체 매출·WFE 시장 전망은 제시하지 않음",
    "conf": "보도",
    "src": [
-    3
+    3,
+    4,
+    7
    ]
   },
   {
@@ -138,15 +140,6 @@
    "conf": "보도",
    "src": [
     3
-   ]
-  },
-  {
-   "k": "2030 목표",
-   "v": "2026-10-13 SEMICON West 행사에서 2030년 비GAAP 총이익률 54%, 영업이익률 40% 목표(2025년 48.8%·30.2%), 서비스 매출 120억$ 초과, 디스플레이·광 2억$... 아닌 20억$ 초과, WFE 점유율 2%p 이상 상승 목표. 전체 매출·WFE 시장 전망은 제시하지 않음",
-   "conf": "보도",
-   "src": [
-    4,
-    5
    ]
   },
   {
@@ -167,21 +160,22 @@
    ]
   },
   {
-   "k": "시장 내재 기대",
-   "v": "역DCF: 정점 마진 34.7%가 15년 넘게 유지돼도 현재가(415$)가 안 나옴. 낙관 경로(자동)도 현재가의 49%. 시장이 가격에 넣은 것으로 확인된 근거는 회사 2030년 목표(영업이익률 40%)와 고객 장기 약정 정도이며, 이를 bull 에 반영(p 20). 총매출 목표가 없어 현재가 전체를 설명하는 수준의 근거는 없음 — 가격에 맞추려고 가정을 올리지 않음",
-   "conf": "추정",
-   "src": [
-    4,
-    5,
-    6
-   ]
-  },
-  {
    "k": "한계",
    "v": "수주잔고·회사의 설비투자 금액 계획은 확인 못 함(생산능력 2배 이상 확대 투자만 언급). 4분기 실적은 2026-11-12 예정(2차 자료)",
    "conf": "추정",
    "src": [
     4
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 정점 마진 34.7%가 15년 넘게 유지돼도 현재가가 안 나옴. 낙관 경로 적정가는 현재가의 약 61%. 확인된 근거는 2030년 목표(영업이익률 40%·서비스 120억$+)와 패키징·서비스 신사업 정도로 bull 에 반영했고, 현재가 전체를 설명할 만한 추가 근거는 확인 못 함 — 가격에 맞추려고 가정을 올리지 않음",
+   "conf": "추정",
+   "src": [
+    3,
+    4,
+    5,
+    6
    ]
   }
  ],
@@ -220,6 +214,58 @@
    "t": "Applied Materials (AMAT) Q3 2026 Earnings Call Transcript (Motley Fool)",
    "u": "https://www.fool.com/earnings/call-transcripts/2026/08/20/applied-materials-amat-q3-2026-earnings-call-transcript/",
    "d": "2026-08"
+  },
+  {
+   "t": "Applied Materials and Besi Expand Strategic Partnership (GlobeNewswire)",
+   "u": "https://www.globenewswire.com/news-release/2026/10/01/3372971/0/en/applied-materials-and-besi-expand-strategic-partnership-to-advance-next-generation-packaging-for-ai-scaling.html",
+   "d": "2026-10-01"
+  },
+  {
+   "t": "Applied Materials' EPIC Center Ties 2x Faster Innovation to a 2% WFE Share Gain by 2030 (Futurum)",
+   "u": "https://futurumgroup.com/insights/applied-materials-epic-center-ties-2x-faster-innovation-to-a-2-wfe-share-gain-by-2030/",
+   "d": "2026-10"
+  },
+  {
+   "t": "BESI takeover interest report (TrendForce)",
+   "u": "https://www.trendforce.com/news/2026/03/13/news-hybrid-bonding-leader-besi-reportedly-draws-takeover-interest-lam-applied-materials-rumored/",
+   "d": "2026-03-13"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "첨단 패키징·하이브리드 본딩(Kinex, BESI 지분 약 9%)",
+    "p": 50,
+    "why": "HBM·AI 패키징 하이브리드 본딩 장비의 표준 채택이 성공 조건. 올해 패키징 사업 성장률 전망 70% 이상(회사 설명). BESI와는 2026-10-01 EPIC 센터 파트너십 확대, 인수는 보도 수준(미확정)이라 반영 안 함. 이미 컨센서스 매출에 일부 반영돼 bull 에만 추가 기여를 둠",
+    "conf": "공시",
+    "src": [
+     1,
+     7,
+     9
+    ]
+   },
+   {
+    "name": "서비스(AGS) 2030년 120억$ 초과 목표",
+    "p": 55,
+    "why": "FY2025 서비스 매출 약 63.9억$ → 2030년 120억$ 초과 목표(연 중반 두 자릿수 성장). 설치 장비 기반 확대로 반복 매출이 늘어나는 것이 조건. 회사 목표이므로 달성 확률은 보수적으로 둠",
+    "conf": "보도",
+    "src": [
+     3,
+     4,
+     8
+    ]
+   },
+   {
+    "name": "디스플레이·SENZ 광학(도파관) 합산 20억$ 초과 목표",
+    "p": 30,
+    "why": "2030년 기타 매출(디스플레이+SENZ 도파관 포토닉스) 20억$ 초과 목표. AR 글래스 등 신시장 개화가 조건이며 전체 매출 대비 규모가 작아 bull 에서도 기여는 작음",
+    "conf": "보도",
+    "src": [
+     4,
+     8
+    ]
+   }
+  ]
+ }
 }

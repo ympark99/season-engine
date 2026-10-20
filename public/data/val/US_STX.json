@@ -2,7 +2,7 @@
  "m": "US",
  "code": "STX",
  "name": "SEAGATE TECHNOLOGY HOLDINGS PLC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY26 4분기 실적(2026-07-28) 뒤, FY27 1분기 실적(2026-10-27) 발표 전",
  "type": "cyc",
@@ -195,6 +195,23 @@
    "src": [
     3
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "본업 밖 의미 있는 신사업은 확인 못 함(Intevac 인수는 본업 보강, Lyve Cloud는 Wasabi 지분과 맞바꿔 정리). 시나리오 변경 없음",
+   "conf": "보도",
+   "src": [
+    7,
+    8
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 inp.sbc 없음(컨센서스 마진이 주식보상 제외 기준으로 잡히지 않음) — sbc 미기입",
+   "conf": "추정",
+   "src": [
+    0
+   ]
   }
  ],
  "sources": [
@@ -232,6 +249,39 @@
    "t": "Western Digital Q4 Earnings Call Highlights",
    "u": "https://www.nasdaq.com/articles/western-digital-q4-earnings-call-highlights",
    "d": "2026-08"
+  },
+  {
+   "t": "Seagate acquires hard drive equipment manufacturer Intevac for $119M",
+   "u": "https://www.sdxcentral.com/news/seagate-acquires-hard-drive-equipment-manufacturer-intevac-for-119-million/",
+   "d": "2025-03"
+  },
+  {
+   "t": "Seagate beats Q2 estimates and qualifies Mozaic 4 early (TIKR)",
+   "u": "https://www.tikr.com/it/blog/seagate-beats-q2-estimates-and-qualifies-mozaic-4-early-whats-next",
+   "d": "2026"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Intevac 인수(HAMR 매체용 박막 장비 내재화)",
+    "p": 60,
+    "why": "2025-03 약 1.19억$에 인수 완료. 성공 조건은 HAMR 매체 생산 확대를 자체 장비로 뒷받침하는 것. 외부 매출보다 본업 원가·공급 안정 효과라 별도 매출 규모는 확인 못 함 — 시나리오에 따로 넣지 않음",
+    "conf": "보도",
+    "src": [
+     7
+    ]
+   },
+   {
+    "name": "Lyve Cloud를 Wasabi에 이전하고 지분 확보",
+    "p": 20,
+    "why": "2026-04 이전 완료, 대가는 Wasabi 지분. 지분 가치·규모는 확인된 수치 없음 — 시나리오에 반영하지 않음",
+    "conf": "보도",
+    "src": [
+     8
+    ]
+   }
+  ]
+ }
 }

@@ -127,11 +127,12 @@
   },
   {
    "k": "시장 내재 기대",
-   "v": "역DCF: 지금 주가는 10년간 매출 연 34.9% 성장 + 영업이익률 25% 유지를 전제(낙관 적정가도 현재가의 약 43%). 확인된 근거는 광 데이터센터 2026년 매출 전망 2.1억~2.3억$ 상향과 Rushmore 2027년 매출 시작·2028~29년 램프 언급까지이며, 수주잔고·장기계약 수치는 확인 안 됨 — 부분만 확인, 낙관 경로는 그대로 둠",
+   "v": "역DCF(2026-10-20): 지금 주가는 10년간 매출 연 36.2% 성장 + 영업이익률 25% 유지를 전제(낙관 적정가도 현재가의 약 40%). 확인된 근거는 광 데이터센터 2026년 매출 전망 2.1억~2.3억$ 상향과 Rushmore 2027년 매출 시작·Washington/Annapurna 2027년 초기 기여 목표까지이며, 수주잔고·장기계약 규모는 확인 안 됨 — 부분만 확인, 낙관 경로는 그대로 둠",
    "conf": "추정",
    "src": [
     1,
-    5
+    5,
+    6
    ]
   },
   {
@@ -173,6 +174,49 @@
    "t": "MaxLinear Q2 2026 Earnings Call Transcript",
    "u": "https://www.marketbeat.com/earnings/reports/2026-7-23-maxlinear-inc-stock/",
    "d": "2026-07-23"
+  },
+  {
+   "t": "MXL Q2 Earnings Call Highlights: Optical AI Data Center Growth",
+   "u": "https://www.nasdaq.com/articles/mxl-q2-earnings-call-highlights-optical-ai-data-center-growth",
+   "d": "2026-07"
+  },
+  {
+   "t": "MaxLinear Q2 2026 Earnings Call Transcript (요약)",
+   "u": "https://www.roic.ai/quote/MXL/transcripts/2026-year/2-quarter",
+   "d": "2026-07-23"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Rushmore 1.6T(200G/레인) PAM4 DSP",
+    "p": 45,
+    "why": "고객 퀄리피케이션 통과·삼성 파운드리 제2 공급원 확보가 조건. 매출은 2027년 시작, 본격 램프 2027년 하반기 이후. 경쟁사는 이미 양산 출하라 후발 — 성공 시 광 DSP 점유 확대(낙관 경로 g·om에 반영, 기본에는 컨센서스 범위만)",
+    "conf": "보도",
+    "src": [
+     1,
+     6
+    ]
+   },
+   {
+    "name": "Washington(TIA)·Annapurna 광 데이터센터 신제품",
+    "p": 35,
+    "why": "2027년 초기 매출 기여 목표. 규모·고객 확정 수치는 공시에 없음 — 근거 약해 시나리오 경로에 별도로 넣지 않음",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Ultra DOCSIS 3.1/4.0 브로드밴드 교체 주기",
+    "p": 60,
+    "why": "회사는 2027~28년까지 램프가 이어져 성장 안정에 기여한다고 설명(본업 연장선, 기본 경로에 컨센서스로 이미 포함)",
+    "conf": "보도",
+    "src": [
+     7
+    ]
+   }
+  ]
+ }
 }

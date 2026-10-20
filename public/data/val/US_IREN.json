@@ -2,9 +2,9 @@
  "m": "US",
  "code": "IREN",
  "name": "IREN LIMITED",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "FY26 4분기 실적(2026-08-27) 뒤",
+ "basis": "FY26 4분기 실적(2026-08-27)·FY26 10-K 뒤",
  "mid": {
   "om": 20,
   "why": "성숙 마진 가정. 마이크로소프트 계약 매출 약 97억$(5년 평균)에 GPU 설비 약 58억$ 구매 계약이 붙어 연 감가상각 후 영업이익률이 서버 자동값(15%)보다 높을 수 있으나, 갱신·재계약 시 GPU 가격 경쟁과 고객 집중 위험이 있어 20%로 둔다. 계약 마진은 회사가 공개하지 않아 추정",
@@ -24,7 +24,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "FY27 용량 후반 협의 중인 대형 계약이 추가로 체결되고 Sweetwater 램프가 2027년부터 순조롭게 진행됨",
+   "why": "FY27 용량 후반 협의 대형 계약 추가 + NVIDIA 5GW 협력이 Sweetwater(2GW) 램프로 이어져 2028년 이후 용량이 계획대로 인도됨(계약 매출 성장 경로)",
    "g": [],
    "om": [
     null,
@@ -141,6 +141,35 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "가이던스·설비투자",
+   "v": "2026년 말 AI 클라우드 연환산 매출 40억$ 초과 목표(약 85% 계약 확보), FY27 설비투자 가이던스 250~300억$",
+   "conf": "공시",
+   "src": [
+    2,
+    7
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "FY26 주식보상 비용 2.05억$ ÷ 매출 7.07억$ ≈ 29%(전년 0.426억$). 컨센서스 마진은 서버가 GAAP 기준(inp.sbc 없음)으로 보므로 sbc 비율은 넣지 않음. 동종 성숙 기업 장기 비율 근거는 확인 못함",
+   "conf": "공시",
+   "src": [
+    2,
+    6
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "서버 역DCF: 영업이익률 20%가 될 때 매출이 지금(7.07억$)의 약 9.5배여야 지금 주가가 설명됨. 시장은 마이크로소프트 97억$·NVIDIA 34억$·신규 28억$ 계약과 NVIDIA 5GW 협력의 성공을 전제 — 계약은 공시로 확인되나 계약 마진·GPU 재투자 비용은 미공개(부분만 확인). 적자기업이라 서버가 적정가를 내지 않아 bull 0",
+   "conf": "추정",
+   "src": [
+    0,
+    3,
+    4,
+    5
+   ]
   }
  ],
  "sources": [
@@ -158,6 +187,57 @@
    "t": "IREN Reports FY26 Results",
    "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
    "d": "2026-08-27"
+  },
+  {
+   "t": "IREN Business Update and Q3 FY26 Results",
+   "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-business-update-and-q3-fy26-results",
+   "d": "2026-05-07"
+  },
+  {
+   "t": "IREN inks AI infrastructure deal with Nvidia",
+   "u": "https://www.cnbc.com/2026/05/07/iren-stock-ai-infrastructure-nvidia.html",
+   "d": "2026-05-07"
+  },
+  {
+   "t": "Neocloud Iren signs $2.8bn in customer contracts, raises 2026 annual run rate to $4bn+",
+   "u": "https://www.datacenterdynamics.com/en/news/neocloud-iren-signs-28bn-in-customer-contracts-raises-2026-annual-run-rate-to-4bn/",
+   "d": "2026-07-20"
+  },
+  {
+   "t": "IREN Ltd Form 10-K FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001878848/000187884826000052/iren-20260630.htm",
+   "d": "2026-08"
+  },
+  {
+   "t": "Earnings call transcript: IREN Q4 2026",
+   "u": "https://www.investing.com/news/transcripts/earnings-call-transcript-iren-q4-2026-revenue-misses-as-ai-cloud-expands-93CH-4880306",
+   "d": "2026-08-27"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "NVIDIA 5GW 협력 및 Sweetwater(2GW) 확장",
+    "p": 20,
+    "why": "NVIDIA 34억$ 5년 계약(Childress 약 60MW, 2027 초 램프)은 확정이나 5GW 협력은 구속력 있는 물량이 아니라 Sweetwater 용량 인도·GPU 금융 조달이 성공 조건. 성공 시 2028년 이후 용량이 수 GW로 확대",
+    "conf": "공시",
+    "src": [
+     3,
+     4,
+     2
+    ]
+   },
+   {
+    "name": "다수 AI 개발사 대상 클라우드 계약(28억$ 및 선도 AI 연구소)",
+    "p": 50,
+    "why": "Perplexity·Together AI 등 다고객 계약 28억$와 2026-08 추가 계약이 이미 체결됐으나 고객 신용·갱신이 조건. 마이크로소프트 의존 완화 효과",
+    "conf": "공시",
+    "src": [
+     5,
+     6
+    ]
+   }
+  ]
+ }
 }

@@ -2,7 +2,7 @@
  "m": "US",
  "code": "MSFT",
  "name": "Microsoft",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY26 4분기 실적(2026-07-29) 뒤, FY27 1분기 실적(10-28) 전",
  "mid": {
@@ -160,6 +160,54 @@
    "t": "Directions on Microsoft - July 30, 2026 (capex, capacity)",
    "u": "https://www.directionsonmicrosoft.com/?p=173164",
    "d": "2026-07-30"
+  },
+  {
+   "t": "Microsoft says Maia 300 chip will run its AI services from 2027",
+   "u": "https://thenextweb.com/news/microsoft-maia-300-ai-chip-2027",
+   "d": "2026-10-12"
+  },
+  {
+   "t": "Microsoft secures $135 billion stake in OpenAI as ChatGPT maker completes major restructuring",
+   "u": "https://www.storyboard18.com/amp/digital/microsoft-secures-135-billion-stake-in-openai-as-chatgpt-maker-completes-major-restructuring-83325.htm",
+   "d": "2025-10-28"
+  },
+  {
+   "t": "Microsoft and OpenAI announce new deal and Microsoft gets 27%",
+   "u": "https://www.tomsguide.com/ai/microsoft-and-openai-announce-new-deal-and-microsoft-gets-27-percent-what-it-means-for-you",
+   "d": "2025-10-28"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "OpenAI 지분 27%",
+    "p": 60,
+    "why": "2025-10 재편 때 약 1,350억$ 평가(보도), 시점 갱신치는 확인 안 됨. 가치 실현은 OpenAI 상장·실적에 좌우되고 지분 이익은 영업이익에 안 잡혀 DCF 밖 옵션. 매출 분배 약 20%(미확인 보도)는 AGI 판정까지.",
+    "conf": "보도",
+    "src": [
+     7,
+     8
+    ]
+   },
+   {
+    "name": "자체 AI 칩 Maia (200·300)",
+    "p": 40,
+    "why": "Maia 300 을 2026-10 공개, 2027부터 자사 AI 서비스 주력 칩 목표(회사 목표). 성공 시 GPU 구매 비용 절감으로 마진 방어. 규모는 확인 안 됨.",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Copilot·에이전트형 AI 좌석",
+    "p": 50,
+    "why": "M365 Copilot 유료 좌석 3,000만(보도). 좌석당 단가×확대가 성공 조건; bull 마진 47% 경로에 반영, 규모 수치는 확인 안 됨.",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   }
+  ]
+ }
 }

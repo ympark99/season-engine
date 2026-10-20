@@ -108,7 +108,7 @@
   "name": "HD현대중공업"
  },
  "KR:356860": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "티엘비"
  },
  "KR:373220": {
@@ -120,7 +120,7 @@
   "name": "LS머트리얼즈"
  },
  "KR:425420": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "티에프이"
  },
  "KR:475150": {
@@ -128,11 +128,11 @@
   "name": "SK이터닉스"
  },
  "KR:475830": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "오름테라퓨틱"
  },
  "US:AAOI": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "APPLIED OPTOELECTRONICS INC"
  },
  "US:AAPL": {
@@ -140,7 +140,7 @@
   "name": "APPLE INC"
  },
  "US:ADI": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Analog Devices"
  },
  "US:ALAB": {
@@ -156,7 +156,7 @@
   "name": "Advanced Micro Devices"
  },
  "US:AMZN": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "AMAZON COM INC"
  },
  "US:ANET": {
@@ -164,7 +164,7 @@
   "name": "ARISTA NETWORKS INC"
  },
  "US:APH": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "AMPHENOL CORP"
  },
  "US:ARM": {
@@ -172,11 +172,11 @@
   "name": "ARM HOLDINGS PLC"
  },
  "US:ASTS": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "AST SpaceMobile"
  },
  "US:AXTI": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "AXT INC"
  },
  "US:BE": {
@@ -184,11 +184,11 @@
   "name": "Bloom Energy"
  },
  "US:CIEN": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "CIENA CORP"
  },
  "US:COHR": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "COHERENT CORP"
  },
  "US:CRDO": {
@@ -200,7 +200,7 @@
   "name": "CrowdStrike"
  },
  "US:CRWV": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "COREWEAVE INC"
  },
  "US:DDOG": {
@@ -208,15 +208,15 @@
   "name": "DATADOG INC"
  },
  "US:DELL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Dell Technologies"
  },
  "US:DNA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "GINKGO BIOWORKS HOLDINGS INC"
  },
  "US:FPS": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "FORGENT POWER SOLUTIONS INC"
  },
  "US:GOOGL": {
@@ -224,7 +224,7 @@
   "name": "Alphabet"
  },
  "US:HPE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "HEWLETT PACKARD ENTERPRISE CO"
  },
  "US:INTC": {
@@ -232,11 +232,11 @@
   "name": "Intel"
  },
  "US:IREN": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "IREN LIMITED"
  },
  "US:LITE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Lumentum"
  },
  "US:MCHP": {
@@ -244,11 +244,11 @@
   "name": "MICROCHIP TECHNOLOGY"
  },
  "US:META": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "META PLATFORMS INC"
  },
  "US:MRNA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "MODERNA INC"
  },
  "US:MRVL": {
@@ -256,11 +256,11 @@
   "name": "Marvell Technology"
  },
  "US:MSFT": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Microsoft"
  },
  "US:MU": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Micron Technology"
  },
  "US:MXL": {
@@ -272,7 +272,7 @@
   "name": "Nebius Group"
  },
  "US:NKE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "NIKE INC"
  },
  "US:NOW": {
@@ -280,7 +280,7 @@
   "name": "ServiceNow"
  },
  "US:NVDA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "NVIDIA CORP"
  },
  "US:OKTA": {
@@ -288,15 +288,15 @@
   "name": "OKTA INC"
  },
  "US:ORCL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "ORACLE CORP"
  },
  "US:PLTR": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "PALANTIR TECH INC"
  },
  "US:RKLB": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "ROCKET LAB CORPORATION"
  },
  "US:SMTC": {
@@ -304,7 +304,7 @@
   "name": "SEMTECH CORP"
  },
  "US:SNDK": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Sandisk"
  },
  "US:SNOW": {
@@ -312,15 +312,15 @@
   "name": "SNOWFLAKE INC"
  },
  "US:SPCX": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "SPACE EXPLORATION TECHNOLOGIES CORP"
  },
  "US:STM": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "STMICROELECTRONICS"
  },
  "US:STX": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "SEAGATE TECHNOLOGY HOLDINGS PLC"
  },
  "US:TEAM": {
@@ -328,7 +328,7 @@
   "name": "ATLASSIAN CORP"
  },
  "US:TEM": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "TEMPUS AI INC"
  },
  "US:TER": {
@@ -340,7 +340,7 @@
   "name": "Tesla"
  },
  "US:UUUU": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Energy Fuels Inc"
  },
  "US:VICR": {
@@ -348,7 +348,7 @@
   "name": "VICOR CORP"
  },
  "US:VLO": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Valero Energy"
  }
 }

@@ -2,7 +2,7 @@
  "m": "US",
  "code": "HPE",
  "name": "HEWLETT PACKARD ENTERPRISE CO",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY26 3분기 실적(2026-09-02, 7월 말 분기 종료) 뒤",
  "mid": {
@@ -23,7 +23,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "하이퍼스케일러·네오클라우드·국가 고객의 AI 투자가 FY29 이후도 이어지고 Juniper 시너지(연 6억$ 목표)로 마진 유지",
+   "why": "하이퍼스케일러·네오클라우드·국가 고객의 AI 투자가 FY29 이후도 이어지고 Juniper 시너지(연 6억$ 목표)로 마진 유지. AMD Helios 랙 램프(FY27 가이던스 미포함)와 AI 네트워킹($2.5~3B 목표)이 성공하면 이 경로",
    "g": [
     null,
     null,
@@ -145,6 +145,21 @@
     3,
     4
    ]
+  },
+  {
+   "k": "AI 백로그",
+   "v": "총 AI 백로그 76억$(AI 시스템 68억$), 3분기 AI 관련 주문 31억$. 병목은 수요가 아니라 메모리 등 공급·매출 전환",
+   "conf": "공시",
+   "src": [
+    5,
+    6
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 응답에 inp.sbc 없음(조정 기준 미적용으로 봄) — 장기 주식보상 비율은 넣지 않음",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -172,6 +187,55 @@
    "t": "HPE expects to achieve 2028 financial targets this year after record quarter on AI boom",
    "u": "https://www.investing.com/news/stock-market-news/hpe-expects-to-achieve-2028-financial-targets-this-year-after-record-quarter-on-ai-boom-4720207",
    "d": "2026-06"
+  },
+  {
+   "t": "HPE Q3 FY26 earnings call transcript (IR)",
+   "u": "https://investors.hpe.com/~/media/Files/H/HP-Enterprise-IR/documents/q3-2026/q3-2026-transcript.pdf",
+   "d": "2026-09-02"
+  },
+  {
+   "t": "HPE's $7.6 Billion AI Backlog Is Waiting on Memory Supply to Catch Up",
+   "u": "https://www.fool.com/investing/2026/09/12/hpe-billion-ai-backlog-waiting-memory-supply/",
+   "d": "2026-09-12"
+  },
+  {
+   "t": "HPE lands first AMD Helios order in $1.2B Vultr deal",
+   "u": "https://www.fierce-network.com/broadband/hpe-lands-first-amd-helios-order-12b-vultr-deal",
+   "d": "2026-09-30"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "AMD Helios 랙 스케일 AI 시스템",
+    "p": 40,
+    "why": "Vultr 12억$ 첫 주문(2026 4분기 인도 시작). FY27 매출 가이던스에는 램프 미포함이라 성공 시 추가분. 조건: 부품 공급·인도 일정 준수, 엔비디아 대비 수주 확대",
+    "conf": "보도",
+    "src": [
+     7,
+     6
+    ]
+   },
+   {
+    "name": "AI 네트워킹(Networks for AI, Juniper)",
+    "p": 50,
+    "why": "3분기 주문 7억$, 누적 22억$, FY26 목표 25~30억$로 상향, Oracle 기가와트급 협력. 조건: AI 데이터센터 스위칭에서 시스코·아리스타 대비 점유 확보",
+    "conf": "공시",
+    "src": [
+     5,
+     6
+    ]
+   },
+   {
+    "name": "Private Cloud AI(에이전틱 추론 플랫폼)",
+    "p": 30,
+    "why": "3분기 주문 세 자릿수 증가. 조건: 기업 온프레미스 추론 수요 확산. 규모 수치는 미공개",
+    "conf": "공시",
+    "src": [
+     5
+    ]
+   }
+  ]
+ }
 }

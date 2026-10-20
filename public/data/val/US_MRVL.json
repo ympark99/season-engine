@@ -162,6 +162,15 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "Celestial AI 포토닉 패브릭이 본업 밖 최대 옵션(매출 거의 0, FY2028 하반기 시작 목표). 구글 계약은 기존 사업 확장이라 신사업보다 고객 확장으로 분류. 모두 bull 경로에 반영됨",
+   "conf": "보도",
+   "src": [
+    5,
+    6
+   ]
   }
  ],
  "sources": [
@@ -189,6 +198,40 @@
    "t": "Marvell Form 10-K FY2026",
    "u": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/mrvl-20260131.htm",
    "d": "2026-03"
+  },
+  {
+   "t": "Marvell Investor Day 2026: An $80B Bet on Connectivity, With Scale-Up Optics the Only Variable Starting From Zero",
+   "u": "https://www.simpletechtrend.com/en/post/marvell-investor-day-2026-connectivity-scale-up-optics-en",
+   "d": "2026-10"
+  },
+  {
+   "t": "Marvell completes $3.25B acquisition of photonic startup Celestial AI",
+   "u": "https://www.sdxcentral.com/news/marvell-completes-325b-acquisition-of-photonic-startup-celestial-ai/",
+   "d": "2026-02"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Celestial AI 포토닉 패브릭(스케일업 광 연결)",
+    "p": 30,
+    "why": "2026-02 인수 완료(약 32.5억$ 보도). 인수 시 목표: FY2028 말 연환산 매출 5억$, FY2029 말 10억$, 첫 의미 있는 매출 FY2028 하반기. 성공 조건은 랙 내부 스케일업 광 채택. 현재 매출 거의 0이라 bull 경로에만 반영(FY2031 목표 700~900억$ 중 변동 요인)",
+    "conf": "보도",
+    "src": [
+     5,
+     6
+    ]
+   },
+   {
+    "name": "구글 맞춤형 실리콘 계약(신규 대형 고객)",
+    "p": 50,
+    "why": "2026-07 상업 계약, 워런트는 누적 구매액에 따라 베스팅. 램프가 일정대로 붙으면 맞춤형 매출 확대; 브로드컴 병행 유지가 변수. base에 일부, bull에 전액 반영",
+    "conf": "공시",
+    "src": [
+     3
+    ]
+   }
+  ]
+ }
 }

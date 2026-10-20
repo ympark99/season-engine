@@ -2,9 +2,9 @@
  "m": "US",
  "code": "AXTI",
  "name": "AXT INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "2026년 2분기 실적(2026-07-30) 뒤, 3분기 실적 발표(10월 말 예정) 전",
+ "basis": "2026년 2분기 실적(2026-07-30) 뒤, 3분기 실적 발표(2026-10-29 예정) 전",
  "mid": {
   "om": 22,
   "why": "현재 조정 영업이익률 약 24%(비GAAP 영업이익 1,120만÷매출 4,760만)이나 JX·스미토모가 2030회계연도까지 생산능력을 3~10배로 늘려 기판 가격 경쟁이 커짐. 회사 매출총이익률 목표 40%대 초중반에서 판관·연구비 15% 안팎을 빼 성숙 마진 약 22%로 가정",
@@ -175,6 +175,22 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "3분기 실적 일정",
+   "v": "3분기 실적 발표 2026-10-29 장 마감 후",
+   "conf": "공시",
+   "src": [
+    9
+   ]
+  },
+  {
+   "k": "퉁메이 상장",
+   "v": "퉁메이 상하이 과창판 상장 신청을 2026-06 철회하고 홍콩 상장으로 전환 추진. 사모펀드 11곳 출자금 약 3.24억 위안 상환권 발생(회사는 전액 상환 가능 자금 보유라고 밝힘)",
+   "conf": "보도",
+   "src": [
+    8
+   ]
   }
  ],
  "sources": [
@@ -217,6 +233,39 @@
    "t": "AXT Q2 2026 Earnings Call Transcript (Globe and Mail)",
    "u": "https://www.theglobeandmail.com/investing/markets/stocks/AXTI/pressreleases/3623291/axt-axti-q2-2026-earnings-call-transcript/",
    "d": "2026-07-30"
+  },
+  {
+   "t": "AXT (AXTI) Pulls Tongmei Shanghai Listing And Turns To A Hong Kong IPO",
+   "u": "https://www.sahmcapital.com/news/content/axt-axti-pulls-tongmei-shanghai-listing-and-turns-to-a-hong-kong-ipo-2026-07-15",
+   "d": "2026-07-15"
+  },
+  {
+   "t": "AXT, Inc. Schedules Third Quarter 2026 Earnings Release for October 29, 2026",
+   "u": "https://www.morningstar.com/news/business-wire/20261001072530/axt-inc-schedules-third-quarter-2026-earnings-release-for-october-29-2026",
+   "d": "2026-10-01"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "6인치 InP 기판 (코히런트 개발·양산 공급계약)",
+    "p": 40,
+    "why": "4인치에서 6인치 전환 시 광트랜시버·CPO 레이저 단가·수율 이점. 성공 조건은 베이징 설비 확장(2026~2028)과 고객 인증 완료. 경쟁사 6인치 일정은 확인 안 됨. bull 경로 성장에만 반영",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   },
+   {
+    "name": "퉁메이 홍콩 상장 추진",
+    "p": 30,
+    "why": "상하이 신청 철회 후 홍콩 재추진 단계로 신청 미확인. 성공해도 자회사 지분 희석·상환 이슈가 있어 가치 가산 근거 아님, 기록용",
+    "conf": "보도",
+    "src": [
+     8
+    ]
+   }
+  ]
+ }
 }

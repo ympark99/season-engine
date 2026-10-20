@@ -2,7 +2,7 @@
  "m": "US",
  "code": "AAOI",
  "name": "APPLIED OPTOELECTRONICS INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-06) 뒤 — 3분기 실적 발표(2026-11-05) 전",
  "type": "growth",
@@ -26,7 +26,7 @@
  "scen": {
   "bull": {
    "p": 20,
-   "why": "1.6T 램프업과 연말 월 65만 개 생산능력 달성, 중국산 트랜시버 규제로 미국 내 생산 프리미엄이 이어져 2029~30년까지 고성장·높은 마진 유지",
+   "why": "1.6T 램프업과 연말 월 65만 개 생산능력 달성, 중국산 트랜시버 규제로 미국 내 생산 프리미엄이 이어져 2029~30년까지 고성장·높은 마진 유지 + 외부 광원(ELS) 제품이 2027년 램프업해 높은 매출총이익률(회사 55~65% 설명)로 마진 하방을 받침",
    "g": [
     null,
     null,
@@ -42,12 +42,12 @@
     null,
     null,
     null,
+    23,
     22,
     21,
     20,
     19,
-    18,
-    17
+    18
    ]
   },
   "base": {
@@ -171,6 +171,15 @@
    "src": [
     2
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "ELS·CPO 레이저는 데모·초기 단계로 2027년 램프업 목표, bull에만 반영(base 제외). 아마존 약정은 기존 facts의 장기 계약과 동일",
+   "conf": "보도",
+   "src": [
+    4,
+    5
+   ]
   }
  ],
  "sources": [
@@ -193,6 +202,45 @@
    "t": "Applied Optoelectronics (AAOI) Earnings Call — 2025년 4분기 요약 (AOL)",
    "u": "https://www.aol.com/articles/applied-optoelectronics-aaoi-earnings-call-001620479.html",
    "d": "2026"
+  },
+  {
+   "t": "Applied Optoelectronics 2분기 2026 실적 콜 요약 (GuruFocus)",
+   "u": "https://www.gurufocus.com/news/9015363/applied-optoelectronics-inc-aaoi-q2-2026-earnings-call-highlights-record-revenue-and-aidriven-growth-propel-return-to-profitability",
+   "d": "2026-08"
+  },
+  {
+   "t": "AOI Introduces New Ultra High-Power Semiconductor Laser to Support Silicon Photonics and CPO",
+   "u": "https://investors.ao-inc.com/node/16456",
+   "d": "2025-12"
+  },
+  {
+   "t": "Applied Optoelectronics issues Amazon warrant to purchase shares (Seeking Alpha)",
+   "u": "https://seekingalpha.com/news/4420514-applied-optoelectronics-issues-amazon-warrant-to-purchase-shares",
+   "d": "2025-03"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "외부 광원(ELS)·실리콘포토닉스/CPO용 고출력 레이저",
+    "p": 25,
+    "why": "CPO 본격 확산(2027~28년)과 하이퍼스케일러 채택이 조건. 회사는 2027년 램프업 시 매출총이익률 55~65% 설명. 매출 규모는 미공개",
+    "conf": "보도",
+    "src": [
+     4,
+     5
+    ]
+   },
+   {
+    "name": "아마존 워런트 결합 장기 구매 약정",
+    "p": 60,
+    "why": "워런트 약 790만 주가 아마존 구매액 최대 40억 달러까지 단계 베스팅. 구매 조건·기간은 2차 보도 기반이라 미확정; 성공 시 고객 다변화와 매출 가시성 확대",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   }
+  ]
+ }
 }

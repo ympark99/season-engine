@@ -2,9 +2,9 @@
  "m": "US",
  "code": "MRNA",
  "name": "MODERNA INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "2026년 2분기 실적(2026-07-31) 뒤, 3분기 실적(11-06) 전",
+ "basis": "2026년 2분기 실적(2026-07-31) 뒤, 3분기 실적(11-06)·ESMO 흑색종 3상 발표(10-24) 전",
  "mid": {
   "om": 20,
   "why": "적자 기업이라 성숙 마진 가정. 독감·코로나·RSV 등 계절 백신 3~6개 제품군과 제조 개선(총마진 3년 내 10%p 이상 개선 목표)이 자리 잡은 뒤의 대형 백신 업체 수준을 판단으로 잡음. 회사가 밝힌 장기 영업이익률 목표는 확인 못 함",
@@ -15,13 +15,35 @@
  },
  "scen": {
   "bull": {
-   "p": 25,
-   "why": "독감 mRNA 백신 출시 호조 + 개인맞춤 암백신 허가로 2028년 현금 손익분기를 앞당기고 매출이 빠르게 커지는 경로",
-   "g": [],
-   "om": []
+   "p": 20,
+   "why": "intismeran 흑색종 허가·출시(머크와 이익 50:50) + 독감백신 출시 호조로 매출이 컨센서스 경로를 따라 커지고 2030년대 초 흑자 전환, 장기 마진 30%대",
+   "g": [
+    null,
+    null,
+    null,
+    35,
+    30,
+    25,
+    20,
+    15,
+    10,
+    5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    -5,
+    5,
+    15,
+    25,
+    30,
+    32,
+    32
+   ]
   },
   "base": {
-   "p": 50,
+   "p": 55,
    "why": "독감·코로나 계절 백신 중심으로 점진 성장, 비용 감축으로 2028년 전후 현금 손익분기 달성",
    "g": [],
    "om": []
@@ -82,6 +104,23 @@
    "src": [
     2
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 483백만$(매출 약 19.4억$ 대비 약 25%). 적자 구간이라 비율이 높고, 매출이 커지면 희석된다고 보아 장기 8%(대형 바이오·백신 업체 수준을 판단으로 잡음, 회사 장기 목표는 확인 못 함)",
+   "conf": "추정",
+   "src": [
+    4
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 영업이익률 20% 도달 시 매출이 지금의 약 37.6배여야 지금 주가 — 시장은 intismeran 다종양 확장·독감백신 대성공을 상당 부분 가격에 넣은 것으로 보이나, 공시된 근거는 흑색종 3상 중간분석 성공(수치는 10-24 ESMO 공개 전)과 독감백신 미국 승인까지. 다른 암종은 2상 또는 3상 진행 중(NSCLC 3상 완료 2030년 이후)이라 확인된 근거 없음",
+   "conf": "추정",
+   "src": [
+    5,
+    6
+   ]
   }
  ],
  "sources": [
@@ -104,6 +143,63 @@
    "t": "Moderna takes out $1.5B loan, outlines strategy in bid to break even by 2028",
    "u": "https://www.fiercepharma.com/pharma/moderna-takes-15b-loan-outlines-new-commercial-and-rd-strategy-bid-break-even-2028",
    "d": "2026-01"
+  },
+  {
+   "t": "Moderna 2025년 4분기·연간 실적 보도자료(현금흐름표 주식보상 483백만$, 2024년 429백만$)",
+   "u": "https://www.biospace.com/press-releases/moderna-reports-fourth-quarter-and-fiscal-year-2025-financial-results-and-provides-business-updates",
+   "d": "2026-02"
+  },
+  {
+   "t": "Fierce Biotech: Merck-Moderna cancer vaccine win spurs stock jump",
+   "u": "https://www.fiercebiotech.com/biotech/merck-moderna-cancer-vaccine-data-spur-speculation-keytruda-impact",
+   "d": "2026-08"
+  },
+  {
+   "t": "Merck-Moderna INTerpath Clinical Program Backgrounder",
+   "u": "https://www.merck.com/wp-content/uploads/sites/124/2026/08/Merck-Moderna_INTerpath_Clinical-Program-Backgrounder.pdf",
+   "d": "2026-08"
+  },
+  {
+   "t": "FDA Approves mRNA-1010 (mFLUSIVA) as First mRNA Flu Vaccine for Adults 50 and Older",
+   "u": "https://www.patientcareonline.com/view/fda-approves-mrna-1010-mflusiva-as-mrna-flu-vaccine-for-adults-50-and-older",
+   "d": "2026-08-05"
   }
- ]
+ ],
+ "type": "growth",
+ "typeWhy": "적자(최근 4분기 영업이익률 -133%)이고 mRNA 독감백신 승인·개인맞춤 암백신 3상 성공이 핵심 논거라 성숙 마진 도달을 가정하는 고성장형으로 본다",
+ "sbc": 8,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "intismeran(개인맞춤 mRNA 암백신, 머크와 이익 50:50)",
+    "p": 35,
+    "why": "흑색종 3상(1,137명) 중간분석 1차 평가지표 달성, 수치는 ESMO(10-24) 공개 예정. 성공 조건은 허가 및 NSCLC·방광·신장암 확장 성공. 흑색종만 성공 시 규모는 사업 가정에 따라 편차가 큼(외부 추정 연 수십억$대)",
+    "conf": "보도",
+    "src": [
+     5,
+     6
+    ]
+   },
+   {
+    "name": "mRNA-1010(mFLUSIVA) 독감백신 및 독감+코로나 복합백신",
+    "p": 55,
+    "why": "2026-08 FDA 승인(50세 이상, 65세+는 가속승인). 기존 독감백신 대비 상대효능 약 27%. 복합백신은 EU 허가, 미국은 지침 대기. 성공 조건은 접종 채택·가격 및 미국 복합백신 승인",
+    "conf": "공시",
+    "src": [
+     7,
+     1
+    ]
+   },
+   {
+    "name": "희귀질환 mRNA 치료제(프로피온산혈증 mRNA-3927)",
+    "p": 40,
+    "why": "등록용 시험 환자 모집 완료, 2026년 내 결과 목표, 레코르다티와 공동 상업화(선급금 5천만$). 규모는 희귀질환이라 제한적",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   }
+  ]
+ }
 }

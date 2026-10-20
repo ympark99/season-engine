@@ -2,7 +2,7 @@
  "m": "US",
  "code": "PLTR",
  "name": "PALANTIR TECH INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-03)·10-Q 뒤",
  "mid": {
@@ -127,6 +127,14 @@
    "src": [
     2
    ]
+  },
+  {
+   "k": "3분기 실적일",
+   "v": "3분기 매출 가이던스 21.60~21.64억$는 그대로. 실적 발표일은 11월 2일로 알려졌으나 회사 공식 확정은 확인 안 됨",
+   "conf": "보도",
+   "src": [
+    0
+   ]
   }
  ],
  "sources": [
@@ -149,6 +157,34 @@
    "t": "Palantir outlines 2026 revenue of $8.15B-$8.158B (Seeking Alpha)",
    "u": "https://seekingalpha.com/news/4624208-palantir-outlines-2026-revenue-of-8_15b-8_158b-as-u-s-commercial-guidance-rises-above-3_424b",
    "d": "2026-08-03"
+  },
+  {
+   "t": "NATO acquires Palantir Maven Smart System (DefenseScoop)",
+   "u": "https://defensescoop.com/2025/04/14/nato-palantir-maven-smart-system-contract/",
+   "d": "2025-04-14"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "국방 Maven 정식 프로그램 전환·NATO 확산",
+    "p": 50,
+    "why": "미 국방부 정식 프로그램(program of record) 전환 보도(8월)와 NATO 도입(2025년 계약, 금액 비공개)으로 정부 매출이 장기 반복 매출이 되는 것이 조건. 계약 상한액은 실제 집행액이 아니라 규모 불확실. 이미 본업(정부) 확장이라 base 컨센서스 경로에 대부분 반영된 것으로 봄",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   },
+   {
+    "name": "AIP 기반 상업 부문 해외·신규 산업 확장",
+    "p": 30,
+    "why": "미국 상업 매출 +149%·순달러유지율 157%(공시)는 확인됐으나 해외 상업 확장은 근거 약함. 성공 시 2029년 이후 고성장 지속(bull 경로)",
+    "conf": "추정",
+    "src": [
+     0
+    ]
+   }
+  ]
+ }
 }

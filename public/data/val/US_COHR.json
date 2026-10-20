@@ -2,7 +2,7 @@
  "m": "US",
  "code": "COHR",
  "name": "COHERENT CORP",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "4분기 FY2026 실적(2026-08-12) 뒤",
  "mid": {
@@ -24,13 +24,24 @@
  "wc": null,
  "scen": {
   "bull": {
-   "p": 25,
-   "why": "1.6T·CPO·OCS 매출이 빠르게 늘고 InP 증설이 수요를 따라가며 FCC 수입 제한으로 미국 내 점유율이 오름",
+   "p": 20,
+   "why": "1.6T·CPO·OCS 매출이 빠르게 늘고 InP 증설이 수요를 따라가며 FCC 수입 제한으로 미국 내 점유율이 오름 · OCS·CPO 신사업이 성공해 FY2030 이후 영업이익률이 컨센서스 위로 유지",
    "g": [],
-   "om": []
+   "om": [
+    null,
+    null,
+    null,
+    25,
+    26,
+    26.5,
+    27,
+    27,
+    27,
+    27
+   ]
   },
   "base": {
-   "p": 50,
+   "p": 55,
    "why": "AI 데이터센터 수요로 컨센서스 수준 성장 뒤 경쟁 심화로 마진이 서서히 내려옴",
    "g": [],
    "om": []
@@ -109,6 +120,21 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "OCS·CPO는 가이던스에 반영 중, 추가 확인된 신규 대형 계약 없음. 실리콘카바이드 지분은 가치 실현 계획 미확인",
+   "conf": "보도",
+   "src": [
+    5,
+    6
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버가 조정 기준 마진으로 보지 않아(inp.sbc 없음) 별도 비율 미입력",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -136,6 +162,49 @@
    "t": "TrendForce — FCC Chinese optical transceiver draft",
    "u": "https://www.trendforce.com/presscenter/news/20260805-13169.html",
    "d": "2026-08-05"
+  },
+  {
+   "t": "Coherent Q4 FY2026 earnings call highlights (OCS·CPO·수주)",
+   "u": "https://futurumgroup.com/insights/coherent-q4-fy-2026-earnings-1-6t-transceivers-ramp-cpo-revenue-approaches/",
+   "d": "2026-08"
+  },
+  {
+   "t": "Coherent Silicon Carbide 사업 10억 달러 투자 완료(DENSO·Mitsubishi Electric)",
+   "u": "https://www.coherent.com/news/press-releases/coherents-silicon-carbide-semiconductor-business-completes-1-billion-in-investments-from-denso-and-mitsubishi-electric",
+   "d": "2023-12"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "OCS(광회로 스위치)",
+    "p": 40,
+    "why": "매출이 전분기 대비 늘기 시작했고 시장 규모를 40억 달러 이상으로 제시(회사 설명). 2개 공장으로 증산하며 FY2027 크게 증가 예상. 성공 조건은 하이퍼스케일러 채택 확대. 규모는 컨센서스에 일부 포함돼 있을 수 있어 bull 경로에만 추가 마진 반영",
+    "conf": "보도",
+    "src": [
+     5
+    ]
+   },
+   {
+    "name": "CPO(광 일체형 패키지)",
+    "p": 35,
+    "why": "FY2027 2분기부터 매출 시작, 스케일업용은 2027년 하반기 예상, 서비스 가능 시장 150억 달러(회사 설명). 지연 시 시점이 밀림. 성공 조건은 엔비디아 등 플랫폼 채택과 InP 레이저 증설",
+    "conf": "보도",
+    "src": [
+     5
+    ]
+   },
+   {
+    "name": "실리콘카바이드 사업 지분(75%)",
+    "p": 15,
+    "why": "2023-12 DENSO·Mitsubishi Electric이 각 5억 달러를 넣어 지분 12.5%씩 보유, 회사는 75%. 해당 법인 자체 현금 6.3억 달러(사용 제한). 가치 실현은 전기차 수요 회복과 외부 매각 또는 분리 상장 필요, 현재 계획 확인 안 됨",
+    "conf": "공시",
+    "src": [
+     1,
+     6
+    ]
+   }
+  ]
+ }
 }

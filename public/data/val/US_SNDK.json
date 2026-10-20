@@ -34,7 +34,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "회사 투자자의 날 목표(FY28~30 영업이익률 약 75%, 매출 연 10%대 중후반 성장)가 장기계약으로 실현된 뒤 완만히 둔화",
+   "why": "회사 투자자의 날 목표(FY28~30 영업이익률 약 75%, 매출 연 10%대 중후반 성장)가 장기계약으로 실현된 뒤 완만히 둔화 (HBF 등 신사업은 규모 미공개라 별도 수치 없이 이 경로의 상방에만 포함)",
    "g": [
     null,
     null,
@@ -113,6 +113,21 @@
    "src": [
     3
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "기존 본업(NAND·SSD) 밖에서 공시·계약으로 확인되는 신사업은 없음. HBF만 개발 단계(샘플 2027·양산 2028 보도, 회사 매출 목표 없음)라 bull 상방으로만 기록",
+   "conf": "보도",
+   "src": [
+    6,
+    7
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 inp.sbc 가 없음(조정 기준 컨센서스로 보지 않음) — sbc 값은 넣지 않음",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -145,8 +160,33 @@
    "t": "Kioxia and Sandisk Extend Yokkaichi Joint Venture Agreement",
    "u": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-01-29-kioxia-and-sandisk",
    "d": "2026-01-29"
+  },
+  {
+   "t": "Sandisk Tapes Out Its First HBF Memory Die, Targets 2027 for Inference Product Samples (StorageReview)",
+   "u": "https://www.storagereview.com/news/sandisk-tapes-out-its-first-hbf-memory-die-targets-2027-for-inference-product-samples",
+   "d": "2026-08"
+  },
+  {
+   "t": "SanDisk Long-Term Deals Gain Scale: Over One-Third of FY27 Bits Reportedly Locked, 50% in Sight; HBF Advances (TrendForce)",
+   "u": "https://www.trendforce.com/news/2026/05/05/news-sandisk-long-term-deals-gain-scale-over-one-third-of-fy27-bits-reportedly-locked-50-in-sight-hbf-advances/",
+   "d": "2026-05-05"
   }
  ],
- "by": "Claude 조사",
- "at": "2026-10-19"
+ "by": "Claude 정기 조사",
+ "at": "2026-10-20",
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "HBF(고대역폭 플래시) — AI 추론용 신제품",
+    "p": 15,
+    "why": "성공 조건: GPU 업체 채택(표준화 컨소시엄에 SK하이닉스 협력, 엔비디아는 미확인)과 2027 샘플·2028 양산 일정 준수(이미 한 차례 지연). 성공 시 규모는 회사가 매출 목표를 내지 않아 미공개 — 보도상 2028~2030년 이후 본격화. 기본 시나리오에는 넣지 않음",
+    "conf": "보도",
+    "src": [
+     6,
+     7
+    ]
+   }
+  ]
+ }
 }

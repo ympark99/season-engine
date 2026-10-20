@@ -2,7 +2,7 @@
  "m": "US",
  "code": "AMZN",
  "name": "AMAZON COM INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-07-30) 뒤, 3분기 실적(10월 말) 전",
  "type": null,
@@ -26,7 +26,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "AWS 수주잔고가 매출로 빠르게 바뀌고 자체 칩·광고 비중이 커져 2029년 이후에도 두 자릿수 성장과 18% 마진 유지",
+   "why": "AWS 수주잔고가 매출로 빠르게 바뀌고 자체 칩(외부 판매)·광고·Leo 위성인터넷이 자리 잡아 2029년 이후에도 두 자릿수 성장과 19% 마진 유지",
    "g": [
     null,
     null,
@@ -38,8 +38,8 @@
     null,
     null,
     null,
-    18,
-    18
+    19,
+    19
    ]
   },
   "base": {
@@ -132,6 +132,23 @@
    "src": [
     3
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 195억$ ÷ 매출 7,169억$ ≈ 2.7% (2023년 240억$, 2024년 220억$로 감소 추세). 이번 서버 응답에 inp.sbc 가 없어 조정 기준 컨센서스가 아닌 것으로 보여 sbc 는 비움",
+   "conf": "보도",
+   "src": [
+    5,
+    7
+   ]
+  },
+  {
+   "k": "Leo 위성인터넷",
+   "v": "위성 약 396기 운용(계획 3,232기). 3분기 상용 개시 목표였으나 확정 안 됨. 델타항공 등 기업·정부 약정 있으나 금액 공개 없음. 올해 북미 비용 약 10억$ 증가 요인",
+   "conf": "보도",
+   "src": [
+    6
+   ]
   }
  ],
  "sources": [
@@ -159,6 +176,46 @@
    "t": "AWS hits fastest growth in 18 quarters (TechMarketView)",
    "u": "https://www.techmarketview.com/ukhotviews/archive/2026/07/31/aws-hits-fastest-growth-in-18-quarters",
    "d": "2026-07-31"
+  },
+  {
+   "t": "Amazon FY2025 Form 10-K (SEC)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "d": "2026-02"
+  },
+  {
+   "t": "Amazon Targets Mid-2026 Leo Launch as Satellite Network Expands (Guru3D)",
+   "u": "https://www.guru3d.com/story/amazon-targets-mid2026-leo-launch-as-satellite-network-expands/",
+   "d": "2026"
+  },
+  {
+   "t": "Amazon Stock-Based Compensation 2012-2026 (Macrotrends)",
+   "u": "https://www.macrotrends.net/stocks/charts/AMZN/amazon/stock-based-compensation",
+   "d": "2026"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Amazon Leo (위성인터넷)",
+    "p": 30,
+    "why": "성공 조건: 위성 3,232기 배치(FCC 기한 2029-07)와 상용 개시, 기업·항공·정부 약정 확대. 경영진은 '수십억달러 매출 사업' 가능성만 언급, 금액 공시 없음 — 스타링크 대비 열세라 bull 에만 반영",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Trainium 자체 칩 외부 판매",
+    "p": 45,
+    "why": "칩 사업 연환산 매출 250억$ 초과(보도), Anthropic·OpenAI 다년 약정. 성공 시 AWS 마진·성장 지속 — 수주잔고에 일부 반영돼 있어 bull 위주로 반영",
+    "conf": "보도",
+    "src": [
+     0,
+     2,
+     3
+    ]
+   }
+  ]
+ }
 }

@@ -110,11 +110,12 @@
   },
   {
    "k": "시장 내재 기대",
-   "v": "역DCF: 앞으로 10년간 매출 연 46.8% 성장하고 마진이 38%로 내려와도 버텨야 지금 주가. 낙관 적정가는 현재가의 약 53%. Scorpio X·UALink·맞춤 실리콘 매출화는 회사 설명뿐 수주잔고·장기계약 수치는 확인 못 함 — 부분만 확인, 시나리오는 가격에 맞추지 않고 유지",
+   "v": "역DCF: 앞으로 10년간 매출 연 48.1% 성장하고 마진이 38%로 내려와도 버텨야 지금 주가. 낙관 적정가는 현재가의 약 50%. UALink·맞춤 실리콘·광 연결은 2027년 매출 예상이라는 회사 설명뿐 수주잔고·계약 수치는 확인 못 함 — 부분만 확인, 가격에 맞추지 않고 시나리오 유지",
    "conf": "추정",
    "src": [
     0,
-    3
+    3,
+    7
    ]
   }
  ],
@@ -153,7 +154,42 @@
    "t": "Broadcom 주식보상 2026 분석",
    "u": "https://kalkine.com/news/technology/broadcom-stock-based-compensation-2026-the-2-billion-per-quarter-question-every-avgo-investor-must-answer",
    "d": "2026"
+  },
+  {
+   "t": "Astera Labs Q2 실적 콜 요약 (MarketBeat)",
+   "u": "https://www.marketbeat.com/instant-alerts/astera-labs-q2-earnings-call-highlights-2026-08-04/",
+   "d": "2026-08-04"
+  },
+  {
+   "t": "Astera Labs to Acquire aiXscale Photonics",
+   "u": "https://www.storagenewsletter.com/2025/12/11/astera-labs-to-acquire-aixscale-photonics/",
+   "d": "2025-12-11"
   }
  ],
- "sbc": 9
+ "sbc": 9,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "UALink 스위치·맞춤 실리콘(NVLink Fusion 연동)",
+    "p": 35,
+    "why": "성공 조건: 2027년 초기 배치가 계획대로 되고 하이퍼스케일러가 채택. 회사는 2027년부터 의미 있는 매출을 예상한다고 설명했으나 수주잔고·계약 수치는 확인 못 함. bull 경로에만 반영",
+    "conf": "보도",
+    "src": [
+     7,
+     3
+    ]
+   },
+   {
+    "name": "광 연결(광섬유 커플러·NPO/CPO용 커넥터, aiXscale 인수)",
+    "p": 25,
+    "why": "성공 조건: 2027년 양산 매출화와 경쟁사(Broadcom 등) 대비 채택. 인수 금액·매출 규모 비공개, 규모 확인 못 함. bull 경로에만 반영",
+    "conf": "보도",
+    "src": [
+     7,
+     8
+    ]
+   }
+  ]
+ }
 }

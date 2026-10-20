@@ -2,7 +2,7 @@
  "m": "US",
  "code": "DNA",
  "name": "GINKGO BIOWORKS HOLDINGS INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-05) 뒤",
  "type": "loss",
@@ -143,6 +143,31 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 8,150만$ ÷ 매출 1.70억$ ≈ 48% (서버 최근 비율 44%). 동종 성숙 생명과학 도구 기업 수준(한 자릿수 %)을 직접 확인하지 못해, 매출이 작은 상태에서 구조조정이 이어진다고 보고 장기 12%로 둠. 근거 약함",
+   "conf": "추정",
+   "src": [
+    7
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "낙관 시나리오로도 적정가가 나오지 않음(적자 유형이라 계산 안 함, bull/px 0%). 시장(시가총액 약 7억$, 매출 약 1.1억$)은 자율 실험실 사업이 장기적으로 성숙 마진에 도달하는 것을 전제 — 확인된 근거는 노보 선정·NSF 현물 제공·PNNL 최대 4,700만$ 계약 정도로 금액·인도 시점이 비공개라 부분만 확인",
+   "conf": "추정",
+   "src": [
+    3,
+    6
+   ]
+  },
+  {
+   "k": "사업 재편",
+   "v": "바이오보안 사업 매각을 2026-04-03 완료(중단영업 처리). 2분기 매출 -48%에는 사업 재편 영향이 섞여 있음",
+   "conf": "보도",
+   "src": [
+    8
+   ]
   }
  ],
  "sources": [
@@ -175,6 +200,55 @@
    "t": "Earnings call: Ginkgo Bioworks targets breakeven by 2026 with strategic cuts",
    "u": "https://www.investing.com/news/stock-market-news/earnings-call-ginkgo-bioworks-targets-breakeven-by-2026-with-strategic-cuts-93CH-3435081",
    "d": "2024"
+  },
+  {
+   "t": "Ginkgo Bioworks to Provide Autonomous Lab Access to NSF X-Labs Researchers",
+   "u": "https://www.businesswire.com/news/home/20261008805764/en/Ginkgo-Bioworks-to-Provide-Autonomous-Lab-Access-to-NSF-X-Labs-Researchers-Contributing-Cloud-Lab-Time-and-Protein-Testing-Services-to-$1.5-Billion-Breakthrough-Science-Program",
+   "d": "2026-10-08"
+  },
+  {
+   "t": "Ginkgo Bioworks 10-K (FY2025) 요약",
+   "u": "https://www.stocktitan.net/sec-filings/DNA/10-k-ginkgo-bioworks-holdings-inc-files-annual-report-d13cd79982d5.html",
+   "d": "2026-02-26"
+  },
+  {
+   "t": "Ginkgo Bioworks Reports First Quarter 2026 Financial Results, Completes Divestiture of Biosecurity",
+   "u": "https://www.nasdaq.com/press-release/ginkgo-bioworks-reports-first-quarter-2026-financial-results-completes-divestiture",
+   "d": "2026-05"
   }
- ]
+ ],
+ "sbc": 12,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "자율 실험실(RAC·Nebula·클라우드 랩) 장비·서비스 판매",
+    "p": 25,
+    "why": "노보 노디스크 월섬 실험실 구축, 대학 네트워크, PNNL 계약이 매출로 잡혀야 함. 금액·인도 시점 비공개, 매출 별도 공개 없음. 성공 시 2030년대 초 매출 2.5~3억$·마진 10%대 가정(bull 에만 반영)",
+    "conf": "보도",
+    "src": [
+     3,
+     6
+    ]
+   },
+   {
+    "name": "NSF X-Labs 클라우드 랩 시간·단백질 검사 제공",
+    "p": 15,
+    "why": "현물(in-kind) 제공이라 직접 매출 근거 약함. 후속 유료 이용으로 이어져야 함",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Datapoints AI 학습용 데이터 서비스",
+    "p": 15,
+    "why": "ADME 5종 패널 199$ 판매, 제약사 AI 협업 합의. 규모·매출 공개 없음",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   }
+  ]
+ }
 }

@@ -143,6 +143,15 @@
     3,
     5
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "본업 밖 확인된 별도 사업은 Helios 랙 시스템뿐이고 이미 bull 경로에 반영. 소버린·엣지는 계약 근거 약해 미반영. 워런트 최대 3.2억 주(현 주식 수 16.3억 대비 약 20%)는 희석 위험으로 기록",
+   "conf": "보도",
+   "src": [
+    8,
+    9
+   ]
   }
  ],
  "sources": [
@@ -185,6 +194,50 @@
    "t": "AMD Reports Second Quarter 2026 Financial Results (IR)",
    "u": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
    "d": "2026-08-04"
+  },
+  {
+   "t": "AMD Has Promised OpenAI and Meta Up to 320 Million Shares for a Penny Each",
+   "u": "https://www.fool.com/investing/2026/10/05/amd-has-promised-openai-and-meta-up-to-320-million-shares-for-a-penny-each-here-s-what-that-does-to-the-share-count/",
+   "d": "2026-10-05"
+  },
+  {
+   "t": "AMD Helios Rackscale Solution",
+   "u": "https://www.amd.com/en/products/rackscale-solutions/helios.html",
+   "d": "2026-10-20"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Helios 랙 단위 AI 시스템 판매",
+    "p": 55,
+    "why": "칩이 아니라 랙 단위로 파는 사업. ZT 제조는 Sanmina에 매각(24억$ 현금+지분)하고 설계만 유지. 성공 조건은 MI450 램프 일정과 Rubin 대비 성능. 이미 2027 데이터센터 AI 100%+ 성장 설명과 컨센서스에 대부분 반영돼 bull 경로의 마진·성장에 포함, base 는 컨센서스 그대로",
+    "conf": "보도",
+    "src": [
+     9,
+     3
+    ]
+   },
+   {
+    "name": "OpenAI 6GW·Meta 대형 계약 (주식 워런트 연동)",
+    "p": 50,
+    "why": "OpenAI 최대 6GW(1.6억 주 워런트, 마지막 구간은 주가 600$ 조건), Meta도 비슷한 워런트(총 3.2억 주까지). 물량이 실제로 나오면 매출 급증이나 워런트로 주식 수가 최대 약 20% 늘어 주당 가치를 깎는 요소. 수량 증가는 서버 계산에 아직 안 들어가 있어 보수적으로만 봄",
+    "conf": "보도",
+    "src": [
+     8,
+     2
+    ]
+   },
+   {
+    "name": "소버린 AI·엣지(임베디드) AI 확장",
+    "p": 10,
+    "why": "Helios 파트너 목록에 Humain이 있으나 계약 규모·조건은 확인 안 됨. 임베디드 매출은 18% 안팎 회복 중이나 별도 신사업 근거는 약함. 계약 공시 없으면 가치에 넣지 않음",
+    "conf": "추정",
+    "src": [
+     9
+    ]
+   }
+  ]
+ }
 }
