@@ -3,7 +3,7 @@
 //   GET ?scan=US&secret=...  → 배치 스캔 1회 (CRON_SECRET 또는 관리자 키) — 매일 이어 돌리는 건 /api/cron 파이프라인이 한다
 //   GET ?rows=US             → 전종목 판정 목록 (대시보드 '전종목 보기')
 //   GET ?themes=US           → 전종목 섹터(테마) {code: 섹터} + 세부 업종 + 직접 바꾼 값
-//   GET ?rot=US              → 섹터 순환(4분면) 재료 — 없으면 일봉에서 바로 계산 (일봉 없는 유니버스 종목은 먼저 채움)
+//   GET ?rot=US              → 섹터 순환(4분면) 재료 + 섹터 국면 신호(sig: 경보·진입·점수·최근 60일·지난 1년 검증) — 없으면 일봉에서 바로 계산 (일봉 없는 유니버스 종목은 먼저 채움)
 //   POST {m, step:'theme', code, theme} → 종목 섹터 직접 지정 (theme 비우면 자동 분류로 되돌림) · {step:'rot'} → 4분면 재료 다시 계산
 //   POST {m, step:'sector', code, sector} → 세부 업종(소분류) 직접 지정 (비우면 자동)
 //   POST {m, step:'rejudge'} → 저장된 일봉으로 마지막 스캔을 현재 판정기로 다시 계산 (판정 버전이 바뀌면 첫 조회 때 자동)
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       if (!(await store.get(`univ:fillok:${m}:${AI_SETS[m].items.length}`)) && await store.setNX(`lock:fill:${m}`, 1, 280)) {
         try { const f = await fillMissing(m, 150000); if (f.got) rot = null; if (!f.left) await store.set(`univ:fillok:${m}:${AI_SETS[m].items.length}`, 1, 6 * 3600); } catch (e) { console.error('fill', m, e.message); } finally { await store.del(`lock:fill:${m}`); }
       }
-      if (!rot || rot.rev !== THEME_REV || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
+      if (!rot || rot.rev !== THEME_REV || !('sig' in rot) || (daily?.at && rot.at < daily.at)) rot = (await buildRotation(m)) || rot;     // 매일 유니버스 스캔이 끝난 뒤 첫 조회 때 다시 계산
       if (!rot) return send(res, 200, { m, empty: true });
       const ovr = await loadOvr(m);
       for (const x of rot.mem) if (ovr[x.c]) x.th = ovr[x.c];

@@ -1,5 +1,5 @@
-// /api/portfolio — 전략실 (7개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
-//   GET ?m=US                → 전략 7개 요약 + 벤치마크 + 장세 + 전략별 평가금액 곡선(기간별 수익 차트용)
+// /api/portfolio — 전략실 (9개 전략 × 미국·한국). 매일 파이프라인 끝단에서 새 거래일만 이어 붙인다.
+//   GET ?m=US                → 전략 9개 요약 + 벤치마크 + 장세 + 전략별 평가금액 곡선(기간별 수익 차트용)
 //   GET ?m=US&s=S1           → 전략 하나 상세 (보유·매매 내역 전체·일별 평가금액·벤치마크 곡선)
 //   POST {step:'run', m, reset}  (관리자) — 지금 이어 돌리기 / reset 이면 장부를 지우고 오늘(최근 거래일)부터 다시 시작
 // 시장 지표 3종(mkt:ind:{m})과 국면 효과 유니버스 기준선(mkt:eff:{m})도 같은 데이터로 여기서 계산한다.
@@ -13,6 +13,7 @@ import { marketIndicators } from '../lib/indicators.js';
 import { universeEffect, effectOf } from '../lib/effect.js';
 import { historyOf } from '../lib/history.js';
 import { members, listOf, kstDate, sectorMap } from '../lib/universe.js';
+import { themeMap, loadOvr, GROUPS } from '../lib/themes.js';
 
 const SUM = m => `strat:${m}`, BOOK = (m, id) => `strat:${m}:${id}`;
 const BENCH = { US: [['COMP', '나스닥'], ['SPX', 'S&P 500']], KR: [['KOSPI', '코스피'], ['KOSDAQ', '코스닥']] };
@@ -46,15 +47,16 @@ async function build(m, books) {
   const names = Object.fromEntries(list.map(x => [x.code, x.name]));
   for (const b of Object.values(books)) for (const p of Object.values(b?.pos || {})) if (!names[p.code]) names[p.code] = p.name;    // 유니버스에서 빠진 보유 종목도 가격은 계속 본다
   const codes = Object.keys(names);
-  const [bars, recs, eng, sum, sectors, macro, catsJ, MC] = await Promise.all([
+  const [bars, recs, eng, sum, sectors, macro, catsJ, MC, ovr] = await Promise.all([
     loadMany(codes.map(c => store.barsKey(m, c))), loadMany(codes.map(c => `fund:${m}:${c}`)), engineState(), store.get(`fund:sum:${m}`),
-    sectorMap(m, names), getJson('macro.json'), getJson('categories.json'), store.get(`mcap:${m}`),
+    sectorMap(m, names), getJson('macro.json'), getJson('categories.json'), store.get(`mcap:${m}`), loadOvr(m),
   ]);
+  const themes = themeMap(m, sectors, codes, ovr);                    // 섹터(테마) — 9호 섹터순환
   const items = [];
   codes.forEach((code, k) => {
     const b = bars[k];
     if (!b?.d?.length || b.d.length < 300) return;
-    items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null,
+    items.push(prepItem({ code, name: names[code], sector: sectors[code] || null, theme: themes[code] || '기타', s: new Series(b.d, b.c, b.v), rows: recs[k]?.rows || null, kr: recs[k]?.kr || null,
       sh: MC?.rows?.[code]?.[0] || 0, fx: m === 'US' ? MC?.fx || 0 : 1 }, eng.params, eng.cal));      // 시가총액(원) = 상장주식수 × 종가 × 환율 — 비중 상한용
   });
   for (const x of items) x.pb = new Map(pbScan(x.s, mcOpt(m, MC, x.code)).ent.map(e => [e.t, e]));   // 7호 눌림매매 — 날짜 인덱스 → 눌림 진입
@@ -84,7 +86,7 @@ async function build(m, books) {
   // 대장 점수 — 그날 대시보드 점수 그대로 (14일 넘게 묵었으면 안 씀 → 대장을 쓰는 전략은 현금)
   const fresh = sum?.at && Date.now() - Date.parse(sum.at) < 14 * 864e5;
   const live = fresh ? { fund: new Map(sum.rows.filter(r => r.score != null).map(r => [r.code, r])) } : null;
-  return { m, items, axis: days, idxSeasons, macroOf, cats, live, sectors, ix, macroNow: macro?.risk?.[m] ?? null, lastBar: all[all.length - 1] };
+  return { m, items, axis: days, idxSeasons, macroOf, cats, live, groups: GROUPS[m] || {}, sectors, ix, macroNow: macro?.risk?.[m] ?? null, lastBar: all[all.length - 1] };
 }
 
 /** 이어서 돌리고 저장 */

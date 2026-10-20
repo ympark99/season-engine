@@ -18,6 +18,7 @@ api/train.js             POST DS 판정 재현 학습 (관리자)
 api/meta.js · health.js  엔진 상태 · 설정 점검
 lib/engine.js            판정·Ps·학습
 lib/valuation.js         밸류에이션 — 유형별 3시나리오 DCF·역DCF·민감도·안전마진·미국 PER·PBR 밴드 (/api/fundamentals?val=)
+lib/sectorsig.js         섹터 국면 — 내부 체력·대장주·짧은 탄력·엇갈림으로 경보(정상·주의·경고·이탈)·진입 신호·점수, 지난 1년 검증 (/api/universe?rot= 의 sig, 전략 9호)
 lib/kis.js               KIS 일봉 (국내 FHKST03010100 · 해외 HHDFS76240000). 주문 기능 없음
 lib/store.js             Upstash Redis REST (패키지 의존성 없음)
 lib/labels.js            리포트·스크린샷 속 DS 실제 판정 (학습 정답지)

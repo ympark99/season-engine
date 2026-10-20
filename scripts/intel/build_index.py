@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""public/data/intel/index.json 재생성 (6번).
+"""public/data/intel/index.json 재생성 (6번) + 섹터 재료 장부 sector_news.json.
 사용:
   python3 scripts/intel/build_index.py                       # 인덱스만 다시 만든다 (중간 커밋용)
   python3 scripts/intel/build_index.py --final --today 2026-10-17 --targets 83 --new 3 --changed 5 --deep 5 --full 0 --sectors 35
@@ -52,3 +52,27 @@ else:
 idx['_meta'] = meta
 json.dump(idx, open(os.path.join(D, 'index.json'), 'w'), ensure_ascii=False, indent=1)
 print(len(idx) - 1, 'entries; bad files:', bad, '; refreshDays', meta['refreshDays'])
+
+# 섹터 재료 장부 (sector_news.json) — 종목 파일의 최근 45일 updates 를 섹터별로 쓰기 좋게 한 줄씩. 전체 조사·첫 등록 요약 줄은 소식이 아니라 뺀다.
+asof = a.today or datetime.date.today().isoformat()
+cut = (datetime.date.fromisoformat(asof) - datetime.timedelta(days=45)).isoformat()
+news = []
+for f in sorted(glob.glob(os.path.join(D, '[A-Z][A-Z]_*.json'))):
+    try:
+        d = json.load(open(f))
+    except Exception:
+        continue
+    src = d.get('sources', [])
+    for u in d.get('updates', []):
+        dd, note = u.get('d') or '', (u.get('note') or '').strip()
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', dd) or dd < cut or not note or note.startswith(('전체 조사', '첫 등록', '예시 등록')):
+            continue
+        sv = u.get('src')
+        k = sv[0] if isinstance(sv, list) and sv else sv if isinstance(sv, int) else None
+        url = src[k].get('u') if isinstance(k, int) and 0 <= k < len(src) else None
+        news.append({'m': d['m'], 'code': d['code'], 'name': d['name'], 'theme': d.get('theme'), 'd': dd, 'note': note,
+                     'tone': u.get('tone') if u.get('tone') in ('호재', '악재', '중립') else None,
+                     'scope': u.get('scope') if u.get('scope') in ('구조적', '일회성') else None, 'u': url})
+news.sort(key=lambda x: (x['d'], x['m'], x['code']), reverse=True)
+json.dump({'asof': asof, 'items': news[:600]}, open(os.path.join(D, 'sector_news.json'), 'w'), ensure_ascii=False, indent=1)
+print('sector_news', len(news), 'items (tone 있음', sum(1 for x in news if x['tone']), ')')

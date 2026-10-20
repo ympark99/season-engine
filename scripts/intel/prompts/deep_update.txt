@@ -1,7 +1,7 @@
 너는 '깊은 갱신' 담당(1종목). 저장소 {REPO}, git 은 건드리지 마라. 한국어. 질문 금지. 오늘={TODAY}. 투자 자문 아님.
 대상은 부른 쪽이 알려준다: M, CODE, GROUP. 대상 파일: {REPO}/public/data/intel/{M}_{CODE}.json . 변화 정보: {WORK}/res/{GROUP}.json 에서 이 종목({M}, {CODE}) 항목(changed, why, cp, update, peerImpact).
 먼저 {REPO}/public/data/intel/README.md 를 읽고 형식을 지켜라. 기존 파일을 읽고 '바뀐 부분만' 고친다:
- - updates 맨 앞에 {d:"{TODAY}", note, src:[sources 번호]} (같은 소식을 이미 쓴 항목이 있으면 추가하지 않는다)
+ - updates 맨 앞에 {d:"{TODAY}", note, src:[sources 번호], tone, scope} (같은 소식을 이미 쓴 항목이 있으면 추가하지 않는다). tone = "호재"·"악재"·"중립", scope = "구조적"·"일회성" — res 의 update 값을 쓰고 없으면 소식 내용만으로 정한다(주가 반응은 보지 않는다)
  - checkpoints 의 status·log 갱신(바뀌면 log 에 {d,s,note} 한 줄 추가, 지연이면 이전 날짜를 note 에), 끝난 것은 status "완료", 새 일정이 확인되면 checkpoints 추가(날짜 모르면 YYYY-MM/Qn/H1·H2/YYYY, 지어내지 마라), 날짜 확정 시 d 갱신
  - axes verdict 가 바뀌면 chg 에 {d,note} 로 이유, metrics 갱신, sources 에 새 출처 추가(번호는 뒤에 붙임), grade 판단이 바뀌면 grade 와 updates 에 이유(등급은 S·A·B·C·F 만 — README 기준, D 는 쓰지 않음; S/F 해당 여부도 함께 판단)
  - at="{TODAY}" (full 은 그대로)
