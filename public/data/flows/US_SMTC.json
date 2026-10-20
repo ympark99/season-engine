@@ -1,0 +1,178 @@
+{
+ "m": "US",
+ "code": "SMTC",
+ "name": "SEMTECH CORP",
+ "at": "2026-10-21",
+ "by": "Claude 정기 조사",
+ "summary": "데이터센터 광모듈용 TIA·레이저 드라이버(FiberEdge)와 구리 케이블 칩(CopperEdge), 보호소자(TVS)·LoRa 무선칩, IoT 모듈·라우터를 판다. FY2026(2026년 1월 결산) 매출 10.5억$ 중 74%가 유통사 경유, 고객 두 곳이 25%, 출하지 기준 중국(홍콩 포함)이 47%다. 2Q FY27 매출은 3.42억$(+33%)로 인프라(데이터센터) 매출이 69% 늘었다. 웨이퍼는 대부분 외주(SiGe는 타워 세미컨덕터)이고, 패키징·테스트는 중국·말레이시아·대만·베트남 외주업체에 맡긴다.",
+ "cust": [
+  {
+   "name": "고객 B (비공개)",
+   "code": null,
+   "m": null,
+   "share": 14,
+   "conf": "공시",
+   "note": "FY2026 10-K — 14% (FY2025 13%, FY2024 10%), 2Q FY27 15%"
+  },
+  {
+   "name": "고객 A (비공개)",
+   "code": null,
+   "m": null,
+   "share": 11,
+   "conf": "공시",
+   "note": "FY2026 10-K — 11% (FY2025 10%), 2Q FY27 12%·상반기 15%, 7월 말 매출채권의 20%"
+  },
+  {
+   "name": "유통사 경유 (비공개)",
+   "code": null,
+   "m": null,
+   "share": 74,
+   "conf": "공시",
+   "note": "FY2026 10-K — 유통사 경유 74% (FY2025 72%), 2Q FY27 75%; 최대 유통사들은 아시아 소재"
+  },
+  {
+   "name": "하이퍼스케일 데이터센터 (최종 사용자, 비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "보도",
+   "note": "2Q FY27 실적 발표 — FiberEdge 수요가 주요 하이퍼스케일러 전반에서 강함, 3Q 데이터센터 매출 전년비 +160% 전망"
+  },
+  {
+   "name": "AIT (WPG 홀딩스 계열 아시아 유통사)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "추정",
+   "note": "WPG 홀딩스 제품 라인 카드에 대만·중국·동남아 Semtech 공인 유통사로 표기 + 10-K '최대 유통사는 아시아 소재' — 고객 A·B 해당 여부는 공시·보도로 확인된 것은 아님"
+  },
+  {
+   "name": "중국 광모듈 업체 (이노라이트·이오프토링크 등)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "추정",
+   "note": "회사가 '목표 시장의 모든 주요 모듈 업체에 채택'이라 밝히고 출하의 47%가 중국 — 800G·1.6T 광모듈 과점 구조로 유추, 공시·보도로 확인된 것은 아님"
+  }
+ ],
+ "supp": [
+  {
+   "name": "타워 세미컨덕터",
+   "code": "TSEM",
+   "m": "US",
+   "item": "SiGe 웨이퍼(TIA·드라이버·CDR·ACC용)",
+   "share": null,
+   "conf": "보도",
+   "note": "2026년 10월 다년 계약 확대 — Semtech가 미국·이스라엘·일본 팹의 전용 SiGe 생산능력 확보 자금 지원, 20년 협력"
+  },
+  {
+   "name": "중국 웨이퍼 파운드리 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "실리콘 웨이퍼(특수 공정)",
+   "share": null,
+   "conf": "공시",
+   "note": "FY2026 10-K — 중국 파운드리 여러 곳에 장비 위탁(순장부가 200만$)"
+  },
+  {
+   "name": "말레이시아 웨이퍼 파운드리 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "실리콘 웨이퍼",
+   "share": null,
+   "conf": "공시",
+   "note": "FY2026 10-K — 말레이시아 파운드리에 장비 위탁(순장부가 130만$)"
+  },
+  {
+   "name": "패키징·테스트 외주업체 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "패키징·테스트",
+   "share": null,
+   "conf": "공시",
+   "note": "FY2026 10-K — 대부분 중국·말레이시아·대만·베트남 외주, 일부에 자체 테스트 장비 설치"
+  },
+  {
+   "name": "IoT 모듈·라우터 EMS 업체 (비공개)",
+   "code": null,
+   "m": null,
+   "item": "IoT 모듈·라우터·게이트웨이 위탁생산",
+   "share": null,
+   "conf": "공시",
+   "note": "FY2026 10-K — EMS 파트너가 SMT 조립부터 완제품 조립·테스트까지 담당"
+  }
+ ],
+ "segs": [
+  {
+   "name": "아날로그 혼성신호·무선 (AMW)",
+   "code": null,
+   "m": null,
+   "amt": 373.4,
+   "share": 35.6,
+   "note": "FY2026 — TVS 보호소자·LoRa 등 RF, 총이익률 58.9%; 2Q FY27 1.17억$"
+  },
+  {
+   "name": "IoT 시스템·커넥티비티 (ISC)",
+   "code": null,
+   "m": null,
+   "amt": 353.9,
+   "share": 33.7,
+   "note": "FY2026 — 옛 Sierra Wireless 모듈·라우터·서비스, 총이익률 35.5%; 2Q FY27 0.98억$"
+  },
+  {
+   "name": "시그널 인테그리티 (SIP)",
+   "code": null,
+   "m": null,
+   "amt": 322.6,
+   "share": 30.7,
+   "note": "FY2026 — FiberEdge·CopperEdge 광·구리 데이터 통신, 방송 영상, 총이익률 65.2%; 2Q FY27 1.26억$로 최대 사업부"
+  },
+  {
+   "name": "HieFo (InP 레이저 칩)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "2026년 3월 3,400만$에 인수한 연결 자회사 — 미국 앨햄브라 InP 팹, 게인칩·DFB 레이저(SIP 소속)"
+  },
+  {
+   "name": "셀룰러 모듈 사업 (매각 예정)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "ISC 내 사업 — 2026년 8월 Compal Electronics에 6,200만$ 매각 계약, 12개월 내 종결 예정"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "Semtech FY2026 10-K",
+   "u": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000005/smtc-20260125.htm"
+  },
+  {
+   "t": "Semtech 2Q FY2027 10-Q",
+   "u": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000034/smtc-20260726.htm"
+  },
+  {
+   "t": "Semtech 2Q FY2027 실적 발표",
+   "u": "https://www.semtech.com/company/press/semtech-announces-second-quarter-of-fiscal-year-2027-results"
+  },
+  {
+   "t": "Semiconductor Today — Tower·Semtech SiGe 생산능력 계약 확대 (2026.10)",
+   "u": "https://semiconductor-today.com/news_items/2026/oct/tower-semtech-141026.shtml"
+  },
+  {
+   "t": "Semtech HieFo 인수 발표 (2026.3)",
+   "u": "https://www.semtech.com/company/press/semtech-expands-data-center-portfolio-with-acquisition-of-hiefo-corporation"
+  },
+  {
+   "t": "WPG 홀딩스 Semtech 제품 라인 카드",
+   "u": "https://www.wpgholdings.com/productline/detail/en/SEMTECH"
+  },
+  {
+   "t": "5Gstore — Semtech 셀룰러 모듈 Compal 매각 (2026.8)",
+   "u": "https://5gstore.com/blog/2026/08/14/semtech-cellular-module-sale-compal/"
+  }
+ ]
+}

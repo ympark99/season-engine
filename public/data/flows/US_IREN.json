@@ -1,0 +1,185 @@
+{
+ "m": "US",
+ "code": "IREN",
+ "name": "IREN LIMITED",
+ "at": "2026-10-21",
+ "by": "Claude 정기 조사",
+ "summary": "호주 출신 비트코인 채굴사에서 GPU 클라우드(네오클라우드)로 전환 중이다. FY2026(2026년 6월 결산) 매출 7.07억$ 중 82%는 채굴 풀 3곳(Antpool·Foundry 등)에 해시파워를 대고 받은 비트코인 채굴 매출이고, AI 클라우드는 1.29억$(약 8배 성장)다. 앞으로는 마이크로소프트(5년 97억$)·엔비디아(5년 34억$)·Prometheus·Perplexity·Together AI(합계 28억$)와 이름이 공개되지 않은 프런티어 AI 연구소 계약이 매출의 중심이 된다. GPU는 엔비디아·AMD에서, 서버는 델·레노버·슈퍼마이크로·기가바이트에서, 채굴기는 비트메인 한 곳에서 사 온다.",
+ "cust": [
+  {
+   "name": "Microsoft",
+   "code": "MSFT",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 2025년 11월에 맺은 5년 GPU 서비스 계약(총 97억$, 텍사스 Childress의 Horizon 1~4). Horizon 1은 2026년 8월에 인수됐고 2~4는 2026년 4분기에 넘길 목표"
+  },
+  {
+   "name": "NVIDIA",
+   "code": "NVDA",
+   "m": "US",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 2026년 5월에 맺은 5년 클라우드 계약(총 34억$, 엔비디아 내부 AI·연구용). 엔비디아에는 최대 21억$ 지분 투자 권리도 있음"
+  },
+  {
+   "name": "Bitcoin 채굴 풀 3곳 (Antpool·Foundry 등)",
+   "code": null,
+   "m": null,
+   "share": 82,
+   "conf": "공시",
+   "note": "FY26 10-K: 비트코인 채굴 매출 5.78억$ 전부를 채굴 풀 운영사 3곳에 해시파워를 대고 벌었음. 주 거래처는 Antpool·Foundry이고, 비중 82%는 전체 매출 대비"
+  },
+  {
+   "name": "Prometheus · Perplexity · Together AI",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 2026년 7월에 맺은 다년 클라우드 계약, 세 곳 합계 약 28억$"
+  },
+  {
+   "name": "프런티어 AI 연구소 (비공개)",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K·실적 발표: 2026년 8월에 맺은 다년 클라우드 계약. 회사가 이름과 금액을 밝히지 않았고, 누구인지 특정할 만한 보도도 찾지 못함"
+  },
+  {
+   "name": "Cohere · Figure AI · Fal AI · Higgsfield AI",
+   "code": null,
+   "m": null,
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 실적 발표(2026-08-27): 최근 새로 계약한 AI 클라우드 고객으로 명시"
+  }
+ ],
+ "supp": [
+  {
+   "name": "NVIDIA",
+   "code": "NVDA",
+   "m": "US",
+   "item": "GPU(H100·H200·B200·B300·GB300·VR200)·InfiniBand",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 설치됐거나 주문한 GPU 대부분이 엔비디아 제품. 회사는 NVIDIA Preferred Partner이고 최대 5GW 규모의 DSX 파트너십도 맺음"
+  },
+  {
+   "name": "Dell Technologies",
+   "code": "DELL",
+   "m": "US",
+   "item": "GPU 서버·랙(마이크로소프트 계약용)",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K 첨부 서류: 2025년 11월 Dell Marketing·Dell Canada와 구매 계약과 취소 불가(NCNR) 계약 체결, 마이크로소프트와의 3자 작업 지시서도 있음"
+  },
+  {
+   "name": "AMD",
+   "code": "AMD",
+   "m": "US",
+   "item": "GPU(MI350X)",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 설치됐거나 주문한 GPU에 AMD MI350X 포함, 한정된 공급사 중 하나로 명시"
+  },
+  {
+   "name": "Supermicro",
+   "code": "SMCI",
+   "m": "US",
+   "item": "GPU 서버",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: AI 클라우드 하드웨어를 사 오는 한정된 공급사 중 하나로 명시"
+  },
+  {
+   "name": "Lenovo",
+   "code": null,
+   "m": null,
+   "item": "GPU 서버",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: AI 클라우드 하드웨어를 사 오는 한정된 공급사 중 하나로 명시(홍콩 상장)"
+  },
+  {
+   "name": "Gigabyte",
+   "code": null,
+   "m": null,
+   "item": "GPU 서버",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: AI 클라우드 하드웨어를 사 오는 한정된 공급사 중 하나로 명시(대만 상장)"
+  },
+  {
+   "name": "Bitmain",
+   "code": null,
+   "m": null,
+   "item": "비트코인 채굴기(S21XP 등)",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 채굴기 공급사는 한 곳뿐(FY25·FY26 모두)이며, 비트메인과의 교환·보충 계약이 공시돼 있음"
+  },
+  {
+   "name": "BC Hydro · ERCOT 도매시장 · PSO",
+   "code": null,
+   "m": null,
+   "item": "전력",
+   "share": null,
+   "conf": "공시",
+   "note": "FY26 10-K: 브리티시컬럼비아 데이터센터는 BC Hydro 규제 요금으로, 텍사스는 ERCOT 시장에서, 오클라호마는 Public Service Company of Oklahoma에서 전력을 받음"
+  }
+ ],
+ "segs": [
+  {
+   "name": "비트코인 채굴",
+   "code": null,
+   "m": null,
+   "amt": 578.2,
+   "share": 82,
+   "note": "FY26(2026년 6월 결산): 6,075 BTC 채굴(FY25는 4.85억$). 채굴장을 AI 클라우드로 바꾸면서 축소 중이고, 4분기 매출은 6,670만$"
+  },
+  {
+   "name": "AI 클라우드 서비스",
+   "code": null,
+   "m": null,
+   "amt": 128.8,
+   "share": 18,
+   "note": "FY26: FY25 1,640만$에서 약 8배로 늘었고 4분기 매출은 7,050만$. 2026년 8월 운영 기준 연환산 매출(ARR)은 10억$"
+  },
+  {
+   "name": "Mirantis (소프트웨어·매니지드 서비스)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "FY26에 인수해 100% 자회사가 됨. 고객 워크로드 배포·관리·지원 소프트웨어"
+  },
+  {
+   "name": "Nostrum Group (스페인 데이터센터 개발)",
+   "code": null,
+   "m": null,
+   "amt": null,
+   "share": null,
+   "note": "FY26에 인수 완료. 스페인 Badajoz 300MW 부지 등 유럽 확장 거점"
+  }
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {
+   "t": "IREN FY2026 10-K (2026-06-30)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/iren-20260630.htm"
+  },
+  {
+   "t": "IREN Reports FY26 Results (8-K Ex.99.1, 2026-08-27)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000051/irenreportsfy26results.htm"
+  },
+  {
+   "t": "IREN 10-Q (2026-03-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/iren-20260331.htm"
+  },
+  {
+   "t": "DCD — IREN secures contract from leading frontier lab",
+   "u": "https://www.datacenterdynamics.com/en/news/iren-secures-contract-from-leading-frontier-lab-on-track-to-exit-crypto-business-by-end-of-year/"
+  }
+ ]
+}

@@ -98,5 +98,13 @@
  "KR:373220": {
   "at": "2026-10-20",
   "name": "LG에너지솔루션"
+ },
+ "US:SMTC": {
+  "at": "2026-10-21",
+  "name": "SEMTECH CORP"
+ },
+ "US:IREN": {
+  "at": "2026-10-21",
+  "name": "IREN LIMITED"
  }
 }
