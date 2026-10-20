@@ -1249,7 +1249,7 @@ function renderSecVal(){
   const el=$('secval'),V=ROT?.sig?.val;if(!el)return;
   if(!V){el.innerHTML='';return}
   const C=V.classes||{},row=(k,t)=>{const z=C[k];if(!z)return '';return `<tr><td>${t}</td><td class="r num">${z.n.toLocaleString()}</td><td class="r num" style="color:${(z.f10??0)>=0?'var(--pos)':'var(--neg)'}">${sfp(z.f10)}</td><td class="r num">${z.w10??'—'}%</td><td class="r num" style="color:${(z.f20??0)>=0?'var(--pos)':'var(--neg)'}">${sfp(z.f20)}</td><td class="r num">${z.w20??'—'}%</td></tr>`};
-  const S=V.strat||{},cv=[['new','새 신호 (주도 확정·선진입 상위 3, 경고 뜨면 뺌)','var(--summer-ink)'],['old','4분면만 (주도 칸 상위 3)','var(--autumn-ink)'],['univ','유니버스 평균','var(--muted)']];
+  const S=V.strat||{},cv=[['new','새 신호 (주도 확정 상위 3, 경고 뜨면 뺌)','var(--summer-ink)'],['old','4분면만 (주도 칸 상위 3)','var(--autumn-ink)'],['univ','유니버스 평균','var(--muted)']];
   const all=cv.flatMap(([k])=>S[k]?.curve||[]),mx=Math.max(1,...all),mn=Math.min(0,...all),W=520,H=120,n=Math.max(...cv.map(([k])=>S[k]?.curve?.length||0));
   const Y=v=>8+(H-16)*(mx-v)/(mx-mn||1),X=i=>4+(W-8)*i/Math.max(1,n-1);
   const lines=cv.map(([k,,c])=>S[k]?.curve?.length?`<polyline points="${S[k].curve.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}" style="fill:none;stroke:${c};stroke-width:2"/>`:'').join('');
