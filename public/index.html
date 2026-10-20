@@ -138,6 +138,7 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
 .updd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
 .updd h2{font-size:18px;margin:0 0 4px}.updd h3{font-size:14px;margin:16px 0 6px}.updd ul{margin:4px 0 0;padding-left:18px}.updd li{margin:3px 0;font-size:13.5px;line-height:1.55}
+.polbox{margin:8px 0 0;display:grid;grid-template-columns:90px 1fr;gap:8px 12px;font-size:13.5px;line-height:1.65}.polbox dt{font-weight:700;color:var(--ink2)}.polbox dd{margin:0;color:var(--ink)}@media(max-width:600px){.polbox{grid-template-columns:1fr;gap:2px}.polbox dd{margin-bottom:8px}}
 .updd .sumt{font-size:14px;line-height:1.65;margin:6px 0 0}.mtag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;background:var(--soft);color:var(--ink2)}
 .updd .lst{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}.updd .lst span{white-space:nowrap}
 details.updold>summary{cursor:pointer;font-weight:700;padding:10px 0}
@@ -2777,11 +2778,12 @@ function renderStratDetail(){
   if($('smore'))$('smore').onclick=()=>{state.slim=(state.slim||80)+80;renderStratDetail()};
 }
 /* 업데이트 — 정기 작업 두 개(매크로·매출 흐름도 / 경쟁·기술)가 매일 올리는 요약을 날짜별로 합쳐 보여줌 (미국·한국 한곳에) */
-let UPD=null;
+let UPD=null,UPDPOL=null;
 async function loadUpd(force){
   if(UPD&&!force){renderUpd();return}
   const get=async f=>{try{const r=await fetch('data/updates/'+f,{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}};
-  const [M,I]=await Promise.all([get('macro.json'),get('intel.json')]);
+  const [M,I,MAC]=await Promise.all([get('macro.json'),get('intel.json'),(async()=>{try{const r=await fetch('data/macro.json',{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}})()]);
+  UPDPOL=MAC&&(MAC.policy||MAC.risk)?{policy:MAC.policy||{},risk:MAC.risk||null,at:MAC.updatedAt||MAC.asof}:null;
   const by={};for(const x of M?.days||[])(by[x.d]||(by[x.d]={})).macro=x;for(const x of I?.days||[])(by[x.d]||(by[x.d]={})).intel=x;
   const cut=new Date(Date.now()+9*36e5-6*864e5).toISOString().slice(0,10);
   UPD=Object.keys(by).sort().reverse().filter(d=>d>=cut).map(d=>({d,...by[d]}));renderUpd();
@@ -2809,8 +2811,10 @@ function renderUpd(){
       ${ni.length?`<h3>신규 조사 종목 <span class="muted" style="font-weight:400">${ni.length}개</span></h3><div class="lst">${ni.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}
       ${nv.length?`<h3>밸류에이션 가정 조사 종목 <span class="muted" style="font-weight:400">${nv.length}개</span></h3><div class="lst">${nv.map(x=>`<span>${mt(x.m)}${nm(x)}${x.note?` <span class="sub">${esc(x.note)}</span>`:''}</span>`).join('')}</div>`:''}
       ${fl.length?`<h3>매출 흐름도 작성 종목 <span class="muted" style="font-weight:400">${fl.length}개</span></h3><div class="lst">${fl.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}`};
+  const pol=(()=>{const P=UPDPOL;if(!P)return '';const R=P.risk,rows=[['US','미국'],['KR','한국']].filter(([k])=>P.policy[k]).map(([k,l])=>`<dt>${l} 시나리오</dt><dd>${esc(ko(P.policy[k].scenario||''))}</dd><dt>${l} 대응</dt><dd>${esc(ko(P.policy[k].stance||''))}</dd>`).join('');
+    return `<div class="updd"><h2>정책 시나리오${P.at?` <span class="sub" style="font-weight:400">${esc(String(P.at).slice(0,10))} 기준</span>`:''}</h2><dl class="polbox">${R?`<dt>위험도</dt><dd><span class="num">미국 ${rk(R.US)} · 한국 ${rk(R.KR)}</span> <span class="sub">(${esc(R.scale||'')})</span><br>${esc(ko(R.why||''))}</dd>`:''}${rows}</dl></div>`})();
   const [first,...rest]=UPD;
-  el.innerHTML=`<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
+  el.innerHTML=`${pol}<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
     <div class="sub" style="margin:6px 2px 20px">매일 아침 정기 작업 두 개 — '경쟁·기술 갱신'(종목 조사·체크포인트)과 '유닉스 서버 갱신'(매크로·매출 흐름도) — 이 끝나면 그날 요약을 여기에 올려. 최근 7일. 종목을 누르면 상세 화면으로 가. 투자 자문이 아니라 데이터 정리야.</div>`;
 }
 /* 기간별 수익 차트 — 전략 8개 + 벤치마크 누적 수익률 (같은 날짜 축) */
