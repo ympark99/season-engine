@@ -1167,8 +1167,15 @@ function renderSec(){
   if(R.err||!R.sig){el.innerHTML=R.err?`<div class="warn">섹터 국면: ${esc(R.err)}</div>`:'<div class="muted">섹터 국면 신호가 아직 없어 — 4분면 오른쪽 위 [다시 계산]을 누르거나 다음 유니버스 스캔 뒤에 생겨.</div>';$('secnews').innerHTML='';$('secval').innerHTML='';return}
   loadSecNews();
   const G=R.sig,fl=secNewsFlags(),onlyAI=state.rotAI?new Set([...Object.values(R.groups||{}).flat(),...Object.keys(R.groups||{})]):null;
-  const rows=Object.entries(G.sec).filter(([k])=>!onlyAI||onlyAI.has(k)).sort((a,b)=>(b[1].grp||0)-(a[1].grp||0)||b[1].score-a[1].score);
-  const solo=rows.filter(([,s])=>!s.grp),cnt=f=>solo.filter(([,s])=>f(s)).length;
+  const all=Object.entries(G.sec).filter(([k])=>!onlyAI||onlyAI.has(k)),lf=state.slf??'',ef=state.sef??'';
+  // 정렬 (머리글 누름 — 같은 칸을 다시 누르면 방향 바꿈) · 경보·신호 필터
+  const SK={name:a=>a[0],score:a=>a[1].score,q:a=>({0:4,3:3,1:2,2:1})[a[1].q],lvl:a=>a[1].lvl,ent:a=>a[1].ent==='주도 확정'?2:a[1].ent?1:0,br:a=>a[1].br,y10:a=>a[1].y10,n:a=>a[1].n};
+  const sk=SK[state.ssk]?state.ssk:'score',sd=state.ssd||-1;
+  const rows=all.filter(([,s])=>(lf===''||s.lvl===+lf)&&(ef===''||(ef==='none'?!s.ent:s.ent===ef)))
+    .sort((a,b)=>{const x=SK[sk](a),y=SK[sk](b);return (x<y?-1:x>y?1:0)*sd||b[1].score-a[1].score});
+  const solo=all.filter(([,s])=>!s.grp),cnt=f=>solo.filter(([,s])=>f(s)).length;
+  const sth=(k,t,c='',ti='')=>`<th${c?` class="${c}"`:''}${ti?` title="${ti}"`:''}><button type="button" class="sb2" data-ssk="${k}" aria-label="${t} 순 정렬">${t}${sk===k?(sd<0?' ▾':' ▴'):''}</button></th>`;
+  const P={brLow:45,brDrop:30,brDiv:25,leadBad:2,y10Neg:-3,loMin:3,persist:2,lv2:3,lv3:4,leadBr:60,earlyBr:50,earlyRise:10,...(G.P||{})};
   const sel=state.rotSel&&G.sec[state.rotSel]?state.rotSel:null;
   const tr=([k,s])=>{const f=fl[k];return `<tr class="srow${k===sel?' on':''}" data-st="${esc(k)}">
     <td><b style="font-weight:600">${esc(k)}</b>${s.grp?' <span class="sub">묶음</span>':''} <span class="sub num">${s.n}</span></td>
@@ -1193,15 +1200,19 @@ function renderSec(){
       ${news.length?`<div style="margin-top:10px"><b style="font-size:13px">이 섹터 재료</b>${news.map(newsRow).join('')}</div>`:''}</div>`}
   el.innerHTML=`<div class="rothead"><h3 style="margin:0;font-size:15px">섹터 점수·경보 <span class="muted" style="font-weight:500">기준 ${esc(G.asof.slice(5))} · ${G.n}종목 · 섹터 ${solo.length}개</span></h3>
       <div class="chips">${Object.keys(R.groups||{}).length?`<button class="chip" id="secai" aria-pressed="${!!state.rotAI}">${esc(Object.keys(R.groups)[0])}만 보기</button>`:''}</div></div>
-    <div class="secsum"><span>주도 확정 <b>${cnt(s=>s.ent==='주도 확정')}</b></span><span>선진입 <b>${cnt(s=>s.ent==='선진입')}</b></span><span>주의 <b>${cnt(s=>s.lvl===1)}</b></span><span>경고 <b>${cnt(s=>s.lvl===2)}</b></span><span>이탈 <b>${cnt(s=>s.lvl===3)}</b></span>
-      <span>호재 무반응 <b>${Object.values(fl).filter(f=>f.w.length).length}</b></span></div>
-    <div class="tbl-wrap" style="max-height:470px;overflow-y:auto"><table class="acc stbl2"><thead><tr><th>섹터</th><th class="r">점수</th><th>4분면</th><th>경보</th><th>신호</th><th class="r" title="20일선 위 종목 비율 (옆 숫자 = 10일 전 대비 %p)">20일선 위</th><th class="r" title="최근 10거래일 섹터 평균 수익 − 유니버스 평균">10일 초과</th><th title="시가총액 상위 3종목 — 초록 유지, 빨강 20일선 아래·가을·겨울">대장주</th><th title="최근 60거래일 — 위 띠 4분면 칸, 아래 띠 경보">최근 60일</th></tr></thead>
-      <tbody>${rows.map(tr).join('')}</tbody></table></div>
+    <div class="chips" style="margin:2px 0 6px"><span class="sub" style="align-self:center">경보</span>${[['','전체',solo.length],...LVN.map((l,i)=>[String(i),l,cnt(s=>s.lvl===i)])].map(([k,t,n])=>`<button type="button" class="chip" data-slf="${k}" aria-pressed="${lf===k}">${t} <span class="num muted">${n}</span></button>`).join('')}</div>
+    <div class="chips" style="margin:0 0 8px"><span class="sub" style="align-self:center">신호</span>${[['','전체',solo.length],['주도 확정','주도 확정',cnt(s=>s.ent==='주도 확정')],['선진입','선진입',cnt(s=>s.ent==='선진입')],['none','신호 없음',cnt(s=>!s.ent)]].map(([k,t,n])=>`<button type="button" class="chip" data-sef="${k}" aria-pressed="${ef===k}">${t} <span class="num muted">${n}</span></button>`).join('')}
+      <span class="sub" style="align-self:center;margin-left:6px">호재 무반응 <b>${Object.values(fl).filter(f=>f.w.length).length}</b>${rows.length!==all.length?` · ${rows.length}개 보는 중`:''}</span></div>
+    <div class="tbl-wrap" style="max-height:470px;overflow-y:auto"><table class="acc stbl2"><thead><tr>${sth('name','섹터')}${sth('score','점수','r')}${sth('q','4분면')}${sth('lvl','경보')}${sth('ent','신호')}${sth('br','20일선 위','r','20일선 위 종목 비율 (옆 숫자 = 10일 전 대비 %p)')}${sth('y10','10일 초과','r','최근 10거래일 섹터 평균 수익 − 유니버스 평균')}<th title="시가총액 상위 3종목 — 초록 유지, 빨강 20일선 아래·가을·겨울">대장주</th><th title="최근 60거래일 — 위 띠 4분면 칸, 아래 띠 경보">최근 60일</th></tr></thead>
+      <tbody>${rows.map(tr).join('')||'<tr><td colspan="9" class="muted" style="text-align:center;padding:18px">해당하는 섹터가 없어</td></tr>'}</tbody></table></div>
     <div class="sub" style="margin-top:6px">점수 = 60일 초과수익·탄력·10일 초과수익·20일선 위 비율의 섹터 간 백분위 평균 − 경보 단계 × 8 ·
-      경보 = 체력 약화(20일선 위 45% 이하 또는 10일 새 −20%p)·대장주 이탈(상위 3종목 중 2개 이상 20일선 아래·가을·겨울)·단기 탄력 꺾임(10일 초과 −1%p 아래 + 5일 마이너스)·엇갈림(평균은 버티는데 체력 −15%p)·신저가 우위 — 해당 개수 1 주의 · 2 경고 · 3 이탈 (소외 칸에서 2개 이상이면 이탈) ·
-      주도 확정 = 주도 칸 + 20일선 위 60%↑ + 10일 초과 플러스 + 경보 1단계 이하 · 선진입 = 회복 칸 + 10일 초과 플러스 + 20일선 위 50%↑·10일 새 +10%p↑ + 경보 없음 · 호재 무반응·악재 무반응 = 최근 10거래일 재료의 3일 반응 (아래 재료 장부) · 줄을 누르면 상세 (4분면과 같이 선택)</div>
+      경보 사유 = 체력 약화(20일선 위 ${P.brLow}% 이하 또는 10일 새 −${P.brDrop}%p)·대장주 이탈(상위 3종목 중 ${P.leadBad}개 이상 20일선 아래·가을·겨울)·단기 탄력 꺾임(10일 초과 ${P.y10Neg}%p 아래 + 5일 마이너스)·엇갈림(평균은 버티는데 체력 −${P.brDiv}%p)·신저가 우위(신저가 ${P.loMin}종목 이상이 신고가보다 많음) — 사유 1개 주의 · ${P.lv2}개 경고 · ${P.lv3}개 이탈 (소외 칸에서 경고면 이탈), 그 단계가 ${P.persist}거래일 이어져야 인정 ·
+      주도 확정 = 주도 칸 + 20일선 위 ${P.leadBr}%↑ + 10일 초과 플러스 + 사유 1개 이하 · 선진입 = 회복 칸 + 10일 초과 플러스 + 20일선 위 ${P.earlyBr}%↑·10일 새 +${P.earlyRise}%p↑ + 사유 없음 · 머리글을 누르면 정렬 · 호재 무반응·악재 무반응 = 최근 10거래일 재료의 3일 반응 (아래 재료 장부) · 줄을 누르면 상세 (4분면과 같이 선택)</div>
     ${det}`;
   el.querySelectorAll('.srow[data-st]').forEach(g=>g.onclick=()=>{state.rotSel=state.rotSel===g.dataset.st?null:g.dataset.st;renderRot()});
+  el.querySelectorAll('[data-ssk]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.ssk;if(state.ssk===k||(!state.ssk&&k==='score'))state.ssd=-(state.ssd||-1);else{state.ssk=k;state.ssd=k==='name'?1:-1}renderSec()});
+  el.querySelectorAll('[data-slf]').forEach(b=>b.onclick=()=>{state.slf=b.dataset.slf;renderSec()});
+  el.querySelectorAll('[data-sef]').forEach(b=>b.onclick=()=>{state.sef=b.dataset.sef;renderSec()});
   if($('secx'))$('secx').onclick=()=>{state.rotSel=null;renderRot()};
   if($('secai'))$('secai').onclick=()=>{state.rotAI=!state.rotAI;state.rotSel=null;state.rotView=null;renderRot()};
   renderSecNews();renderSecVal();
@@ -1240,11 +1251,11 @@ function renderSecVal(){
     <div class="two" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:14px">
       <div class="box"><h3>신호가 난 날 뒤 섹터 초과수익 (%p)</h3><div class="tbl-wrap"><table class="acc rtbl"><thead><tr><th>구분</th><th class="r">섹터·일</th><th class="r">10일 뒤</th><th class="r">오름</th><th class="r">20일 뒤</th><th class="r">오름</th></tr></thead><tbody>
         ${row('신호:주도 확정','<span class="ent">주도 확정</span>')}${row('신호:선진입','<span class="ent e2">선진입</span>')}
-        ${QD.map(q=>row('칸:'+q.k,'4분면 '+q.k)).join('')}${LVN.map((l,i)=>row('경보:'+l,secLv(i))).join('')}</tbody></table></div>
+        ${QD.map(q=>row('칸:'+q.k,'4분면 '+q.k)).join('')}${LVN.map((l,i)=>row('경보:'+l,secLv(i))).join('')}${row('주도·둔화 칸:경고 아래','주도·둔화 + 경고 아래')}${row('주도·둔화 칸:경고 이상','주도·둔화 + 경고 이상')}</tbody></table></div>
         <div class="sub" style="margin-top:6px">주도 확정이 4분면 '주도'보다, 경고·이탈이 '정상'보다 뒤 수익이 확실히 갈리면 신호가 쓸모 있다는 뜻</div></div>
       <div class="box"><h3>소외 전환을 얼마나 먼저 잡았나</h3>
         <div style="font-size:13px">주도·둔화 → 소외 전환 <b>${V.evN}</b>번 중 <b>${V.earlyN}</b>번은 경고(2단계)가 먼저 떴어${V.leadMed!=null?` · 중간값 <b>${V.leadMed}거래일</b> 먼저`:''}</div>
-        <div class="sub">비교 기준: 평소에도 섹터·일의 ${V.warnRate??'—'}%는 경고 이상이야 — 이 비율이 높을수록 '먼저 떴다'의 의미가 약해</div>
+        <div class="sub">비교 기준: 섹터·일의 ${V.warnRate??'—'}%가 경고 이상이고, 주도·둔화 섹터에서 아무 날이나 골라도 앞 20거래일 안에 경고가 떴을 확률은 ${V.baseWin??'—'}% — 소외 전환 앞에서 이 비율보다 얼마나 높은지가 실력이야 (지금 ${V.evN?Math.round(100*V.earlyN/V.evN):'—'}%)</div>
         <div class="tbl-wrap" style="margin-top:8px;max-height:220px;overflow-y:auto"><table class="acc rtbl"><thead><tr><th>섹터</th><th>소외 진입</th><th>경고 첫날</th><th class="r">먼저</th></tr></thead><tbody>
           ${ev.map(e=>`<tr><td>${esc(e.k)}</td><td class="num">${esc(e.d.slice(5))}</td><td class="num">${e.warn?esc(e.warn.slice(5)):'—'}</td><td class="r num">${e.lead==null?'—':e.lead+'일'}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">없음</td></tr>'}</tbody></table></div></div>
       <div class="box" style="grid-column:1/-1"><h3>섹터 바꿔 타기 시뮬레이션 (매일 종가에 고르고 다음 날 수익 · 같은 비중 · 거래비용 없음)</h3>
