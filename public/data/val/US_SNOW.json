@@ -1,0 +1,211 @@
+{
+ "m": "US",
+ "code": "SNOW",
+ "name": "SNOWFLAKE INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY27 2분기 실적(2026-09-02) 뒤",
+ "mid": {
+  "om": 25,
+  "why": "non-GAAP 영업이익률 FY27 14.5% 가이던스·3분기 15.5%에서 규모 확대로 상승 여지. 성숙 대형 소프트웨어(non-GAAP 20%대 중후반) 쪽으로 가정하되 AI 비중 증가에 따른 총마진 하락(제품 총마진 74%)과 Databricks 가격 경쟁으로 상단은 제한. 회사 과거 장기 목표(FY29 영업이익률 20%)보다 높은 값이라 판단 비중이 큼",
+  "conf": "추정",
+  "src": [
+   0,
+   1,
+   2
+  ]
+ },
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "sbc": null,
+ "wc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "AI 에이전트(CoCo·CoWork) 채택이 이어져 제품 매출 성장 30% 안팎 유지, 규모 이익으로 마진 30% 접근",
+   "g": [
+    null,
+    null,
+    null,
+    30,
+    25,
+    22,
+    18,
+    14,
+    10,
+    7
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    22,
+    24,
+    26,
+    28,
+    29,
+    30,
+    30
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "성장은 FY29 이후 점진 둔화, 마진은 AI 비중 증가에 따른 총마진 압박을 규모 이익이 상쇄하며 25%까지 완만히 상승",
+   "g": [
+    null,
+    null,
+    null,
+    22,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    20,
+    22,
+    23,
+    24,
+    25,
+    25,
+    25
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "Databricks(런레이트 70억달러+, 80%+ 성장)·하이퍼스케일러 번들에 점유율을 잃고 AI 워크로드 가격 경쟁으로 마진 정체",
+   "g": [
+    null,
+    null,
+    null,
+    15,
+    12,
+    10,
+    8,
+    6,
+    5,
+    4
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    14,
+    13,
+    13,
+    14,
+    15,
+    15,
+    15
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "연간 가이던스",
+   "v": "FY27 제품 매출 60.7억달러(+36%), non-GAAP 영업이익률 14.5%(기존 13.5%), 3분기 영업이익률 15.5%",
+   "conf": "공시",
+   "src": [
+    0,
+    2
+   ]
+  },
+  {
+   "k": "수주잔고",
+   "v": "RPO 90억달러(+30%), 54%가 12개월 내 매출 인식 예상",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "순매출유지율",
+   "v": "126%로 2분기 연속 유지",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "마진 구조",
+   "v": "non-GAAP 제품 총마진 74.7%(전년 76.4%), 연간 74.0% 가이던스 — AI 비중 증가로 하락",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "GAAP 수익성",
+   "v": "2분기 non-GAAP 영업이익 2.37억달러(15.3%), GAAP 영업손실 2.63억달러",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "클라우드 약정",
+   "v": "AWS와 5년 60억달러 약정",
+   "conf": "공시",
+   "src": [
+    4
+   ]
+  },
+  {
+   "k": "경쟁",
+   "v": "Databricks 런레이트 70억달러+ (Snowflake 연 제품 매출 약 60억달러와 비슷하거나 앞섬)",
+   "conf": "보도",
+   "src": [
+    5
+   ]
+  },
+  {
+   "k": "장기 마진 목표",
+   "v": "최근 장기 영업이익률 목표는 조사에서 확인하지 못함(과거 FY29 목표 영업이익률 20%·조정 FCF 25%는 2022년 자료) — mid.om 은 판단",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Snowflake: Q2 Fiscal 2027 Revenue Rises 35% To $1.55 Billion As Product Revenue Guidance Is Raised",
+   "u": "https://pulse2.com/snowflake-q2-fiscal-2027-revenue-rises-35-to-1-55-billion-as-product-revenue-guidance-is-raised/",
+   "d": "2026-09-03"
+  },
+  {
+   "t": "5 Interesting Learnings from Snowflake at $6 Billion in Revenue (Q2 FY27)",
+   "u": "https://www.saastr.com/5-interesting-learnings-from-snowflake-at-6-billion-in-revenue-37-growth-and-accelerating-126-nrr-and-a-gross-margin-guided-down-to-pay-for-ai/",
+   "d": "2026-09"
+  },
+  {
+   "t": "Snowflake Reports Financial Results for the Second Quarter of Fiscal 2027",
+   "u": "https://secure.businesswire.com/news/home/20260902386235/en/Snowflake-Reports-Financial-Results-for-the-Second-Quarter-of-Fiscal-2027",
+   "d": "2026-09-02"
+  },
+  {
+   "t": "Snowflake Inc. Form 10-Q (quarter ended 2026-07-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001640147/000164014726000037/snow-20260731.htm",
+   "d": "2026-09"
+  },
+  {
+   "t": "Snowflake Expands AWS Collaboration with $6B Commitment",
+   "u": "https://www.snowflake.com/en/news/press-releases/snowflake-expands-aws-collaboration-with-6b-commitment-to-accelerate-enterprise-agentic-ai-adoption/",
+   "d": "2026-05-27"
+  },
+  {
+   "t": "Databricks tops USD $7 billion run-rate after funding",
+   "u": "https://itbrief.co.nz/story/databricks-tops-usd-7-billion-run-rate-after-funding",
+   "d": "2026-08-14"
+  }
+ ]
+}

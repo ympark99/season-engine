@@ -1,0 +1,158 @@
+{
+ "m": "US",
+ "code": "APH",
+ "name": "AMPHENOL CORP",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "2026년 2분기 실적(2026-07-29) 뒤, 3분기 발표 전",
+ "mid": {
+  "om": 24,
+  "why": "지금 조정 영업이익률 29.8%(관세 환급 8천만달러 포함)에서 AI 수요 정상화와 경쟁 심화로 내려오되, 서버 자동값 20.6%보다는 높게 봄(커넥터 사업의 높은 마진 유지·CCS 통합 효과). 판단 추정",
+  "conf": "추정",
+  "src": [
+   0,
+   2
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": 27,
+ "g": null,
+ "wacc": null,
+ "sbc": null,
+ "wc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "AI 데이터센터 투자 지속 + CCS 광 사업 확대로 2029년 이후에도 두 자릿수 성장, 마진 26%대 유지",
+   "g": [
+    null,
+    null,
+    null,
+    15,
+    12
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    26.5,
+    27
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "2028년까지 컨센서스 성장 뒤 AI 증설 속도가 정상화되며 성장 한 자릿수로 둔화, 마진 소폭 하락",
+   "g": [
+    null,
+    null,
+    null,
+    10,
+    8
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    25,
+    24.5
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "하이퍼스케일러 투자 둔화와 TE 등 경쟁 심화로 2029년부터 성장 정체, 인수 부채 부담 속 마진 20%대 초반",
+   "g": [
+    null,
+    null,
+    null,
+    3,
+    0
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    22,
+    20
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "2분기 실적",
+   "v": "매출 88억달러(+55%, 유기 +30%), 조정 영업이익률 29.8%(IEEPA 관세 환급 8천만달러 포함)",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "수주",
+   "v": "2분기 수주 107억달러, 수주/매출 1.23 (수주잔고 금액은 미확인)",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "3분기 가이던스",
+   "v": "매출 93~94억달러, 조정 EPS 1.40~1.42달러(분할 전), 추가 관세 환급 미포함",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "CCS 인수",
+   "v": "2026년 CCS 연 매출 전망 46억달러, EPS 기여 0.30달러로 상향",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "세율",
+   "v": "2026년 조정 유효세율 27.0% 전망",
+   "conf": "보도",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "순부채",
+   "v": "2분기 말 약 134억달러, 인수 차입으로 이자비용 증가",
+   "conf": "보도",
+   "src": [
+    3
+   ]
+  },
+  {
+   "k": "미확인",
+   "v": "설비투자 계획·장기 마진 목표·고객 집중도는 이번 조사에서 확인하지 못함(서버 자동값 사용)",
+   "conf": "추정",
+   "src": []
+  }
+ ],
+ "sources": [
+  {
+   "t": "Amphenol 2026년 2분기 실적 발표 (8-K 보도자료)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000820313/000110465926087904/aph-20260729xex99d1.htm",
+   "d": "2026-07-29"
+  },
+  {
+   "t": "Amphenol Completes Acquisition of CCS Business From CommScope",
+   "u": "https://businesswire.com/news/home/20260112617512/en/Amphenol-Completes-Acquisition-of-CCS-Business-From-CommScope",
+   "d": "2026-01-12"
+  },
+  {
+   "t": "Amphenol lifts CommScope sales outlook to $4.6B",
+   "u": "https://dealroom.co/news/142493-amphenol-lifts-commscope-sales-outlook-to-4-6b-as-ai-bets-pay-off/",
+   "d": "2026-07-31"
+  },
+  {
+   "t": "Amphenol (APH) Q2 2026 earnings summary (Quartr)",
+   "u": "https://quartr.com/events/amphenol-corporation-aph-q2-2026_3gbjV0Ia",
+   "d": "2026-07-29"
+  }
+ ]
+}

@@ -1,26 +1,354 @@
 {
+ "KR:000150": {
+  "at": "2026-10-19",
+  "name": "두산"
+ },
+ "KR:000660": {
+  "at": "2026-10-19",
+  "name": "SK하이닉스"
+ },
+ "KR:000990": {
+  "at": "2026-10-19",
+  "name": "DB하이텍"
+ },
  "KR:005930": {
   "at": "2026-10-19",
   "name": "삼성전자"
+ },
+ "KR:006110": {
+  "at": "2026-10-19",
+  "name": "삼아알미늄"
  },
  "KR:006400": {
   "at": "2026-10-19",
   "name": "삼성SDI"
  },
+ "KR:009150": {
+  "at": "2026-10-19",
+  "name": "삼성전기"
+ },
+ "KR:010140": {
+  "at": "2026-10-19",
+  "name": "삼성중공업"
+ },
+ "KR:011070": {
+  "at": "2026-10-19",
+  "name": "LG이노텍"
+ },
+ "KR:034020": {
+  "at": "2026-10-19",
+  "name": "두산에너빌리티"
+ },
+ "KR:036930": {
+  "at": "2026-10-19",
+  "name": "주성엔지니어링"
+ },
+ "KR:050890": {
+  "at": "2026-10-19",
+  "name": "쏠리드"
+ },
+ "KR:062040": {
+  "at": "2026-10-19",
+  "name": "산일전기"
+ },
+ "KR:064290": {
+  "at": "2026-10-19",
+  "name": "인텍플러스"
+ },
+ "KR:082740": {
+  "at": "2026-10-19",
+  "name": "한화엔진"
+ },
+ "KR:126340": {
+  "at": "2026-10-19",
+  "name": "비나텍"
+ },
+ "KR:131290": {
+  "at": "2026-10-19",
+  "name": "티에스이"
+ },
+ "KR:138080": {
+  "at": "2026-10-19",
+  "name": "오이솔루션"
+ },
+ "KR:145020": {
+  "at": "2026-10-19",
+  "name": "휴젤"
+ },
+ "KR:218410": {
+  "at": "2026-10-19",
+  "name": "RFHIC"
+ },
+ "KR:240810": {
+  "at": "2026-10-19",
+  "name": "원익IPS"
+ },
+ "KR:251970": {
+  "at": "2026-10-19",
+  "name": "펌텍코리아"
+ },
+ "KR:252990": {
+  "at": "2026-10-19",
+  "name": "샘씨엔에스"
+ },
+ "KR:278470": {
+  "at": "2026-10-19",
+  "name": "에이피알"
+ },
+ "KR:298040": {
+  "at": "2026-10-19",
+  "name": "효성중공업"
+ },
+ "KR:327260": {
+  "at": "2026-10-19",
+  "name": "RF머트리얼즈"
+ },
+ "KR:329180": {
+  "at": "2026-10-19",
+  "name": "HD현대중공업"
+ },
+ "KR:356860": {
+  "at": "2026-10-19",
+  "name": "티엘비"
+ },
+ "KR:373220": {
+  "at": "2026-10-19",
+  "name": "LG에너지솔루션"
+ },
+ "KR:417200": {
+  "at": "2026-10-19",
+  "name": "LS머트리얼즈"
+ },
+ "KR:425420": {
+  "at": "2026-10-19",
+  "name": "티에프이"
+ },
+ "KR:475150": {
+  "at": "2026-10-19",
+  "name": "SK이터닉스"
+ },
+ "KR:475830": {
+  "at": "2026-10-19",
+  "name": "오름테라퓨틱"
+ },
+ "US:AAOI": {
+  "at": "2026-10-19",
+  "name": "APPLIED OPTOELECTRONICS INC"
+ },
+ "US:AAPL": {
+  "at": "2026-10-19",
+  "name": "APPLE INC"
+ },
+ "US:ADI": {
+  "at": "2026-10-19",
+  "name": "Analog Devices"
+ },
+ "US:ALAB": {
+  "at": "2026-10-19",
+  "name": "ASTERA LABS INC"
+ },
+ "US:AMAT": {
+  "at": "2026-10-19",
+  "name": "APPLIED MATERIALS INC"
+ },
+ "US:AMD": {
+  "at": "2026-10-19",
+  "name": "Advanced Micro Devices"
+ },
+ "US:AMZN": {
+  "at": "2026-10-19",
+  "name": "AMAZON COM INC"
+ },
+ "US:ANET": {
+  "at": "2026-10-19",
+  "name": "ARISTA NETWORKS INC"
+ },
+ "US:APH": {
+  "at": "2026-10-19",
+  "name": "AMPHENOL CORP"
+ },
+ "US:ARM": {
+  "at": "2026-10-19",
+  "name": "ARM HOLDINGS PLC"
+ },
+ "US:ASTS": {
+  "at": "2026-10-19",
+  "name": "AST SpaceMobile"
+ },
+ "US:AXTI": {
+  "at": "2026-10-19",
+  "name": "AXT INC"
+ },
  "US:BE": {
   "at": "2026-10-19",
   "name": "Bloom Energy"
+ },
+ "US:CIEN": {
+  "at": "2026-10-19",
+  "name": "CIENA CORP"
+ },
+ "US:COHR": {
+  "at": "2026-10-19",
+  "name": "COHERENT CORP"
+ },
+ "US:CRDO": {
+  "at": "2026-10-19",
+  "name": "CREDO TECHNOLOGY GROUP HOLDING LTD"
  },
  "US:CRWD": {
   "at": "2026-10-19",
   "name": "CrowdStrike"
  },
+ "US:CRWV": {
+  "at": "2026-10-19",
+  "name": "COREWEAVE INC"
+ },
+ "US:DDOG": {
+  "at": "2026-10-19",
+  "name": "DATADOG INC"
+ },
+ "US:DELL": {
+  "at": "2026-10-19",
+  "name": "Dell Technologies"
+ },
+ "US:DNA": {
+  "at": "2026-10-19",
+  "name": "GINKGO BIOWORKS HOLDINGS INC"
+ },
+ "US:FPS": {
+  "at": "2026-10-19",
+  "name": "FORGENT POWER SOLUTIONS INC"
+ },
+ "US:GOOGL": {
+  "at": "2026-10-19",
+  "name": "Alphabet"
+ },
+ "US:HPE": {
+  "at": "2026-10-19",
+  "name": "HEWLETT PACKARD ENTERPRISE CO"
+ },
+ "US:INTC": {
+  "at": "2026-10-19",
+  "name": "Intel"
+ },
+ "US:IREN": {
+  "at": "2026-10-19",
+  "name": "IREN LIMITED"
+ },
  "US:LITE": {
   "at": "2026-10-19",
   "name": "Lumentum"
  },
+ "US:MCHP": {
+  "at": "2026-10-19",
+  "name": "MICROCHIP TECHNOLOGY"
+ },
+ "US:META": {
+  "at": "2026-10-19",
+  "name": "META PLATFORMS INC"
+ },
+ "US:MRNA": {
+  "at": "2026-10-19",
+  "name": "MODERNA INC"
+ },
+ "US:MRVL": {
+  "at": "2026-10-19",
+  "name": "Marvell Technology"
+ },
+ "US:MSFT": {
+  "at": "2026-10-19",
+  "name": "Microsoft"
+ },
+ "US:MU": {
+  "at": "2026-10-19",
+  "name": "Micron Technology"
+ },
+ "US:MXL": {
+  "at": "2026-10-19",
+  "name": "MAXLINEAR INC"
+ },
+ "US:NBIS": {
+  "at": "2026-10-19",
+  "name": "Nebius Group"
+ },
+ "US:NKE": {
+  "at": "2026-10-19",
+  "name": "NIKE INC"
+ },
+ "US:NOW": {
+  "at": "2026-10-19",
+  "name": "ServiceNow"
+ },
+ "US:NVDA": {
+  "at": "2026-10-19",
+  "name": "NVIDIA CORP"
+ },
+ "US:OKTA": {
+  "at": "2026-10-19",
+  "name": "OKTA INC"
+ },
+ "US:ORCL": {
+  "at": "2026-10-19",
+  "name": "ORACLE CORP"
+ },
+ "US:PLTR": {
+  "at": "2026-10-19",
+  "name": "PALANTIR TECH INC"
+ },
+ "US:RKLB": {
+  "at": "2026-10-19",
+  "name": "ROCKET LAB CORPORATION"
+ },
+ "US:SMTC": {
+  "at": "2026-10-19",
+  "name": "SEMTECH CORP"
+ },
  "US:SNDK": {
   "at": "2026-10-19",
   "name": "Sandisk"
+ },
+ "US:SNOW": {
+  "at": "2026-10-19",
+  "name": "SNOWFLAKE INC"
+ },
+ "US:SPCX": {
+  "at": "2026-10-19",
+  "name": "SPACE EXPLORATION TECHNOLOGIES CORP"
+ },
+ "US:STM": {
+  "at": "2026-10-19",
+  "name": "STMICROELECTRONICS"
+ },
+ "US:STX": {
+  "at": "2026-10-19",
+  "name": "SEAGATE TECHNOLOGY HOLDINGS PLC"
+ },
+ "US:TEAM": {
+  "at": "2026-10-19",
+  "name": "ATLASSIAN CORP"
+ },
+ "US:TEM": {
+  "at": "2026-10-19",
+  "name": "TEMPUS AI INC"
+ },
+ "US:TER": {
+  "at": "2026-10-19",
+  "name": "TERADYNE INC"
+ },
+ "US:TSLA": {
+  "at": "2026-10-19",
+  "name": "Tesla"
+ },
+ "US:UUUU": {
+  "at": "2026-10-19",
+  "name": "Energy Fuels Inc"
+ },
+ "US:VICR": {
+  "at": "2026-10-19",
+  "name": "VICOR CORP"
+ },
+ "US:VLO": {
+  "at": "2026-10-19",
+  "name": "Valero Energy"
  }
 }

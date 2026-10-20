@@ -1,0 +1,163 @@
+{
+ "m": "US",
+ "code": "IREN",
+ "name": "IREN LIMITED",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY26 4분기 실적(2026-08-27) 뒤",
+ "mid": {
+  "om": 20,
+  "why": "성숙 마진 가정. 마이크로소프트 계약 매출 약 97억$(5년 평균)에 GPU 설비 약 58억$ 구매 계약이 붙어 연 감가상각 후 영업이익률이 서버 자동값(15%)보다 높을 수 있으나, 갱신·재계약 시 GPU 가격 경쟁과 고객 집중 위험이 있어 20%로 둔다. 계약 마진은 회사가 공개하지 않아 추정",
+  "conf": "추정",
+  "src": [
+   0,
+   1
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "FY27 용량 후반 협의 중인 대형 계약이 추가로 체결되고 Sweetwater 램프가 2027년부터 순조롭게 진행됨",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    15,
+    20,
+    24,
+    26,
+    27,
+    28,
+    28
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "Horizon 1~4 인도 후 마이크로소프트 계약이 유지되고 추가 계약이 일부 붙어 마진이 성숙 수준으로 점진 수렴",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    12,
+    15,
+    17,
+    18,
+    19,
+    20,
+    20
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "계약이 마이크로소프트 중심에 머물고 추가 수주가 지연되며 GPU 세대 교체 비용과 이자 부담으로 마진이 낮게 수렴",
+   "g": [
+    null,
+    null,
+    null,
+    15,
+    10,
+    8,
+    5,
+    3,
+    2,
+    2
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    0,
+    5,
+    8,
+    10,
+    12,
+    13,
+    14
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "FY26 실적",
+   "v": "매출 7.07억$(+41%), AI 클라우드 1.288억$, 조정 EBITDA 마진 35%(전년 54%)",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "마이크로소프트 계약",
+   "v": "약 97억$, 5년 평균 기간, 2031년까지, 텍사스 Childress 약 200MW GB300, 4개 구간 2026년 인도 목표",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "GPU 구매",
+   "v": "Dell과 약 58억$ GPU·부대장비 구매 계약",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "선결제·금융",
+   "v": "고객 선결제 19억$, 마이크로소프트 계약 연동 36억$ 금융(6% 미만), 합쳐 GPU 설비투자의 95% 충당",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "목표 ARR",
+   "v": "2026년 말 AI 클라우드 연환산 매출 34억$ 목표(회사 목표, 2025-11 제시)",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "전력 확보",
+   "v": "Sweetwater 1(1,400MW) 변전소 에너지화 완료, Sweetwater 2(600MW)는 2027년 후반 목표",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "고객 집중",
+   "v": "AI 클라우드 대형 계약이 마이크로소프트 1곳에 집중",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "IREN Secures $9.7bn AI Cloud Contract with Microsoft",
+   "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-secures-97bn-ai-cloud-contract-microsoft",
+   "d": "2025-11-03"
+  },
+  {
+   "t": "Microsoft signs $9.7 billion contract with IREN for Nvidia chips",
+   "u": "https://www.stockopedia.com/share-prices/iren-NSQ:IREN/news/microsoft-signs-9-7-billion-contract-with-iren-for-nvidia-chips-019e69f2-2fa8-7ac0-b61f-afe18932c3fc/",
+   "d": "2025-11-03"
+  },
+  {
+   "t": "IREN Reports FY26 Results",
+   "u": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+   "d": "2026-08-27"
+  }
+ ]
+}

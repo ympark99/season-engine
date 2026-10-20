@@ -1,0 +1,177 @@
+{
+ "m": "US",
+ "code": "HPE",
+ "name": "HEWLETT PACKARD ENTERPRISE CO",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY26 3분기 실적(2026-09-02, 7월 말 분기 종료) 뒤",
+ "mid": {
+  "om": 12,
+  "why": "3분기 비GAAP 영업이익 약 20억$/매출 122억$ ≈ 16%는 AI 시스템·가격 효과가 큰 정점 성격. 경영진이 AI 비중 확대와 일반 서버 가격 정상화로 마진 하락을 예고. 성숙 서버·네트워킹 마진 쪽으로 회귀한다고 보고 12% 가정",
+  "conf": "추정",
+  "src": [
+   0,
+   1,
+   2
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "하이퍼스케일러·네오클라우드·국가 고객의 AI 투자가 FY29 이후도 이어지고 Juniper 시너지(연 6억$ 목표)로 마진 유지",
+   "g": [
+    null,
+    null,
+    null,
+    10,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    16,
+    16,
+    16,
+    15,
+    15,
+    15,
+    15
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "컨센서스 경로 뒤 AI 서버 성장이 둔화되고 마진이 성숙 수준으로 서서히 회귀(서버 자동 경로 사용)",
+   "g": [],
+   "om": []
+  },
+  "bear": {
+   "p": 25,
+   "why": "AI 설비투자 소화 국면이 FY29에 오고 부품(메모리) 비용·가격 경쟁으로 마진이 일반 서버 수준으로 하락",
+   "g": [
+    null,
+    null,
+    null,
+    -5,
+    0,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    11,
+    10,
+    9,
+    9,
+    9,
+    9,
+    9
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "3분기 실적",
+   "v": "매출 122억$(+34%), 비GAAP 총이익률 40%(분기 최대), 비GAAP 영업이익 약 20억$",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "4분기 가이던스",
+   "v": "매출 139억~148억$, EPS 1.20~1.30$, AI 믹스로 전체 영업마진 전분기 대비 하락 예상",
+   "conf": "공시",
+   "src": [
+    1,
+    2
+   ]
+  },
+  {
+   "k": "FY27 전망",
+   "v": "매출 성장 13~17%, 잉여현금흐름 50억$ 이상",
+   "conf": "공시",
+   "src": [
+    1,
+    2
+   ]
+  },
+  {
+   "k": "재고",
+   "v": "재고 118억$ — 부품 가격 상승과 주문 지원 구매 영향",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "백로그·수요처",
+   "v": "AI 시스템 주문 24억$, 백로그 역대 최고. 수요처는 하이퍼스케일러·네오클라우드·국가·대기업(집중도 수치는 미공개)",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "Juniper 시너지",
+   "v": "연 6억$ 비용 절감 목표를 FY28 말까지 달성하는 경로(목표)",
+   "conf": "공시",
+   "src": [
+    1,
+    4
+   ]
+  },
+  {
+   "k": "중기 목표",
+   "v": "2025년 10월 FY28 목표(비GAAP EPS 3.00$ 이상 등)를 FY26에 조기 달성할 전망. 명시적 영업이익률 목표는 확인 못 함",
+   "conf": "보도",
+   "src": [
+    3,
+    4
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Hewlett Packard Enterprise Form 8-K (FY26 3분기 실적, 2026-09-02)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001645590/000164559026000078/ex-991x922026x8k.htm",
+   "d": "2026-09-02"
+  },
+  {
+   "t": "HPE Q3 2026 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/09/09/hpe-hpe-q3-2026-earnings-call-transcript/",
+   "d": "2026-09-09"
+  },
+  {
+   "t": "HPE Q3 Earnings Call Highlights AI Demand, Networking Shift",
+   "u": "https://finance.yahoo.com/technology/ai/articles/hpe-q3-earnings-call-highlights-140000563.html",
+   "d": "2026-09"
+  },
+  {
+   "t": "HPE details strategic and execution priorities at Securities Analyst Meeting 2025",
+   "u": "https://www.businesswire.com/news/home/20251015034341/en/HPE-details-strategic-and-execution-priorities-to-drive-enhanced-shareholder-value-at-HPE-Securities-Analyst-Meeting-2025",
+   "d": "2025-10-15"
+  },
+  {
+   "t": "HPE expects to achieve 2028 financial targets this year after record quarter on AI boom",
+   "u": "https://www.investing.com/news/stock-market-news/hpe-expects-to-achieve-2028-financial-targets-this-year-after-record-quarter-on-ai-boom-4720207",
+   "d": "2026-06"
+  }
+ ]
+}

@@ -1,0 +1,151 @@
+{
+ "m": "US",
+ "code": "OKTA",
+ "name": "OKTA INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY27 2분기 실적(2026-08-26, 분기말 2026-07-31) 뒤",
+ "mid": {
+  "om": 27,
+  "why": "비GAAP 영업이익률 연간 가이던스 26%, 컨센서스 FY28~29 27~28% 수준에서 유지. 서버 자동값 24.6%는 컨센서스 마진보다 낮아 상향",
+  "conf": "추정",
+  "src": [
+   0,
+   1
+  ]
+ },
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "sbc": null,
+ "wc": 55,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "에이전트 신원 제품이 숫자로 확인되며 cRPO 두 자릿수 성장 유지, 마진 30%대 중반 도달",
+   "g": [
+    null,
+    null,
+    null,
+    11,
+    10
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    33,
+    34
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "독립 IdP 성장 한 자릿수 후반으로 완만히 둔화, 마진은 27% 안팎 유지",
+   "g": [
+    null,
+    null,
+    null,
+    9,
+    8
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    27.5,
+    27.5
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "Microsoft 번들·Palo Alto+CyberArk 플랫폼 압박으로 성장 5%대, 가격 경쟁으로 마진 후퇴",
+   "g": [
+    null,
+    null,
+    null,
+    7,
+    5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    24,
+    23
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "FY27 2분기 실적",
+   "v": "매출 8.05억$ (+11%), 구독매출 +12%, 비GAAP 영업이익률 28%, FCF 2.27억$ (28%)",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "수주 잔고",
+   "v": "cRPO 25.85억$ (+14%), RPO +17%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "FY27 가이던스",
+   "v": "매출 32.16~32.26억$ (+10~11%), 3분기 매출 8.13~8.17억$·비GAAP 영업이익률 24~25%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "선수금",
+   "v": "이연수익 약 17.8억$ (직전 12개월 매출 대비 약 58%) — 구독 선결제로 매출 증가분의 일부가 현금 유입",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "전환사채",
+   "v": "2026년 만기 전환사채는 2026-06 만기로 상환 완료된 것으로 보도",
+   "conf": "보도",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "경쟁",
+   "v": "Palo Alto가 CyberArk 인수 완료(2026-02), Microsoft 번들과 함께 가격·플랫폼 압박",
+   "conf": "공시",
+   "src": [
+    3
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Okta Announces Second Quarter Fiscal Year 2027 Financial Results",
+   "u": "https://www.okta.com/newsroom/press-releases/okta-announces-second-quarter-2027-financial-results/",
+   "d": "2026-08-26"
+  },
+  {
+   "t": "Okta Q2 FY 2027 Earnings Beat and Raise on Core Identity Strength",
+   "u": "https://futurumgroup.com/insights/okta-q2-fy-2027-earnings-beat-and-raise-on-core-identity-strength/",
+   "d": "2026-08"
+  },
+  {
+   "t": "Okta, Inc. Form 10-Q (분기 2026-07-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001660134/000166013426000069/okta-20260731.htm",
+   "d": "2026-08"
+  },
+  {
+   "t": "Palo Alto Networks Completes Acquisition of CyberArk",
+   "u": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-completes-acquisition-cyberark-secure--ai-era",
+   "d": "2026-02-11"
+  }
+ ]
+}

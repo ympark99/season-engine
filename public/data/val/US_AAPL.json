@@ -1,0 +1,148 @@
+{
+ "m": "US",
+ "code": "AAPL",
+ "name": "APPLE INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY26 3분기 실적(2026-07-30, 6월 27일 마감 분기) 뒤 — 4분기 실적은 11월 2일 예정",
+ "mid": {
+  "om": 32,
+  "why": "최근 영업이익률 약 33%에 관세 환급(총이익률 약 2%p)이 일부 섞여 있고, 9월 분기 총이익률 가이던스는 47~48%로 메모리 원가 때문에 낮아짐. 가격 인상·서비스 비중 확대가 상쇄해 장기 32% 유지로 봄",
+  "conf": "추정",
+  "src": [
+   0,
+   2,
+   3,
+   4
+  ]
+ },
+ "capexR": null,
+ "daR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "폴더블·아이폰 18 프로 초기 수요가 강하고 가격 인상이 메모리 원가를 흡수해 마진이 34%대로 회복",
+   "g": [
+    null,
+    null,
+    null,
+    4,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    34,
+    34
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "메모리 원가 부담이 일부 남지만 가격 인상·서비스 성장으로 마진 32~33% 유지, 서버 자동 경로와 같음",
+   "g": [],
+   "om": []
+  },
+  "bear": {
+   "p": 25,
+   "why": "메모리 가격이 높게 유지되고 중국·EU 규제 부담이 겹쳐 총이익률이 47% 안팎에 머무름",
+   "g": [
+    null,
+    null,
+    null,
+    3,
+    2
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    29,
+    29
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "9월 분기 가이던스",
+   "v": "매출 전년 대비 +9~11%, 총이익률 47~48%(관세 환급 약 1%p 포함), 영업비용 191~194억달러, 세율 약 16.5%",
+   "conf": "공시",
+   "src": [
+    2,
+    3
+   ]
+  },
+  {
+   "k": "6월 분기 실적",
+   "v": "매출 1,094억달러(+16%), 총이익률 50.1%(관세 환급 약 2%p 포함, 제외 시 48.1%)",
+   "conf": "공시",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "메모리 원가",
+   "v": "CFO가 메모리 비용이 9월 분기 총이익률 하락폭을 모두 설명한다고 언급, CEO는 가격 인상 불가피 언급",
+   "conf": "보도",
+   "src": [
+    3,
+    4
+   ]
+  },
+  {
+   "k": "설비투자",
+   "v": "최근 12개월 약 100억달러, 분기 약 24.6억달러 (전년 대비 감소)",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "구매 약정",
+   "v": "제조 구매 의무 570억달러(12개월 내 562억달러), 기타 293억달러",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "미인식 RSU 비용 267억달러, 가중평균 2.7년에 걸쳐 인식",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Apple Inc. Form 8-K Ex.99.1 - Q3 FY2026 results",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000320193/000032019326000018/a8-kex991q3202606272026.htm",
+   "d": "2026-07-30"
+  },
+  {
+   "t": "Apple Inc. Form 10-Q - quarter ended 2026-06-27",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000320193/000032019326000020/aapl-20260627.htm",
+   "d": "2026-07-31"
+  },
+  {
+   "t": "Apple (AAPL) Q3 2026 earnings report: Live updates - CNBC",
+   "u": "https://www.cnbc.com/2026/07/30/apple-earnings-live-updates.html",
+   "d": "2026-07-30"
+  },
+  {
+   "t": "Earnings call transcript: Apple beats Q3 2026 estimates - Investing.com",
+   "u": "https://www.investing.com/news/transcripts/earnings-call-transcript-apple-beats-q3-2026-estimates-shares-fall-after-hours-93CH-4826459",
+   "d": "2026-07-30"
+  },
+  {
+   "t": "Tim Cook confirms Apple will raise prices due to memory and storage costs - TidBITS",
+   "u": "https://tidbits.com/2026/06/18/tim-cook-confirms-apple-will-raise-prices-due-to-memory-and-storage-costs/",
+   "d": "2026-06-18"
+  }
+ ]
+}

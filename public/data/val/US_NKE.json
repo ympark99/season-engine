@@ -1,0 +1,159 @@
+{
+ "m": "US",
+ "code": "NKE",
+ "name": "NIKE INC",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY27 1분기 실적(2026-10-01 발표, 분기말 2026-08-31) 뒤",
+ "mid": {
+  "om": 10,
+  "why": "서버 자동 9.1%(최근·컨센서스 평균)보다 약간 높게: Pace 절감 누적 25억$(FY31까지, 재투자 일부 감안)이 마진을 받치나 관세 부담·매출 역성장으로 과거 고점대 회복은 가정하지 않음. 과거 사이클 정점 11.4%는 서버 계산값.",
+  "conf": "추정",
+  "src": [
+   0,
+   3,
+   5
+  ]
+ },
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "Pace 절감이 재투자 없이 반영되고 관세 부담이 줄며 FY30 이후 매출이 반등해 마진이 두 자릿수 중후반으로 회복",
+   "g": [
+    null,
+    null,
+    null,
+    4,
+    4
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    13,
+    13.5
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "FY27 매출 high single digit 감소 후 완만한 회복, Pace 절감 일부 재투자로 마진 10% 안팎 유지",
+   "g": [],
+   "om": [
+    null,
+    null,
+    null,
+    10,
+    10
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "매출 감소가 FY28 이후에도 이어지고 관세·경쟁 부담으로 절감분이 마진 방어에 소진",
+   "g": [
+    null,
+    null,
+    null,
+    0,
+    1
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    5.5,
+    5.5
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "FY27 1분기",
+   "v": "매출 약 112억$(-4%, 환율중립 -5%), 매출총이익률 42.8%(+60bp), 희석 EPS 0.48$",
+   "conf": "공시",
+   "src": [
+    0,
+    2
+   ]
+  },
+  {
+   "k": "FY27 가이던스",
+   "v": "연간 매출 high single digit 감소, EBIT 는 매출보다 더 크게 감소, 조정 EPS 1.15~1.35$(Pace 구조조정 약 0.15$ 제외)",
+   "conf": "공시",
+   "src": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "k": "Pace 계획",
+   "v": "FY31까지 누적 약 25억$ 절감 목표(재투자 전), 대부분 FY29~30 반영, 세전 비용 약 10억$",
+   "conf": "공시",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "관세",
+   "v": "2025-09 기준 연 환산 총 관세비용 약 15억$ 예상(2025-06 추정 10억$에서 상향)",
+   "conf": "보도",
+   "src": [
+    4,
+    5
+   ]
+  },
+  {
+   "k": "장기 마진 목표",
+   "v": "회사의 공식 장기 영업이익률 목표는 확인하지 못함",
+   "conf": "추정",
+   "src": []
+  },
+  {
+   "k": "설비투자",
+   "v": "Pace 관련 설비투자 금액은 확인하지 못해 서버 값(매출 대비 1.5%) 유지",
+   "conf": "추정",
+   "src": [
+    1
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "NIKE, Inc. Reports Fiscal 2027 First Quarter Results",
+   "u": "https://about.nike.com/newsroom/releases/nike-inc-reports-fiscal-2027-first-quarter-results",
+   "d": "2026-10-01"
+  },
+  {
+   "t": "NIKE, Inc. Form 10-Q (분기 2026-08-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000320187/000032018726000193/nke-20260831.htm",
+   "d": "2026-10-01"
+  },
+  {
+   "t": "Nike beats Q1 profit estimates but sees fiscal 2027 revenue falling high single digits",
+   "u": "https://investinglive.com/stocks/nike-beats-q1-profit-estimates-but-sees-fiscal-2027-revenue-falling-high-single-digits/",
+   "d": "2026-10-01"
+  },
+  {
+   "t": "Nike Expects Its Sales to Shrink This Fiscal Year",
+   "u": "https://marathonhandbook.com/nike-sales-decline-pace-restructuring/",
+   "d": "2026-10-02"
+  },
+  {
+   "t": "Nike says tariffs will cost it $1 billion before price increases",
+   "u": "https://thenightly.com.au/business/nike-says-tariffs-will-cost-it-1-billion-before-price-increases-supply-chain-shifts-c-19170692",
+   "d": "2025-06-27"
+  },
+  {
+   "t": "Earnings // September 30, 2025 (Modern Retail)",
+   "u": "https://www.modernretail.co/operations/nike-grappling-with-further-fallout-from-tariffs-now-expects-1-5b-in-annualized-costs/",
+   "d": "2025-09-30"
+  }
+ ]
+}

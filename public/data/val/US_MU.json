@@ -1,0 +1,167 @@
+{
+ "m": "US",
+ "code": "MU",
+ "name": "Micron Technology",
+ "at": "2026-10-19",
+ "by": "Claude 정기 조사",
+ "basis": "FY26 4분기 실적(2026-09-30) 뒤",
+ "mid": {
+  "om": 30,
+  "why": "FY18 정점 49%와 FY23 바닥(-37%) 사이 중간 수준. 장기공급계약(매출의 35% 이상, 2030년까지)이 바닥을 높일 가능성을 반영한 추정",
+  "conf": "추정",
+  "src": [
+   0,
+   1,
+   2
+  ]
+ },
+ "peak": {
+  "years": 2,
+  "why": "FY17 28.9% → FY18 49.3% → FY19 31.5%로 정점 수준이 약 2년 유지(제3자 집계 포함)",
+  "conf": "추정",
+  "src": [
+   2
+  ]
+ },
+ "trough": {
+  "om": -37,
+  "why": "FY23 영업손실 57.45억$, 영업이익률 -37%(GAAP)",
+  "conf": "공시",
+  "src": [
+   1
+  ]
+ },
+ "capexR": null,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "scen": {
+  "bull": {
+   "p": 25,
+   "why": "장기공급계약 확대와 HBM·AI 수요로 FY30에도 고마진 유지, 업계 증설이 늦어짐",
+   "g": [
+    null,
+    null,
+    null,
+    0,
+    -5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    80,
+    65
+   ]
+  },
+  "base": {
+   "p": 50,
+   "why": "FY30부터 업계 증설(아이다호·뉴욕·CXMT)로 가격이 내려와 서버 자동 경로대로 감",
+   "g": [],
+   "om": []
+  },
+  "bear": {
+   "p": 25,
+   "why": "AI 설비투자 둔화와 공급 증가가 FY30에 겹쳐 사이클 급락",
+   "g": [
+    null,
+    null,
+    null,
+    -35,
+    10
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    25,
+    15
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "1분기 가이던스",
+   "v": "FY27 1분기 매출 615억$(±15억$), 매출총이익률 약 86.25%",
+   "conf": "보도",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "FY26 실적",
+   "v": "FY26 매출 1,332억$, 4분기 매출 542억$, 비GAAP 매출총이익률 87%",
+   "conf": "보도",
+   "src": [
+    0,
+    3
+   ]
+  },
+  {
+   "k": "장기공급계약",
+   "v": "26건, 2030년까지 매출(또는 비트 물량)의 35% 이상 커버, 고객 선급 약정 320억$",
+   "conf": "보도",
+   "src": [
+    0,
+    5
+   ]
+  },
+  {
+   "k": "설비투자",
+   "v": "FY26 설비투자 약 274억$, FY27 증액 계획(아이다호·싱가포르 클린룸), FY27 금액은 미확인",
+   "conf": "보도",
+   "src": [
+    5
+   ]
+  },
+  {
+   "k": "FY18 정점 마진",
+   "v": "FY18 영업이익 149.9억$, 매출 대비 49%",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "FY23 바닥 마진",
+   "v": "FY23 영업손실 57.5억$, 매출 155.4억$ 대비 -37%",
+   "conf": "공시",
+   "src": [
+    1
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Micron FY2026 revenue surges 256% to 133.2B, locks in 35% of revenue through 2030 (TrendForce)",
+   "u": "https://www.trendforce.com/news/2026-10-01/news-micron-fy2026-revenue-surges-256-to-133-2b-locks-in-35-of-revenue-through-2030/",
+   "d": "2026-10-01"
+  },
+  {
+   "t": "Micron Form 10-K FY2023",
+   "u": "https://www.sec.gov/Archives/edgar/data/723125/000072312523000054/mu-20230831.htm",
+   "d": "2023-10-03"
+  },
+  {
+   "t": "Micron Form 10-K FY2018",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312518000092/a2018q4.htm",
+   "d": "2018-10-12"
+  },
+  {
+   "t": "Micron Q4 Revenue Jumps 379% to $54.2B, Guides Fiscal 2027 Q1 to $61.5B",
+   "u": "https://aiweekly.co/alerts/micron-q4-revenue-jumps-379-to-542b-on-ai-memory-demand-guides-fiscal-2027-q1",
+   "d": "2026-09-30"
+  },
+  {
+   "t": "Micron Form 10-K FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312526000023/mu-20260903.htm",
+   "d": "2026-09-03"
+  },
+  {
+   "t": "Micron (MU) Q4 2026 Earnings Call Transcript",
+   "u": "https://www.webull.com/news/15672802111996928",
+   "d": "2026-09-30"
+  }
+ ]
+}
