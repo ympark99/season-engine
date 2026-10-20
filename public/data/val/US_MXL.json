@@ -2,7 +2,7 @@
  "m": "US",
  "code": "MXL",
  "name": "MAXLINEAR INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-07-23) 뒤, 3분기 실적(10-22) 전",
  "mid": {
@@ -19,7 +19,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 8,
  "wc": null,
  "scen": {
   "bull": {
@@ -124,6 +124,23 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 지금 주가는 10년간 매출 연 34.9% 성장 + 영업이익률 25% 유지를 전제(낙관 적정가도 현재가의 약 43%). 확인된 근거는 광 데이터센터 2026년 매출 전망 2.1억~2.3억$ 상향과 Rushmore 2027년 매출 시작·2028~29년 램프 언급까지이며, 수주잔고·장기계약 수치는 확인 안 됨 — 부분만 확인, 낙관 경로는 그대로 둠",
+   "conf": "추정",
+   "src": [
+    1,
+    5
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버가 본 최근 주식보상은 매출의 약 12.3%. 장기 8%로 가정: 동종 성숙 반도체 대비 높은 현재 수준에서 매출이 커지며 비율이 낮아진다고 봄(회사 공시 목표 비율은 확인 못 함)",
+   "conf": "추정",
+   "src": [
+    2
+   ]
   }
  ],
  "sources": [
@@ -151,6 +168,11 @@
    "t": "Can Credo Sustain Momentum in Optical Business Amid Competition?",
    "u": "https://www.nasdaq.com/articles/can-credo-sustain-momentum-optical-business-amid-competition",
    "d": "2026"
+  },
+  {
+   "t": "MaxLinear Q2 2026 Earnings Call Transcript",
+   "u": "https://www.marketbeat.com/earnings/reports/2026-7-23-maxlinear-inc-stock/",
+   "d": "2026-07-23"
   }
  ]
 }
