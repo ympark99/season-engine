@@ -236,6 +236,7 @@ input.thin{font:inherit;font-size:12px;border:1px solid var(--line);background:v
 .vtag.gold{color:var(--gold-ink);border-color:var(--gold)}.vtag.warn{color:var(--pos);border-color:var(--pos)}
 .vverd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.vbig{font-size:26px;font-weight:750;letter-spacing:-.02em}
 .vkpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.vkpi>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 10px}
+.vscn{margin-top:10px;display:grid;gap:5px}.vscn b{font-size:12.5px;margin-right:4px}.vscn b.bull{color:var(--pos)}.vscn b.bear{color:var(--neg)}.vscn b.base{color:var(--gold-ink)}
 .vkpi span{display:block;font-size:11.5px;color:var(--muted);font-weight:600}.vkpi b{font-size:16px}
 @media (max-width:520px){.vkpi{grid-template-columns:repeat(2,1fr)}}
 .vlg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink2)}.vlg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
@@ -2158,17 +2159,26 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <tr><td>매출</td>${rows.map(r=>`<td class="r num">${vAmt(r.rev,m)}</td>`).join('')}</tr>
     <tr><td>영업이익률</td>${rows.map(r=>`<td class="r num">${vPct(r.om)}</td>`).join('')}</tr>
     <tr><td>FCF</td>${rows.map(r=>`<td class="r num"><b class="${r.fcf<0?'dn':''}">${vAmt(r.fcf,m)}</b></td>`).join('')}</tr></tbody></table></div>
-    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%) · 영구가치 비중 ${SC.tvPct??'—'}%${SC.why?` · ${esc(SC.why)}`:''}<br>FCF = ${m==='US'?`(영업이익${I.sbc?` − 주식보상(매출의 ${vPct(I.sbc.r0,1)}→${vPct(I.sbc.rL,1)}, ${esc(I.sbc.by)})`:''}) × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})${I.wc?` ${I.wc>0?'+':'−'} 운전자본(매출 증가분 × ${vPct(Math.abs(I.wc),0)})`:''}`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`} · 마지막 해 세후 영업이익으로 영구가치${m==='US'||I.krTV?` (재투자율 = 영구성장률 ÷ 재투자수익률 ${vPct(ronicOf(w,SC.prem),1)}${I.prem!=null?` = 할인율 + 초과수익 ${vPct(I.prem,1)} — ${esc(I.premWhy||'')}${I.roic!=null?`; ROIC ${vPct(I.roic,1)} = ${esc(I.roicBy||'')}${I.roicPast!=null?` (과거 ${vPct(I.roicPast,1)}`:''}${I.roicFwd!=null?`${I.roicPast!=null?' · ':' ('}${j.type==='cyc'?'중간값 해':'다음 해'} ${vPct(I.roicFwd,1)})`:I.roicPast!=null?')':''}`:''}`:''})`:''}${I.gWhy?` · 영구성장률 ${vPct(j.g,1)} (${esc(I.gWhy)})`:''} · ${m==='US'||I.netBy==='조사'?`순현금 ${vAmt(I.netCash,m)}${I.netBy==='조사'?' (조사)':''} · `:''}주식 ${m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR')}주</div>`;
-  const W=I.wacc,wr=`<div class="box"><div class="vctl"><label for="v-w">할인율 (WACC)</label><input type="range" id="v-w" min="6" max="18" step="0.5" value="${(w*100).toFixed(1)}"><b class="num" id="v-wl">${vPct(w,1)}</b>
+    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%)</div>`;
+  const fcfTxt=()=>{const w2=st.w??j.w,SC2=j.sc[st.sc||'base'],un=m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR');
+    return [`FCF = ${m==='US'?`(영업이익${I.sbc?` − 주식보상(매출의 ${vPct(I.sbc.r0,1)}→${vPct(I.sbc.rL,1)}, ${I.sbc.by})`:''}) × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})${I.wc?` ${I.wc>0?'+':'−'} 운전자본(매출 증가분 × ${vPct(Math.abs(I.wc),0)})`:''}`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`}`,
+      `영구가치: 마지막 해 세후 영업이익으로 계산${m==='US'||I.krTV?` (재투자율 = 영구성장률 ÷ 재투자수익률 ${vPct(ronicOf(w2,SC2.prem),1)}${I.prem!=null?` = 할인율 + 초과수익 ${vPct(I.prem,1)} — ${I.premWhy||''}${I.roic!=null?`; ROIC ${vPct(I.roic,1)} = ${I.roicBy||''}${I.roicPast!=null?` (과거 ${vPct(I.roicPast,1)}`:''}${I.roicFwd!=null?`${I.roicPast!=null?' · ':' ('}${j.type==='cyc'?'중간값 해':'다음 해'} ${vPct(I.roicFwd,1)})`:I.roicPast!=null?')':''}`:''}`:''})`:''}`,
+      I.gWhy?`영구성장률 ${vPct(j.g,1)} (${I.gWhy})`:'',
+      `${m==='US'||I.netBy==='조사'?`순현금 ${vAmt(I.netCash,m)}${I.netBy==='조사'?' (조사)':''} · `:''}주식 ${un}주`].filter(Boolean).join('\n\n')};
+    const W=I.wacc,wr=`<div class="box"><div class="vctl"><label for="v-w">할인율 (WACC)</label><input type="range" id="v-w" min="6" max="18" step="0.5" value="${(w*100).toFixed(1)}"><b class="num" id="v-wl">${vPct(w,1)}</b>
       <label for="v-g">영구성장률</label><input type="range" id="v-g" min="0" max="4.5" step="0.5" value="${(g*100).toFixed(1)}"><b class="num" id="v-gl">${vPct(g,1)}</b></div>
     <div class="sub" style="margin-top:8px">기본값${W.by==='조사'?' (조사로 정함)':''}: 무위험금리 ${vPct(W.rf,2)} (${esc(W.rfBy||'')}) + 베타 ${W.badj}${W.beta!=null?` (${esc(W.betaBy||'')} ${W.beta} → 평균 쪽 보정)`:' (기본)'} × 위험프리미엄 ${vPct(W.erp,1)} = 자기자본비용 ${vPct(W.ke,1)}${W.wd>0?` → 부채 비중 ${vPct(W.wd,1)}${W.debtBy?` (${esc(W.debtBy)})`:''} · 세후 타인자본비용 ${vPct(W.kd,1)} (${esc(W.kdBy||'')}) 반영 ${vPct(W.raw,1)}`:''}${Math.abs(W.raw-W.w)>=0.0005?` → 소프트 캡 ${vPct(W.w,1)}`:''} · 영구성장률 ${vPct(j.g,1)} (${j.inp.gBy}${j.type==='cyc'?', 경기민감 −0.5%p':''}) · 기준 실적 ${esc(I.q||'')} (직전 4분기 매출 ${vAmt(I.rev0,m)}, 영업이익률 ${vPct(I.om0)}) · <button type="button" class="pbtn" id="v-rst" style="padding:1px 10px;font-size:12px">기본값으로</button></div></div>`;
   const sens=j.sens?`<div class="tbl-wrap"><table class="acc" style="min-width:360px"><thead><tr><th>WACC \\ g</th>${j.sens.gs.map(x=>`<th class="r">${vPct(x,1)}</th>`).join('')}</tr></thead><tbody>${j.sens.ws.map((ww,i)=>`<tr><td>${vPct(ww,1)}</td>${j.sens.v[i].map((v,k)=>{const on=Math.abs(ww-j.w)<1e-6&&Math.abs(j.sens.gs[k]-j.g)<1e-6;return `<td class="r num ${on?'vhl':''} ${v==null?'':v>=px?'up':'dn'}">${f(v)}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
     <div class="sub" style="margin-top:6px">기본 시나리오 적정가. 세로 = 할인율, 가로 = 영구성장률 (기본값 ± 범위). 금색 = 기본값 · <span class="up">빨강</span> = 현재가 이상 · <span class="dn">파랑</span> = 현재가 미만</div>`:'';
   el.innerHTML=head+verdict+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
-    <h4 class="vsh">시나리오 <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
+    <h4 class="vsh">시나리오<button type="button" class="ibtn" id="v-fi" aria-label="FCF 계산 설명">i</button> <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
+    <div class="ipop" id="vpop" role="dialog" aria-modal="true" aria-labelledby="vpop-h" hidden><div class="ipbox"><b id="vpop-h"></b><p id="vpop-t"></p><button type="button" class="pbtn" id="vpop-x">닫기</button></div></div>
     <h4>할인율·가정 <span class="sub" style="font-weight:400">움직이면 적정가가 바로 바뀌어 (역DCF·민감도 표는 기본값 기준)</span></h4>${wr}
     <h4>민감도</h4>${sens}${band}${facts}${valHist(j,m)}${notes}${foot}`;
   el.querySelectorAll('#v-seg [data-k]').forEach(b=>b.onclick=()=>{st.sc=b.dataset.k;drawVal()});
+  {const vp=$('vpop'),close=()=>{vp.hidden=true};
+    $('v-fi').onclick=e=>{e.stopPropagation();$('vpop-h').textContent=`${j.sc[st.sc||'base'].n} 시나리오 — FCF·영구가치 계산`;$('vpop-t').textContent=fcfTxt();vp.hidden=false;$('vpop-x').focus()};
+    $('vpop-x').onclick=close;vp.onclick=e=>{if(e.target===vp)close()};vp.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
   const upd=()=>{const W2=st.w??j.w,G2=st.g??j.g;$('v-top').innerHTML=valTop(j,st,px,m);$('v-wl').textContent=vPct(W2,1);$('v-gl').textContent=vPct(G2,1);$('v-scv').textContent=f(valV(j,st)[st.sc||'base'])};
   const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;const GP=j.sens?.gap??0.02;if(W2-G2<GP){if(key==='g')st.g=W2-GP;else st.w=G2+GP}upd()}};
   sl('v-w','w');sl('v-g','g');if($('v-rst'))$('v-rst').onclick=()=>{st.w=null;st.g=null;$('v-w').value=(j.w*100).toFixed(1);$('v-g').value=(j.g*100).toFixed(1);upd()};
@@ -2190,6 +2200,7 @@ function valTop(j,st,px,m){const f=v=>v==null?'—':fmtP(v,m),w=st.w??j.w,g=st.g
     ${strip}
     <div class="vlg"><span><i style="background:var(--vbuy-soft);border:1px solid var(--vbuy)"></i>매수 구간 = 기본 × (1 − 안전마진)</span><span><i style="background:var(--ink)"></i>현재가</span><span>점 = 시나리오별 적정가</span></div>
     <div class="vkpi"><div><span>확률 가중 적정가</span><b class="num">${f(wv)}</b></div><div><span>안전마진</span><b class="num">${Math.round(sm*100)}%</b></div><div><span>매수 구간</span><b class="num">≤ ${f(buy)}</b></div><div><span>할인율 · 영구성장</span><b class="num">${vPct(w,1)} · ${vPct(g,1)}</b></div></div>
+    <div class="vscn">${['bull','base','bear'].map(k=>{const c=j.sc[k];return `<div><b class="${k}">${esc(c.n)}</b> <span class="sub">영구가치 비중 ${c.tvPct??'—'}%${c.why?` · ${esc(c.why)}`:''}</span></div>`}).join('')}</div>
     <div class="sub" style="margin-top:6px">안전마진 = max(20%, (기본 − 비관) ÷ 기본), 최대 60% — 시나리오끼리 차이가 큰 종목일수록 매수 구간이 깊어져</div>`;
 }
 /* 역DCF 문장 + 비교 막대 */
