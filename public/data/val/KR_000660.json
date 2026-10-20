@@ -2,7 +2,7 @@
  "m": "KR",
  "code": "000660",
  "name": "SK하이닉스",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-07-28) 뒤 · 3분기 실적(10-27) 발표 전",
  "mid": {
@@ -140,6 +140,12 @@
     1,
     3
    ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "낙관 시나리오 적정가가 현재가 이상이라 별도 설명 필요 없음. 역DCF: 마진이 바로 중간값(30%)으로 내려가도 현재 주가가 설명됨 — 신사업 반영 불필요",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -172,6 +178,51 @@
    "t": "[IB토마토]SK하이닉스, AI 메모리 물량 잠금…공급 주도권 굳힌다",
    "u": "https://newstomato.com/ReadNews.aspx?no=1289719",
    "d": "2026"
+  },
+  {
+   "t": "솔리다임 관련 최근 보도에 대해 설명드립니다",
+   "u": "https://news.skhynix.co.kr/fact-11/",
+   "d": "2026-10"
+  },
+  {
+   "t": "'200조 기업가치' 기대감…SK하이닉스, 솔리다임 상장으로 얻을 실익은?",
+   "u": "https://www.fnnews.com/news/202610130842158946",
+   "d": "2026-10-13"
+  },
+  {
+   "t": "SK hynix Debuts 16-Layer 48GB HBM4 at CES 2026, Alongside SOCAMM2 and LPDDR6",
+   "u": "https://www.trendforce.com/news/2026/01/06/news-sk-hynix-debuts-16-layer-48gb-hbm4-at-ces-2026-alongside-socamm2-and-lpddr6/",
+   "d": "2026-01-06"
+  },
+  {
+   "t": "SK Hynix to mass-produce LPDDR6 in second half, with Xiaomi as first customer",
+   "u": "https://mbiz.heraldcorp.com/article/10822460",
+   "d": "2026-07"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "솔리다임 미국 상장(자회사 지분 가치 현금화)",
+    "p": 25,
+    "why": "회사는 투자재원 방안이 정해지지 않았다고 설명. 보도상 이르면 2027년 상장 검토, 기업가치 추정은 보도마다 상이. 중복상장 심사가 걸림돌. 성공 시 조달 자금이 HBM 투자 재원이 되나 본업 이익에 더해지는 규모는 매출의 약 9% 수준 사업이라 제한적",
+    "conf": "보도",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "커스텀 HBM·SOCAMM2·LPDDR6 등 AI 서버 메모리 확장",
+    "p": 50,
+    "why": "16단 48GB HBM4, SOCAMM2, LPDDR6를 공개했고 LPDDR6는 하반기 양산 예정(보도). 성공 조건은 고객 맞춤 설계 수주와 양산 수율. 본업 HBM·DRAM 안의 제품 확장이라 별도 가치로 더하지 않고 기존 시나리오에 포함",
+    "conf": "보도",
+    "src": [
+     8,
+     9
+    ]
+   }
+  ]
+ }
 }
