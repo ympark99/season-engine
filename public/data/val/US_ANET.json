@@ -26,7 +26,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "AI 백엔드 800G·1.6T와 스케일업 진입이 겹쳐 2029년 이후에도 마진 46% 안팎 유지, 오라클·구글 등 신규 대형 고객 추가",
+   "why": "AI 백엔드 800G·1.6T와 스케일업 진입이 겹쳐 2029년 이후에도 마진 46% 안팎 유지, 오라클·구글 등 신규 대형 고객 추가 · 캠퍼스 12.5억$ 목표 달성과 스케일업 진입 성공을 포함(신사업은 base 에는 넣지 않음)",
    "g": [],
    "om": [
     null,
@@ -173,6 +173,42 @@
    "t": "Arista Networks Reports Fourth Quarter and Year End 2025 Financial Results",
    "u": "https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2026/Arista-Networks-Inc--Reports-Fourth-Quarter-and-Year-End-2025-Financial-Results/default.aspx",
    "d": "2026-02"
+  },
+  {
+   "t": "Arista (ANET) Q2 2026 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/11/arista-anet-q2-2026-earnings-call-transcript/",
+   "d": "2026-08-04"
+  },
+  {
+   "t": "Arista Networks Targets $12.6B as AI, Campus and Cloud Networking Growth Accelerates",
+   "u": "https://www.marketbeat.com/instant-alerts/event-arista-networks-targets-126b-as-ai-campus-and-cloud-networking-growth-accelerates-2026-09-09/",
+   "d": "2026-09-09"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "엔터프라이즈 캠퍼스(유무선 LAN·SD-WAN)",
+    "p": 55,
+    "why": "캠퍼스 매출 목표 최소 12.5억$(회사 목표). 성공 조건은 신규 고객 확보와 데이터센터-캠퍼스 교차판매. 시스코·HPE의 설치 기반이 커 점유율 확대는 느릴 수 있음. 12.5억$는 2026년 매출 약 126억$의 약 10%",
+    "conf": "공시",
+    "src": [
+     0,
+     4
+    ]
+   },
+   {
+    "name": "AI 스케일업·스케일어크로스(비엔비디아 가속기 맞춤 랙)",
+    "p": 30,
+    "why": "스케일업은 2027년 이후 진입 목표, 스케일어크로스는 2026년 AI 목표의 약 30%로 언급. 성공 조건은 AMD·구글 TPU 등 비엔비디아 가속기 채택과 엔비디아 자체 인터커넥트 대비 개방형 표준 확산. 스케일어크로스 시장은 2030년 150~200억$ 전망이라는 보도가 있어 규모 불확실",
+    "conf": "보도",
+    "src": [
+     3,
+     4,
+     5
+    ]
+   }
+  ]
+ }
 }

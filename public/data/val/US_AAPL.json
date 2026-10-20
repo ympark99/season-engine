@@ -118,20 +118,22 @@
    ]
   },
   {
-   "k": "시장 내재 기대",
-   "v": "역DCF: 영구성장률을 할인율 바로 아래(8.2%)까지 올려도 현재가(약 343달러)가 안 나옴 — 시장은 낙관 경로(적정가 약 150달러)를 훨씬 넘는 장기 성장·낮은 할인율을 전제. 폴더블(1,999달러~, 예약 직후 배송 2027년 1월 말로 밀림)·Siri 개선 등 일부 요인은 확인되나 이를 매출·마진 경로로 바꿀 공시 근거는 없어 시나리오에 가격을 맞추지 않음",
-   "conf": "추정",
-   "src": [
-    0,
-    1
-   ]
-  },
-  {
    "k": "주식보상",
    "v": "서버가 주식보상을 조정 기준으로 보지 않음(inp.sbc 없음) — 컨센서스 마진이 GAAP 기준이라 별도 sbc 비율을 넣지 않음. 참고: 9개월 RSU 부여 7,240만주, 베스팅 공정가치 184억달러(전년 163억달러)",
    "conf": "공시",
    "src": [
     1
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 영구성장률을 할인율 바로 아래(8.2%)까지 올려도 현재가(약 343달러)가 안 나옴(낙관 약 150달러 = 현재가의 44%). 폴더블·새 Siri·스마트홈을 점검했으나 공시로 매출·마진 경로를 만들 근거는 없어 일부만 확인 — 가격에 맞춰 가정을 올리지 않음",
+   "conf": "추정",
+   "src": [
+    0,
+    1,
+    5,
+    6
    ]
   }
  ],
@@ -160,6 +162,55 @@
    "t": "Tim Cook confirms Apple will raise prices due to memory and storage costs - TidBITS",
    "u": "https://tidbits.com/2026/06/18/tim-cook-confirms-apple-will-raise-prices-due-to-memory-and-storage-costs/",
    "d": "2026-06-18"
+  },
+  {
+   "t": "Apple's Q3 2026 Earnings—Record Revenue and Marketing to the Street - TidBITS",
+   "u": "https://tidbits.com/2026/07/31/apples-q3-2026-earnings-record-revenue-and-marketing-to-the-street/",
+   "d": "2026-07-31"
+  },
+  {
+   "t": "Apple Unveils Gemini-Powered Siri and iOS 27 at WWDC 2026",
+   "u": "https://letsdatascience.com/news/apple-unveils-gemini-powered-siri-and-ios-27-at-wwdc-2026-b757953c",
+   "d": "2026-06"
+  },
+  {
+   "t": "WWDC 2026: Every Announcement Through the Map of AI - FourWeekMBA",
+   "u": "https://fourweekmba.com/wwdc-2026-every-announcement-map-of-ai-siri-gemini-homeos/",
+   "d": "2026-06"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "첫 폴더블 아이폰(1,999달러~)",
+    "p": 50,
+    "why": "10/23 판매 시작, 예약 직후 배송이 2027년 1월 말로 밀려 수요는 확인되나 공급·힌지 품질이 조건. 성공해도 기존 아이폰 대체분이 커 순증 규모는 불확실 — 낙관 경로(매출 +4%·마진 34%)에만 반영",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "name": "새 Siri(외부 AI 모델 기반)·Apple Intelligence",
+    "p": 25,
+    "why": "WWDC에서 공개, iOS 27 베타 단계이며 EU 출시는 협의 중, 중국은 일부 기능만 승인. 별도 과금 매출 근거는 없고 기기 교체·서비스 이탈 방지 효과에 그침 — bull 에만 반영",
+    "conf": "보도",
+    "src": [
+     5,
+     6
+    ]
+   },
+   {
+    "name": "스마트홈 허브·디스플레이(homeOS)",
+    "p": 15,
+    "why": "보도 수준으로 출시 시점·가격·규모를 공시로 확인 못 함 — 시나리오에 넣지 않음",
+    "conf": "추정",
+    "src": [
+     7
+    ]
+   }
+  ]
+ }
 }

@@ -2,7 +2,7 @@
  "m": "US",
  "code": "APH",
  "name": "AMPHENOL CORP",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-07-29) 뒤, 3분기 발표 전",
  "mid": {
@@ -127,8 +127,25 @@
    ]
   },
   {
+   "k": "설비투자",
+   "v": "2025년 설비투자 9.97억달러(2024년 6.65억달러). 경영진은 2026년 하반기 설비투자가 통상 범위(매출의 3~4%) 상단 또는 약간 위일 것이라 언급",
+   "conf": "보도",
+   "src": [
+    4,
+    6
+   ]
+  },
+  {
+   "k": "CCS 마진",
+   "v": "CCS 2분기 매출 약 12억달러, 영업이익률 20% 넘음 — 회사 평균(약 29%)보다 낮아 통합 매출 비중이 커지면 평균 마진을 누름",
+   "conf": "보도",
+   "src": [
+    4
+   ]
+  },
+  {
    "k": "미확인",
-   "v": "설비투자 계획·장기 마진 목표·고객 집중도는 이번 조사에서 확인하지 못함(서버 자동값 사용)",
+   "v": "장기 마진 목표·고객 집중도·수주잔고 총액·주식보상 비율은 확인하지 못함. sbc는 서버가 조정 기준으로 보지 않아(inp.sbc 없음) 비워 둠",
    "conf": "추정",
    "src": []
   }
@@ -153,6 +170,47 @@
    "t": "Amphenol (APH) Q2 2026 earnings summary (Quartr)",
    "u": "https://quartr.com/events/amphenol-corporation-aph-q2-2026_3gbjV0Ia",
    "d": "2026-07-29"
+  },
+  {
+   "t": "Amphenol Q2 2026 Earnings Call Highlights (Yahoo Finance)",
+   "u": "https://finance.yahoo.com/markets/stocks/articles/amphenol-corp-aph-q2-2026-010126651.html",
+   "d": "2026-07-29"
+  },
+  {
+   "t": "Amphenol Q2 2026 earnings call transcript (Motley Fool)",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/07/amphenol-aph-q2-2026-earnings-call-transcript/",
+   "d": "2026-08-07"
+  },
+  {
+   "t": "Amphenol Reports Record Fourth Quarter and Full Year 2025 Results",
+   "u": "https://investors.amphenol.com/news-and-events/news-details/2026/Amphenol-Reports-Record-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+   "d": "2026-01-28"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "고전압 전력·액체냉각·센서 내장 커넥터",
+    "p": 25,
+    "why": "경영진이 콜에서 고전압, 액체냉각, 센서 내장 스마트 커넥터 진전을 언급. 별도 매출·수주 규모는 공시 안 됨. 성공하면 IT·데이터컴 성장이 컨센서스보다 오래 가는 요인이나 본업 연장선이라 bull에만 반영",
+    "conf": "보도",
+    "src": [
+     4,
+     5
+    ]
+   },
+   {
+    "name": "CCS 광섬유 인프라 사업",
+    "p": 60,
+    "why": "2026-01 105억달러 인수 완료, 2026 매출 전망 46억달러·EPS 기여 0.30달러(공시). 이미 컨센서스·기본 경로에 반영된 사업이라 추가 가치로는 bull의 2029년 이후 광 성장분만 해당. 광섬유 공급 제약이 조건",
+    "conf": "공시",
+    "src": [
+     0,
+     1,
+     2
+    ]
+   }
+  ]
+ }
 }

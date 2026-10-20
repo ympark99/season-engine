@@ -85,10 +85,12 @@
   },
   {
    "k": "AGI CPU 목표",
-   "v": "FYE31 AGI CPU 매출 150억$, 총매출 250억$ 목표. 칩 매출총이익률 약 50%",
+   "v": "FYE31 AGI CPU 매출 150억$, 총매출 250억$ 목표. 칩 매출총이익률: 회사 장기 약 50%(목표), 1세대는 FYE27 4분기~FYE28 초 30%대 후반~40%대 초 가이던스",
    "conf": "보도",
    "src": [
-    4
+    4,
+    8,
+    9
    ]
   },
   {
@@ -176,7 +178,49 @@
    "t": "Arm Q4 2026 earnings call transcript",
    "u": "https://www.fool.com/earnings/call-transcripts/2026/05/07/arm-arm-q4-2026-earnings-call-transcript",
    "d": "2026-05-07"
+  },
+  {
+   "t": "Arm Q1 FY27 slides: AI surge drives record results, $25B revenue target",
+   "u": "https://www.investing.com/news/company-news/arm-q1-fy27-slides-ai-surge-drives-record-results-25b-revenue-target-93CH-4821969",
+   "d": "2026-07-29"
+  },
+  {
+   "t": "Arm Holdings Stock: Qualcomm Verdict and Q2 Earnings",
+   "u": "https://admiralmarkets.com/education/articles/shares/arm-holdings-stock-qualcomm-verdict-earnings",
+   "d": "2026-10"
+  },
+  {
+   "t": "Arm releases first in-house chip, with Meta as debut customer",
+   "u": "https://www.cnbc.com/2026/03/24/arm-launches-its-own-cpu-with-meta-as-first-customer.html",
+   "d": "2026-03-24"
   }
  ],
- "sbc": 12
+ "sbc": 12,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "AGI CPU(자체 데이터센터 칩 판매)",
+    "p": 40,
+    "why": "공급(웨이퍼·기판·테스트·메모리) 확대와 고객 겹침 해소가 조건. 성공 시 FYE31 150억$(총매출 250억$ 목표). 고객 수요 20억$ 초과(FYE27~28), 의미 있는 매출은 FYE27 4분기부터. 목표는 회사 목표라 기본 경로는 이보다 느리게 둠",
+    "conf": "공시",
+    "src": [
+     2,
+     4,
+     8,
+     9,
+     10
+    ]
+   },
+   {
+    "name": "피지컬 AI(자동차·로봇) 컴퓨트 플랫폼",
+    "p": 15,
+    "why": "NVIDIA 로봇 플랫폼 등이 Arm CPU 사용. 별도 매출·계약 규모는 확인 못 함이라 로열티 성장에 흡수된 것으로 보고 bull 에도 별도 가산 안 함",
+    "conf": "보도",
+    "src": [
+     10
+    ]
+   }
+  ]
+ }
 }
