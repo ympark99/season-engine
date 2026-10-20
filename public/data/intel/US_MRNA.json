@@ -3,7 +3,7 @@
   "code": "MRNA",
   "name": "Moderna",
   "theme": "제약·바이오",
-  "at": "2026-10-18",
+  "at": "2026-10-21",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "mRNA 플랫폼으로 8월 미국 첫 mRNA 독감백신(mFLUSIVA) 승인과 개인맞춤 암백신 흑색종 3상 성공이라는 두 가지 큰 진전을 얻었지만, 2분기 매출은 약 1.5억달러·순손실 약 8억달러로 아직 적자 구조다. 다음 분기 관건은 11월 6일 3분기 실적에서 독감백신 출시 초기 반응과 연말 현금 가이던스(47~52억달러) 유지 여부.",
@@ -137,7 +137,8 @@
       "status": "진행",
       "conf": "공시",
       "src": [
-        3
+        3,
+        16
       ],
       "log": [
         {
@@ -176,8 +177,9 @@
       "d": "2026-10-24",
       "kind": "임상",
       "status": "예정",
-      "conf": "보도",
+      "conf": "공시",
       "src": [
+        15,
         9
       ],
       "log": [
@@ -185,6 +187,11 @@
           "d": "2026-10-16",
           "s": "예정",
           "note": "RTTNews 보도로 10월 24일 발표 일정 확인, 수치는 발표 전 미공개"
+        },
+        {
+          "d": "2026-10-21",
+          "s": "예정",
+          "note": "회사 공지로 10-24 프레지덴셜 심포지엄 late-breaking 발표·투자자 웹캐스트(동일 날짜) 확인. 발표 전 수치 미공개. 일부 2차 보도의 49% 감소 수치는 미검증이라 제외"
         }
       ]
     },
@@ -347,6 +354,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-21",
+      "note": "10-24 ESMO 흑색종 3상 발표 일정이 회사 공지로 확정(투자자 웹캐스트 동일). 결과 방향은 발표 전이라 판단 보류, 수치 확인이 다음 확인 지점",
+      "src": [
+        15
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
+    {
       "d": "2026-10-18",
       "note": "3분기 실적 발표일 2026-11-06 확정(회사 공지, 기존 10-29/30 추정 상충 해소). mFLUSIVA 출시·ESMO(10-24)·mRNA-3927 결과는 새 공식 소식 없음",
       "src": [
@@ -449,6 +465,21 @@
       "t": "Moderna to Report Third Quarter 2026 Financial Results on Friday, November 6, 2026",
       "u": "https://www.newswire.com/news/moderna-to-report-third-quarter-2026-financial-results-on-friday-november-6-2026",
       "d": "2026-10-13"
+    },
+    {
+      "t": "Moderna Announces Late-Breaking Data to be Presented at ESMO Congress 2026",
+      "u": "https://www.newswire.com/news/moderna-announces-late-breaking-data-to-be-presented-at-esmo-congress-2026",
+      "d": "2026-10"
+    },
+    {
+      "t": "Moderna Wins FDA Approval for First mRNA Flu Vaccine mFLUSIVA",
+      "u": "https://www.americanpharmaceuticalreview.com/1315-News/627277-Moderna-Wins-FDA-Approval-for-First-mRNA-Flu-Vaccine-mFLUSIVA/",
+      "d": "2026-08"
+    },
+    {
+      "t": "EU CTIS 시험 등록 정보 mRNA-3927 (2022-502911-12-00)",
+      "u": "https://www.ctis.eu/trial/2022-502911-12-00",
+      "d": "2026-10-21"
     }
   ]
 }

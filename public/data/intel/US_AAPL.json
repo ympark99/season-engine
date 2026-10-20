@@ -3,7 +3,7 @@
   "code": "AAPL",
   "name": "Apple",
   "theme": "IT 하드웨어",
-  "at": "2026-10-20",
+  "at": "2026-10-21",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "스마트폰은 2분기 점유율 20%로 삼성 다음 2위(기록적 2분기), 중국에서도 화웨이 다음 2위로 점유율을 늘리는 중이다. 이번 분기 관건은 9월 말 출시한 아이폰 18 프로와 첫 폴더블(10월 판매 시작)의 초기 수요, 그리고 11월 2일 실적에서 메모리 원가 상승이 마진에 얼마나 반영되는지.",
@@ -156,7 +156,8 @@
       "src": [
         4,
         14,
-        17
+        17,
+        20
       ],
       "log": [
         {
@@ -173,6 +174,11 @@
           "d": "2026-10-20",
           "s": "예정",
           "note": "10/23 70여 개국 판매 시작 유지, 매장 재고는 소량으로 보도"
+        },
+        {
+          "d": "2026-10-21",
+          "s": "예정",
+          "note": "10/23 매장 판매 일정 유지(애플 발표 보도). 매장 구매 가능 물량은 확인 안 됨"
         }
       ]
     },
@@ -220,9 +226,10 @@
       "status": "진행",
       "conf": "보도",
       "src": [
-        8,
         5,
-        18
+        8,
+        18,
+        21
       ],
       "log": [
         {
@@ -239,6 +246,11 @@
           "d": "2026-10-20",
           "s": "진행",
           "note": "6월 맥·아이패드 가격 인상(메모리 비용 이유) 보도 확인, 9월 아이폰 18 프로 가격 반영. 이후 추가 변화 확인 안 됨"
+        },
+        {
+          "d": "2026-10-21",
+          "s": "진행",
+          "note": "10월 추가 가격 인상은 확인 안 됨. 매출총이익률 가이던스 47~48% 보도(6월 분기 50.1%)"
         }
       ]
     },
@@ -282,6 +294,24 @@
           "note": "판매 시작, 이후 배송 대기 길어짐 보도"
         }
       ]
+    },
+    {
+      "id": "oct28_event",
+      "what": "애플 제품 행사(10/28 개최 보도, 단일 매체)",
+      "d": "2026-10-28",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        19
+      ],
+      "log": [
+        {
+          "d": "2026-10-21",
+          "s": "예정",
+          "note": "10/28 행사 개최 보도, 단일 매체라 공식 확인 필요"
+        }
+      ]
     }
   ],
   "metrics": [
@@ -316,9 +346,27 @@
       "src": [
         6
       ]
+    },
+    {
+      "k": "매출총이익률 가이던스 (9월 분기)",
+      "v": "47~48% (6월 분기 50.1%) 보도",
+      "asof": "2026-09",
+      "src": [
+        21
+      ]
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-21",
+      "note": "애플이 아이폰 듀오·아이폰 18 프로의 미국 제조 프로그램 파트너를 공식 발표(10/20). 10/28 제품 행사 개최 보도(단일 매체, 확인 필요). 폴더블 매장 판매 10/23 유지, 온라인 예약은 완판돼 배송 2027년 1월. 등급 A 유지",
+      "src": [
+        19,
+        20
+      ],
+      "tone": "호재",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-20",
       "note": "폴더블 iPhone Duo 예약 10/16 개시 직후 약 30분 만에 전 구성 배송이 2027년 1월로 밀려 공급 제약 현실화(예약 체크포인트 완료). 10/23 판매 시작 유지, 10/30 추가 28개 시장 일정 추가, 실적 11/2 예정. 판정·등급 A 유지",
@@ -445,6 +493,21 @@
       "t": "Apple increases prices for Macs and iPads, blaming a shortage of memory chips - AP",
       "u": "https://www.adn.com/business-economy/2026/06/25/apple-increases-prices-for-macs-and-ipads-blaming-a-shortage-of-memory-chips/",
       "d": "2026-06-25"
+    },
+    {
+      "t": "Apple announces American Manufacturing Program partners for latest iPhone lineup - Apple Newsroom",
+      "u": "https://www.apple.com/newsroom/2026/10/apple-announces-american-manufacturing-program-partners-for-latest-iphone-lineup/",
+      "d": "2026-10-20"
+    },
+    {
+      "t": "Apple's first foldable iPhone, the iPhone Duo, starts at $1,999 - Make Tech Easier",
+      "u": "https://maketecheasier.com/iphone-duo-foldable-price-release-date/",
+      "d": "2026-10"
+    },
+    {
+      "t": "Apple Just Raised iPhone Pro Starting Prices by $100. Its Memory Costs Are Rising Even Faster - Motley Fool",
+      "u": "https://www.fool.com/investing/2026/09/10/apple-just-raised-iphone-pro-starting-prices-by-usd100-its-memory-costs-are-rising-even-faster/",
+      "d": "2026-09-10"
     }
   ]
 }

@@ -1,6 +1,61 @@
 {
- "asof": "2026-10-20",
+ "asof": "2026-10-21",
  "items": [
+  {
+   "m": "US",
+   "code": "VICR",
+   "name": "Vicor",
+   "theme": "기타",
+   "d": "2026-10-21",
+   "note": "3분기 실적 발표: 제품·로열티 매출 1.971억달러(전분기 대비 +37.5%), 사전 전망(30% 초과) 상회, 매출총이익률 68.3%(2분기 58.0%). 라이선스 로열티 매출이 증가 요인으로 언급됨. 등급은 B 유지(VPD 양산 2027년 이후·경쟁 분쟁 과제 그대로)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000751978/000119312526425697/d153882dex991.htm"
+  },
+  {
+   "m": "US",
+   "code": "MRNA",
+   "name": "Moderna",
+   "theme": "제약·바이오",
+   "d": "2026-10-21",
+   "note": "10-24 ESMO 흑색종 3상 발표 일정이 회사 공지로 확정(투자자 웹캐스트 동일). 결과 방향은 발표 전이라 판단 보류, 수치 확인이 다음 확인 지점",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.newswire.com/news/moderna-announces-late-breaking-data-to-be-presented-at-esmo-congress-2026"
+  },
+  {
+   "m": "US",
+   "code": "AAPL",
+   "name": "Apple",
+   "theme": "IT 하드웨어",
+   "d": "2026-10-21",
+   "note": "애플이 아이폰 듀오·아이폰 18 프로의 미국 제조 프로그램 파트너를 공식 발표(10/20). 10/28 제품 행사 개최 보도(단일 매체, 확인 필요). 폴더블 매장 판매 10/23 유지, 온라인 예약은 완판돼 배송 2027년 1월. 등급 A 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.apple.com/newsroom/2026/10/apple-announces-american-manufacturing-program-partners-for-latest-iphone-lineup/"
+  },
+  {
+   "m": "KR",
+   "code": "278470",
+   "name": "에이피알",
+   "theme": "K뷰티",
+   "d": "2026-10-21",
+   "note": "미국 코스트코 입점 보도 — 제로모공패드 2.0 코스트코 판매, 9월 진출 완료로 언급(날짜·공식 발표 미확인). 울타뷰티·타깃·월마트에 이어 대형 오프라인 유통 확장",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://news.jkn.co.kr/post/970358"
+  },
+  {
+   "m": "KR",
+   "code": "009150",
+   "name": "삼성전기",
+   "theme": "전자·부품",
+   "d": "2026-10-21",
+   "note": "3분기 실적 발표 10월 28일 16시 예정(실적 캘린더 기준, 회사 공시 미확인). 추정 영업이익 약 6,363억원으로 시장 평균 약 5,960억원 상회. 휴머노이드 카메라모듈은 미국 전략 고객사향 시범 생산 착수, 베트남 파일럿 라인에서 양산 검증 중(7월 보도 기준)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.metroseoul.co.kr/article/20260913500005"
+  },
   {
    "m": "US",
    "code": "TEM",
