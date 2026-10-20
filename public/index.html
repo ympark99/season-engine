@@ -631,10 +631,10 @@ body{margin:0}
     </details>
 
     <details class="sec" id="sec-sector">
-      <summary><span class="ico"><i>2</i></span><div><h2>섹터 국면</h2><p>섹터 점수·경보(정상·주의·경고·이탈)·진입 신호(주도 확정·선진입) · 섹터 순환 4분면 · 재료 장부와 시장 반응 · 지난 1년 검증</p></div><span class="chev">▾</span></summary>
+      <summary><span class="ico"><i>2</i></span><div><h2>섹터 국면</h2><p>섹터 순환 4분면 · 섹터 점수·경보(정상·주의·경고·이탈)·진입 신호(주도 확정·선진입) · 재료 장부와 시장 반응 · 지난 1년 검증</p></div><span class="chev">▾</span></summary>
       <div class="body">
-        <div id="secsig"><div class="muted">섹터 국면 불러오는 중…</div></div>
-        <div class="rot" id="rot" style="margin-top:22px"></div>
+        <div class="rot" id="rot"></div>
+        <div id="secsig" style="margin-top:22px"><div class="muted">섹터 국면 불러오는 중…</div></div>
         <div id="secnews" style="margin-top:22px"></div>
         <div id="secval" style="margin-top:18px"></div>
       </div>
@@ -1229,14 +1229,21 @@ function renderSecNews(){
   if(!SNEWS){el.innerHTML='<div class="muted">재료 장부 불러오는 중…</div>';return}
   const f=state.snf||'',all=(SNEWS.items||[]).filter(x=>x.m===state.m);
   const xs=all.filter(x=>!f||(f==='mix'?['w','b'].includes(newsReact(x)?.cls):x.tone===f));
-  const lim=state.snlim||12;
-  el.innerHTML=`<div class="rothead"><h3 style="margin:0;font-size:15px">섹터 재료 장부 · 시장 반응 <span class="muted" style="font-weight:500">내 목록 종목의 최근 45일 소식 ${all.length}건 · 매일 경쟁·기술 갱신에서</span></h3>
-      <div class="chips">${[['','전체'],['호재','호재'],['악재','악재'],['mix','반응 엇갈림']].map(([k,t])=>`<button class="chip" data-snf="${k}" aria-pressed="${f===k}">${t}</button>`).join('')}</div></div>
+  const lim=state.snlim||12,open=!!state.snopen;
+  const tog=`<button type="button" class="chip" id="sntog" aria-expanded="${open}" aria-label="재료 장부 ${open?'접기':'펼치기'}" title="${open?'접기':'펼치기'}" style="min-width:34px;justify-content:center"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true" style="transform:rotate(${open?180:0}deg);transition:transform .15s"><path d="M1 1.5h10L6 8.5z" style="fill:var(--ink2)"/></svg></button>`;
+  const head=`<div class="rothead"${open?'':' style="margin-bottom:0"'}><h3 style="margin:0;font-size:15px">섹터 재료 장부 · 시장 반응 <span class="muted" style="font-weight:500">내 목록 종목의 최근 45일 소식 ${all.length}건 · 매일 경쟁·기술 갱신에서</span></h3>
+      <div class="chips">${[['','전체'],['호재','호재'],['악재','악재'],['mix','반응 엇갈림']].map(([k,t])=>`<button class="chip" data-snf="${k}" aria-pressed="${f===k}">${t}</button>`).join('')}${tog}</div></div>`;
+  if(!open){el.innerHTML=head;bindSn(el);return}
+  el.innerHTML=head+`
     ${xs.length?xs.slice(0,lim).map(newsRow).join(''):'<div class="muted">해당하는 소식이 없어.</div>'}
     ${xs.length>lim?`<div style="margin-top:8px"><button class="pbtn" id="snmore">${Math.min(20,xs.length-lim)}건 더 보기</button></div>`:''}
     <div class="sub" style="margin-top:6px">호재·악재·구조적·일회성은 조사 배치가 소식 내용만으로 붙인 표시 · 반응 = 소식 날짜부터 3거래일 섹터 초과수익 합 · 호재인데 2일 이상 지나도 초과수익이 0 이하면 <b>호재 무반응</b>(소외 조짐), 악재인데 0 이상이면 <b>악재 무반응</b>(바닥 신호) — 소식보다 반응이 더 많은 걸 말해줘</div>`;
-  el.querySelectorAll('[data-snf]').forEach(b=>b.onclick=()=>{state.snf=b.dataset.snf;state.snlim=12;renderSecNews()});
+  bindSn(el);
   if($('snmore'))$('snmore').onclick=()=>{state.snlim=lim+20;renderSecNews()};
+}
+function bindSn(el){
+  el.querySelectorAll('[data-snf]').forEach(b=>b.onclick=()=>{state.snf=b.dataset.snf;state.snlim=12;state.snopen=true;renderSecNews()});   // 필터를 누르면 펼쳐서 보여줌
+  if($('sntog'))$('sntog').onclick=()=>{state.snopen=!state.snopen;renderSecNews()};
 }
 function renderSecVal(){
   const el=$('secval'),V=ROT?.sig?.val;if(!el)return;
@@ -1252,7 +1259,11 @@ function renderSecVal(){
       <div class="box"><h3>신호가 난 날 뒤 섹터 초과수익 (%p)</h3><div class="tbl-wrap"><table class="acc rtbl"><thead><tr><th>구분</th><th class="r">섹터·일</th><th class="r">10일 뒤</th><th class="r">오름</th><th class="r">20일 뒤</th><th class="r">오름</th></tr></thead><tbody>
         ${row('신호:주도 확정','<span class="ent">주도 확정</span>')}${row('신호:선진입','<span class="ent e2">선진입</span>')}
         ${QD.map(q=>row('칸:'+q.k,'4분면 '+q.k)).join('')}${LVN.map((l,i)=>row('경보:'+l,secLv(i))).join('')}${row('주도·둔화 칸:경고 아래','주도·둔화 + 경고 아래')}${row('주도·둔화 칸:경고 이상','주도·둔화 + 경고 이상')}</tbody></table></div>
-        <div class="sub" style="margin-top:6px">주도 확정이 4분면 '주도'보다, 경고·이탈이 '정상'보다 뒤 수익이 확실히 갈리면 신호가 쓸모 있다는 뜻</div></div>
+        <div class="sub" style="margin-top:6px">주도 확정이 4분면 '주도'보다, 경고·이탈이 '정상'보다 뒤 수익이 확실히 갈리면 신호가 쓸모 있다는 뜻 · 섹터·일로 세서 같은 신호가 이어진 날이 겹쳐 있어 — 아래 '처음 뜬 날' 표가 더 엄격해</div></div>
+      ${V.onsets?`<div class="box" style="grid-column:1/-1"><h3>신호가 처음 뜬 날만 센 사례 — 뒤 섹터 초과수익 (%p)</h3><div class="tbl-wrap"><table class="acc rtbl"><thead><tr><th>신호 (비교 기준과 짝)</th><th class="r">사례</th><th class="r">10일 뒤</th><th class="r">오름</th><th class="r" title="평균 ÷ 표준오차 — 대략 2 이상이어야 우연이 아니라고 볼 만함">t</th><th class="r">20일 뒤</th><th class="r">오름</th><th class="r">t</th></tr></thead><tbody>
+        ${[['신호:주도 확정','<span class="ent">주도 확정</span>'],['칸:주도 진입','└ 비교: 4분면 주도 진입'],['신호:선진입','<span class="ent e2">선진입</span>'],['칸:회복 진입','└ 비교: 4분면 회복 진입'],['경보:경고 이상',secLv(2)+' 이상 (전체)'],['경보:주도·둔화에서 경고',secLv(2)+' 이상 (주도·둔화 섹터)'],['칸:둔화 진입','└ 비교: 4분면 둔화 진입'],['경보:이탈',secLv(3)],['칸:소외 진입','└ 비교: 4분면 소외 진입']].map(([k,t])=>{const o=V.onsets[k];if(!o||!o.f10)return '';const a=o.f10,b=o.f20||{};const c=v=>`color:${(v??0)>=0?'var(--pos)':'var(--neg)'}`;const tt=v=>v==null?'—':`<span style="${Math.abs(v)>=2?'font-weight:700':'color:var(--muted)'}">${sfp(v)}</span>`;
+          return `<tr><td>${t}</td><td class="r num">${a.n}</td><td class="r num" style="${c(a.avg)}">${sfp(a.avg)}</td><td class="r num">${a.win}%</td><td class="r num">${tt(a.t)}</td><td class="r num" style="${c(b.avg)}">${sfp(b.avg)}</td><td class="r num">${b.win??'—'}%</td><td class="r num">${tt(b.t)}</td></tr>`}).join('')}</tbody></table></div>
+        <div class="sub" style="margin-top:6px">같은 섹터에서 10거래일 안에 다시 뜬 건 한 사례로 묶음 · t 는 평균 ÷ 표준오차 (굵게 = 2 이상, 우연으로 보기 어려움) · 신호가 바로 아래 비교 기준보다 뚜렷하게 나아야 쓸모가 있어</div></div>`:''}
       <div class="box"><h3>소외 전환을 얼마나 먼저 잡았나</h3>
         <div style="font-size:13px">주도·둔화 → 소외 전환 <b>${V.evN}</b>번 중 <b>${V.earlyN}</b>번은 경고(2단계)가 먼저 떴어${V.leadMed!=null?` · 중간값 <b>${V.leadMed}거래일</b> 먼저`:''}</div>
         <div class="sub">비교 기준: 섹터·일의 ${V.warnRate??'—'}%가 경고 이상이고, 주도·둔화 섹터에서 아무 날이나 골라도 앞 20거래일 안에 경고가 떴을 확률은 ${V.baseWin??'—'}% — 소외 전환 앞에서 이 비율보다 얼마나 높은지가 실력이야 (지금 ${V.evN?Math.round(100*V.earlyN/V.evN):'—'}%)</div>
