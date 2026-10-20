@@ -1167,11 +1167,11 @@ function renderSec(){
   if(R.err||!R.sig){el.innerHTML=R.err?`<div class="warn">섹터 국면: ${esc(R.err)}</div>`:'<div class="muted">섹터 국면 신호가 아직 없어 — 4분면 오른쪽 위 [다시 계산]을 누르거나 다음 유니버스 스캔 뒤에 생겨.</div>';$('secnews').innerHTML='';$('secval').innerHTML='';return}
   loadSecNews();
   const G=R.sig,fl=secNewsFlags(),onlyAI=state.rotAI?new Set([...Object.values(R.groups||{}).flat(),...Object.keys(R.groups||{})]):null;
-  const all=Object.entries(G.sec).filter(([k])=>!onlyAI||onlyAI.has(k)),lf=state.slf??'',ef=state.sef??'';
-  // 정렬 (머리글 누름 — 같은 칸을 다시 누르면 방향 바꿈) · 경보·신호 필터
+  const all=Object.entries(G.sec).filter(([k])=>!onlyAI||onlyAI.has(k)),lf=state.slf??'',qf=state.sqf??'',lo=!!state.slead;
+  // 정렬 (머리글 누름 — 같은 칸을 다시 누르면 방향 바꿈) · 경보·4분면 필터 · 주도 확정만 토글
   const SK={name:a=>a[0],score:a=>a[1].score,q:a=>({0:4,3:3,1:2,2:1})[a[1].q],lvl:a=>a[1].lvl,ent:a=>a[1].ent==='주도 확정'?2:a[1].ent?1:0,br:a=>a[1].br,y10:a=>a[1].y10,n:a=>a[1].n};
   const sk=SK[state.ssk]?state.ssk:'score',sd=state.ssd||-1;
-  const rows=all.filter(([,s])=>(lf===''||s.lvl===+lf)&&(ef===''||(ef==='none'?!s.ent:s.ent===ef)))
+  const rows=all.filter(([,s])=>(lf===''||s.lvl===+lf)&&(qf===''||s.q===+qf)&&(!lo||s.ent==='주도 확정'))
     .sort((a,b)=>{const x=SK[sk](a),y=SK[sk](b);return (x<y?-1:x>y?1:0)*sd||b[1].score-a[1].score});
   const solo=all.filter(([,s])=>!s.grp),cnt=f=>solo.filter(([,s])=>f(s)).length;
   const sth=(k,t,c='',ti='')=>`<th${c?` class="${c}"`:''}${ti?` title="${ti}"`:''}><button type="button" class="sb2" data-ssk="${k}" aria-label="${t} 순 정렬">${t}${sk===k?(sd<0?' ▾':' ▴'):''}</button></th>`;
@@ -1201,7 +1201,8 @@ function renderSec(){
   el.innerHTML=`<div class="rothead"><h3 style="margin:0;font-size:15px">섹터 점수·경보 <span class="muted" style="font-weight:500">기준 ${esc(G.asof.slice(5))} · ${G.n}종목 · 섹터 ${solo.length}개</span></h3>
       <div class="chips">${Object.keys(R.groups||{}).length?`<button class="chip" id="secai" aria-pressed="${!!state.rotAI}">${esc(Object.keys(R.groups)[0])}만 보기</button>`:''}</div></div>
     <div class="chips" style="margin:2px 0 6px"><span class="sub" style="align-self:center">경보</span>${[['','전체',solo.length],...LVN.map((l,i)=>[String(i),l,cnt(s=>s.lvl===i)])].map(([k,t,n])=>`<button type="button" class="chip" data-slf="${k}" aria-pressed="${lf===k}">${t} <span class="num muted">${n}</span></button>`).join('')}</div>
-    <div class="chips" style="margin:0 0 8px"><span class="sub" style="align-self:center">신호</span>${[['','전체',solo.length],['주도 확정','주도 확정',cnt(s=>s.ent==='주도 확정')],['선진입','선진입',cnt(s=>s.ent==='선진입')],['none','신호 없음',cnt(s=>!s.ent)]].map(([k,t,n])=>`<button type="button" class="chip" data-sef="${k}" aria-pressed="${ef===k}">${t} <span class="num muted">${n}</span></button>`).join('')}
+    <div class="chips" style="margin:0 0 8px"><span class="sub" style="align-self:center">4분면</span>${[['','전체',solo.length],...QD.map((d,i)=>[String(i),d.k,cnt(s=>s.q===i)])].map(([k,t,n])=>`<button type="button" class="chip" data-sqf="${k}" aria-pressed="${qf===k}">${t} <span class="num muted">${n}</span></button>`).join('')}
+      <button type="button" class="chip" id="slead" aria-pressed="${lo}" style="margin-left:6px">주도 확정만 <span class="num muted">${cnt(s=>s.ent==='주도 확정')}</span></button>
       <span class="sub" style="align-self:center;margin-left:6px">호재 무반응 <b>${Object.values(fl).filter(f=>f.w.length).length}</b>${rows.length!==all.length?` · ${rows.length}개 보는 중`:''}</span></div>
     <div class="tbl-wrap" style="max-height:470px;overflow-y:auto"><table class="acc stbl2"><thead><tr>${sth('name','섹터')}${sth('score','점수','r')}${sth('q','4분면')}${sth('lvl','경보')}${sth('ent','신호')}${sth('br','20일선 위','r','20일선 위 종목 비율 (옆 숫자 = 10일 전 대비 %p)')}${sth('y10','10일 초과','r','최근 10거래일 섹터 평균 수익 − 유니버스 평균')}<th title="시가총액 상위 3종목 — 초록 유지, 빨강 20일선 아래·가을·겨울">대장주</th><th title="최근 60거래일 — 위 띠 4분면 칸, 아래 띠 경보">최근 60일</th></tr></thead>
       <tbody>${rows.map(tr).join('')||'<tr><td colspan="9" class="muted" style="text-align:center;padding:18px">해당하는 섹터가 없어</td></tr>'}</tbody></table></div>
@@ -1212,7 +1213,8 @@ function renderSec(){
   el.querySelectorAll('.srow[data-st]').forEach(g=>g.onclick=()=>{state.rotSel=state.rotSel===g.dataset.st?null:g.dataset.st;renderRot()});
   el.querySelectorAll('[data-ssk]').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=b.dataset.ssk;if(state.ssk===k||(!state.ssk&&k==='score'))state.ssd=-(state.ssd||-1);else{state.ssk=k;state.ssd=k==='name'?1:-1}renderSec()});
   el.querySelectorAll('[data-slf]').forEach(b=>b.onclick=()=>{state.slf=b.dataset.slf;renderSec()});
-  el.querySelectorAll('[data-sef]').forEach(b=>b.onclick=()=>{state.sef=b.dataset.sef;renderSec()});
+  el.querySelectorAll('[data-sqf]').forEach(b=>b.onclick=()=>{state.sqf=b.dataset.sqf;renderSec()});
+  const slb=el.querySelector('#slead');if(slb)slb.onclick=()=>{state.slead=!state.slead;renderSec()};
   if($('secx'))$('secx').onclick=()=>{state.rotSel=null;renderRot()};
   if($('secai'))$('secai').onclick=()=>{state.rotAI=!state.rotAI;state.rotSel=null;state.rotView=null;renderRot()};
   renderSecNews();renderSecVal();
