@@ -136,6 +136,15 @@
    "src": [
     5
    ]
+  },
+  {
+   "k": "신사업 일정 지연",
+   "v": "Q2 주주서한에서 Cybercab·Semi·Megapack 3 의 2026 대량 생산 목표를 삭제, Optimus 대량 생산 문구도 삭제(배터리 4680 공급 지목)",
+   "conf": "보도",
+   "src": [
+    6,
+    7
+   ]
   }
  ],
  "sources": [
@@ -168,8 +177,68 @@
    "t": "Tesla, Inc. Form 10-K - FY2025",
    "u": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
    "d": "2026"
+  },
+  {
+   "t": "Tesla spending skyrockets as Cybercab, Semi, Megapack production timeline slips",
+   "u": "https://techcrunch.com/2026/07/22/tesla-spending-skyrockets-as-cybercab-semi-megapack-production-timeline-slips/",
+   "d": "2026-07-22"
+  },
+  {
+   "t": "Tesla, Inc. Form 8-K - 2026 (Q2 주주서한)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001318605/000162828026049213/exhibit991.htm",
+   "d": "2026-07"
   }
  ],
  "type": "growth",
- "typeWhy": "시장 가격의 중심 논거가 로보택시·Cybercab·Optimus 등 신사업인데, 차량 판매는 정체이고 설비투자 250억$ 초과로 잉여현금흐름이 적자라 현재 재무만 보면 성숙 제조업으로 잡히나 성장 투자 단계에 가까움"
+ "typeWhy": "시장 가격의 중심 논거가 로보택시·Cybercab·Optimus 등 신사업인데, 차량 판매는 정체이고 설비투자 250억$ 초과로 잉여현금흐름이 적자라 현재 재무만 보면 성숙 제조업으로 잡히나 성장 투자 단계에 가까움",
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "무감독 로보택시",
+    "p": 20,
+    "why": "성공 조건: FSD v15(2026말~2027초) 이후 규제 승인·안전 실적으로 다수 도시 확대. 현재 오스틴·마이애미·올랜도·탬파 등 무감독 운영이나 무감독 차량 약 25대 수준. 성공 시 bull 의 2029~30년 매출 성장 22·18% 와 마진 16·19% 경로",
+    "conf": "보도",
+    "src": [
+     4,
+     7
+    ]
+   },
+   {
+    "name": "Cybercab 양산",
+    "p": 20,
+    "why": "생산 시작·공공도로 시험·직원 탑승 시작은 공시. 배터리(4680) 공급 때문에 2026 '대량 생산' 목표는 철회. 성공 시 로보택시 원가 하락의 전제",
+    "conf": "공시",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "Optimus 휴머노이드 로봇",
+    "p": 10,
+    "why": "회사가 Q2 서한에서 '대량 생산' 문구를 삭제, 라인 건설 중이며 'everything on the robot is new' 로 확대가 가장 어렵다고 설명. 외부 매출 규모 근거 없어 bull 에만 약하게 반영",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Tesla Semi (Reno 대량 생산)",
+    "p": 40,
+    "why": "2026-04 대량 생산 라인 가동 보도, 다만 Q2 서한에서 2026 대량 생산 목표가 미뤄졌다고 보도. 매출 기여는 전체 대비 작을 전망",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "SpaceX(구 xAI) 지분",
+    "p": null,
+    "why": "2026-01 xAI 20억$ 투자 약정이 SpaceX 합병으로 SpaceX 주식으로 전환됐다는 보도가 있으나 출처 신뢰도가 낮아 미확인. 가치 산정 근거 없어 반영하지 않음",
+    "conf": "추정",
+    "src": []
+   }
+  ]
+ }
 }

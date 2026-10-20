@@ -2,7 +2,7 @@
  "m": "US",
  "code": "UUUU",
  "name": "Energy Fuels Inc",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-05)과 VAC 인수 합의(2026-06) 뒤",
  "mid": {
@@ -23,7 +23,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "Phase 2(NdPr 연 6,000t 이상)와 중희토 설비가 일정대로 가동하고 VAC 인수가 완료돼 자석까지 수직계열화가 실현",
+   "why": "Phase 2(NdPr 연 6,000t 이상)와 중희토 설비가 일정대로 가동하고 VAC 인수가 완료돼 자석까지 수직계열화가 실현 · Vara Mada(마다가스카르 모나자이트·중광물사 FID 2027 예상)가 허가·재정 합의를 거쳐 진행되는 경우 포함",
    "g": [],
    "om": [
     null,
@@ -123,10 +123,19 @@
   },
   {
    "k": "주식보상",
-   "v": "서버 계산상 매출의 약 10.3%(조정 마진 기준), 장기 비율은 근거 없어 자동값 사용",
+   "v": "2025년 주식보상 약 12.6백만$(2024년 5.4백만$), 2025년 매출 약 65.9백만$의 약 19%, 서버가 본 최근 12개월 비율 약 10.3%. 매출이 수 배 커지는 과정에서 5% 수준으로 낮아진다고 가정(동종 성숙 기업 수준은 직접 확인 못 해 추정)",
    "conf": "추정",
    "src": [
-    3
+    6
+   ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "Vara Mada 타당성조사 NPV 18억$, FID 2027 예상·허가 미확정. 의료용 동위원소는 연구 단계. 모두 bull 에만 반영",
+   "conf": "공시",
+   "src": [
+    3,
+    5
    ]
   }
  ],
@@ -160,6 +169,56 @@
    "t": "Energy Fuels begins heavy rare earth plant construction in Utah",
    "u": "https://www.cruxinvestor.com/posts/energy-fuels-begins-heavy-rare-earth-plant-construction-in-utah-targeting-104-million-expansion",
    "d": "2026-07"
+  },
+  {
+   "t": "Energy Fuels 2025 Results and 2026 Guidance / Vara Mada 타당성조사",
+   "u": "https://investors.energyfuels.com/2026-01-08-Energy-Fuels-Announces-Updated-Feasibility-Study-for-Toliara-Rare-Earth-and-HMS-Project-in-Madagascar-Confirming-World-Class-Scale-and-Economics,-Including-1-8-Billion-NPV-and-Ramping-Up-to-Over-500-Million-of-Expected-Annual-EBITDA",
+   "d": "2026-01-08"
+  },
+  {
+   "t": "Energy Fuels expands into medical isotopes with RadTran acquisition",
+   "u": "https://www.cruxinvestor.com/posts/energy-fuels-expands-into-medical-isotopes-market-with-radtran-acquisition",
+   "d": "2024-08"
+  },
+  {
+   "t": "Energy Fuels Form 10-K FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/1385849/000138584926000009/efr-20251231.htm",
+   "d": "2026-02"
   }
- ]
+ ],
+ "sbc": 5,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Vara Mada(구 Toliara) 희토류·중광물사 프로젝트",
+    "p": 15,
+    "why": "2026-01 개정 타당성조사 세후 NPV 18억$, 가동 후 연 EBITDA 5억$ 이상 목표(회사 추정). 성공 조건: 모나자이트를 채굴허가에 추가, 재정 안정 합의, FID(2027 예상). 정변 후 정치 위험으로 지연 가능. 본업 밖 대형 옵션이라 bull 에만 반영",
+    "conf": "공시",
+    "src": [
+     3,
+     4
+    ]
+   },
+   {
+    "name": "의료용 동위원소(Ra-226·Ra-228, Th-228) 사업",
+    "p": 10,
+    "why": "RadTran 인수(2024-08)로 우라늄 공정 부산물에서 회수해 Ac-225·Pb-212 제조사에 판매하는 모델. 연구용 물량 단계이며 상업 규모 시점은 공시에서 재확인되지 않아 규모 미정. bull 경로에 별도 수치 없이 정성 반영",
+    "conf": "공시",
+    "src": [
+     5
+    ]
+   },
+   {
+    "name": "VAC 인수에 따른 자석 사업(수직계열화)",
+    "p": 40,
+    "why": "약 19억$ 인수 합의, 완료 목표 2027년 초, 규제 승인 필요. VAC 2025년 조정 EBITDA 약 29백만$로 수익성은 낮아 인수 후 통합과 자석 수요 확대가 관건. 기존 시나리오에 이미 반영",
+    "conf": "보도",
+    "src": [
+     1,
+     2
+    ]
+   }
+  ]
+ }
 }

@@ -2,7 +2,7 @@
  "m": "US",
  "code": "ORCL",
  "name": "ORACLE CORP",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2027 회계연도 1분기(2026-08-31 마감, 9/10 발표) 실적 뒤",
  "mid": {
@@ -17,7 +17,7 @@
  },
  "scen": {
   "bull": {
-   "p": 25,
+   "p": 20,
    "why": "RPO 6,640억 달러가 계획대로 가동되고 FY30 매출이 회사 목표 2,250억 달러를 웃돌며 인프라 마진이 30%대 후반 유지",
    "g": [
     null,
@@ -45,7 +45,7 @@
    ]
   },
   "base": {
-   "p": 50,
+   "p": 55,
    "why": "FY30 매출이 회사 목표(2,250억 달러) 부근에서 이후 성장 둔화, 인프라 비중 확대로 마진 25%로 하향 수렴",
    "g": [
     null,
@@ -101,7 +101,7 @@
    ]
   }
  },
- "capexR": null,
+ "capexR": 35,
  "daR": null,
  "tax": null,
  "g": null,
@@ -172,6 +172,33 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "시장은 10년 매출 연 67%대 성장을 25% 마진으로도 유지하는 수준을 전제(역DCF). 확인된 근거는 RPO 6,640억 달러·FY30 목표 2,250억 달러까지이며 그 너머는 확인된 근거 없음 — 현재가에 맞추려 가정을 올리지 않음. 서버 적정가 0은 설비투자비율(현재 105%) 고정으로 잉여현금흐름이 계속 음수라서",
+   "conf": "추정",
+   "src": [
+    0,
+    2,
+    3
+   ]
+  },
+  {
+   "k": "장기 설비투자",
+   "v": "FY27 설비투자 900억~950억 달러는 매출 대비 약 100%의 구축기 수준. 구축 완료 후 정상 상태 설비투자/매출은 35%로 가정(감가상각 15%의 2배 이상, 성장 지속 감안; 근거 약함)",
+   "conf": "추정",
+   "src": [
+    0,
+    4
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 inp.sbc 없음(GAAP형 마진 기준이라 별도 차감 안 함). 참고: FY26 주식보상 48.1억 달러/매출 673.6억 달러 약 7.1%, FY27 1분기 약 5.8%",
+   "conf": "추정",
+   "src": [
+    9
+   ]
   }
  ],
  "sources": [
@@ -204,6 +231,51 @@
    "t": "Oracle under pressure after ratings downgrade over AI expansion",
    "u": "https://www.computing.co.uk/news/2026/ai/oracle-under-pressure-after-ratings-downgrade-over-ai-expansion",
    "d": "2026-07"
+  },
+  {
+   "t": "Oracle discloses $2B stake in TikTok US joint venture",
+   "u": "https://www.netinfluencer.com/oracle-discloses-2b-stake-in-tiktok-us-joint-venture/",
+   "d": "2026-03"
+  },
+  {
+   "t": "TikTok US spin-off finalized, led by Oracle, Silver Lake and MGX",
+   "u": "https://www.datacenterdynamics.com/en/news/tiktok-us-spin-off-finalized-led-by-oracle-silver-lake-and-mgx/",
+   "d": "2026-01"
+  },
+  {
+   "t": "OpenAI signs $300bn cloud deal with Oracle (report)",
+   "u": "https://www.datacenterdynamics.com/en/news/openai-signs-300bn-cloud-deal-with-oracle-report/",
+   "d": "2025-09"
+  },
+  {
+   "t": "Oracle Q1 FY27 financial analysis (SBC, backlog, capex)",
+   "u": "https://sec-api.io/insights/oracle-corporation-orcl-financial-and-ratio-analysis-q1-fy2027-filings-cloud-backlog-debt-and-capital-spending-scenarios-to-fy2030",
+   "d": "2026-10-08"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "OpenAI 스타게이트 4.5GW·약 3,000억 달러 컴퓨트 계약",
+    "p": 60,
+    "why": "전력·부지 인도와 고객 자금조달이 성공 조건. 연 약 300억 달러 규모로 FY28부터 반영. 이미 RPO·컨센서스에 상당 부분 포함되어 bull 경로 상단(FY30 이후 성장)에만 반영",
+    "conf": "보도",
+    "src": [
+     8,
+     0
+    ]
+   },
+   {
+    "name": "TikTok US 합작법인 지분 15%",
+    "p": 80,
+    "why": "공시 투자액 약 22억 달러(합작 가치 약 140억 달러 추정 평가). 전사 시가총액 대비 미미해 가치 기여 작음, 호스팅 매출은 기존 클라우드에 포함",
+    "conf": "공시",
+    "src": [
+     6,
+     7
+    ]
+   }
+  ]
+ }
 }
