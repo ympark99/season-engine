@@ -2,7 +2,7 @@
  "m": "US",
  "code": "FPS",
  "name": "FORGENT POWER SOLUTIONS INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY2026 4분기·연간 실적(2026-09-15 발표, 6월 결산) 뒤",
  "mid": {
@@ -126,6 +126,22 @@
     0,
     3
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "집계 사이트 기준 FY26 분기 합계 약 1,000만달러(매출 14.2억달러의 약 0.7%, 계산값). 서버 inp.sbc 가 비어 조정 기준 차감 대상 아니어서 sbc 값은 넣지 않음",
+   "conf": "추정",
+   "src": [
+    5
+   ]
+  },
+  {
+   "k": "장기 마진 목표",
+   "v": "회사의 명시적 장기 마진 목표 확인 안 됨. FY27 은 영업 레버리지로 EBITDA 마진 100bp 이상 확대 기대",
+   "conf": "보도",
+   "src": [
+    4
+   ]
   }
  ],
  "sources": [
@@ -148,6 +164,32 @@
    "t": "Forgent (NYSE: FPS) Posts Record Backlog, Revenue Up 94%",
    "u": "https://www.valuethemarkets.com/news/forgent-revenue-jumps-94-as-backlog-hits-3-billion",
    "d": "2026-09"
+  },
+  {
+   "t": "Forgent Power Solutions Q3 earnings call highlights",
+   "u": "https://www.barchart.com/story/news/1966284/forgent-power-solutions-q3-earnings-call-highlights",
+   "d": "2026-05"
+  },
+  {
+   "t": "Forgent 재무 요약(분기 주식보상, 집계 사이트)",
+   "u": "https://www.digrin.com/stocks/detail/FPS/financials",
+   "d": "2026-09"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "파워트레인 솔루션(데이터센터용 통합 전력 설비)",
+    "p": 55,
+    "why": "FY26 4분기 매출 비중 약 3분의 1까지 확대, 티후아나 3,500만달러 증설로 FY27 4분기 생산능력 +50% 이상 목표. 성공 조건은 증설 가동 일정 준수와 소수 고객 집중 관리. 성공 시 FY27 이후 성장·마진 상단(bull 경로)을 지지하며 본업 확장이라 base 는 서버 경로 유지",
+    "conf": "공시",
+    "src": [
+     0,
+     1,
+     4
+    ]
+   }
+  ]
+ }
 }

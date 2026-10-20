@@ -183,6 +183,58 @@
    "t": "Nebius Group N.V. Form 20-F FY2025",
    "u": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926052948/nbis-20251231x20f.htm",
    "d": "2026-02"
+  },
+  {
+   "t": "Nebius Group Letter to shareholders Q2 2026",
+   "u": "https://assets.nebius.com/assets/4462517b-ce83-41f2-96ed-f2ac1bc06a05/SHLQ226%20(1).pdf-0",
+   "d": "2026-08-12"
+  },
+  {
+   "t": "Avride secures strategic investment and other commitments of up to $375 million, backed by Uber and Nebius",
+   "u": "https://nebius.com/newsroom/avride-secures-strategic-investment-and-other-commitments-of-up-to-375-million-backed-by-uber-and-nebius",
+   "d": "2025-10"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "ClickHouse 지분(소수지분)",
+    "p": 60,
+    "why": "2026년 1월 시리즈D(약 150억$ 평가) 기준 재평가이익 6개월 7.8억$ 계상. 지분 매각·상장 시 설비투자 자금원이 되는 자산가치 옵션이며 지분율·현재 가치는 공시에 없음. 영업 현금흐름 모델과 별개라 시나리오 경로에는 넣지 않음",
+    "conf": "공시",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Avride 자율주행(로보택시·배송)",
+    "p": 15,
+    "why": "Uber와 함께 최대 3.75억$ 투자·약정, Austin·Dallas에서 Uber 플랫폼 운행(200대 이상, 6만 건 이상 유료 탑승 보도). 성공 조건은 차량 500대 이상으로 확대와 단위 경제성 확보. 2분기 부문 매출은 100만$ 안팎으로 미미해 성공 시에도 AI 클라우드 대비 작음",
+    "conf": "보도",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "Toloka(AI 데이터 서비스) 지분",
+    "p": 30,
+    "why": "의결권은 잃었으나 유의미한 지분 유지. 성공 시 지분 가치 실현 가능하나 규모·지분율은 공시에서 확인 안 됨",
+    "conf": "공시",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "TripleTen(교육)",
+    "p": 20,
+    "why": "AI 시스템 엔지니어링 과정 추가. 2분기 부문 매출 약 1천만$로 전년 대비 19% 감소, 규모가 작아 가치 기여는 제한적",
+    "conf": "공시",
+    "src": [
+     6
+    ]
+   }
+  ]
+ }
 }

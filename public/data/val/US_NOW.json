@@ -129,7 +129,7 @@
   },
   {
    "k": "시장 내재 기대",
-   "v": "역DCF: 10년간 매출 연 23.1% 성장+영업이익률 33% 유지 필요. 낙관 시나리오 적정가가 현재가의 약 72%로 모델이 대부분 설명. 2030년 구독매출 300억$ 목표·AI 에이전트 ACV 10억$ 돌파는 확인됐으나 연 23% 10년 지속 근거는 없음",
+   "v": "역DCF: 10년간 매출 연 23.1% 성장+영업이익률 33% 유지 필요. 낙관 시나리오 적정가가 현재가의 약 72%로 모델이 대부분 설명. 2030년 구독매출 300억$ 목표·AI 에이전트 ACV 10억$ 돌파는 확인됐으나 연 23% 10년 지속 근거는 없음. 낙관 적정가/현재가 약 70%로 50% 이상이라 추가 신사업 상향은 하지 않음",
    "conf": "추정",
    "src": [
     0,
@@ -177,6 +177,42 @@
    "t": "ServiceNow 2026 애널리스트 데이: 주식보상 2029년 매출 10% 미만 목표 (Yahoo Finance 보도)",
    "u": "https://finance.yahoo.com/markets/stocks/articles/bernstein-hikes-servicenow-price-target-153928905.html",
    "d": "2026-05"
+  },
+  {
+   "t": "ServiceNow to buy Armis for $7.75 billion as AI-fueled cyber risks surge (Yahoo Finance)",
+   "u": "https://finance.yahoo.com/news/servicenow-buy-cybersecurity-startup-armis-140430631.html",
+   "d": "2025-12"
+  },
+  {
+   "t": "ServiceNow Q1 2026: Revenue beats, but AI inflection still coming (TIKR)",
+   "u": "https://www.tikr.com/blog/servicenow-q1-2026-revenue-beats-but-ai-inflection-still-coming",
+   "d": "2026-04"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "보안·위험 확장(Armis·Veza 인수)",
+    "p": 55,
+    "why": "Armis 4/20·Veza 3/2 인수 완료(공시). Armis 자체 ARR 3.4억$ 이상·성장 50% 초과(보도, 인수 전 기준). 성공 조건은 기존 고객 교차판매. 올해 마진은 약 0.75%p 낮추는 것이 이미 연간 전망에 반영돼 base에 포함. 서비스나우 기여 매출은 공시 미확인",
+    "conf": "보도",
+    "src": [
+     1,
+     3,
+     8
+    ]
+   },
+   {
+    "name": "AI 에이전트·Now Assist 신규 계약",
+    "p": 65,
+    "why": "2026년 AI 순증 ACV 목표 10억$에서 15억$로 상향(보도), 에이전트 ACV 10억$ 돌파(회사 설명). 성공 조건은 좌석 과금 침식 없이 비좌석 과금 전환. 2030년 구독매출 300억$ 목표 경로는 base, 초과분은 bull",
+    "conf": "보도",
+    "src": [
+     2,
+     9
+    ]
+   }
+  ]
+ }
 }

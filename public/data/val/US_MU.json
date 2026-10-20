@@ -2,7 +2,7 @@
  "m": "US",
  "code": "MU",
  "name": "Micron Technology",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY26 4분기 실적(2026-09-30) 뒤",
  "mid": {
@@ -130,6 +130,21 @@
    "src": [
     1
    ]
+  },
+  {
+   "k": "고객 약정 비중",
+   "v": "장기계약 등 고객 약정이 FY27 생산량의 75% 초과를 확보했다는 보도, 2027 달력연도 HBM 물량 대부분 계약 완료",
+   "conf": "보도",
+   "src": [
+    6,
+    5
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버가 조정 기준(주식보상 제외)으로 보지 않아 inp.sbc 없음 — 별도 비율 미입력. 연간 금액은 FY25 약 9.7억$(제3자 집계)",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -162,6 +177,26 @@
    "t": "Micron (MU) Q4 2026 Earnings Call Transcript",
    "u": "https://www.webull.com/news/15672802111996928",
    "d": "2026-09-30"
+  },
+  {
+   "t": "Micron Technology Q4 earnings call highlights",
+   "u": "https://www.marketbeat.com/instant-alerts/transcript-micron-technology-q4-earnings-call-highlights-2026-09-30/",
+   "d": "2026-09-30"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "엔비디아 맞춤형 HBM4E(NV-HBM) 공동설계",
+    "p": 40,
+    "why": "엔비디아 차세대 GPU에 탑재되는 맞춤형 HBM. 성공 조건은 양산 수율·고객 인증 유지. 기존 HBM 사업의 고도화라 별도 매출 규모는 미공개이며 시나리오 경로에는 추가 반영하지 않음",
+    "conf": "보도",
+    "src": [
+     6,
+     5
+    ]
+   }
+  ]
+ }
 }

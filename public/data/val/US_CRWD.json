@@ -21,7 +21,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "Flex·차세대 SIEM·AI 에이전트 보안 확장으로 FY36 ARR 200억$ 목표를 웃돌고, 규모가 커지며 비GAAP 마진이 목표 상단(32%) 위로 올라감",
+   "why": "Flex·차세대 SIEM·AI 에이전트 보안 확장으로 FY36 ARR 200억$ 목표를 웃돌고, 규모가 커지며 비GAAP 마진이 목표 상단(32%) 위로 올라감 (신사업: 차세대 SIEM 확대·AI 에이전트 보안 매출 기여)",
    "g": [],
    "om": [
     null,
@@ -161,6 +161,38 @@
    "t": "CrowdStrike 10-Q (2026-07-31) — 4대1 액면분할(2026-07-02 분할 후 거래) 반영 주식수",
    "u": "https://www.sec.gov/Archives/edgar/data/0001535527/000153552726000031/crwd-20260731.htm",
    "d": "2026-08-27"
+  },
+  {
+   "t": "CrowdStrike (CRWD) Q2 2027 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/31/crowdstrike-crwd-q2-2027-earnings-call-transcript/",
+   "d": "2026-08-31"
+  },
+  {
+   "t": "CrowdStrike Named a Leader in the 2026 IDC MarketScape for Worldwide SIEM",
+   "u": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-named-leader-2026-idc-marketscape-worldwide-siem",
+   "d": "2026-06-23"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "차세대 SIEM (Falcon Next-Gen SIEM)",
+    "p": 55,
+    "why": "기존 SIEM 대체 수요를 가져오는 것이 성공 조건. 2분기 종료 ARR 6.95억$ 이상(성장률은 출처마다 달라 미확정). 성공 시 전체 ARR 200억$ 목표의 상당 부분을 차지. 팔로알토 XSIAM·마이크로소프트와 경합",
+    "conf": "보도",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "AI 에이전트 보안 (Falcon Guardian·Charlotte AI AgentWorks)",
+    "p": 20,
+    "why": "기업의 AI 에이전트 도입이 보안 예산으로 이어지는 것이 조건. 제품은 2026-09 Fal.Con 에서 공개됐으나 아직 별도 ARR·계약 수치 미공개 — 규모 확인 전이라 낙관 시나리오에만 반영",
+    "conf": "보도",
+    "src": []
+   }
+  ]
+ }
 }

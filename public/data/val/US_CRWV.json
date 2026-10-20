@@ -2,7 +2,7 @@
  "m": "US",
  "code": "CRWV",
  "name": "COREWEAVE INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-11) 뒤 가정",
  "type": null,
@@ -166,6 +166,29 @@
    "v": "이번 조사에서 확인된 수치 없음",
    "conf": "추정",
    "src": []
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 영업이익률 18%에서 매출이 지금의 4.6배(지금 성장률로 약 2.1년)여야 현재가를 설명. 적자 기업이라 낙관 적정가가 산출되지 않음. 백로그 1,042억$·추가 계약 250억$ 초과와 단기 계약 단가 MW당 약 40백만$ 인상은 확인되나, 순부채 약 450억$ 부담을 넘어서는 가격은 확인된 신사업 근거만으로 설명되지 않음 — 현재가에 맞춰 가정을 올리지 않음",
+   "conf": "추정",
+   "src": [
+    1,
+    4
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버가 조정 기준으로 보지 않아(inp.sbc 없음) 비율을 넣지 않음. 이번 조사에서 주식보상 ÷ 매출 수치는 확인 못 함",
+   "conf": "추정",
+   "src": []
+  },
+  {
+   "k": "신규 계약 단가",
+   "v": "3분기 단기(3~6개월) 계약 가격이 MW당 약 40백만$ 수준, 3분기 초 순신규 약정 250억$ 초과",
+   "conf": "공시",
+   "src": [
+    4
+   ]
   }
  ],
  "sources": [
@@ -188,6 +211,49 @@
    "t": "CoreWeave (CRWV) Q2 2026 earnings summary (Quartr)",
    "u": "https://quartr.com/events/coreweave-inc-crwv-q2-2026_F6huCJA4",
    "d": "2026-08-11"
+  },
+  {
+   "t": "CoreWeave Continues to Contract New Compute Capacity at Higher Prices (IR)",
+   "u": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Continues-to-Contract-New-Compute-Capacity-at-Higher-Prices/default.aspx",
+   "d": "2026-09-17"
+  },
+  {
+   "t": "CoreWeave Q2 2026 earnings conference call (moomoo)",
+   "u": "https://www.moomoo.com/community/feed/coreweave-q2-2026-earnings-conference-call-117078869082117",
+   "d": "2026-08-11"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "관리형 추론 서비스",
+    "p": 40,
+    "why": "예약 연환산 매출이 출시 후 약 100만$에서 1억$ 초과로 늘었고 연말 2.5억$ 이상이 회사 목표. 성공하면 GPU 임대보다 마진이 높은 소프트웨어성 매출이 되나 전체 매출 대비 규모는 아직 작음",
+    "conf": "공시",
+    "src": [
+     0,
+     5
+    ]
+   },
+   {
+    "name": "비GPU 제품(스토리지·CPU·네트워킹·소프트웨어)",
+    "p": 50,
+    "why": "연환산 매출 4억$ 초과(보도 요약). 성공 조건은 GPU 고객에 묶어 파는 교차판매 확대. 회사는 단일 부문으로 보고해 별도 매출은 공시되지 않음",
+    "conf": "보도",
+    "src": [
+     5
+    ]
+   },
+   {
+    "name": "인도 AdaniConneX 뭄바이 240MW(최대 480MW)",
+    "p": 40,
+    "why": "신규 시장 진출. 가동·고객 계약이 일정대로 진행돼야 하며 발표 시점·세부 계약 조건은 이번에 확인 못 함",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   }
+  ]
+ }
 }

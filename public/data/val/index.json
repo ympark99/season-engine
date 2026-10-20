@@ -188,7 +188,7 @@
   "name": "CIENA CORP"
  },
  "US:COHR": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "COHERENT CORP"
  },
  "US:CRDO": {
@@ -200,7 +200,7 @@
   "name": "CrowdStrike"
  },
  "US:CRWV": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "COREWEAVE INC"
  },
  "US:DDOG": {
@@ -208,15 +208,15 @@
   "name": "DATADOG INC"
  },
  "US:DELL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Dell Technologies"
  },
  "US:DNA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "GINKGO BIOWORKS HOLDINGS INC"
  },
  "US:FPS": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "FORGENT POWER SOLUTIONS INC"
  },
  "US:GOOGL": {
@@ -224,7 +224,7 @@
   "name": "Alphabet"
  },
  "US:HPE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "HEWLETT PACKARD ENTERPRISE CO"
  },
  "US:INTC": {
@@ -232,11 +232,11 @@
   "name": "Intel"
  },
  "US:IREN": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "IREN LIMITED"
  },
  "US:LITE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Lumentum"
  },
  "US:MCHP": {
@@ -244,11 +244,11 @@
   "name": "MICROCHIP TECHNOLOGY"
  },
  "US:META": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "META PLATFORMS INC"
  },
  "US:MRNA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "MODERNA INC"
  },
  "US:MRVL": {
@@ -256,11 +256,11 @@
   "name": "Marvell Technology"
  },
  "US:MSFT": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Microsoft"
  },
  "US:MU": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Micron Technology"
  },
  "US:MXL": {
@@ -272,7 +272,7 @@
   "name": "Nebius Group"
  },
  "US:NKE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "NIKE INC"
  },
  "US:NOW": {

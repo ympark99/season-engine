@@ -127,7 +127,7 @@
   },
   {
    "k": "시장 내재 기대",
-   "v": "역DCF: 10년간 매출 연 약 40% 성장·영업이익률 26%가 있어야 현재가. 낙관 경로(2029~31년 27→21% 성장)로도 현재가의 약 37%. 확인된 근거는 RPO +43%·매출 +36%·AI 고객 확대 정도이고 이를 넘는 계약·가이던스는 없어 가정을 올리지 않음",
+   "v": "역DCF: 10년간 매출 연 약 40% 성장·영업이익률 26%가 있어야 현재가. 낙관 경로(2029~31년 27→21% 성장)로도 현재가의 약 37%. 확인된 근거는 RPO +43%·매출 +36%·AI 고객 확대 정도이고 이를 넘는 계약·가이던스는 없어 가정을 올리지 않음. 신사업(AI 관측·보안, 정부)은 계약 규모 미공시라 bull 에만 정성 반영",
    "conf": "추정",
    "src": [
     0,
@@ -183,7 +183,36 @@
    "t": "Datadog announces date of third quarter fiscal year 2026 earnings call",
    "u": "https://finviz.com/news/402639/datadog-announces-date-of-third-quarter-fiscal-year-2026-earnings-call",
    "d": "2026-10"
+  },
+  {
+   "t": "Full Transcript: Datadog Q2 2026 Earnings Call",
+   "u": "https://www.benzinga.com/node/62160028",
+   "d": "2026-08-06"
   }
  ],
- "sbc": 14
+ "sbc": 14,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "AI 에이전트 관측·보안 (Datadog for AI, Bits AI 자율 SRE, AI Guard)",
+    "p": 30,
+    "why": "성공 조건: AI 스택 모니터링이 별도 대형 제품군으로 과금되고 AI 기업 고객 사용량이 회복되는 것. 규모는 공시되지 않아 매출 기여분은 별도 수치 없이 bull 의 2029~31년 20%대 성장 유지에만 반영",
+    "conf": "공시",
+    "src": [
+     0,
+     8
+    ]
+   },
+   {
+    "name": "정부·공공 시장 (Datadog for Government, FedRAMP High)",
+    "p": 35,
+    "why": "성공 조건: IL5 인증 획득 후 연방 계약 확대. 현재 매출 기여 미공시라 base 에는 넣지 않음",
+    "conf": "보도",
+    "src": [
+     2
+    ]
+   }
+  ]
+ }
 }

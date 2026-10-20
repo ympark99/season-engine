@@ -2,7 +2,7 @@
  "m": "US",
  "code": "NKE",
  "name": "NIKE INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 1분기 실적(2026-10-01 발표, 분기말 2026-08-31) 뒤",
  "mid": {
@@ -122,6 +122,15 @@
    "src": [
     1
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "본업(스포츠 신발·의류) 밖에서 공시·계약·가이던스로 확인되는 신사업은 없음. 러닝(맥스 쿠셔닝 점유율 약 3배)은 본업 내 카테고리 회복이라 신사업으로 따로 반영하지 않음",
+   "conf": "공시",
+   "src": [
+    0,
+    2
+   ]
   }
  ],
  "sources": [
@@ -155,5 +164,9 @@
    "u": "https://www.modernretail.co/operations/nike-grappling-with-further-fallout-from-tariffs-now-expects-1-5b-in-annualized-costs/",
    "d": "2025-09-30"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": []
+ }
 }

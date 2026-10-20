@@ -24,7 +24,7 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "클라우드 수주잔고가 매출로 빠르게 전환되고 검색이 AI 시대에도 두 자릿수 성장, 설비투자 효율 개선으로 마진 방어",
+   "why": "클라우드 수주잔고가 매출로 빠르게 전환되고 검색이 AI 시대에도 두 자릿수 성장, 설비투자 효율 개선으로 마진 방어 · Waymo 상업화 성공·TPU 외부 공급 확대는 옵션 가치로 이 경로에만 반영(숫자 경로는 이미 클라우드 수주 전환을 담아 따로 올리지 않음)",
    "g": [],
    "om": []
   },
@@ -156,6 +156,45 @@
    "t": "Alphabet Stock Based Compensation (annual)",
    "u": "https://www.financecharts.com/stocks/GOOG/cash-flow/stock-based-compensation",
    "d": "2026-06"
+  },
+  {
+   "t": "Waymo raises $16 billion round at $126 billion valuation",
+   "u": "https://electrek.co/2026/02/02/waymo-raises-16-billion-round-at-126-billion-valuation-plans-expansion/",
+   "d": "2026-02-02"
+  },
+  {
+   "t": "Google and Meta reportedly strike new, multibillion-dollar AI chip deal",
+   "u": "https://siliconangle.com/2026/02/26/google-meta-reportedly-strike-new-multibillion-dollar-ai-chip-deal/",
+   "d": "2026-02-26"
+  },
+  {
+   "t": "Google has sold so much TPU capacity that its own researchers are queueing for the rest",
+   "u": "https://thenextweb.com/news/google-tpu-compute-internal-researchers-anthropic",
+   "d": "2026-05"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Waymo 자율주행 택시",
+    "p": 35,
+    "why": "주당 유료 탑승 100만(연말 목표)·20개 이상 도시 확장이 성공 조건. 2026-02 투자 유치 때 기업가치 1,260억$로 평가(알파벳 지분율은 확인 못 함). 아직 손실 사업이라 본업 마진에는 당장 기여가 작아 bull 경로에만 반영 가능한 옵션으로 둠",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "TPU 외부 공급·임대 (Anthropic·Meta)",
+    "p": 55,
+    "why": "Anthropic에 최대 100만 TPU(2026년 1GW 이상)·2027년부터 추가 수 GW, Meta 다년 임대 계약 보도. 성공 조건은 증설 속도와 자체 수요와의 용량 배분. 매출은 클라우드 수주잔고(5,140억$)에 일부 이미 포함돼 있어 별도 가산은 하지 않음",
+    "conf": "보도",
+    "src": [
+     7,
+     8
+    ]
+   }
+  ]
+ }
 }

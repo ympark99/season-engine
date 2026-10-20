@@ -2,7 +2,7 @@
  "m": "US",
  "code": "DELL",
  "name": "Dell Technologies",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 2분기 실적(2026-09-01) 뒤 — 연간 매출 가이던스 1,920억 달러 상향 반영",
  "mid": {
@@ -173,6 +173,22 @@
    "src": [
     1
    ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 10년간 매출 연 18.6% 성장하면서 마진 9% 유지를 전제. 낙관 시나리오(359달러)는 현재가의 약 79%라 시장은 백로그 이후에도 성장이 이어진다고 봄. 소버린·엔터프라이즈 AI는 확인되지만 그 규모를 가정에 더할 근거는 없어 bull 에 추가 반영하지 않음 — 부분만 확인",
+   "conf": "추정",
+   "src": [
+    6,
+    7,
+    8
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 inp.sbc 가 없어(조정 기준 아님) sbc 가정을 쓰지 않음",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -205,6 +221,46 @@
    "t": "Dell Shares Tumble As Barclays Downgrade Exposes Cracks In AI Infrastructure Rally",
    "u": "https://smbtech.au/news/dell-shares-tumble-as-barclays-downgrade-exposes-cracks-in-ai-infrastructure-rally/",
    "d": "2026-09"
+  },
+  {
+   "t": "Dell builds a sovereign AI stack for the on-prem era",
+   "u": "https://www.fierce-network.com/cloud/dell-builds-sovereign-ai-stack-prem-era",
+   "d": "2026"
+  },
+  {
+   "t": "Dell Technologies Enables NxtGen to Build India's Largest AI Factory",
+   "u": "https://www.hpcwire.com/aiwire/2026/01/30/dell-technologies-enables-nxtgen-to-build-indias-largest-ai-factory/",
+   "d": "2026-01-30"
+  },
+  {
+   "t": "AI servers drive Dell. Company revises financial targets upwards",
+   "u": "https://brandsit.pl/en/ai-servers-drive-dell-company-revises-financial-targets-upwards/",
+   "d": "2025-10"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "소버린 AI·네오클라우드용 AI 팩토리(인도 NxtGen, 호주 Macquarie, Mistral 등)",
+    "p": 50,
+    "why": "국가·지역 단위 온프렘 AI 수요가 계속 발주로 이어져야 성공. 이미 AI 서버 백로그 950억 달러에 일부 포함돼 본업 확장 성격이 강해 규모를 따로 떼어 추정하지 않음",
+    "conf": "보도",
+    "src": [
+     6,
+     7
+    ]
+   },
+   {
+    "name": "엔터프라이즈 온프렘 AI(AI 팩토리 고객 약 5,000곳)",
+    "p": 40,
+    "why": "추론·에이전트 수요가 기업 자체 서버·스토리지 구매로 확산돼야 성공. 인프라 부문 장기 성장 목표 연 11~14%(회사 목표)에 반영된 범위이며 별도 신규 계약 규모는 미확인",
+    "conf": "보도",
+    "src": [
+     8,
+     6
+    ]
+   }
+  ]
+ }
 }

@@ -21,14 +21,14 @@
  "scen": {
   "bull": {
    "p": 25,
-   "why": "1.6T AEC·광학 매출 6억달러 초과 달성 후 하이퍼스케일러 확대로 FY30 이후에도 고성장·고마진 유지",
+   "why": "1.6T AEC·광학 매출 6억달러 초과에 더해 OmniConnect(메모리 팬아웃)·NPO가 FY28부터 매출로 이어지고 하이퍼스케일러 확대로 FY30 이후에도 고성장·고마진 유지",
    "g": [
     null,
     null,
     null,
-    40,
-    35,
-    28
+    42,
+    36,
+    29
    ],
    "om": [
     null,
@@ -123,6 +123,15 @@
    "src": [
     5
    ]
+  },
+  {
+   "k": "신사업 근거",
+   "v": "DustPhotonics 인수(현금 7.5억$+주식, 2026-04 발표)로 실리콘포토닉스 내재화. OmniConnect(메모리 팬아웃)·NPO는 FY28 매출 시작 예상, 확인된 고객은 Positron 1곳뿐",
+   "conf": "공시",
+   "src": [
+    6,
+    7
+   ]
   }
  ],
  "sources": [
@@ -155,7 +164,41 @@
    "t": "Credo Form 10-K FY2026",
    "u": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026043303/crdo-20260502.htm",
    "d": "2026-06-01"
+  },
+  {
+   "t": "Credo Agrees to Acquire DustPhotonics (silicon photonics)",
+   "u": "https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Agrees-to-Acquire-DustPhotonics-Accelerating-Expansion-into-Silicon-Photonics-and-Next-Generation-Optical-Connectivity/default.aspx",
+   "d": "2026-04-13"
+  },
+  {
+   "t": "Credo (CRDO) Q1 FY2027 Earnings: Optics Is the Second Engine (OmniConnect·NPO)",
+   "u": "https://www.simpletechtrend.com/en/post/crdo-q1-fy2027-earnings-optical-600m-npo-omniconnect-en",
+   "d": "2026-09-02"
   }
  ],
- "sbc": 7
+ "sbc": 7,
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "OmniConnect 메모리 팬아웃(Weaver 기어박스)",
+    "p": 20,
+    "why": "추론용 GPU/XPU 메모리 확장 수요 확대와 다수 고객 채택이 조건. 회사는 GPU당 수천 달러 콘텐츠 기회를 언급, FY28 매출 시작 예상. 확인 고객은 Positron 1곳",
+    "conf": "보도",
+    "src": [
+     7
+    ]
+   },
+   {
+    "name": "실리콘포토닉스 PIC·NPO(근접 패키지 광학)",
+    "p": 35,
+    "why": "DustPhotonics 인수로 PIC 내재화, 대형 트랜시버 업체 2곳 설계 수주(800G·1.6T)와 NPO 설계 수주가 FY28 램프 목표. 업계 추정 PIC 시장 2030년 60억$. 기존 광학 강자와 경쟁이 성공 조건",
+    "conf": "공시",
+    "src": [
+     6,
+     7
+    ]
+   }
+  ]
+ }
 }
