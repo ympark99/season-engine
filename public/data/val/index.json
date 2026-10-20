@@ -16,7 +16,7 @@
   "name": "삼성전자"
  },
  "KR:006110": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "삼아알미늄"
  },
  "KR:006400": {
@@ -36,11 +36,11 @@
   "name": "LG이노텍"
  },
  "KR:034020": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "두산에너빌리티"
  },
  "KR:036930": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "주성엔지니어링"
  },
  "KR:050890": {
@@ -112,11 +112,11 @@
   "name": "티엘비"
  },
  "KR:373220": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "LG에너지솔루션"
  },
  "KR:417200": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "LS머트리얼즈"
  },
  "KR:425420": {
@@ -124,7 +124,7 @@
   "name": "티에프이"
  },
  "KR:475150": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "SK이터닉스"
  },
  "KR:475830": {
@@ -136,7 +136,7 @@
   "name": "APPLIED OPTOELECTRONICS INC"
  },
  "US:AAPL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "APPLE INC"
  },
  "US:ADI": {
@@ -144,15 +144,15 @@
   "name": "Analog Devices"
  },
  "US:ALAB": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "ASTERA LABS INC"
  },
  "US:AMAT": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "APPLIED MATERIALS INC"
  },
  "US:AMD": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Advanced Micro Devices"
  },
  "US:AMZN": {
@@ -160,7 +160,7 @@
   "name": "AMAZON COM INC"
  },
  "US:ANET": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "ARISTA NETWORKS INC"
  },
  "US:APH": {
@@ -168,7 +168,7 @@
   "name": "AMPHENOL CORP"
  },
  "US:ARM": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "ARM HOLDINGS PLC"
  },
  "US:ASTS": {
@@ -180,7 +180,7 @@
   "name": "AXT INC"
  },
  "US:BE": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Bloom Energy"
  },
  "US:CIEN": {
@@ -192,11 +192,11 @@
   "name": "COHERENT CORP"
  },
  "US:CRDO": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "CREDO TECHNOLOGY GROUP HOLDING LTD"
  },
  "US:CRWD": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "CrowdStrike"
  },
  "US:CRWV": {
@@ -204,7 +204,7 @@
   "name": "COREWEAVE INC"
  },
  "US:DDOG": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "DATADOG INC"
  },
  "US:DELL": {
@@ -220,7 +220,7 @@
   "name": "FORGENT POWER SOLUTIONS INC"
  },
  "US:GOOGL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Alphabet"
  },
  "US:HPE": {
@@ -228,7 +228,7 @@
   "name": "HEWLETT PACKARD ENTERPRISE CO"
  },
  "US:INTC": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Intel"
  },
  "US:IREN": {
@@ -240,7 +240,7 @@
   "name": "Lumentum"
  },
  "US:MCHP": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "MICROCHIP TECHNOLOGY"
  },
  "US:META": {
@@ -252,7 +252,7 @@
   "name": "MODERNA INC"
  },
  "US:MRVL": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Marvell Technology"
  },
  "US:MSFT": {

@@ -104,6 +104,24 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025 주식보상 약 1.45억$(2024 0.83억$) ÷ 매출 20.24억$ ≈ 7.2%(2024 5.6%). 매출이 2026 약 40억$, 이후 수배로 커지면 금액이 매출보다 느리게 늘어 비율이 내려간다고 보고 장기 2.5%로 가정(성숙 대형 제조업 수준 추정, 회사 목표치는 확인 안 됨)",
+   "conf": "추정",
+   "src": [
+    5,
+    6
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 10년간 매출 연 44% 성장 + 영업이익률 25% 필요. 낙관 시나리오 적정가가 현재가의 약 125%라 모델이 가격을 설명 못 하는 상태는 아님 — 낙관 경로(오라클 2.8GW 전량 배치, 2GW 이후 증설)가 이를 뒷받침하나 2.8GW 중 1.2GW만 계약·배치",
+   "conf": "추정",
+   "src": [
+    2,
+    3
+   ]
   }
  ],
  "sources": [
@@ -131,8 +149,19 @@
    "t": "Short seller attacked Bloom Energy's supply chain claims",
    "u": "https://www.barchart.com/story/news/3274458/short-seller-hunterbrook-attacked-bloom-energy",
    "d": "2026-07"
+  },
+  {
+   "t": "Bloom Energy Form 10-K FY2025 (주식보상 1.45억$)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+   "d": "2026-02"
+  },
+  {
+   "t": "Bloom Energy 4분기·2025 연간 실적 (매출 20.24억$)",
+   "u": "https://www.bloomenergy.com/news/bloom-energy-reports-fourth-quarter-and-full-year-2025-financial-results-with-record-full-year-revenues/",
+   "d": "2026-02-05"
   }
  ],
- "by": "Claude 조사",
- "at": "2026-10-19"
+ "by": "Claude 정기 조사",
+ "at": "2026-10-20",
+ "sbc": 2.5
 }

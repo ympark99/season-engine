@@ -2,7 +2,7 @@
  "m": "US",
  "code": "CRWD",
  "name": "CrowdStrike",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 2분기 실적(2026-08-26)·10-Q(2026-08-27) 뒤",
  "mid": {
@@ -119,6 +119,16 @@
    "src": [
     0
    ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 앞으로 10년간 매출이 연 49.2%씩 늘고 영업이익률 30%를 유지해야 현재가(4대1 액면분할 뒤 약 228.6달러)가 설명됨. 회사 목표(ARR FY31 100억$·FY36 200억$, 연 약 15~20%대 성장)와 FY27 성장률 약 24~26%를 훨씬 웃돎. 이를 뒷받침하는 계약·가이던스 근거는 확인되지 않아 낙관 시나리오에도 억지로 반영하지 않음",
+   "conf": "추정",
+   "src": [
+    0,
+    2,
+    5
+   ]
   }
  ],
  "sources": [
@@ -146,6 +156,11 @@
    "t": "Palo Alto Networks Reports Fiscal Fourth Quarter and Fiscal Year 2026 Financial Results (8-K Ex.99.1)",
    "u": "https://www.sec.gov/Archives/edgar/data/1327567/000132756726000019/ex991q426earningsrelease.htm",
    "d": "2026-09-01"
+  },
+  {
+   "t": "CrowdStrike 10-Q (2026-07-31) — 4대1 액면분할(2026-07-02 분할 후 거래) 반영 주식수",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001535527/000153552726000031/crwd-20260731.htm",
+   "d": "2026-08-27"
   }
  ]
 }

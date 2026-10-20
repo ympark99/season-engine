@@ -2,7 +2,7 @@
  "m": "US",
  "code": "MRVL",
  "name": "Marvell Technology",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "회계연도 2027 2분기 실적(2026-08-27) 및 2026-10-06 투자자의 날 뒤",
  "mid": {
@@ -19,7 +19,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 5,
  "wc": null,
  "scen": {
   "bull": {
@@ -154,6 +154,14 @@
    "v": "팹리스라 설비투자 비중 낮음(서버 계산 매출 대비 5.1%), 별도 회사 계획 확인 못 함",
    "conf": "추정",
    "src": []
+  },
+  {
+   "k": "주식보상",
+   "v": "FY2026 주식보상 약 5.91억$ ÷ 매출 81.95억$ ≈ 7.2% (FY2025 약 5.97억$ ÷ 57.67억$ ≈ 10.4%). 금액이 거의 늘지 않아 매출이 커질수록 비율이 내려가는 구조라 장기 비율을 5%로 둠(서버 자동 3.5%보다 높음). 금액은 집계 사이트 수치로 공시 원문 대조 필요, 장기 비율은 판단",
+   "conf": "추정",
+   "src": [
+    4
+   ]
   }
  ],
  "sources": [
@@ -176,6 +184,11 @@
    "t": "Marvell hands Google a $12.2bn share option in a custom-chip deal",
    "u": "https://thenextweb.com/news/marvell-google-12-2bn-warrant-custom-chip-deal",
    "d": "2026-07"
+  },
+  {
+   "t": "Marvell Form 10-K FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/mrvl-20260131.htm",
+   "d": "2026-03"
   }
  ]
 }

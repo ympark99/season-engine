@@ -2,7 +2,7 @@
  "m": "US",
  "code": "ARM",
  "name": "ARM HOLDINGS PLC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FYE27 1분기 실적(2026-07-29) 뒤, 2분기 실적(11-04) 전",
  "mid": {
@@ -106,6 +106,34 @@
    "src": [
     5
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "FY25 주식보상 7.94억$(매출 40.07억$ 대비 약 20%), 서버 계산 최근 18.2%. 비GAAP 마진이 이를 뺀 기준. 동종 성숙 팹리스 수준(10% 안팎)까지 내려간다고 보고 장기 12%. FY26 금액은 확인 못 함",
+   "conf": "추정",
+   "src": [
+    6,
+    1
+   ]
+  },
+  {
+   "k": "FY26 연간",
+   "v": "매출 49.2억$(+23%), GAAP 영업이익 9억$(18%), 비GAAP 영업이익률 43.0%(전년 46.7%), 비GAAP 영업비용 +33%",
+   "conf": "공시",
+   "src": [
+    1,
+    6
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "지금 주가는 향후 10년 매출 연 53% 성장 + 마진 38% 유지를 전제(낙관 시나리오 적정가는 현재가의 약 25%). 회사 목표(FYE31 총매출 250억$, AGI CPU 150억$, 칩 매출총이익률 약 50%)는 이미 낙관 경로에 반영. 목표를 넘는 근거(계약·수주잔고)는 확인 못 함: 고객 수요 20억$ 초과·RPO 20.7억$(-7%)뿐이라 추가 반영 안 함",
+   "conf": "추정",
+   "src": [
+    2,
+    4,
+    7
+   ]
   }
  ],
  "sources": [
@@ -138,6 +166,17 @@
    "t": "Qualcomm Wins Arm License Breach Verdict, $2 Damages",
    "u": "https://aiweekly.co/alerts/qualcomm-wins-arm-license-breach-verdict-awarded-2-in-damages",
    "d": "2026-10-09"
+  },
+  {
+   "t": "Arm Form 20-F FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001973239/000197323926000097/arm-20260331.htm",
+   "d": "2026-05"
+  },
+  {
+   "t": "Arm Q4 2026 earnings call transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/05/07/arm-arm-q4-2026-earnings-call-transcript",
+   "d": "2026-05-07"
   }
- ]
+ ],
+ "sbc": 12
 }
