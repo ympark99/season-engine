@@ -236,7 +236,7 @@ input.thin{font:inherit;font-size:12px;border:1px solid var(--line);background:v
 .vtag.gold{color:var(--gold-ink);border-color:var(--gold)}.vtag.warn{color:var(--pos);border-color:var(--pos)}
 .vverd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.vbig{font-size:26px;font-weight:750;letter-spacing:-.02em}
 .vkpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.vkpi>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 10px}
-.vscn{margin-top:10px;display:grid;gap:5px}.vscn b{font-size:12.5px;margin-right:4px}.vscn b.bull{color:var(--pos)}.vscn b.bear{color:var(--neg)}.vscn b.base{color:var(--gold-ink)}
+.vscn{margin-top:10px;display:grid;gap:8px}.vscn>div{font-size:13.5px;line-height:1.6;color:var(--ink)}.vscn .sub{color:var(--ink);font-size:13.5px}.vscn b{font-size:14px;font-weight:700;margin-right:6px}.vscn b.bull{color:var(--pos)}.vscn b.bear{color:var(--neg)}.vscn b.base{color:var(--gold-ink)}
 .vkpi span{display:block;font-size:11.5px;color:var(--muted);font-weight:600}.vkpi b{font-size:16px}
 @media (max-width:520px){.vkpi{grid-template-columns:repeat(2,1fr)}}
 .vlg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink2)}.vlg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
@@ -2783,22 +2783,25 @@ async function loadUpd(force){
   const get=async f=>{try{const r=await fetch('data/updates/'+f,{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}};
   const [M,I]=await Promise.all([get('macro.json'),get('intel.json')]);
   const by={};for(const x of M?.days||[])(by[x.d]||(by[x.d]={})).macro=x;for(const x of I?.days||[])(by[x.d]||(by[x.d]={})).intel=x;
-  UPD=Object.keys(by).sort().reverse().map(d=>({d,...by[d]}));renderUpd();
+  const cut=new Date(Date.now()+9*36e5-6*864e5).toISOString().slice(0,10);
+  UPD=Object.keys(by).sort().reverse().filter(d=>d>=cut).map(d=>({d,...by[d]}));renderUpd();
 }
 function renderUpd(){
   const el=$('updbody');if(!el)return;
   if(!UPD){el.innerHTML='<div class="loading">불러오는 중…</div>';return}
   if(!UPD.length){el.innerHTML='<div class="updd"><h2>업데이트</h2><div class="muted">아직 정기 작업 요약이 없어. 매일 아침 정기 작업이 끝나면 여기에 올라와.</div></div>';return}
+  const KO={us_rate_cap:'미국 금리 상단론',us_ai_profit_doubt:'AI 이익 의구심',us_hike_repricing:'미국 금리인상 재반영',us_funding_first:'미국 조달 우선론',us_twist_steepen:'미국 장단기 스티프닝',kr_foreign_flow_rules:'한국 외국인 수급 규칙',kr_fx_gate:'한국 환율 관문',kr_bok_split:'한국 금통위 의견 분열',us_cpi_sep:'9월 미국 CPI',others_money:'남의 돈',kr_foreign:'외국인 순매수',usdkrw:'원/달러',ust10y:'미 10년물',ust2y:'미 2년물',ust30y:'미 30년물',kospi:'코스피',wti:'WTI',fed_oct:'10월 FOMC 인상 확률',bok_oct:'10월 금통위',kr_semi_export:'반도체 수출'};
+  const ko=t=>String(t).replace(/\b[a-z][a-z0-9]*(?:_[a-z0-9]+)*\b/g,w=>KO[w]||w);
   const mt=m=>`<span class="mtag">${m==='KR'?'한국':m==='US'?'미국':'공통'}</span>`;
   const nm=x=>x.code?idSpan(x.m,x.code,x.name):esc(x.name||'');
   const wk='일월화수목금토',dd=d=>{const t=new Date(d+'T00:00:00Z');return `${d.slice(5).replace('-','.')} (${wk[t.getUTCDay()]})`};
   const tm=a=>a?new Date(a).toLocaleTimeString('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}):'';
   const rk=v=>v==null?'—':(v>0?'+':v<0?'−':'')+Math.abs(v);
-  const day=x=>{const M=x.macro,I=x.intel,news=[...(M?.news||[]).map(n=>`<li>${mt(n.m)}<b>${esc(n.t)}</b>${n.note?` — ${esc(n.note)}`:''}</li>`),...(I?.news||[]).map(n=>`<li>${mt(n.m)}${nm(n)} — ${esc(n.note||'')}</li>`)];
+  const day=x=>{const M=x.macro,I=x.intel,news=[...(M?.news||[]).map(n=>`<li>${mt(n.m)}<b>${esc(n.t)}</b>${n.note?` — ${esc(ko(n.note))}`:''}</li>`),...(I?.news||[]).map(n=>`<li>${mt(n.m)}${nm(n)} — ${esc(n.note||'')}</li>`)];
     const cps=I?.checkpoints||[],ni=I?.newIntel||[],nv=I?.newVal||[],fl=M?.flows||[];
     return `<h2>${dd(x.d)} 업데이트 <span class="sub" style="font-weight:400">${M?`매크로 ${tm(M.at)}`:'매크로 없음'} · ${I?`종목 조사 ${tm(I.at)}`:'종목 조사 없음'}</span></h2>
       ${M?`<h3>매크로 요약 <span class="sub" style="font-weight:400">위험도 미국 <b>${rk(M.risk?.US)}</b> · 한국 <b>${rk(M.risk?.KR)}</b>${M.risk?.chg?` · ${esc(M.risk.chg)}`:''}</span></h3><p class="sumt">${esc(M.summary||'')}</p>
-        ${(M.changes||[]).length?`<h3>매크로 변화</h3><ul>${M.changes.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>`:''}`:''}
+        ${(M.changes||[]).length?`<h3>매크로 변화</h3><ul>${M.changes.map(c=>`<li>${esc(ko(c))}</li>`).join('')}</ul>`:''}`:''}
       ${news.length?`<h3>바뀐 소식</h3><ul>${news.join('')}</ul>`:''}
       ${cps.length?`<h3>체크포인트 업데이트 <span class="muted" style="font-weight:400">${cps.length}개</span></h3><div class="tbl-wrap"><table class="acc" style="min-width:640px"><thead><tr><th>종목</th><th>체크포인트</th><th>일정</th><th>상태</th><th>무엇이 바뀌었나</th></tr></thead><tbody>
         ${cps.map(c=>`<tr><td>${mt(c.m)}${nm(c)}</td><td>${esc(c.what||'')}</td><td class="num">${esc(c.d||'—')}</td><td>${c.from&&c.from!==c.to?`${stB(c.from)} → `:c.from?'':'<span class="sub">신규</span> '}${stB(c.to)}</td><td class="sub" style="white-space:normal">${esc(c.note||'')}</td></tr>`).join('')}</tbody></table></div>`:''}
@@ -2806,9 +2809,9 @@ function renderUpd(){
       ${ni.length?`<h3>신규 조사 종목 <span class="muted" style="font-weight:400">${ni.length}개</span></h3><div class="lst">${ni.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}
       ${nv.length?`<h3>밸류에이션 가정 조사 종목 <span class="muted" style="font-weight:400">${nv.length}개</span></h3><div class="lst">${nv.map(x=>`<span>${mt(x.m)}${nm(x)}${x.note?` <span class="sub">${esc(x.note)}</span>`:''}</span>`).join('')}</div>`:''}
       ${fl.length?`<h3>매출 흐름도 작성 종목 <span class="muted" style="font-weight:400">${fl.length}개</span></h3><div class="lst">${fl.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}`};
-  const [first,...rest]=UPD.slice(0,30);
+  const [first,...rest]=UPD;
   el.innerHTML=`<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
-    <div class="sub" style="margin:6px 2px 20px">매일 아침 정기 작업 두 개 — '경쟁·기술 갱신'(종목 조사·체크포인트)과 '유닉스 서버 갱신'(매크로·매출 흐름도) — 이 끝나면 그날 요약을 여기에 올려. 최근 30일. 종목을 누르면 상세 화면으로 가. 투자 자문이 아니라 데이터 정리야.</div>`;
+    <div class="sub" style="margin:6px 2px 20px">매일 아침 정기 작업 두 개 — '경쟁·기술 갱신'(종목 조사·체크포인트)과 '유닉스 서버 갱신'(매크로·매출 흐름도) — 이 끝나면 그날 요약을 여기에 올려. 최근 7일. 종목을 누르면 상세 화면으로 가. 투자 자문이 아니라 데이터 정리야.</div>`;
 }
 /* 기간별 수익 차트 — 전략 8개 + 벤치마크 누적 수익률 (같은 날짜 축) */
 function stratChart(X){
