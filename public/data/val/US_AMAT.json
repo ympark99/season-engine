@@ -2,18 +2,20 @@
  "m": "US",
  "code": "AMAT",
  "name": "APPLIED MATERIALS INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "회계 3분기(2026-07-26 종료, 8월 13일 발표) 실적 뒤",
+ "basis": "회계 3분기(2026-07-26 종료, 8월 13일 발표) 실적 + 2026-10-13 SEMICON West 2030 목표 뒤",
  "type": "cyc",
  "typeWhy": "웨이퍼 장비(WFE) — 고객 반도체 업체의 설비투자 사이클을 따라 매출·마진이 움직이는 경기민감 업종. 자동 유형(고성장)은 최근 성장률만 본 것",
  "mid": {
-  "om": 32,
-  "why": "3분기 비GAAP 영업이익률 34.0%는 사상 최고. FY2025 비GAAP 30.2%, FY2024 29.2%. 사이클 중간값은 최근 고점과 평년 사이인 32%로 둠(AI·첨단 패키징 비중 확대분 일부 반영)",
+  "om": 33,
+  "why": "3분기 비GAAP 영업이익률 34.0% 사상 최고, FY2025 30.2%, FY2024 29.2%. 회사 2030년 목표 40%(달성 전 목표)는 중간값에 전부 넣지 않고, 사이클 중간값을 32%에서 33%로 소폭 상향(AI·첨단 패키징 비중 확대·서비스 성장 반영)",
   "conf": "추정",
   "src": [
    0,
-   1
+   1,
+   4,
+   5
   ]
  },
  "peak": {
@@ -39,13 +41,25 @@
  "wc": null,
  "scen": {
   "bull": {
-   "p": 25,
-   "why": "AI 로직·DRAM·첨단 패키징 증설이 FY2028 이후에도 이어지고 중국 규제가 현재 유예 수준 유지 — 서버 자동 경로(컨센서스 상단 후 마진 유지)",
-   "g": [],
-   "om": []
+   "p": 20,
+   "why": "회사 2030년 목표(비GAAP 영업이익률 40%, 총이익률 54%, 서비스 120억$+, WFE 점유율 2%p+ 상승)가 달성되고 AI 로직·DRAM·패키징 증설이 FY2029~30에도 성장",
+   "g": [
+    null,
+    null,
+    null,
+    6,
+    5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    38,
+    40
+   ]
   },
   "base": {
-   "p": 50,
+   "p": 55,
    "why": "컨센서스대로 FY2028까지 성장 후 성장률이 둔화하며 마진이 서서히 중간값 쪽으로 복귀",
    "g": [],
    "om": []
@@ -112,7 +126,7 @@
   },
   {
    "k": "수요 전망",
-   "v": "회사는 2026년 반도체 시스템 매출 전망을 상향, 2027년도 강한 성장 예상",
+   "v": "2026-10-13 SEMICON West 행사에서 2030년 비GAAP 총이익률 54%, 영업이익률 40% 목표(2025년 48.8%·30.2%), 서비스 매출 120억$ 초과, 디스플레이·광 20억$ 초과, WFE 점유율 2%p 이상 상승 목표. 전체 매출·WFE 시장 전망은 제시하지 않음",
    "conf": "보도",
    "src": [
     3
@@ -127,10 +141,48 @@
    ]
   },
   {
-   "k": "한계",
-   "v": "수주잔고·장기 마진 목표·회사의 설비투자 계획은 이번 조사에서 확인 못 함",
+   "k": "2030 목표",
+   "v": "2026-10-13 SEMICON West 행사에서 2030년 비GAAP 총이익률 54%, 영업이익률 40% 목표(2025년 48.8%·30.2%), 서비스 매출 120억$ 초과, 디스플레이·광 2억$... 아닌 20억$ 초과, WFE 점유율 2%p 이상 상승 목표. 전체 매출·WFE 시장 전망은 제시하지 않음",
+   "conf": "보도",
+   "src": [
+    4,
+    5
+   ]
+  },
+  {
+   "k": "수요 가시성",
+   "v": "3분기 실적 발표에서 대형 고객이 장기 약정과 분기 8개 롤링 예측을 주고 있으며 2027년도 강한 성장 예상. 로직·DRAM·패키징이 2026~27년 WFE 성장의 약 80%(2030년까지 약 75%). 수주잔고 수치는 확인 못 함",
+   "conf": "보도",
+   "src": [
+    6,
+    5
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "FY2025 주식보상비 6.6억$(FY2024 5.77억$, FY2023 4.9억$) — 매출 대비 약 2.3%. 서버 inp.sbc 가 비어 있어 주식보상 별도 차감 규칙은 적용되지 않으며 sbc 는 넣지 않음",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 정점 마진 34.7%가 15년 넘게 유지돼도 현재가(415$)가 안 나옴. 낙관 경로(자동)도 현재가의 49%. 시장이 가격에 넣은 것으로 확인된 근거는 회사 2030년 목표(영업이익률 40%)와 고객 장기 약정 정도이며, 이를 bull 에 반영(p 20). 총매출 목표가 없어 현재가 전체를 설명하는 수준의 근거는 없음 — 가격에 맞추려고 가정을 올리지 않음",
    "conf": "추정",
-   "src": []
+   "src": [
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "k": "한계",
+   "v": "수주잔고·회사의 설비투자 금액 계획은 확인 못 함(생산능력 2배 이상 확대 투자만 언급). 4분기 실적은 2026-11-12 예정(2차 자료)",
+   "conf": "추정",
+   "src": [
+    4
+   ]
   }
  ],
  "sources": [
@@ -153,6 +205,21 @@
    "t": "Applied Materials Q3 earnings call highlights (Nasdaq)",
    "u": "https://www.nasdaq.com/articles/applied-materials-q3-earnings-call-highlights",
    "d": "2026-08-13"
+  },
+  {
+   "t": "Applied Materials targets WFE share gains through 2030 (Investing.com)",
+   "u": "https://www.investing.com/news/company-news/applied-materials-targets-wfe-share-gains-through-2030-93CH-4947283",
+   "d": "2026-10"
+  },
+  {
+   "t": "Applied Materials Stock Fell 21% in 8 Straight Sessions. Here's What Its 2030 Targets Mean (TIKR)",
+   "u": "https://www.tikr.com/blog/applied-materials-stock-fell-21-in-8-straight-sessions-heres-what-its-2030-targets-mean-for-shares",
+   "d": "2026-10"
+  },
+  {
+   "t": "Applied Materials (AMAT) Q3 2026 Earnings Call Transcript (Motley Fool)",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/20/applied-materials-amat-q3-2026-earnings-call-transcript/",
+   "d": "2026-08"
   }
  ]
 }

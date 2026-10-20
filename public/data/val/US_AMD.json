@@ -2,7 +2,7 @@
  "m": "US",
  "code": "AMD",
  "name": "Advanced Micro Devices",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-04) 뒤 — 3분기 실적(11-03) 전",
  "mid": {
@@ -19,7 +19,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 2.5,
  "wc": null,
  "scen": {
   "bull": {
@@ -125,6 +125,24 @@
    "src": [
     5
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 16.38억$(2024 14.07억$), 2026년 2분기 5.03억$ ÷ 매출 115억$ ≈ 4.4%. 컨센서스 마진은 이를 뺀 조정 기준. 매출이 2028~35년 수 배로 커지는 동안 금액 증가가 느려 비율이 낮아진다고 보고 장기 2.5%로 둠(동종 성숙 반도체 대기업 2~5% 범위의 낮은 쪽, 추정)",
+   "conf": "추정",
+   "src": [
+    6,
+    7
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 10년간 매출 연 36% 성장·영업이익률 27%여야 현재가 설명. 낙관 적정가가 현재가를 웃돌아 모델이 설명 가능하며, 근거는 OpenAI 6GW·Anthropic 2GW 계약과 회사 장기 목표(매출 연 35%+)",
+   "conf": "추정",
+   "src": [
+    3,
+    5
+   ]
   }
  ],
  "sources": [
@@ -157,6 +175,16 @@
    "t": "AMD to invest $5bn in Anthropic, which will deploy 2GW of Instinct MI450 GPUs",
    "u": "https://www.datacenterdynamics.com/en/news/amd-to-invest-5bn-in-anthropic-with-ai-company-to-deploy-2gw-of-instinct-mi450-gpus/",
    "d": "2026-07"
+  },
+  {
+   "t": "AMD Form 10-K FY2025 (주식보상 16.38억$)",
+   "u": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+   "d": "2026-02-04"
+  },
+  {
+   "t": "AMD Reports Second Quarter 2026 Financial Results (IR)",
+   "u": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+   "d": "2026-08-04"
   }
  ]
 }

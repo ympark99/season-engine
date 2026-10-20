@@ -2,7 +2,7 @@
  "m": "US",
  "code": "CRDO",
  "name": "CREDO TECHNOLOGY GROUP HOLDING LTD",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 1분기 실적(2026-09-02) 뒤",
  "mid": {
@@ -115,6 +115,14 @@
    "v": "회사 장기 영업이익률 목표는 이번 조사에서 확인 못 함",
    "conf": "추정",
    "src": []
+  },
+  {
+   "k": "주식보상",
+   "v": "최근 주식보상은 매출의 약 11.7%(서버 재무 계산). 매출이 10년간 약 6~9배 커지는 동안 보상 금액이 그만큼 늘지 않는다고 보고 장기 7%로 둠(성숙 반도체 업체 높은 쪽 수준 가정). FY26 판관비 증가분 중 주식보상 증가가 4,440만$로 최대 요인",
+   "conf": "추정",
+   "src": [
+    5
+   ]
   }
  ],
  "sources": [
@@ -142,6 +150,12 @@
    "t": "Credo reports Q1 FY27 earnings, guides optical revenue above $600M",
    "u": "https://cryptobriefing.com/credo-q1-fy27-earnings-optical-revenue/",
    "d": "2026-09-02"
+  },
+  {
+   "t": "Credo Form 10-K FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026043303/crdo-20260502.htm",
+   "d": "2026-06-01"
   }
- ]
+ ],
+ "sbc": 7
 }

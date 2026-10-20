@@ -2,9 +2,9 @@
  "m": "US",
  "code": "INTC",
  "name": "Intel",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "2026년 2분기 실적(2026-07 발표) 뒤, 3분기 실적(10-29 예정) 전",
+ "basis": "2026년 2분기 실적(2026-07 발표) 뒤, 3분기 실적(10-29 예정) 전. 4월 Tesla·Terafab 14A 보도 반영",
  "mid": {
   "om": 20,
   "why": "서버 CPU 수요 회복과 18A 가동으로 비GAAP 영업이익률 17.2%까지 올랐지만 AMD 점유율 상승·파운드리 감가상각 부담이 커 서버 자동값(21%)보다 약간 낮게 봄. 파운드리 외부 고객 확보 여부가 핵심",
@@ -18,24 +18,32 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 2.5,
  "scen": {
   "bull": {
    "p": 25,
-   "why": "14A 핵심 외부 고객 확정 + 서버 CPU 공급 부족이 이어져 파운드리 가동률·마진 개선",
+   "why": "14A 핵심 외부 고객(Tesla·Terafab 보도 등) 실제 확정·양산 + 서버 CPU 공급 부족이 이어져 파운드리 가동률·마진 개선",
    "g": [
     null,
     null,
     null,
+    18,
+    16,
     14,
     12,
-    10
+    10,
+    8,
+    6
    ],
    "om": [
     null,
     null,
     null,
-    29,
+    31,
+    32,
+    32,
+    31,
+    30,
     29,
     28
    ]
@@ -105,16 +113,26 @@
    ]
   },
   {
-   "k": "장기 마진 목표",
-   "v": "회사의 장기 영업이익률 목표는 이번 조사에서 확인하지 못함",
-   "conf": "추정",
-   "src": []
-  },
-  {
    "k": "계약·고객 집중도",
    "v": "장기공급계약·수주잔고 수치는 확인하지 못함(null)",
    "conf": "추정",
    "src": []
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 앞으로 10년 매출 연 29.7% 성장·영업이익률 20% 유지를 전제(낙관 적정가는 현재가의 약 41%). 4월 Tesla가 Terafab에 14A를 쓰겠다는 머스크 발언 보도, 서버 CPU 2026년 매진 보도, 200억 달러 증자가 가격에 반영된 것으로 보임. 다만 Intel 공식 확정·계약 규모·수주잔고는 확인 안 됨 — 부분만 확인, 낙관 경로에만 일부 반영",
+   "conf": "추정",
+   "src": [
+    5
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 24.3억 달러(집계 사이트 수치, 공시 대조 필요), 서버 기준 현재 매출 대비 3.3%. 구조조정으로 감소 추세라 장기 2.5%로 가정(동종 성숙 반도체 기업 2~3% 수준 추정)",
+   "conf": "추정",
+   "src": [
+    6
+   ]
   }
  ],
  "sources": [
@@ -142,6 +160,16 @@
    "t": "Intel to Report Third-Quarter 2026 Financial Results",
    "u": "https://www.intc.com/news-events/press-releases/detail/1782/intel-to-report-third-quarter-2026-financial-results",
    "d": "2026-10-06"
+  },
+  {
+   "t": "Intel lands Tesla as first major customer for 14A chip technology (Reuters 전재, The Star)",
+   "u": "https://www.thestar.com.my/tech/tech-news/2026/04/23/intel-lands-key-first-customer-for-chip-03914a039-chip-tech-with-tesla039s-terafab-project-musk-says-",
+   "d": "2026-04-23"
+  },
+  {
+   "t": "Stock-Based Compensation for Intel (INTC)",
+   "u": "https://tickerleague.com/companies/INTC/financials/sbc-expense",
+   "d": "2026-10"
   }
  ]
 }

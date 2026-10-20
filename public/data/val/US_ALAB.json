@@ -2,7 +2,7 @@
  "m": "US",
  "code": "ALAB",
  "name": "ASTERA LABS INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-04) 뒤, 3분기 실적(11-03) 전",
  "mid": {
@@ -100,10 +100,21 @@
   },
   {
    "k": "주식보상",
-   "v": "2분기 연구개발비 증가에 주식보상 증가 1,860만$ 기여(서버 자동 가정은 매출의 12.8%→6.4%)",
-   "conf": "공시",
+   "v": "2025년 연간 주식보상 1.600억$ (2024년 2.346억$, IPO 연동 베스팅 감소). 매출 약 8.5억$ 대비 약 19%(총이익 6.45억$·총이익률 75.7%로 역산한 추정). 2분기 이후 서버 기준 12.8%. 성숙 동종은 Broadcom 약 9%, Marvell 약 12% 수준이라 장기 9%로 둠",
+   "conf": "추정",
    "src": [
-    1
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 앞으로 10년간 매출 연 46.8% 성장하고 마진이 38%로 내려와도 버텨야 지금 주가. 낙관 적정가는 현재가의 약 53%. Scorpio X·UALink·맞춤 실리콘 매출화는 회사 설명뿐 수주잔고·장기계약 수치는 확인 못 함 — 부분만 확인, 시나리오는 가격에 맞추지 않고 유지",
+   "conf": "추정",
+   "src": [
+    0,
+    3
    ]
   }
  ],
@@ -127,6 +138,22 @@
    "t": "Astera Labs Aries 7 PCIe 7 signal conditioning portfolio",
    "u": "https://finviz.com/news/400431/astera-labs-announces-aries-7-industrys-first-pcie-7-signal-conditioning-portfolio-across-copper-and-optical-interconnects",
    "d": "2026-10-08"
+  },
+  {
+   "t": "Astera Labs 2025 4분기·연간 실적 발표",
+   "u": "https://ir.asteralabs.com/news-releases/news-release-details/astera-labs-reports-fourth-quarter-and-full-year-2025-financial",
+   "d": "2026-02-10"
+  },
+  {
+   "t": "Credo vs. Marvell 비교 (주식보상 비중 언급)",
+   "u": "https://www.tipranks.com/news/article/broadcom-vs-marvell-one-ai-stock-is-for-buying-one-is-for-taking-profits-says-investor",
+   "d": "2026"
+  },
+  {
+   "t": "Broadcom 주식보상 2026 분석",
+   "u": "https://kalkine.com/news/technology/broadcom-stock-based-compensation-2026-the-2-billion-per-quarter-question-every-avgo-investor-must-answer",
+   "d": "2026"
   }
- ]
+ ],
+ "sbc": 9
 }

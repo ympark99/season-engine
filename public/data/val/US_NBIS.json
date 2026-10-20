@@ -2,7 +2,7 @@
  "m": "US",
  "code": "NBIS",
  "name": "Nebius Group",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-08-12) 뒤 가정",
  "type": "growth",
@@ -21,7 +21,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 4,
  "wc": null,
  "scen": {
   "bull": {
@@ -134,6 +134,23 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 비용 8.32천만$(전년 5.45천만$ 대비 +53%), 2025년 매출 대비 약 16%(분기 합산 매출 약 5.3억$ 기준 직접 계산), 서버 최근 12개월 11.1%. 매출이 수십 배로 커지면 비율이 빠르게 낮아져 성숙 인프라 사업 수준인 장기 4%로 가정(회사 장기 목표는 확인 안 됨 — 추정)",
+   "conf": "추정",
+   "src": [
+    5
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "역DCF: 10년간 매출 연 41.9% 성장·영업이익률 18% 필요. 낙관 적정가가 현재가 이상이라 모델이 가격을 대체로 설명하며, 근거는 5GW 계약 전력·Meta/Microsoft 계약(보도)이나 실제 가동 전환은 미확인",
+   "conf": "추정",
+   "src": [
+    0,
+    3
+   ]
   }
  ],
  "sources": [
@@ -161,6 +178,11 @@
    "t": "CoreWeave Revenue Backlog Reaches $104 Billion",
    "u": "https://pulse2.com/coreweave-revenue-backlog-reaches-104-billion-before-another-25-billion-of-new-commitments/",
    "d": "2026-08"
+  },
+  {
+   "t": "Nebius Group N.V. Form 20-F FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926052948/nbis-20251231x20f.htm",
+   "d": "2026-02"
   }
  ]
 }
