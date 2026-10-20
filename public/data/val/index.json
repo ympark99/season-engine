@@ -280,7 +280,7 @@
   "name": "ServiceNow"
  },
  "US:NVDA": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "NVIDIA CORP"
  },
  "US:OKTA": {
@@ -292,7 +292,7 @@
   "name": "ORACLE CORP"
  },
  "US:PLTR": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "PALANTIR TECH INC"
  },
  "US:RKLB": {
@@ -304,7 +304,7 @@
   "name": "SEMTECH CORP"
  },
  "US:SNDK": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Sandisk"
  },
  "US:SNOW": {
@@ -316,11 +316,11 @@
   "name": "SPACE EXPLORATION TECHNOLOGIES CORP"
  },
  "US:STM": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "STMICROELECTRONICS"
  },
  "US:STX": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "SEAGATE TECHNOLOGY HOLDINGS PLC"
  },
  "US:TEAM": {
@@ -348,7 +348,7 @@
   "name": "VICOR CORP"
  },
  "US:VLO": {
-  "at": "2026-10-19",
+  "at": "2026-10-20",
   "name": "Valero Energy"
  }
 }

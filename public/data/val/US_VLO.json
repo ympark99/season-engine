@@ -2,9 +2,9 @@
  "m": "US",
  "code": "VLO",
  "name": "Valero Energy",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
- "basis": "2026년 2분기 실적(2026-07) 뒤 가정, 3분기 실적(10-22) 발표 전",
+ "basis": "2026년 2분기 실적(2026-07) 뒤 가정, 3분기 실적(10-22) 발표 전 · 신사업 점검 반영",
  "mid": {
   "om": 5,
   "why": "정유 마진은 정제마진 사이클에 좌우. 2022년 정제 영업이익 약 158억$, 2023년 약 115억$ 뒤 2024년 약 40억$로 급락한 사이클 중간값을 서버 자동값(5%)과 같게 둔다. 현재 마진은 설비 폐쇄·공급 차질에 따른 정점 성격",
@@ -121,6 +121,15 @@
    "src": [
     4
    ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "본업 밖 확인된 신규 대형 사업은 DGD(재생디젤·SAF 합작, 연 약 12억 갤런)뿐이며 이미 가동 중이라 본업 이익에 포함. 벤시아 중단·캘리포니아 잔여 설비는 전략 검토 중(결과 미확인)",
+   "conf": "공시",
+   "src": [
+    5,
+    6
+   ]
   }
  ],
  "sources": [
@@ -148,6 +157,31 @@
    "t": "Goldman: Diesel prices set to stay high through 2027 as refineries struggle to meet demand",
    "u": "https://www.cnbc.com/2026/10/06/diesel-oil-refinery-price-capacity-demand.html",
    "d": "2026-10-06"
+  },
+  {
+   "t": "Diamond Green Diesel approves SAF project in Texas",
+   "u": "https://biodieselmagazine.com/articles/diamond-green-diesel-approves-saf-project-in-texas-2518534",
+   "d": "2023-01"
+  },
+  {
+   "t": "Valero Energy Form 10-Q (2026-06-30)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026050937/vlo-20260630.htm",
+   "d": "2026-07"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Diamond Green Diesel 재생디젤·SAF 확대",
+    "p": 50,
+    "why": "SAF 전환(포트아서, 2024 가동 완료)은 이미 가동 중. 정책(RIN 배수 2027-01 축소, 의무량 상향)에 따라 이익이 크게 변동. 2분기 재생디젤 영업이익 7.17억$. 추가 확장 계약·투자 확정은 확인 못해 시나리오 경로에 별도 가산하지 않음",
+    "conf": "공시",
+    "src": [
+     5,
+     6
+    ]
+   }
+  ]
+ }
 }

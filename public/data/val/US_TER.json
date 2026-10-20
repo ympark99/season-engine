@@ -218,6 +218,41 @@
    "t": "Teradyne Q3 가이던스 보도(Reuters 인용)",
    "u": "https://mezha.net/eng/?p=3195402",
    "d": "2026-07-28"
+  },
+  {
+   "t": "Teradyne Q2 2026 실적 요약(로봇 1.0억 달러·CPO 시장 전망, Futurum 등 검색 확인)",
+   "u": "https://futurumgroup.com/insights/teradyne-q2-fy-2026-doubles-semiconductor-test-revenue-on-ai-compute-and-memory-demand/",
+   "d": "2026-07"
+  },
+  {
+   "t": "Teradyne Robotics lays off another 14% of workforce",
+   "u": "https://www.therobotreport.com/teradyne-robotics-lays-off-another-14-of-workforce/",
+   "d": "2025"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "실리콘 포토닉스·공동패키징 광학(CPO) 테스트 (Quantifi Photonics 인수, Photon 100)",
+    "p": 25,
+    "why": "성공 조건: 광 연결 테스트가 AI 데이터센터 표준 공정에 채택됨. 경영진이 2028년 CPO 테스트 시장을 3억~7억 달러로 전망(회사 전망) — 연 매출 60억 달러대 회사에서 최대 한 자릿수 % 규모라 가치 기여는 작음. 제품 테스트 부문(2분기 1.07억 달러, +26%)에 포함되어 별도 매출은 미공개. 낙관 경로의 AI 테스트 확장 가정에 포함하고 기본 경로에는 넣지 않음",
+    "conf": "보도",
+    "src": [
+     1,
+     7
+    ]
+   },
+   {
+    "name": "로봇(Universal Robots·MiR) 수익화",
+    "p": 35,
+    "why": "성공 조건: 협동로봇·자율이동로봇 매출 성장과 2027년 EBITDA 흑자 전환 목표(회사 목표, 보도) 달성. 2분기 로봇 매출 1.0억 달러(+33%)로 전사 매출의 약 7.5%, 두 차례 인력 감축 이력이 있어 이익 기여는 제한적. 적자 해소 정도만 기대해 별도 가치는 시나리오에 넣지 않음",
+    "conf": "보도",
+    "src": [
+     1,
+     8
+    ]
+   }
+  ]
+ }
 }

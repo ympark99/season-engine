@@ -2,7 +2,7 @@
  "m": "US",
  "code": "STM",
  "name": "STMICROELECTRONICS",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2026년 2분기 실적(2026-07-23) 뒤, 3분기 실적(10-29) 전",
  "type": "cyc",
@@ -156,11 +156,20 @@
    ]
   },
   {
-   "k": "2025 총마진",
-   "v": "33.9% (2024년 39.3%)",
-   "conf": "공시",
+   "k": "데이터센터 매출 목표",
+   "v": "2026년 10억달러 초과, 2027년 20억달러 훨씬 초과(회사 목표) — 2027년분의 약 80%가 광연결 칩, 서버 전력은 2028년 전 의미 있는 매출 없음. AWS와 2026년 2월 다년 계약",
+   "conf": "보도",
    "src": [
-    2
+    5,
+    1
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 응답 inp.sbc 없음(조정 기준 아님) — sbc 미기입",
+   "conf": "추정",
+   "src": [
+    0
    ]
   }
  ],
@@ -189,6 +198,50 @@
    "t": "STMicroelectronics Expects its Space Business to Reach More than $3B Over Three Years",
    "u": "https://www.satellitetoday.com/technology/2026/05/04/stmicroelectronics-expects-its-space-business-to-reach-more-than-3b-over-three-years/",
    "d": "2026-05-04"
+  },
+  {
+   "t": "STMicro Targets $2B AI Data-Centre Revenue by 2027, CFO Reveals",
+   "u": "https://www.globalbankingandfinance.com/stmicros-2027-ai-revenue-four-fifths-optics-cfo/",
+   "d": "2026-09"
+  },
+  {
+   "t": "STMicroelectronics Launches High-Volume Production of Silicon Photonics Platform",
+   "u": "https://intellectia.ai/news/stock/stmicroelectronics-launches-highvolume-production-of-silicon-photonics-platform",
+   "d": "2026"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "AI 데이터센터 광연결(PIC100 실리콘 포토닉스·BiCMOS, AWS 협력)",
+    "p": 60,
+    "why": "성공 조건: 300mm 증설(2027년까지 4배 이상)과 타워세미·인피니언과의 경쟁에서 점유 유지. 성공 시 2027년 데이터센터 매출 20억달러 초과 — 이미 base/bull 매출 경로에 반영",
+    "conf": "보도",
+    "src": [
+     5,
+     1,
+     0
+    ]
+   },
+   {
+    "name": "LEO 위성·우주 사업",
+    "p": 65,
+    "why": "2026년 매출 10억달러 근접, 2026~28년 누적 30억달러 초과 목표(회사). 고객 집중과 점유율 하락 가정이 변수",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   },
+   {
+    "name": "800V DC AI 서버 전력",
+    "p": 25,
+    "why": "엔비디아 800VDC 생태계 참여지만 의미 있는 매출은 2028년 이후이고 인피니언이 규모에서 앞서므로 bull에만 반영",
+    "conf": "보도",
+    "src": [
+     5
+    ]
+   }
+  ]
+ }
 }

@@ -172,6 +172,42 @@
    "t": "Okta Stock Is Up 132% Since March. Is the Stock Already Priced In?",
    "u": "https://www.tikr.com/blog/okta-stock-is-up-132-since-march-is-the-stock-already-priced-in",
    "d": "2026-09"
+  },
+  {
+   "t": "Okta Sees AI Agent Identity Market Outgrowing Traditional IAM at Oktane 2026",
+   "u": "https://www.marketbeat.com/instant-alerts/event-okta-sees-ai-agent-identity-market-outgrowing-traditional-iam-at-oktane-2026-2026-09-23/",
+   "d": "2026-09-23"
+  },
+  {
+   "t": "Okta (OKTA) Q2 2027 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/31/okta-okta-q2-2027-earnings-call-transcript/",
+   "d": "2026-08-26"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "Okta for AI Agents·Agent SSO (AI 에이전트 신원)",
+    "p": 30,
+    "why": "성공 조건: 에이전트 수가 사람 수를 넘어서고 에이전트 단위 과금이 자리 잡아 별도 매출로 잡힐 것. 현재 신제품이 신규 수주의 30%, 대형 계약에서 에이전트 몫이 플랫폼 지출의 약 1/4~1/3이라는 보도이나 경영진은 FY27 매출 기여를 미미하다고 언급하고 의미 있는 기여는 FY28 이후로 봄. Agent SSO는 핵심 SSO에 무료 포함돼 과금 모델 미정. 낙관 경로(성장 10~11%, 마진 33~34%)에만 반영, 기본 경로엔 미반영",
+    "conf": "공시",
+    "src": [
+     0,
+     6,
+     7
+    ]
+   },
+   {
+    "name": "Permiso 인수 (신원 위협 탐지·비인간·에이전트 신원 보안)",
+    "p": 40,
+    "why": "2억$ 안팎 인수(보도)가 막 완료돼 기존 신원 위협 보호·보안 태세 관리와 통합 예정. 성공 조건: 통합 제품이 교차판매로 매출 증가분을 만들 것. 규모는 공시된 바 없어 기본 경로에는 따로 넣지 않음",
+    "conf": "보도",
+    "src": [
+     5,
+     7
+    ]
+   }
+  ]
+ }
 }

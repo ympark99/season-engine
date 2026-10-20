@@ -2,7 +2,7 @@
  "m": "US",
  "code": "NVDA",
  "name": "NVIDIA CORP",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 2분기 실적(2026-08-26, 분기말 2026-07-26) 뒤",
  "mid": {
@@ -142,6 +142,24 @@
    "src": [
     1
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "서버 inp.sbc 가 비어 조정 기준 아님(주식보상을 비용으로 따로 빼지 않음) — sbc 입력 안 함. 최근 10-Q 기준 분기 주식보상 약 17억$(FY26 3분기)로 매출 대비 1~2%",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "신사업 점검",
+   "v": "2026-10-20 점검: 본업(데이터센터) 밖 확인 사업은 자동차·로봇, Groq 라이선스, 생태계 지분. 모두 규모 근거가 약해 시나리오 경로는 바꾸지 않음",
+   "conf": "추정",
+   "src": [
+    6,
+    7,
+    8
+   ]
   }
  ],
  "sources": [
@@ -174,6 +192,53 @@
    "t": "AMD says Helios AI servers are in full production",
    "u": "https://www.cxodigitalpulse.com/amd-says-helios-ai-servers-are-in-full-production-with-openai-deployment-planned-later-this-year/",
    "d": "2026"
+  },
+  {
+   "t": "Nvidia (NVDA) Q2 2027 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/31/nvidia-nvda-q2-2027-earnings-call-transcript/",
+   "d": "2026-08-31"
+  },
+  {
+   "t": "Nvidia signs $20B deal with Groq; plans $10B investment in Anthropic",
+   "u": "https://www.tradingview.com/news/tradingview:32f6d6ab5a79b:0-key-facts-nvidia-signs-20b-deal-with-groq-ceo-to-speak-at-ces-2026-plans-10b-investment-in-anthropic/",
+   "d": "2026"
+  },
+  {
+   "t": "Nvidia's $70 billion bet on OpenAI, Anthropic, and others",
+   "u": "https://finance.yahoo.com/markets/stocks/article/nvidias-70-billion-bet-on-openai-anthropic-and-others-could-pay-off-big-for-shareholders-150039868.html",
+   "d": "2026"
   }
- ]
+ ],
+ "newBiz": {
+  "at": "2026-10-20",
+  "items": [
+   {
+    "name": "자동차·로봇(DRIVE Thor·Jetson Thor)",
+    "p": 50,
+    "why": "자율주행·로봇 양산 확대가 조건. 실적 발표 통화에서 자동차 부문 온프렘 매출 최근 12개월 80억$ 언급(기업용 온프렘 기준, 전체 자동차 매출 아님). 데이터센터 대비 규모 작아 bull 경로에도 별도 가산 안 함",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   },
+   {
+    "name": "Groq 추론 기술 라이선스",
+    "p": 50,
+    "why": "비독점 라이선스·인력 영입(약 200억$ 보도). 추론 전용 칩 제품화 성공이 조건. 10-Q에는 라이선스 계약만 확인, 금액·매출 기여 미공시",
+    "conf": "보도",
+    "src": [
+     7
+    ]
+   },
+   {
+    "name": "OpenAI·Anthropic 등 지분 투자",
+    "p": 30,
+    "why": "OpenAI 300억$·Anthropic 최대 100억$ 등 생태계 지분(합계 약 700억$ 추정 보도). 상장·평가차익 실현이 조건이며 순환 수요 논란. 지분 가치는 서버가 별도로 더하지 않음",
+    "conf": "보도",
+    "src": [
+     8
+    ]
+   }
+  ]
+ }
 }
