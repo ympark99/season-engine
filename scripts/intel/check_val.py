@@ -81,6 +81,18 @@ for f in files:
                 rng(f'scen.{k}.{key}', v, lo, hi, name)
     if ps and (len(ps) != 3 or abs(sum(ps) - 100) > 1):
         bad.append(f'{name} scen p 합={sum(ps)} (3개 합 100)')
+    nb = d.get('newBiz')
+    if nb is not None:
+        if not isinstance(nb, dict) or not nb.get('at') or not isinstance(nb.get('items', []), list):
+            bad.append(f'{name} newBiz 는 {{at, items[]}}')
+        else:
+            for it in nb['items']:
+                if not it.get('name'):
+                    bad.append(f'{name} newBiz.items name 없음')
+                rng('newBiz.p', it.get('p'), 0, 100, name)
+                src('newBiz ' + str(it.get('name', '')), it.get('src'))
+                if it.get('conf') is not None and it['conf'] not in CONF:
+                    bad.append(f'{name} newBiz.conf={it["conf"]!r}')
     for x in d.get('facts', []):
         src('fact ' + str(x.get('k', '')), x.get('src'))
         if x.get('conf') not in CONF:

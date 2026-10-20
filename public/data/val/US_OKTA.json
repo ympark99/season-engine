@@ -2,7 +2,7 @@
  "m": "US",
  "code": "OKTA",
  "name": "OKTA INC",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "FY27 2분기 실적(2026-08-26, 분기말 2026-07-31) 뒤",
  "mid": {
@@ -18,7 +18,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 10,
  "wc": 55,
  "scen": {
   "bull": {
@@ -124,6 +124,22 @@
    "src": [
     3
    ]
+  },
+  {
+   "k": "주식보상",
+   "v": "FY26 현금흐름표 주식보상 약 5.44억$ ÷ 매출 29.19억$ ≈ 19%(제3자 집계, 10-K 원문 미확인); 서버는 조정 기준 현재 13.8%로 봄. 동종 성숙 소프트웨어(대형 SaaS 8~12%) 수준으로 점차 하락 가정해 장기 10%",
+   "conf": "추정",
+   "src": [
+    4
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "서버 역DCF: 영구성장률을 할인율 바로 아래(8.9%)까지 올려도 현재가(190$) 불가 — 낙관 81$도 현재가의 43%. 주가는 8월 실적 후 급등(+28%)·AI 에이전트 신원 기대·Permiso 약 2억$ 인수가 반영된 것으로 보도되나, 경영진은 AI 기여가 FY27 가이던스에서 미미하다고 언급 — 확인된 매출·수주 근거는 부분만(cRPO +14%) 있어 시나리오는 올리지 않음",
+   "conf": "보도",
+   "src": [
+    5
+   ]
   }
  ],
  "sources": [
@@ -146,6 +162,16 @@
    "t": "Palo Alto Networks Completes Acquisition of CyberArk",
    "u": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-completes-acquisition-cyberark-secure--ai-era",
    "d": "2026-02-11"
+  },
+  {
+   "t": "Okta, Inc. Form 10-K (FY2026, 2026-01-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1660134/000166013426000020/okta-20260131.htm",
+   "d": "2026-03"
+  },
+  {
+   "t": "Okta Stock Is Up 132% Since March. Is the Stock Already Priced In?",
+   "u": "https://www.tikr.com/blog/okta-stock-is-up-132-since-march-is-the-stock-already-priced-in",
+   "d": "2026-09"
   }
  ]
 }

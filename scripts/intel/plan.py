@@ -101,10 +101,11 @@ for x in targets:
     if x['theme'] in VAL_NA:
         continue
     f = os.path.join(VD, f"{x['m']}_{x['code']}.json")
-    at = None
+    at, nb = None, False
     if os.path.exists(f):
         try:
-            at = json.load(open(f)).get('at')
+            d = json.load(open(f))
+            at, nb = d.get('at'), bool((d.get('newBiz') or {}).get('at'))
         except Exception:
             at = None
     if (x['m'], x['code']) in newkeys:
@@ -117,6 +118,8 @@ for x in targets:
             val_due.append({**x, 'why': f'실적 발표 완료 {e} 뒤'})
         elif (t0 - datetime.date.fromisoformat(at)).days >= VAL_STALE:
             val_due.append({**x, 'why': f'{VAL_STALE}일 경과'})
+        elif not nb:
+            backfill.append({**x, 'why': '신사업 점검 전'})   # newBiz.at 이 없는 기존 파일 — 하루 VAL_BACKFILL 개씩 채움
 val_due += backfill[:VAL_BACKFILL]
 json.dump(val_due, open(f'{W}/val.json', 'w'), ensure_ascii=False)
 

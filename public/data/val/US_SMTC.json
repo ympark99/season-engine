@@ -2,7 +2,7 @@
  "m": "US",
  "code": "SMTC",
  "name": "SEMTECH CORP",
- "at": "2026-10-19",
+ "at": "2026-10-20",
  "by": "Claude 정기 조사",
  "basis": "2027 회계 2분기 실적(2026-08-25) 뒤",
  "mid": {
@@ -19,7 +19,7 @@
  "tax": null,
  "g": null,
  "wacc": null,
- "sbc": null,
+ "sbc": 4,
  "wc": null,
  "scen": {
   "bull": {
@@ -120,8 +120,17 @@
    ]
   },
   {
-   "k": "장기 마진 목표·고객 집중도",
-   "v": "확인 못함(null)",
+   "k": "주식보상",
+   "v": "FY2026(2026-01 결산) 주식보상 약 57.7백만$ ÷ 매출 약 1,050백만$ ≈ 5.5% (전년 약 68백만$, 매출 909백만$ 기준 약 7.5%). 매출이 커지며 비율이 내려오는 추세라 장기 4%로 둠(서버 자동은 2.8%). 회사 장기 목표는 확인 못함",
+   "conf": "추정",
+   "src": [
+    4,
+    5
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "낙관 적정가가 현재가 이상이라 점검 대상 아님. 역DCF는 10년 매출 연 25.7% 성장·영업이익률 30% 유지를 전제. 장기 마진 목표·고객 집중도는 확인 못함",
    "conf": "추정",
    "src": [
     0
@@ -148,6 +157,16 @@
    "t": "Semtech: Operating Margin Swings 2,260 Basis Points As Revenue Jumps 33%",
    "u": "https://pulse2.com/semtech-operating-margin-swings-2260-basis-points-as-revenue-jumps-33/",
    "d": "2026-08"
+  },
+  {
+   "t": "Semtech Form 10-K FY2026",
+   "u": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000005/smtc-20260125.htm",
+   "d": "2026-03"
+  },
+  {
+   "t": "Semtech cash flow statement (stockanalysis.com)",
+   "u": "https://stockanalysis.com/stocks/smtc/financials/cash-flow-statement/",
+   "d": "2026-10"
   }
  ]
 }
