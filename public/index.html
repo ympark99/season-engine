@@ -299,6 +299,7 @@ td.vhl{background:var(--gold-soft);font-weight:700}
 .cmp .row{display:grid;grid-template-columns:70px 1fr 48px;gap:8px;align-items:center;font-size:12.5px}
 .cmp .track{height:10px;border-radius:4px;background:var(--line);overflow:hidden}
 .feed{display:grid;gap:0}
+.feed.calfeed{max-height:none;overflow:visible}
 .feed .ev{display:grid;grid-template-columns:78px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
 .feed .ev:first-child{border-top:0}
 .arrow{color:var(--muted);margin:0 4px}
@@ -1699,6 +1700,27 @@ function renderFlow(){
 }
 
 /* ④ 매크로 */
+let CAL=null;   // 일정 캘린더 요약 (/api/cron?op=cal) — 오늘 실적을 발표한 내 종목·앞으로 7일 실적·매크로 지표
+async function loadCal(){try{const r=await fetch('/api/cron?op=cal',{cache:'no-store'});CAL=r.ok?await r.json():null}catch(e){CAL=null}if(CAL&&D)renderMacro()}
+function calEarn(x){
+  const s=x.show||{},one=(k,e,sp,lbl)=>s[k]!=null?`${lbl} ${esc(s[k])}${s[e]?` <span class="muted">(예상 ${esc(s[e])}${s[sp]?` · ${esc(s[sp])}`:''})</span>`:''}`:null;
+  return [one('eps','epsEst','epsSurprise','EPS'),one('sales','salesEst','salesSurprise','매출'),one('op','opEst','opSurprise','영업이익')].filter(Boolean).join(' · ')||'<span class="muted">숫자 확인 중</span>';
+}
+function calBox(){
+  const C=CAL;if(!C||!C.earnings)return '';
+  const E=C.earnings,rel=C.macro.released,up=C.macro.upcoming.filter(x=>x.major),hol=C.holidays||[];
+  const fl=c=>`<span class="mflag ${c}">${c==='US'?'미국':'한국'}</span>`,mv=(v,u)=>v==null?'—':`${v}${u&&u!=='%'?' '+u:u}`;
+  const row=(d,l,r)=>`<div class="ev"><span class="num muted">${esc(d)}</span><span>${l}</span><span class="num" style="text-align:right">${r}</span></div>`;
+  const sec=(t,rows,empty)=>`<div class="sub" style="margin:10px 0 2px"><b>${t}</b></div>${rows.length?rows.join(''):`<div class="muted" style="padding:6px 0">${empty}</div>`}`;
+  const mine=x=>`<span class="lnk" ${openAttr(x.m,x.code,x.name)}><b>${esc(x.name)}</b></span>`;
+  const html=sec('내 종목 실적 — 방금 발표',E.mineReported.map(x=>row(x.date.slice(5),mine(x)+(x.when?` <span class="muted">${esc(x.when)}</span>`:''),calEarn(x))),'오늘·어제 실적을 발표한 내 종목 없음')
+    +sec('내 종목 실적 — 앞으로 7일',E.mineSoon.map(x=>row(x.date.slice(5),mine(x),`<span class="muted">${esc(x.when||'발표 예정')}</span>`)),'앞으로 7일 안 발표 예정인 내 종목 없음')
+    +sec('방금 발표된 지표',rel.map(x=>row(x.date.slice(5)+(x.time?' '+x.time:''),`${fl(x.c)} ${esc(x.title)}`,`${mv(x.actual,x.unit)} <span class="muted">(${esc(x.basis||'전기')} ${mv(x.prev,x.unit)})</span>${x.read?` · ${esc(x.read)}`:''}`)),'오늘·어제 발표된 지표 없음')
+    +sec('앞으로 7일 주요 지표·휴장',[...up.map(x=>row(x.date.slice(5)+(x.time?' '+x.time:''),`${fl(x.c)} ${esc(x.title)}`,`<span class="muted">${esc(x.basis||'전기')} ${mv(x.prev,x.unit)}</span>`)),
+      ...hol.map(x=>row(x.date.slice(5),esc(x.title),`<span class="muted">${esc(x.name)}</span>`))],'주요 지표·휴장 없음');
+  const warn=(C.aliasMissing||[]).length?`<div class="sub" style="margin-top:8px">이름표 없는 내 미국 종목 ${C.aliasMissing.map(esc).join(', ')} — lib/calalias.js 에 한글 이름을 추가해야 실적 발표를 잡아.</div>`:'';
+  return `<div class="box" style="margin-top:14px"><h3>일정 · 발표</h3><div class="sub">기준 ${esc(C.asof)}${C.at?` · 캘린더 ${esc(C.at.slice(5,16).replace('T',' '))} UTC`:''}${C.error?` · <span class="warn">${esc(C.error)}</span>`:''} · 시각은 한국시간. 실적을 낸 내 종목은 재무·적정가를 바로 다시 계산해.</div><div class="feed calfeed">${html}</div>${warn}</div>`;
+}
 function renderMacro(){
   if(!MACRO){$('macro').innerHTML='<div class="muted">macro.json 없음</div>';return}
   const M=MACRO,vc=v=>v==='Over'?'v-Over':v==='Equal'?'v-Equal':v==='Under'?'v-Under':'v-etc';
@@ -1714,6 +1736,7 @@ function renderMacro(){
       <div class="c">${esc(w.check)}</div>${w.if?`<div class="if">→ ${esc(w.if)}</div>`:''}${w.why?`<div class="if">왜 보나: ${esc(w.why)}</div>`:''}<div class="if num">기준 ${esc(w.asof||'')}${w.since?` · ${esc(w.since)}부터 감시`:''}</div></div>`).join('')}</div>
     <div class="sub" style="margin-top:8px"><span class="mleg good"></span> 조건 충족 · 좋은 신호 &nbsp; <span class="mleg bad"></span> 조건 충족 · 나쁜 신호 &nbsp; 테두리 없음 = 아직 미충족·중립</div>
     ${(M.retired||[]).length?`<div class="retired">최근 감시에서 뺀 지표 — ${M.retired.slice(0,6).map(r=>`${esc(r.name)} <span class="num">(${esc(r.d||'')})</span>: ${esc(r.why||'')}`).join(' · ')}</div>`:''}
+    ${calBox()}
     ${M.explain?`<div class="box" style="margin-top:14px"><h3>${esc(M.explain.title)}</h3><div class="explain">${M.explain.body.map(([n,t,d])=>`<b>${esc(n)}</b><span><b style="color:var(--ink)">${esc(t)}</b></span><span class="dsc">${esc(d)}</span>`).join('')}</div><div class="sub" style="margin-top:8px">${esc(M.explain.caveat)}</div></div>`:''}
     <div class="two" style="margin-top:14px">
       <div class="box"><h3>현금흐름 범주 뷰</h3>${M.categories.map(c=>`<div class="cat"><span><b>${esc(c.name)}</b> <span class="muted">· 내 목록 ${visible().filter(x=>catKey(x)===c.key).length}종목</span></span><span class="tag ${vc(c.view)}">${esc(c.view)}${c.chg&&c.chg!=='유지'?' · '+esc(c.chg):''}</span><span class="eg">${esc(c.eg)}</span></div>`).join('')}</div>
@@ -3098,7 +3121,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('ov').hidden)
   syncMkt();
   try{
     let C;[MACRO,C]=await Promise.all(['macro','categories'].map(n=>fetch(`data/${n}.json`,{cache:'no-store'}).then(r=>r.json()).catch(()=>null)));
-    loadIntelIdx();
+    loadIntelIdx();loadCal();
     if(C)CATS=C;
     loadMarket();loadUniverse();
     await reload();syncFav();

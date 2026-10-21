@@ -1,0 +1,10 @@
+너는 '매크로 갱신' 담당이다 (public/data/macro.json · public/data/updates/macro.json). 저장소 {REPO}, 한국어, 오늘={TODAY}. 투자 자문이 아니라 데이터 정리다.
+일정 캘린더 입력 — {WORK}/cal_macro.json (scripts/intel/plan.py 가 만든다. 없거나 error 가 있으면 이 단계는 건너뛰고 기존 방식대로 검색한다):
+ · released = 오늘·어제 발표된 지표. actual(실제)·prev(전기)·read(전기 대비 해석: '물가 상승 — 금리 부담' 등)·unit·basis(지난달·지난 분기)·time(한국시각)·major(주요 지표). forecast 는 대부분 null 이라 예상 대비 서프라이즈는 이 값으로 못 센다 — 예상치가 필요하면 그 지표만 검색한다.
+ · upcoming = 앞으로 7일 발표 예정. holidays = 앞으로 7일 휴장(국내·해외).
+쓰는 법:
+ 1. released 의 major 지표(CPI·PPI·PCE·고용·실업률·ISM·소매판매·GDP·금통위·FOMC)마다 macro.json 의 watch·theses 중 관련된 것을 찾아, 발표값을 검색 없이 그대로 value·chg 에 반영하고 trigger 조건(above/below)을 다시 판정한다. 값 옆 asof 는 발표일. 판단(theses)의 확인·반증 조건에 걸렸으면 status 를 고치고 `changes` 에 한 줄 남긴다.
+ 2. 금리 방향 지표(물가·고용)가 같은 방향으로 두 건 이상 움직였으면 policy.fed.next 의 인상·동결 확률 설명을 검색으로 다시 확인한다(확률은 캘린더에 없다).
+ 3. macro.json events 는 upcoming 에서 major=true 인 것으로 앞으로 7일을 채운다(없는 것만 추가, 이미 있는 항목은 문구 유지). FOMC·금통위 발표일 ±1일은 `what` 앞에 '금리 결정'을 붙인다. 휴장일이 껴 있으면 events 에 '휴장' 으로 한 줄.
+ 4. 위험도(risk.US·KR)는 이 입력만으로 바꾸지 않는다 — 발표값이 기존 trigger 를 건드렸을 때만, 기존 `risk.why` 의 조건에 맞춰 올리고 내린다.
+규칙: 숫자는 발표값 그대로(반올림·보정 금지). 데이터 제공처·증권사·애널리스트 이름을 쓰지 않는다. 캘린더에 값이 없는 지표를 추측으로 채우지 않는다.

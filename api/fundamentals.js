@@ -18,6 +18,7 @@ import { loadSecOvr, loadOvr, themeOf, GROUPS } from '../lib/themes.js';
 import { krStockInfo } from '../lib/kis.js';
 import { collectEstimates, loadEstimates, estForward, fwdTable } from '../lib/estimates.js';
 import { valuate, betaOf, usBand, valIndex, researchOf, intelIndex } from '../lib/valuation.js';
+import { earnersOf } from '../lib/calendar.js';
 
 /** 수집·점수 대상 — 유니버스 전종목(AI 밸류체인 추가 종목 포함) + 유니버스에 없는 내 목록 종목 (검색으로 추가한 종목도 대장 점수가 나오게) */
 export async function targetsOf(m) {
@@ -126,6 +127,34 @@ export async function collectChunk(m, { reset = false } = {}) {
   else if (est?.got) await scoreAll(m);
   await store.set(S_STATE(m), st);
   return { m, i: st.i, total: st.codes.length, got, skipped, est, failed: st.failed.length, done: st.done, blocked: st.blocked || null, ms: Date.now() - t0 };
+}
+
+/** 실적을 막 발표한 내 종목 — 주기(미국 7일·국내 3일)를 기다리지 않고 발표 뒤 재무(미국은 컨센서스도)를 바로 다시 받고, 점수와 밸류에이션(적정가)을 다시 계산한다.
+ *  대상은 lib/calendar.js markEarners 가 기록한 종목 중 발표 3시간이 지난 것. 이미 발표 뒤에 받은 종목은 건너뛰니 여러 번 불러도 된다. */
+export async function refreshEarners(m, budgetMs = 120000) {
+  const t0 = Date.now(), E = await earnersOf(m), nowIso = new Date().toISOString();
+  const codes = Object.keys(E).filter(c => E[c].after <= nowIso);
+  if (!codes.length) return { m, n: 0, done: [], failed: [] };
+  const done = [], failed = [];
+  let est = null;
+  if (m === 'US') {
+    try { est = await collectEstimates(codes, { budgetMs: Math.min(60000, budgetMs / 2), force: Object.fromEntries(codes.map(c => [c, E[c].d])) }); }
+    catch (e) { est = { error: e.message }; }
+  }
+  const blocked = m === 'US' ? await store.get(FWD_BLOCK) : null;
+  if (!blocked) for (const code of codes) {
+    if (Date.now() - t0 > budgetMs) break;
+    const cur = await store.get(KEY(m, code));
+    if (cur?.at > E[code].after) continue;                                         // 발표 뒤에 이미 받음
+    try { await collectOne(m, code); done.push(code); }
+    catch (e) {
+      failed.push({ code, error: e.message.slice(0, 140) });
+      if (m === 'US' && isBlock(e)) { await store.set(FWD_BLOCK, { at: new Date().toISOString(), why: e.message }, 6 * 3600); break; }
+    }
+    await sleep(GAP_MS);
+  }
+  const scored = done.length || est?.got ? (await scoreAll(m)).n : 0;
+  return { m, n: codes.length, done, failed, est, scored, blocked: blocked ? blocked.at : null, ms: Date.now() - t0 };
 }
 
 /** 선행 지표(요약표)만 다시 받기 — 재무 3종은 그대로 두고 1회 요청만. 7일 지난 종목만, 요청 사이 2.5초, 하루 600종목까지.
