@@ -24,6 +24,7 @@ lib/calalias.js         캘린더의 미국 종목 한글 이름 → 티커 (국
 lib/kis.js               KIS 일봉 (국내 FHKST03010100 · 해외 HHDFS76240000). 주문 기능 없음
 lib/store.js             Upstash Redis REST (패키지 의존성 없음)
 lib/labels.js            리포트·스크린샷 속 DS 실제 판정 (학습 정답지)
+scripts/intel/news.mjs     종목 뉴스 CLI — 토스 뉴스 API(로그인 불필요). 정기 조사가 WebSearch 보다 먼저 써서 토큰을 줄임 · 미국은 티커→회사코드를 검색 API 로 찾음
 scripts/build-master.mjs 빌드 때 KIS 종목 마스터 → 검색용 master.json (실패 시 95종목 대체)
 ```
 
@@ -48,3 +49,8 @@ KIS_APP_KEY=.. KIS_APP_SECRET=.. ADMIN_TOKEN=dev STORE_FILE=/tmp/store.json node
 - `op=earn` 크론 (국내 평일 16:30 KST, 미국 08:30·00:30 KST) — 내 종목이 발표했으면 발표 3시간 뒤부터 재무(+미국 컨센서스)를 7일 주기를 기다리지 않고 다시 받고, 점수·적정가를 다시 계산한다. 이미 발표 뒤에 받은 종목은 건너뛴다.
 - 정기 조사(`scripts/intel/plan.py`) — 캘린더로 확인된 발표(숫자가 채워진 날)는 체크포인트가 '완료'로 바뀌길 기다리지 않고 그날 `val.json` 에 올려 밸류에이션 가정을 다시 조사한다(`earn` 에 실제·예상 숫자). 매크로는 `cal_macro.json` 으로 매크로 갱신 작업(`prompts/macro_cal.txt`)에 준다.
 - 시험: `node --test test/calendar.test.mjs`
+
+## 뉴스 조회 (조사 토큰 절감)
+- `node scripts/intel/news.mjs --days 3 --n 8 US:SPCX KR:000660` — 종목별 최근 뉴스 제목·날짜·언론사·요약 앞 120자. `(+N)` 은 같은 소식을 다룬 다른 기사 수. `--json`·`--sum 0`(제목만)·`--order latest` 지원.
+- 원문 URL 은 없으므로 사이트 출처로 남길 소식만 제목으로 WebSearch 해서 URL 을 확인한다. 실패하면 `FAIL` 줄만 찍고 종료코드 0 — 그 종목만 WebSearch 로 대신한다.
+- 시험: `node --test test/news.test.mjs`
