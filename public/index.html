@@ -2368,9 +2368,9 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <div class="sub" style="margin-top:6px">기본 시나리오 적정가. 세로 = 할인율, 가로 = 영구성장률 (기본값 ± 범위). 금색 = 기본값 · <span class="up">빨강</span> = 현재가 이상 · <span class="dn">파랑</span> = 현재가 미만</div>`:'';
   if(pvOn){const P=j.prev,PJ={w:P.w,g:P.g,sc:P.sc};
     el.innerHTML=head+`<div class="sub" style="margin-top:6px">조사 가정이 바뀌기 직전, 그날 화면에 떴던 값 그대로야 (현재가도 그날 값). 역DCF·시나리오 표·민감도는 현재 보기에서만 봐.</div>
-      <div class="box" style="margin-top:8px">${valTop(PJ,{w:null,g:null},P.px,m,{bull:P.bull,base:P.base,bear:P.bear})}</div>`;
+      <div class="box" style="margin-top:8px">${valTop(PJ,{w:null,g:null},P.px,m,{bull:P.bull,base:P.base,bear:P.bear})}</div>${valReview(j,m,false)}`;
     bindView();return}
-  el.innerHTML=head+verdict+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
+  el.innerHTML=head+verdict+valReview(j,m,true)+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
     <h4 class="vsh">시나리오<button type="button" class="ibtn" id="v-fi" aria-label="FCF 계산 설명">i</button> <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
     <div class="ipop" id="vpop" role="dialog" aria-modal="true" aria-labelledby="vpop-h" hidden><div class="ipbox"><b id="vpop-h"></b><p id="vpop-t"></p><button type="button" class="pbtn" id="vpop-x">닫기</button></div></div>
     <h4>할인율·가정 <span class="sub" style="font-weight:400">움직이면 적정가가 바로 바뀌어 (역DCF·민감도 표는 기본값 기준)</span></h4>${wr}
@@ -2383,6 +2383,19 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
   const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;const GP=j.sens?.gap??0.02;if(W2-G2<GP){if(key==='g')st.g=W2-GP;else st.w=G2+GP}upd()}};
   sl('v-w','w');sl('v-g','g');if($('v-rst'))$('v-rst').onclick=()=>{st.w=null;st.g=null;$('v-w').value=(j.w*100).toFixed(1);$('v-g').value=(j.g*100).toFixed(1);upd()};
 }
+/* 실적 점검 — 직전 실적(review)이 이전 시나리오 기대치를 상회/충족/미충족/하회했는지 + 다음 실적 체크포인트(expect). 조사 파일이 채움 */
+function valReview(j,m,withExpect){const R=j.review,E=withExpect?j.expect:null;if(!R&&!E)return '';
+  const fv=(v,u)=>v==null?'—':(+v).toLocaleString('ko-KR',{maximumFractionDigits:1})+(u?(u==='%'?'%':' '+u):'');
+  const hitOf=it=>it.hit||(it.actual==null||it.base==null||it.bull==null||it.bear==null?null:it.actual>=it.bull?'상회':it.actual>=it.base?'충족':it.actual>=it.bear?'미충족':'하회');
+  const bd=h=>h?`<span class="sig ${h==='상회'||h==='충족'?'sig-up':'sig-weak'}" style="margin:0">${h}</span>`:'—';
+  let out='';
+  if(R)out+=`<h4>직전 실적 점검 <span class="sub" style="font-weight:400">${esc(R.for)} · ${esc(R.at||'')}</span> ${bd(R.verdict)}</h4>
+    <div class="tbl-wrap"><table style="min-width:520px"><thead><tr><th>항목</th><th class="r">낙관</th><th class="r">기본</th><th class="r">비관</th><th class="r">실제</th><th class="r">판정</th></tr></thead><tbody>${R.items.map(it=>`<tr><td>${esc(it.k)}</td><td class="r num">${fv(it.bull,it.u)}</td><td class="r num">${fv(it.base,it.u)}</td><td class="r num">${fv(it.bear,it.u)}</td><td class="r num"><b>${fv(it.actual,it.u)}</b></td><td class="r">${bd(hitOf(it))}</td></tr>`).join('')}</tbody></table></div>
+    ${R.note?`<div class="sub" style="margin-top:6px">${esc(R.note)}</div>`:''}`;
+  if(E)out+=`<h4>다음 실적 체크포인트 <span class="sub" style="font-weight:400">${esc(E.for)}${E.due?` · ${esc(E.due)}`:''}</span></h4>
+    <div class="tbl-wrap"><table style="min-width:520px"><thead><tr><th>항목</th><th class="r">낙관</th><th class="r">기본</th><th class="r">비관</th></tr></thead><tbody>${E.items.map(it=>`<tr><td style="white-space:normal;min-width:230px">${esc(it.k)}${it.why?`<div class="sub" style="white-space:normal">${esc(it.why)}</div>`:''}</td><td class="r num">${fv(it.bull,it.u)}</td><td class="r num"><b>${fv(it.base,it.u)}</b></td><td class="r num">${fv(it.bear,it.u)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="sub" style="margin-top:6px">실적이 나오면 다음 조사에서 이 표와 비교해 상회(≥ 낙관)·충족(≥ 기본)·미충족(≥ 비관)·하회(비관 미만)로 판정하고 가정을 고쳐</div>`;
+  return out}
 /* 시나리오 표 (결산별 매출·영업이익률·FCF) + 시나리오 적정가 한 줄 — 현재·이전 보기가 같이 쓴다 */
 function valScTbl(j,sk,m,V,id){const f=v=>v==null?'—':fmtP(v,m),SC=j.sc[sk],rows=SC.rows,srcTag=s=>`<span class="vsrc ${s==='컨센'?'c':s==='조사'?'r':''}">${s}</span>`;
   return `<div class="tbl-wrap"><table class="acc" style="min-width:${120+rows.length*76}px"><thead><tr><th>결산</th>${rows.map(r=>`<th class="r">${r.e.slice(0,7).replace('-','.')}<br>${srcTag(r.src)}</th>`).join('')}</tr></thead><tbody>
