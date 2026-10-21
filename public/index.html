@@ -2368,7 +2368,7 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <div class="sub" style="margin-top:6px">기본 시나리오 적정가. 세로 = 할인율, 가로 = 영구성장률 (기본값 ± 범위). 금색 = 기본값 · <span class="up">빨강</span> = 현재가 이상 · <span class="dn">파랑</span> = 현재가 미만</div>`:'';
   if(pvOn){const P=j.prev,PJ={w:P.w,g:P.g,sc:P.sc};
     el.innerHTML=head+`<div class="sub" style="margin-top:6px">조사 가정이 바뀌기 직전, 그날 화면에 떴던 값 그대로야 (현재가도 그날 값). 역DCF·시나리오 표·민감도는 현재 보기에서만 봐.</div>
-      <div class="box" style="margin-top:8px">${valTop(PJ,{w:null,g:null},P.px,m,{bull:P.bull,base:P.base,bear:P.bear})}</div>${foot}`;
+      <div class="box" style="margin-top:8px">${valTop(PJ,{w:null,g:null},P.px,m,{bull:P.bull,base:P.base,bear:P.bear})}</div>`;
     bindView();return}
   el.innerHTML=head+verdict+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
     <h4 class="vsh">시나리오<button type="button" class="ibtn" id="v-fi" aria-label="FCF 계산 설명">i</button> <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
