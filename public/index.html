@@ -1113,8 +1113,9 @@ function renderRot(){
 }
 /* ② 섹터 국면 — 섹터 점수·경보·진입 신호(lib/sectorsig.js, 4분면과 같은 재료로 서버가 계산) + 재료 장부(data/intel/sector_news.json)의 시장 반응 + 지난 1년 검증 */
 const LVN=['정상','주의','경고','이탈'];
-let SNEWS=null,SNEWSP=null;
-function loadSecNews(){if(SNEWS||SNEWSP)return SNEWSP;SNEWSP=fetch('data/intel/sector_news.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]})).then(j=>{SNEWS=j;renderSec();return j});return SNEWSP}
+let SNEWS=null,SNEWSP=null,SOUT=null;
+function loadSecNews(){if(SNEWS||SNEWSP)return SNEWSP;const jf=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
+  SNEWSP=Promise.all([jf('data/intel/sector_news.json'),jf('data/intel/sector_outlook.json')]).then(([j,o])=>{SNEWS=j||{items:[]};SOUT=o||{sec:{}};renderSec();return SNEWS});return SNEWSP}
 const secLv=l=>`<span class="lv l${l}">${LVN[l]}</span>`;
 const secEnt=e=>e?`<span class="ent${e==='선진입'?' e2':''}">${esc(e)}</span>`:'';
 const secQ=q=>`<span style="color:var(--${KEY[QD[q].s]}-ink);font-weight:700">${QD[q].k}</span>`;
@@ -1122,7 +1123,7 @@ const sfp=(v,d=1)=>v==null?'—':(v>0?'+':'')+(+v).toFixed(d);
 /* 소식 하나의 시장 반응 — 소식 날짜부터 3거래일 동안 그 섹터의 초과수익 합 (%p). 사이트가 계산, 배치는 반응을 보지 않는다 */
 function newsReact(x){
   const G=ROT?.sig;if(!G)return null;
-  const key=thName(x.code)||x.theme,S=G.sec?.[key];if(!S)return {key,none:true};
+  const key=x.sector?x.theme:(thName(x.code)||x.theme),S=G.sec?.[key];if(!S)return {key,none:true};
   const k0=G.dates.findIndex(d=>d>=x.d);if(k0<0)return {key,wait:true,n:0};
   let a=0,n=0;for(let k=k0;k<Math.min(G.dates.length,k0+3);k++){const h=S.h[k];if(h){a+=h[4];n++}}
   if(!n)return {key,wait:true,n:0};
@@ -1190,11 +1191,12 @@ function renderSec(){
     <td>${secStrip(s.h)}</td></tr>`};
   let det='';
   if(sel){const s=G.sec[sel],ev=(G.val?.events||[]).find(e=>e.k===sel&&e.d>=G.dates[0]),f=fl[sel];
-    const news=(SNEWS?.items||[]).filter(x=>x.m===state.m&&(thName(x.code)||x.theme)===sel).slice(0,8);
+    const news=(SNEWS?.items||[]).filter(x=>x.m===state.m&&(x.sector?x.theme:(thName(x.code)||x.theme))===sel).slice(0,8);
     det=`<div class="box" style="margin-top:12px"><h3>${esc(sel)} <span class="muted">${s.n}종목 · 점수 ${s.score} · ${QD[s.q].k} ${s.qDays}일째 · 경보 ${LVN[s.lvl]}${s.lvlSince?` (${s.lvlSince.slice(5)}부터)`:''}${s.ent?` · ${esc(s.ent)}`:''}</span> <button class="pbtn" id="secx" style="float:right;font-size:12px;padding:3px 10px">닫기</button></h3>
       <div class="secsum"><span>60일 초과 <b>${sfp(s.x)}%p</b></span><span>탄력 <b>${sfp(s.y)}</b></span><span>10일 초과 <b>${sfp(s.y10)}%p</b></span><span>5일 <b>${sfp(s.y5)}%p</b></span>
         <span>20일선 위 <b>${s.br}%</b> (5일 ${sfp(s.brChg5,0)} · 10일 ${sfp(s.brChg10,0)})</span><span>봄+여름 <b>${s.bull}%</b></span><span>60일 신고가 <b>${s.hi}</b> · 신저가 <b>${s.lo}</b></span></div>
       ${s.why?.length||f?.w?.length?`<ul class="why">${(s.why||[]).map(w=>`<li>${esc(w)}</li>`).join('')}${(f?.w||[]).map(x=>`<li>호재 무반응 — ${esc(x.name)} ${esc(x.d.slice(5))}: ${esc(x.note.slice(0,60))}… (3일 ${sfp(x.r.v)}%p)</li>`).join('')}</ul>`:'<div class="sub">경보 사유 없음</div>'}
+      ${secOutlook(sel)}
       ${(s.lead||[]).length?`<div class="sub" style="margin-top:8px">대장주(시가총액 상위): ${s.lead.map(l=>`<span class="lnk" ${openAttr(state.m,l.c,l.n)}>${esc(l.n||l.c)}</span> ${l.ok?'<span style="color:var(--summer-ink)">유지</span>':`<span style="color:var(--winter-ink)">${esc(l.why)}</span>`}`).join(' · ')}</div>`:''}
       ${ev?`<div class="sub" style="margin-top:6px">최근 소외 진입 ${ev.d.slice(5)} — ${ev.warn?`경고가 ${ev.warn.slice(5)}에 먼저 떴어 (${ev.lead}거래일 먼저)`:'그 전에 경고(2단계)는 없었어'}${ev.lead1!=null&&ev.lead1>(ev.lead??-1)?` · 주의는 ${ev.lead1}거래일 먼저`:''}</div>`:''}
       <div style="margin-top:10px">${secChart(s,G.dates)}</div>
@@ -1220,11 +1222,19 @@ function renderSec(){
   if($('secai'))$('secai').onclick=()=>{state.rotAI=!state.rotAI;state.rotSel=null;state.rotView=null;renderRot()};
   renderSecNews();renderSecVal();
 }
+/* 섹터 전체 업황 조사(data/intel/sector_outlook.json) — 가격 신호(점수·경보)를 재료로 대조하는 근거. 가격과 업황이 어긋나면 표시 */
+function secOutlook(sel){
+  const o=SOUT?.sec?.[state.m+':'+sel];if(!o)return '';
+  const col=o.view==='우호'?'var(--summer-ink)':o.view==='악화'?'var(--winter-ink)':'var(--muted)';
+  const s=ROT?.sig?.sec?.[sel],bad=s&&(s.lvl>=2),good=s&&s.lvl===0&&s.score>=60;
+  const gap=o.view==='우호'&&bad?'가격 경보는 켜졌는데 업황은 우호적 — 업황이 가격을 따라오는지 확인':o.view==='악화'&&good?'가격은 버티는데 업황은 악화 — 소외 조짐으로 볼 수 있어':'';
+  return `<div class="sub" style="margin-top:8px"><b>업황 조사</b> <span style="color:${col};font-weight:700">${esc(o.view)}</span> · ${esc(o.at.slice(5))} — ${esc(o.note)}${o.outlook?` <span class="muted">· 볼 것: ${esc(o.outlook)}</span>`:''}${o.deny?` <span class="muted">· 틀렸다고 볼 조건: ${esc(o.deny)}</span>`:''}${gap?`<div style="color:var(--gold-ink,var(--ink2));margin-top:2px">⚠ ${esc(gap)}</div>`:''}${(o.chg||[])[0]?` <span class="muted">· 최근 변경 ${esc(o.chg[0].d.slice(5))} ${esc(o.chg[0].from)}→${esc(o.chg[0].to)}</span>`:''}</div>`;
+}
 function newsRow(x){
   const r=newsReact(x),tone=x.tone?`<span class="ent${x.tone==='호재'?'':x.tone==='악재'?' e2':''}" style="${x.tone==='악재'?'color:var(--winter-ink);background:var(--winter-pill)':x.tone==='중립'?'color:var(--muted);background:var(--soft)':''}">${esc(x.tone)}</span>`:'<span class="sub">분류 전</span>';
   const rx=!r||r.none?'<span class="sub">섹터 없음</span>':r.wait?'<span class="sub">반응 대기</span>':`<span class="num" style="color:${r.v>=0?'var(--pos)':'var(--neg)'}">${sfp(r.v)}%p</span> <span class="sub">${r.n}일</span>${r.lab?` <span class="rxc ${r.cls}">${esc(r.lab)}</span>`:''}`;
   return `<div class="nwrow"><div class="num sub">${esc(x.d.slice(5))}<br>${tone}${x.scope?`<br><span class="sub">${esc(x.scope)}</span>`:''}</div>
-    <div><b style="font-weight:600">${esc(r?.key||x.theme||'')}</b> · <span class="lnk" ${openAttr(x.m,x.code,x.name)}>${esc(x.name)}</span> — ${esc(x.note)}${x.u?` <a href="${esc(x.u)}" target="_blank" rel="noopener" class="sub">출처</a>`:''}</div>
+    <div><b style="font-weight:600">${esc(r?.key||x.theme||'')}</b> · ${x.code?`<span class="lnk" ${openAttr(x.m,x.code,x.name)}>${esc(x.name)}</span>`:'<span class="ent">섹터 전체</span>'} — ${esc(x.note)}${x.u?` <a href="${esc(x.u)}" target="_blank" rel="noopener" class="sub">출처</a>`:''}</div>
     <div style="text-align:right">${rx}</div></div>`;
 }
 function renderSecNews(){
@@ -1234,7 +1244,7 @@ function renderSecNews(){
   const xs=all.filter(x=>!f||(f==='mix'?['w','b'].includes(newsReact(x)?.cls):x.tone===f));
   const lim=state.snlim||12,open=!!state.snopen;
   const tog=`<button type="button" class="chip" id="sntog" aria-expanded="${open}" aria-label="재료 장부 ${open?'접기':'펼치기'}" title="${open?'접기':'펼치기'}" style="min-width:34px;justify-content:center"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true" style="transform:rotate(${open?180:0}deg);transition:transform .15s"><path d="M1 1.5h10L6 8.5z" style="fill:var(--ink2)"/></svg></button>`;
-  const head=`<div class="rothead"${open?'':' style="margin-bottom:0"'}><h3 style="margin:0;font-size:15px">섹터 재료 장부 · 시장 반응 <span class="muted" style="font-weight:500">내 목록 종목의 최근 45일 소식 ${all.length}건 · 매일 경쟁·기술 갱신에서</span></h3>
+  const head=`<div class="rothead"${open?'':' style="margin-bottom:0"'}><h3 style="margin:0;font-size:15px">섹터 재료 장부 · 시장 반응 <span class="muted" style="font-weight:500">최근 45일 소식 ${all.length}건 (종목 소식 + 섹터 전체 업황) · 매일 경쟁·기술 갱신에서</span></h3>
       <div class="chips">${[['','전체'],['호재','호재'],['악재','악재'],['mix','반응 엇갈림']].map(([k,t])=>`<button class="chip" data-snf="${k}" aria-pressed="${f===k}">${t}</button>`).join('')}${tog}</div></div>`;
   if(!open){el.innerHTML=head;bindSn(el);return}
   el.innerHTML=head+`

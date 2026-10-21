@@ -51,3 +51,12 @@
 { "asof": "2026-10-20", "items": [ { "m": "US", "code": "NVDA", "name": "NVIDIA", "theme": "AI 반도체", "d": "2026-10-20", "note": "…", "tone": "호재", "scope": "구조적", "u": "https://…" } ] }
 ```
 사이트는 소식 날짜부터 3거래일 동안 그 섹터의 초과수익으로 반응을 계산해 '호재 무반응'(소외 조짐)·'악재 무반응'(바닥 신호)을 표시한다. `tone` 이 없는 예전 항목은 '분류 전'으로 보인다.
+
+## sector_outlook.json — 섹터 전체 업황 조사 (대시보드 ② 섹터 국면)
+종목 소식이 아니라 **섹터(시장+업종) 전체**의 수요·가격·정책·수급을 매일 따로 조사한 결과. `scripts/intel/merge_sector.py` 가 만든다 (직접 고치지 않는다). 조사 지침은 `scripts/intel/prompts/sector_research.txt`.
+```json
+{ "asof": "2026-10-21",
+  "sec": { "US:우주": { "m": "US", "theme": "우주", "at": "2026-10-21", "view": "우호|중립|악화", "note": "…", "outlook": "볼 것", "deny": "틀렸다고 볼 조건", "src": [{"t":"","u":"","d":""}], "chg": [{"d":"","from":"","to":""}] } },
+  "items": [ { "m": "US", "theme": "우주", "d": "2026-10-21", "note": "…", "tone": "호재", "scope": "구조적", "u": "https://…" } ] }
+```
+`items` 는 `build_index.py` 가 `sector_news.json` 에 `sector: true`, `code: null` 로 섞어 넣는다 — 사이트는 종목 소식과 같은 방식으로 3거래일 시장 반응을 계산한다. `sec[].view` 는 섹터 상세의 '업황 조사' 줄에 나오고, 가격 신호(경보·점수)와 어긋나면 ⚠ 표시.

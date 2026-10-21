@@ -73,6 +73,14 @@ for f in sorted(glob.glob(os.path.join(D, '[A-Z][A-Z]_*.json'))):
         news.append({'m': d['m'], 'code': d['code'], 'name': d['name'], 'theme': d.get('theme'), 'd': dd, 'note': note,
                      'tone': u.get('tone') if u.get('tone') in ('호재', '악재', '중립') else None,
                      'scope': u.get('scope') if u.get('scope') in ('구조적', '일회성') else None, 'u': url})
-news.sort(key=lambda x: (x['d'], x['m'], x['code']), reverse=True)
+# 섹터 전체 업황 소식 (sector_outlook.json items, merge_sector.py 가 만든다) — code 없이 sector=True 로 섞는다
+try:
+    for x in json.load(open(os.path.join(D, 'sector_outlook.json'))).get('items', []):
+        if x['d'] >= cut:
+            news.append({'m': x['m'], 'code': None, 'name': '섹터 전체', 'theme': x['theme'], 'sector': True, 'd': x['d'],
+                         'note': x['note'], 'tone': x.get('tone'), 'scope': x.get('scope'), 'u': x.get('u')})
+except FileNotFoundError:
+    pass
+news.sort(key=lambda x: (x['d'], x['m'], x['code'] or ''), reverse=True)
 json.dump({'asof': asof, 'items': news[:600]}, open(os.path.join(D, 'sector_news.json'), 'w'), ensure_ascii=False, indent=1)
 print('sector_news', len(news), 'items (tone 있음', sum(1 for x in news if x['tone']), ')')

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """경쟁·기술 갱신 — 1·2번(대상·분류) 준비.
 사용: python3 scripts/intel/plan.py [YYYY-MM-DD]   (오늘 날짜, 기본=KST 오늘)
-결과: /tmp/intel_work/ 에 targets.json, new.json, due.json, groups.json, gNN.json, val.json 을 만들고 요약을 출력한다.
+결과: /tmp/intel_work/ 에 targets.json, new.json, due.json, groups.json, gNN.json, val.json, sectors.json 을 만들고 요약을 출력한다.
+sectors.json = 섹터(시장+업종) 단위 업황 조사 목록 (5-2번 · prompts/sector_research.txt). 종목이 아니라 섹터 전체 업황을 본다.
 val.json = 오늘 밸류에이션 가정을 조사할 종목 (5-1번 · prompts/val_research.txt). 기준은 public/data/val/README.md.
 """
 import json, os, re, sys, time, datetime, subprocess, collections, urllib.request
@@ -123,6 +124,15 @@ for x in targets:
 val_due += backfill[:VAL_BACKFILL]
 json.dump(val_due, open(f'{W}/val.json', 'w'), ensure_ascii=False)
 
+# 5-2. 섹터 업황 조사 대상 — 내 목록의 (시장, 업종) 전부. 종목 소식이 없는 섹터도 업황은 본다.
+sec = collections.defaultdict(list)
+for x in targets:
+    sec[(x['m'], x['theme'])].append(x['name'])
+sectors = [{'id': f's{i:02d}', 'm': m, 'theme': th, 'members': names_}
+           for i, ((m, th), names_) in enumerate(sorted(sec.items()))]
+json.dump(sectors, open(f'{W}/sectors.json', 'w'), ensure_ascii=False)
+os.makedirs(f'{W}/sres', exist_ok=True)
+
 pd = os.path.join(REPO, 'scripts/intel/prompts')
 os.makedirs(f'{W}/prompts', exist_ok=True)
 for f in os.listdir(pd):
@@ -134,6 +144,7 @@ print(f'대상 {len(targets)}종목, 업종 {len({x["theme"] for x in targets})}
 print('신규(5번 전체 조사):', [(x['m'], x['code'], x['name'], x['theme']) for x in new])
 print('정기 전체 갱신(5번):', [(x['m'], x['code'], x['name'], x['theme']) for x in due])
 print(f'밸류에이션 조사(5-1번) {len(val_due)}종목 (파일 없는 기존 종목 남은 수 {max(0, len(backfill) - VAL_BACKFILL)}):', [(x['m'], x['code'], x['name'], x['why']) for x in val_due])
+print(f'섹터 업황 조사(5-2번) {len(sectors)}개 섹터: sectors.json')
 print(f'매일 확인 업종 그룹 {len(names)}개:')
 for n, th in names.items():
     print(f'  {n} {th} ({len(g[th])})')
