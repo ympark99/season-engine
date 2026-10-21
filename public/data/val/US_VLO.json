@@ -183,5 +183,158 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "VLO",
+  "name": "Valero Energy",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-07) 뒤 가정, 3분기 실적(10-22) 발표 전",
+  "mid": {
+   "om": 5,
+   "why": "정유 마진은 정제마진 사이클에 좌우. 2022년 정제 영업이익 약 158억$, 2023년 약 115억$ 뒤 2024년 약 40억$로 급락한 사이클 중간값을 서버 자동값(5%)과 같게 둔다. 현재 마진은 설비 폐쇄·공급 차질에 따른 정점 성격",
+   "conf": "추정",
+   "src": [
+    0,
+    3
+   ]
+  },
+  "peak": {
+   "years": 2,
+   "why": "2022~2023년 높은 정제마진이 약 2년 유지된 뒤 2024년 급락. 이번 정점은 설비 폐쇄·전쟁 피해로 길어질 수 있어 보수적으로 2년",
+   "conf": "추정",
+   "src": [
+    0,
+    4
+   ]
+  },
+  "trough": {
+   "om": 2,
+   "why": "2024년 정제 영업이익 약 40억$, 정제마진 배럴당 10.62$로 낮아진 해를 바닥으로 본다",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "설비 폐쇄와 러시아 정유 피해로 디젤·제트 정제마진이 2027년 이후에도 높게 유지",
+    "g": [],
+    "om": []
+   },
+   "base": {
+    "p": 50,
+    "why": "공급 차질이 풀리며 2028년 이후 정제마진이 중간값으로 수렴",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "수요 둔화와 가동 복구로 마진이 2024년 수준 근처로 빠르게 되돌림",
+    "g": [],
+    "om": []
+   }
+  },
+  "facts": [
+   {
+    "k": "2026 설비투자 가이던스",
+    "v": "약 20억$ (유지보수 약 17억$), 2분기 집행 3.5억$",
+    "conf": "공시",
+    "src": [
+     1,
+     2
+    ]
+   },
+   {
+    "k": "3분기 운영 가이던스",
+    "v": "현금 운영비 배럴당 약 4.75$, 재생디젤 판매 일평균 약 350만 갤런",
+    "conf": "공시",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "성장 프로젝트",
+    "v": "세인트찰스 FCC 최적화 2.3억$, 3분기 가동 예정",
+    "conf": "공시",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "포트아서 DHT",
+    "v": "수리비는 가이던스에 포함, 연말까지 복귀 예정",
+    "conf": "공시",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "과거 정제 영업이익",
+    "v": "2022년 약 158억$, 2023년 약 115억$, 2024년 약 40억$",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "정제마진 배럴당",
+    "v": "2023년 17.55$, 2024년 10.62$",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "미국 정제 능력",
+    "v": "2026-01-01 운영 능력 일평균 약 1,816만 배럴, 정점 대비 약 4.3% 감소, 벤시아 가동 중단",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "정제마진 전망",
+    "v": "디젤·제트 정제마진이 2027년 평균 배럴당 40$ 이상(통상 약 20$) 예상이 있음",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "Valero Energy Reports 2023 Fourth Quarter and Full Year Results (2022~2024 비교표 포함)",
+    "u": "https://investorvalero.com/news/news-details/2024/Valero-Energy-Reports-2023-Fourth-Quarter-and-Full-Year-Results/default.aspx",
+    "d": "2024-01"
+   },
+   {
+    "t": "Valero Energy Reports Second Quarter 2026 Results",
+    "u": "https://investorvalero.com/news/news-details/2026/Valero-Energy-Reports-Second-Quarter-2026-Results/default.aspx",
+    "d": "2026-07"
+   },
+   {
+    "t": "Valero Energy (VLO) Q2 2026 Earnings Call Transcript",
+    "u": "https://www.fool.com/earnings/call-transcripts/2026/08/03/valero-energy-vlo-q2-2026-earnings-call-transcript/",
+    "d": "2026-08-03"
+   },
+   {
+    "t": "Refinery closures and their impact on U.S. fuel supply in 2026",
+    "u": "https://www.bicmagazine.com/industry/refining-petrochem/refinery-closures-and-their-impact-on-us-fuel-supply/",
+    "d": "2026"
+   },
+   {
+    "t": "Goldman: Diesel prices set to stay high through 2027 as refineries struggle to meet demand",
+    "u": "https://www.cnbc.com/2026/10/06/diesel-oil-refinery-price-capacity-demand.html",
+    "d": "2026-10-06"
+   }
+  ]
  }
 }

@@ -218,5 +218,161 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "MXL",
+  "name": "MAXLINEAR INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-07-23) 뒤, 3분기 실적(10-22) 전",
+  "mid": {
+   "om": 25,
+   "why": "컨센서스 마진 31%는 주식보상 제외 조정 기준. 회사 장기 영업이익률 목표 30~35%(목표)와 동종 성숙 마진 사이에서, 고급 DSP는 Broadcom·Marvell 우위라 목표 하단보다 낮게 봄",
+   "conf": "추정",
+   "src": [
+    1,
+    4
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "sbc": null,
+  "wc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "Rushmore 1.6T가 2027년 매출을 시작해 하이퍼스케일 점유 확대, 마진이 회사 목표 30~35% 유지",
+    "g": [
+     null,
+     null,
+     null,
+     22,
+     18,
+     15
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     33,
+     33,
+     33
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "광 DSP 성장이 이어지나 Broadcom·Marvell과의 경쟁으로 마진이 서서히 내려옴(서버 자동 경로와 유사)",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "1.6T 퀄리피케이션 지연과 고객 집중(상위 10고객 55%)·실리콘모션 중재 비용으로 성장 둔화",
+    "g": [
+     null,
+     null,
+     null,
+     5,
+     4
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     22,
+     20
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "3분기 가이던스",
+    "v": "매출 2.1억~2.2억$, 비GAAP 매출총이익률 58.5~61.5%",
+    "conf": "공시",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "2분기 실적",
+    "v": "매출 1.688억$ (+55% 전년), GAAP 매출총이익률 57.8%",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "광 데이터센터 전망",
+    "v": "2026년 광 데이터센터 매출 전망 2.1억~2.3억$로 상향",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "장기 마진 목표",
+    "v": "장기 영업이익률 30~35% (회사 목표)",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "고객 집중도",
+    "v": "올해 상반기 한 고객 매출 11%, 상위 10고객 55%",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "계약 의무",
+    "v": "재고 구매 등 계약 의무 3.06억$ (작년 말 2.10억$)",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "경쟁",
+    "v": "고급 PAM4 DSP는 Broadcom·Marvell 중심, 1.6T 매출은 2027년 시작",
+    "conf": "추정",
+    "src": [
+     4
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "MaxLinear 8-K 2분기 2026 실적 보도자료",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001288469/000128846926000050/a06302026exhibit991.htm",
+    "d": "2026-07-23"
+   },
+   {
+    "t": "MaxLinear Q2 earnings call highlights",
+    "u": "https://www.marketbeat.com/instant-alerts/maxlinear-q2-earnings-call-highlights-2026-07-23/",
+    "d": "2026-07-23"
+   },
+   {
+    "t": "MaxLinear 10-Q 2026년 6월 30일 분기",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001288469/000128846926000051/mxl-20260630.htm",
+    "d": "2026-07"
+   },
+   {
+    "t": "MaxLinear Stock Drops 23% in a Month",
+    "u": "https://www.nasdaq.com/articles/maxlinear-stock-drops-23-month-should-you-buy-it-dip",
+    "d": "2026"
+   },
+   {
+    "t": "Can Credo Sustain Momentum in Optical Business Amid Competition?",
+    "u": "https://www.nasdaq.com/articles/can-credo-sustain-momentum-optical-business-amid-competition",
+    "d": "2026"
+   }
+  ]
  }
 }

@@ -191,5 +191,137 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "ALAB",
+  "name": "ASTERA LABS INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-08-04) 뒤, 3분기 실적(11-03) 전",
+  "mid": {
+   "om": 38,
+   "why": "조정 기준(주식보상 제외) 영업이익률 2분기 39.1%·3분기 전망 약 43%에서, 경쟁사(Credo·Marvell·Broadcom)의 PCIe 6 추격과 스위치 비중 확대로 장기에는 일부 내려온다고 보는 판단. 서버 자동값 34.7%보다 약간 높게 둠",
+   "conf": "추정",
+   "src": [
+    0,
+    2
+   ]
+  },
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "Scorpio X가 10곳 넘는 고객으로 퍼지고 UALink·Aries 7·맞춤 실리콘이 2027년 이후 계획대로 매출화되어 마진 유지",
+    "g": [],
+    "om": []
+   },
+   "base": {
+    "p": 50,
+    "why": "Scorpio X가 최대 제품군이 되며 2027~28년 컨센서스 성장 뒤 경쟁 심화로 성장·마진이 서서히 둔화",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "Marvell·Broadcom·Credo의 PCIe 6 스위치·리타이머 추격과 UALink 일정 후퇴가 겹쳐 2029년부터 성장이 한 자릿수로 꺾이고 마진 하락",
+    "g": [
+     null,
+     null,
+     null,
+     15,
+     10,
+     8,
+     6,
+     5,
+     4,
+     3
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     35,
+     33,
+     31,
+     30,
+     29,
+     28,
+     27
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "2분기 실적",
+    "v": "매출 3.924억$ (전년 +104%, 전분기 +27%), 비GAAP 영업이익률 39.1%, GAAP 영업이익률 22.7%",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "3분기 가이던스",
+    "v": "매출 5.4억~5.6억$, 비GAAP 총이익률 약 72%, 영업이익률 약 43%",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "제품 전환",
+    "v": "Scorpio 스위치가 3분기에 최대 제품군이 될 전망(기존보다 한 분기 앞당김, 회사 설명)",
+    "conf": "보도",
+    "src": [
+     0,
+     2
+    ]
+   },
+   {
+    "k": "차세대 일정",
+    "v": "Aries 7(PCIe 7) 2026년 4분기 샘플링 목표, UALink 스위치 초기 배치는 2027년",
+    "conf": "공시",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "고객 집중도",
+    "v": "소수 최종 고객이 매출을 좌우하는 것이 10-Q 위험 요인으로 명시됨 (구체 비중은 미확인)",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "주식보상",
+    "v": "2분기 연구개발비 증가에 주식보상 증가 1,860만$ 기여(서버 자동 가정은 매출의 12.8%→6.4%)",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "Astera Labs 8-K 2026년 2분기 실적 (Exhibit 99.1)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001736297/000173629726000033/q226exhibit991.htm",
+    "d": "2026-08-04"
+   },
+   {
+    "t": "Astera Labs Form 10-Q (2026-06-30 분기)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001736297/000173629726000035/alab-20260630.htm",
+    "d": "2026-08"
+   },
+   {
+    "t": "Astera Labs Q1 FY 2026 Earnings Highlight Scale-Up Switching Ramp (Futurum)",
+    "u": "https://futurumgroup.com/insights/astera-labs-q1-fy-2026-earnings-highlight-scale-up-switching-ramp/",
+    "d": "2026-05"
+   },
+   {
+    "t": "Astera Labs Aries 7 PCIe 7 signal conditioning portfolio",
+    "u": "https://finviz.com/news/400431/astera-labs-announces-aries-7-industrys-first-pcie-7-signal-conditioning-portfolio-across-copper-and-optical-interconnects",
+    "d": "2026-10-08"
+   }
+  ]
  }
 }

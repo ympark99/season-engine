@@ -22,4 +22,5 @@
  - newBiz {at:"{TODAY}", items:[{name,p,why,conf,src}]} — 3-1 결과. 확인된 신사업이 없으면 items:[].
  - facts 4~8개 {k,v,conf(공시·보도·추정),src}, sources 는 실제로 읽은 문서만 최대 10개 {t,u,d}.
 규칙: 출처 없는 숫자는 쓰지 않는다(모르면 null). 회사 목표치는 '목표'. 증권사·애널리스트 이름 금지. 숫자는 % 단위 숫자(32 = 32%).
+`prev`(직전 조사)는 쓰지 마라 — 검사 스크립트가 git 의 이전 버전으로 자동으로 넣는다. 기존 파일을 고쳐 쓸 때 `prev` 키를 지우지 마라(같은 날 재작성이면 유지된다).
 저장 후 `python3 {REPO}/scripts/intel/check_val.py {M}_{CODE}` 로 검사하고 문제가 있으면 고쳐라. 최종 응답은 한 줄만: "{M}:{CODE} type=X mid=Y% bull/px=Z% sbc=S 신사업=N개 OK" (bull/px = 2번 응답의 bull ÷ px, sbc = 넣은 값 또는 없음, N = newBiz.items 개수, 실패면 사유).

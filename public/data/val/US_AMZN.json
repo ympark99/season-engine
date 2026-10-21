@@ -217,5 +217,169 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "AMZN",
+  "name": "AMAZON COM INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-07-30) 뒤, 3분기 실적(10월 말) 전",
+  "type": null,
+  "typeWhy": null,
+  "mid": {
+   "om": 15,
+   "why": "AWS 영업이익률 약 39%로 높아졌고 광고 비중도 커져 합산 마진이 최근 12.7%에서 서서히 오름. 다만 설비투자 급증에 따른 감가상각 부담으로 컨센서스 정점(약 16%) 아래로 둠",
+   "conf": "추정",
+   "src": [
+    0,
+    3
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "sbc": null,
+  "wc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "AWS 수주잔고가 매출로 빠르게 바뀌고 자체 칩·광고 비중이 커져 2029년 이후에도 두 자릿수 성장과 18% 마진 유지",
+    "g": [
+     null,
+     null,
+     null,
+     13,
+     9
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     18,
+     18
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "AWS 성장이 점차 둔화하고 설비투자 감가상각이 마진을 눌러 2029년 이후 성장 한 자릿수, 마진 15% 안팎",
+    "g": [
+     null,
+     null,
+     null,
+     9,
+     6
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     15,
+     15
+    ]
+   },
+   "bear": {
+    "p": 25,
+    "why": "AI 수요 둔화나 가격 경쟁으로 대규모 설비투자 회수가 늦어지고 감가상각이 마진을 눌러 성장 3~5%, 마진 11%",
+    "g": [
+     null,
+     null,
+     null,
+     5,
+     3
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     11,
+     11
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "2분기 실적",
+    "v": "매출 2,006억$(+20%), 영업이익 275억$(+43%). 일회성 이익 약 12억$ 포함(관세 환급·에너지 계약 평가)",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "3분기 가이던스",
+    "v": "매출 1,970억~2,020억$, 영업이익 225억~265억$ (전년 3분기 영업이익 174억$)",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "2026 설비투자",
+    "v": "연 약 2,200억$로 상향(기존 약 2,000억$), 메모리·부품 가격 상승이 주 원인",
+    "conf": "보도",
+    "src": [
+     0,
+     2
+    ]
+   },
+   {
+    "k": "AWS 수주잔고",
+    "v": "2분기 말 약 4,960억$ (1분기 말 3,640억$)",
+    "conf": "보도",
+    "src": [
+     3,
+     4
+    ]
+   },
+   {
+    "k": "AWS 영업이익률",
+    "v": "2분기 약 39% (영업이익 166억$, 전년 약 33%)",
+    "conf": "보도",
+    "src": [
+     3,
+     4
+    ]
+   },
+   {
+    "k": "지역별 매출",
+    "v": "북미 1,162억$(+16%), 해외 422억$(+15%) — 지역별 영업이익률은 이번에 확인 못 함",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "Amazon (AMZN) Q2 2026 Earnings Call Highlights (GuruFocus)",
+    "u": "https://www.gurufocus.com/news/8993599/",
+    "d": "2026-07-30"
+   },
+   {
+    "t": "Amazon Q2 2026 earnings call highlights (MarketBeat)",
+    "u": "https://www.marketbeat.com/instant-alerts/amazoncom-q2-earnings-call-highlights-2026-07-30/",
+    "d": "2026-07-30"
+   },
+   {
+    "t": "Amazon's AI infrastructure bill just got $20B bigger (Fierce Network)",
+    "u": "https://www.fierce-network.com/cloud/memory-drives-amazon-capex-another-20b-2026",
+    "d": "2026-07"
+   },
+   {
+    "t": "Amazon 2Q26 Earnings Summary (VectorShift)",
+    "u": "https://vectorshift.ai/research/companies/amazon-com/earnings/2026-q2-summary",
+    "d": "2026-07"
+   },
+   {
+    "t": "AWS hits fastest growth in 18 quarters (TechMarketView)",
+    "u": "https://www.techmarketview.com/ukhotviews/archive/2026/07/31/aws-hits-fastest-growth-in-18-quarters",
+    "d": "2026-07-31"
+   }
+  ]
  }
 }

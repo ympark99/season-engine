@@ -214,5 +214,167 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "NOW",
+  "name": "ServiceNow",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-07-22) 뒤, 3분기 실적(10-28) 전",
+  "mid": {
+   "om": 33,
+   "why": "2026 조정 영업이익률 회사 전망 31.5%(Armis 반영), 2027년 AI 효율로 마진 확대 정상화 예상(회사 설명). 컨센서스 2028년 약 33% 수준을 장기 유지 마진으로 봄",
+   "conf": "추정",
+   "src": [
+    1,
+    0
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "sbc": null,
+  "wc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "Now Assist 등 AI 매출이 2030년 구독매출 300억달러 목표 이상으로 늘고 AI 효율로 마진이 확대되는 경로",
+    "g": [
+     null,
+     null,
+     null,
+     25,
+     22,
+     18
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     37,
+     38,
+     39
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "구독매출 2030년 약 300억달러 목표 근처 도달, 마진은 32~33% 유지",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "Salesforce·Microsoft 에이전트 경쟁과 좌석 과금 침식으로 성장이 둔화하고 Armis 등 인수 부담으로 마진이 28% 안팎에 머무는 경로",
+    "g": [
+     null,
+     null,
+     null,
+     15,
+     11,
+     8
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     28,
+     27,
+     26
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "2분기 실적",
+    "v": "구독매출 38.77억$ +24.5%, 비GAAP 영업이익률 29.5%, 2분기 FCF 6.34억$",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "수주잔고",
+    "v": "총 RPO 290억$ +21%, cRPO 132억$ +21%",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "가이던스",
+    "v": "3분기 구독매출 39.75~39.80억$, 영업이익률 약 31%. 연간 구독매출 157.6~157.8억$",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "연간 마진 전망",
+    "v": "비GAAP 영업이익률 31.5%, FCF 마진 35% (Armis가 연간 영업이익률 약 0.75%p, FCF 마진 약 2%p 낮춤)",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "장기 목표",
+    "v": "2030년 구독매출 300억$ 목표(Now Assist가 계약가치의 약 30%)",
+    "conf": "보도",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "마진 정상화",
+    "v": "AI 효율로 영업·FCF 마진 확대 추세가 2027년 정상화된다는 회사 설명",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "주식보상",
+    "v": "2분기 주식보상비 합계 약 6.5억$(직접 합산, 총매출 대비 약 15%)",
+    "conf": "추정",
+    "src": [
+     3
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "ServiceNow Form 8-K (2026년 2분기 실적)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
+    "d": "2026-07-22"
+   },
+   {
+    "t": "ServiceNow Form 8-K (2026년 1분기, Armis 인수·연간 전망)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000054/erq1fy26.htm",
+    "d": "2026-04"
+   },
+   {
+    "t": "ServiceNow Sees $30 Billion Revenue by 2030 on AI Uplift (Bloomberg)",
+    "u": "https://bloomberg.com/news/articles/2026-05-04/servicenow-projects-sales-to-hit-30-billion-on-ai-now-assist-uplift",
+    "d": "2026-05-04"
+   },
+   {
+    "t": "ServiceNow Form 10-Q (2026년 2분기)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000076/now-20260630.htm",
+    "d": "2026-07"
+   },
+   {
+    "t": "ServiceNow Form 10-Q (2026년 1분기)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000056/now-20260331.htm",
+    "d": "2026-04"
+   },
+   {
+    "t": "ServiceNow Q2 2026 report (TipRanks)",
+    "u": "https://www.tipranks.com/stocks/now/earnings/q2-2026-report",
+    "d": "2026-07"
+   }
+  ]
  }
 }

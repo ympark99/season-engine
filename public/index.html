@@ -135,6 +135,7 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-st.x{background:#fdeceb;color:#a3261d;border-color:#f3c4c0}
 .bh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 10px;margin-bottom:6px}.box .bh h3{margin:0}
 .seg.sm button{padding:3px 11px;font-size:12px}
+.seg button[disabled]{opacity:.4;cursor:default}
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
 .updd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
 .updd h2{font-size:18px;margin:0 0 4px}.updd h3{font-size:14px;margin:16px 0 6px}.updd ul{margin:4px 0 0;padding-left:18px}.updd li{margin:3px 0;font-size:13.5px;line-height:1.55}
@@ -2335,29 +2336,26 @@ async function loadVal(){const S=state.cur,el=$('d-s-val');if(!S||!el)return;
   const k=K(S);if(state.val?.k===k){drawVal();return}
   el.innerHTML='<div class="loading">밸류에이션 계산 중…</div>';
   let j=null,err=null;try{j=await api(`/api/fundamentals?val=${encodeURIComponent(S.code)}&m=${S.m}`)}catch(e){err=e.message}
-  if(state.cur!==S)return;state.val={k,j,err,w:null,g:null,sc:'base'};drawVal()}
+  if(state.cur!==S)return;state.val={k,j,err,w:null,g:null,sc:'base',view:'cur',psc:'base'};drawVal()}
 function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!st)return;
   if(st.err||!st.j){el.innerHTML=`<div class="warn">${esc(st.err||'밸류에이션을 못 불러왔어')}</div>`;return}
   const j=st.j,m=S.m,f=v=>v==null?'—':fmtP(v,m),B=j.band||(m==='KR'?state.dj?.band:null),src=j.sources||[],u=x=>/^https?:\/\//.test(x||'')?x:null;
   const sref=a=>(a||[]).filter(i=>src[i]).map(i=>{const x=src[i];return u(x.u)?`<a href="${esc(x.u)}" target="_blank" rel="noopener" title="${esc(x.t)}">[${i+1}]</a>`:`<span title="${esc(x.t)}">[${i+1}]</span>`}).join('');
   const px=S.last??j.px,I=j.inp;
   const peakSig=B?.per?.pct!=null&&B?.pbr?.pct!=null&&B.per.pct<=30&&B.pbr.pct>=80;
-  const head=`<div class="hh"><h4>밸류에이션 <span class="sub" style="font-weight:400">계산 ${esc(j.d||'—')}${j.resAt?` · 조사 가정 ${esc(j.resAt)}${j.research?.basis?` (${esc(j.research.basis)})`:''}`:' · <b>조사 전 — 자동 가정</b>'}</span></h4></div>
-    <div class="vtags"><span class="vtag gold" title="${esc(j.typeWhy||'')}">유형: ${esc(VTYPE[j.type]||j.type)}${j.typeBy==='조사'?' (조사)':''}</span><span class="vtag">${esc(VTYPE_RULE[j.type]||'')}</span>${peakSig?'<span class="vtag warn" title="PER 은 자기 과거 하위 30% 안, PBR 은 상위 20% 안 — 이익이 정점일 때 흔한 모양">사이클 정점 신호</span>':''}</div>
-    ${j.typeWhy?`<div class="sub" style="margin-top:4px">${esc(j.typeWhy)}</div>`:''}`;
+  const pvOn=st.view==='prev'&&!!j.prev,X=pvOn?j.prev:j;
+  const togOk=j.type!=='na'&&!j.loss&&j.base!=null,tog=togOk?`<span class="seg sm" id="v-view" style="flex:none" role="group" aria-label="밸류에이션 보기"><button type="button" data-v="cur" aria-pressed="${!pvOn}">현재</button><button type="button" data-v="prev" aria-pressed="${pvOn}" ${j.prev?'':'disabled title="직전 조사 기록이 아직 없어"'}>이전</button></span>`:'';
+  const head=`<div class="hh" style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><h4 style="flex:1 1 auto;min-width:0">밸류에이션 <span class="sub" style="font-weight:400">${pvOn?`직전 조사 가정 ${esc(X.resAt||'—')}${X.basis?` (${esc(X.basis)})`:''}`:`계산 ${esc(j.d||'—')}${j.resAt?` · 조사 가정 ${esc(j.resAt)}${j.research?.basis?` (${esc(j.research.basis)})`:''}`:' · <b>조사 전 — 자동 가정</b>'}`}</span></h4>${tog}</div>
+    <div class="vtags"><span class="vtag gold" title="${esc(X.typeWhy||'')}">유형: ${esc(VTYPE[X.type]||X.type)}${X.typeBy==='조사'?' (조사)':''}</span><span class="vtag">${esc(VTYPE_RULE[X.type]||'')}</span>${peakSig&&!pvOn?'<span class="vtag warn" title="PER 은 자기 과거 하위 30% 안, PBR 은 상위 20% 안 — 이익이 정점일 때 흔한 모양">사이클 정점 신호</span>':''}</div>
+    ${X.typeWhy?`<div class="sub" style="margin-top:4px">${esc(X.typeWhy)}</div>`:''}`;
+  const bindView=()=>el.querySelectorAll('#v-view [data-v]').forEach(b=>b.onclick=()=>{if(b.disabled)return;st.view=b.dataset.v;drawVal()});
   const band=bandBlock(B,S),facts=valFacts(j,sref),notes=(j.notes||[]).length?`<div class="sub" style="margin-top:8px">${j.notes.map(esc).join(' · ')}</div>`:'';
   const foot=`<div class="sub" style="margin-top:10px">계산은 서버가 해 (같은 재료·가정이면 늘 같은 값). 1~2년 차는 애널리스트 컨센서스(낙관 = 최고 추정, 비관 = 최저 추정 쪽), 그 뒤는 유형별 규칙 또는 '경쟁·기술 갱신'이 실적 발표 뒤 조사한 가정. 날짜별 적정가를 기록해서 나중에 '적정가보다 비쌀 때 실제로 빠졌나' 검증해. 투자 권유 아님.</div>`;
   if(j.type==='na'||j.base==null&&!j.loss){el.innerHTML=head+`<div class="box" style="margin-top:8px">${esc(j.why||'DCF 대상 아님')}</div>${band}${facts}${foot}`;return}
   if(j.loss){el.innerHTML=head+`<div class="box" style="margin-top:8px"><div class="sub">${esc(j.why)}</div>${valRev(j,m)}</div>${band}${facts}${notes}${foot}`;return}
   const w=st.w??j.w,g=st.g??j.g,V=valV(j,st);
   const verdict=`<div class="box" style="margin-top:8px" id="v-top">${valTop(j,st,px,m)}</div>`;
-  const sk=st.sc||'base',SC=j.sc[sk];
-  const rows=SC.rows,srcTag=s=>`<span class="vsrc ${s==='컨센'?'c':s==='조사'?'r':''}">${s}</span>`;
-  const scTbl=`<div class="tbl-wrap"><table class="acc" style="min-width:${120+rows.length*76}px"><thead><tr><th>결산</th>${rows.map(r=>`<th class="r">${r.e.slice(0,7).replace('-','.')}<br>${srcTag(r.src)}</th>`).join('')}</tr></thead><tbody>
-    <tr><td>매출</td>${rows.map(r=>`<td class="r num">${vAmt(r.rev,m)}</td>`).join('')}</tr>
-    <tr><td>영업이익률</td>${rows.map(r=>`<td class="r num">${vPct(r.om)}</td>`).join('')}</tr>
-    <tr><td>FCF</td>${rows.map(r=>`<td class="r num"><b class="${r.fcf<0?'dn':''}">${vAmt(r.fcf,m)}</b></td>`).join('')}</tr></tbody></table></div>
-    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)" id="v-scv">${f(V[sk])}</b> (확률 ${SC.p}%)</div>`;
+  const sk=st.sc||'base',scTbl=valScTbl(j,sk,m,V,'v-scv');
   const fcfTxt=()=>{const w2=st.w??j.w,SC2=j.sc[st.sc||'base'],un=m==='US'?(I.shares>=1000?(I.shares/1000).toFixed(2)+'B':Math.round(I.shares)+'M'):Math.round(I.shares).toLocaleString('ko-KR');
     return [`FCF = ${m==='US'?`(영업이익${I.sbc?` − 주식보상(매출의 ${vPct(I.sbc.r0,1)}→${vPct(I.sbc.rL,1)}, ${I.sbc.by})`:''}) × (1 − 세율 ${vPct(I.tax)}) + 감가상각(매출의 ${vPct(I.daR,1)}) − 설비투자(매출의 ${vPct(I.capexR,1)})${I.wc?` ${I.wc>0?'+':'−'} 운전자본(매출 증가분 × ${vPct(Math.abs(I.wc),0)})`:''}`:`영업이익 × (1 − 세율 ${vPct(I.tax)}) × 현금 전환율 ${vPct(I.conv)}`}`,
       `영구가치: 마지막 해 세후 영업이익으로 계산${m==='US'||I.krTV?` (재투자율 = 영구성장률 ÷ 재투자수익률 ${vPct(ronicOf(w2,SC2.prem),1)}${I.prem!=null?` = 할인율 + 초과수익 ${vPct(I.prem,1)} — ${I.premWhy||''}${I.roic!=null?`; ROIC ${vPct(I.roic,1)} = ${I.roicBy||''}${I.roicPast!=null?` (과거 ${vPct(I.roicPast,1)}`:''}${I.roicFwd!=null?`${I.roicPast!=null?' · ':' ('}${j.type==='cyc'?'중간값 해':'다음 해'} ${vPct(I.roicFwd,1)})`:I.roicPast!=null?')':''}`:''}`:''})`:''}`,
@@ -2368,12 +2366,17 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
     <div class="sub" style="margin-top:8px">기본값${W.by==='조사'?' (조사로 정함)':''}: 무위험금리 ${vPct(W.rf,2)} (${esc(W.rfBy||'')}) + 베타 ${W.badj}${W.beta!=null?` (${esc(W.betaBy||'')} ${W.beta} → 평균 쪽 보정)`:' (기본)'} × 위험프리미엄 ${vPct(W.erp,1)} = 자기자본비용 ${vPct(W.ke,1)}${W.wd>0?` → 부채 비중 ${vPct(W.wd,1)}${W.debtBy?` (${esc(W.debtBy)})`:''} · 세후 타인자본비용 ${vPct(W.kd,1)} (${esc(W.kdBy||'')}) 반영 ${vPct(W.raw,1)}`:''}${Math.abs(W.raw-W.w)>=0.0005?` → 소프트 캡 ${vPct(W.w,1)}`:''} · 영구성장률 ${vPct(j.g,1)} (${j.inp.gBy}${j.type==='cyc'?', 경기민감 −0.5%p':''}) · 기준 실적 ${esc(I.q||'')} (직전 4분기 매출 ${vAmt(I.rev0,m)}, 영업이익률 ${vPct(I.om0)}) · <button type="button" class="pbtn" id="v-rst" style="padding:1px 10px;font-size:12px">기본값으로</button></div></div>`;
   const sens=j.sens?`<div class="tbl-wrap"><table class="acc" style="min-width:360px"><thead><tr><th>WACC \\ g</th>${j.sens.gs.map(x=>`<th class="r">${vPct(x,1)}</th>`).join('')}</tr></thead><tbody>${j.sens.ws.map((ww,i)=>`<tr><td>${vPct(ww,1)}</td>${j.sens.v[i].map((v,k)=>{const on=Math.abs(ww-j.w)<1e-6&&Math.abs(j.sens.gs[k]-j.g)<1e-6;return `<td class="r num ${on?'vhl':''} ${v==null?'':v>=px?'up':'dn'}">${f(v)}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
     <div class="sub" style="margin-top:6px">기본 시나리오 적정가. 세로 = 할인율, 가로 = 영구성장률 (기본값 ± 범위). 금색 = 기본값 · <span class="up">빨강</span> = 현재가 이상 · <span class="dn">파랑</span> = 현재가 미만</div>`:'';
+  if(pvOn){const P=j.prev,psk=st.psc||'base',PV=valV(P,{});
+    el.innerHTML=head+`<div class="sub" style="margin-top:6px">직전 조사 가정을 지금 재료(현재가·컨센서스·재무)로 다시 계산한 값이라, 당시 화면과는 재료 차이만큼 다를 수 있어. 역DCF·민감도는 현재 보기에서만 봐.</div>
+      <div class="box" style="margin-top:8px">${valTop(P,{w:null,g:null},px,m)}</div>
+      <h4 class="vsh">시나리오 <span class="seg sm" id="v-pseg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===psk}">${P.sc[k].n}</button>`).join('')}</span></h4>${valScTbl(P,psk,m,PV)}${foot}`;
+    bindView();el.querySelectorAll('#v-pseg [data-k]').forEach(b=>b.onclick=()=>{st.psc=b.dataset.k;drawVal()});return}
   el.innerHTML=head+verdict+`<h4>역DCF — 지금 주가가 맞으려면</h4><div class="box">${valRev(j,m)}</div>
     <h4 class="vsh">시나리오<button type="button" class="ibtn" id="v-fi" aria-label="FCF 계산 설명">i</button> <span class="seg sm" id="v-seg">${['bull','base','bear'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===sk}">${j.sc[k].n}</button>`).join('')}</span></h4>${scTbl}
     <div class="ipop" id="vpop" role="dialog" aria-modal="true" aria-labelledby="vpop-h" hidden><div class="ipbox"><b id="vpop-h"></b><p id="vpop-t"></p><button type="button" class="pbtn" id="vpop-x">닫기</button></div></div>
     <h4>할인율·가정 <span class="sub" style="font-weight:400">움직이면 적정가가 바로 바뀌어 (역DCF·민감도 표는 기본값 기준)</span></h4>${wr}
     <h4>민감도</h4>${sens}${band}${facts}${valHist(j,m)}${notes}${foot}`;
-  el.querySelectorAll('#v-seg [data-k]').forEach(b=>b.onclick=()=>{st.sc=b.dataset.k;drawVal()});
+  bindView();el.querySelectorAll('#v-seg [data-k]').forEach(b=>b.onclick=()=>{st.sc=b.dataset.k;drawVal()});
   {const vp=$('vpop'),close=()=>{vp.hidden=true};
     $('v-fi').onclick=e=>{e.stopPropagation();$('vpop-h').textContent=`${j.sc[st.sc||'base'].n} 시나리오 — FCF·영구가치 계산`;$('vpop-t').textContent=fcfTxt();vp.hidden=false;$('vpop-x').focus()};
     $('vpop-x').onclick=close;vp.onclick=e=>{if(e.target===vp)close()};vp.onkeydown=e=>{if(e.key==='Escape'){e.stopPropagation();close()}}}
@@ -2381,11 +2384,20 @@ function drawVal(){const S=state.cur,el=$('d-s-val'),st=state.val;if(!S||!el||!s
   const sl=(id,key)=>{const x=$(id);if(x)x.oninput=e=>{st[key]=+e.target.value/100;const W2=st.w??j.w,G2=st.g??j.g;const GP=j.sens?.gap??0.02;if(W2-G2<GP){if(key==='g')st.g=W2-GP;else st.w=G2+GP}upd()}};
   sl('v-w','w');sl('v-g','g');if($('v-rst'))$('v-rst').onclick=()=>{st.w=null;st.g=null;$('v-w').value=(j.w*100).toFixed(1);$('v-g').value=(j.g*100).toFixed(1);upd()};
 }
+/* 시나리오 표 (결산별 매출·영업이익률·FCF) + 시나리오 적정가 한 줄 — 현재·이전 보기가 같이 쓴다 */
+function valScTbl(j,sk,m,V,id){const f=v=>v==null?'—':fmtP(v,m),SC=j.sc[sk],rows=SC.rows,srcTag=s=>`<span class="vsrc ${s==='컨센'?'c':s==='조사'?'r':''}">${s}</span>`;
+  return `<div class="tbl-wrap"><table class="acc" style="min-width:${120+rows.length*76}px"><thead><tr><th>결산</th>${rows.map(r=>`<th class="r">${r.e.slice(0,7).replace('-','.')}<br>${srcTag(r.src)}</th>`).join('')}</tr></thead><tbody>
+    <tr><td>매출</td>${rows.map(r=>`<td class="r num">${vAmt(r.rev,m)}</td>`).join('')}</tr>
+    <tr><td>영업이익률</td>${rows.map(r=>`<td class="r num">${vPct(r.om)}</td>`).join('')}</tr>
+    <tr><td>FCF</td>${rows.map(r=>`<td class="r num"><b class="${r.fcf<0?'dn':''}">${vAmt(r.fcf,m)}</b></td>`).join('')}</tr></tbody></table></div>
+    <div class="sub" style="margin-top:6px">${esc(SC.n)} 적정가 <b style="color:var(--ink)"${id?` id="${id}"`:''}>${f(V[sk])}</b> (확률 ${SC.p}%)</div>`}
 function valV(j,st){const w=st.w??j.w,g=st.g??j.g,V={};for(const k of ['bull','base','bear'])V[k]=valPv(j.sc[k],w,g,j.inp);return V}
 /* 결론 상자 — 슬라이더를 움직이면 이것만 다시 그린다 */
 function valTop(j,st,px,m){const f=v=>v==null?'—':fmtP(v,m),w=st.w??j.w,g=st.g??j.g,V=valV(j,st);
   const pw=j.sc.bull.p+j.sc.base.p+j.sc.bear.p||100,wv=(V.bull*j.sc.bull.p+V.base*j.sc.base.p+V.bear*j.sc.bear.p)/pw;
   const sm=Math.min(0.6,Math.max(0.2,V.base>0?(V.base-V.bear)/V.base:0.2)),buy=V.base*(1-sm),gap=V.base>0&&px?100*(px/V.base-1):null;
+  const pb=j.prev?.base,chg=pb>0&&V.base>0&&st.w==null&&st.g==null?100*(V.base/pb-1):null,           // 직전 조사 가정 대비 기본 적정가 변화 (슬라이더를 건드리면 비교 의미가 없어 숨김)
+    chip=chg==null?'':Math.abs(chg)<0.5?`<span class="sub" title="직전 조사(${esc(j.prev.resAt||'—')}) 기본 적정가 ${f(pb)}">직전과 같음</span>`:`<span class="num ${chg>0?'up':'dn'}" style="font-weight:700" title="직전 조사(${esc(j.prev.resAt||'—')}) 기본 적정가 ${f(pb)}">직전 대비 ${chg>0?'+':''}${chg.toFixed(0)}%</span>`;
   const lo=Math.min(V.bear,px||V.bear,buy)*0.85,hi=Math.max(V.bull,px||0)*1.08,X=v=>14+572*(v-lo)/((hi-lo)||1);
   const near=Math.abs(X(V.base)-X(V.bear))<90||Math.abs(X(V.base)-X(V.bull))<90,LY={bear:72,base:near?89:72,bull:72},lx=v=>Math.min(555,Math.max(45,X(v))).toFixed(1);   // 이름표가 겹치면 기본을 한 줄 아래로
   const dot=(k,c)=>`<g><title>${j.sc[k].n} 시나리오 ${f(V[k])} (확률 ${j.sc[k].p}%)</title><circle cx="${X(V[k]).toFixed(1)}" cy="45" r="11" fill="transparent"/><circle cx="${X(V[k]).toFixed(1)}" cy="45" r="6" style="fill:${c};stroke:var(--soft);stroke-width:2"/><text x="${lx(V[k])}" y="${LY[k]}" text-anchor="middle" font-size="12" style="fill:var(--ink2)">${j.sc[k].n} ${f(V[k])}</text></g>`;
@@ -2394,7 +2406,7 @@ function valTop(j,st,px,m){const f=v=>v==null?'—':fmtP(v,m),w=st.w??j.w,g=st.g
     <line x1="${X(V.bear).toFixed(1)}" x2="${X(V.bull).toFixed(1)}" y1="45" y2="45" style="stroke:var(--ink2);stroke-width:2"/>
     ${dot('bear','var(--neg)')}${dot('base','var(--gold)')}${dot('bull','var(--pos)')}
     ${px?`<g><title>현재가 ${f(px)}</title><line x1="${X(px).toFixed(1)}" x2="${X(px).toFixed(1)}" y1="22" y2="58" style="stroke:var(--ink);stroke-width:2.5"/><text x="${Math.min(560,Math.max(40,X(px))).toFixed(1)}" y="15" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--ink)">현재가 ${f(px)}</text></g>`:''}</svg>`;
-  return `<div class="vverd"><span class="sub">현재가 <b style="color:var(--ink)">${f(px)}</b></span><span class="sub">기본 적정가</span><span class="vbig num">${f(V.base)}</span>${gap!=null?`<span class="num ${gap>0?'up':'dn'}" style="font-weight:700">현재가가 ${Math.abs(gap).toFixed(0)}% ${gap>0?'비쌈':'쌈'}</span>`:''}${px&&px<=buy?'<span class="sig sig-up">매수 구간</span>':''}</div>
+  return `<div class="vverd"><span class="sub">현재가 <b style="color:var(--ink)">${f(px)}</b></span><span class="sub">기본 적정가</span><span class="vbig num">${f(V.base)}</span>${chip}${gap!=null?`<span class="num ${gap>0?'up':'dn'}" style="font-weight:700">현재가가 ${Math.abs(gap).toFixed(0)}% ${gap>0?'비쌈':'쌈'}</span>`:''}${px&&px<=buy?'<span class="sig sig-up">매수 구간</span>':''}</div>
     ${strip}
     <div class="vlg"><span><i style="background:var(--vbuy-soft);border:1px solid var(--vbuy)"></i>매수 구간 = 기본 × (1 − 안전마진)</span><span><i style="background:var(--ink)"></i>현재가</span><span>점 = 시나리오별 적정가</span></div>
     <div class="vkpi"><div><span>확률 가중 적정가</span><b class="num">${f(wv)}</b></div><div><span>안전마진</span><b class="num">${Math.round(sm*100)}%</b></div><div><span>매수 구간</span><b class="num">≤ ${f(buy)}</b></div><div><span>할인율 · 영구성장</span><b class="num">${vPct(w,1)} · ${vPct(g,1)}</b></div></div>

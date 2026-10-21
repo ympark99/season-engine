@@ -200,5 +200,152 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "CRDO",
+  "name": "CREDO TECHNOLOGY GROUP HOLDING LTD",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "FY27 1분기 실적(2026-09-02) 뒤",
+  "mid": {
+   "om": 35,
+   "why": "현재 조정 영업이익률 48%에서 후발 진입(Marvell·Broadcom 등)과 광학 비중 확대로 내려온다고 보고, 서버 자동값(33%)과 현재 마진 사이로 둔 판단",
+   "conf": "추정",
+   "src": [
+    0,
+    1
+   ]
+  },
+  "capexR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "1.6T AEC·광학 매출 6억달러 초과 달성 후 하이퍼스케일러 확대로 FY30 이후에도 고성장·고마진 유지",
+    "g": [
+     null,
+     null,
+     null,
+     40,
+     35,
+     28
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     45,
+     44,
+     43
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "컨센서스 경로 후 성장 둔화와 경쟁으로 마진이 서서히 하락(서버 자동 경로와 같음)",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "상위 고객 편중 속 일부 고객 발주 둔화와 대형 경쟁사 가격 압박으로 성장·마진 동시 하락",
+    "g": [
+     null,
+     null,
+     null,
+     18,
+     15,
+     13
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     36,
+     33,
+     30
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "1분기 실적",
+    "v": "매출 4.79억$ (+114.7%), 비GAAP 영업이익률 48.2%, GAAP 25.2%",
+    "conf": "공시",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "가이던스",
+    "v": "FY27 2분기 매출 5.25억~5.35억$, 비GAAP 총마진 67~69%, 비GAAP 영업비용 1.00억~1.05억$",
+    "conf": "공시",
+    "src": [
+     1,
+     4
+    ]
+   },
+   {
+    "k": "광학 목표",
+    "v": "FY27 광학 매출 6억$ 초과 목표",
+    "conf": "공시",
+    "src": [
+     2,
+     4
+    ]
+   },
+   {
+    "k": "현금",
+    "v": "현금·단기투자 약 7.64억$",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "고객 집중",
+    "v": "상위 고객 편중이 높고 마진 우려로 발표 후 주가 하락",
+    "conf": "보도",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "장기 마진 목표",
+    "v": "회사 장기 영업이익률 목표는 이번 조사에서 확인 못 함",
+    "conf": "추정",
+    "src": []
+   }
+  ],
+  "sources": [
+   {
+    "t": "Credo Reports Q1 Fiscal 2027 Revenue Of $479 Million, Up 115% Year Over Year",
+    "u": "https://pulse2.com/credo-reports-q1-fiscal-2027-revenue-of-479-million-up-115-year-over-year/",
+    "d": "2026-09-02"
+   },
+   {
+    "t": "Credo Technology Group Holding Ltd Reports First Quarter of Fiscal Year 2027 Financial Results",
+    "u": "https://www.01net.it/credo-technology-group-holding-ltd-reports-first-quarter-of-fiscal-year-2027-financial-results/",
+    "d": "2026-09-02"
+   },
+   {
+    "t": "Credo (CRDO) Fiscal Q1 2027 Earnings Call: Revenue Jumps 115% as Optics Accelerates",
+    "u": "https://www.mitrade.com/insights/news/live-news/article-0-2050680-20260902",
+    "d": "2026-09-02"
+   },
+   {
+    "t": "Credo and TE Connectivity Reach Settlement in Active Electrical Cable Disputes",
+    "u": "https://s205.q4cdn.com/511065572/files/doc_news/Credo-and-TE-Connectivity-Reach-Settlement-in-Active-Electrical-Cable-Disputes-2026.pdf",
+    "d": "2026-03-27"
+   },
+   {
+    "t": "Credo reports Q1 FY27 earnings, guides optical revenue above $600M",
+    "u": "https://cryptobriefing.com/credo-q1-fy27-earnings-optical-revenue/",
+    "d": "2026-09-02"
+   }
+  ]
  }
 }

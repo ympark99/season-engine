@@ -214,5 +214,166 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "DDOG",
+  "name": "DATADOG INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-08-06) 뒤",
+  "mid": {
+   "om": 26,
+   "why": "조정(주식보상 제외) 기준. 2분기 23%, 연간 가이던스 약 23%, 컨센서스는 2028년 약 25%까지 상승. 회사의 공식 장기 마진 목표는 확인되지 않아, 사용량 과금 소프트웨어가 규모 확대로 도달하는 성숙 마진을 컨센서스 소폭 위로 가정",
+   "conf": "추정",
+   "src": [
+    0,
+    1,
+    5
+   ]
+  },
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "최대 AI 고객 사용량 감소가 일회성에 그치고 RPO(+43%) 증가가 매출로 이어져 2029년 이후에도 20%대 중반 성장 유지",
+    "g": [
+     null,
+     null,
+     null,
+     27,
+     24,
+     21
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     32,
+     33,
+     33
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "최대 고객 감소 후 성장이 안정되고 AI 기업 고객 비중 확대가 이어지는 서버 자동 경로 수준",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "AI 기업 고객 사용량 감소가 길어지고 관측성 경쟁 심화로 2029년 이후 성장이 한 자릿수 후반으로 둔화, 마진 정체",
+    "g": [
+     null,
+     null,
+     null,
+     14,
+     11,
+     9
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     22,
+     21,
+     20
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "2분기 실적",
+    "v": "매출 11.2억달러(+36%), 조정 영업이익률 23%, GAAP 영업이익률 약 0%",
+    "conf": "공시",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "연간 가이던스",
+    "v": "2026년 매출 44.5~44.7억달러, 조정 영업이익 10.1~10.3억달러(약 23%)",
+    "conf": "공시",
+    "src": [
+     1,
+     5
+    ]
+   },
+   {
+    "k": "3분기 가이던스",
+    "v": "매출 11.35~11.45억달러(+28~29%), 직전 분기 대비 성장 2% 미만",
+    "conf": "공시",
+    "src": [
+     0,
+     2
+    ]
+   },
+   {
+    "k": "계약 잔액",
+    "v": "RPO 34.7억달러(+43%), 청구액 11.8억달러(+38%)",
+    "conf": "공시",
+    "src": [
+     0,
+     5
+    ]
+   },
+   {
+    "k": "고객 집중",
+    "v": "최대 AI 고객이 억달러대 계약을 갱신했으나 하반기 사용량 감소 — 연간 가이던스에 반영",
+    "conf": "보도",
+    "src": [
+     2,
+     3
+    ]
+   },
+   {
+    "k": "고객 수",
+    "v": "2026-06-30 기준 약 33,400곳(전년 약 31,400곳)",
+    "conf": "공시",
+    "src": [
+     4
+    ]
+   },
+   {
+    "k": "주식보상 기준",
+    "v": "회사는 조정 영업이익 가이던스를 GAAP으로 조정하지 않음(주식보상·급여세 불확실). 장기 주식보상 비율·선수금 비율은 근거 부족해 비움",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "Datadog Announces Second Quarter 2026 Financial Results",
+    "u": "https://investors.datadoghq.com/news-releases/news-release-details/datadog-announces-second-quarter-2026-financial-results",
+    "d": "2026-08-06"
+   },
+   {
+    "t": "Datadog, Inc. Form 8-K (Q2 2026 press release exhibit)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001561550/000162828026053829/ex-991x20260630x8k.htm",
+    "d": "2026-08-06"
+   },
+   {
+    "t": "Datadog Q2 earnings call highlights",
+    "u": "https://www.marketbeat.com/instant-alerts/datadog-q2-earnings-call-highlights-2026-08-06/",
+    "d": "2026-08-06"
+   },
+   {
+    "t": "Datadog's biggest AI client renews nine-figure deal but cuts usage",
+    "u": "https://www.saasrise.com/news/datadogs-biggest-ai-client-renews-ninefigure-deal-but-cuts-usage-denting-growth-outlook-6bd4c3fe-b4e3-441e-a85c-adb377197db1",
+    "d": "2026-08"
+   },
+   {
+    "t": "Datadog, Inc. Form 10-Q (2026-06-30)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001561550/000162828026054458/ddog-20260630.htm",
+    "d": "2026-08"
+   },
+   {
+    "t": "Datadog (DDOG) Q2 2026 earnings summary",
+    "u": "https://quartr.com/events/datadog-inc-ddog-q2-2026_3PTgWyzD",
+    "d": "2026-08-06"
+   }
+  ]
  }
 }

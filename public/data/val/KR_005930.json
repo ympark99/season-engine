@@ -209,5 +209,163 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "KR",
+  "code": "005930",
+  "name": "삼성전자",
+  "basis": "2026년 3분기 잠정 실적(2026-10-08) 뒤",
+  "type": "cyc",
+  "typeWhy": "영업이익 대부분이 메모리 — 가격이 수급으로 정해지는 경기민감 업종",
+  "mid": {
+   "om": 20,
+   "why": "과거 영업이익률(보도 금액으로 계산): 2017 약 22%, 2018 약 24%, 2019 약 12%, 2020 약 15%, 2023 약 2.5%, 2024 약 11% → 중앙값 약 14%. HBM·장기계약 등 AI 구조적 수요로 +6%p 더해 20%로 가정",
+   "conf": "추정",
+   "src": [
+    0,
+    1,
+    2
+   ]
+  },
+  "peak": {
+   "years": 1.5,
+   "why": "2017·2018년 영업이익 50조원대 → 2019년 27.8조원. 정점 수준 지속 약 1.5~2년",
+   "conf": "추정",
+   "src": [
+    0
+   ]
+  },
+  "trough": {
+   "om": 3,
+   "why": "2023년 영업이익 6.57조원 ÷ 매출 258.9조원 ≈ 2.5%",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  "netCash": 1675900,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "HBM 점유율 회복·파운드리 흑자 전환으로 정점이 길어짐",
+    "g": [
+     null,
+     null,
+     null,
+     0,
+     -5
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     48,
+     38
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "2028년 정점 뒤 국내 신규 팹·중국 업체 증설로 가격 하락, 중간값 쪽으로",
+    "g": [],
+    "om": []
+   },
+   "bear": {
+    "p": 25,
+    "why": "AI 설비투자 둔화와 공급 증가가 2027~28년에 겹침 — 2019년식 급락",
+    "g": [
+     null,
+     -10,
+     -25
+    ],
+    "om": [
+     null,
+     40,
+     25
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "3분기 잠정",
+    "v": "영업이익 107.4조원(전년 대비 +782.5%), 매출 195조원",
+    "conf": "보도",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "2분기 실적",
+    "v": "매출 171.5조원, 영업이익 89.5조원",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   },
+   {
+    "k": "순현금",
+    "v": "2분기 말 순현금 약 167.6조원(현금성 자산 약 190조원) — 계산에 넣음",
+    "conf": "보도",
+    "src": [
+     4,
+     5
+    ]
+   },
+   {
+    "k": "과거 사이클",
+    "v": "영업이익 2017년 53.6조 · 2018년 58.9조 → 2019년 27.8조 · 2023년 6.6조",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "점유율",
+    "v": "DRAM 매출 점유율 39.4%(2분기, 1위), HBM은 SK하이닉스와 격차를 좁히는 중",
+    "conf": "보도",
+    "src": [
+     6
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "삼성전자, 지난해 연간 영업익 36조...반도체가 절반",
+    "u": "https://www.dailian.co.kr/news/view/959442/",
+    "d": "2021-01"
+   },
+   {
+    "t": "Samsung Electronics income statement (StockAnalysis)",
+    "u": "https://stockanalysis.com/quote/krx/005930/financials/income-statement/",
+    "d": "2026"
+   },
+   {
+    "t": "Samsung Electronics 2020 annual results (Asia Economy)",
+    "u": "https://cm.asiae.co.kr/en/article/2021012809205373383",
+    "d": "2021-01-28"
+   },
+   {
+    "t": "Samsung Electronics estimates Q3 operating profit (Korea Times)",
+    "u": "https://www.koreatimes.co.kr/business/companies/20261008/samsung-electronics-estimates-803",
+    "d": "2026-10-08"
+   },
+   {
+    "t": "현금 168조 쌓은 삼성전자…메모리가 이끌고, 파운드리 살아난다",
+    "u": "https://www.mt.co.kr/article/2026073015082740842",
+    "d": "2026-07-30"
+   },
+   {
+    "t": "상반기 현금성 자산 삼성전자 190조·SK하이닉스 88조",
+    "u": "https://biz.sbs.co.kr/amp/article/20000329034",
+    "d": "2026-09"
+   },
+   {
+    "t": "Samsung extends lead in global DRAM market with 39% share",
+    "u": "https://www.koreatimes.co.kr/business/20260907/samsung-extends-lead-in-global-dram-market-",
+    "d": "2026-09-07"
+   }
+  ],
+  "by": "Claude 조사",
+  "at": "2026-10-19"
  }
 }

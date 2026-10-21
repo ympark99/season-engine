@@ -469,7 +469,12 @@ export async function valueOne(m, code) {
   const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme), grade: II?.[`${m}:${code}`]?.grade?.g || null });
   const band = m === 'US' ? usBand(rec, px, theme) : rec.band ? bandOf(rec, theme, px) : null;
   const hist = (await store.get(V_HIST(m, code))) || [];
-  return { ...v, code, theme, band, hist: hist.slice(-260),
+  let prev = null;                                                                     // '이전' 보기 — 직전 조사 가정(R.prev)을 지금 재료로 다시 계산 (같은 재료에서 가정만 달랐다면)
+  if (R?.prev && v.base != null) {
+    const pv = valuate({ m, rec, est: E?.rows?.[code], px, theme, R: R.prev, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme), grade: II?.[`${m}:${code}`]?.grade?.g || null });
+    if (pv.base != null) { delete pv.sens; delete pv.rv; prev = { ...pv, resAt: R.prev.at || null, basis: R.prev.basis || null }; }
+  }
+  return { ...v, code, theme, band, hist: hist.slice(-260), prev,
     facts: R?.facts || [], sources: R?.sources || [], resAt: R?.at || null, resBy: R?.by || null };
 }
 

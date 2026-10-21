@@ -255,5 +255,198 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "CRWV",
+  "name": "COREWEAVE INC",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-08-11) 뒤 가정",
+  "type": null,
+  "typeWhy": null,
+  "mid": {
+   "om": 18,
+   "why": "적자 기업이라 성숙 마진을 가정. 감가상각·이자 부담이 큰 GPU 임대 구조라 대형 클라우드 사업자보다 낮게 보고, 회사의 4분기 조정 영업이익률 low-teens 목표(조정 기준)보다 높은 수준을 장기 규모 효과로 가정 — 판단",
+   "conf": "추정",
+   "src": [
+    0,
+    3
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "sbc": null,
+  "wc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "백로그 1,042억 달러가 일정대로 가동되고 GPU 가격 인상이 유지되며 자금 조달이 원활해 규모 효과로 마진이 20%대로 오르는 경로",
+    "g": [
+     null,
+     null,
+     null,
+     70,
+     55,
+     40,
+     25,
+     15,
+     8,
+     4
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     12,
+     15,
+     18,
+     20,
+     22,
+     23,
+     24
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "가동 전력 확대로 고성장이 이어지나 이자·감가상각 부담과 경쟁(Nebius 등) 탓에 마진이 완만히 오르는 경로",
+    "g": [
+     null,
+     null,
+     null,
+     55,
+     40,
+     30,
+     20,
+     12,
+     6,
+     3
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     6,
+     9,
+     12,
+     14,
+     16,
+     17,
+     18
+    ]
+   },
+   "bear": {
+    "p": 25,
+    "why": "추가 부채·증자 조달 비용이 오르고 데이터센터 가동이 지연되거나 GPU 임대 가격이 하락해 성장과 마진이 모두 낮은 경로",
+    "g": [
+     null,
+     null,
+     null,
+     35,
+     25,
+     18,
+     10,
+     6,
+     3,
+     2
+    ],
+    "om": [
+     null,
+     null,
+     null,
+     0,
+     3,
+     6,
+     8,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "연간 가이던스",
+    "v": "2026년 매출 124억~132억$, 조정 영업이익 9.6억~11.5억$, 연말 연환산 매출 185억~195억$",
+    "conf": "공시",
+    "src": [
+     0,
+     3
+    ]
+   },
+   {
+    "k": "3분기 가이던스",
+    "v": "매출 34.5억~36억$, 조정 영업이익 2억~2.6억$",
+    "conf": "공시",
+    "src": [
+     3
+    ]
+   },
+   {
+    "k": "설비투자",
+    "v": "2026년 350억~390억$ 목표(기존 310억~350억$), 추가 부채·증자 필요 언급",
+    "conf": "공시",
+    "src": [
+     0,
+     3
+    ]
+   },
+   {
+    "k": "마진 목표",
+    "v": "4분기 조정 영업이익률 low-teens 목표",
+    "conf": "공시",
+    "src": [
+     0,
+     3
+    ]
+   },
+   {
+    "k": "백로그",
+    "v": "약 1,042억$, 3분기 초 순신규 계약 250억$ 초과는 별도",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "재무 부담",
+    "v": "2분기 순손실 6.26억$, 이자비용 6.4억$, 부채 약 350억$",
+    "conf": "공시",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "고객 집중도",
+    "v": "이번 조사에서 확인된 수치 없음",
+    "conf": "추정",
+    "src": []
+   }
+  ],
+  "sources": [
+   {
+    "t": "CoreWeave Q2 earnings call highlights (MarketBeat)",
+    "u": "https://www.marketbeat.com/instant-alerts/coreweave-q2-earnings-call-highlights-2026-08-11/",
+    "d": "2026-08-11"
+   },
+   {
+    "t": "CoreWeave: Revenue Backlog Reaches $104 Billion (Pulse 2.0)",
+    "u": "https://pulse2.com/coreweave-revenue-backlog-reaches-104-billion-before-another-25-billion-of-new-commitments/",
+    "d": "2026-08-12"
+   },
+   {
+    "t": "CoreWeave reports $2.58 billion Q2 revenue with $35 billion in debt",
+    "u": "https://runtimewire.com/article/coreweave-q2-2026-revenue-debt-ai-cloud",
+    "d": "2026-08-11"
+   },
+   {
+    "t": "CoreWeave (CRWV) Q2 2026 earnings summary (Quartr)",
+    "u": "https://quartr.com/events/coreweave-inc-crwv-q2-2026_F6huCJA4",
+    "d": "2026-08-11"
+   }
+  ]
  }
 }

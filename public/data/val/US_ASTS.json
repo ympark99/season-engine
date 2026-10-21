@@ -227,5 +227,178 @@
     ]
    }
   ]
+ },
+ "prev": {
+  "m": "US",
+  "code": "ASTS",
+  "name": "AST SpaceMobile",
+  "at": "2026-10-19",
+  "by": "Claude 정기 조사",
+  "basis": "2026년 2분기 실적(2026-08-10 발표) 뒤",
+  "type": "loss",
+  "typeWhy": "서버 자동 유형(적자) 유지 — 상업 서비스 전이라 영업손실이 매출보다 큼",
+  "mid": {
+   "om": 25,
+   "why": "상업 서비스 안정화 후 위성통신 사업자 수준의 조정 영업이익률(주식보상 제외)을 가정한 판단값. 회사 공개 장기 마진 목표는 이번 조사에서 확인 못함",
+   "conf": "추정",
+   "src": [
+    0,
+    1
+   ]
+  },
+  "capexR": null,
+  "daR": null,
+  "tax": null,
+  "g": null,
+  "wacc": null,
+  "sbc": null,
+  "wc": null,
+  "scen": {
+   "bull": {
+    "p": 25,
+    "why": "2027년 상업 서비스 개시와 통신사 제휴 확대로 가입자가 빠르게 늘고 위성 약 45기 조기 달성, 마진 30%대 도달",
+    "g": [],
+    "om": [
+     null,
+     null,
+     null,
+     10,
+     20,
+     26,
+     30,
+     32,
+     32,
+     32
+    ]
+   },
+   "base": {
+    "p": 50,
+    "why": "가이던스(연 1.5억~2억달러) 달성 후 2027년 상업 개시, 발사는 일정이 다소 밀리며 마진이 서서히 성숙 수준으로 수렴",
+    "g": [],
+    "om": [
+     null,
+     null,
+     null,
+     5,
+     12,
+     18,
+     22,
+     25,
+     25,
+     25
+    ]
+   },
+   "bear": {
+    "p": 25,
+    "why": "발사 차질 반복(4월 뉴글렌 발사 이상으로 위성 손실)과 스페이스X 차세대 직접통신 경쟁으로 가입자 확대가 지연",
+    "g": [],
+    "om": [
+     null,
+     null,
+     null,
+     -5,
+     0,
+     5,
+     8,
+     10,
+     10,
+     10
+    ]
+   }
+  },
+  "facts": [
+   {
+    "k": "2026 매출 가이던스",
+    "v": "연 1.5억~2억달러 유지, 4분기 비중이 가장 큼",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "2분기 매출",
+    "v": "약 3,150만달러(1분기의 약 2배)",
+    "conf": "보도",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "k": "3분기 설비투자 계획",
+    "v": "3.5억~4.25억달러(2분기 약 6.1억달러)",
+    "conf": "보도",
+    "src": [
+     0
+    ]
+   },
+   {
+    "k": "유동성",
+    "v": "현금·현금성·제한현금 약 27억달러(2026-06-30), 이후 전환사채 발행으로 37억달러 이상(intel 파일)",
+    "conf": "공시",
+    "src": [
+     1
+    ]
+   },
+   {
+    "k": "위성 계획",
+    "v": "BlueBird 11~13 8월 초 발사, 궤도 13기. 목표: 연말~2027년 초 약 45기, 월 6기 생산(출처 간 시점 엇갈림)",
+    "conf": "보도",
+    "src": [
+     0,
+     3
+    ]
+   },
+   {
+    "k": "발사 리스크",
+    "v": "2026-04 뉴글렌 발사 이상으로 BlueBird 7 손실",
+    "conf": "보도",
+    "src": [
+     2
+    ]
+   },
+   {
+    "k": "규제·제휴",
+    "v": "FCC 상업 허가(2026-04), 보다폰과 유럽 합작 SatCo",
+    "conf": "보도",
+    "src": [
+     4,
+     5
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "t": "AST SpaceMobile Q2 earnings call highlights",
+    "u": "https://www.nasdaq.com/articles/ast-spacemobile-q2-earnings-call-highlights",
+    "d": "2026-08"
+   },
+   {
+    "t": "AST SpaceMobile Form 8-K (2026 실적 발표 첨부)",
+    "u": "https://www.sec.gov/Archives/edgar/data/0001780312/000119312526342540/asts-ex99_1.htm",
+    "d": "2026-08-10"
+   },
+   {
+    "t": "New Glenn Grounded and AST SpaceMobile Satellite Lost After Launch Anomaly",
+    "u": "https://www.satellitetoday.com/launch/2026/04/20/new-glenn-grounded-and-ast-spacemobile-satellite-lost-after-launch-anomaly/",
+    "d": "2026-04-20"
+   },
+   {
+    "t": "AST SpaceMobile updates on progress (BlueBird 12·13, 다음 Falcon 9)",
+    "u": "https://www.advanced-television.com/?p=291170",
+    "d": "2026-08-31"
+   },
+   {
+    "t": "FCC Grants AST SpaceMobile Commercial Authorization for Direct-to-Device Service",
+    "u": "https://www.satellitetoday.com/connectivity/2026/04/22/fcc-grants-ast-spacemobile-commercial-authorization-for-direct-to-device-service/",
+    "d": "2026-04-22"
+   },
+   {
+    "t": "Vodafone and AST SpaceMobile European Joint Venture SatCo",
+    "u": "https://www.satellitetoday.com/connectivity/2025/06/30/vodafone-and-ast-spacemobile-european-joint-venture-satco-plans-d2d-offering-in-2026/",
+    "d": "2025-06-30"
+   }
+  ]
  }
 }
