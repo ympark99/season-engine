@@ -47,6 +47,9 @@
     { "path": "/api/cron?op=opt", "schedule": "40 21 * * 1-5" },
     { "path": "/api/cron?op=opt&bk=1", "schedule": "40 22 * * 1-5" },
     { "path": "/api/cron?op=opt&bk=2", "schedule": "40 23 * * 1-5" },
-    { "path": "/api/cron?op=optbt", "schedule": "20 4 * * 6" }
+    { "path": "/api/cron?op=optbt", "schedule": "20 4 * * 6" },
+    { "path": "/api/cron?op=earn&m=KR", "schedule": "30 7 * * 1-5" },
+    { "path": "/api/cron?op=earn&m=US", "schedule": "30 23 * * 0-5" },
+    { "path": "/api/cron?op=earn&m=US", "schedule": "30 15 * * 1-5" }
   ]
 }

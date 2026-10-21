@@ -6,6 +6,8 @@
 // GET /api/cron?op=fwd            — 미국 선행 지표(요약표) 다시 받기 한 번 (7일 지난 종목만, 천천히)
 // GET /api/cron?op=opt          — 미국 옵션 수급 날짜별 기록 (장 마감 뒤 크론 · 내 종목 + 유니버스 · lib/options.js)
 // GET /api/cron?op=optbt        — 옵션 신호 백테스트 (매주 · lib/optsig.js) — 결과는 GET /api/stock?optbt=1
+// GET /api/cron?op=cal            — 일정 캘린더 요약 (오늘 발표한 내 종목·앞으로 7일 실적·매크로 지표) · &refresh=1(관리자)이면 새로 받음 (lib/calendar.js)
+// GET /api/cron?op=earn&m=KR|US   — 실적을 막 발표한 내 종목의 재무·컨센서스를 바로 다시 받고 점수·적정가 재계산 (m 없으면 둘 다) — 크론이 부름
 // GET /api/health                — 설정 점검 + 자동 갱신 진행 상황 (rewrite → ?op=health). 값은 노출하지 않음
 // Hobby 플랜 함수 12개 제한 때문에 여러 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
@@ -13,7 +15,8 @@ import { send, isAdmin, engineState } from '../lib/service.js';
 import { step, pipeState } from '../lib/pipeline.js';
 import { selfBase, chainLog } from '../lib/selfcall.js';
 import { searchId, fetchEstimates, summarize, collectEstimates } from '../lib/estimates.js';
-import { targetsOf, scoreAll, refreshForward } from './fundamentals.js';
+import { targetsOf, scoreAll, refreshForward, refreshEarners } from './fundamentals.js';
+import { loadCalendar, digest, markEarners } from '../lib/calendar.js';
 import { snapshotAll } from '../lib/options.js';
 import { runBacktest } from '../lib/optsig.js';
 import { members, listOf } from '../lib/universe.js';
@@ -28,7 +31,7 @@ export default async function handler(req, res) {
         adminToken: !!process.env.ADMIN_TOKEN, cronSecret: !!process.env.CRON_SECRET, youAreAdmin: isAdmin(req),
         selfHost: (selfBase() || '').replace(/^https:\/\//, '') || null, protectionBypass: !!process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
         krFundHeaders: !!process.env.KR_FUND_HEADERS,
-        pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null, opt: await store.get('cron:opt').catch(() => null),
+        pipeline: pipe, chain: (chain || []).slice(0, 12), cronDenied: auth || null, opt: await store.get('cron:opt').catch(() => null), earn: await store.get('cron:earn').catch(() => null),
       });
     }
     if (op === 'fwd') {                                                                 // 미국 선행 지표만 다시 받기 — 하루 600종목·요청 사이 2.5초 제한은 refreshForward 안에서
@@ -65,6 +68,10 @@ export default async function handler(req, res) {
     if (op === 'meta') {
       return send(res, 200, await engineState());
     }
+    if (op === 'cal') {                                                                  // 일정 캘린더 — 공개 (정기 조사·화면이 부름). 3시간 안에 받았으면 저장본
+      const cal = await loadCalendar({ force: req.query.refresh === '1' && isAdmin(req) });
+      return send(res, 200, digest(cal, await store.listAll()));
+    }
 
     const sec = process.env.CRON_SECRET;
     const okCron = sec && (req.headers.authorization === `Bearer ${sec}` || req.query.secret === sec);
@@ -73,6 +80,17 @@ export default async function handler(req, res) {
       // 크론이 인증에 막히는 경우(CRON_SECRET 미설정 등)를 화면에서 알 수 있게 남긴다
       await store.set('cron:denied', { at: new Date().toISOString(), m, hasSecret: !!sec, hasAuthHeader: !!req.headers.authorization, ua: String(req.headers['user-agent'] || '').slice(0, 40) }).catch(() => {});
       return send(res, 401, { error: 'cron 전용' });
+    }
+    if (op === 'earn') {                                                                // 실적 발표한 내 종목 — 재무·컨센서스 즉시 재수집 + 적정가 재계산 (발표 3시간 뒤부터 · 이미 받은 종목은 건너뜀)
+      if (!(await store.setNX('lock:earn', 1, 290))) return send(res, 200, { busy: true });
+      try {
+        const cal = await loadCalendar({ force: true }), dg = digest(cal, await store.listAll()), rec = await markEarners(dg);
+        const out = { asof: dg.asof, calError: dg.error, reported: dg.earnings.mineReported.map(x => ({ m: x.m, code: x.code, name: x.name, date: x.date })), unmatched: dg.unmatched, aliasMissing: dg.aliasMissing };
+        const ms = req.query.m === 'KR' || req.query.m === 'US' ? [req.query.m] : ['KR', 'US'];
+        for (const m of ms) if (Object.keys(rec[m]).length) out[m] = await refreshEarners(m, ms.length > 1 ? 80000 : 150000);
+        await store.set('cron:earn', { at: new Date().toISOString(), ...out }).catch(() => {});
+        return send(res, 200, out);
+      } finally { await store.del('lock:earn'); }
     }
     if (op === 'opt') {                                                                 // 미국 옵션 수급 — 장 마감 뒤 내 목록 미국 종목 + SPY·QQQ 체인을 받아 날짜별 기록 (예비 크론이 남은 종목 이어서)
       if (!(await store.setNX('lock:opt:US', 1, 290))) return send(res, 200, { busy: true });
