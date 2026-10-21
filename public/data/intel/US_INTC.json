@@ -3,7 +3,7 @@
   "code": "INTC",
   "name": "Intel",
   "theme": "AI 반도체",
-  "at": "2026-10-14",
+  "at": "2026-10-22",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "x86 CPU 점유율은 AMD에 계속 내주는 중이지만 서버 CPU 수요 급증으로 매출은 늘고(2분기 161억 달러, 전년 대비 +25%) 18A 공정이 자체 제품에 투입되기 시작했다. 다음 분기 관건은 10월 29일 3분기 실적(가이던스 158억~168억 달러)과 14A 핵심 외부 고객 확보 여부.",
@@ -291,6 +291,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-22",
+      "note": "인텔과 AMD가 x86 CPU에서 AI 연산을 효율화하는 공동 사양(ACE)을 공개. 경쟁 구도 속 협력이지만 직접 수익 효과는 불명확. 등급(C)·축 판정은 유지",
+      "src": [
+        10
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 서버 CPU 수요로 매출은 반등하나 AMD 점유율 상승·14A 외부 고객 미확정이 부담, 10월 29일 3분기 실적이 다음 확인 지점",
       "src": [
@@ -350,6 +359,11 @@
       "t": "Intel's post-18A roadmap hangs on landing 14A foundry customers (Borecraft)",
       "u": "https://borecraft.com/2026/06/17/intels-post-18a-roadmap-hangs-on-landing-14a-foundry-customers/",
       "d": "2026-06-17"
+    },
+    {
+      "t": "Intel and AMD Join Forces To Make X86 CPUs Better At AI",
+      "u": "https://semiwiki.com/forum/threads/intel-and-amd-are-teaming-up-to-make-x86-cpus-better-at-ai-without-needing-a-gpu.25351/latest",
+      "d": "2026-10-20"
     }
   ]
 }

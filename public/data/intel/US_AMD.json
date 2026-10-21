@@ -3,7 +3,7 @@
   "code": "AMD",
   "name": "Advanced Micro Devices",
   "theme": "AI 반도체",
-  "at": "2026-10-14",
+  "at": "2026-10-22",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "서버 CPU(EPYC)는 매출 점유율 46%대로 인텔을 추격·역전한 상태이고, AI 가속기는 엔비디아가 압도하는 가운데 MI450·Helios 랙으로 2026년 하반기에 본격 도전을 시작하는 단계. 다음 분기 관건은 11월 3일 3분기 실적에서 Helios 초도 출하와 4분기 증가 폭이 확인되는지.",
@@ -312,6 +312,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-22",
+      "note": "AMD와 인텔이 x86 CPU에서 AI 연산을 효율화하는 공동 사양(ACE)을 공개. GPU 대체가 아닌 소형 모델·저지연 작업용으로 보도, 성능 수치는 벤더 주장. 등급·판정 변화 없음",
+      "src": [
+        9
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — 서버 CPU는 선두권, AI 가속기는 Helios 3분기 말 출하와 11월 3일 실적이 다음 확인 지점",
       "src": [
@@ -366,6 +375,11 @@
       "t": "Could AMD Finally Close the Gap on Nvidia AI Dominance?",
       "u": "https://www.nasdaq.com/articles/could-amd-finally-close-gap-nvidia-ai-dominance",
       "d": "2026"
+    },
+    {
+      "t": "Intel and AMD Join Forces To Make X86 CPUs Better At AI",
+      "u": "https://semiwiki.com/forum/threads/intel-and-amd-are-teaming-up-to-make-x86-cpus-better-at-ai-without-needing-a-gpu.25351/latest",
+      "d": "2026-10-20"
     }
   ]
 }

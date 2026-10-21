@@ -3,10 +3,10 @@
   "code": "ADI",
   "name": "Analog Devices",
   "theme": "아날로그 반도체",
-  "at": "2026-10-15",
+  "at": "2026-10-22",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
-  "position": "산업·데이터센터·자동차 전반에서 고성능 아날로그 선두권으로, 회계 3분기 매출 40억 달러(+40%)로 사상 최대를 냈다. 다음 분기 관건은 4분기 매출 43억 달러 안팎 가이던스 달성과 Empower 인수(7월 마감) 통합, 경쟁사 TI의 3분기 발표(10월 21일)에서 보이는 수요 강도.",
+  "position": "산업·데이터센터·자동차 전반에서 고성능 아날로그 선두권으로, 회계 3분기 매출 40억 달러(+40%)로 사상 최대를 냈다. 다음 분기 관건은 4분기 매출 43억 달러 안팎 가이던스 달성과 Empower 인수(7월 마감) 통합, 경쟁사 TI의 3분기 발표(10월 21일, 매출 +28%·아날로그 +32%)로 확인된 업종 회복 강도.",
   "grade": {
     "g": "A",
     "label": "경쟁력 우위",
@@ -43,25 +43,27 @@
     {
       "k": "산업 회복 모멘텀",
       "me": "산업 매출 약 19.7억 달러, 전년 대비 +53% (자동 테스트 장비·항공우주·방산 주도)",
-      "vs": "TI는 산업 매출 전년 대비 약 +30% (2분기)",
+      "vs": "TI는 3분기 산업 매출 전년 대비 +40%대 (2분기 약 +30%에서 가속)",
       "verdict": "우위",
       "conf": "공시",
       "src": [
         0,
         2,
-        7
+        7,
+        10
       ]
     },
     {
       "k": "데이터센터·AI 전력/광",
       "me": "통신 매출 약 6.55억 달러(+84%), 그중 약 80%가 데이터센터. 광·전력 제품 +100% 초과. 15억 달러 규모 Empower 인수로 전압조정기 보강",
-      "vs": "TI 데이터센터 매출은 2분기에 전년 대비 약 2배",
+      "vs": "TI 데이터센터 매출은 3분기 전년 대비 +95% (2분기 약 2배)",
       "verdict": "동등",
       "conf": "보도",
       "src": [
+        2,
         5,
         7,
-        2
+        10
       ]
     },
     {
@@ -90,12 +92,13 @@
     {
       "k": "아날로그 전체 규모",
       "me": "3분기 매출 40.2억 달러",
-      "vs": "TI 아날로그 부문만 2분기 43.7억 달러, TI 전체 54.6억 달러. 점유율 수치는 출처 불확실",
+      "vs": "TI 아날로그 부문 3분기 49.1억 달러(+32%), TI 전체 60.6억 달러. 점유율 수치는 출처 불확실",
       "verdict": "열세",
       "conf": "공시",
       "src": [
         1,
-        2
+        2,
+        10
       ]
     },
     {
@@ -135,16 +138,22 @@
       "what": "경쟁사 TI 3분기 실적 발표 (아날로그 업황 판단 지표)",
       "d": "2026-10-21",
       "kind": "실적",
-      "status": "예정",
+      "status": "완료",
       "conf": "보도",
       "src": [
-        4
+        4,
+        10
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "TI 컨퍼런스콜 10월 21일 현지 오후 3시 30분(중부)"
+        },
+        {
+          "d": "2026-10-21",
+          "s": "완료",
+          "note": "TI 3분기 매출 60.6억$(+28%), EPS 2.62$; 아날로그 49.1억$(+32%); 산업 +40%대, 데이터센터 +95%. 4분기 매출 가이던스 58~63억$"
         }
       ]
     },
@@ -242,9 +251,27 @@
       "src": [
         0
       ]
+    },
+    {
+      "k": "TI 3분기 매출 (경쟁사)",
+      "v": "60.6억 달러 (+28%), 4분기 가이던스 58~63억 달러",
+      "asof": "2026-10",
+      "src": [
+        10
+      ]
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-22",
+      "note": "투타노타 미니 공개매수(주당 525달러, 최대 10만주) 회사 거부 권고 — 종가가 525달러를 넘어야 하는 조건부, 자금 조달 미확인, 만료 11월 16일. TI 3분기 실적 발표 확인(매출 60.6억 달러 +28%, 아날로그 49.1억 달러 +32%, 산업 +40%대, 데이터센터 +95%, 4분기 가이던스 58~63억 달러)",
+      "src": [
+        11,
+        10
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
     {
       "d": "2026-10-15",
       "note": "Empower 인수 마감(7월 7일) 확인으로 체크포인트 정정, TI 3분기 콜 10월 21일 재확인",
@@ -315,6 +342,16 @@
       "t": "Analog Devices Completes Acquisition of Empower Semiconductor",
       "u": "https://www.analog.com/en/newsroom/press-releases/2026/7-7-26-adi-completes-acquisition-of-empower-semiconductor.html",
       "d": "2026-07-07"
+    },
+    {
+      "t": "TI reports third quarter 2026 financial results and shareholder returns",
+      "u": "https://investor.ti.com/news-releases/news-release-details/ti-reports-third-quarter-2026-financial-results-and-shareholder",
+      "d": "2026-10-21"
+    },
+    {
+      "t": "Analog Devices Recommends Shareholders Reject \"Mini-Tender\" Offer by Tutanota LLC",
+      "u": "https://www.prnewswire.com/news-releases/analog-devices-recommends-shareholders-reject-mini-tender-offer-by-tutanota-llc-302914283.html",
+      "d": "2026-10-21"
     }
   ]
 }

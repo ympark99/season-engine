@@ -3,7 +3,7 @@
   "code": "CRWV",
   "name": "CoreWeave",
   "theme": "네오클라우드",
-  "at": "2026-10-19",
+  "at": "2026-10-22",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "AI 전용 GPU 클라우드 중 매출·백로그·가동 전력 모두 선두권이지만, 부채 약 350억 달러와 분기 순손실이 커 자금 조달과 데이터센터 가동 속도가 약점이다. 다음 분기 관건은 3분기 실적(매출 가이던스 34.5억~36억 달러)에서 가동 전력 확대와 영업이익률 개선이 이어지는지.",
@@ -224,13 +224,19 @@
       "conf": "공시",
       "src": [
         0,
-        2
+        2,
+        7
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "진행",
           "note": "2분기에 약 180억 달러 조달, 추가 조달 필요하다고 회사가 언급"
+        },
+        {
+          "d": "2026-10-22",
+          "s": "진행",
+          "note": "10/13~14 기존 회사채 수익률 약 15%·가격 80센트대로 하락. 신규 발행 공시는 미확인, 조달 비용 상승 부담"
         }
       ]
     },
@@ -295,9 +301,26 @@
       "src": [
         2
       ]
+    },
+    {
+      "k": "기존 회사채 수익률",
+      "v": "약 15% (보도)",
+      "asof": "2026-10-14",
+      "src": [
+        7
+      ]
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-22",
+      "note": "10/13~14 기존 회사채 수익률 약 15%까지 급등(보도) — 추가 조달 비용 상승 부담. 해당 보도는 부채를 약 520억 달러로 전해 기존 기록(약 350억 달러, 2분기 보도)과 집계 기준 차이가 있어 확인 필요. 재무 축은 이미 열세, 등급(B) 유지하되 3분기 실적의 조달 계획이 관건",
+      "src": [
+        7
+      ],
+      "tone": "악재",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-19",
       "note": "Vera Rubin NVL72 상용 제공 시작 발표(9월 30일, 첫 고객 Cognition, 제한적 제공) — 체크포인트 완료 처리. 경쟁사 Rubin 도입 시점은 아직 확인 안 돼 판정·등급(B) 유지",
@@ -352,6 +375,11 @@
       "t": "CoreWeave delivers NVIDIA Vera Rubin NVL72 at production scale, starting with Cognition (CoreWeave 보도자료)",
       "u": "https://coreweave.com/news/coreweave-delivers-nvidia-vera-rubin-nvl72-performance-at-production-scale-starting-with-cognition",
       "d": "2026-09-30"
+    },
+    {
+      "t": "CoreWeave shares plunge 16% as bond yields near 15%",
+      "u": "https://cryptobriefing.com/coreweave-shares-plunge-bond-yields-15/",
+      "d": "2026-10-14"
     }
   ]
 }
