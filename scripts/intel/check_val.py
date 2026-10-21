@@ -11,6 +11,7 @@ only = [a for a in sys.argv[1:] if not a.startswith('-')]
 files = [os.path.join(D, f'{x}.json') for x in only] if only else sorted(glob.glob(os.path.join(D, '[A-Z][A-Z]_*.json')))
 TYPES = {'cyc', 'growth', 'mature', 'loss', 'na'}
 CONF = {'공시', '보도', '추정'}
+HIT = ('상회', '충족', '미충족', '하회')
 bad, idx = [], {}
 
 
@@ -97,6 +98,29 @@ for f in files:
         src('fact ' + str(x.get('k', '')), x.get('src'))
         if x.get('conf') not in CONF:
             bad.append(f'{name} fact.conf={x.get("conf")!r}')
+    for key in ('expect', 'review'):
+        x = d.get(key)
+        if x is None:
+            continue
+        if not isinstance(x, dict) or not x.get('for') or not isinstance(x.get('items'), list) or not x['items']:
+            bad.append(f'{name} {key} 는 {{for, items[]}}')
+            continue
+        if key == 'review' and (not x.get('at') or x.get('verdict') not in HIT):
+            bad.append(f'{name} review.at 와 verdict(상회·충족·미충족·하회) 필요')
+        for it in x['items']:
+            k = it.get('k')
+            if not k:
+                bad.append(f'{name} {key}.items k 없음')
+            for f in ('bull', 'base', 'bear', 'actual'):
+                if it.get(f) is not None and not isnum(it[f]):
+                    bad.append(f'{name} {key}.{k}.{f}={it[f]!r}')
+            three = all(isnum(it.get(f)) for f in ('bull', 'base', 'bear'))
+            if key == 'expect' and not three:
+                bad.append(f'{name} expect.{k} 낙관·기본·비관 숫자 3개 필요')
+            if key == 'review' and (not isnum(it.get('actual')) or (it.get('hit') is None and not three)):
+                bad.append(f'{name} review.{k} 실제값 필요 (낙관·기본·비관이 없으면 hit 를 직접)')
+            if it.get('hit') is not None and it['hit'] not in HIT:
+                bad.append(f'{name} {key}.{k}.hit={it["hit"]!r}')
     idx[f"{d.get('m')}:{d.get('code')}"] = {'at': d.get('at'), 'name': d.get('name')}
 
 if not only:

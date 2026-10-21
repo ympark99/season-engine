@@ -474,7 +474,7 @@ export async function valueOne(m, code) {
   const hist = (await store.get(V_HIST(m, code))) || [];
   const snap = await store.get(V_SNAP(m, code)), prev = snap?.prev || null;            // '이전' 보기 — 조사 가정이 바뀌기 직전의 화면 값 (valueMine 이 매일 저장)
   return { ...v, code, theme, band, hist: hist.slice(-260), prev,
-    facts: R?.facts || [], sources: R?.sources || [], resAt: R?.at || null, resBy: R?.by || null };
+    expect: R?.expect || null, review: R?.review || null, facts: R?.facts || [], sources: R?.sources || [], resAt: R?.at || null, resBy: R?.by || null };
 }
 
 export default async function handler(req, res) {
