@@ -25,7 +25,8 @@
   "news": [ { "m": "US", "code": "TSLA", "name": "Tesla", "note": "바뀐 소식 한 줄" } ],
   "checkpoints": [ { "m": "US", "code": "META", "name": "Meta", "what": "3분기 실적", "d": "2026-10-21", "from": "예정", "to": "예정", "note": "발표일 10/21 확정 (무엇이 바뀌었나 한 줄)" } ],
   "newIntel": [ { "m": "KR", "code": "475150", "name": "SK이터닉스" } ],
-  "newVal": [ { "m": "US", "code": "CRWD", "name": "CrowdStrike", "note": "고성장 · 장기 마진 30%" } ]
+  "newVal": [ { "m": "US", "code": "CRWD", "name": "CrowdStrike", "note": "고성장 · 장기 마진 30%" } ],
+  "sectors": [ { "m": "US", "theme": "우주", "view": "우호", "chg": "중립 → 우호", "note": "섹터 업황 한두 문장" } ]
 } ] }
 ```
-- `news` = 깊은 갱신한 종목의 바뀐 소식, `checkpoints` = 상태·날짜가 바뀌었거나 새로 추가한 체크포인트(새로 추가면 `from` 은 null), `newIntel` = 처음 전체 조사한 종목 목록만, `newVal` = 그날 밸류에이션 가정을 조사(새로 쓰거나 고침)한 종목 — `note` 는 유형·장기 마진 한 줄(선택).
+- `news` = 깊은 갱신한 종목의 바뀐 소식, `checkpoints` = 상태·날짜가 바뀌었거나 새로 추가한 체크포인트(새로 추가면 `from` 은 null), `newIntel` = 처음 전체 조사한 종목 목록만, `sectors` = 그날 섹터 전체 업황을 조사한 결과(월·수·금만, 다른 날은 빈 배열 또는 생략 · `/tmp/intel_work/sector_day.json` 을 그대로 넣는다 · `chg` 는 판정이 바뀐 섹터만, 아니면 null), `newVal` = 그날 밸류에이션 가정을 조사(새로 쓰거나 고침)한 종목 — `note` 는 유형·장기 마진 한 줄(선택).

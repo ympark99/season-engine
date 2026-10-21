@@ -2,7 +2,7 @@
 """경쟁·기술 갱신 — 1·2번(대상·분류) 준비.
 사용: python3 scripts/intel/plan.py [YYYY-MM-DD]   (오늘 날짜, 기본=KST 오늘)
 결과: /tmp/intel_work/ 에 targets.json, new.json, due.json, groups.json, gNN.json, val.json, sectors.json 을 만들고 요약을 출력한다.
-sectors.json = 섹터(시장+업종) 단위 업황 조사 목록 (5-2번 · prompts/sector_research.txt). 종목이 아니라 섹터 전체 업황을 본다.
+sectors.json = 섹터(시장+업종) 단위 업황 조사 목록 (5-2번 · prompts/sector_research.txt). 종목이 아니라 섹터 전체 업황을 본다. 월·수·금만 채워지고 다른 날은 [] (SECTOR_ALWAYS=1 로 강제).
 val.json = 오늘 밸류에이션 가정을 조사할 종목 (5-1번 · prompts/val_research.txt). 기준은 public/data/val/README.md.
 """
 import json, os, re, sys, time, datetime, subprocess, collections, urllib.request
@@ -128,8 +128,10 @@ json.dump(val_due, open(f'{W}/val.json', 'w'), ensure_ascii=False)
 sec = collections.defaultdict(list)
 for x in targets:
     sec[(x['m'], x['theme'])].append(x['name'])
+SECTOR_DAYS = (0, 2, 4)   # 월·수·금 (비용 절감 — 업황은 종목 소식만큼 매일 바뀌지 않는다). SECTOR_ALWAYS=1 이면 오늘도 한다
+sector_day = t0.weekday() in SECTOR_DAYS or os.environ.get('SECTOR_ALWAYS') == '1'
 sectors = [{'id': f's{i:02d}', 'm': m, 'theme': th, 'members': names_}
-           for i, ((m, th), names_) in enumerate(sorted(sec.items()))]
+           for i, ((m, th), names_) in enumerate(sorted(sec.items()))] if sector_day else []
 json.dump(sectors, open(f'{W}/sectors.json', 'w'), ensure_ascii=False)
 os.makedirs(f'{W}/sres', exist_ok=True)
 
@@ -144,7 +146,7 @@ print(f'대상 {len(targets)}종목, 업종 {len({x["theme"] for x in targets})}
 print('신규(5번 전체 조사):', [(x['m'], x['code'], x['name'], x['theme']) for x in new])
 print('정기 전체 갱신(5번):', [(x['m'], x['code'], x['name'], x['theme']) for x in due])
 print(f'밸류에이션 조사(5-1번) {len(val_due)}종목 (파일 없는 기존 종목 남은 수 {max(0, len(backfill) - VAL_BACKFILL)}):', [(x['m'], x['code'], x['name'], x['why']) for x in val_due])
-print(f'섹터 업황 조사(5-2번) {len(sectors)}개 섹터: sectors.json')
+print(f'섹터 업황 조사(5-2번) {len(sectors)}개 섹터: sectors.json' if sectors else '섹터 업황 조사(5-2번): 오늘은 조사일(월·수·금)이 아님 — 건너뜀')
 print(f'매일 확인 업종 그룹 {len(names)}개:')
 for n, th in names.items():
     print(f'  {n} {th} ({len(g[th])})')

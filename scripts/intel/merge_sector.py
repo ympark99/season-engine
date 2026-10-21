@@ -3,7 +3,8 @@
 사용: python3 scripts/intel/merge_sector.py [YYYY-MM-DD]   (기본=KST 오늘)
 sec[\"US:업종\"] = 오늘 업황 판단(view·note·outlook·deny·src) + 판정이 바뀐 이력 chg(최근 10개)
 items = 업종 전체 소식 장부 (최근 45일) — build_index.py 가 sector_news.json 에 섞어 넣는다.
-조사하지 못한(결과 파일이 없는) 섹터는 이전 판단을 그대로 둔다."""
+조사하지 못한(결과 파일이 없는) 섹터는 이전 판단을 그대로 둔다.
+{W}/sector_day.json = 오늘 조사한 섹터 요약 [{m,theme,view,chg,note}] — 업데이트 탭용 (updates/intel.json 의 sectors)."""
 import glob, json, os, re, subprocess, sys, datetime
 
 REPO = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip()
@@ -21,6 +22,7 @@ except Exception:
 sec, items = out.get('sec', {}), out.get('items', [])
 seen = {(x['m'], x['theme'], x['d'], x.get('u')) for x in items}
 ok = bad = 0
+day = []   # 업데이트 탭용 — updates/intel.json 오늘 항목의 sectors 에 그대로 넣는다
 for f in sorted(glob.glob(f'{W}/sres/s*.json')):
     try:
         r = json.load(open(f))
@@ -36,6 +38,8 @@ for f in sorted(glob.glob(f'{W}/sres/s*.json')):
     if old.get('view') and old['view'] != v:
         chg = [{'d': today, 'from': old['view'], 'to': v}] + chg
     srcs = [s for s in r.get('src', []) if isinstance(s, dict) and s.get('u')]
+    day.append({'m': m, 'theme': th, 'view': v, 'chg': f"{old['view']} → {v}" if old.get('view') and old['view'] != v else None,
+                'note': r['note'].strip()})
     sec[k] = {'m': m, 'theme': th, 'at': today, 'view': v, 'note': r['note'].strip(), 'outlook': r.get('outlook'),
               'deny': r.get('deny'), 'src': srcs[:6], 'chg': chg[:10]}
     for it in r.get('items', []):
@@ -50,4 +54,5 @@ for f in sorted(glob.glob(f'{W}/sres/s*.json')):
     ok += 1
 items = sorted([x for x in items if x['d'] >= cut], key=lambda x: (x['d'], x['m'], x['theme']), reverse=True)
 json.dump({'asof': today, 'sec': sec, 'items': items[:400]}, open(path, 'w'), ensure_ascii=False, indent=1)
+json.dump(day, open(f'{W}/sector_day.json', 'w'), ensure_ascii=False)
 print(f'sector_outlook: 섹터 {ok}개 반영, 건너뜀 {bad}, 판단 {len(sec)}개, 소식 {len(items)}건')
