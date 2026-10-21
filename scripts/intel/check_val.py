@@ -2,54 +2,16 @@
 """밸류에이션 조사 파일(public/data/val) 검사 + index.json 재생성.
 사용: python3 scripts/intel/check_val.py              # 전체 검사 + index.json 다시 만듦
       python3 scripts/intel/check_val.py US_MU KR_000660   # 그 파일만 검사 (index 는 안 건드림)
-      python3 scripts/intel/check_val.py --backfill          # git 이력으로 prev(직전 조사)가 없는 파일을 채움
-검사하면서 파일의 `at` 이 git HEAD 의 `at` 과 다르면 HEAD 파일을 `prev`(직전 조사 가정)로 자동 기록한다 — 화면 '이전' 보기용.
 문제가 있으면 목록을 출력하고 종료코드 1. 형식은 public/data/val/README.md."""
 import glob, json, os, subprocess, sys
 
 REPO = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True).stdout.strip()
 D = os.path.join(REPO, 'public/data/val')
 only = [a for a in sys.argv[1:] if not a.startswith('-')]
-BACKFILL = '--backfill' in sys.argv
 files = [os.path.join(D, f'{x}.json') for x in only] if only else sorted(glob.glob(os.path.join(D, '[A-Z][A-Z]_*.json')))
 TYPES = {'cyc', 'growth', 'mature', 'loss', 'na'}
 CONF = {'공시', '보도', '추정'}
 bad, idx = [], {}
-
-
-def git_json(rev, path):
-    r = subprocess.run(['git', 'show', f'{rev}:{path}'], capture_output=True, text=True, cwd=REPO)
-    try:
-        return json.loads(r.stdout) if r.returncode == 0 else None
-    except Exception:
-        return None
-
-
-def strip_prev(d):
-    return {k: v for k, v in d.items() if k != 'prev'}
-
-
-def link_prev(f, d):
-    """직전 조사(`at` 이 다른 가장 가까운 이전 버전)를 d['prev'] 로 넣는다. 바뀌었으면 True."""
-    rel = os.path.relpath(f, REPO)
-    if BACKFILL:
-        if d.get('prev'):
-            return False
-        revs = subprocess.run(['git', 'log', '--format=%H', '--', rel], capture_output=True, text=True, cwd=REPO).stdout.split()
-        for rv in revs:
-            old = git_json(rv, rel)
-            if old and old.get('at') and old['at'] != d.get('at'):
-                d['prev'] = strip_prev(old)
-                return True
-        return False
-    head = git_json('HEAD', rel)
-    if not head or not head.get('at'):
-        return False
-    new = strip_prev(head) if head['at'] != d.get('at') else head.get('prev')
-    if new and d.get('prev') != new:
-        d['prev'] = new
-        return True
-    return False
 
 
 def isnum(v):
@@ -70,9 +32,6 @@ for f in files:
     except Exception as e:
         bad.append(f'{name} PARSE {e}')
         continue
-    if link_prev(f, d):
-        json.dump(d, open(f, 'w'), ensure_ascii=False, indent=1)
-        open(f, 'a').write('\n')
     n = len(d.get('sources', []))
 
     def src(where, a):
@@ -138,9 +97,6 @@ for f in files:
         src('fact ' + str(x.get('k', '')), x.get('src'))
         if x.get('conf') not in CONF:
             bad.append(f'{name} fact.conf={x.get("conf")!r}')
-    pv = d.get('prev')
-    if pv is not None and (not isinstance(pv, dict) or not pv.get('at') or 'prev' in pv):
-        bad.append(f'{name} prev 는 at 이 있는 직전 조사 파일(prev 안에 prev 없음)')
     idx[f"{d.get('m')}:{d.get('code')}"] = {'at': d.get('at'), 'name': d.get('name')}
 
 if not only:

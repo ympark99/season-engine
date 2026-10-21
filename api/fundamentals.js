@@ -432,7 +432,7 @@ async function rfAll() {
   await store.set(RF_KEY, cur);
   return cur;
 }
-const V_SUM = m => `val:sum:${m}`, V_HIST = (m, c) => `val:h:${m}:${c}`;
+const V_SNAP = (m, c) => `val:snap:${m}:${c}`, V_SUM = m => `val:sum:${m}`, V_HIST = (m, c) => `val:h:${m}:${c}`;
 
 /** 내 목록 종목만 — 적정가 요약(val:sum:m, 목록 태그용)과 날짜별 기록(val:h:m:code, 나중에 '적정가보다 비쌀 때 실제로 빠졌나' 검증용) */
 async function valueMine(m, recs) {
@@ -442,7 +442,7 @@ async function valueMine(m, recs) {
   const [E, ix, shm, idx, RF, sum, II] = await Promise.all([m === 'US' ? loadEstimates() : null, store.getBars('IX', IXC[m]), store.get(`mcap:${m}`), valIndex(), rfAll(), store.get(S_SUM(m)), intelIndex()]);
   const [bars, hists, Rs] = await Promise.all([store.mgetBars(list.map(it => ({ m, code: it.code }))), store.mget(list.map(it => V_HIST(m, it.code))),
     Promise.all(list.map(it => researchOf(m, it.code, idx)))]);
-  const out = {}, today = kstDate(), puts = [];
+  const out = {}, today = kstDate(), puts = [], snaps = [];
   for (let i = 0; i < list.length; i++) {
     const r = have.get(list[i].code), b = bars[i], px = b?.c?.length ? b.c[b.c.length - 1] : null;
     if (!px) continue;
@@ -450,9 +450,12 @@ async function valueMine(m, recs) {
     const v = valuate({ m, rec: r, est: E?.rows?.[r.code], px, theme: r.theme, R, beta: betaOf(b, ix), sharesN: shm?.rows?.[r.code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, r.theme), grade: II?.[`${m}:${r.code}`]?.grade?.g || null, lite: true });
     out[r.code] = { d: today, px, type: v.type, base: v.base ?? null, bull: v.bull ?? null, bear: v.bear ?? null, wv: v.wv ?? null, sm: v.sm ?? null, buy: v.buy ?? null,
       rv: v.rv ? { k: v.rv.kind, v: v.rv.val } : null, res: !!R };
+    if (v.base != null) snaps.push([r.code, { d: today, resAt: R?.at || null, px, type: v.type, w: v.w, g: v.g, base: v.base, bull: v.bull, bear: v.bear, wv: v.wv, sm: v.sm, buy: v.buy, gap: v.gap, sc: v.scm }]);
     const h = hists[i] || [];
     if (v.base != null && h[h.length - 1]?.[0] !== today) puts.push(store.set(V_HIST(m, r.code), [...h, [today, px, v.base, v.bear, v.bull, v.wv]].slice(-400)));
   }
+  const olds = await store.mget(snaps.map(([c]) => V_SNAP(m, c)));                    // 스냅샷 — 조사 가정이 바뀌기 전 마지막 화면을 prev 로 보존 (이전 보기용)
+  snaps.forEach(([c, S], i) => { const o = olds[i]; puts.push(store.set(V_SNAP(m, c), !o?.cur || o.cur.resAt === S.resAt ? { cur: S, prev: o?.prev || null } : { cur: S, prev: o.cur })); });
   await Promise.all([...puts, store.set(V_SUM(m), { at: new Date().toISOString(), rows: out })]);
   return { n: Object.keys(out).length };
 }
@@ -469,11 +472,7 @@ export async function valueOne(m, code) {
   const v = valuate({ m, rec, est: E?.rows?.[code], px, theme, R, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme), grade: II?.[`${m}:${code}`]?.grade?.g || null });
   const band = m === 'US' ? usBand(rec, px, theme) : rec.band ? bandOf(rec, theme, px) : null;
   const hist = (await store.get(V_HIST(m, code))) || [];
-  let prev = null;                                                                     // '이전' 보기 — 직전 조사 가정(R.prev)을 지금 재료로 다시 계산 (같은 재료에서 가정만 달랐다면)
-  if (R?.prev && v.base != null) {
-    const pv = valuate({ m, rec, est: E?.rows?.[code], px, theme, R: R.prev, beta: betaOf(bars, ix), sharesN: shm?.rows?.[code]?.[0] || null, rf: RF[m], peerOm: peerOmOf(sum, theme), grade: II?.[`${m}:${code}`]?.grade?.g || null });
-    if (pv.base != null) { delete pv.sens; delete pv.rv; prev = { ...pv, resAt: R.prev.at || null, basis: R.prev.basis || null }; }
-  }
+  const snap = await store.get(V_SNAP(m, code)), prev = snap?.prev || null;            // '이전' 보기 — 조사 가정이 바뀌기 직전의 화면 값 (valueMine 이 매일 저장)
   return { ...v, code, theme, band, hist: hist.slice(-260), prev,
     facts: R?.facts || [], sources: R?.sources || [], resAt: R?.at || null, resBy: R?.by || null };
 }
