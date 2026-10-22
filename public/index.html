@@ -191,9 +191,7 @@ td.fv{padding-right:0;width:1%}
 .wtbar .wl b{color:var(--gold-ink)}
 .feed{max-height:132px;overflow-y:auto;overscroll-behavior:contain;padding-right:4px;scrollbar-width:thin}
 .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.three .feed .ev{grid-template-columns:44px minmax(0,1fr) auto;gap:8px}
-.three .col2{display:flex;flex-direction:column;gap:14px;min-width:0}.three .col2 .box{flex:1}.feed.half{max-height:66px}
-.three .dwell{max-height:118px;overflow-y:auto;scrollbar-width:thin;padding-right:4px}
+.three .feed .ev{grid-template-columns:44px minmax(0,1fr) auto;gap:8px}.three .dwell{max-height:118px;overflow-y:auto;scrollbar-width:thin;padding-right:4px}
 .three .dwell .d{grid-template-columns:minmax(60px,90px) 1fr 40px}
 .chips.sm{margin:-2px 0 8px}.chips.sm .chip{padding:2px 8px;font-size:11.5px;gap:4px}
 .chg.chg4{grid-template-columns:auto minmax(0,1fr) auto auto}
@@ -650,10 +648,7 @@ body{margin:0}
         <div class="box" id="cpbox" style="margin-top:14px"></div>
         <div class="three" style="margin:14px 0 16px">
           <div class="box"><h3>최근 20거래일 전이 <span class="muted" id="feedn"></span></h3><div class="chips sm" id="feedf"></div><div class="feed" id="feed"></div></div>
-          <div class="col2">
-            <div class="box"><h3>단기진입 시그널 (20거래일) <span class="muted" id="mystn"></span></h3><div class="feed half" id="myst"></div></div>
-            <div class="box"><h3>손익비 시그널 <span class="muted" id="myrrn"></span></h3><div class="feed half" id="myrr"></div></div>
-          </div>
+          <div class="box"><h3>손익비 시그널 <span class="muted" id="myrrn"></span></h3><div class="feed" id="myrr"></div></div>
           <div class="box"><div class="bh"><h3 id="mysgt">시그널 (20거래일) <span class="muted" id="mysgn"></span></h3><span id="mysgseg"></span></div><div class="feed" id="mysg"></div></div>
         </div>
         <div class="tools">
@@ -937,6 +932,8 @@ function renderUniv(){
 /* 저점매수·눌림목 한 박스 — 오른쪽 위 세그먼트로 전환 (고른 탭은 PREF.sg 에 기억, 내 종목·시장국면 공통) */
 const sigTab=()=>PREF.sg==='pb'?'pb':'dip';
 const sigSeg=()=>`<div class="seg sm" role="group" aria-label="시그널 종류">${[['dip','저점매수'],['pb','눌림목']].map(([k,t])=>`<button type="button" data-sg="${k}" aria-pressed="${sigTab()===k}">${t}</button>`).join('')}</div>`;
+const mySigTab=()=>PREF.sg==='st'||PREF.sg==='pb'?PREF.sg:'dip';   // 내 종목 국면은 단기진입도 있음 (유니버스 목록은 단기진입이 따로 있어 저점매수·눌림목만)
+const mySigSeg=()=>`<div class="seg sm" role="group" aria-label="시그널 종류">${[['st','단기진입'],['dip','저점매수'],['pb','눌림목']].map(([k,t])=>`<button type="button" data-sg="${k}" aria-pressed="${mySigTab()===k}">${t}</button>`).join('')}</div>`;
 const bindSg=el=>el.querySelectorAll('[data-sg]').forEach(b=>b.onclick=()=>{PREF.sg=b.dataset.sg;savePrefs();if(D)renderFlow();if($('ulists')&&UNIV)renderUnivLists()});
 /* 국면이 바뀐 종목 · 단기진입 시그널(20거래일) · 저점매수/눌림목 시그널(20거래일) — 모두 시가총액 큰 순 (서버에서 정렬) */
 function renderUnivLists(){
@@ -1677,22 +1674,23 @@ function renderFlow(){
   $('feedf').innerHTML=seasonChips('ff',ev,'to');bindChips($('feedf'),'ff',renderFlow);
   $('feed').innerHTML=evs.length?evs.slice(0,80).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
     <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span>${scMark(e.to,e.sc)}</span></div>`).join(''):`<div class="muted">${ff?sLab(ff)+'(으)로 바뀐 전이 없음':'최근 20거래일 전이 없음'}</div>`;
-  // 단기진입 시그널 — 최근 20거래일 안에 (여름 + 20일 최고 종가 첫 돌파 + 거래량 2배↑) 신호가 나온 내 종목
-  const ms=visible().filter(s=>ok(s)&&s.st5).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
-  $('mystn').textContent=`${ms.length}종목`;
-  $('myst').innerHTML=ms.length?ms.map(S=>{const q=S.st5,r=100*(S.last/q.px-1);return `<div class="ev"><span class="num muted">${q.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
-    <span>${q.now?'<span class="sig sig-st" style="margin:0">오늘 신호</span> ':''}${q.broke?'<span class="sub">손절가 이탈</span> ':''}<span class="num ${r>0?'up':r<0?'dn':''}" title="신호일 종가 ${fmtP(q.px,S.m)} 대비 지금 · 최근 20거래일 신호 ${q.n}번 · 진입 ${q.d}">${sgn(r)}%</span></span></div>`}).join('')
-    :'<div class="muted">최근 20거래일 시그널 없음 — 여름 · 20일 최고 종가 첫 돌파 · 거래량 2배↑</div>';
   // 손익비 시그널 — 지금 가격이 매물대 하단(VAL)~최대 매물(POC) 근처이고 VAH 까지 공간이 커서 손익비 3R↑인 내 종목 (서버 lib/levels.js rrSignal)
   const mr=visible().filter(s=>ok(s)&&s.rrs).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
   $('myrrn').textContent=`${mr.length}종목`;
   $('myrr').innerHTML=mr.length?mr.map(S=>{const q=S.rrs,m=S.m;return `<div class="ev"><span class="num muted">${(q.d||'').slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
     <span><span class="sig sig-st" style="margin:0">${q.z==='VAL'?'매물대 하단':'POC'}</span> <span class="num" title="${esc(`손절 ${fmtP(q.stop,m)}(VAL − 0.5ATR) · 목표 ${fmtP(q.tgt,m)}(VAH) · VAL ${fmtP(q.val,m)} · POC ${fmtP(q.poc,m)} · VAH ${fmtP(q.vah,m)}`)}">${q.rr}R</span></span></div>`}).join('')
     :'<div class="muted">시그널 없음 — 가격이 VAL~POC 근처 · VAH 까지 손익비 3R↑ (매물대는 지지·저항 계산이 끝난 종목만)</div>';
-  // 저점매수 / 눌림목 시그널 — 한 박스, 오른쪽 위 세그먼트로 전환
-  const tab=sigTab();
-  $('mysgseg').innerHTML=sigSeg();bindSg($('mysgseg'));
-  if(tab==='dip'){
+  // 단기진입 / 저점매수 / 눌림목 시그널 — 한 박스, 오른쪽 위 세그먼트로 전환
+  const tab=mySigTab();
+  $('mysgseg').innerHTML=mySigSeg();bindSg($('mysgseg'));
+  if(tab==='st'){
+    // 단기진입 — 최근 20거래일 안에 (여름 + 20일 최고 종가 첫 돌파 + 거래량 2배↑) 신호가 나온 내 종목
+    const ms=visible().filter(s=>ok(s)&&s.st5).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
+    $('mysgn').textContent=`${ms.length}종목`;
+    $('mysg').innerHTML=ms.length?ms.map(S=>{const q=S.st5,r=100*(S.last/q.px-1);return `<div class="ev"><span class="num muted">${q.d.slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
+      <span>${q.now?'<span class="sig sig-st" style="margin:0">오늘 신호</span> ':''}${q.broke?'<span class="sub">손절가 이탈</span> ':''}<span class="num ${r>0?'up':r<0?'dn':''}" title="신호일 종가 ${fmtP(q.px,S.m)} 대비 지금 · 최근 20거래일 신호 ${q.n}번 · 진입 ${q.d}">${sgn(r)}%</span></span></div>`}).join('')
+      :'<div class="muted">최근 20거래일 시그널 없음 — 여름 · 20일 최고 종가 첫 돌파 · 거래량 2배↑</div>';
+  }else if(tab==='dip'){
     // 저점매수 — 최근 20거래일 안에 겨울 20일+ · 20일선 −15% 이하가 나온 내 종목
     const md=visible().filter(s=>ok(s)&&s.dip20).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
     $('mysgn').textContent=`${md.length}종목`;
