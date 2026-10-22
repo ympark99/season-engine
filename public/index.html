@@ -1679,7 +1679,7 @@ function renderFlow(){
   const mr=visible().filter(s=>ok(s)&&s.rrs).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
   $('myrrn').textContent=`${mr.length}종목`;
   $('myrr').innerHTML=mr.length?mr.map(S=>{const q=S.rrs,m=S.m;return `<div class="ev"><span class="num muted">${(q.d||'').slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
-    <span><span class="sig sig-st" style="margin:0">${q.z==='VAL'?'매물대 하단':'POC'}</span> <span class="num" title="${esc(`손절 ${fmtP(q.stop,m)}(VAL − 0.5ATR) · 목표 ${fmtP(q.tgt,m)}(VAH) · VAL ${fmtP(q.val,m)} · POC ${fmtP(q.poc,m)} · VAH ${fmtP(q.vah,m)}`)}">${q.rr}R</span></span></div>`}).join('')
+    <span><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span>${scMark(S.season,S.sc)} <span class="sig sig-st" style="margin:0">${q.z==='VAL'?'매물대 하단':'POC'}</span> <span class="num" title="${esc(`손절 ${fmtP(q.stop,m)}(VAL − 0.5ATR) · 목표 ${fmtP(q.tgt,m)}(VAH) · VAL ${fmtP(q.val,m)} · POC ${fmtP(q.poc,m)} · VAH ${fmtP(q.vah,m)}`)}">${q.rr}R</span></span></div>`}).join('')
     :'<div class="muted">시그널 없음 — 가격이 VAL~POC 근처 · VAH 까지 손익비 3R↑ (매물대는 지지·저항 계산이 끝난 종목만)</div>';
   // 단기진입 / 저점매수 / 눌림목 시그널 — 한 박스, 오른쪽 위 세그먼트로 전환
   const tab=mySigTab();
