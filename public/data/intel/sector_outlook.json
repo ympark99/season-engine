@@ -1,0 +1,1173 @@
+{
+ "asof": "2026-10-23",
+ "sec": {
+  "KR:2차전지": {
+   "m": "KR",
+   "theme": "2차전지",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "대표 기업 LG에너지솔루션 3분기 잠정 영업이익 7560억원(매출 9조6434억원, 분기 최대)으로 시장 예상 3217억원의 두 배를 넘었고, 미국 세액공제(AMPC 4169억원)를 빼도 3391억원 흑자(2분기 -1277억원). 북미 ESS 출하 확대와 유럽 EV 물량이 이끌었다. 다만 최근 3일 업종 전체 신규 재료는 확인되지 않음.",
+   "outlook": "삼성SDI 등 국내 업체 3분기 실적과 ESS 수주 공시, 미국 EV 세액공제 폐지 법안 진행을 본다.",
+   "deny": "ESS 출하 증가가 이어지지 않거나 미국 EV 수요·세액공제 축소로 북미 가동률이 다시 떨어지는 일이 나오면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "LG엔솔, 3분기 영업익 7천560억원…ESS 효과에 567% 폭증",
+     "u": "https://biz.sbs.co.kr/amp/article/20000338892",
+     "d": "2026-10-08"
+    },
+    {
+     "t": "LG엔솔, 분기 '사상 최대' 매출 9조6434억 달성…EV·ESS 동반 성장",
+     "u": "https://news.mtn.co.kr/news-detail/2026100809101023307",
+     "d": "2026-10-08"
+    }
+   ],
+   "chg": []
+  },
+  "KR:K뷰티": {
+   "m": "KR",
+   "theme": "K뷰티",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "2026년 8월 화장품 수출 13억달러 초과로 역대 8월 최대, 1분기 수출 +19%(미국 비중 19.8%)로 수요가 이어지고, 한국콜마·코스맥스 등 ODM 생산라인이 사실상 풀가동에 연말까지 주문이 찬 상태. 9월 수출 수치는 확인 못함.",
+   "outlook": "10월 화장품 수출 통계(11월 초 발표)와 ODM·용기업체 3분기 실적의 가동률·증설 언급을 본다.",
+   "deny": "월간 화장품 수출이 전년 대비 감소로 돌아서거나 ODM 4분기 주문 이월이 취소·축소되면 틀린 판단.",
+   "src": [
+    {
+     "t": "성수기 지나도 공장 풀가동…K뷰티 호조에 물류까지 분주",
+     "u": "https://news.mtn.co.kr/news-detail/2026091515344038974",
+     "d": "2026-09-15"
+    },
+    {
+     "t": "K뷰티 주문 폭증에 설비증설 속도전⋯ODM업계 투자 반년 새 두 배",
+     "u": "https://etoday.co.kr/news/view/2619525",
+     "d": "2026-08-01"
+    },
+    {
+     "t": "K-뷰티 수출 31억달러 사상 최대…미국 1위·중국 감소",
+     "u": "https://www.medipharmhealth.co.kr/mobile/article.html?no=115356",
+     "d": "2026-04-24"
+    }
+   ],
+   "chg": []
+  },
+  "KR:건설·기계": {
+   "m": "KR",
+   "theme": "건설·기계",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 최근 3일 뉴스는 SK이터닉스 단독 소식(PPA·ESS 리포트, 연료전지 데이터센터 MOU)뿐이며 업종 전체 재료는 확인되지 않았고, 국내 건설·기계 최신 월간 수치는 날짜를 확인할 수 있는 출처가 없다.",
+   "outlook": "국내 건설수주·착공 월간 통계와 굴착기 등 건설기계 수출 통계 발표, ESS 중앙계약시장 입찰 일정을 본다.",
+   "deny": "건설수주·착공이나 건설기계 수출이 전년 대비 뚜렷하게 꺾이거나 반등하는 월간 통계가 나오면 이 중립 판단은 틀린 것이다.",
+   "src": [],
+   "chg": []
+  },
+  "KR:광통신": {
+   "m": "KR",
+   "theme": "광통신",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "AI 데이터센터 투자로 800G·1.6T 광트랜시버 수요가 공급을 웃돈다는 보도(미국 업체 콘퍼런스콜: 수요가 공급 가능 물량보다 20~40% 많음)가 있으나 날짜가 불명확하고, 최근 3일~2주 안의 한국 광통신 업황 변화는 확인되지 않음.",
+   "outlook": "미국 광통신 업체(루멘텀·코히런트·시에나) 실적·가이던스와 하이퍼스케일러 설비투자 발표, 미국의 중국산 광트랜시버 수입 규제 진행을 확인.",
+   "deny": "대형 클라우드 업체의 설비투자 축소나 광트랜시버 주문 감소·재고 조정이 확인되면 이 판단은 틀린 것.",
+   "src": [
+    {
+     "t": "GPU는 쌓이는데 연결할 게 없어…AI 시대 귀해진 광통신",
+     "u": "https://inews24.com/view/1995965",
+     "d": ""
+    }
+   ],
+   "chg": []
+  },
+  "KR:메모리": {
+   "m": "KR",
+   "theme": "메모리",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "한국 반도체 수출이 10월 1~10일 122억달러로 전년 동기 대비 170.9% 늘었고 9월 1~20일은 341억2000만달러(+259.4%)로, 수요·수출 지표는 강하다. 9월 범용 DRAM 계약가는 보합이나 3분기 상승 전망(13~18%)이 유지돼 가격 둔화 여부는 확인이 필요하다.",
+   "outlook": "10월 1~20일·말 수출 통계와 10월 DRAM 계약가 변동, 3분기 실적 발표(영업이익률 수준)를 볼 것.",
+   "deny": "월간 DRAM 계약가가 하락 전환하거나 반도체 수출 증가율이 급격히 꺾이면 우호 판단이 틀린 것.",
+   "src": [
+    {
+     "t": "반도체 수출 또 최고치…9월 1~20일 700억달러 돌파",
+     "u": "https://news.mtn.co.kr/news-detail/2026092110234362698",
+     "d": "2026-09-21"
+    },
+    {
+     "t": "10월 1~10일 수출 (관세청 집계)",
+     "u": "https://www.ytn.co.kr/_ln/0102_202610120903173882",
+     "d": "2026-10-12"
+    },
+    {
+     "t": "DRAM Contract Price Sep. 2026",
+     "u": "https://www.trendforce.com/research/download/RP260930SN",
+     "d": "2026-09-30"
+    }
+   ],
+   "chg": []
+  },
+  "KR:반도체 기판·PCB": {
+   "m": "KR",
+   "theme": "반도체 기판·PCB",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "10월 1~10일 반도체 수출 122억 달러로 전년 동기 대비 170.9% 증가했고, 메모리 모듈용 기판은 2분기 이후 판가 인상과 SOCAMM 주문 증가가 이어지는 중이다(3분기 신규 확정 실적·10월 가격공지는 확인 못함).",
+   "outlook": "10월 1~20일·말 수출 집계의 반도체 증가율 유지 여부와 3분기 실적 발표에서 기판 판가·SOCAMM 물량 언급을 본다.",
+   "deny": "수출 증가율이 급감하거나 기판 판가 인하·SOCAMM 발주 축소가 확인되면 이 판단은 틀린 것이다.",
+   "src": [
+    {
+     "t": "10월 상순 반도체 수출 보도",
+     "u": "https://www.ytn.co.kr/_ln/0102_202610120903173882",
+     "d": "2026-10-12"
+    },
+    {
+     "t": "반도체 기판 판가 하반기 상승 전망 보도",
+     "u": "https://www.heraldk.com/article/2026070519502877954",
+     "d": "2026-07-05"
+    },
+    {
+     "t": "티엘비, 소캠 공급 확대…3분기도 주문 증가세",
+     "u": "https://etoday.co.kr/news/view/2614327",
+     "d": "2026-08-01"
+    }
+   ],
+   "chg": []
+  },
+  "KR:반도체 전공정": {
+   "m": "KR",
+   "theme": "반도체 전공정",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "10월 1~10일 한국 반도체 수출 122억달러(전년 동기 +170.9%)로 메모리 업황이 강하고, 삼성전자·SK하이닉스가 2027년 용인 팹 증설용 장비 발주를 4분기부터 본격화할 것이라는 보도가 있음(발주 시점은 확정 아님).",
+   "outlook": "10월 1~20일·월간 반도체 수출 통계와 4분기 삼성·SK하이닉스 장비 발주(PO) 확정 여부를 본다.",
+   "deny": "메모리 수출 증가세가 꺾이거나 삼성·SK하이닉스가 용인 팹 장비 발주를 2027년 이후로 미루면 이 판단은 틀린 것이다.",
+   "src": [
+    {
+     "t": "10월 1~10일 수출 관세청 잠정치(반도체 122억달러)",
+     "u": "https://economist.co.kr/article/view/ecn202610120008",
+     "d": "2026-10-12"
+    },
+    {
+     "t": "SK하이닉스, 올해 설비투자 100조?…차세대 반도체 경쟁력 확보 총력",
+     "u": "https://www.heraldk.com/article/2026042514000054141",
+     "d": "2026-04-25"
+    },
+    {
+     "t": "한국발 '수백조' 희소식 \"세계적 장비업체들 만세!\"",
+     "u": "https://news.mtn.co.kr/news-detail/2026070209004685915",
+     "d": "2026-07-02"
+    }
+   ],
+   "chg": []
+  },
+  "KR:반도체 후공정": {
+   "m": "KR",
+   "theme": "반도체 후공정",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "한국 반도체 수출이 10월 1~10일 122억달러(전년 대비 +170.9%, 동기 역대 최대), 9월 1~20일 341억달러(+259.4%)로 업황 수요는 강하다. 다만 후공정(테스트·검사) 장비 발주 자체의 수치는 확인되지 않았고, 원화 강세(약 11% 하락)가 수출기업 실적에는 부담이다.",
+   "outlook": "10월 1~20일·월간 반도체 수출과 메모리 업체 3분기 실적·설비투자(후공정 장비 발주 단서)를 본다.",
+   "deny": "반도체 수출 증가율이 급격히 둔화하거나 메모리 업체가 HBM·설비투자를 줄이는 발표가 나오면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "10월 1일~10일 수출 261억달러로 102% 증가",
+     "u": "https://biz.sbs.co.kr/amp/article/20000339279",
+     "d": "2026-10-12"
+    },
+    {
+     "t": "반도체 수출 또 최고치…9월 1~20일 700억달러 돌파",
+     "u": "https://news.mtn.co.kr/news-detail/2026092110234362698",
+     "d": "2026-09-21"
+    },
+    {
+     "t": "삼전닉스 분기 영업익 200조 기대감...'정점 우려' 넘을까",
+     "u": "https://news.mtn.co.kr/news-detail/2026100216343554643",
+     "d": "2026-10-02"
+    }
+   ],
+   "chg": []
+  },
+  "KR:원전·SMR": {
+   "m": "KR",
+   "theme": "원전·SMR",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 최근 3일 뉴스는 AI발 전력 수요 확대 기사가 반복되나 원전·SMR 수주·정책의 새 사실은 검증하지 못했다.",
+   "outlook": "2026년 수주 목표(대형 원전 3.5조, SMR 1.1조) 대비 SMR 본계약 체결 여부와 한미 SMR 수출 관련 정책 진척을 본다.",
+   "deny": "SMR 본계약 지연·취소나 원전 수출 규제 강화가 확인되면 중립 판단은 악화 쪽으로 틀린 것이다.",
+   "src": [
+    {
+     "t": "두산에너빌리티 2026 수주 가이던스 관련 보고서",
+     "u": "https://file.alphasquare.co.kr/media/pdfs/company-report/20260211103634347K_02.pdf",
+     "d": "2026-02-11"
+    }
+   ],
+   "chg": []
+  },
+  "KR:전력기기": {
+   "m": "KR",
+   "theme": "전력기기",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "3분기 대형 변압기 수출액 4억6,395만 달러로 전년比 53.9% 늘고 미국향은 64.5% 증가했다. 미국 변압기 PPI는 7월 전년比 8.7% 올랐고 납기는 배전용 30~36개월, 초고압 최대 5년이다.",
+   "outlook": "3사 3분기 실적(합산 영업이익 컨센서스 8,107억원)과 원·달러 환율, AI 인프라 투자 자금조달 우려 추이를 본다.",
+   "deny": "미국 대형 변압기 수주·수출 증가세가 꺾이거나 AI 데이터센터 투자 축소로 장기공급계약 취소·지연이 나오면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "미국서 불티나는 변압기…'환율·납기'에 실적은 온도차",
+     "u": "https://newstomato.com/ReadNews.aspx?no=1316987",
+     "d": "2026-10-16"
+    },
+    {
+     "t": "\"韓제품 비싸도 써야지!\" 美 '물량대기' 급급",
+     "u": "https://news.mtn.co.kr/news-detail/2026101308534592557",
+     "d": "2026-10-13"
+    }
+   ],
+   "chg": []
+  },
+  "KR:전자·부품": {
+   "m": "KR",
+   "theme": "전자·부품",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "AI 서버용 FC-BGA 기판 수요가 생산능력을 50% 이상 웃돈다는 회사 발언이 있고, 삼성전기는 세종 4조2700억·베트남 포함 총 6조7800억원 증설을 고객사 투자금 지원과 중장기 물량 보장 구조로 발표(9/29). 10월 1~10일 한국 반도체 수출 +170.9%(관세청 잠정). 다만 스마트폰 카메라·MLCC 쪽 최신 수치는 확인 못함.",
+   "outlook": "관세청 10월 1~20일·월간 수출, 삼성전기·LG이노텍 3분기 실적과 4분기 가이던스, 애플 아이폰 부품 수요를 본다.",
+   "deny": "빅테크 선수금·증설 계약이 축소·지연되거나 FC-BGA 가동률이 하락하고, 월간 반도체 수출 증가율이 급격히 꺾이면 이 판단은 틀린 것이다.",
+   "src": [
+    {
+     "t": "삼성전기 보도자료 2026.09.29",
+     "u": "https://m.samsungsem.com/kr/newsroom/news/view.do?id=10561",
+     "d": "2026-09-29"
+    },
+    {
+     "t": "AI 확산에 FC-BGA 품귀 … 생산능력 50% 이상 초과 수요",
+     "u": "https://biz.newdaily.co.kr/site/data/html/2026/04/14/2026041400257.html",
+     "d": "2026-04-14"
+    },
+    {
+     "t": "KDI 경제교육정보센터 10월 1~10일 수출입 잠정치",
+     "u": "https://eiec.kdi.re.kr/policy/materialView.do?num=287971",
+     "d": "2026-10-12"
+    }
+   ],
+   "chg": []
+  },
+  "KR:제약·바이오": {
+   "m": "KR",
+   "theme": "제약·바이오",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "최근 3일 안에 확인된 업황 변화 없음. 배경으로는 올해 국내 제약바이오 기술수출 누적이 21조원을 넘었다는 보도(2026-09)가 있으나, 관세·약가 쪽 최신 현황과 10월 수급 자료는 확인하지 못했다.",
+   "outlook": "4분기에 몰리는 경향이 있다는 글로벌 기술이전 계약과 10월 ESMO 2026 학회 발표 소식을 본다.",
+   "deny": "4분기 대형 기술이전 계약이 이어지지 않거나, 의약품 관세·약가 인하가 국내 업체 수출에 불리하게 확정되면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "'빅딜 성수기' 다가온다…K바이오, 기술이전 30兆 도전",
+     "u": "https://www.mt.co.kr/article/2026093011101987882",
+     "d": "2026-09-30"
+    },
+    {
+     "t": "\"벌써 21조\" 글로벌 '빅딜'로 기술력 입증…K바이오 새역사 쓴다",
+     "u": "https://www.mt.co.kr/article/2026090613244280629",
+     "d": "2026-09-06"
+    }
+   ],
+   "chg": []
+  },
+  "KR:조선": {
+   "m": "KR",
+   "theme": "조선",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 최근 3일 업종 전체 재료로 출처 URL까지 확인된 소식이 없고, 수주량·신조선가 최신 수치도 확인하지 못했다. 다만 HD현대중공업·한화오션 노사 갈등(임금 요구, 영업이익 30% 성과 공유)이 이어지고 있어 생산 차질 변수로 남아 있다.",
+   "outlook": "11월 월간 수주·신조선가 지표와 HD현대중공업·한화오션 파업 여부(생산 차질)를 본다",
+   "deny": "노조 파업이 장기화되어 인도·생산 차질이 확인되거나, 신규 발주·신조선가가 뚜렷이 꺾이면 이 중립 판단은 틀린 것",
+   "src": [
+    {
+     "t": "HD현대重 노조 파업 수순…조선업 생산 차질 변수 부상",
+     "u": "https://news.mtn.co.kr/news-detail/2026081415254325753",
+     "d": "2026-08-14"
+    },
+    {
+     "t": "[삼성 2600조 투자] 최성안, 거제 3X 자율형 조선소 구축…10조 투입",
+     "u": "https://v.daum.net/v/20260709051002108",
+     "d": "2026-07-09"
+    }
+   ],
+   "chg": []
+  },
+  "KR:철강·소재": {
+   "m": "KR",
+   "theme": "철강·소재",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 10월 초 LME 알루미늄 현물은 톤당 약 3,107~3,134달러의 3,100~3,200달러 구간이고, 한국 철강·알루미늄 업황의 2026년 10월 수출·내수 통계는 확인되지 않았다.",
+   "outlook": "LME 알루미늄 3,100달러 구간 유지 여부, 한국 9~10월 철강 수출 통계와 3분기 철강사 실적 발표를 본다.",
+   "deny": "LME 알루미늄이 3,100달러 아래로 뚜렷이 밀리거나 철강 수출·내수 통계가 급변하면 중립 판단이 틀린 것이다.",
+   "src": [
+    {
+     "t": "LME aluminium offer price rises to $3,134.5/t as stocks remain unchanged at 240,375t",
+     "u": "https://www.alcircle.com/news/lme-aluminium-offer-price-rises-to-3-134-5-t-as-stocks-remain-unchanged-at-240-375t-121456",
+     "d": "2026-10-06"
+    }
+   ],
+   "chg": []
+  },
+  "KR:통신": {
+   "m": "KR",
+   "theme": "통신",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "통신 3사는 정부의 주파수 재할당 조건에 따라 내년 말까지 5G SA 전환이 필요하나, 투자 우선순위가 AI 데이터센터로 옮겨가고 국내 통신장비 수주는 가뭄이 이어진다(10/8). 3.7GHz 300MHz 신규 경매는 2027년 재개 가능성이 거론될 뿐 일정 미확정이라 업황 변화는 엇갈린다.",
+   "outlook": "3사 5G SA 코어망 발주 공시와 3.7GHz 경매 일정 확정 여부, 통신사 설비투자 가이던스를 본다.",
+   "deny": "3사가 SA 코어·RF 장비 대규모 발주를 내거나 3.7GHz 경매 일정이 확정되면 '중립(수주 부진)' 판단이 틀린 것이다(반대로 설비투자 추가 삭감 발표 시 악화).",
+   "src": [
+    {
+     "t": "[벼랑 끝 통신장비] <하> ‘진짜 5G’ 기대 걸었지만…통신장비 수주가뭄 지속",
+     "u": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610071013212100713",
+     "d": "2026-10-08"
+    },
+    {
+     "t": "7년 만의 통신장비 성수기 오나…3.7GHz 300MHz 경매가 깨울 '보릿고개' 업계",
+     "u": "https://www.thepowernews.co.kr/view.php?ud=202610071444076742de3f0aa1be_7",
+     "d": "2026-10-07"
+    }
+   ],
+   "chg": []
+  },
+  "KR:팹리스·파운드리": {
+   "m": "KR",
+   "theme": "팹리스·파운드리",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "국내 8인치 파운드리는 공급 축소(글로벌 8인치 생산능력 올해 2.4% 감소 전망)와 AI發 전력반도체 수요로 가동률이 98% 안팎의 풀가동으로 보도되고, 3월·7월 두 차례 가격 인상이 이어졌다. 10월 1~20일 한국 반도체 수출은 275억달러로 222.5% 증가했으나 이는 메모리 중심이라 파운드리 직접 지표는 아니고, 시스템반도체 단독 수치는 확인되지 않았다.",
+   "outlook": "2차 가격 인상분의 10월 매출 반영 폭과 3분기 실적 발표 때 가동률·추가 인상 언급 여부.",
+   "deny": "가동률이 90% 아래로 내려가거나 8인치 가격 인하·고객 주문 감소가 확인되면 이 판단은 틀린 것.",
+   "src": [
+    {
+     "t": "10월 1~20일 수출 616억달러 역대 최대, 반도체 222.5% 증가",
+     "u": "https://view.asiae.co.kr/article/2026102109252318596",
+     "d": "2026-10-21"
+    },
+    {
+     "t": "절대강자 떠난 8인치 파운드리 DB하이텍 “가동률 98%까지”",
+     "u": "https://biz.heraldcorp.com/article/10735974",
+     "d": "2026-05-11"
+    },
+    {
+     "t": "DB하이텍, 8인치 파운드리 수요 증가로 본격 가격 인상",
+     "u": "https://www.alphabiz.co.kr/news/articleView.html?idxno=190690",
+     "d": "2026-07-01"
+    },
+    {
+     "t": "정부·현대차그룹 손잡고 車반도체 국산화 추진",
+     "u": "https://www.hankyung.com/article/2026102167601",
+     "d": "2026-10-21"
+    }
+   ],
+   "chg": []
+  },
+  "US:AI 반도체": {
+   "m": "US",
+   "theme": "AI 반도체",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "TSMC 3분기 매출 약 467억 달러(전년비 +41.2%), 회장이 AI 수요가 공급능력을 웃돈다고 밝히고 4분기 매출을 523~543억 달러로 제시, 2026 설비투자 목표를 600~640억 달러로 상향. 다만 22일 AI 투자 회의론·유가 상승 관련 보도가 이어져 수요 지속성 논란은 남아 있음(수치 출처 미확인).",
+   "outlook": "Intel 3분기 실적(회사 공지상 10/29 예정)과 빅테크 설비투자 코멘트, TSMC 2027 설비투자 언급 여부를 본다.",
+   "deny": "주요 클라우드 업체의 설비투자 축소나 TSMC·엔비디아의 수요 둔화·주문 지연 언급이 나오면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "TSMC third quarter revenue tops guidance as CEO says AI demand still exceeds supply",
+     "u": "https://www.crnasia.com/news/2026/components-and-peripherals/tsmc-third-quarter-revenue-tops-guidance-as-ceo-says-ai-dema",
+     "d": "2026-10-15"
+    }
+   ],
+   "chg": []
+  },
+  "US:AI 서버": {
+   "m": "US",
+   "theme": "AI 서버",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "10월 2일 기준 델 AI 서버 수주 잔고가 기록적이며 공급 제약이 출하 한도라는 보도, HPE도 같은 날 동반 강세. 10월 22일 AI 서버 업체(슈퍼마이크로)의 매출 전망 상향 보도가 있었으나 일차 자료로 숫자는 확인하지 못함. 서버용 DRAM은 3분기에도 부족하나 인상폭은 축소 중(원가 부담 완화 여지).",
+   "outlook": "향후 1~4주 델·HPE 분기 실적·수주 잔고 코멘트와 서버 DRAM 계약가 인상폭 추이를 본다.",
+   "deny": "AI 서버 수주 잔고 감소나 고객사 설비투자 축소 발표, 또는 메모리 원가 급등으로 서버 업체 마진 가이던스가 낮아지면 틀린 판단.",
+   "src": [
+    {
+     "t": "Dell Climbs 4% on AI Server Backlog; Hewlett Packard Enterprise Jumps 8%",
+     "u": "https://247wallst.com/investing/2026/10/02/dell-climbs-4-on-ai-server-backlog-hewlett-packard-enterprise-jumps-8/",
+     "d": "2026-10-02"
+    },
+    {
+     "t": "第3季記憶體價格持續受AI server需求支撐 惟漲幅收斂",
+     "u": "https://udn.com/news/story/7240/9605047",
+     "d": "2026-10-01"
+    }
+   ],
+   "chg": []
+  },
+  "US:AI 소프트웨어": {
+   "m": "US",
+   "theme": "AI 소프트웨어",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 소프트웨어 지출 전망은 2026년 +15.1%(1.44조 달러)로 4월 상향됐으나 최근 3일~2주 내 업종 전체 신규 재료는 확인되지 않았고, AI 에이전트가 기존 소프트웨어 점유를 잠식한다는 우려도 병존.",
+   "outlook": "10/28 서비스나우 3분기 실적(구독매출 가이던스 약 39.8억 달러)에서 AI 수요와 가이던스 방향 확인.",
+   "deny": "주요 소프트웨어 업체가 가이던스를 줄줄이 하향하거나 기업 IT 예산 삭감이 확인되면 중립 판단이 틀린 것.",
+   "src": [
+    {
+     "t": "Software spend now $1.44 trillion in 2026, revised up to 15.1%",
+     "u": "https://www.saastr.com/gartner-software-spend-now-1-44-trillion-in-2026-revised-back-up-to-15-1-the-slowdown-never-came-are-you-grabbing-it/",
+     "d": "2026-04-30"
+    },
+    {
+     "t": "ServiceNow Form 8-K FY2026 Q2",
+     "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
+     "d": "2026-07-22"
+    }
+   ],
+   "chg": []
+  },
+  "US:AI 헬스케어": {
+   "m": "US",
+   "theme": "AI 헬스케어",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 미국 디지털헬스 벤처 투자는 올해 1~3분기 누계 111억 달러(358건), 3분기 37억 달러(114건)로 자금 유입은 유지되나(단일 요약 출처), AI 정밀의료·진단 수요·가격 지표나 새 규제 확정 소식은 확인되지 않음.",
+   "outlook": "CMS의 AI·소프트웨어 지급 방식 개편 확정 여부와 연말 4분기 투자 흐름을 본다.",
+   "deny": "AI 소프트웨어 지급 체계가 불리하게 확정되거나 벤처 투자가 급감하면 중립 판단이 틀린 것이다.",
+   "src": [
+    {
+     "t": "Digital health funding tops $7.4B: 5 things to know",
+     "u": "https://www.beckershospitalreview.com/digital-health/digital-health-funding-tops-7-4b-5-things-to-know/",
+     "d": ""
+    },
+    {
+     "t": "CMS signals intent to revamp how it pays for clinical software and AI",
+     "u": "https://hlc.com/en/news/cms-signals-intent-to-revamp-how-it-pays-for-clinical-software-and-ai",
+     "d": ""
+    }
+   ],
+   "chg": []
+  },
+  "US:IT 하드웨어": {
+   "m": "US",
+   "theme": "IT 하드웨어",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "메모리(DRAM·낸드) 원가 급등으로 PC 출하 -10.4%, 스마트폰 -8.4%(2026 전망)로 업황은 악화 쪽이나, 애플은 고가 라인 중심으로 점유율 확대 가능성이 거론되고 첫 폴더블 아이폰($1,999)이 10/23 판매 개시해 엇갈린다. 두 전망은 모두 2월 자료라 최근 3일 신규 업황 수치는 확인되지 않음.",
+   "outlook": "폴더블 초기 판매 반응, 메모리 가격 추이와 반도체 관세 확정 여부, 애플 분기 실적의 매출총이익률 가이던스를 본다.",
+   "deny": "메모리 원가 상승에도 출하가 예상보다 크게 늘거나, 반대로 폴더블 판매 부진·관세 확정으로 마진이 꺾이면 중립 판단이 틀린 것.",
+   "src": [
+    {
+     "t": "Gartner Says Surging Memory Costs Will Reduce Global PC and Smartphone Shipments in 2026",
+     "u": "https://www.gartner.com/en/newsroom/press-releases/2026-02-26-gartner-says-surging-memory-costs-will-reduce-global-pc-and-smartphone-shipments-in-2026",
+     "d": "2026-02-26"
+    },
+    {
+     "t": "Smartphone market set for biggest-ever decline in 2026 on memory price surge, IDC says",
+     "u": "https://finance.yahoo.com/news/smartphone-market-set-biggest-ever-191934291.html",
+     "d": "2026-02-27"
+    },
+    {
+     "t": "Apple launches first foldable iPhone, its most expensive to date",
+     "u": "https://www.blackcountryradio.co.uk/news/world-news/apple-launches-first-foldable-iphone-its-most-expensive-to-date/",
+     "d": "2026-10-23"
+    }
+   ],
+   "chg": []
+  },
+  "US:광통신·네트워크": {
+   "m": "US",
+   "theme": "광통신·네트워크",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "MaxLinear 3분기 매출 2억1810만 달러(전년비 +72%), 데이터센터 인프라 +210%(광 AI 제품 채택 가속). Lumentum 8월 분기 매출 10.1억 달러로 예상 상회, 다음 분기 목표 12.25~12.75억 달러. 레이저 공급 병목으로 800G·1.6T 광부품 수요가 공급을 웃돈다는 업계 발언이 이어짐.",
+   "outlook": "하이퍼스케일러 설비투자 가이던스 유지 여부, 레이저(InP) 공급 병목, Ciena 등 후속 실적 발표를 확인.",
+   "deny": "주요 하이퍼스케일러가 AI 설비투자를 축소하거나 광트랜시버 주문 지연·가격 급락이 확인되면 틀린 판단.",
+   "src": [
+    {
+     "t": "MaxLinear 8-K 2026 3분기 실적 보도자료",
+     "u": "https://www.sec.gov/Archives/edgar/data/0001288469/000128846926000060/a09302026exhibit991.htm",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "Lumentum (LITE) Q4 2026 실적",
+     "u": "https://www.newsquawk.com/headlines/lumentum-lite-q4-2026-usd-adj-eps-323-exp-297-revenue-101bln-exp-9877mln",
+     "d": "2026-08-11"
+    },
+    {
+     "t": "AOI CFO flags laser bottleneck as hyperscalers push 800G and 1.6T optics",
+     "u": "https://www.marketbeat.com/instant-alerts/applied-optoelectronics-cfo-flags-laser-bottleneck-as-hyperscalers-push-800g-and-16t-optics-2026-03-03/?.tsrc=rss",
+     "d": "2026-03-03"
+    }
+   ],
+   "chg": []
+  },
+  "US:기타": {
+   "m": "US",
+   "theme": "기타",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 합성생물학·바이오제조 업종의 최근 3일~2주 수요·정책·수급 관련 확인 가능한 신규 자료를 찾지 못함.",
+   "outlook": "바이오제조 정책·연구 예산, 업종 대표 기업의 분기 실적 발표 일정 확인",
+   "deny": "바이오제조 수요·자금조달 지표가 뚜렷이 개선되거나 악화되는 자료가 나오면 이 중립 판단이 틀린 것",
+   "src": [],
+   "chg": []
+  },
+  "US:네오클라우드": {
+   "m": "US",
+   "theme": "네오클라우드",
+   "at": "2026-10-23",
+   "view": "악화",
+   "note": "네오클라우드의 조달비용 부담이 부각: 코어위브 2032년 만기 채권 수익률이 장중 15%까지 올랐고(보도 기준 부채 약 520억달러 대 수주잔고 약 1040억달러), 빅테크 AI 투자비 증가·잉여현금흐름 급감 우려로 AI 인프라 투자심리가 위축됨. 수요(수주잔고) 자체는 견조하다는 반론도 있음.",
+   "outlook": "코어위브·오라클 채권 수익률과 신규 자금조달(채권·증자) 조건, 빅테크 추가 capex 발표를 1~4주 지켜본다.",
+   "deny": "네오클라우드 채권 수익률이 뚜렷이 내려가고 대규모 조달이 낮은 비용으로 성사되며 빅테크가 AI 투자 확대를 재확인하면 틀린 판단.",
+   "src": [
+    {
+     "t": "CoreWeave Falls 10% as Bond Yield Touches 15% and Elon Musk Says 'Yikes'; Nebius Drops 6%, Oracle Slips",
+     "u": "https://247wallst.com/investing/2026/10/14/coreweave-falls-10-as-bond-yield-touches-15-and-elon-musk-says-yikes-nebius-drops-6-oracle-slips/",
+     "d": "2026-10-14"
+    },
+    {
+     "t": "CoreWeave and Nebius Sink 9% as Sentiment Index Closes in on 'Extreme Fear'",
+     "u": "https://247wallst.com/investing/2026/10/16/coreweave-and-nebius-sink-9-as-sentiment-index-closes-in-on-extreme-fear/",
+     "d": "2026-10-16"
+    },
+    {
+     "t": "Oracle Plans to Raise Up to $50 Billion for AI Infrastructure Buildout",
+     "u": "https://finance.yahoo.com/news/oracle-plans-raise-50-billion-130100607.html",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "Meta's free cash flow just collapsed 91% and Wall Street punished it immediately",
+     "u": "https://www.wionews.com/world/meta-s-free-cash-flow-just-collapsed-91-and-wall-street-punished-it-immediately-1785766809341",
+     "d": "2026-10-22"
+    }
+   ],
+   "chg": []
+  },
+  "US:메모리": {
+   "m": "US",
+   "theme": "메모리",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "4분기 계약가는 범용 DRAM 약 10~15%, NAND 약 15~20%(기업용 SSD 23~28%) 추가 상승 전망(9월 말 발표)으로 공급 부족이 이어지나 상승폭은 직전 분기(DRAM 13~18%, NAND 10~15%)와 비슷하거나 둔화 구간이며, 소비자 수요는 약함. 10/22 AI 투자 회의론으로 반도체 업종이 급락했으나 이는 수급 심리이고 가격 지표는 아직 꺾이지 않음.",
+   "outlook": "10/29 샌디스크 FY27 1분기 실적과 마이크론·빅테크의 AI 설비투자 가이던스, 11월 계약가 발표를 볼 것.",
+   "deny": "계약가 상승이 멈추거나 하락 전환하고 빅테크가 AI 설비투자를 줄이는 신호가 나오면 이 판단이 틀린 것.",
+   "src": [
+    {
+     "t": "AI keeps memory prices climbing in Q4 as consumer demand weakens",
+     "u": "https://evertiq.com/news/2026-10-02-ai-keeps-memory-prices-climbing-in-q4-as-consumer-demand-weakens",
+     "d": "2026-10-02"
+    }
+   ],
+   "chg": []
+  },
+  "US:반도체 전공정": {
+   "m": "US",
+   "theme": "반도체 전공정",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "ASML 이 10/14 올해 매출 가이던스를 €44~45bn 로 상향(4월 €36~40bn)하고 고객이 AI 투자 전망에 따라 장비 전망을 올렸다고 밝혔다. SEMI 중간 전망도 WFE 2026년 $143.9bn, 2027년 +21.8%. 다만 미국 장비주 가이던스 관련 보도는 URL 확인 못 해 반영 안 함.",
+   "outlook": "램리서치·KLA 등 미국 장비사 분기 가이던스와 수주, 대중국 수출통제 변화를 확인",
+   "deny": "주요 고객(메모리·TSMC)의 설비투자 삭감 또는 장비 수주 감소·가이던스 하향이 나오면 틀린 판단",
+   "src": [
+    {
+     "t": "ASML lifts 2026 guidance as strong AI demand boosts orders",
+     "u": "https://www.capitalbrief.com/briefing/asml-lifts-2026-guidance-as-strong-ai-demand-boosts-orders-1671792f-c5a6-4559-aed9-6806a1fa3a27/",
+     "d": "2026-10-14"
+    },
+    {
+     "t": "Global semiconductor equipment sales forecast to reach a record $229 billion in 2028",
+     "u": "https://www.eenewseurope.com/en/semi-forecasts-record-semiconductor-equipment-sales-by-2028/",
+     "d": "2026-07-01"
+    }
+   ],
+   "chg": []
+  },
+  "US:반도체 후공정": {
+   "m": "US",
+   "theme": "반도체 후공정",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "TSMC 3분기 매출 467억 달러로 가이던스 상단 초과, 4분기 523~543억 달러 제시, 올해 설비투자 600~640억 달러 유지, CoWoS 수요 강세·캐파 타이트. 후공정 테스트는 Teradyne 6월 분기 매출 약 13.3억 달러(전년비 +104%), 반도체 테스트 약 11.2억 달러로 AI 수요 반영.",
+   "outlook": "Teradyne 3분기 실적·가이던스(통상 10월 말)와 TSMC 후공정 캐파 증설 속도, 테스트 장비 수주 코멘트 확인.",
+   "deny": "TSMC·주요 고객의 설비투자 축소 또는 CoWoS/AI 가속기 주문 감소, 테스트 장비 가이던스 하향이 나오면 틀린 것.",
+   "src": [
+    {
+     "t": "TSMC 3Q26 Earnings Release",
+     "u": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf",
+     "d": "2026-10-15"
+    },
+    {
+     "t": "Teradyne Q2 FY 2026 Doubles Semiconductor Test Revenue on AI Compute and Memory Demand",
+     "u": "https://futurumgroup.com/insights/teradyne-q2-fy-2026-doubles-semiconductor-test-revenue-on-ai-compute-and-memory-demand/",
+     "d": "2026-08-01"
+    }
+   ],
+   "chg": []
+  },
+  "US:보안 SW": {
+   "m": "US",
+   "theme": "보안 SW",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "AI 확산에 따른 보안 지출이 수요를 받치는 흐름: 크라우드스트라이크 직전 분기 순신규 ARR 3.33억 달러(+51%), 연간 순신규 ARR 성장 가이던스 중간값 34%로 상향, 옥타는 비(非)4분기 기준 사상 최대 예약. 다만 밸류에이션 부담이 큰 업종이라는 지적이 같이 나옴(출처 2차 요약, 수치 재확인 필요).",
+   "outlook": "다음 분기 실적에서 순신규 ARR 성장률과 연간 가이던스 유지 여부, 대형 보안 기업의 수주·예약 지표를 확인.",
+   "deny": "주요 보안 기업이 순신규 ARR 둔화나 가이던스 하향을 내놓거나 기업 보안 예산 축소가 확인되면 이 판단은 틀린 것.",
+   "src": [
+    {
+     "t": "As Geopolitical Risk Ramps Up, These Are Wall Street's Top Cybersecurity Stock Picks for October 2026",
+     "u": "https://www.webull.com/news/15742617654469632"
+    },
+    {
+     "t": "'글로벌AI사이버보안' ETF, 이번 주 수익률 1위 (ETF 브리핑)",
+     "u": "https://news.mtn.co.kr/news-detail/2026091816292336316",
+     "d": "2026-09-18"
+    }
+   ],
+   "chg": []
+  },
+  "US:소프트웨어": {
+   "m": "US",
+   "theme": "소프트웨어",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 최근 3일 업종 전체 재료는 확인되지 않았고, 서비스나우는 7월 2분기 구독매출 가이던스를 연 157.55~157.70억 달러로 상향(AI 계약가치 10억 달러 초과)한 반면, AI 에이전트가 좌석 기반 과금을 잠식할 수 있다는 우려로 지수가 4월 저점 이후 42.5% 회복했어도 고점 대비 손실이 남아 엇갈림.",
+   "outlook": "마이크로소프트·서비스나우 등 10월 말 분기 실적의 클라우드·AI 매출 성장률과 가이던스, 기업 AI 에이전트 도입 속도를 확인.",
+   "deny": "주요 소프트웨어 기업이 연속으로 가이던스를 하향하거나 AI 대체로 좌석·구독 해지가 수치로 확인되면 중립 판단은 틀린 것(악화 쪽), 반대로 다수 기업의 동반 가이던스 상향이 나오면 우호.",
+   "src": [
+    {
+     "t": "ServiceNow shares jump 7% after earnings",
+     "u": "https://www.xtb.com/en/market-analysis/servicenow-shares-jump-7-after-earnings-is-the-software-sector-poised-for-a-rebound",
+     "d": "2026-07-23"
+    },
+    {
+     "t": "Salesforce Job-Ready Agents Target Enterprise AI Biggest Gap",
+     "u": "https://futurumgroup.com/insights/salesforces-job-ready-agents-target-enterprise-ais-biggest-gap/",
+     "d": "2026-09-11"
+    }
+   ],
+   "chg": []
+  },
+  "US:아날로그 반도체": {
+   "m": "US",
+   "theme": "아날로그 반도체",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "대표 기업 TI의 3분기(10/21 발표) 매출은 약 60.6억 달러로 전년 대비 28% 증가했고, 4분기 매출 목표는 58~63억 달러다. 산업·차량·데이터센터 수요가 이끌고 있으며 재고 조정은 대체로 끝난 것으로 보인다(다만 ADI 측 발언은 날짜 불확실).",
+   "outlook": "ADI 등 동종사 분기 실적에서 산업·차량 수주와 리드타임, 가격 인상 지속 여부를 본다.",
+   "deny": "동종사 실적에서 산업·차량 수주가 꺾이거나 재고가 다시 쌓이는 신호, 4분기 목표 하향이 나오면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "Texas Instruments Form 8-K Q3 2026 results",
+     "u": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000165/q32026txnex99-eredgar.htm",
+     "d": "2026-10-21"
+    },
+    {
+     "t": "Analog Devices CFO sees industrial upcycle",
+     "u": "https://finance.yahoo.com/news/analog-devices-cfo-sees-industrial-194707345.html",
+     "d": "2026-07-01"
+    }
+   ],
+   "chg": []
+  },
+  "US:에너지": {
+   "m": "US",
+   "theme": "에너지",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "3분기 말 Brent 평균 약 104달러, 3분기 미국 정유 가동률 평균 95%로 2019년 이후 최대 처리량이며 경유·제트유 정제마진은 전년 대비 약 3배 수준(EIA). 10월 9일 주 상업용 원유재고 약 860만 배럴 감소, 가동률 93.5%.",
+   "outlook": "11월 1일 OPEC+ 회의 결과, 중동 분쟁·평화 협상 진행, 주간 EIA 원유·증류유 재고와 정유 가동률을 본다.",
+   "deny": "중동 평화 합의로 유가가 급락하거나 증류유 재고가 크게 쌓이며 정제마진이 꺾이면 우호 판단은 틀린 것이다.",
+   "src": [
+    {
+     "t": "EIA Today in Energy",
+     "u": "https://www.eia.gov/TodayinEnergy/detail.php?id=68245",
+     "d": "2026-10-05"
+    },
+    {
+     "t": "OPEC keeps November oil production unchanged at 31.01 million bpd",
+     "u": "https://nairametrics.com/2026/10/05/opec-keeps-november-oil-production-unchanged-at-31-01-million-bpd/",
+     "d": "2026-10-05"
+    }
+   ],
+   "chg": []
+  },
+  "US:여가·외식": {
+   "m": "US",
+   "theme": "여가·외식",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "9월 미국 외식 지출 전년비 +5.4%로 견조하나 의류·잡화는 +2.2%로 완만하고, 소매판매 증가(전월비 +0.8%)는 휘발유(+6.4%)가 주도해 가계가 필수 소비에 집중 중. 업황 방향은 엇갈림.",
+   "outlook": "10월 소매판매·휴가철 의류 판매 동향과 관세 비용 관련 신용 가이던스를 확인",
+   "deny": "의류·신발 소매 판매가 전월비 뚜렷이 감소하거나, 반대로 비필수 소비가 휘발유 제외 기준 가속되면 이 중립 판단이 틀린 것",
+   "src": [
+    {
+     "t": "US Retail Sales Above Expectations on Higher Gas Prices",
+     "u": "https://tradingeconomics.com/united-states/retail-sales/news/592364",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "Retail sales rose nationwide just over 4% in September",
+     "u": "https://talkbusiness.net/2026/10/retail-sales-rose-nationwide-just-over-4-in-september/",
+     "d": "2026-10-22"
+    }
+   ],
+   "chg": []
+  },
+  "US:우주": {
+   "m": "US",
+   "theme": "우주",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음에 가깝다: 중형 발사체 Neutron 첫 비행이 2027년으로 밀렸으나 수요는 유지(로켓랩 올해 1~3월 발사 판매가 2025년 전체보다 많음)되어 엇갈린다. 스페이스X 3분기 실적 수치는 출처 URL을 확인하지 못해 쓰지 않는다.",
+   "outlook": "스페이스X-테슬라 합병 절차(특별위원회 등 승인), 뉴글렌 등 발사 용량 복귀 시점, AST의 서비스 개시 일정을 본다.",
+   "deny": "발사 수요·수주가 꺾이거나 발사 지연이 다른 업체로 번져 위성 배치가 줄줄이 밀리면 중립 판단이 틀린 것이다(반대로 발사 용량이 풀리고 수주가 늘면 우호).",
+   "src": [
+    {
+     "t": "Rocket Lab Tumbles 11% as Neutron's First Flight Moves to 2027; SpaceX and AST SpaceMobile Pull Back",
+     "u": "https://247wallst.com/investing/2026/10/15/rocket-lab-tumbles-11-as-neutrons-first-flight-moves-to-2027-spacex-and-ast-spacemobile-pull-back/",
+     "d": "2026-10-15"
+    }
+   ],
+   "chg": []
+  },
+  "US:인터넷": {
+   "m": "US",
+   "theme": "인터넷",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "광고 수요는 견조(메타 3분기 매출 646억달러, 시장 예상 633.7억달러 상회)하나 AI 투자 부담이 커졌다: 메타 3분기 잉여현금흐름 -21.2억달러(설비투자 349.1억달러), 올해 설비투자 전망 하단을 1350억달러로 상향, 비취소 약정 8,250억달러. 알파벳도 올해 설비투자 전망을 1950억~2050억달러로 올린 상태라 수요 우호와 비용·현금흐름 악화가 엇갈린다.",
+   "outlook": "알파벳·아마존 3분기 실적(검색 광고·클라우드 성장률, 설비투자 전망)과 대형 기술주 AI 투자 회수 논의를 볼 것.",
+   "deny": "알파벳·아마존이 설비투자 증액에도 광고·클라우드 매출 가속과 현금흐름 개선을 함께 보이면 부담 우려가 과했다는 뜻이다(반대로 광고 성장 둔화가 확인되면 악화로 바뀐다).",
+   "src": [
+    {
+     "t": "Meta stock sinks nearly 7% as AI spend pushes free cash flow negative",
+     "u": "https://www.cnbc.com/2026/10/22/meta-stock-q3-earnings-free-cash-flow.html",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "Nasdaq Tumbles 2.6% on Meta's $825 Billion AI Spending Pact; Brent Hits $113",
+     "u": "https://en.sedaily.com/international/2026/10/23/nasdaq-tumbles-26-percent-on-metas-825-billion-ai-spending",
+     "d": "2026-10-23"
+    },
+    {
+     "t": "Alphabet post-Q2: AI growth accelerates as spending weighs on cash flow",
+     "u": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/alphabet-postq-ai-growth-accelerates-as-spending-weighs-on-cash-flow",
+     "d": "2026-07-30"
+    }
+   ],
+   "chg": []
+  },
+  "US:자동차": {
+   "m": "US",
+   "theme": "자동차",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 2026년 미국 신차 판매 전망은 1,582만 대로 전년(1,638만 대) 대비 3% 넘게 감소 예상, 연방 EV 세액공제는 2025-10-01 종료, 자동차 수입관세 25%(Section 232)는 유지 중으로 보도됨. 최근 3일 안에 업종 전체에 닿는 새 소식은 확인되지 않음.",
+   "outlook": "GM·Ford 등 3분기 실적과 관세비용·EV 수요 가이던스, 월간 미국 판매(SAAR) 발표를 볼 것",
+   "deny": "월간 SAAR가 16.5M 안팎 이상으로 이어지거나 관세 인하·EV 수요 반등 근거가 나오면 중립 판단이 보수적이었다고 인정",
+   "src": [
+    {
+     "t": "EV tariffs in 2026, explained",
+     "u": "https://thechargeport.com/ev-tariffs-2026",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "General Motors Co - Form 8-K - FY2026",
+     "u": "https://www.sec.gov/Archives/edgar/data/0001467858/000146785826000033/gmq12026pressreleaseandfin.htm",
+     "d": "2026-04-28"
+    }
+   ],
+   "chg": []
+  },
+  "US:저장장치": {
+   "m": "US",
+   "theme": "저장장치",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "AI 데이터센터발 대용량 HDD 수요가 강하다: 시게이트는 FY2026 4분기 매출 36억 달러(전년 대비 +48%)를 냈고 FY2027 1분기 매출을 약 41억 달러(±1억)로 제시했다(회사 가이던스). 낸드·기업용 SSD도 공급 부족으로 가격이 오르는 중이라는 보도가 이어진다.",
+   "outlook": "10/27 시게이트 FY27 1분기 실적에서 가이던스(41억 달러) 달성 여부, 다음 분기 전망, 용량 배정·가격 코멘트를 확인.",
+   "deny": "실적에서 매출이 가이던스 하단 밑이거나 다음 분기 전망이 꺾이고, HDD 가격 인하나 클라우드 주문 축소가 나오면 이 판단은 틀린 것.",
+   "src": [
+    {
+     "t": "Seagate FQ4 FY2026 실적·FQ1 가이던스 (Digitimes)",
+     "u": "https://digitimes.com/news/a20260729VL202/seagate-demand-revenue-growth-profit.html",
+     "d": "2026-07-29"
+    },
+    {
+     "t": "Seagate FQ1 2027 실적 발표 10월 27일 예정",
+     "u": "https://www.seagate.com/kr/ko/stories/articles/seagate-technology-to-report-fiscal-first-quarter-2027-financial-results-on-october-27-2026-pr/",
+     "d": "2026-10-14"
+    }
+   ],
+   "chg": []
+  },
+  "US:전력 인프라": {
+   "m": "US",
+   "theme": "전력 인프라",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "데이터센터 전력 수요로 장비 부족이 이어진다: 발전용 변압기 대기 160주 초과(2024년 평균 143주), 고압 차단기 125주(2023년 77주). 업종 대표 GE Vernova 2분기 수주 242억 달러(유기 +88%), 수주잔고 1760억 달러. Bloom Energy 3분기 매출 +138%, 연간 매출 목표를 44~46억 달러로 세 번째 상향.",
+   "outlook": "11월 중순까지 이어질 전력·배전 장비 업체 실적과 수주잔고, 변압기 대기기간 변화를 본다.",
+   "deny": "대표 업체의 수주잔고가 감소하거나 데이터센터 전력 증설 계획이 대거 취소·지연되고 장비 대기기간이 줄어들기 시작하면 틀린 판단이다.",
+   "src": [
+    {
+     "t": "Bloom Energy Q3 2026 financial results (8-K)",
+     "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm",
+     "d": "2026-10-22"
+    },
+    {
+     "t": "US power firms scramble to secure equipment as surging data center demand strains supplies",
+     "u": "https://www.kitco.com/news/off-the-wire/2026-07-09/us-power-companies-scramble-secure-equipment-surging-data-center",
+     "d": "2026-07-09"
+    },
+    {
+     "t": "GE Vernova Q2 2026 press release (8-K)",
+     "u": "https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000147/gevpressrelease2q26.htm",
+     "d": "2026-07-22"
+    }
+   ],
+   "chg": []
+  },
+  "US:전력반도체": {
+   "m": "US",
+   "theme": "전력반도체",
+   "at": "2026-10-23",
+   "view": "우호",
+   "note": "AI 데이터센터 전력 수요가 업종을 받치는 중: onsemi는 AI 데이터센터 매출이 2026년 2배 이상, SiC AI 용도는 약 60% 증가를 제시했고, 업종 대표 Vicor의 3분기 매출은 1.971억 달러로 전년 대비 78.5% 늘고 총마진 68.3%(라이선스 로열티 일부 포함). 다만 일회성 로열티 기여가 섞여 있어 순수 수요 강도는 과대 반영 가능.",
+   "outlook": "11/3 Navitas 3분기 실적과 onsemi·Infineon 등 전력 업체의 AI 데이터센터 매출 가이던스, 800V DC 전환 관련 수주 소식 확인",
+   "deny": "주요 전력반도체 업체가 AI 데이터센터 매출 가이던스를 낮추거나 수주잔고·book-to-bill 이 1 아래로 꺾이는 경우",
+   "src": [
+    {
+     "t": "VICOR CORP Form 8-K (3Q26 results)",
+     "u": "https://www.sec.gov/Archives/edgar/data/0000751978/000119312526425697/d153882dex991.htm",
+     "d": "2026-10-20"
+    },
+    {
+     "t": "onsemi Q2 earnings call highlights",
+     "u": "https://www.nasdaq.com/articles/onsemi-q2-earnings-call-highlights",
+     "d": "2026-07-21"
+    }
+   ],
+   "chg": []
+  },
+  "US:제약·바이오": {
+   "m": "US",
+   "theme": "제약·바이오",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음. 9/29 특허의약품 관세(Section 232) 2단계가 시작됐으나 제조계획·MFN 가격합의를 맺은 대형사는 2029년 1월까지 0%여서 대형주 충격은 제한적이고, 비용 부담은 제조 외주 중소 바이오 쪽에 쏠린다는 보도가 엇갈린다. 최근 2주 내 업종 전체 수요·자금흐름 자료는 확인되지 않았다.",
+   "outlook": "관세 시행 세부 지침과 중소 바이오의 MFN 합의·인수합병 소식, FDA 백신·승인 정책 변화를 본다.",
+   "deny": "관세 면제 없는 중소·중견 바이오로 비용 부담이 확대된다는 지침이 나오거나, 반대로 업종 전반 인수합병·자금조달이 급증하면 중립 판단이 틀린 것이다.",
+   "src": [
+    {
+     "t": "Drug tariffs cast cloud over smaller biotechs",
+     "u": "https://www.axios.com/2026/09/30/trump-drug-tariffs-biotech",
+     "d": "2026-09-30"
+    },
+    {
+     "t": "Big Pharma Got Its Tariff Exemption. The Biotech ETF Barely Blinked",
+     "u": "https://247wallst.com/investing/2026/09/30/big-pharma-got-its-tariff-exemption-the-biotech-etf-barely-blinked/",
+     "d": "2026-09-30"
+    }
+   ],
+   "chg": []
+  },
+  "US:코인": {
+   "m": "US",
+   "theme": "코인",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "미국 현물 비트코인 ETF는 10월 13일 약 1.76억 달러 순유입이나 10월 7~8일에는 약 4.85억·2.44억 달러 유출로 엇갈리고, 9월은 약 26.5억 달러 유입이었다. 최근 일주일 자금 흐름과 규제(시장구조법) 진행은 확인되지 않아 뚜렷한 업황 변화 없음.",
+   "outlook": "현물 ETF 일별 순유입이 며칠 연속 이어지는지, 시장구조법(CLARITY) 상원 표결 진행, MSCI의 코인 보유 기업 지수 처리 소식을 볼 것.",
+   "deny": "현물 ETF가 수일 연속 대규모 순유출로 돌아서거나 시장구조법이 무산되면 중립 판단이 틀린 것(악화 쪽); 연속 대규모 순유입이면 우호.",
+   "src": [
+    {
+     "t": "Bitcoin ETFs See $175.6M Inflows on October 13",
+     "u": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-175-6m-inflows-on-october-13",
+     "d": "2026-10-13"
+    },
+    {
+     "t": "Bitcoin ETF Flows · Live Month",
+     "u": "https://www.tftc.io/bitcoin-etf-flows/october-2026",
+     "d": "2026-10-13"
+    }
+   ],
+   "chg": []
+  },
+  "US:희토류": {
+   "m": "US",
+   "theme": "희토류",
+   "at": "2026-10-23",
+   "view": "중립",
+   "note": "확인된 업황 변화 없음: 최근 3일 안 업종 전체 재료를 URL로 확인하지 못함. 배경으로 미 국방부가 NdPr 하한가 kg당 110달러를 MP머티리얼즈와 정하고(2025-07) 2026-03 리나스와도 맞췄다는 점만 확인.",
+   "outlook": "중국 희토류 수출통제 조치와 미국 내 자석 공급망 계약 변화, NdPr 가격이 하한가 110달러/kg 위에 머무는지 확인",
+   "deny": "중국이 수출통제를 대폭 완화해 NdPr 가격이 하한가 아래로 내려가거나, 반대로 통제가 크게 강화되어 가격이 급등하면 중립 판단은 틀린 것",
+   "src": [
+    {
+     "t": "What is happening in the prices of rare earth elements",
+     "u": "https://www.wisdomtree.com/us/insights/blog/what-s-happening-in-the-prices-of-rare-earth-elements",
+     "d": "2026-09-17"
+    }
+   ],
+   "chg": []
+  }
+ },
+ "items": [
+  {
+   "m": "US",
+   "theme": "IT 하드웨어",
+   "d": "2026-10-23",
+   "note": "애플이 첫 폴더블 아이폰($1,999)을 70개국에서 판매 개시, 고가 폴더블 시장 경쟁 구도 변화.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.blackcountryradio.co.uk/news/world-news/apple-launches-first-foldable-iphone-its-most-expensive-to-date/"
+  },
+  {
+   "m": "US",
+   "theme": "전력 인프라",
+   "d": "2026-10-22",
+   "note": "Bloom Energy 3분기 매출 12.36억 달러(+138%), 2026년 매출 목표 44~46억 달러로 상향(회사 목표) — 현장 발전 수요 확인",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm"
+  },
+  {
+   "m": "US",
+   "theme": "인터넷",
+   "d": "2026-10-22",
+   "note": "메타 3분기 잉여현금흐름 적자 전환(-21.2억달러), 올해 설비투자 전망 하단 상향(1350억~1450억달러), AI 관련 약정 8,250억달러 공시 — 대형 인터넷 기업 AI 투자 부담 부각",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.cnbc.com/2026/10/22/meta-stock-q3-earnings-free-cash-flow.html"
+  },
+  {
+   "m": "US",
+   "theme": "여가·외식",
+   "d": "2026-10-22",
+   "note": "9월 미국 소매판매 전월비 +0.8%(예상 +0.3%)이나 휘발유 제외 +0.2%, 의류점 보합, 외식 +1.1%",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://tradingeconomics.com/united-states/retail-sales/news/592364"
+  },
+  {
+   "m": "US",
+   "theme": "여가·외식",
+   "d": "2026-10-22",
+   "note": "카드 기반 집계 9월 외식 지출 전년비 +5.4%, 의류·잡화 +2.2%; 가계는 필수 소비 위주",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://talkbusiness.net/2026/10/retail-sales-rose-nationwide-just-over-4-in-september/"
+  },
+  {
+   "m": "US",
+   "theme": "네오클라우드",
+   "d": "2026-10-22",
+   "note": "빅테크 AI 투자비 급증에 잉여현금흐름 급감, AI 인프라 투자심리 위축",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.wionews.com/world/meta-s-free-cash-flow-just-collapsed-91-and-wall-street-punished-it-immediately-1785766809341"
+  },
+  {
+   "m": "US",
+   "theme": "네오클라우드",
+   "d": "2026-10-22",
+   "note": "오라클, AI 인프라용 최대 500억달러 조달 계획(보도) — 업종 자금조달 부담 확대",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://finance.yahoo.com/news/oracle-plans-raise-50-billion-130100607.html"
+  },
+  {
+   "m": "US",
+   "theme": "광통신·네트워크",
+   "d": "2026-10-22",
+   "note": "MaxLinear 3분기 매출 +72%, 인프라(광 AI 데이터센터) +210% — 광 인터커넥트 수요 확인",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001288469/000128846926000060/a09302026exhibit991.htm"
+  },
+  {
+   "m": "US",
+   "theme": "아날로그 반도체",
+   "d": "2026-10-21",
+   "note": "TI 3분기 매출 약 60.6억 달러(전년 대비 +28%), 4분기 매출 목표 58~63억 달러; 산업·차량·데이터센터 수요 언급",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000165/q32026txnex99-eredgar.htm"
+  },
+  {
+   "m": "KR",
+   "theme": "팹리스·파운드리",
+   "d": "2026-10-21",
+   "note": "정부·현대차그룹·DB하이텍 등 24개 기업·기관이 차량용 반도체 원팀 TF 출범, 2029년 양산차 첫 적용 목표, 정부 12개 과제에 2957억원 지원(국산화율 10% 목표).",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.hankyung.com/article/2026102167601"
+  },
+  {
+   "m": "KR",
+   "theme": "팹리스·파운드리",
+   "d": "2026-10-21",
+   "note": "10월 1~20일 한국 수출 616억달러(+105.4%), 반도체 275억달러(+222.5%)로 동기간 역대 최대 — 다만 시스템반도체 별도 수치는 없음.",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://view.asiae.co.kr/article/2026102109252318596"
+  },
+  {
+   "m": "KR",
+   "theme": "전력기기",
+   "d": "2026-10-16",
+   "note": "3분기 대형 변압기 수출 4억6,395만 달러(+53.9%), 미국향 +64.5%; 환율 하락과 납품 일정 조정은 실적 변수",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://newstomato.com/ReadNews.aspx?no=1316987"
+  },
+  {
+   "m": "US",
+   "theme": "우주",
+   "d": "2026-10-15",
+   "note": "로켓랩이 Neutron 첫 비행을 2027년으로 연기(추진체 돔 복합소재 층 공극); 발사 용량 공급 확대가 늦어짐, 신규 수주는 유지",
+   "tone": "악재",
+   "scope": "일회성",
+   "u": "https://247wallst.com/investing/2026/10/15/rocket-lab-tumbles-11-as-neutrons-first-flight-moves-to-2027-spacex-and-ast-spacemobile-pull-back/"
+  },
+  {
+   "m": "US",
+   "theme": "반도체 후공정",
+   "d": "2026-10-15",
+   "note": "TSMC 3분기 매출 467억 달러, 4분기 523~543억 달러 전망, 올해 설비투자 600~640억 달러 유지, CoWoS 수요 강세",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/526b65af7305df2dde6b9ece6812b1fdf1e49f9b/3Q26%20EarningsRelease.pdf"
+  },
+  {
+   "m": "US",
+   "theme": "AI 반도체",
+   "d": "2026-10-15",
+   "note": "TSMC 3분기 매출이 가이던스 상단을 넘고 4분기 매출 523~543억 달러 제시, AI 수요가 공급보다 크다고 언급",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.crnasia.com/news/2026/components-and-peripherals/tsmc-third-quarter-revenue-tops-guidance-as-ceo-says-ai-dema"
+  },
+  {
+   "m": "US",
+   "theme": "반도체 전공정",
+   "d": "2026-10-14",
+   "note": "ASML 올해 매출 가이던스 €44~45bn 로 상향, 고객 장비 전망 상향·공급 능력이 제약",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.capitalbrief.com/briefing/asml-lifts-2026-guidance-as-strong-ai-demand-boosts-orders-1671792f-c5a6-4559-aed9-6806a1fa3a27/"
+  },
+  {
+   "m": "US",
+   "theme": "네오클라우드",
+   "d": "2026-10-14",
+   "note": "코어위브 채권 수익률 15% 접근, 네비우스·오라클 동반 약세 — 업종 자금조달비용 우려",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://247wallst.com/investing/2026/10/14/coreweave-falls-10-as-bond-yield-touches-15-and-elon-musk-says-yikes-nebius-drops-6-oracle-slips/"
+  },
+  {
+   "m": "US",
+   "theme": "코인",
+   "d": "2026-10-13",
+   "note": "미국 현물 비트코인 ETF 하루 약 1.76억 달러 순유입(이더리움 ETF 약 0.25억 달러).",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-175-6m-inflows-on-october-13"
+  },
+  {
+   "m": "KR",
+   "theme": "전력기기",
+   "d": "2026-10-13",
+   "note": "한국산 대형 변압기 미국 수입액 1위, 미국 납기 최대 5년, 올해 북미 공시 수주 2조2,000억원 초과",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://news.mtn.co.kr/news-detail/2026101308534592557"
+  },
+  {
+   "m": "KR",
+   "theme": "반도체 후공정",
+   "d": "2026-10-12",
+   "note": "10월 1~10일 반도체 수출 122억달러, 전년 대비 170.9% 증가로 동기 역대 최대.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://biz.sbs.co.kr/amp/article/20000339279"
+  },
+  {
+   "m": "KR",
+   "theme": "반도체 전공정",
+   "d": "2026-10-12",
+   "note": "10월 1~10일 한국 반도체 수출 122억달러, 전년 동기 대비 170.9% 증가(잠정)",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://economist.co.kr/article/view/ecn202610120008"
+  },
+  {
+   "m": "KR",
+   "theme": "반도체 기판·PCB",
+   "d": "2026-10-12",
+   "note": "10월 1~10일 반도체 수출 122억 달러, 전년 동기 대비 170.9% 증가로 10월 상순 기준 최대",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.ytn.co.kr/_ln/0102_202610120903173882"
+  },
+  {
+   "m": "KR",
+   "theme": "메모리",
+   "d": "2026-10-12",
+   "note": "10월 1~10일 한국 반도체 수출 122억달러, 전년 동기 대비 +170.9%.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.ytn.co.kr/_ln/0102_202610120903173882"
+  },
+  {
+   "m": "KR",
+   "theme": "통신",
+   "d": "2026-10-08",
+   "note": "통신 3사 차세대망 투자 축소와 투자 우선순위의 AI 데이터센터 이동으로 통신장비 수주 가뭄 지속, 중소 장비·부품사 부담 우려",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610071013212100713"
+  },
+  {
+   "m": "KR",
+   "theme": "통신",
+   "d": "2026-10-07",
+   "note": "2018년 이후 멈춘 주파수 경매가 2027년 재개될 가능성, 3.7GHz 300MHz가 후보로 거론(일정 미확정)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.thepowernews.co.kr/view.php?ud=202610071444076742de3f0aa1be_7"
+  },
+  {
+   "m": "US",
+   "theme": "에너지",
+   "d": "2026-10-05",
+   "note": "3분기 정유 가동률 평균 95%로 2019년 이후 최대 처리량, 경유·제트유 정제마진 전년 대비 약 3배(중동 분쟁에 따른 공급 부족)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.eia.gov/TodayinEnergy/detail.php?id=68245"
+  },
+  {
+   "m": "US",
+   "theme": "에너지",
+   "d": "2026-10-05",
+   "note": "OPEC+ 핵심 7개국, 11월 생산 할당을 9월 수준(약 3101만 b/d)으로 동결, 다음 회의 11월 1일",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://nairametrics.com/2026/10/05/opec-keeps-november-oil-production-unchanged-at-31-01-million-bpd/"
+  },
+  {
+   "m": "KR",
+   "theme": "메모리",
+   "d": "2026-09-30",
+   "note": "9월 DRAM 계약가 보합, 공급사는 서버 제품과의 격차 축소를 위해 인상 시도 중.",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.trendforce.com/research/download/RP260930SN"
+  }
+ ]
+}
