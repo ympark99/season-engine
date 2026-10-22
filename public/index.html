@@ -649,7 +649,7 @@ body{margin:0}
         <div class="box" id="cpbox" style="margin-top:14px"></div>
         <div class="three fill" style="margin:14px 0 16px">
           <div class="box"><h3>최근 20거래일 전이 <span class="muted" id="feedn"></span></h3><div class="chips sm" id="feedf"></div><div class="feed" id="feed"></div></div>
-          <div class="box"><h3>손익비 시그널 <span class="muted" id="myrrn"></span></h3><div class="feed" id="myrr"></div></div>
+          <div class="box"><div class="bh"><h3>손익비 시그널 <span class="muted" id="myrrn"></span></h3><span class="chips sm" id="myrrtg" style="margin:0"></span></div><div class="feed" id="myrr"></div></div>
           <div class="box"><div class="bh"><h3 id="mysgt">시그널 (20거래일) <span class="muted" id="mysgn"></span></h3><span id="mysgseg"></span></div><div class="feed" id="mysg"></div></div>
         </div>
         <div class="tools">
@@ -1676,11 +1676,14 @@ function renderFlow(){
   $('feed').innerHTML=evs.length?evs.slice(0,80).map(e=>`<div class="ev"><span class="num muted">${e.d.slice(5)}</span><span class="lnk" ${openAttr(e.m,e.code,e.name)}>${nm(e)}</span>
     <span><span class="pill p-${e.from}">${e.from}</span><span class="arrow">→</span><span class="pill p-${e.to}">${e.to}</span>${scMark(e.to,e.sc)}</span></div>`).join(''):`<div class="muted">${ff?sLab(ff)+'(으)로 바뀐 전이 없음':'최근 20거래일 전이 없음'}</div>`;
   // 손익비 시그널 — 지금 가격이 매물대 하단(VAL)~최대 매물(POC) 근처이고 VAH 까지 공간이 커서 손익비 3R↑인 내 종목 (서버 lib/levels.js rrSignal)
-  const mr=visible().filter(s=>ok(s)&&s.rrs).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
+  const rrPoc=PREF.rrPoc!==false;   // POC 토글 — 켜면 POC 태그(가격이 VAL 보다 POC 에 가까운 종목)만. 기본 켬, 브라우저에 기억
+  $('myrrtg').innerHTML=`<button type="button" class="chip" aria-pressed="${rrPoc}" title="켜면 POC 태그 종목만 · 끄면 매물대 하단 태그까지 모두">POC</button>`;
+  $('myrrtg').firstChild.onclick=()=>{PREF.rrPoc=!rrPoc;savePrefs();renderFlow()};
+  const mr=visible().filter(s=>ok(s)&&s.rrs&&(!rrPoc||s.rrs.z==='POC')).sort((a,b)=>(b.mcap??-1)-(a.mcap??-1));
   $('myrrn').textContent=`${mr.length}종목`;
   $('myrr').innerHTML=mr.length?mr.map(S=>{const q=S.rrs,m=S.m;return `<div class="ev"><span class="num muted">${(q.d||'').slice(5)}</span><span class="lnk" ${openAttr(S.m,S.code,S.name)}>${nm(S)}</span>
     <span><span class="pill p-${S.season}"><span class="han">${HAN[S.season]}</span>${S.season}</span>${scMark(S.season,S.sc)} <span class="sig sig-st" style="margin:0">${q.z==='VAL'?'매물대 하단':'POC'}</span> <span class="num" title="${esc(`손절 ${fmtP(q.stop,m)}(VAL − 0.5ATR) · 목표 ${fmtP(q.tgt,m)}(VAH) · VAL ${fmtP(q.val,m)} · POC ${fmtP(q.poc,m)} · VAH ${fmtP(q.vah,m)}`)}">${q.rr}R</span></span></div>`}).join('')
-    :'<div class="muted">시그널 없음 — 가격이 VAL~POC 근처 · VAH 까지 손익비 3R↑ (매물대는 지지·저항 계산이 끝난 종목만)</div>';
+    :`<div class="muted">시그널 없음 — 가격이 VAL~POC 근처 · VAH 까지 손익비 3R↑${rrPoc?' · POC 태그만(토글 끄면 매물대 하단 포함)':''} (매물대는 지지·저항 계산이 끝난 종목만)</div>`;
   // 단기진입 / 저점매수 / 눌림목 시그널 — 한 박스, 오른쪽 위 세그먼트로 전환
   const tab=mySigTab();
   $('mysgseg').innerHTML=mySigSeg();bindSg($('mysgseg'));
