@@ -5,7 +5,7 @@
 // POST /api/list?op=fav  — 즐겨찾기 저장 (관리자)
 // Hobby 플랜 함수 12개 제한 때문에 세 엔드포인트를 한 함수로 합쳤다. 주소는 그대로다.
 import * as store from '../lib/store.js';
-import { srPlan, levelsFor } from '../lib/levels.js';
+import { srPlan, levelsFor, rrSignal } from '../lib/levels.js';
 import { engineState, row, send, refresh, isAdmin, body, KEEP } from '../lib/service.js';
 import { analyzeV2, JUDGE_REV } from '../lib/engine2.js';
 import { historyOf } from '../lib/history.js';
@@ -89,7 +89,7 @@ async function list(req, res) {
     const sh = SH[it.m]?.rows?.[it.code]?.[0];                                 // 시가총액(원) = 상장주식수 × 종가 (미국은 × 원/달러)
     if (!r.error) r.mcap = mcapOf(sh, r.last, it.m, SH[it.m]?.fx) ?? null;
     const lv = lvs[i] && !lvs[i].none ? lvs[i] : null;
-    if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); }
+    if (lv) { r.lv = { sup: lv.sup?.[0]?.p ?? null, res: lv.res?.[0]?.p ?? null, tl: lv.tl && !lv.tl.broke ? lv.tl.now : null, tlBroke: !!lv.tl?.broke, d: lv.d, kjs: lv.kjs || null }; if (r.pb20) r.pb20.sr = srPlan(r.pb20, lv); if (!r.error) r.rrs = rrSignal(lv, r.last); }   // rrs = 손익비 시그널 (VAL·POC 근처 + VAH 까지 공간)
     const va = VAL[it.m]?.[it.code];                                            // 밸류에이션 요약 (펀더멘털 점수 계산 때 같이) — 괴리는 오늘 종가로
     if (va && !r.error) r.val = { type: va.type, base: va.base, buy: va.buy, sm: va.sm, d: va.d, res: va.res, rv: va.rv,
       gap: va.base > 0 && r.last > 0 ? Math.round(1000 * (r.last / va.base - 1)) / 10 : null };
