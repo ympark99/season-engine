@@ -3,7 +3,7 @@
   "code": "STM",
   "name": "STMICROELECTRONICS NY SHS-EACH REPR 1 ORD EUR1.04",
   "theme": "AI 반도체",
-  "at": "2026-10-18",
+  "at": "2026-10-23",
   "full": "2026-10-18",
   "by": "Claude 정기 조사",
   "position": "저궤도(LEO) 위성 칩은 사실상 독점(회사 추정 90%+), SiC 전력반도체는 1위권이고, AI 데이터센터(광트랜시버용 실리콘 포토닉스·BiCMOS·MCU, 800V 전력)가 새 성장축으로 붙는 중이다. 다만 MCU는 인피니언에 밀린 3~4위권이고 영업이익률이 아직 한 자릿수라, 다음 분기 관건은 10월 29일 3분기 실적에서 매출 37억달러·총마진 37% 가이던스 달성과 4분기 40억달러 초과 전망 유지 여부다.",
@@ -13,12 +13,36 @@
     "why": "LEO 위성 칩 90%+ 점유(회사 추정)·SiC 1위권에 데이터센터 매출이 2026년 10억달러 초과, 2027년 20억달러 훨씬 초과 목표로 커지고 2분기 매출 +26%·수주잔고 비율 약 2로 모멘텀은 강하다. 반면 GAAP 영업이익률 5.4%로 수익성이 낮고, 제조 재편이 2027년 말에야 끝나며, MCU는 인피니언 우위·실리콘 포토닉스는 타워세미 등과 경쟁이 치열하다."
   },
   "peers": [
-    { "name": "인피니언 (Infineon)", "m": null, "code": null },
-    { "name": "NXP 반도체", "m": "US", "code": "NXPI" },
-    { "name": "온세미 (onsemi)", "m": "US", "code": "ON" },
-    { "name": "텍사스 인스트루먼트", "m": "US", "code": "TXN" },
-    { "name": "르네사스", "m": null, "code": null },
-    { "name": "타워 세미컨덕터", "m": "US", "code": "TSEM" }
+    {
+      "name": "인피니언 (Infineon)",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "NXP 반도체",
+      "m": "US",
+      "code": "NXPI"
+    },
+    {
+      "name": "온세미 (onsemi)",
+      "m": "US",
+      "code": "ON"
+    },
+    {
+      "name": "텍사스 인스트루먼트",
+      "m": "US",
+      "code": "TXN"
+    },
+    {
+      "name": "르네사스",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "타워 세미컨덕터",
+      "m": "US",
+      "code": "TSEM"
+    }
   ],
   "axes": [
     {
@@ -27,7 +51,10 @@
       "vs": "회사도 2026년 이후 일부 점유율 하락을 가정했다고 설명 — 경쟁사 공개 점유율은 확인 안 됨",
       "verdict": "우위",
       "conf": "보도",
-      "src": [9, 1]
+      "src": [
+        9,
+        1
+      ]
     },
     {
       "k": "SiC 전력반도체",
@@ -35,7 +62,10 @@
       "vs": "온세미가 2023년 2위로 상승, 인피니언 3위(16.5%). 2025년 이후 점유율 자료는 확인 안 됨",
       "verdict": "선두권",
       "conf": "보도",
-      "src": [5, 1]
+      "src": [
+        5,
+        1
+      ]
     },
     {
       "k": "AI 데이터센터 광연결 (실리콘 포토닉스·BiCMOS)",
@@ -43,7 +73,12 @@
       "vs": "타워세미는 2분기 실리콘 포토닉스 매출 +270%, 2027년분 13억달러 계약·4분기 연환산 10억달러 목표, 생산능력 5배 확대",
       "verdict": "동등",
       "conf": "공시",
-      "src": [0, 1, 7, 8]
+      "src": [
+        0,
+        1,
+        7,
+        8
+      ]
     },
     {
       "k": "800V DC AI 데이터센터 전력",
@@ -51,7 +86,11 @@
       "vs": "인피니언·TI·나비타스·ROHM·MPS도 엔비디아 800V 파트너. 인피니언은 FY2026 AI 데이터센터 전력 매출 약 15억유로·FY2027 25억유로 목표로 규모가 앞섬",
       "verdict": "열세",
       "conf": "보도",
-      "src": [3, 11, 6]
+      "src": [
+        3,
+        11,
+        6
+      ]
     },
     {
       "k": "범용·차량용 MCU",
@@ -59,7 +98,10 @@
       "vs": "인피니언 1위(23.2%, +1.8%p), NXP 2위·르네사스 3위. 상위 5개사가 약 80%",
       "verdict": "열세",
       "conf": "보도",
-      "src": [4, 0]
+      "src": [
+        4,
+        0
+      ]
     },
     {
       "k": "센서·MEMS",
@@ -67,7 +109,10 @@
       "vs": "경쟁사와의 점유율 비교 자료는 확인 안 됨",
       "verdict": "불확실",
       "conf": "공시",
-      "src": [10, 0]
+      "src": [
+        10,
+        0
+      ]
     },
     {
       "k": "수익성·제조 재편",
@@ -75,7 +120,10 @@
       "vs": "경쟁사 이익률과의 같은 기준 비교는 이번 조사에서 확인 안 됨",
       "verdict": "불확실",
       "conf": "공시",
-      "src": [0, 1]
+      "src": [
+        0,
+        1
+      ]
     }
   ],
   "checkpoints": [
@@ -86,9 +134,16 @@
       "kind": "실적",
       "status": "예정",
       "conf": "공시",
-      "src": [2, 0],
+      "src": [
+        2,
+        0
+      ],
       "log": [
-        { "d": "2026-10-18", "s": "예정", "note": "10월 29일 유럽 장 시작 전 발표, 9:30 CET 콜. 3분기는 9월 26일 마감" }
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "10월 29일 유럽 장 시작 전 발표, 9:30 CET 콜. 3분기는 9월 26일 마감"
+        }
       ]
     },
     {
@@ -98,9 +153,15 @@
       "kind": "실적",
       "status": "예정",
       "conf": "공시",
-      "src": [0],
+      "src": [
+        0
+      ],
       "log": [
-        { "d": "2026-07-23", "s": "예정", "note": "2분기 발표에서 4분기 매출 40억달러 초과 예상 제시 — 확인은 4분기 실적 발표(날짜 미정)" }
+        {
+          "d": "2026-07-23",
+          "s": "예정",
+          "note": "2분기 발표에서 4분기 매출 40억달러 초과 예상 제시 — 확인은 4분기 실적 발표(날짜 미정)"
+        }
       ]
     },
     {
@@ -110,9 +171,16 @@
       "kind": "실적",
       "status": "진행",
       "conf": "공시",
-      "src": [0, 1],
+      "src": [
+        0,
+        1
+      ],
       "log": [
-        { "d": "2026-07-23", "s": "진행", "note": "2분기에 데이터센터 매출 목표 상향 — 800G·1.6T 광모듈 채택 가속 전제" }
+        {
+          "d": "2026-07-23",
+          "s": "진행",
+          "note": "2분기에 데이터센터 매출 목표 상향 — 800G·1.6T 광모듈 채택 가속 전제"
+        }
       ]
     },
     {
@@ -122,9 +190,16 @@
       "kind": "실적",
       "status": "진행",
       "conf": "보도",
-      "src": [9, 1],
+      "src": [
+        9,
+        1
+      ],
       "log": [
-        { "d": "2026-05-04", "s": "진행", "note": "우주 사업 전용 투자자 설명회에서 목표 제시, 발사 일정에 따라 변동" }
+        {
+          "d": "2026-05-04",
+          "s": "진행",
+          "note": "우주 사업 전용 투자자 설명회에서 목표 제시, 발사 일정에 따라 변동"
+        }
       ]
     },
     {
@@ -134,9 +209,16 @@
       "kind": "양산",
       "status": "예정",
       "conf": "보도",
-      "src": [12, 1],
+      "src": [
+        12,
+        1
+      ],
       "log": [
-        { "d": "2026-10-18", "s": "예정", "note": "2024년 발표 당시 2026년 생산 시작·2033년 완전 가동 목표. 2026년 현재 가동 여부는 확인 안 됨, 6→8인치 전환 진행 중" }
+        {
+          "d": "2026-10-18",
+          "s": "예정",
+          "note": "2024년 발표 당시 2026년 생산 시작·2033년 완전 가동 목표. 2026년 현재 가동 여부는 확인 안 됨, 6→8인치 전환 진행 중"
+        }
       ]
     },
     {
@@ -146,9 +228,15 @@
       "kind": "출시",
       "status": "예정",
       "conf": "보도",
-      "src": [1],
+      "src": [
+        1
+      ],
       "log": [
-        { "d": "2026-07-23", "s": "예정", "note": "2분기 콜에서 2026년 말까지 예상이라고 언급" }
+        {
+          "d": "2026-07-23",
+          "s": "예정",
+          "note": "2분기 콜에서 2026년 말까지 예상이라고 언급"
+        }
       ]
     },
     {
@@ -158,35 +246,149 @@
       "kind": "실적",
       "status": "완료",
       "conf": "공시",
-      "src": [0],
+      "src": [
+        0
+      ],
       "log": [
-        { "d": "2026-07-23", "s": "완료", "note": "총마진 34.8%, 3분기 가이던스 37억달러·4분기 40억달러 초과 예상, 데이터센터 목표 상향" }
+        {
+          "d": "2026-07-23",
+          "s": "완료",
+          "note": "총마진 34.8%, 3분기 가이던스 37억달러·4분기 40억달러 초과 예상, 데이터센터 목표 상향"
+        }
       ]
     }
   ],
   "metrics": [
-    { "k": "2분기 매출", "v": "34.9억달러 (전년 대비 +26.0%)", "asof": "2026-06", "src": [0] },
-    { "k": "2분기 GAAP 영업이익률", "v": "5.4% (전년 −4.8%)", "asof": "2026-06", "src": [0] },
-    { "k": "수주잔고 비율 (book-to-bill)", "v": "약 2 (통신·컴퓨터 주변기기 2 초과)", "asof": "2026-06", "src": [1] },
-    { "k": "3분기 매출 가이던스", "v": "37억달러 중간값 (전분기 대비 +6.2%)", "asof": "2026-07", "src": [0] },
-    { "k": "LEO 반도체 시장 점유율", "v": "90% 이상 (회사 추정)", "asof": "2025", "src": [9] }
+    {
+      "k": "2분기 매출",
+      "v": "34.9억달러 (전년 대비 +26.0%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2분기 GAAP 영업이익률",
+      "v": "5.4% (전년 −4.8%)",
+      "asof": "2026-06",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "수주잔고 비율 (book-to-bill)",
+      "v": "약 2 (통신·컴퓨터 주변기기 2 초과)",
+      "asof": "2026-06",
+      "src": [
+        1
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "37억달러 중간값 (전분기 대비 +6.2%)",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "LEO 반도체 시장 점유율",
+      "v": "90% 이상 (회사 추정)",
+      "asof": "2025",
+      "src": [
+        9
+      ]
+    }
   ],
   "updates": [
-    { "d": "2026-10-18", "note": "전체 조사 — LEO 독점·SiC 1위권에 데이터센터 성장축 추가, 저수익성 감안해 B. 10월 29일 3분기 실적이 다음 확인 지점", "src": [0, 2] }
+    {
+      "d": "2026-10-23",
+      "note": "이사회가 장 마크 셰리 CEO에게 1년 연임을 요청, 2027년 주총 승인 안건으로 상정 예정(확정 전)",
+      "src": [
+        13
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
+    {
+      "d": "2026-10-18",
+      "note": "전체 조사 — LEO 독점·SiC 1위권에 데이터센터 성장축 추가, 저수익성 감안해 B. 10월 29일 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        2
+      ]
+    }
   ],
   "sources": [
-    { "t": "STMicroelectronics Reports Q2 2026 Financial Results (Form 6-K)", "u": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000052/c3403c-q226earningspressre.htm", "d": "2026-07-23" },
-    { "t": "STMicroelectronics (STM) Q2 2026 Earnings Call Transcript", "u": "https://www.fool.com/earnings/call-transcripts/2026/07/23/stmicroelectronics-stm-q2-2026-earnings-call-transcript/", "d": "2026-07-23" },
-    { "t": "STMicroelectronics announces timing for third quarter 2026 earnings release and conference call", "u": "https://www.globenewswire.com/news-release/2026/10/05/3374171/0/en/index.html", "d": "2026-10-05" },
-    { "t": "STMicroelectronics expands 800 VDC AI datacenter power conversion portfolio with new 12V and 6V architectures in collaboration with NVIDIA", "u": "https://www.yolegroup.com/industry-news/stmicroelectronics-expands-800-vdc-ai-datacenter-power-conversion-portfolio-with-new-12v-and-6v-architectures-in-collaboration-with-nvidia/", "d": "2026-03" },
-    { "t": "Europe's microcontroller market leaders: Infineon, NXP, and STMicroelectronics", "u": "https://www.heise.de/en/news/Europe-s-microcontroller-market-leaders-Infineon-NXP-and-STMicroelectronics-11247952.html", "d": "2026-04-07" },
-    { "t": "TrendForce: STMicroelectronics Leads Global SiC Power Device Market", "u": "https://www.eetasia.com/trendforce-stmicroelectronics-leads-global-sic-power-device-market/", "d": "2024-06" },
-    { "t": "Infineon boosts investment to meet demand from AI data centres (Reuters)", "u": "https://www.streetinsider.com/Reuters/Infineon+boosts+investment+to+meet+demand+from+AI+data+centres/25941660.html", "d": "2026-02" },
-    { "t": "STMicroelectronics unveils new data center photonics chip for AI workload interconnects", "u": "https://www.datacenterdynamics.com/en/news/stmicroelectronics-unveils-new-data-center-photonics-chip-for-ai-workload-interconnects/", "d": "2025-02" },
-    { "t": "Tower Semiconductor Q2 Earnings Call Highlights", "u": "https://www.marketbeat.com/instant-alerts/tower-semiconductor-q2-earnings-call-highlights-2026-08-04/", "d": "2026-08-04" },
-    { "t": "STMicroelectronics Expects its Space Business to Reach More than $3B Over Three Years", "u": "https://www.satellitetoday.com/technology/2026/05/04/stmicroelectronics-expects-its-space-business-to-reach-more-than-3b-over-three-years/", "d": "2026-05-04" },
-    { "t": "STMicroelectronics completes acquisition of NXP's MEMS sensors business (Form 6-K)", "u": "https://www.sec.gov/Archives/edgar/data/932787/000093278726000005/st_nxpmemsclosingxprxfinal.htm", "d": "2026-02-02" },
-    { "t": "Is Nvidia defining the future of power electronics", "u": "https://compoundsemiconductor.net/article/122292/Is_Nvidia_defining_the_future_of_power_electronics", "d": "2025-08-13" },
-    { "t": "STMicroelectronics to build the world's first fully integrated silicon carbide facility in Italy", "u": "https://www.nasdaq.com/press-release/stmicroelectronics-build-worlds-first-fully-integrated-silicon-carbide-facility-italy", "d": "2024-05" }
+    {
+      "t": "STMicroelectronics Reports Q2 2026 Financial Results (Form 6-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000052/c3403c-q226earningspressre.htm",
+      "d": "2026-07-23"
+    },
+    {
+      "t": "STMicroelectronics (STM) Q2 2026 Earnings Call Transcript",
+      "u": "https://www.fool.com/earnings/call-transcripts/2026/07/23/stmicroelectronics-stm-q2-2026-earnings-call-transcript/",
+      "d": "2026-07-23"
+    },
+    {
+      "t": "STMicroelectronics announces timing for third quarter 2026 earnings release and conference call",
+      "u": "https://www.globenewswire.com/news-release/2026/10/05/3374171/0/en/index.html",
+      "d": "2026-10-05"
+    },
+    {
+      "t": "STMicroelectronics expands 800 VDC AI datacenter power conversion portfolio with new 12V and 6V architectures in collaboration with NVIDIA",
+      "u": "https://www.yolegroup.com/industry-news/stmicroelectronics-expands-800-vdc-ai-datacenter-power-conversion-portfolio-with-new-12v-and-6v-architectures-in-collaboration-with-nvidia/",
+      "d": "2026-03"
+    },
+    {
+      "t": "Europe's microcontroller market leaders: Infineon, NXP, and STMicroelectronics",
+      "u": "https://www.heise.de/en/news/Europe-s-microcontroller-market-leaders-Infineon-NXP-and-STMicroelectronics-11247952.html",
+      "d": "2026-04-07"
+    },
+    {
+      "t": "TrendForce: STMicroelectronics Leads Global SiC Power Device Market",
+      "u": "https://www.eetasia.com/trendforce-stmicroelectronics-leads-global-sic-power-device-market/",
+      "d": "2024-06"
+    },
+    {
+      "t": "Infineon boosts investment to meet demand from AI data centres (Reuters)",
+      "u": "https://www.streetinsider.com/Reuters/Infineon+boosts+investment+to+meet+demand+from+AI+data+centres/25941660.html",
+      "d": "2026-02"
+    },
+    {
+      "t": "STMicroelectronics unveils new data center photonics chip for AI workload interconnects",
+      "u": "https://www.datacenterdynamics.com/en/news/stmicroelectronics-unveils-new-data-center-photonics-chip-for-ai-workload-interconnects/",
+      "d": "2025-02"
+    },
+    {
+      "t": "Tower Semiconductor Q2 Earnings Call Highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/tower-semiconductor-q2-earnings-call-highlights-2026-08-04/",
+      "d": "2026-08-04"
+    },
+    {
+      "t": "STMicroelectronics Expects its Space Business to Reach More than $3B Over Three Years",
+      "u": "https://www.satellitetoday.com/technology/2026/05/04/stmicroelectronics-expects-its-space-business-to-reach-more-than-3b-over-three-years/",
+      "d": "2026-05-04"
+    },
+    {
+      "t": "STMicroelectronics completes acquisition of NXP's MEMS sensors business (Form 6-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/932787/000093278726000005/st_nxpmemsclosingxprxfinal.htm",
+      "d": "2026-02-02"
+    },
+    {
+      "t": "Is Nvidia defining the future of power electronics",
+      "u": "https://compoundsemiconductor.net/article/122292/Is_Nvidia_defining_the_future_of_power_electronics",
+      "d": "2025-08-13"
+    },
+    {
+      "t": "STMicroelectronics to build the world's first fully integrated silicon carbide facility in Italy",
+      "u": "https://www.nasdaq.com/press-release/stmicroelectronics-build-worlds-first-fully-integrated-silicon-carbide-facility-italy",
+      "d": "2024-05"
+    },
+    {
+      "t": "STMicroelectronics to propose the reappointment of Jean-Marc Chery as President & CEO",
+      "u": "https://www.globenewswire.com/news-release/2026/10/13/3379305/0/en/index.html",
+      "d": "2026-10-13"
+    }
   ]
 }
