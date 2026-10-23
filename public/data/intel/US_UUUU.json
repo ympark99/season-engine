@@ -3,7 +3,7 @@
   "code": "UUUU",
   "name": "Energy Fuels",
   "theme": "희토류",
-  "at": "2026-10-14",
+  "at": "2026-10-24",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "우라늄 매출이 거의 전부인 상태에서 희토류는 NdPr 상업 생산 가능·터븀 파일럿 단계이며, ASM 인수를 마치고 VAC(자석) 인수를 앞둔 '광산-자석' 통합 전략을 진행 중이다. 다음 분기 관건은 Donald 프로젝트 최종투자결정(FID)과 VAC 인수 승인 진행, 11월 3분기 실적.",
@@ -111,7 +111,8 @@
       "status": "지연",
       "conf": "보도",
       "src": [
-        5
+        5,
+        14
       ],
       "log": [
         {
@@ -123,6 +124,11 @@
           "d": "2026-10-14",
           "s": "지연",
           "note": "3분기가 지났으나 FID 발표는 확인 안 됨"
+        },
+        {
+          "d": "2026-10-24",
+          "s": "지연",
+          "note": "Q3 목표 경과 후에도 FID 발표 미확인. A$2.2억 대출 실사·최종 신용승인 진행 중 보도"
         }
       ]
     },
@@ -189,7 +195,8 @@
       "conf": "보도",
       "src": [
         4,
-        11
+        11,
+        13
       ],
       "log": [
         {
@@ -201,6 +208,11 @@
           "d": "2026-10-14",
           "s": "예정",
           "note": "10-Q상 아직 미완료, 규제 승인 상태 확인 안 됨"
+        },
+        {
+          "d": "2026-10-24",
+          "s": "예정",
+          "note": "GM의 e-VAC 구매계약 취소·중재 보도(10-23) — 인수 대가 조정 가능성 언급, 완료 목표는 2027년 초 유지"
         }
       ]
     },
@@ -293,9 +305,26 @@
       "src": [
         8
       ]
+    },
+    {
+      "k": "e-VAC 미국 공장 물량 중 GM 대상 비중",
+      "v": "약 90% (GM이 계약 취소, 중재 진행)",
+      "asof": "2026-10",
+      "src": [
+        13
+      ]
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-24",
+      "note": "GM이 미국 신설 희토류 영구자석 공장(VAC 미국 법인 e-VAC)과의 장기 구매계약을 취소해 중재 진행 중(GM 통지 7-1, 중재 개시 7-7), 해당 공장 물량의 약 90%가 GM 대상. UUUU는 VAC 인수(19억달러) 대가가 중재 결과에 따라 조정될 수 있다고 언급, 회사는 VAC 상업성 우려 없다고 밝힘. 인수 완료 일정 위험 요인",
+      "src": [
+        13
+      ],
+      "tone": "악재",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-14",
       "note": "전체 조사 — ASM 인수 완료, VAC는 2027년 초 목표, Donald FID는 3분기 목표가 지났으나 미확인, 중희토 본격 가동은 2027년 말 이후",
@@ -371,6 +400,16 @@
       "t": "Rare Earths 2026: can the West break the Chinese monopoly (Lynas 등)",
       "u": "https://skillings.net/rare-earths-2026-can-the-west-finally-break-the-chinese-monopoly",
       "d": "2026"
+    },
+    {
+      "t": "GM cancels deal with new US rare-earth magnet plant, documents say",
+      "u": "https://www.miningweekly.com/article/gm-cancels-deal-with-new-us-rare-earth-magnet-plant-documents-say-2026-10-23",
+      "d": "2026-10-23"
+    },
+    {
+      "t": "Astron Limited Targets Q3 2026 Final Investment Decision as Donald Project Financing Advances",
+      "u": "https://kalkine.com.au/news/announcements/astron-limited-targets-q3-2026-final-investment-decision-as-donald-project-financing-advances",
+      "d": null
     }
   ]
 }
