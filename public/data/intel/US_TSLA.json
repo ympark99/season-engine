@@ -3,7 +3,7 @@
   "code": "TSLA",
   "name": "Tesla",
   "theme": "자동차",
-  "at": "2026-10-23",
+  "at": "2026-10-24",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "전기차 판매는 BYD와 반기 기준 근소한 차로 1·2위를 다투는 수준에서 정체(3분기 인도 486,532대, 전년 대비 약 −2%)인 반면, 자율주행·로봇에 대한 투자 부담이 커져 2분기 영업이익률이 1.4%까지 내려왔다. 다음 분기 관건은 10월 3분기 실적의 마진·현금흐름과 로보택시·Cybercab 확대 속도.",
@@ -296,6 +296,24 @@
           "note": "예상치(약 461,974대) 상회, 전년 대비 약 −2%, 재고 약 2.2만대 감소"
         }
       ]
+    },
+    {
+      "id": "spacex_merger",
+      "what": "테슬라·스페이스X 합병 논의 (양사 특별위원회, 조건 미합의·주주 승인 필요)",
+      "d": "2026",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        21
+      ],
+      "log": [
+        {
+          "d": "2026-10-24",
+          "s": "진행",
+          "note": "머스크가 합병을 '좋은 생각'이라고 밝히고 양사 특별위원회 논의를 처음 공식 확인. 조건·일정 미정"
+        }
+      ]
     }
   ],
   "metrics": [
@@ -350,6 +368,15 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-24",
+      "note": "머스크가 스페이스X 실적 발표에서 테슬라와 스페이스X 합병을 '좋은 생각'이라고 밝히고, 양사가 특별위원회를 꾸려 논의 중임을 처음 공식 확인. 머스크 본인은 이해충돌로 위원회 논의에 참여하지 않으며, 조건은 아직 합의되지 않았고 주주 승인이 필요함",
+      "src": [
+        21
+      ],
+      "tone": "중립",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-23",
       "note": "테슬라 2026 위임장에 독립이사 1명이 스페이스X 이사회 겸직으로 기재되고, 머스크가 CEO 재직 중 지배권 변경 시 보상이 즉시 확정되는 조건이 알려짐. 3분기 실적 발표 후 스페이스X와의 합병 가능성이 재료로 부각 — 합병은 미확정",
@@ -502,6 +529,11 @@
       "t": "Electrek - Tesla proxy and annual meeting, SpaceX merger (2026-10-19)",
       "u": "https://electrek.co/2026/10/19/tesla-tsla-proxy-annual-meeting-spacex-merger/",
       "d": "2026-10-19"
+    },
+    {
+      "t": "Elon Musk says Tesla-SpaceX merger would be 'a good idea' as companies form special committees",
+      "u": "https://foxbusiness.com/technology/elon-musk-says-tesla-spacex-merger-would-a-good-idea-companies-form-special-committees",
+      "d": "2026-10-23"
     }
   ]
 }

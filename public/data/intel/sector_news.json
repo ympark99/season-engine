@@ -3,6 +3,61 @@
  "items": [
   {
    "m": "US",
+   "code": "TEM",
+   "name": "Tempus AI",
+   "theme": "AI 헬스케어",
+   "d": "2026-10-24",
+   "note": "BMS와 계약 확대: 온콜로지 데이터·분석 도구 라이선스(Onco SOW, 2026-10-14 체결)와 신경질환 데이터 라이선스(Pathos AI 경유)를 합쳐 현금 1억 9,250만 달러(약 5년, 온콜로지 1억 3,750만 + 신경 5,500만)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001717115/000119312526429533/d135568d8k.htm"
+  },
+  {
+   "m": "US",
+   "code": "NBIS",
+   "name": "Nebius Group",
+   "theme": "네오클라우드",
+   "d": "2026-10-24",
+   "note": "Meta 전용 용량(약 120억 달러, 5년) 인도는 SEC 6-K상 2027년 초부터 단계적 착수 — 2026년 4분기 인도 예상은 2027년으로 조정, 계약 규모 자체는 변화 없음",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926027886/tm268879d1_6k.htm"
+  },
+  {
+   "m": "US",
+   "code": "CRWV",
+   "name": "CoreWeave",
+   "theme": "네오클라우드",
+   "d": "2026-10-24",
+   "note": "10/15 채권·주가 재차 급락 — 2031년 만기 채권 수익률 16% 초과, 신용부도스왑 기준 5년 내재 부도확률 약 63% 보도. 신규 발행 공시는 미확인이며 재무 축은 이미 열세, 등급(B) 유지하되 조달 비용·방식이 3분기 실적의 관건",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://letsdatascience.com/news/coreweave-shares-and-bonds-slide-as-debt-fears-grip-ai-build-b082a38e"
+  },
+  {
+   "m": "US",
+   "code": "ANET",
+   "name": "Arista Networks",
+   "theme": "광통신·네트워크",
+   "d": "2026-10-24",
+   "note": "1.6T 스위치 7060XE7 시리즈 공개 — 첫 모델 4분기 출하 예정, 나머지 2종 2027년 초 (발표일 미확인, 매체별 모델 사양 상이)",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.eenewseurope.com/en/arista-rolls-out-1-6t-networking-switches-for-ai-fabrics/"
+  },
+  {
+   "m": "KR",
+   "code": "145020",
+   "name": "휴젤",
+   "theme": "K뷰티",
+   "d": "2026-10-24",
+   "note": "미국 파트너 BENEV 유통을 CSO 계약으로 바꾸고 현지 톡신 재고를 재매입하면서 하반기 미국 매출 전망이 낮아졌고, 2026 가이던스도 매출 성장률 10%대 후반·영업이익률 30%대 중반으로 하향됨(2028 매출 9,000억원·미국 비중 30% 이상 목표는 유지). 직판 전환 비용 흡수가 2027년 내까지 이어질 전망. 등급은 B 유지(국내 1위·해외 성장 vs 이익 눈높이 하향).",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://core.asiae.co.kr/article/2026092115354572177"
+  },
+  {
+   "m": "US",
    "code": "VLO",
    "name": "Valero Energy",
    "theme": "에너지",

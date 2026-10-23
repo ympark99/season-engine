@@ -3,7 +3,7 @@
   "code": "NKE",
   "name": "NIKE INC",
   "theme": "여가·외식",
-  "at": "2026-10-20",
+  "at": "2026-10-24",
   "full": "2026-10-20",
   "by": "Claude 정기 조사",
   "position": "글로벌 1위 스포츠 브랜드 규모와 브랜드 인지도는 여전히 앞서지만, 매출은 줄고(1분기 −4%, 연간 높은 한 자릿수 감소 가이던스) 중화권(−26%)·스포츠웨어·조던은 약하며 러닝에서는 On·호카 등 신흥 브랜드에 점유율을 내줬다. 다음 관건은 11월 인베스터 데이에서 내놓을 장기 목표와 12월 2분기 실적에서 러닝 회복이 매출 감소를 얼마나 메우는지.",
@@ -13,11 +13,31 @@
     "why": "규모·브랜드 파워·스포츠 마케팅은 여전히 업계 최상위이고 러닝은 두 자릿수 성장으로 돌아섰으며 총이익률도 개선(42.8%). 다만 회사 전체 매출은 감소 중이고 중화권·직판(디지털 −13%)·컨버스가 크게 줄어, 아디다스·On 등 성장하는 경쟁사 대비 실적 회복은 아직 확인 전"
   },
   "peers": [
-    { "name": "아디다스", "m": null, "code": null },
-    { "name": "On Holding", "m": "US", "code": "ONON" },
-    { "name": "Deckers (HOKA)", "m": "US", "code": "DECK" },
-    { "name": "안타스포츠", "m": null, "code": null },
-    { "name": "아식스", "m": null, "code": null }
+    {
+      "name": "아디다스",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "On Holding",
+      "m": "US",
+      "code": "ONON"
+    },
+    {
+      "name": "Deckers (HOKA)",
+      "m": "US",
+      "code": "DECK"
+    },
+    {
+      "name": "안타스포츠",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "아식스",
+      "m": null,
+      "code": null
+    }
   ],
   "axes": [
     {
@@ -26,7 +46,10 @@
       "vs": "호카·On·뉴발란스·아식스·브룩스가 선호도 상승으로 언급됨",
       "verdict": "우위",
       "conf": "보도",
-      "src": [7, 10]
+      "src": [
+        7,
+        10
+      ]
     },
     {
       "k": "러닝(퍼포먼스)",
@@ -34,7 +57,12 @@
       "vs": "미국 거래 데이터상 러닝 신발 시장 +8.9% 속 나이키 점유율 하락, 호카·On·뉴발란스·아디다스가 나눠 가져감. On 2분기 고정환율 +21.6%, 호카 +7.7%",
       "verdict": "동등",
       "conf": "보도",
-      "src": [2, 6, 4, 8]
+      "src": [
+        2,
+        6,
+        4,
+        8
+      ]
     },
     {
       "k": "매출 성장 모멘텀",
@@ -42,7 +70,11 @@
       "vs": "아디다스 2분기 고정환율 +14%·연간 9~10% 성장으로 상향, On 연간 고정환율 20%대 초반 성장 전망",
       "verdict": "열세",
       "conf": "공시",
-      "src": [0, 5, 4]
+      "src": [
+        0,
+        5,
+        4
+      ]
     },
     {
       "k": "중화권",
@@ -50,7 +82,12 @@
       "vs": "안타스포츠 상반기 매출 +12.9%(435억위안), 다만 안타 본 브랜드는 +4.8%로 둔화",
       "verdict": "열세",
       "conf": "공시",
-      "src": [0, 3, 2, 9]
+      "src": [
+        0,
+        3,
+        2,
+        9
+      ]
     },
     {
       "k": "채널 (직판·도매)",
@@ -58,7 +95,11 @@
       "vs": "Deckers 직판 +13%(1분기). 나이키 직판 축소는 할인 판매 정리 성격도 있어 경쟁 열위로 단정하기 어려움",
       "verdict": "불확실",
       "conf": "공시",
-      "src": [0, 3, 8]
+      "src": [
+        0,
+        3,
+        8
+      ]
     },
     {
       "k": "수익성·원가",
@@ -66,7 +107,13 @@
       "vs": "On 연간 총이익률 65% 이상 목표, 안타 상반기 63.9% — 프리미엄·중국 경쟁사보다 마진 구조가 낮음",
       "verdict": "열세",
       "conf": "공시",
-      "src": [0, 4, 9, 10, 11]
+      "src": [
+        0,
+        4,
+        9,
+        10,
+        11
+      ]
     }
   ],
   "checkpoints": [
@@ -77,9 +124,16 @@
       "kind": "실적",
       "status": "완료",
       "conf": "공시",
-      "src": [0, 1],
+      "src": [
+        0,
+        1
+      ],
       "log": [
-        { "d": "2026-10-01", "s": "완료", "note": "매출 112억달러(−4%), EPS 0.48달러로 예상 상회, 총이익률 42.8%. 연간 매출 높은 한 자릿수 감소·조정 EPS 1.15~1.35달러 가이던스" }
+        {
+          "d": "2026-10-01",
+          "s": "완료",
+          "note": "매출 112억달러(−4%), EPS 0.48달러로 예상 상회, 총이익률 42.8%. 연간 매출 높은 한 자릿수 감소·조정 EPS 1.15~1.35달러 가이던스"
+        }
       ]
     },
     {
@@ -88,10 +142,22 @@
       "d": "2026-10-29",
       "kind": "실적",
       "status": "예정",
-      "conf": "보도",
-      "src": [14],
+      "conf": "공시",
+      "src": [
+        14,
+        15
+      ],
       "log": [
-        { "d": "2026-10-20", "s": "예정", "note": "일정 사이트 기준 10월 29일(한 곳은 11월 10일로 표기)" }
+        {
+          "d": "2026-10-20",
+          "s": "예정",
+          "note": "일정 사이트 기준 10월 29일(한 곳은 11월 10일로 표기)"
+        },
+        {
+          "d": "2026-10-24",
+          "s": "예정",
+          "note": "10-29 본 발표 날짜 확인(아디다스 공지). 잠정치 먼저 발표: 매출 72.5억유로 +9%(고정환율 +7%), 영업이익 10.08억유로 +37%, 연간 영업이익 가이던스 23억→25억유로 상향. 본 발표에서 성장 격차 확정 확인"
+        }
       ]
     },
     {
@@ -101,9 +167,16 @@
       "kind": "기타",
       "status": "예정",
       "conf": "보도",
-      "src": [12, 2],
+      "src": [
+        12,
+        2
+      ],
       "log": [
-        { "d": "2026-10-20", "s": "예정", "note": "11월 16~17일 보도, 공식 일정 공지는 미확인. 1분기 콜에서 11월 개최·장기 목표 공개 언급" }
+        {
+          "d": "2026-10-20",
+          "s": "예정",
+          "note": "11월 16~17일 보도, 공식 일정 공지는 미확인. 1분기 콜에서 11월 개최·장기 목표 공개 언급"
+        }
       ]
     },
     {
@@ -113,9 +186,16 @@
       "kind": "실적",
       "status": "예정",
       "conf": "추정",
-      "src": [13, 2],
+      "src": [
+        13,
+        2
+      ],
       "log": [
-        { "d": "2026-10-20", "s": "예정", "note": "일정 사이트는 12월 17일 표기(전년 패턴 기반 추정), 회사 공지 전" }
+        {
+          "d": "2026-10-20",
+          "s": "예정",
+          "note": "일정 사이트는 12월 17일 표기(전년 패턴 기반 추정), 회사 공지 전"
+        }
       ]
     },
     {
@@ -125,9 +205,15 @@
       "kind": "기타",
       "status": "진행",
       "conf": "공시",
-      "src": [2],
+      "src": [
+        2
+      ],
       "log": [
-        { "d": "2026-10-01", "s": "진행", "note": "1분기 중화권 −26%, 남은 기간 매출·수익성 압박 지속 예상" }
+        {
+          "d": "2026-10-01",
+          "s": "진행",
+          "note": "1분기 중화권 −26%, 남은 기간 매출·수익성 압박 지속 예상"
+        }
       ]
     },
     {
@@ -137,9 +223,16 @@
       "kind": "실적",
       "status": "예정",
       "conf": "공시",
-      "src": [0, 3],
+      "src": [
+        0,
+        3
+      ],
       "log": [
-        { "d": "2026-10-01", "s": "예정", "note": "회계연도 2027-05-31 종료" }
+        {
+          "d": "2026-10-01",
+          "s": "예정",
+          "note": "회계연도 2027-05-31 종료"
+        }
       ]
     },
     {
@@ -149,41 +242,162 @@
       "kind": "기타",
       "status": "예정",
       "conf": "공시",
-      "src": [2, 0],
+      "src": [
+        2,
+        0
+      ],
       "log": [
-        { "d": "2026-10-01", "s": "예정", "note": "FY2028부터 적용 — 회계연도 2027-06 시작" }
+        {
+          "d": "2026-10-01",
+          "s": "예정",
+          "note": "FY2028부터 적용 — 회계연도 2027-06 시작"
+        }
       ]
     }
   ],
   "metrics": [
-    { "k": "1분기 매출 (FY2027)", "v": "112억달러 (−4%, 고정환율 −5%)", "asof": "2026-08", "src": [0] },
-    { "k": "중화권 1분기 매출", "v": "11.8억달러 (고정환율 −26%)", "asof": "2026-08", "src": [3] },
-    { "k": "1분기 총이익률", "v": "42.8% (+60bp)", "asof": "2026-08", "src": [0] },
-    { "k": "FY2027 가이던스", "v": "매출 높은 한 자릿수 감소, 조정 EPS 1.15~1.35달러", "asof": "2026-10", "src": [0] },
-    { "k": "IEEPA 관세 환급 예상액", "v": "9.86억달러 (대부분 회수)", "asof": "2026-08", "src": [10, 11] }
+    {
+      "k": "1분기 매출 (FY2027)",
+      "v": "112억달러 (−4%, 고정환율 −5%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "중화권 1분기 매출",
+      "v": "11.8억달러 (고정환율 −26%)",
+      "asof": "2026-08",
+      "src": [
+        3
+      ]
+    },
+    {
+      "k": "1분기 총이익률",
+      "v": "42.8% (+60bp)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FY2027 가이던스",
+      "v": "매출 높은 한 자릿수 감소, 조정 EPS 1.15~1.35달러",
+      "asof": "2026-10",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "IEEPA 관세 환급 예상액",
+      "v": "9.86억달러 (대부분 회수)",
+      "asof": "2026-08",
+      "src": [
+        10,
+        11
+      ]
+    }
   ],
   "updates": [
     {
+      "d": "2026-10-24",
+      "note": "경쟁사 아디다스 3분기 잠정 실적: 매출 +9%(고정환율 +7%), 영업이익 +37%, 연간 영업이익 가이던스 상향. 나이키 1분기 매출 −4%와 대비되는 성장 격차. 10-29 본 발표가 다음 확인 지점",
+      "src": [
+        15
+      ],
+      "tone": "중립",
+      "scope": "구조적"
+    },
+    {
       "d": "2026-10-20",
       "note": "전체 조사 — 1분기 매출 −4%·중화권 −26%로 회복 미확인, 러닝은 두 자릿수 성장. 등급 C. 11월 인베스터 데이·12월 2분기 실적이 다음 확인 지점",
-      "src": [0, 2, 12]
+      "src": [
+        0,
+        2,
+        12
+      ]
     }
   ],
   "sources": [
-    { "t": "NIKE, Inc. Reports Fiscal 2027 First Quarter Results", "u": "https://about.nike.com/newsroom/releases/nike-inc-reports-fiscal-2027-first-quarter-results", "d": "2026-10-01" },
-    { "t": "Nike beats Q1 profit estimates but sees fiscal 2027 revenue falling high single digits", "u": "https://investinglive.com/stocks/nike-beats-q1-profit-estimates-but-sees-fiscal-2027-revenue-falling-high-single-digits/", "d": "2026-10-01" },
-    { "t": "Transcript: Nike Q1 Earnings Call Highlights", "u": "https://www.marketbeat.com/instant-alerts/transcript-nike-q1-earnings-call-highlights-2026-10-01/", "d": "2026-10-01" },
-    { "t": "Nike FY2027 Q1 earnings analysis", "u": "https://beancount.io/blog/2026/10/02/nike-fy2027-q1-earnings-analysis", "d": "2026-10-02" },
-    { "t": "On Holding AG — Q2 2026 press release (Form 6-K)", "u": "https://www.sec.gov/Archives/edgar/data/0001858985/000185898526000018/a26q2-ex993xpressrelease.htm", "d": "2026-08" },
-    { "t": "adidas raises 2026 sales outlook", "u": "https://www.theindustry.fashion/adidas-raises-2026-sales-outlook-world-cup-revenue/", "d": "2026-07-30" },
-    { "t": "Footwear Market Trends 2026: Running Shoes Drive Growth as Brand Share Shifts", "u": "https://www.yipitdata.com/resources/blog/corporate-footwear-market-trends-running-growth", "d": "2026" },
-    { "t": "Nike holds off competitors in latest brand heat survey", "u": "https://sginews.com/Content/nike-holds-off-competitors-in-latest-brand-heat-survey.aspx", "d": "2026-03" },
-    { "t": "Deckers Q1 sales rise 5.7% as HOKA and international markets drive growth", "u": "https://www.theindustry.fashion/deckers-q1-sales-rise-5-7-as-hoka-and-international-markets-drive-growth/", "d": "2026-07-23" },
-    { "t": "Anta Sports reports double-digit revenue growth in first half", "u": "https://fashionunited.com/news/business/anta-sports-reports-double-digit-revenue-growth-in-first-half/2026082674256", "d": "2026-08-26" },
-    { "t": "NIKE, Inc. Reports Fiscal 2026 Fourth Quarter and Full Year Results", "u": "https://about.nike.com/newsroom/releases/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results", "d": "2026-06-30" },
-    { "t": "Nike's refund check has arrived. The growth story hasn't", "u": "https://www.sgieurope.com/financing/nikes-refund-check-has-arrived-the-growth-story-hasnt/122235.article", "d": "2026" },
-    { "t": "NKE 2026 Q4 — Investor Day November 16–17", "u": "https://betafinch.com/episodes/NKE_2026_Q4_en", "d": "2026-07" },
-    { "t": "NIKE earnings calendar (Q2 FY2027 date)", "u": "https://www.tipranks.com/stocks/GB:0QZ6/earnings", "d": "2026-10" },
-    { "t": "adidas AG — upcoming events calendar", "u": "https://uk.marketscreener.com/quote/stock/ADIDAS-AG-6714534/calendar/", "d": "2026-10" }
+    {
+      "t": "NIKE, Inc. Reports Fiscal 2027 First Quarter Results",
+      "u": "https://about.nike.com/newsroom/releases/nike-inc-reports-fiscal-2027-first-quarter-results",
+      "d": "2026-10-01"
+    },
+    {
+      "t": "Nike beats Q1 profit estimates but sees fiscal 2027 revenue falling high single digits",
+      "u": "https://investinglive.com/stocks/nike-beats-q1-profit-estimates-but-sees-fiscal-2027-revenue-falling-high-single-digits/",
+      "d": "2026-10-01"
+    },
+    {
+      "t": "Transcript: Nike Q1 Earnings Call Highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/transcript-nike-q1-earnings-call-highlights-2026-10-01/",
+      "d": "2026-10-01"
+    },
+    {
+      "t": "Nike FY2027 Q1 earnings analysis",
+      "u": "https://beancount.io/blog/2026/10/02/nike-fy2027-q1-earnings-analysis",
+      "d": "2026-10-02"
+    },
+    {
+      "t": "On Holding AG — Q2 2026 press release (Form 6-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001858985/000185898526000018/a26q2-ex993xpressrelease.htm",
+      "d": "2026-08"
+    },
+    {
+      "t": "adidas raises 2026 sales outlook",
+      "u": "https://www.theindustry.fashion/adidas-raises-2026-sales-outlook-world-cup-revenue/",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Footwear Market Trends 2026: Running Shoes Drive Growth as Brand Share Shifts",
+      "u": "https://www.yipitdata.com/resources/blog/corporate-footwear-market-trends-running-growth",
+      "d": "2026"
+    },
+    {
+      "t": "Nike holds off competitors in latest brand heat survey",
+      "u": "https://sginews.com/Content/nike-holds-off-competitors-in-latest-brand-heat-survey.aspx",
+      "d": "2026-03"
+    },
+    {
+      "t": "Deckers Q1 sales rise 5.7% as HOKA and international markets drive growth",
+      "u": "https://www.theindustry.fashion/deckers-q1-sales-rise-5-7-as-hoka-and-international-markets-drive-growth/",
+      "d": "2026-07-23"
+    },
+    {
+      "t": "Anta Sports reports double-digit revenue growth in first half",
+      "u": "https://fashionunited.com/news/business/anta-sports-reports-double-digit-revenue-growth-in-first-half/2026082674256",
+      "d": "2026-08-26"
+    },
+    {
+      "t": "NIKE, Inc. Reports Fiscal 2026 Fourth Quarter and Full Year Results",
+      "u": "https://about.nike.com/newsroom/releases/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results",
+      "d": "2026-06-30"
+    },
+    {
+      "t": "Nike's refund check has arrived. The growth story hasn't",
+      "u": "https://www.sgieurope.com/financing/nikes-refund-check-has-arrived-the-growth-story-hasnt/122235.article",
+      "d": "2026"
+    },
+    {
+      "t": "NKE 2026 Q4 — Investor Day November 16–17",
+      "u": "https://betafinch.com/episodes/NKE_2026_Q4_en",
+      "d": "2026-07"
+    },
+    {
+      "t": "NIKE earnings calendar (Q2 FY2027 date)",
+      "u": "https://www.tipranks.com/stocks/GB:0QZ6/earnings",
+      "d": "2026-10"
+    },
+    {
+      "t": "adidas AG — upcoming events calendar",
+      "u": "https://uk.marketscreener.com/quote/stock/ADIDAS-AG-6714534/calendar/",
+      "d": "2026-10"
+    },
+    {
+      "t": "Adidas Q3: Tariff refund and full-price sales drive growth",
+      "u": "https://fashionunited.com/news/business/adidas-q3-tariff-refund-and-full-price-sales-drive-growth/2026102175290",
+      "d": "2026-10-21"
+    }
   ]
 }

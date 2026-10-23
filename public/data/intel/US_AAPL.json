@@ -3,7 +3,7 @@
   "code": "AAPL",
   "name": "Apple",
   "theme": "IT 하드웨어",
-  "at": "2026-10-23",
+  "at": "2026-10-24",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "스마트폰은 2분기 점유율 20%로 삼성 다음 2위(기록적 2분기), 중국에서도 화웨이 다음 2위로 점유율을 늘리는 중이다. 이번 분기 관건은 9월 말 출시한 아이폰 18 프로와 첫 폴더블(10월 판매 시작)의 초기 수요, 그리고 11월 2일 실적에서 메모리 원가 상승이 마진에 얼마나 반영되는지.",
@@ -151,7 +151,7 @@
       "what": "폴더블 아이폰 매장 판매 시작",
       "d": "2026-10-23",
       "kind": "출시",
-      "status": "진행",
+      "status": "완료",
       "conf": "보도",
       "src": [
         4,
@@ -160,7 +160,8 @@
         20,
         22,
         24,
-        25
+        25,
+        27
       ],
       "log": [
         {
@@ -192,6 +193,11 @@
           "d": "2026-10-23",
           "s": "진행",
           "note": "10/23 판매 시작 보도(ibtimes). 예약은 10/16 완판 후 배송 2027년 1월, 매장 재고 제한·비예약 방문 자제 안내. 실제 판매량은 미확인"
+        },
+        {
+          "d": "2026-10-24",
+          "s": "완료",
+          "note": "10/23 판매 개시 확인(70여 개국, 애플 공식 일정). 비예약 매장 방문 자제 안내 재보도, 실제 판매량·재고는 미확인"
         }
       ]
     },
@@ -204,7 +210,8 @@
       "conf": "보도",
       "src": [
         17,
-        26
+        26,
+        28
       ],
       "log": [
         {
@@ -216,6 +223,11 @@
           "d": "2026-10-23",
           "s": "예정",
           "note": "10/30 추가 28개 시장 판매 일정 다수 보도 확인. 전체 시장 목록은 Apple 미공개(독일어권 보도는 오스트리아 포함 주장)"
+        },
+        {
+          "d": "2026-10-24",
+          "s": "예정",
+          "note": "10/30 추가 28개 시장 판매 일정 재확인. 전체 목록은 Apple 미공개"
         }
       ]
     },
@@ -579,6 +591,16 @@
       "t": "Países de lanzamiento del iPhone Duo: más de 70 el 23 de octubre y 28 más el 30 de octubre - MacObserver",
       "u": "https://www.macobserver.com/es/resumenes/paises-de-lanzamiento-del-iphone-duo-mas-de-70-el-23-de-octubre-y-28-mas-el-30-de-octubre/",
       "d": "2026-10-23"
+    },
+    {
+      "t": "Apple Retail Staff Told to Warn Against iPhone Duo Walk-In Purchases - BusinessToday (buying iPhone Duo on Oct 23)",
+      "u": "https://www.businesstoday.in/technology/news/story/buying-iphone-duo-on-october-23-apple-may-not-entertain-walk-in-customers-amid-stock-shortage-562485-2026-10-20",
+      "d": "2026-10-20"
+    },
+    {
+      "t": "All the Surprise and Shine Release Dates and Features, Visualized - MacStories",
+      "u": "https://macstories.net/news/all-the-surprise-and-shine-release-dates-visualized/",
+      "d": "2026-10"
     }
   ]
 }

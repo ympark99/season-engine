@@ -1,50 +1,344 @@
 {
-  "m": "US", "code": "ANET", "name": "Arista Networks", "theme": "광통신·네트워크",
-  "at": "2026-10-14", "full": "2026-10-14", "by": "Claude 정기 조사",
-  "position": "AI 데이터센터 이더넷 스위치에서 엔비디아와 1·2위를 다투는 선두권이지만, 2분기 점유율(데이터센터 18.7%)이 1분기(20.7%)보다 낮아졌고 엔비디아가 빠르게 따라오는 중. 다음 분기 관건은 11월 3일 3분기 실적에서 매출 가이던스(약 33억 달러)와 매출총이익률 방어, 1.6T 제품의 4분기 출시 일정.",
-  "grade": {
-    "g": "A", "label": "경쟁력 우위",
-    "why": "2분기 매출 30.4억 달러(+37.7%)와 연간 가이던스 상향(약 126억 달러)으로 실적 모멘텀이 강하고 이더넷 AI 패브릭 선두권. 반면 엔비디아에 점유율을 내주는 추세, 고객 집중, 메모리·실리콘 원가로 매출총이익률이 63.4%로 낮아진 점은 약점"
+ "m": "US",
+ "code": "ANET",
+ "name": "Arista Networks",
+ "theme": "광통신·네트워크",
+ "at": "2026-10-24",
+ "full": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "position": "AI 데이터센터 이더넷 스위치에서 엔비디아와 1·2위를 다투는 선두권이지만, 2분기 점유율(데이터센터 18.7%)이 1분기(20.7%)보다 낮아졌고 엔비디아가 빠르게 따라오는 중. 다음 분기 관건은 11월 3일 3분기 실적에서 매출 가이던스(약 33억 달러)와 매출총이익률 방어, 1.6T 제품의 4분기 출시 일정.",
+ "grade": {
+  "g": "A",
+  "label": "경쟁력 우위",
+  "why": "2분기 매출 30.4억 달러(+37.7%)와 연간 가이던스 상향(약 126억 달러)으로 실적 모멘텀이 강하고 이더넷 AI 패브릭 선두권. 반면 엔비디아에 점유율을 내주는 추세, 고객 집중, 메모리·실리콘 원가로 매출총이익률이 63.4%로 낮아진 점은 약점"
+ },
+ "peers": [
+  {
+   "name": "엔비디아",
+   "m": "US",
+   "code": "NVDA"
   },
-  "peers": [
-    {"name": "엔비디아", "m": "US", "code": "NVDA"},
-    {"name": "시스코", "m": "US", "code": "CSCO"},
-    {"name": "브로드컴", "m": "US", "code": "AVGO"},
-    {"name": "HPE (주니퍼 인수)", "m": "US", "code": "HPE"},
-    {"name": "화웨이", "m": null, "code": null}
-  ],
-  "axes": [
-    {"k": "데이터센터 이더넷 점유율", "me": "2분기 데이터센터 점유율 18.7% (1분기 20.7%), 전체 이더넷 스위치 13.4%", "vs": "엔비디아 데이터센터 점유율 20.4%, 이더넷 스위치 매출 +181% (1분기 21.5%)", "verdict": "선두권", "conf": "보도", "src": [2], "chg": [{"d": "2026-10-14", "note": "첫 판정 — 1위 자리는 엔비디아에 내줬으나 격차가 작아 선두권"}]},
-    {"k": "AI 백엔드 패브릭 (800G·1.6T)", "me": "800G 이더넷 누적 고객 100곳 이상, 1.6T 플랫폼(7060XE7, 브로드컴 Tomahawk 6 기반) 4분기 첫 제품 출시 예정, 1.6T 양산 규모는 2027년 전망. 2026년 AI 패브릭 매출 목표 최소 35억 달러", "vs": "엔비디아 Spectrum-X는 자사 GPU와 묶어 이더넷 시장에 진입, 매년 신제품 출시 계획", "verdict": "선두권", "conf": "보도", "src": [1, 3, 5], "chg": []},
-    {"k": "스케일업·광학 (CPO·LPO)", "me": "스케일업은 2027년 이후 신규 진입(코패키지드 구리 또는 오픈 CPO), 현재 5~7건 랙 사례 개발 중. 2026년은 800G·1.6T 플러거블 중심, 1.6T LPO 시험 양호, XPO 규격 제정 참여", "vs": "엔비디아는 자체 인터커넥트로 스케일업을 이미 장악. Arista는 개방형 표준(ESUN) 쪽", "verdict": "불확실", "conf": "보도", "src": [3, 5], "chg": []},
-    {"k": "실적 모멘텀·수익성", "me": "2분기 매출 30.36억 달러(+37.7%), 비GAAP 영업이익률 49.9%, 매출총이익률 63.4%(전년 65.6%). 3분기 가이던스 약 33억 달러, 연간 약 126억 달러", "vs": "경쟁사 대비 직접 비교 수치는 확인 안 됨", "verdict": "우위", "conf": "공시", "src": [0, 1], "chg": []},
-    {"k": "엔터프라이즈 캠퍼스", "me": "VeloCloud 인수로 SD-WAN 보강, 무선·AI 운영 기능 출시. 가트너 2026 유선·무선 LAN 매직 쿼드런트 리더 선정(2차 출처)", "vs": "시스코·HPE(주니퍼 인수) 채널과 설치 기반이 훨씬 큼", "verdict": "열세", "conf": "보도", "src": [4], "chg": []},
-    {"k": "공급망·고객 집중", "me": "구매 약정 약 97억 달러로 확대(메모리·실리콘·액침냉각 확보). 회사는 고객 집중과 공급 제약으로 매출·이익률 변동 가능성을 경고", "vs": "경쟁사 비교 자료 없음", "verdict": "불확실", "conf": "보도", "src": [1], "chg": []}
-  ],
-  "checkpoints": [
-    {"id": "q3_earn", "what": "2026년 3분기 실적 발표 (가이던스 약 33억 달러, 매출총이익률)", "d": "2026-11-03", "kind": "실적", "status": "예정", "conf": "공시", "src": [0], "log": [{"d": "2026-10-06", "s": "예정", "note": "회사가 11월 3일 장 마감 후 발표·콜 4:30pm ET 공지"}]},
-    {"id": "t1_6_7060xe7", "what": "1.6T 스위치 7060XE7-64PS(공랭) 첫 출시, 나머지 2종은 2027년 초", "d": "2026-Q4", "kind": "출시", "status": "예정", "conf": "보도", "src": [5], "log": [{"d": "2026-10-14", "s": "예정", "note": "단일 매체 보도 기반 — 회사 발표로 재확인 필요"}]},
-    {"id": "q4_earn", "what": "2026년 4분기 실적·2027 가이던스", "d": "2027-02", "kind": "실적", "status": "예정", "conf": "추정", "src": [0], "log": [{"d": "2026-10-14", "s": "예정", "note": "정확한 날짜 미공지 — 과거 일정 기준 2월 중"}]},
-    {"id": "ai_fabric_35", "what": "2026년 AI 패브릭 매출 최소 35억 달러 목표 달성 여부", "d": "2026-Q4", "kind": "기타", "status": "진행", "conf": "공시", "src": [1], "log": [{"d": "2026-08-04", "s": "진행", "note": "2분기 콜에서 목표 유지"}]},
-    {"id": "scaleup_entry", "what": "스케일업(코패키지드 구리·오픈 CPO) 첫 진입", "d": "2027", "kind": "출시", "status": "예정", "conf": "보도", "src": [3], "log": [{"d": "2026-10-14", "s": "예정", "note": "2027년 이후 목표, 랙 사례 5~7건 개발 중"}]},
-    {"id": "t1_6_scale", "what": "1.6T 이더넷 양산 규모 도달", "d": "2027", "kind": "양산", "status": "예정", "conf": "보도", "src": [3], "log": [{"d": "2026-10-14", "s": "예정", "note": "2027년 전망"}]},
-    {"id": "q2_earn", "what": "2026년 2분기 실적 발표 (매출 30.36억 달러, 연간 가이던스 상향)", "d": "2026-08-04", "kind": "실적", "status": "완료", "conf": "공시", "src": [1], "log": [{"d": "2026-08-04", "s": "완료", "note": "가이던스 약 28억 달러 상회, 연간 약 126억 달러로 상향"}]}
-  ],
-  "metrics": [
-    {"k": "2분기 매출", "v": "30.36억 달러 (+37.7%)", "asof": "2026-06", "src": [1]},
-    {"k": "3분기 매출 가이던스", "v": "약 33억 달러", "asof": "2026-08", "src": [1]},
-    {"k": "2분기 데이터센터 이더넷 점유율", "v": "18.7% (엔비디아 20.4%)", "asof": "2026-06", "src": [2]},
-    {"k": "2분기 매출총이익률", "v": "63.4% (전년 65.6%)", "asof": "2026-06", "src": [1]}
-  ],
-  "updates": [
-    {"d": "2026-10-14", "note": "전체 조사 — 실적·AI 패브릭은 강하나 엔비디아에 점유율 추격당하는 중, 다음 확인 지점은 11월 3일 3분기 실적", "src": [0, 1, 2]}
-  ],
-  "sources": [
-    {"t": "Arista Networks to Announce Q3 2026 Financial Results on Tuesday, November 3, 2026", "u": "https://www.arista.com/company/news/press-release/24817-pr-20261006", "d": "2026-10-06"},
-    {"t": "Arista Networks Inc. Reports Second Quarter 2026 Financial Results", "u": "https://s21.q4cdn.com/861911615/files/doc_news/Arista-Networks-Inc--Reports-Second-Quarter-2026-Financial-Results-2026.pdf", "d": "2026-08-04"},
-    {"t": "IDC — Ethernet Switch Market Surges 43.4% to $18.9B in 2Q26", "u": "https://www.idc.com/resource-center/blog/ethernet-switch-market-surges-43-4-to-18-9b-in-2q26-as-ai-infrastructure-demand-drives-record-datacenter-spending/", "d": "2026-09-11"},
-    {"t": "Arista's Bechtolsheim: pluggables still reign as AI drives 1.6T and 3.2T", "u": "https://convergedigest.com/aristas-andy-bechtolsheim-pluggables-still-reign-as-ai-drives-next-wave-of-1-6t-and-3-2t/", "d": "2026"},
-    {"t": "Arista rides AI wave but battle for campus networks looms", "u": "https://networkworld.com/article/4111354/arista-rides-ai-wave-but-battle-for-campus-networks-looms.html", "d": "2026"},
-    {"t": "Arista Networks joins the 1.6T race with AI-centric switch platform", "u": "https://www.datacenterdynamics.com/en/news/arista-networks-joins-the-16t-race-with-ai-centric-switch-platform/", "d": "2026"}
-  ]
+  {
+   "name": "시스코",
+   "m": "US",
+   "code": "CSCO"
+  },
+  {
+   "name": "브로드컴",
+   "m": "US",
+   "code": "AVGO"
+  },
+  {
+   "name": "HPE (주니퍼 인수)",
+   "m": "US",
+   "code": "HPE"
+  },
+  {
+   "name": "화웨이",
+   "m": null,
+   "code": null
+  }
+ ],
+ "axes": [
+  {
+   "k": "데이터센터 이더넷 점유율",
+   "me": "2분기 데이터센터 점유율 18.7% (1분기 20.7%), 전체 이더넷 스위치 13.4%",
+   "vs": "엔비디아 데이터센터 점유율 20.4%, 이더넷 스위치 매출 +181% (1분기 21.5%)",
+   "verdict": "선두권",
+   "conf": "보도",
+   "src": [
+    2
+   ],
+   "chg": [
+    {
+     "d": "2026-10-14",
+     "note": "첫 판정 — 1위 자리는 엔비디아에 내줬으나 격차가 작아 선두권"
+    }
+   ]
+  },
+  {
+   "k": "AI 백엔드 패브릭 (800G·1.6T)",
+   "me": "800G 이더넷 누적 고객 100곳 이상, 1.6T 플랫폼(7060XE7, 브로드컴 Tomahawk 6 기반) 4분기 첫 제품 출시 예정, 1.6T 양산 규모는 2027년 전망. 2026년 AI 패브릭 매출 목표 최소 35억 달러",
+   "vs": "엔비디아 Spectrum-X는 자사 GPU와 묶어 이더넷 시장에 진입, 매년 신제품 출시 계획",
+   "verdict": "선두권",
+   "conf": "보도",
+   "src": [
+    1,
+    3,
+    5
+   ],
+   "chg": []
+  },
+  {
+   "k": "스케일업·광학 (CPO·LPO)",
+   "me": "스케일업은 2027년 이후 신규 진입(코패키지드 구리 또는 오픈 CPO), 현재 5~7건 랙 사례 개발 중. 2026년은 800G·1.6T 플러거블 중심, 1.6T LPO 시험 양호, XPO 규격 제정 참여",
+   "vs": "엔비디아는 자체 인터커넥트로 스케일업을 이미 장악. Arista는 개방형 표준(ESUN) 쪽",
+   "verdict": "불확실",
+   "conf": "보도",
+   "src": [
+    3,
+    5
+   ],
+   "chg": []
+  },
+  {
+   "k": "실적 모멘텀·수익성",
+   "me": "2분기 매출 30.36억 달러(+37.7%), 비GAAP 영업이익률 49.9%, 매출총이익률 63.4%(전년 65.6%). 3분기 가이던스 약 33억 달러, 연간 약 126억 달러",
+   "vs": "경쟁사 대비 직접 비교 수치는 확인 안 됨",
+   "verdict": "우위",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ],
+   "chg": []
+  },
+  {
+   "k": "엔터프라이즈 캠퍼스",
+   "me": "VeloCloud 인수로 SD-WAN 보강, 무선·AI 운영 기능 출시. 가트너 2026 유선·무선 LAN 매직 쿼드런트 리더 선정(2차 출처)",
+   "vs": "시스코·HPE(주니퍼 인수) 채널과 설치 기반이 훨씬 큼",
+   "verdict": "열세",
+   "conf": "보도",
+   "src": [
+    4
+   ],
+   "chg": []
+  },
+  {
+   "k": "공급망·고객 집중",
+   "me": "구매 약정 약 97억 달러로 확대(메모리·실리콘·액침냉각 확보). 회사는 고객 집중과 공급 제약으로 매출·이익률 변동 가능성을 경고",
+   "vs": "경쟁사 비교 자료 없음",
+   "verdict": "불확실",
+   "conf": "보도",
+   "src": [
+    1
+   ],
+   "chg": []
+  }
+ ],
+ "checkpoints": [
+  {
+   "id": "q3_earn",
+   "what": "2026년 3분기 실적 발표 (가이던스 약 33억 달러, 매출총이익률)",
+   "d": "2026-11-03",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "공시",
+   "src": [
+    0
+   ],
+   "log": [
+    {
+     "d": "2026-10-06",
+     "s": "예정",
+     "note": "회사가 11월 3일 장 마감 후 발표·콜 4:30pm ET 공지"
+    }
+   ]
+  },
+  {
+   "id": "t1_6_7060xe7",
+   "what": "1.6T 스위치 7060XE7-64PS(공랭) 첫 출시, 나머지 2종은 2027년 초",
+   "d": "2026-Q4",
+   "kind": "출시",
+   "status": "진행",
+   "conf": "보도",
+   "src": [
+    5,
+    6
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "단일 매체 보도 기반 — 회사 발표로 재확인 필요"
+    },
+    {
+     "d": "2026-10-24",
+     "s": "진행",
+     "note": "7060XE7 시리즈(1.6T, Tomahawk 6 기반) 공개 보도가 복수 매체에서 확인됨. 첫 모델 4분기 출하, 나머지 2종 2027년 초 예정. 발표일 미확인, 매체별 모델명·시기 차이"
+    }
+   ]
+  },
+  {
+   "id": "q4_earn",
+   "what": "2026년 4분기 실적·2027 가이던스",
+   "d": "2027-02",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    0
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "정확한 날짜 미공지 — 과거 일정 기준 2월 중"
+    }
+   ]
+  },
+  {
+   "id": "ai_fabric_35",
+   "what": "2026년 AI 패브릭 매출 최소 35억 달러 목표 달성 여부",
+   "d": "2026-Q4",
+   "kind": "기타",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    1
+   ],
+   "log": [
+    {
+     "d": "2026-08-04",
+     "s": "진행",
+     "note": "2분기 콜에서 목표 유지"
+    }
+   ]
+  },
+  {
+   "id": "scaleup_entry",
+   "what": "스케일업(코패키지드 구리·오픈 CPO) 첫 진입",
+   "d": "2027",
+   "kind": "출시",
+   "status": "예정",
+   "conf": "보도",
+   "src": [
+    3
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "2027년 이후 목표, 랙 사례 5~7건 개발 중"
+    }
+   ]
+  },
+  {
+   "id": "t1_6_scale",
+   "what": "1.6T 이더넷 양산 규모 도달",
+   "d": "2027",
+   "kind": "양산",
+   "status": "예정",
+   "conf": "보도",
+   "src": [
+    3
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "2027년 전망"
+    }
+   ]
+  },
+  {
+   "id": "q2_earn",
+   "what": "2026년 2분기 실적 발표 (매출 30.36억 달러, 연간 가이던스 상향)",
+   "d": "2026-08-04",
+   "kind": "실적",
+   "status": "완료",
+   "conf": "공시",
+   "src": [
+    1
+   ],
+   "log": [
+    {
+     "d": "2026-08-04",
+     "s": "완료",
+     "note": "가이던스 약 28억 달러 상회, 연간 약 126억 달러로 상향"
+    }
+   ]
+  }
+ ],
+ "metrics": [
+  {
+   "k": "2분기 매출",
+   "v": "30.36억 달러 (+37.7%)",
+   "asof": "2026-06",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "3분기 매출 가이던스",
+   "v": "약 33억 달러",
+   "asof": "2026-08",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "2분기 데이터센터 이더넷 점유율",
+   "v": "18.7% (엔비디아 20.4%)",
+   "asof": "2026-06",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "2분기 매출총이익률",
+   "v": "63.4% (전년 65.6%)",
+   "asof": "2026-06",
+   "src": [
+    1
+   ]
+  }
+ ],
+ "updates": [
+  {
+   "d": "2026-10-24",
+   "note": "1.6T 스위치 7060XE7 시리즈 공개 — 첫 모델 4분기 출하 예정, 나머지 2종 2027년 초 (발표일 미확인, 매체별 모델 사양 상이)",
+   "src": [
+    6
+   ],
+   "tone": "호재",
+   "scope": "일회성"
+  },
+  {
+   "d": "2026-10-14",
+   "note": "전체 조사 — 실적·AI 패브릭은 강하나 엔비디아에 점유율 추격당하는 중, 다음 확인 지점은 11월 3일 3분기 실적",
+   "src": [
+    0,
+    1,
+    2
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Arista Networks to Announce Q3 2026 Financial Results on Tuesday, November 3, 2026",
+   "u": "https://www.arista.com/company/news/press-release/24817-pr-20261006",
+   "d": "2026-10-06"
+  },
+  {
+   "t": "Arista Networks Inc. Reports Second Quarter 2026 Financial Results",
+   "u": "https://s21.q4cdn.com/861911615/files/doc_news/Arista-Networks-Inc--Reports-Second-Quarter-2026-Financial-Results-2026.pdf",
+   "d": "2026-08-04"
+  },
+  {
+   "t": "IDC — Ethernet Switch Market Surges 43.4% to $18.9B in 2Q26",
+   "u": "https://www.idc.com/resource-center/blog/ethernet-switch-market-surges-43-4-to-18-9b-in-2q26-as-ai-infrastructure-demand-drives-record-datacenter-spending/",
+   "d": "2026-09-11"
+  },
+  {
+   "t": "Arista's Bechtolsheim: pluggables still reign as AI drives 1.6T and 3.2T",
+   "u": "https://convergedigest.com/aristas-andy-bechtolsheim-pluggables-still-reign-as-ai-drives-next-wave-of-1-6t-and-3-2t/",
+   "d": "2026"
+  },
+  {
+   "t": "Arista rides AI wave but battle for campus networks looms",
+   "u": "https://networkworld.com/article/4111354/arista-rides-ai-wave-but-battle-for-campus-networks-looms.html",
+   "d": "2026"
+  },
+  {
+   "t": "Arista Networks joins the 1.6T race with AI-centric switch platform",
+   "u": "https://www.datacenterdynamics.com/en/news/arista-networks-joins-the-16t-race-with-ai-centric-switch-platform/",
+   "d": "2026"
+  },
+  {
+   "t": "Arista rolls out 1.6T networking switches for AI fabrics (EE News Europe)",
+   "u": "https://www.eenewseurope.com/en/arista-rolls-out-1-6t-networking-switches-for-ai-fabrics/",
+   "d": "2026-10-24"
+  }
+ ]
 }
