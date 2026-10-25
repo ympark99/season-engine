@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-25",
+ "asof": "2026-10-26",
  "items": [
   {
    "m": "US",
@@ -121,6 +121,18 @@
    "tone": "중립",
    "scope": "구조적",
    "u": "https://www.koreancenter.or.kr/news/articleView.html?idxno=1426053"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "네오클라우드",
+   "sector": true,
+   "d": "2026-10-25",
+   "note": "AI로 전환한 비트코인 채굴업체(IREN 등)도 네오클라우드 신용 리스크로 동반 약세",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.benzinga.com/markets/equities/26/10/62578790/riot-mara-iren-and-corz-stocks-slide-as-bitcoin-miners-turn-neoclouds-face-credit-risks"
   },
   {
    "m": "US",
@@ -264,6 +276,18 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://www.fnnews.com/news/202610211548174661"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "K뷰티",
+   "sector": true,
+   "d": "2026-10-24",
+   "note": "아마존 프라임 빅딜 클릭 상위 화장품 10개 중 7개가 한국산, 메디큐브가 검색·클릭 1위",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://m.sedaily.com/article/20105603"
   },
   {
    "m": "US",
@@ -467,6 +491,30 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "저장장치",
+   "sector": true,
+   "d": "2026-10-23",
+   "note": "웨스턴디지털: HDD 가격 상승은 점차 둔화하겠으나 AI·추론·로보틱스 수요는 견조, TB당 평균가는 전년비 +28%",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.benzinga.com/markets/earnings/26/10/62552114/western-digital-price-growth-to-cool-storage-demand-ai-inference-robotic"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "메모리",
+   "sector": true,
+   "d": "2026-10-23",
+   "note": "SK하이닉스가 자회사 솔리다임의 상장 전 투자유치·IPO 검토를 중단한다고 공시(자본시장 여건 등 이유).",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526429184/d159239d6k.htm"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "IT 하드웨어",
    "sector": true,
    "d": "2026-10-23",
@@ -637,6 +685,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "에너지",
+   "sector": true,
+   "d": "2026-10-22",
+   "note": "발레로 2026년 3분기 정제부문 영업이익 88억 달러(전년 동기 16억 달러), 처리량 일평균 300만 배럴로 정제업황 호조 확인.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001035002/000162828026066795/a9302026exh9901earningsrel.htm"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "네오클라우드",
    "sector": true,
    "d": "2026-10-22",
@@ -717,6 +777,30 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "인터넷",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "메타 3분기 광고 매출 약 631억달러, 광고 단가 +14%·노출 +10%, 2026 설비투자 가이던스 1,350~1,450억달러로 하단 상향, 분기 잉여현금흐름 적자",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.xtb.com/en/market-analysis/news-and-research/record-breaking-meta-though-with-a-cash-loss-investors-for-now-are-buying-zuckerberg-s-plan-anyway"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "에너지",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "EIA 10/16 주: 원유 -306만 배럴, 휘발유 -295만 배럴, 증류유 +168만 배럴, 정제가동률 93.4%.",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://boereport.com/2026/10/21/us-crude-and-gasoline-stocks-fall-distillates-rise-eia-says/amp/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "아날로그 반도체",
    "sector": true,
    "d": "2026-10-21",
@@ -724,6 +808,42 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000165/q32026txnex99-eredgar.htm"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "아날로그 반도체",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "TI 3분기 아날로그 매출 전년比 32% 증가(49.1억 달러), 영업이익 73% 증가, 4분기 매출 가이던스 58~63억 달러(단일 출처 보도)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://247wallst.com/cards/texas-instruments-q3-2026-earnings-txn-01m5g1n6r3j45hcsgta6qbhjgw"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "반도체 전공정",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "램리서치 9월분기 매출 82.2억달러로 사상 최대, 12월분기 가이던스 약 86억달러(±4억) 제시",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://newsroom.lamresearch.com/2026-10-21-Lam-Research-Corporation-Reports-Financial-Results-for-the-Quarter-Ended-September-27,-2026"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "AI 소프트웨어",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "SAP, 3분기 클라우드 성장 가속 및 연간 클라우드 매출을 목표 범위(258~262억 유로) 상단으로 예상, 대형 기업 구매에서 AI가 핵심",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://futurumgroup.com/insights/sap-q3-fy-2026-ai-and-data-integration-expand-cloud-adoption/"
   },
   {
    "m": "KR",
@@ -772,6 +892,78 @@
    "u": "https://view.asiae.co.kr/article/2026102109252318596"
   },
   {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "전자·부품",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 275억달러(+222.5%)로 같은 기간 역대 최대, 전체 수출 616억달러",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.kita.net/board/totalTradeNews/totalTradeNewsDetail.do?no=105481&siteId=1"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "반도체 후공정",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 275억달러(+222.5%), 10월 1~20일 기준 역대 최대",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.specialtimes.co.kr/news/articleView.html?idxno=476618"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "반도체 전공정",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 275억달러(+222.5%), 전체 수출 중 비중 44.7%로 같은 기간 역대 최대",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.specialtimes.co.kr/news/articleView.html?idxno=476618"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "반도체 기판·PCB",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 +222.5%, 10월 기준 역대 최대(잠정) - 메모리 모듈 기판 수요의 상류 지표",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://eiec.kdi.re.kr/policy/materialView.do?num=288360"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "메모리",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 275억달러(+222.5%), 이 기간 기준 역대 최대",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://stockhub.kr/news/news_517d089d6049"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "광통신",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "국내 광케이블 업체가 미국 AI 데이터센터용 2차 물량 출하를 9월부터 시작, 누적 수주액 2744만달러, 매출은 10월부터 반영 예정.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://news.jkn.co.kr/post/1040432"
+  },
+  {
    "m": "US",
    "code": "TEM",
    "name": "Tempus AI",
@@ -814,6 +1006,18 @@
    "tone": "호재",
    "scope": "일회성",
    "u": "https://9to5mac.com/2026/10/16/iphone-duo-pre-orders-now-backordered-to-next-year/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "자동차",
+   "sector": true,
+   "d": "2026-10-20",
+   "note": "GM 3분기 조정 EBIT $4.1B(+21.6%), 연간 조정 EBIT 가이던스를 $14.5~15.5B로 좁히고 원자재 인플레 비용 약 $2B 언급",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001467858/000146785826000056/gmq32026pressreleaseandfin.htm"
   },
   {
    "m": "KR",
@@ -860,6 +1064,18 @@
    "u": "https://coreweave.com/news/coreweave-delivers-nvidia-vera-rubin-nvl72-performance-at-production-scale-starting-with-cognition"
   },
   {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "코인",
+   "sector": true,
+   "d": "2026-10-19",
+   "note": "미국 현물 비트코인 ETF 하루 순유입 약 5.3억달러, 9월 22일 이후 최대 일간 유입(10월 앞선 두 주는 순유출).",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.cryptopolitan.com/bitcoin-etfs-527m-ibit-665m/"
+  },
+  {
    "m": "KR",
    "code": "417200",
    "name": "LS머트리얼즈",
@@ -869,6 +1085,18 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://core.asiae.co.kr/article/2026101310052724755"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "전자·부품",
+   "sector": true,
+   "d": "2026-10-19",
+   "note": "AI 서버용 MLCC·FC-BGA 호조로 삼성전기 3분기 영업이익 사상 첫 6000억원 돌파 전망, LG이노텍은 환율 부담으로 정체 전망",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://ceoscoredaily.com/page/view/2026101917013121495"
   },
   {
    "m": "US",
@@ -1003,6 +1231,30 @@
    "u": "https://aiweekly.co/alerts/qualcomm-wins-arm-license-breach-verdict-awarded-2-in-damages"
   },
   {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "여가·외식",
+   "sector": true,
+   "d": "2026-10-16",
+   "note": "중국 스포츠웨어 시장에서 리닝 등 현지 업체가 점유율을 늘리고 해외 브랜드는 밀리는 흐름이 이어짐",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://frontofficesports.com/article/shoe-giant-li-ning-grows-at-nikes-expense-in-china/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "네오클라우드",
+   "sector": true,
+   "d": "2026-10-16",
+   "note": "올해 데이터센터 채권 $80B 중 약 $37B가 BBB 미만 투기등급으로 집계",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.forbes.com/sites/giacomotognini/2026/10/16/why-debt-laden-neoclouds-could-become-a-trillion-dollar-wework-20/"
+  },
+  {
    "m": "KR",
    "code": null,
    "name": "섹터 전체",
@@ -1095,6 +1347,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "자동차",
+   "sector": true,
+   "d": "2026-10-15",
+   "note": "9월 미국 경차 SAAR 16.0백만 대(-3.5% MoM), 인센티브 상승·월 상환액 기록적, 구매 여력이 제약",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://mercercapital.com/insights/blogs/auto-dealer-valuation-insights-blog/2026/september-2026-saar/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "우주",
    "sector": true,
    "d": "2026-10-15",
@@ -1142,6 +1406,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "희토류",
+   "sector": true,
+   "d": "2026-10-14",
+   "note": "중국 확대 희토류 수출통제 유예 만료(11/10)가 다가오며 재연장 여부 불확실.",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.fxstreet.com/analysis/chinas-rare-earth-leverage-has-an-expiration-date-november-10-heres-what-beijing-is-deciding-202610141348"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "반도체 전공정",
    "sector": true,
    "d": "2026-10-14",
@@ -1166,6 +1442,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "네오클라우드",
+   "sector": true,
+   "d": "2026-10-14",
+   "note": "코어위브 채권 수익률이 15%에 근접하며 AI 인프라 차입 부담 우려가 네오클라우드 전반으로 확산",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.cnbc.com/2026/10/14/coreweave-stock-bond-yields-ai-debt.html"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "코인",
    "sector": true,
    "d": "2026-10-13",
@@ -1173,6 +1461,42 @@
    "tone": "호재",
    "scope": "일회성",
    "u": "https://www.kucoin.com/news/flash/bitcoin-etfs-see-175-6m-inflows-on-october-13"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "소프트웨어",
+   "sector": true,
+   "d": "2026-10-13",
+   "note": "소프트웨어 ETF가 4월 저점 이후 약 41% 상승했으나 1년 기준으로는 소폭 하락 상태, 실적 성장보다 배수 확대 반등이라는 평가",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://pluang.com/en/news-feed/etf-perangkat-lunak-naik-41-persen-sejak-april"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "소프트웨어",
+   "sector": true,
+   "d": "2026-10-13",
+   "note": "SaaS 12개월 매출 성장률 2분기 17.5%로 15분기 최고, 3분기 IGV 17% 반등",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.poems.com.sg/stock-research/strategy-report/software-quarterly-update-2q26-end-of-the-saaspocalypse/"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "제약·바이오",
+   "sector": true,
+   "d": "2026-10-13",
+   "note": "국내 제약바이오 투자심리는 과매도 구간이나 기술이전 규모는 작년을 넘어섰고, ESMO 이후 임상 데이터가 시장 의구심 해소 계기로 거론됨",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.finance-scope.com/article/view/scp202610130004"
   },
   {
    "m": "KR",
@@ -1185,6 +1509,18 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://news.mtn.co.kr/news-detail/2026101308534592557"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "AI 서버",
+   "sector": true,
+   "d": "2026-10-12",
+   "note": "3분기 세계 PC 출하 전년비 22.4% 감소(Gartner), 부품 원가 상승이 ASP를 올림 — 같은 메모리 부족이 서버 원가에도 부담",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.gartner.com/en/newsroom/press-releases/2026-10-12-gartner-says-worldwide-pc-shipments-declined-22-point-4-percent-in-third-quarter-of-2026-as-component-cost-inflation-raised-asps"
   },
   {
    "m": "KR",
@@ -1247,6 +1583,30 @@
    "u": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610071013212100713"
   },
   {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "우주",
+   "sector": true,
+   "d": "2026-10-07",
+   "note": "FCC, SpaceX 위성 1만 5천 기 직접 단말 통신망 승인(일부 주파수 요청은 보류) — 직접통신 위성 경쟁 심화",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.satellitetoday.com/connectivity/2026/10/07/fcc-grants-spacex-approval-for-15000-direct-to-device-satellites/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "우주",
+   "sector": true,
+   "d": "2026-10-07",
+   "note": "SpaceX, 엔비디아 칩 구입용 400억 달러 부채 조달 추진 보도(보도 시점 기준 협의 단계, 종결 여부는 출처 간 엇갈림)",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://technews.tw/2026/10/07/spacex-looks-to-raise-40bn-to-buy-nvidia-chips-in-financing-led-by-apollo/"
+  },
+  {
    "m": "KR",
    "code": null,
    "name": "섹터 전체",
@@ -1257,6 +1617,30 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://www.thepowernews.co.kr/view.php?ud=202610071444076742de3f0aa1be_7"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "K뷰티",
+   "sector": true,
+   "d": "2026-10-07",
+   "note": "9월 화장품 수출 15.1억 달러, 전년比 31.4% 증가로 월간 최대 경신(중국·미국·아세안·EU 고르게 증가)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.hankyung.com/article/202610078677i"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "철강·소재",
+   "sector": true,
+   "d": "2026-10-06",
+   "note": "LME 알루미늄 현금 매도호가 톤당 3,134.5달러로 반등, 재고 240,375t 변동 없음",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.alcircle.com/news/lme-aluminium-offer-price-rises-to-3-134-5-t-as-stocks-remain-unchanged-at-240-375t-121456"
   },
   {
    "m": "US",
