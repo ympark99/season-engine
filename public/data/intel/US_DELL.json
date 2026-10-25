@@ -3,7 +3,7 @@
  "code": "DELL",
  "name": "Dell Technologies",
  "theme": "AI 서버",
- "at": "2026-10-22",
+ "at": "2026-10-26",
  "full": "2026-10-14",
  "by": "Claude 정기 조사",
  "position": "AI 서버 수주·백로그에서 상장 서버 업체 중 가장 앞서 있다(FY27 2분기 AI 수주 609억 달러, 백로그 약 950억 달러). 다음 분기 관건은 공급(메모리 등) 제약 속에서 백로그가 매출로 얼마나 빨리 넘어가는지와 AI 서버의 얇은 마진이 유지되는지.",
@@ -136,13 +136,19 @@
    "conf": "추정",
    "src": [
     11,
-    4
+    4,
+    16
    ],
    "log": [
     {
      "d": "2026-10-14",
      "s": "예정",
      "note": "정확한 발표일 미확정 — 11월 말 예상(집계 사이트 추정치)"
+    },
+    {
+     "d": "2026-10-26",
+     "s": "예정",
+     "note": "발표일 11/24 예상(집계 사이트 추정, 미확정). 기존 '11월 말'과 일치"
     }
    ]
   },
@@ -250,9 +256,26 @@
    "src": [
     14
    ]
+  },
+  {
+   "k": "3분기 델 PC 출하(IDC)",
+   "v": "760만 대 (-25%), 세계 PC 출하 -20.1%",
+   "asof": "2026-10",
+   "src": [
+    15
+   ]
   }
  ],
  "updates": [
+  {
+   "d": "2026-10-26",
+   "note": "3분기 세계 PC 출하 감소(IDC 기준 20.1%, 델 -25% 760만 대). 메모리 가격 급등으로 소비자·기업 교체 수요 위축. 델 PC 사업에 악재, AI 서버 수주와는 별개 흐름",
+   "src": [
+    15
+   ],
+   "tone": "악재",
+   "scope": "구조적"
+  },
   {
    "d": "2026-10-22",
    "note": "경쟁사 슈퍼마이크로가 10/20 1분기 예비 실적으로 매출 185~195억 달러(가이던스 145~155억 달러 상회)·총이익률 12.0~12.5%(가이던스 10.4~10.8%)를 제시. 델의 AI 서버 수주 우위는 유지되나 마진 비교 근거가 달라져, 11월 3일 슈퍼마이크로 실적과 델 3분기 실적을 함께 볼 필요",
@@ -346,6 +369,16 @@
    "t": "Super Micro Form 8-K — FY2027 1분기 사업 업데이트(예비 실적)",
    "u": "https://www.sec.gov/Archives/edgar/data/0001375365/000137536526000025/smcifirstquarterfy2027busi.htm",
    "d": "2026-10-20"
+  },
+  {
+   "t": "Global PC shipments fall 20.1% as high prices curb demand, IDC says",
+   "u": "https://techenclave.com/news/items/global-pc-shipments-fall-20-1-as-high-prices-curb-demand-idc-says",
+   "d": "2026-10"
+  },
+  {
+   "t": "Dell Technologies earnings calendar (projected)",
+   "u": "https://therighttrader.com/earnings-calendar/dell",
+   "d": "2026-10-26"
   }
  ]
 }
