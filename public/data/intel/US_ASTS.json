@@ -3,7 +3,7 @@
   "code": "ASTS",
   "name": "AST SpaceMobile",
   "theme": "우주",
-  "at": "2026-10-14",
+  "at": "2026-10-26",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "일반 스마트폰과 직접 연결되는 광대역 위성 사업에서 FCC 상업 허가(248기)와 약 37억달러 현금을 확보했지만, 상업 서비스는 2027년 목표로 아직 매출 규모가 작다. 다음 분기 관건은 BlueBird 7 손실 이후 발사 속도를 되찾고 연간 매출 가이던스(1.5억~2억달러)를 달성하는지.",
@@ -134,6 +134,11 @@
           "d": "2026-10-14",
           "s": "예정",
           "note": "발표일은 11월 9~10일 사이로 출처가 엇갈림, 미확정"
+        },
+        {
+          "d": "2026-10-26",
+          "s": "예정",
+          "note": "발표일 11월 9일·10일로 출처마다 다르고 회사 확정 없음"
         }
       ]
     },
@@ -152,6 +157,11 @@
           "d": "2026-10-14",
           "s": "예정",
           "note": "8월 말 보도: 팰컨9 시험 연소 완료, 10월 발사 관측이나 날짜 미발표"
+        },
+        {
+          "d": "2026-10-26",
+          "s": "예정",
+          "note": "10월 26일 시점 발사 일정 확인 안 됨(8월 말 10월 발사 관측 보도만 있음)"
         }
       ]
     },
@@ -312,6 +322,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-26",
+      "note": "Viasat이 AST 계열사(AST & Science)의 해외 주파수 추가 신청을 기각하라고 FCC에 청원(10월 20일 전후). Viasat은 간섭 위험과 일부 주파수 자격을 문제 삼았고, AST는 해외 운영은 현지 승인이 필요하며 간섭은 기술적으로 제한한다고 답함. 규제 절차가 길어질 수 있음. 다음 발사·3분기 실적 일정은 아직 미확정",
+      "src": [
+        12
+      ],
+      "tone": "악재",
+      "scope": "구조적"
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — FCC 상업 허가·현금 확보로 기반은 갖췄으나 상업 서비스는 2027년, 11월 초중순 3분기 실적과 10월 발사가 다음 확인 지점",
       "src": [
@@ -381,6 +400,11 @@
       "t": "AST SpaceMobile Form 8-K (2025 Q2, S-band EllioSat)",
       "u": "https://www.sec.gov/Archives/edgar/data/1780312/000095017025106610/asts-ex99_1.htm",
       "d": "2025-08"
+    },
+    {
+      "t": "ASTS Stock Slips Overnight: Viasat Urges FCC To Reject AST SpaceMobile Fatally Flawed Overseas Spectrum Bid",
+      "u": "https://stocktwits.com/news-articles/markets/equity/asts-stock-viasat-fcc-reject-ast-spacemobile-fatally-flawed-overseas-spectrum-bid/cZxqmoSRBug",
+      "d": "2026-10-20"
     }
   ]
 }
