@@ -1,6 +1,61 @@
 {
- "asof": "2026-10-26",
+ "asof": "2026-10-27",
  "items": [
+  {
+   "m": "US",
+   "code": "SPCX",
+   "name": "Space Exploration Technologies (SpaceX)",
+   "theme": "우주",
+   "d": "2026-10-27",
+   "note": "머스크가 10/20 실적 발표에서 스타십 Flight 15 11월 목표를 재확인(공식 날짜 없음, 10월 하순 전망에서 이동). 상단 단 포획 시도 포함, 성공 여부는 불확실",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://newspaceeconomy.ca/2026/10/21/spacex-targets-november-2026-for-starship-flight-15-and-its-first-stage-tower-catch/"
+  },
+  {
+   "m": "US",
+   "code": "META",
+   "name": "Meta Platforms",
+   "theme": "인터넷",
+   "d": "2026-10-27",
+   "note": "메타가 AI 투자 재원 확보용 무의결권 Class C 주식 신설 계획을 발표(2027년 1월 시행 예정). 창업자 의결권을 유지한 채 증자 여력을 만드는 구조. 3분기 잉여현금흐름 적자 전환과 맞물려 자금 조달 확대 신호",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://stocktwits.com/news-articles/markets/equity/meta-stock-jumps-3-after-hours-after-q3-revenue-beats-expectations-with-a-narrowed-ai-capex-outlook-and-new-non-voting-class-c-stock/cZxMhJJRBv6"
+  },
+  {
+   "m": "US",
+   "code": "GOOGL",
+   "name": "Alphabet",
+   "theme": "인터넷",
+   "d": "2026-10-27",
+   "note": "3분기 실적 발표일이 10월 28일 장 마감 후로 교정됨(알파벳 IR 공지를 인용한 단일 보도, 콜 태평양시 13:30, 원문 재확인 필요)",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://primexbt.com/for-traders/alphabet-earnings-date/"
+  },
+  {
+   "m": "US",
+   "code": "GOOGL",
+   "name": "Alphabet",
+   "theme": "인터넷",
+   "d": "2026-10-27",
+   "note": "Anthropic이 구글 클라우드에 2033년까지 최소 1,111억달러를 지출하기로 약정했다는 보도(투자설명서 인용 2차 보도, 원문 미확인). 클라우드 수주잔고 확대 요인이나 확정 전까지 클라우드 판정은 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://fourweekmba.com/ai-anthropic-518b-prospectus-leak-google-amazon-80-percent-lock/"
+  },
+  {
+   "m": "US",
+   "code": "FPS",
+   "name": "Forgent Power Solutions",
+   "theme": "전력 인프라",
+   "d": "2026-10-27",
+   "note": "1분기(FY27) 실적 발표 11-12 장 개장 전 확정, 매출·조정 EBITDA가 가이던스 상단 초과 예고. 사업 가이던스 상향 자체는 아니고 1분기 달성 예고. 등급 B 유지(결과 발표 전)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0002080126/000119312526428945/d176631dex991.htm"
+  },
   {
    "m": "US",
    "code": "DELL",
@@ -11,6 +66,17 @@
    "tone": "호재",
    "scope": "일회성",
    "u": "https://www.honeywell.com/us/en/news/press-releases/2026/10/honeywell-technologies-launches-forge-cognition-with-nvidia-and-dell-technologies-advancing-physical-ai-across-buildings-and-industrial-operations"
+  },
+  {
+   "m": "US",
+   "code": "AMZN",
+   "name": "Amazon",
+   "theme": "인터넷",
+   "d": "2026-10-27",
+   "note": "Anthropic이 아마존 클라우드에 2033년까지 최소 1,100억달러를 지출하기로 약정했다는 보도(투자설명서 인용 2차 보도, 원문 미확인). AWS 수주 근거 강화. 10/30 3분기 실적 전 확인 필요. 한편 Leo 첫 Vulcan 발사(LV-01)의 10/29 날짜는 발사 목록에서 확인되지 않아 미확정으로 바꿈",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://fourweekmba.com/ai-anthropic-518b-prospectus-leak-google-amazon-80-percent-lock/"
   },
   {
    "m": "US",
@@ -33,6 +99,50 @@
    "tone": "악재",
    "scope": "구조적",
    "u": "https://www.thestandard.com.hk/innovation/article/334191/Apple-failed-to-make-its-AI-tool-to-comply-to-EU-regulations-EU-Commission-says"
+  },
+  {
+   "m": "KR",
+   "code": "373220",
+   "name": "LG에너지솔루션",
+   "theme": "2차전지",
+   "d": "2026-10-27",
+   "note": "캐나다 퀘벡 NAL 광산에서 4년간 리튬 정광 24만톤 장기 공급계약(10/8 발표, 올해 말부터). 북미 ESS 원료 공급망 강화, 수산화리튬 약 3만톤 환산",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://biz.sbs.co.kr/amp/article/20000338900"
+  },
+  {
+   "m": "KR",
+   "code": "011070",
+   "name": "LG이노텍",
+   "theme": "전자·부품",
+   "d": "2026-10-27",
+   "note": "환율 하락으로 원재료 매입·판매 시점 차이에 따른 마진 압박, 카메라모듈 비중 80% 이상이라 타격이 크고 비상경영(비용 절감)에 들어갔다는 보도. 3분기 영업이익 20% 이상 감소 관측 기사도 있으나 기존 790억원 추정과 기준이 달라 확인 필요",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://ceoscoredaily.com/page/view/2026101917013121495"
+  },
+  {
+   "m": "KR",
+   "code": "009150",
+   "name": "삼성전기",
+   "theme": "전자·부품",
+   "d": "2026-10-27",
+   "note": "AI 서버용 고부가 제품 판매 증가가 환율 하락으로 줄어든 이익을 상쇄 — 3분기 영업이익 컨센서스 6,423억원(전년 대비 +146.8%), 분기 사상 첫 6,000억원대 전망. 발표는 10-28 16시 예정",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://ceoscoredaily.com/page/view/2026101917013121495"
+  },
+  {
+   "m": "KR",
+   "code": "000990",
+   "name": "DB하이텍",
+   "theme": "팹리스·파운드리",
+   "d": "2026-10-27",
+   "note": "부천·상우캠퍼스 자동차 품질경영시스템 IATF 16949 갱신 심사 통과(10-26 발표). 국내 파운드리 최초 취득 후 23년째 유지, 산업·차량용 반도체 비중 확대의 기반으로 설명. 별도로 9-09 보도에서 8인치 1200V SiC MOSFET 공정 신뢰성 검증 완료, 3분기 기존 협력 고객에 먼저 제공하고 2027년 2분기 전 고객 확대 계획(고객 평가 결과는 미공개). 실리콘 캐패시터는 당초 상반기 목표가 3분기로 일부 지연된 것으로 보도(양산 개시 확인 없음)",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.fnnews.com/news/202610261813467596"
   },
   {
    "m": "KR",

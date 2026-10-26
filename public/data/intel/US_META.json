@@ -3,7 +3,7 @@
   "code": "META",
   "name": "Meta Platforms",
   "theme": "인터넷",
-  "at": "2026-10-24",
+  "at": "2026-10-27",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "광고 매출은 구글을 넘어서는 흐름(전망)이고 스마트 글래스는 선두지만, AI 모델은 챗GPT·제미나이보다 이용 기반이 약하고 투자·소송 비용 부담이 커졌다. 다음 분기 관건은 10월 말 3분기 실적의 지출 가이던스와 AI 투자 대비 이익 방어.",
@@ -262,6 +262,24 @@
           "note": "행사 일정 종료. 실제 발표 제품 내용은 이번 조사에서 확인하지 못함"
         }
       ]
+    },
+    {
+      "id": "class_c",
+      "what": "무의결권 Class C 주식 신설 시행(AI 투자 재원, 계획 발표)",
+      "d": "2027-01",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        16
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "10/21 발표, 2027년 1월 시행 예정(보도)"
+        }
+      ]
     }
   ],
   "metrics": [
@@ -315,6 +333,15 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-27",
+      "note": "메타가 AI 투자 재원 확보용 무의결권 Class C 주식 신설 계획을 발표(2027년 1월 시행 예정). 창업자 의결권을 유지한 채 증자 여력을 만드는 구조. 3분기 잉여현금흐름 적자 전환과 맞물려 자금 조달 확대 신호",
+      "src": [
+        16
+      ],
+      "tone": "중립",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-24",
       "note": "메타가 상업 약관(10/30 발효 예정) 크롤링 조항에서 학습 사용 문구를 삭제하는 식으로 개정, 미 상원의원이 미국 기업 타격 우려 제기. 출판사 단체는 약관 적법성 문제를 제기",
@@ -431,6 +458,11 @@
       "t": "meta rewrites web crawling clause in pending commercial terms (unite.ai)",
       "u": "https://www.unite.ai/hi/meta-rewrites-web-crawling-clause-in-pending-commercial-terms/",
       "d": "2026-10-23"
+    },
+    {
+      "t": "Meta Q3 실적 발표 후 무의결권 Class C 주식 신설 보도 (Stocktwits)",
+      "u": "https://stocktwits.com/news-articles/markets/equity/meta-stock-jumps-3-after-hours-after-q3-revenue-beats-expectations-with-a-narrowed-ai-capex-outlook-and-new-non-voting-class-c-stock/cZxMhJJRBv6",
+      "d": "2026-10-21"
     }
   ]
 }

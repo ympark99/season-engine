@@ -3,7 +3,7 @@
   "code": "SPCX",
   "name": "Space Exploration Technologies (SpaceX)",
   "theme": "우주",
-  "at": "2026-10-23",
+  "at": "2026-10-27",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "2026-06 나스닥 상장(티커 SPCX, 공모가 135달러 보도) 후 첫 분기 실적에서 매출이 92% 늘었고 스타링크 가입자 1,200만으로 발사·위성통신 양쪽에서 압도적 선두권이다. 다음 분기 관건은 스타십 후속 비행(우주선 포획 시도 등), AI 부문 적자 폭, 12월 보호예수 해제 물량, 테슬라 결합 검토 향방(3분기 매출 +161%로 이미 발표).",
@@ -178,13 +178,14 @@
     {
       "id": "flight15",
       "what": "스타십 Flight 15",
-      "d": "2026-Q4",
+      "d": "2026-11",
       "kind": "출시",
       "status": "예정",
       "conf": "추정",
       "src": [
         10,
-        13
+        13,
+        19
       ],
       "log": [
         {
@@ -196,6 +197,11 @@
           "d": "2026-10-16",
           "s": "예정",
           "note": "머스크 발언으로 11월 중순 전후 거론(추수감사절 직전, 4~6주 뒤). 10월 19일 이후는 항공 계획상 잠정 목표일일 뿐, 공식 확정 아님"
+        },
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "10/20 실적 발표에서 머스크가 11월 목표 재확인(공식 날짜 없음, 기존 10월 하순 전망에서 이동). 최초 상단 단 포획 시도 포함, 첫 시도 성공 가능성 50~60% 언급(회사 발언)"
         }
       ]
     },
@@ -316,6 +322,15 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-27",
+      "note": "머스크가 10/20 실적 발표에서 스타십 Flight 15 11월 목표를 재확인(공식 날짜 없음, 10월 하순 전망에서 이동). 상단 단 포획 시도 포함, 성공 여부는 불확실",
+      "src": [
+        19
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
     {
       "d": "2026-10-23",
       "note": "10/20 3분기 실적(11월 예정에서 앞당겨짐) — 매출 145.75억 달러(+161%, 10-Q). 보도상 스타링크 가입자 1,360만, 영업이익 28억·순이익 44억 달러로 흑자 전환, AI 부문 매출이 스타링크를 넘어섬. 등급 S 유지",
@@ -451,6 +466,11 @@
       "t": "SpaceX posts first operating profit as public company as AI revenue nearly triples to $7.6 billion",
       "u": "https://fortune.com/2026/10/20/spacex-q3-profit-ai-si-elon-musk/",
       "d": "2026-10-20"
+    },
+    {
+      "t": "SpaceX targets November 2026 for Starship Flight 15 and its first stage tower catch",
+      "u": "https://newspaceeconomy.ca/2026/10/21/spacex-targets-november-2026-for-starship-flight-15-and-its-first-stage-tower-catch/",
+      "d": "2026-10-21"
     }
   ]
 }
