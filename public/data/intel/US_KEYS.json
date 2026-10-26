@@ -1,0 +1,327 @@
+{
+  "m": "US",
+  "code": "KEYS",
+  "name": "KEYSIGHT TECHNOLOGIES INC",
+  "theme": "IT 하드웨어",
+  "at": "2026-10-27",
+  "full": "2026-10-27",
+  "by": "Claude 정기 조사",
+  "position": "전자 계측 1위권으로 AI 데이터센터 유선(1.6T 이더넷) 테스트가 무선을 처음 넘어서며 매출 +36%·수주 +56%의 기록 분기를 냈지만, Spirent 인수 때 고속 이더넷 사업을 Viavi에 넘겨 데이터센터 테스트 경쟁자를 키웠다. 다음 분기 관건은 부품 공급 제약 속에 4분기 매출 가이던스(19.3억~19.5억달러)를 지키며 백로그를 매출로 바꾸는 속도.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "무선·유선·EDA를 아우르는 최대 계측 포트폴리오에 AI 데이터센터 수요로 수주 2분기 연속 20억달러 이상, 부문 영업이익률 30%대로 실적 모멘텀이 강하다. 다만 Rohde & Schwarz·Anritsu와 시장을 나누는 구도라 독점적 지위는 아니고, Spirent 고속 이더넷을 인수한 Viavi가 데이터센터에서 추격 중이며 공급 제약이 향후 2분기 매출 전환을 제한할 수 있다."
+  },
+  "peers": [
+    {
+      "name": "Rohde & Schwarz",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Anritsu",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "Viavi Solutions",
+      "m": "US",
+      "code": "VIAV"
+    },
+    {
+      "name": "Fortive (Tektronix)",
+      "m": "US",
+      "code": "FTV"
+    },
+    {
+      "name": "Teradyne (LitePoint)",
+      "m": "US",
+      "code": "TER"
+    }
+  ],
+  "axes": [
+    {
+      "k": "AI 데이터센터 유선·1.6T 이더넷 테스트",
+      "me": "AresONE 1600GE(3월)·AresONE Plus/SERT 1600GE(10월) 출시, 3분기 유선 수주 전년 대비 2배 이상·유선 매출이 무선을 처음 추월",
+      "vs": "Viavi: Spirent 고속 이더넷 사업 인수 후 NSE 매출 +69%, 데이터센터가 NSE의 약 50%",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        1,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "k": "무선(5G·6G) RF 테스트",
+      "me": "Ericsson과 표준화 전 pre-6G 상호운용 검증, NTT Docomo와 6G 채널 모델링 협력",
+      "vs": "Anritsu: 6G FR3 대역 지원 추가·연구기관 테스트베드 채택 / R&S: Qualcomm과 FR1–FR3 CA",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        6,
+        7
+      ]
+    },
+    {
+      "k": "실적 성장",
+      "me": "3분기 매출 18.46억달러(+36%), 수주 20.91억달러(+56%, 코어 +52%)",
+      "vs": "Anritsu 1분기 매출 +38%·수주 +95% / Viavi 4분기 매출 +52.5%",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        8,
+        5
+      ]
+    },
+    {
+      "k": "수익성",
+      "me": "CSG 영업이익률 34%·EISG 31%, 비GAAP 총이익률 69%",
+      "vs": "Anritsu 1분기 영업이익 42.78억엔/매출 325.84억엔(약 13%)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        1,
+        8
+      ]
+    },
+    {
+      "k": "포트폴리오 확장(M&A·설계 소프트웨어)",
+      "me": "Spirent(2025-10 완료)·Synopsys 광학솔루션그룹·Ansys PowerArtist·VPIphotonics 인수로 설계-에뮬레이션-테스트 연결",
+      "vs": "Spirent 고속 이더넷·네트워크 보안·채널 에뮬레이션 사업은 반독점 조건으로 Viavi에 3.99억달러 매각",
+      "verdict": "선두권",
+      "conf": "공시",
+      "src": [
+        2,
+        10
+      ]
+    },
+    {
+      "k": "공급 대응력",
+      "me": "경영진: 수요가 아니라 부품·공급망 능력이 향후 2분기 백로그의 매출 전환을 제한할 수 있음",
+      "vs": "Anritsu 백로그 +69.1% 등 경쟁사도 수요 초과 국면",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        1,
+        8
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3fy26",
+      "what": "FY2026 3분기 실적 발표 — 매출 18.46억달러(+36%), 수주 20.91억달러",
+      "d": "2026-08-18",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "완료",
+          "note": "2분기 연속 수주 20억달러 이상, 4분기 매출 19.3억~19.5억달러 가이던스"
+        }
+      ]
+    },
+    {
+      "id": "aresone_plus_1600",
+      "what": "AresONE Plus 1600GE·SERT 1600GE 1.6T 이더넷 테스트 플랫폼 발표",
+      "d": "2026-10-13",
+      "kind": "출시",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "완료",
+          "note": "224G SerDes 기반 1.6T, 2U 8포트에 AI 워크로드 에뮬레이션 결합"
+        }
+      ]
+    },
+    {
+      "id": "q4fy26",
+      "what": "FY2026 4분기 실적 발표 — 가이던스 매출 19.3억~19.5억달러(+약 37%), 비GAAP EPS 3.34~3.40달러",
+      "d": "2026-11",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0,
+        12
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "회사 공식 일정 미확정 — 외부 추정 11월 중순~하순(전년은 2025-11-24)"
+        }
+      ]
+    },
+    {
+      "id": "supply_backlog",
+      "what": "공급 제약 속 백로그 매출 전환 — 경영진이 제약 기간으로 언급한 향후 2분기(FY2026 4분기~FY2027 1분기) 종료",
+      "d": "2027-Q1",
+      "kind": "기타",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        1
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "진행",
+          "note": "3분기 콜: 부품 가용성이 향후 2분기 매출 전환을 제한할 수 있다고 언급"
+        }
+      ]
+    },
+    {
+      "id": "rs_fy2526",
+      "what": "경쟁사 Rohde & Schwarz 2025/26 회계연도(6월 결산) 실적 발표 — 계측 사업 흐름 확인",
+      "d": "2026-11",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "전년 실적은 2025-11-28 발표 — 같은 시기로 추정"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "FY2026 3분기 매출",
+      "v": "18.46억달러 (+36%, 코어 +31%)",
+      "asof": "2026-07",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "FY2026 3분기 수주",
+      "v": "20.91억달러 (+56%, 코어 +52%)",
+      "asof": "2026-07",
+      "src": [
+        0,
+        1
+      ]
+    },
+    {
+      "k": "CSG 3분기 매출·영업이익률",
+      "v": "13.45억달러 (+43%) · 34%",
+      "asof": "2026-07",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "FY2026 4분기 매출 가이던스",
+      "v": "19.3억~19.5억달러 (중간값 +약 37%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-27",
+      "note": "전체 조사 — AI 데이터센터 유선 테스트가 성장 주도(수주 +56%), 공급 제약과 Viavi(Spirent 고속 이더넷 인수) 추격이 변수, 11월 4분기 실적이 다음 확인점",
+      "src": [
+        0,
+        1,
+        5
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Keysight Technologies Reports Third Quarter 2026 Results (8-K Ex.99.1)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001601046/000160104626000029/exhibit991-q326pressrelease.htm",
+      "d": "2026-08-18"
+    },
+    {
+      "t": "Keysight (KEYS) Q3 FY2026 Earnings Call: AI Demand Drives 36% Revenue Growth",
+      "u": "https://www.mitrade.com/insights/news/live-news/article-0-2010794-20260819",
+      "d": "2026-08-19"
+    },
+    {
+      "t": "Keysight Technologies Form 10-Q (quarter ended 2026-07-31)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0001601046/000160104626000036/keys-20260731.htm",
+      "d": "2026-09"
+    },
+    {
+      "t": "Keysight Debuts Purpose-Built 1.6T Ethernet AI Workload Emulation Platform",
+      "u": "https://www.businesswire.com/news/home/20260310152823/en/Keysight-Debuts-Purpose-Built-1.6T-Ethernet-AI-Workload-Emulation-Platform-to-Validate-Next-Generation-AI-Fabrics",
+      "d": "2026-03-10"
+    },
+    {
+      "t": "Keysight launches 1.6T Ethernet test platforms for AI networks",
+      "u": "https://www.engineering.com/keysight-launches-1-6t-ethernet-test-platforms-for-ai-networks/",
+      "d": "2026-10-13"
+    },
+    {
+      "t": "Viavi Solutions Q4 Earnings Call Highlights",
+      "u": "https://www.marketbeat.com/instant-alerts/viavi-solutions-q4-earnings-call-highlights-2026-08-06/",
+      "d": "2026-08-06"
+    },
+    {
+      "t": "everything RF newsletter (Keysight·Ericsson pre-6G, R&S FR1–FR3)",
+      "u": "https://www.everythingrf.com/rf-newsletters/2571",
+      "d": "2026-03-05"
+    },
+    {
+      "t": "everything RF newsletter (Anritsu FR3 6G testbed)",
+      "u": "https://www.everythingrf.com/rf-newsletters/2649",
+      "d": "2026-08-27"
+    },
+    {
+      "t": "Anritsu (6754) Q1 earnings summary",
+      "u": "https://quartr.com/events/anritsu-corporation-6754-q1-2027_FVwePB8M",
+      "d": "2026-07-30"
+    },
+    {
+      "t": "Rohde & Schwarz revenue exceeds three billion euros for the first time",
+      "u": "https://www.rohde-schwarz.com/us/about/news-press/all-news/rohde-schwarz-shows-resilience-in-a-challenging-environment-revenue-exceeds-three-billion-euros-for-the-first-time_229356-1598656.html",
+      "d": "2025-11-28"
+    },
+    {
+      "t": "Keysight Completes Acquisition of Synopsys' Optical Solutions Group and Ansys' PowerArtist",
+      "u": "https://www.businesswire.com/news/home/20251017434407/en/Keysight-Completes-Acquisition-of-Synopsys%E2%80%99-Optical-Solutions-Group-and-Ansys%E2%80%99-PowerArtist",
+      "d": "2025-10-17"
+    },
+    {
+      "t": "Keysight Technologies Reports Second Quarter 2026 Results",
+      "u": "https://www.streetinsider.com/Business+Wire/Keysight+Technologies+Reports+Second+Quarter+2026+Results/26521001.html",
+      "d": "2026-05-19"
+    },
+    {
+      "t": "KEYS earnings date (EarningsWhispers)",
+      "u": "https://www.earningswhispers.com/epsdetails/KEYS",
+      "d": "2026-10"
+    },
+    {
+      "t": "Teradyne Q2 FY 2026 Doubles Semiconductor Test Revenue on AI Compute and Memory Demand",
+      "u": "https://futurumgroup.com/insights/teradyne-q2-fy-2026-doubles-semiconductor-test-revenue-on-ai-compute-and-memory-demand/",
+      "d": "2026-08"
+    }
+  ]
+}
