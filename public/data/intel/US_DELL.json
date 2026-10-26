@@ -3,7 +3,7 @@
  "code": "DELL",
  "name": "Dell Technologies",
  "theme": "AI 서버",
- "at": "2026-10-26",
+ "at": "2026-10-27",
  "full": "2026-10-14",
  "by": "Claude 정기 조사",
  "position": "AI 서버 수주·백로그에서 상장 서버 업체 중 가장 앞서 있다(FY27 2분기 AI 수주 609억 달러, 백로그 약 950억 달러). 다음 분기 관건은 공급(메모리 등) 제약 속에서 백로그가 매출로 얼마나 빨리 넘어가는지와 AI 서버의 얇은 마진이 유지되는지.",
@@ -161,7 +161,8 @@
    "conf": "공시",
    "src": [
     6,
-    14
+    14,
+    18
    ],
    "log": [
     {
@@ -173,6 +174,11 @@
      "d": "2026-10-22",
      "s": "예정",
      "note": "10/20 공시 기준 발표일 11월 3일 확정, 델 3분기 실적과 시기 겹침(기존 '2026-11'에서 날짜 확정)"
+    },
+    {
+     "d": "2026-10-27",
+     "s": "예정",
+     "note": "11/3 오후 5시(ET) 웹캐스트로 확정, 예비 매출 185~195억 달러·총이익률 12.0~12.5% 기존과 동일"
     }
    ]
   },
@@ -267,6 +273,15 @@
   }
  ],
  "updates": [
+  {
+   "d": "2026-10-27",
+   "note": "Honeywell이 10/26 엔비디아·델과 함께 산업용 AI 플랫폼 Forge Cognition 출시. 델은 PowerEdge 서버·스토리지 등 AI Factory 백엔드 인프라 공급자 역할(금액 조건 미공개)",
+   "src": [
+    17
+   ],
+   "tone": "호재",
+   "scope": "일회성"
+  },
   {
    "d": "2026-10-26",
    "note": "3분기 세계 PC 출하 감소(IDC 기준 20.1%, 델 -25% 760만 대). 메모리 가격 급등으로 소비자·기업 교체 수요 위축. 델 PC 사업에 악재, AI 서버 수주와는 별개 흐름",
@@ -379,6 +394,16 @@
    "t": "Dell Technologies earnings calendar (projected)",
    "u": "https://therighttrader.com/earnings-calendar/dell",
    "d": "2026-10-26"
+  },
+  {
+   "t": "Honeywell Technologies launches Forge Cognition with NVIDIA and Dell Technologies",
+   "u": "https://www.honeywell.com/us/en/news/press-releases/2026/10/honeywell-technologies-launches-forge-cognition-with-nvidia-and-dell-technologies-advancing-physical-ai-across-buildings-and-industrial-operations",
+   "d": "2026-10-26"
+  },
+  {
+   "t": "Supermicro Provides First Quarter of Fiscal Year 2027 Preliminary Business Update",
+   "u": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2027-Preliminary-Business-Update/default.aspx",
+   "d": "2026-10-20"
   }
  ]
 }

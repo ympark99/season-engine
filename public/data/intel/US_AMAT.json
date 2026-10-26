@@ -1,307 +1,328 @@
 {
-"m": "US",
-"code": "AMAT",
-"name": "Applied Materials",
-"theme": "반도체 전공정",
-"at": "2026-10-23",
-"full": "2026-10-14",
-"by": "Claude 정기 조사",
-"position": "웨이퍼 장비(WFE) 상위 3~5사 중 하나로, 3분기(회계연도) 매출이 91.2억 달러(+25%)로 분기 최대를 냈고 4분기 가이던스도 시장 예상을 웃돌았다. 다음 분기 관건은 4분기 실적이 가이던스(102.5억 달러 ±5억)에 들어오는지와 중국 수출 규제 변화다.",
-"grade": {
-"g": "A",
-"label": "경쟁력 우위",
-"why": "GAA·후면전력·DRAM/HBM·첨단 패키징 등 AI 관련 성장 영역에서 매출이 늘고 영업이익률도 사상 최고 수준(비GAAP 34%). 반면 중국 매출 비중이 높고(28%, 2차 자료) 미국 수출 규제와 제외 조치 번복 위험이 남아 있으며, 장비 사이클 둔화 시 변동이 크다."
-},
-"peers": [
-{
-"name": "램리서치",
-"m": "US",
-"code": "LRCX"
-},
-{
-"name": "KLA",
-"m": "US",
-"code": "KLAC"
-},
-{
-"name": "ASML",
-"m": "US",
-"code": "ASML"
-},
-{
-"name": "도쿄일렉트론",
-"m": null,
-"code": null
-}
-],
-"axes": [
-{
-"k": "첨단 로직(GAA·후면전력)",
-"me": "파운드리 로직 매출이 분기 최대, GAA·FinFET 증설 수혜. GAA와 후면전력 분야 강점을 회사가 내세움",
-"vs": "램리서치·도쿄일렉트론·ASML도 첨단 로직 증설 수혜. 공정별 점유율은 유료 자료라 확인 못 함",
-"verdict": "선두권",
-"conf": "보도",
-"src": [
-0,
-1
-],
-"chg": []
-},
-{
-"k": "DRAM·HBM",
-"me": "DRAM 매출(HBM 패키징 포함)이 전년 대비 52% 증가한 사상 최대. Centura Prime Epi, Producer Avila 신제품 발표",
-"vs": "램리서치·도쿄일렉트론과 경쟁, 공정별 점유율 공개 자료 없음",
-"verdict": "선두권",
-"conf": "보도",
-"src": [
-0,
-1
-],
-"chg": []
-},
-{
-"k": "첨단 패키징",
-"me": "올해 첨단 패키징 사업 성장률 전망을 50% 이상에서 70% 이상으로 상향. BESI 지분 약 9% 보유, 하이브리드 본딩 Kinex 공동 개발",
-"vs": "BESI 인수 관심은 언론 보도 수준(미확정). 경쟁사 패키징 장비 점유율은 확인 못 함",
-"verdict": "우위",
-"conf": "보도",
-"src": [
-0,
-1,
-5
-],
-"chg": []
-},
-{
-"k": "WFE 시장 지위",
-"me": "상반기 매출 약 149억 달러라는 개인 게시물 수치가 있으나 검증 안 됨",
-"vs": "TechInsights는 ASML·Applied·램리서치·도쿄일렉트론·KLA를 WFE 상위 5사로 분류. 정확한 점유율은 유료 자료",
-"verdict": "선두권",
-"conf": "추정",
-"src": [
-4
-],
-"chg": []
-},
-{
-"k": "중국 노출·규제",
-"me": "중국 매출 28%(3분기, 2차 자료)로 과거 35%에서 하락. 회사는 중국 메모리·구세대 시장 공급이 어렵다고 설명. 제휴사 규칙 유예로 약 6억 달러 매출 복원 설명",
-"vs": "경쟁사도 같은 규제를 받음",
-"verdict": "불확실",
-"conf": "보도",
-"src": [
-2,
-3
-],
-"chg": []
-},
-{
-"k": "수익성",
-"me": "3분기 비GAAP 영업이익률 34% 사상 최고, 비GAAP EPS 3.50달러",
-"vs": "램리서치 3월 분기 비GAAP 영업이익률 35%, 매출 58.4억 달러",
-"verdict": "동등",
-"conf": "공시",
-"src": [
-0,
-6
-],
-"chg": []
-}
-],
-"checkpoints": [
-{
-"id": "fq4_earn",
-"what": "회계 4분기 실적 발표 — 가이던스 매출 102.5억 달러 ±5억, 비GAAP EPS 4.02달러 ±0.20 달성 여부",
-"d": "2026-11",
-"kind": "실적",
-"status": "예정",
-"conf": "추정",
-"src": [
-0,
-7
-],
-"log": [
-{
-"d": "2026-10-14",
-"s": "예정",
-"note": "발표일 미확정. 과거 11월 중순 발표(2025-11-13)였고 11월 11일은 추정치"
-}
-]
-},
-{
-"id": "cn_affil",
-"what": "미국 수출 규제 '제휴사 규칙' 유예 유지 여부 (회사 설명상 약 6억 달러 매출 영향)",
-"d": "2026",
-"kind": "규제",
-"status": "진행",
-"conf": "보도",
-"src": [
-3
-],
-"log": [
-{
-"d": "2026-10-14",
-"s": "진행",
-"note": "유예 상태로 확인, 유예 기한은 확인 못 함"
-}
-]
-},
-{
-"id": "besi",
-"what": "BESI 인수 관심 보도 후속 (Applied는 최대주주 약 9%)",
-"d": "2026",
-"kind": "기타",
-"status": "예정",
-"conf": "보도",
-"src": [
-5
-],
-"log": [
-{
-"d": "2026-10-14",
-"s": "예정",
-"note": "2026-03 언론이 인수 타진 보도, 3월 이후 상황은 확인 못 함"
-}
-]
-},
-{
-"id": "fq1_earn",
-"what": "회계 2027년 1분기 실적 발표",
-"d": "2027-02",
-"kind": "실적",
-"status": "예정",
-"conf": "추정",
-"src": [
-7
-],
-"log": [
-{
-"d": "2026-10-14",
-"s": "예정",
-"note": "올해 2월 12일 발표 전례, 날짜 미확정"
-}
-]
-},
-{
-"id": "fq3_earn",
-"what": "회계 3분기 실적 발표 — 매출 91.2억 달러, 4분기 가이던스 상향",
-"d": "2026-08-13",
-"kind": "실적",
-"status": "완료",
-"conf": "공시",
-"src": [
-0,
-1
-],
-"log": [
-{
-"d": "2026-08-13",
-"s": "완료",
-"note": "매출 91.2억 달러(+25%), 비GAAP EPS 3.50달러"
-}
-]
-}
-],
-"metrics": [
-{
-"k": "3분기 매출",
-"v": "약 91.2억 달러 (+25%)",
-"asof": "2026-07",
-"src": [
-0,
-1
-]
-},
-{
-"k": "4분기 매출 가이던스",
-"v": "102.5억 달러 ±5억",
-"asof": "2026-08",
-"src": [
-0
-]
-},
-{
-"k": "DRAM 매출 증가율",
-"v": "+52% (전년 대비)",
-"asof": "2026-07",
-"src": [
-1
-]
-},
-{
-"k": "중국 매출 비중",
-"v": "28% (2차 자료)",
-"asof": "2026-07",
-"src": [
-2
-]
-}
-],
-"updates": [
-{
-"d": "2026-10-23",
-"note": "50억 달러 규모 실리콘밸리 R&D 거점 'EPIC 센터' 공개, 삼성·SK하이닉스·TSMC 등 참여 — 첨단 로직·DRAM·패키징 공동 연구 기반으로 보도",
-"src": [
-8
-],
-"tone": "호재",
-"scope": "구조적"
-},
-{
-"d": "2026-10-14",
-"note": "전체 조사 — 3분기 사상 최대 실적과 강한 4분기 가이던스로 우위, 중국 규제와 11월 실적이 다음 확인 지점",
-"src": [
-0,
-1,
-3
-]
-}
-],
-"sources": [
-{
-"t": "Applied Materials Q3 earnings call highlights (Nasdaq)",
-"u": "https://www.nasdaq.com/articles/applied-materials-q3-earnings-call-highlights",
-"d": "2026-08-13"
-},
-{
-"t": "Applied Materials Q3 FY 2026: Advanced Packaging and DRAM Accelerate Growth",
-"u": "https://futurumgroup.com/insights/applied-materials-q3-fy-2026-advanced-packaging-and-dram-accelerate-growth/",
-"d": "2026-08"
-},
-{
-"t": "Applied Materials China share (StockHub)",
-"u": "https://stockhub.kr/en/news/news_887fa4fe3625",
-"d": "2026-08"
-},
-{
-"t": "Applied Materials flags $600 million revenue hit in 2026 on broader chip export curbs",
-"u": "https://finance.yahoo.com/news/applied-materials-flags-600-million-224151556.html",
-"d": "2025-10"
-},
-{
-"t": "Status of the wafer fab equipment industry 2026 (Yole)",
-"u": "https://www.yolegroup.com/product/report/status-of-the-wafer-fab-equipment-industry-2026/",
-"d": "2026"
-},
-{
-"t": "Applied becomes major shareholder of BESI",
-"u": "https://bits-chips.com/article/applied-becomes-major-shareholder-of-besi/",
-"d": "2025-04"
-},
-{
-"t": "Lam Research Corporation Reports Financial Results for the Quarter Ended March 29, 2026",
-"u": "https://seekingalpha.com/pr/20484052",
-"d": "2026-04"
-},
-{
-"t": "Applied Materials earnings calendar (MarketScreener)",
-"u": "https://www.marketscreener.com/quote/stock/APPLIED-MATERIALS-INC-4850/calendar/",
-"d": "2026"
-},
-{
-"t": "어플라이드, 美 반도체 R&D센터 공개…삼성·SK 참여 (인뉴스24)",
-"u": "https://www.inews24.com/view/2014266",
-"d": "2026-10-22"
-}
-]
+ "m": "US",
+ "code": "AMAT",
+ "name": "Applied Materials",
+ "theme": "반도체 전공정",
+ "at": "2026-10-27",
+ "full": "2026-10-14",
+ "by": "Claude 정기 조사",
+ "position": "웨이퍼 장비(WFE) 상위 3~5사 중 하나로, 3분기(회계연도) 매출이 91.2억 달러(+25%)로 분기 최대를 냈고 4분기 가이던스도 시장 예상을 웃돌았다. 다음 분기 관건은 4분기 실적이 가이던스(102.5억 달러 ±5억)에 들어오는지와 중국 수출 규제 변화다.",
+ "grade": {
+  "g": "A",
+  "label": "경쟁력 우위",
+  "why": "GAA·후면전력·DRAM/HBM·첨단 패키징 등 AI 관련 성장 영역에서 매출이 늘고 영업이익률도 사상 최고 수준(비GAAP 34%). 반면 중국 매출 비중이 높고(28%, 2차 자료) 미국 수출 규제와 제외 조치 번복 위험이 남아 있으며, 장비 사이클 둔화 시 변동이 크다."
+ },
+ "peers": [
+  {
+   "name": "램리서치",
+   "m": "US",
+   "code": "LRCX"
+  },
+  {
+   "name": "KLA",
+   "m": "US",
+   "code": "KLAC"
+  },
+  {
+   "name": "ASML",
+   "m": "US",
+   "code": "ASML"
+  },
+  {
+   "name": "도쿄일렉트론",
+   "m": null,
+   "code": null
+  }
+ ],
+ "axes": [
+  {
+   "k": "첨단 로직(GAA·후면전력)",
+   "me": "파운드리 로직 매출이 분기 최대, GAA·FinFET 증설 수혜. GAA와 후면전력 분야 강점을 회사가 내세움",
+   "vs": "램리서치·도쿄일렉트론·ASML도 첨단 로직 증설 수혜. 공정별 점유율은 유료 자료라 확인 못 함",
+   "verdict": "선두권",
+   "conf": "보도",
+   "src": [
+    0,
+    1
+   ],
+   "chg": []
+  },
+  {
+   "k": "DRAM·HBM",
+   "me": "DRAM 매출(HBM 패키징 포함)이 전년 대비 52% 증가한 사상 최대. Centura Prime Epi, Producer Avila 신제품 발표",
+   "vs": "램리서치·도쿄일렉트론과 경쟁, 공정별 점유율 공개 자료 없음",
+   "verdict": "선두권",
+   "conf": "보도",
+   "src": [
+    0,
+    1
+   ],
+   "chg": []
+  },
+  {
+   "k": "첨단 패키징",
+   "me": "올해 첨단 패키징 사업 성장률 전망을 50% 이상에서 70% 이상으로 상향. BESI 지분 약 9% 보유, 하이브리드 본딩 Kinex 공동 개발. 10-26 8-K로 BESI 지분을 약 20%로 확대하는 가속 매수 계약 공시",
+   "vs": "BESI 인수 관심은 언론 보도 수준(미확정). 경쟁사 패키징 장비 점유율은 확인 못 함",
+   "verdict": "우위",
+   "conf": "보도",
+   "src": [
+    0,
+    1,
+    5,
+    9
+   ],
+   "chg": []
+  },
+  {
+   "k": "WFE 시장 지위",
+   "me": "상반기 매출 약 149억 달러라는 개인 게시물 수치가 있으나 검증 안 됨",
+   "vs": "TechInsights는 ASML·Applied·램리서치·도쿄일렉트론·KLA를 WFE 상위 5사로 분류. 정확한 점유율은 유료 자료",
+   "verdict": "선두권",
+   "conf": "추정",
+   "src": [
+    4
+   ],
+   "chg": []
+  },
+  {
+   "k": "중국 노출·규제",
+   "me": "중국 매출 28%(3분기, 2차 자료)로 과거 35%에서 하락. 회사는 중국 메모리·구세대 시장 공급이 어렵다고 설명. 제휴사 규칙 유예로 약 6억 달러 매출 복원 설명",
+   "vs": "경쟁사도 같은 규제를 받음",
+   "verdict": "불확실",
+   "conf": "보도",
+   "src": [
+    2,
+    3
+   ],
+   "chg": []
+  },
+  {
+   "k": "수익성",
+   "me": "3분기 비GAAP 영업이익률 34% 사상 최고, 비GAAP EPS 3.50달러",
+   "vs": "램리서치 3월 분기 비GAAP 영업이익률 35%, 매출 58.4억 달러",
+   "verdict": "동등",
+   "conf": "공시",
+   "src": [
+    0,
+    6
+   ],
+   "chg": []
+  }
+ ],
+ "checkpoints": [
+  {
+   "id": "fq4_earn",
+   "what": "회계 4분기 실적 발표 — 가이던스 매출 102.5억 달러 ±5억, 비GAAP EPS 4.02달러 ±0.20 달성 여부",
+   "d": "2026-11",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    0,
+    7
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "발표일 미확정. 과거 11월 중순 발표(2025-11-13)였고 11월 11일은 추정치"
+    }
+   ]
+  },
+  {
+   "id": "cn_affil",
+   "what": "미국 수출 규제 '제휴사 규칙' 유예 유지 여부 (회사 설명상 약 6억 달러 매출 영향)",
+   "d": "2026",
+   "kind": "규제",
+   "status": "진행",
+   "conf": "보도",
+   "src": [
+    3
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "진행",
+     "note": "유예 상태로 확인, 유예 기한은 확인 못 함"
+    }
+   ]
+  },
+  {
+   "id": "besi",
+   "what": "BESI 지분 확대(약 9%→약 20% 가속 매수 계약) 이행 및 후속",
+   "d": "2026",
+   "kind": "기타",
+   "status": "진행",
+   "conf": "공시",
+   "src": [
+    5,
+    9
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "2026-03 언론이 인수 타진 보도, 3월 이후 상황은 확인 못 함"
+    },
+    {
+     "d": "2026-10-27",
+     "s": "진행",
+     "note": "10-26 8-K: 지분 약 20%로 확대 계약(가속 매수), 기존 약 9%에서 증가"
+    }
+   ]
+  },
+  {
+   "id": "fq1_earn",
+   "what": "회계 2027년 1분기 실적 발표",
+   "d": "2027-02",
+   "kind": "실적",
+   "status": "예정",
+   "conf": "추정",
+   "src": [
+    7
+   ],
+   "log": [
+    {
+     "d": "2026-10-14",
+     "s": "예정",
+     "note": "올해 2월 12일 발표 전례, 날짜 미확정"
+    }
+   ]
+  },
+  {
+   "id": "fq3_earn",
+   "what": "회계 3분기 실적 발표 — 매출 91.2억 달러, 4분기 가이던스 상향",
+   "d": "2026-08-13",
+   "kind": "실적",
+   "status": "완료",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ],
+   "log": [
+    {
+     "d": "2026-08-13",
+     "s": "완료",
+     "note": "매출 91.2억 달러(+25%), 비GAAP EPS 3.50달러"
+    }
+   ]
+  }
+ ],
+ "metrics": [
+  {
+   "k": "3분기 매출",
+   "v": "약 91.2억 달러 (+25%)",
+   "asof": "2026-07",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "4분기 매출 가이던스",
+   "v": "102.5억 달러 ±5억",
+   "asof": "2026-08",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "DRAM 매출 증가율",
+   "v": "+52% (전년 대비)",
+   "asof": "2026-07",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "중국 매출 비중",
+   "v": "28% (2차 자료)",
+   "asof": "2026-07",
+   "src": [
+    2
+   ]
+  }
+ ],
+ "updates": [
+  {
+   "d": "2026-10-27",
+   "note": "BESI 지분을 약 20%로 확대하는 가속 매수 계약 체결(10-26 8-K 공시, 기존 약 9%) — 선진 패키징 협력 강화",
+   "src": [
+    9
+   ],
+   "tone": "호재",
+   "scope": "일회성"
+  },
+  {
+   "d": "2026-10-23",
+   "note": "50억 달러 규모 실리콘밸리 R&D 거점 'EPIC 센터' 공개, 삼성·SK하이닉스·TSMC 등 참여 — 첨단 로직·DRAM·패키징 공동 연구 기반으로 보도",
+   "src": [
+    8
+   ],
+   "tone": "호재",
+   "scope": "구조적"
+  },
+  {
+   "d": "2026-10-14",
+   "note": "전체 조사 — 3분기 사상 최대 실적과 강한 4분기 가이던스로 우위, 중국 규제와 11월 실적이 다음 확인 지점",
+   "src": [
+    0,
+    1,
+    3
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "t": "Applied Materials Q3 earnings call highlights (Nasdaq)",
+   "u": "https://www.nasdaq.com/articles/applied-materials-q3-earnings-call-highlights",
+   "d": "2026-08-13"
+  },
+  {
+   "t": "Applied Materials Q3 FY 2026: Advanced Packaging and DRAM Accelerate Growth",
+   "u": "https://futurumgroup.com/insights/applied-materials-q3-fy-2026-advanced-packaging-and-dram-accelerate-growth/",
+   "d": "2026-08"
+  },
+  {
+   "t": "Applied Materials China share (StockHub)",
+   "u": "https://stockhub.kr/en/news/news_887fa4fe3625",
+   "d": "2026-08"
+  },
+  {
+   "t": "Applied Materials flags $600 million revenue hit in 2026 on broader chip export curbs",
+   "u": "https://finance.yahoo.com/news/applied-materials-flags-600-million-224151556.html",
+   "d": "2025-10"
+  },
+  {
+   "t": "Status of the wafer fab equipment industry 2026 (Yole)",
+   "u": "https://www.yolegroup.com/product/report/status-of-the-wafer-fab-equipment-industry-2026/",
+   "d": "2026"
+  },
+  {
+   "t": "Applied becomes major shareholder of BESI",
+   "u": "https://bits-chips.com/article/applied-becomes-major-shareholder-of-besi/",
+   "d": "2025-04"
+  },
+  {
+   "t": "Lam Research Corporation Reports Financial Results for the Quarter Ended March 29, 2026",
+   "u": "https://seekingalpha.com/pr/20484052",
+   "d": "2026-04"
+  },
+  {
+   "t": "Applied Materials earnings calendar (MarketScreener)",
+   "u": "https://www.marketscreener.com/quote/stock/APPLIED-MATERIALS-INC-4850/calendar/",
+   "d": "2026"
+  },
+  {
+   "t": "어플라이드, 美 반도체 R&D센터 공개…삼성·SK 참여 (인뉴스24)",
+   "u": "https://www.inews24.com/view/2014266",
+   "d": "2026-10-22"
+  },
+  {
+   "t": "Applied Materials Form 8-K (2026-10-26) BESI 지분 확대 발표",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000006951/000162828026067303/amat-20261026.htm",
+   "d": "2026-10-26"
+  }
+ ]
 }

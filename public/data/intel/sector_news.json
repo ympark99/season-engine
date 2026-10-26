@@ -3,6 +3,50 @@
  "items": [
   {
    "m": "US",
+   "code": "DELL",
+   "name": "Dell Technologies",
+   "theme": "AI 서버",
+   "d": "2026-10-27",
+   "note": "Honeywell이 10/26 엔비디아·델과 함께 산업용 AI 플랫폼 Forge Cognition 출시. 델은 PowerEdge 서버·스토리지 등 AI Factory 백엔드 인프라 공급자 역할(금액 조건 미공개)",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.honeywell.com/us/en/news/press-releases/2026/10/honeywell-technologies-launches-forge-cognition-with-nvidia-and-dell-technologies-advancing-physical-ai-across-buildings-and-industrial-operations"
+  },
+  {
+   "m": "US",
+   "code": "AMAT",
+   "name": "Applied Materials",
+   "theme": "반도체 전공정",
+   "d": "2026-10-27",
+   "note": "BESI 지분을 약 20%로 확대하는 가속 매수 계약 체결(10-26 8-K 공시, 기존 약 9%) — 선진 패키징 협력 강화",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000006951/000162828026067303/amat-20261026.htm"
+  },
+  {
+   "m": "US",
+   "code": "AAPL",
+   "name": "Apple",
+   "theme": "IT 하드웨어",
+   "d": "2026-10-27",
+   "note": "애플 차세대 Siri AI 가 EU 에서는 iOS·iPadOS 27 출시 때 제공되지 않음(Mac·워치·TV 만 출시). 애플의 상호운용성 면제 요청을 EU 집행위가 거부했고 애플은 출시 시점을 정하지 못했다고 밝혀, EU 내 iPhone AI 기능 공백이 몇 분기 이어질 수 있음. 11/2 실적(미 태평양 13:30)·10/28 행사(Mac·iPad 루머 중심)·10/30 추가 28개 시장 판매 일정은 유지. 서비스·규제 판정 불확실 유지, 등급 A 유지",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.thestandard.com.hk/innovation/article/334191/Apple-failed-to-make-its-AI-tool-to-comply-to-EU-regulations-EU-Commission-says"
+  },
+  {
+   "m": "KR",
+   "code": "000660",
+   "name": "SK하이닉스",
+   "theme": "메모리",
+   "d": "2026-10-27",
+   "note": "3분기 실적 발표일 10월 28일로 확인(회사 6-K, 서울시간 오전 9시 전). 기존 10-27 표기는 일부 일정 사이트 기준. 같은 날 추가 주주환원안 공개가 관심사이나 규모는 회사 확정 전",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526420934/d413172d6k.htm"
+  },
+  {
+   "m": "US",
    "code": "TSLA",
    "name": "Tesla",
    "theme": "자동차",

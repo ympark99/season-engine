@@ -3,7 +3,7 @@
   "code": "AAPL",
   "name": "Apple",
   "theme": "IT 하드웨어",
-  "at": "2026-10-24",
+  "at": "2026-10-27",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "스마트폰은 2분기 점유율 20%로 삼성 다음 2위(기록적 2분기), 중국에서도 화웨이 다음 2위로 점유율을 늘리는 중이다. 이번 분기 관건은 9월 말 출시한 아이폰 18 프로와 첫 폴더블(10월 판매 시작)의 초기 수요, 그리고 11월 2일 실적에서 메모리 원가 상승이 마진에 얼마나 반영되는지.",
@@ -104,13 +104,14 @@
     },
     {
       "k": "서비스·규제",
-      "me": "서비스 매출 307.4억달러(+12%). EU DMA 게이트키퍼 지정 유지 판결, 앱스토어 결제 수수료 관련 EU·에픽과 분쟁 지속",
+      "me": "서비스 매출 307.4억달러(+12%). EU DMA 게이트키퍼 지정 유지 판결, 앱스토어 결제 수수료 관련 EU·에픽과 분쟁 지속. 차세대 Siri AI 는 EU 집행위의 상호운용성 면제 거부로 EU 의 iPhone·iPad 에서 출시 시점 미정",
       "vs": "비교 가능한 경쟁사 수치 확인 안 됨",
       "verdict": "불확실",
       "conf": "보도",
       "src": [
         1,
-        9
+        9,
+        29
       ]
     }
   ],
@@ -228,6 +229,11 @@
           "d": "2026-10-24",
           "s": "예정",
           "note": "10/30 추가 28개 시장 판매 일정 재확인. 전체 목록은 Apple 미공개"
+        },
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "10/30 추가 28개 시장 판매 일정 재확인, 시장 목록은 미공개. 아직 발생 전"
         }
       ]
     },
@@ -246,6 +252,11 @@
           "d": "2026-10-14",
           "s": "예정",
           "note": "11월 2일 장 마감 후 발표 공지. 회사 가이던스 매출 전년 대비 9~11%"
+        },
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "Apple IR 공지: 11/2(월) 미 태평양 13:30 발표·14:00 콜(한국 시간 11/3 새벽). 가이던스 매출 +9~11%"
         }
       ]
     },
@@ -335,7 +346,8 @@
       "conf": "보도",
       "src": [
         19,
-        23
+        23,
+        30
       ],
       "log": [
         {
@@ -347,6 +359,11 @@
           "d": "2026-10-22",
           "s": "예정",
           "note": "애플 공지(10/19 기준) 보도 확인. 라인업은 Mac·iPad 중심 루머로 공식 확인 전"
+        },
+        {
+          "d": "2026-10-27",
+          "s": "예정",
+          "note": "애플 10/28 LA 올데이 제품 행사 초청 보도(매체 대상). 라인업은 Mac·iPad 루머 중심으로 공식 확인 전"
         }
       ]
     }
@@ -394,6 +411,18 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-27",
+      "note": "애플 차세대 Siri AI 가 EU 에서는 iOS·iPadOS 27 출시 때 제공되지 않음(Mac·워치·TV 만 출시). 애플의 상호운용성 면제 요청을 EU 집행위가 거부했고 애플은 출시 시점을 정하지 못했다고 밝혀, EU 내 iPhone AI 기능 공백이 몇 분기 이어질 수 있음. 11/2 실적(미 태평양 13:30)·10/28 행사(Mac·iPad 루머 중심)·10/30 추가 28개 시장 판매 일정은 유지. 서비스·규제 판정 불확실 유지, 등급 A 유지",
+      "src": [
+        29,
+        0,
+        30,
+        25
+      ],
+      "tone": "악재",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-23",
       "note": "폴더블 iPhone Duo 10/23 판매 개시(70여 개국) 및 10/30 추가 28개 시장 판매가 복수 보도로 확인됨. 예약 물량은 배송 2027년 1월로 밀린 상태라 초기 수요 강세와 공급 제약이 함께 보도됨. 판정 영향은 제한적 — 등급 A 유지",
@@ -600,6 +629,16 @@
     {
       "t": "All the Surprise and Shine Release Dates and Features, Visualized - MacStories",
       "u": "https://macstories.net/news/all-the-surprise-and-shine-release-dates-visualized/",
+      "d": "2026-10"
+    },
+    {
+      "t": "Apple failed to make its AI tool comply with EU regulations, EU Commission says - The Standard",
+      "u": "https://www.thestandard.com.hk/innovation/article/334191/Apple-failed-to-make-its-AI-tool-to-comply-to-EU-regulations-EU-Commission-says",
+      "d": "2026-10"
+    },
+    {
+      "t": "Apple Announces October 28 Event: 3 New Products Tipped - TelecomTalk",
+      "u": "https://telecomtalk.info/apple-announces-october28-event-3-newproducts-tipped/1013048/",
       "d": "2026-10"
     }
   ]
