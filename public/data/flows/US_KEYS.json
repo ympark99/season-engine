@@ -1,0 +1,40 @@
+{
+ "m": "US",
+ "code": "KEYS",
+ "name": "KEYSIGHT TECHNOLOGIES INC",
+ "at": "2026-10-27",
+ "by": "Claude 정기 조사",
+ "summary": "오실로스코프·네트워크 분석기 등 전자 계측장비와 설계·검증 소프트웨어를 통신(유·무선)·국방·반도체·자동차 업체에 판다. FY2025(10월 결산) 매출 53.8억$ 중 통신솔루션(CSG) 69%, 전자산업(EISG) 31%이며, FY26 3분기에는 AI 데이터센터용 유선(800G·1.6T) 수요로 매출이 36% 늘어난 18.5억$을 기록했다. 매출 10%를 넘는 단일 고객은 없고, 말레이시아 페낭 자체 공장과 위탁생산 업체(PCB·조립)를 함께 쓴다.",
+ "cust": [
+  {"name": "단일 10% 이상 고객 없음 (통신·반도체·국방 고객 분산)", "code": null, "m": null, "share": null, "conf": "공시", "note": "FY26 3분기 10-Q — 매출 10%를 넘는 고객 없음, FY2025 10-K — 매출채권 10% 넘는 고객 없음"},
+  {"name": "하이퍼스케일러 (비공개)", "code": null, "m": null, "share": null, "conf": "공시", "note": "FY26 3분기 실적 발표 — 하이퍼스케일러가 사전 실리콘 에뮬레이션·워크로드 솔루션을 개발 과정에 도입, 유선 수주 2배 이상"},
+  {"name": "미국 국방부 (공군·해군)", "code": null, "m": null, "share": null, "conf": "보도", "note": "2026년 3월 공군 VDATS 키트 1,250만$ 후속 계약, 2026년 10월 해군 계측장비 지원 최대 1,070만$ 계약 보도"},
+  {"name": "Leonardo", "code": null, "m": null, "share": null, "conf": "보도", "note": "2026년 6월 영국 사업장 계측장비 관리(교정·수리) 5년 계약 보도"},
+  {"name": "삼성전자", "code": "005930", "m": "KR", "share": null, "conf": "보도", "note": "6G 연구 MoU(2022), MWC 2026에서 AI-RAN·NR-NTN 검증을 함께 시연 — 거래 금액은 비공개"},
+  {"name": "NVIDIA", "code": "NVDA", "m": "US", "share": null, "conf": "보도", "note": "MWC 2026에서 삼성과 함께 AI-RAN 검증 워크플로 시연 — 협력 관계, 구매 규모는 비공개"},
+  {"name": "Coherent, InnoLight 등 광트랜시버 업체", "code": "COHR", "m": "US", "share": null, "conf": "추정", "note": "실적 발표에서 '트랜시버 제조사가 800G·1.6T 양산에 Keysight 224G 분석기 사용'이라 했고, 800G 시장 상위 업체가 이들이라 유추 — 공시·보도로 확인된 것은 아님"}
+ ],
+ "supp": [
+  {"name": "위탁생산 업체 (비공개)", "code": null, "m": null, "item": "PCB 제조·조립", "share": null, "conf": "공시", "note": "FY2025 10-K — 위탁생산 업체가 주로 조립·인쇄회로기판 제작을 맡고, 최종 조립·교정은 페낭 자체 공장에서 함"},
+  {"name": "반도체·전자기계 부품 매입처 (비공개)", "code": null, "m": null, "item": "반도체·전자기계 부품, 수지·판금", "share": null, "conf": "공시", "note": "FY2025 10-K — 맞춤 설계 부품 일부는 대체 공급처가 없다고 명시"},
+  {"name": "AMD (Xilinx)", "code": "AMD", "m": "US", "item": "FPGA", "share": null, "conf": "추정", "note": "Keysight 3000T 오실로스코프 분해기에서 Xilinx Spartan FPGA가 확인되어 유추 — 공시·보도로 확인된 것은 아님"}
+ ],
+ "segs": [
+  {"name": "통신솔루션 그룹 (CSG)", "code": null, "m": null, "amt": 3726, "share": 69, "note": "FY2025 +9%. FY26 9개월 3,700(72%), 3분기 +43%"},
+  {"name": "└ 상업통신 (유·무선)", "code": null, "m": null, "amt": 2488, "share": 46, "note": "FY2025 +10% — 400G/800G 이더넷, AI 데이터센터. FY26 3분기 처음 분기 10억$ 돌파(1,006)"},
+  {"name": "└ 항공우주·국방·정부", "code": null, "m": null, "amt": 1238, "share": 23, "note": "FY2025 +8%. FY26 3분기 339(+14%)"},
+  {"name": "전자산업 솔루션 그룹 (EISG)", "code": null, "m": null, "amt": 1649, "share": 31, "note": "FY2025 +6% — 일반전자·반도체·자동차·에너지. FY26 3분기 501(+21%)"},
+  {"name": "Spirent Communications (인수)", "code": null, "m": null, "amt": null, "share": null, "note": "2025년 10월 14.2억$에 인수한 연결 자회사, FY26 9개월 인수 효과 매출 204백만$. 일부 사업은 Viavi에 매각"}
+ ],
+ "unitSeg": "백만 달러",
+ "sources": [
+  {"t": "Keysight FY2025 10-K", "u": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000127/keys-20251031.htm"},
+  {"t": "Keysight FY26 3분기 10-Q", "u": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm"},
+  {"t": "FY26 3분기 실적 보도자료", "u": "https://www.sec.gov/Archives/edgar/data/0001601046/000160104626000029/exhibit991-q326pressrelease.htm"},
+  {"t": "FY26 3분기 실적 발표 원고", "u": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf"},
+  {"t": "Keysight·Leonardo 계약 보도", "u": "https://www.epdtonthenet.net/article/222536/Keysight-Secures-Multi-Year-Leonardo-Contract.aspx"},
+  {"t": "Keysight 해군 계약 보도", "u": "https://www.highergov.com/news/keysight-wins-11-million-navy-electronic-test-equ-6490164/"},
+  {"t": "Keysight·삼성 6G MoU", "u": "https://www.businesswire.com/news/home/20220215005879/en/Keysight-Samsung-Sign-Memorandum-of-Understanding-to-Advance-Research-and-Development-of-6G-Technology"},
+  {"t": "Keysight 3000T 분해기 (EEVblog)", "u": "https://www.eevblog.com/2015/01/13/eevblog-702-keysight-3000t-oscilloscope-teardown/"}
+ ]
+}
