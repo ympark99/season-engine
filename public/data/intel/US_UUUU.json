@@ -3,7 +3,7 @@
   "code": "UUUU",
   "name": "Energy Fuels",
   "theme": "희토류",
-  "at": "2026-10-24",
+  "at": "2026-10-28",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "우라늄 매출이 거의 전부인 상태에서 희토류는 NdPr 상업 생산 가능·터븀 파일럿 단계이며, ASM 인수를 마치고 VAC(자석) 인수를 앞둔 '광산-자석' 통합 전략을 진행 중이다. 다음 분기 관건은 Donald 프로젝트 최종투자결정(FID)과 VAC 인수 승인 진행, 11월 3분기 실적.",
@@ -106,13 +106,14 @@
     {
       "id": "donald_fid",
       "what": "Donald 프로젝트 최종투자결정(FID, Astron 합작)",
-      "d": "2026-Q3",
+      "d": "2026-Q4",
       "kind": "수주",
       "status": "지연",
       "conf": "보도",
       "src": [
         5,
-        14
+        14,
+        15
       ],
       "log": [
         {
@@ -129,6 +130,11 @@
           "d": "2026-10-24",
           "s": "지연",
           "note": "Q3 목표 경과 후에도 FID 발표 미확인. A$2.2억 대출 실사·최종 신용승인 진행 중 보도"
+        },
+        {
+          "d": "2026-10-28",
+          "s": "지연",
+          "note": "회사 발표(2026-10-26): EFA·NRFC 조건부 승인 A$180M(총 A$200M 중), FID 목표 2026년 말로 재설정(이전 목표 2026-Q3). 최종 승인·상업은행 참여·파이낸셜 클로즈 미완료"
         }
       ]
     },
@@ -313,9 +319,26 @@
       "src": [
         13
       ]
+    },
+    {
+      "k": "Donald 정부계 대출 조건부 승인",
+      "v": "A$180M (총 A$200M 중, 10년 만기)",
+      "asof": "2026-10-26",
+      "src": [
+        15
+      ]
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-28",
+      "note": "Donald 프로젝트(Phase 1)에 대해 호주 정부계 기관 EFA·NRFC가 총 A$200M 중 A$180M 조건부 승인. 대출 조건은 10년 만기, BBSY 연동. 최종 승인은 실사·서류·상업은행 대출 참여에 달려 있고 아직 파이낸셜 클로즈 전. FID 목표는 2026년 말(기존 3분기 목표에서 재설정)",
+      "src": [
+        15
+      ],
+      "tone": "호재",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-24",
       "note": "GM이 미국 신설 희토류 영구자석 공장(VAC 미국 법인 e-VAC)과의 장기 구매계약을 취소해 중재 진행 중(GM 통지 7-1, 중재 개시 7-7), 해당 공장 물량의 약 90%가 GM 대상. UUUU는 VAC 인수(19억달러) 대가가 중재 결과에 따라 조정될 수 있다고 언급, 회사는 VAC 상업성 우려 없다고 밝힘. 인수 완료 일정 위험 요인",
@@ -410,6 +433,11 @@
       "t": "Astron Limited Targets Q3 2026 Final Investment Decision as Donald Project Financing Advances",
       "u": "https://kalkine.com.au/news/announcements/astron-limited-targets-q3-2026-final-investment-decision-as-donald-project-financing-advances",
       "d": null
+    },
+    {
+      "t": "Donald Rare Earth and Mineral Sands Project Achieves Major Government Financing Milestone",
+      "u": "https://investors.energyfuels.com/2026-10-26-Donald-Rare-Earth-and-Mineral-Sands-Project-Achieves-Major-Government-Financing-Milestone",
+      "d": "2026-10-26"
     }
   ]
 }
