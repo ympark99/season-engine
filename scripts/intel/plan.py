@@ -79,7 +79,7 @@ os.makedirs(f'{W}/res', exist_ok=True)
 # 5-1. 밸류에이션 가정 조사 대상 — 신규 · 실적 발표 체크포인트 완료 뒤 · 120일 경과 · 파일 없는 기존 종목(하루 VAL_BACKFILL 개)
 VD = os.path.join(REPO, 'public/data/val')
 VAL_NA = {'은행·금융지주', '은행', '증권', '증권·운용', '보험', '리츠', '코인', '지주'}
-VAL_STALE, VAL_BACKFILL = 120, 15
+VAL_STALE, VAL_BACKFILL, VAL_NEW_DAYS = 120, 15, 3
 os.makedirs(VD, exist_ok=True)
 
 
@@ -114,6 +114,8 @@ for x in targets:
             at = None
     if (x['m'], x['code']) in newkeys:
         val_due.append({**x, 'why': '신규'})
+    elif not at and (t0 - datetime.date.fromisoformat(idx.get(f"{x['m']}:{x['code']}", {}).get('full', '2000-01-01'))).days <= VAL_NEW_DAYS:
+        val_due.append({**x, 'why': '신규(전체 조사 직후 — 밸류에이션 파일 없음)'})   # plan.py 를 하루에 다시 돌리면 방금 만든 경쟁·기술 파일 때문에 신규에서 빠진다 — 백필(하루 상한)로 밀리지 않게 바로 올린다
     elif not at:
         backfill.append({**x, 'why': '파일 없음'})
     else:
