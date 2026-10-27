@@ -3,7 +3,7 @@
   "code": "MSTR",
   "name": "Strategy (구 MicroStrategy)",
   "theme": "코인",
-  "at": "2026-10-23",
+  "at": "2026-10-28",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "기업 비트코인 보유량 1위(약 848,250 BTC)로 규모는 압도적이지만, 2026년 들어 우선주(STRC) 배당 재원을 위해 비트코인을 일부 매각하는 체제로 바뀌었고 달러 준비금(약 48.8억 달러)으로 버티는 구조다. 이번 분기 관건은 10월 중순 MSCI 협의 결과와 10월 29일 3분기 실적(비트코인 평가손익).",
@@ -162,6 +162,24 @@
       ]
     },
     {
+      "id": "daily_div_vote",
+      "what": "우선주 배당 매일 발생 전환 안건 주주 투표 마감 (결과 미확인)",
+      "d": "2026-10-28",
+      "kind": "기타",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        16
+      ],
+      "log": [
+        {
+          "d": "2026-10-28",
+          "s": "예정",
+          "note": "10/28까지 투표, 결과 공시 대기"
+        }
+      ]
+    },
+    {
       "id": "q3_earn",
       "what": "2026년 3분기 실적 — 비트코인 평가손익, 달러 준비금, 배당 재원",
       "d": "2026-10-29",
@@ -312,6 +330,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-28",
+      "note": "STRC·STRD·STRF·STRK 배당을 매일(주말·공휴일 포함) 발생시키는 안건을 보통주 주주가 10/28까지 투표. 회사는 STRC 가격 안정 목적이라고 밝혔고, 연 쿠폰과 총 배당 의무는 그대로. 이사회 선언·변경 철회 가능성 남음",
+      "src": [
+        16
+      ],
+      "tone": "중립",
+      "scope": "구조적"
+    },
+    {
       "d": "2026-10-23",
       "note": "MSCI 최종 규칙 확정: 11월 정기변경부터 Strategy 등 DAT 기업이 편출 대상이 될 수 있음(최종 명단 11/11). Metaplanet도 함께 거론됨. 회사 반응은 미확인.",
       "src": [
@@ -420,6 +447,11 @@
       "t": "MSCI finalizes index rules that put Strategy, crypto treasury firms at risk of exclusion",
       "u": "https://www.theblock.co/news/business/2026-10-15-msci-rules-could-exclude-strategy-mstr-from-indexes-418729",
       "d": "2026-10-15"
+    },
+    {
+      "t": "Proposing Daily Dividends on Every Calendar Day for Strategy's U.S. Listed Preferred Securities",
+      "u": "https://www.strategy.com/mstr/votes",
+      "d": "2026-10-05"
     }
   ]
 }

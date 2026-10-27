@@ -3,7 +3,7 @@
   "code": "ASTS",
   "name": "AST SpaceMobile",
   "theme": "우주",
-  "at": "2026-10-26",
+  "at": "2026-10-28",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "일반 스마트폰과 직접 연결되는 광대역 위성 사업에서 FCC 상업 허가(248기)와 약 37억달러 현금을 확보했지만, 상업 서비스는 2027년 목표로 아직 매출 규모가 작다. 다음 분기 관건은 BlueBird 7 손실 이후 발사 속도를 되찾고 연간 매출 가이던스(1.5억~2억달러)를 달성하는지.",
@@ -95,14 +95,15 @@
     },
     {
       "k": "통신사 제휴",
-      "me": "미국 버라이즌·AT&T·퍼스트넷 연계, 보다폰과 유럽 합작 SatCo(2034년까지 유통 계약). 계약 잔고 약 13억달러",
+      "me": "미국 버라이즌·AT&T·퍼스트넷 연계, 보다폰과 유럽 합작 SatCo(2034년까지 유통 계약). 계약 잔고 약 13억달러, 브라질 지역 통신사 3곳과 700MHz D2D 상업 합의(10/23, 정식 계약·출시일 미정)",
       "vs": "스페이스X는 T-모바일·보스트 등 다수 통신사 보유",
       "verdict": "동등",
       "conf": "보도",
       "src": [
         0,
         1,
-        10
+        10,
+        13
       ]
     },
     {
@@ -322,6 +323,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-28",
+      "note": "브라질 지역 통신사 Brisanet·Unifique·iez! Telecom이 700MHz 대역을 활용한 직접 단말(D2D) 서비스 상업 합의를 발표(10/23). 정식 계약·출시일·요금은 미정. 앞서 Anatel이 추가 S-band 및 700MHz 2차 사용을 승인한 흐름. 현지 사업 확대 신호지만 궤도 위성이 아직 적어 본격 서비스는 2027년 이후로 보임. 스페이스X의 브라질 S-band 허가와 Anatel의 사업자당 1개 블록 제한으로 AST의 S-band 할당 폭이 줄 수 있음",
+      "src": [
+        13
+      ],
+      "tone": "호재",
+      "scope": "구조적"
+    },
+    {
       "d": "2026-10-26",
       "note": "Viasat이 AST 계열사(AST & Science)의 해외 주파수 추가 신청을 기각하라고 FCC에 청원(10월 20일 전후). Viasat은 간섭 위험과 일부 주파수 자격을 문제 삼았고, AST는 해외 운영은 현지 승인이 필요하며 간섭은 기술적으로 제한한다고 답함. 규제 절차가 길어질 수 있음. 다음 발사·3분기 실적 일정은 아직 미확정",
       "src": [
@@ -405,6 +415,11 @@
       "t": "ASTS Stock Slips Overnight: Viasat Urges FCC To Reject AST SpaceMobile Fatally Flawed Overseas Spectrum Bid",
       "u": "https://stocktwits.com/news-articles/markets/equity/asts-stock-viasat-fcc-reject-ast-spacemobile-fatally-flawed-overseas-spectrum-bid/cZxqmoSRBug",
       "d": "2026-10-20"
+    },
+    {
+      "t": "Operadoras regionais fecham parceria com AST SpaceMobile para D2D",
+      "u": "https://teletime.com.br/23/10/2026/operadoras-regionais-fecham-parceria-com-ast-spacemobile-para-d2d/",
+      "d": "2026-10-23"
     }
   ]
 }

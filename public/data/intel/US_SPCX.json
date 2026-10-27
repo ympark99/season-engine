@@ -3,7 +3,7 @@
   "code": "SPCX",
   "name": "Space Exploration Technologies (SpaceX)",
   "theme": "우주",
-  "at": "2026-10-27",
+  "at": "2026-10-28",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "2026-06 나스닥 상장(티커 SPCX, 공모가 135달러 보도) 후 첫 분기 실적에서 매출이 92% 늘었고 스타링크 가입자 1,200만으로 발사·위성통신 양쪽에서 압도적 선두권이다. 다음 분기 관건은 스타십 후속 비행(우주선 포획 시도 등), AI 부문 적자 폭, 12월 보호예수 해제 물량, 테슬라 결합 검토 향방(3분기 매출 +161%로 이미 발표).",
@@ -185,7 +185,8 @@
       "src": [
         10,
         13,
-        19
+        19,
+        20
       ],
       "log": [
         {
@@ -202,6 +203,11 @@
           "d": "2026-10-27",
           "s": "예정",
           "note": "10/20 실적 발표에서 머스크가 11월 목표 재확인(공식 날짜 없음, 기존 10월 하순 전망에서 이동). 최초 상단 단 포획 시도 포함, 첫 시도 성공 가능성 50~60% 언급(회사 발언)"
+        },
+        {
+          "d": "2026-10-28",
+          "s": "예정",
+          "note": "11월 목표 유지. 보도상 잠정 11월 8일(비공식, 이후로 밀릴 수 있는 목표일). 공식 날짜 미확정"
         }
       ]
     },
@@ -322,6 +328,15 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-28",
+      "note": "스페이스X가 AI 칩(엔비디아 GPU) 확보를 위해 약 400억 달러 규모 금융(약 100억 달러 은행 대출 + 약 300억 달러 투자등급 채권, 아폴로 주도) 협의 중이라는 보도. 확정 계약 아님, 완료 시점 2027년 이후 가능성. 부채 부담 증가와 AI 컴퓨트 확장이 함께 걸림",
+      "src": [
+        21
+      ],
+      "tone": "중립",
+      "scope": "구조적"
+    },
     {
       "d": "2026-10-27",
       "note": "머스크가 10/20 실적 발표에서 스타십 Flight 15 11월 목표를 재확인(공식 날짜 없음, 10월 하순 전망에서 이동). 상단 단 포획 시도 포함, 성공 여부는 불확실",
@@ -471,6 +486,16 @@
       "t": "SpaceX targets November 2026 for Starship Flight 15 and its first stage tower catch",
       "u": "https://newspaceeconomy.ca/2026/10/21/spacex-targets-november-2026-for-starship-flight-15-and-its-first-stage-tower-catch/",
       "d": "2026-10-21"
+    },
+    {
+      "t": "Starship Flight 15 will attempt to recover its upper stage spacecraft in November launch",
+      "u": "https://newspaceeconomy.ca/2026/10/11/starship-flight-15-will-attempt-to-recover-its-upper-stage-spacecraft-in-november-launch/",
+      "d": "2026-10-11"
+    },
+    {
+      "t": "SpaceX Seeks $40 Billion, Led by Apollo, to Buy Nvidia AI Chips (FT 보도 인용)",
+      "u": "https://www.devdiscourse.com/article/international/3987956-spacex-seeks-40-billion-financing-led-by-apollo-to-buy-nvidia-chips-ft-reports",
+      "d": "2026-10-27"
     }
   ]
 }
