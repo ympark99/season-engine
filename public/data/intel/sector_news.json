@@ -1,6 +1,193 @@
 {
- "asof": "2026-10-27",
+ "asof": "2026-10-28",
  "items": [
+  {
+   "m": "US",
+   "code": "VICR",
+   "name": "Vicor",
+   "theme": "기타",
+   "d": "2026-10-28",
+   "note": "Q3 공시 재확인: 첫 VPD 라이선스를 AI OEM 1곳에 스테이지2 로열티율로 부여, 2세대 VPD는 OEM·하이퍼스케일러 비공개 시연 완료(수치 미공개). ITC 조사 이후 라이선스 문의 증가 언급. 양산 시점은 공시에 없고 하이퍼스케일러 계약은 확인 안 됨. 등급 B 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000751978/000119312526425697/d153882dex991.htm"
+  },
+  {
+   "m": "US",
+   "code": "UUUU",
+   "name": "Energy Fuels",
+   "theme": "희토류",
+   "d": "2026-10-28",
+   "note": "Donald 프로젝트(Phase 1)에 대해 호주 정부계 기관 EFA·NRFC가 총 A$200M 중 A$180M 조건부 승인. 대출 조건은 10년 만기, BBSY 연동. 최종 승인은 실사·서류·상업은행 대출 참여에 달려 있고 아직 파이낸셜 클로즈 전. FID 목표는 2026년 말(기존 3분기 목표에서 재설정)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://investors.energyfuels.com/2026-10-26-Donald-Rare-Earth-and-Mineral-Sands-Project-Achieves-Major-Government-Financing-Milestone"
+  },
+  {
+   "m": "US",
+   "code": "TEM",
+   "name": "Tempus AI",
+   "theme": "AI 헬스케어",
+   "d": "2026-10-28",
+   "note": "Personalis 인수 건: 합병 관련 HSR 대기기간이 2026-10-02 만료됐다고 8-K 에 명시됨. 종결에는 Personalis 주주총회 승인과 기타 조건이 여전히 필요",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001527753/000119312526415547/d155320d8k.htm"
+  },
+  {
+   "m": "US",
+   "code": "SPCX",
+   "name": "Space Exploration Technologies (SpaceX)",
+   "theme": "우주",
+   "d": "2026-10-28",
+   "note": "스페이스X가 AI 칩(엔비디아 GPU) 확보를 위해 약 400억 달러 규모 금융(약 100억 달러 은행 대출 + 약 300억 달러 투자등급 채권, 아폴로 주도) 협의 중이라는 보도. 확정 계약 아님, 완료 시점 2027년 이후 가능성. 부채 부담 증가와 AI 컴퓨트 확장이 함께 걸림",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.devdiscourse.com/article/international/3987956-spacex-seeks-40-billion-financing-led-by-apollo-to-buy-nvidia-chips-ft-reports"
+  },
+  {
+   "m": "US",
+   "code": "PLTR",
+   "name": "Palantir Technologies",
+   "theme": "AI 소프트웨어",
+   "d": "2026-10-28",
+   "note": "3분기 실적 발표일 11월 3일로 반영(캘린더 확인값). 공식 공지는 확인 안 됨, 일부 자료는 11월 2일로 표기. 체크포인트 날짜 조정",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.benzinga.com/quote/PLTR/earnings"
+  },
+  {
+   "m": "US",
+   "code": "MSTR",
+   "name": "Strategy (구 MicroStrategy)",
+   "theme": "코인",
+   "d": "2026-10-28",
+   "note": "STRC·STRD·STRF·STRK 배당을 매일(주말·공휴일 포함) 발생시키는 안건을 보통주 주주가 10/28까지 투표. 회사는 STRC 가격 안정 목적이라고 밝혔고, 연 쿠폰과 총 배당 의무는 그대로. 이사회 선언·변경 철회 가능성 남음",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.strategy.com/mstr/votes"
+  },
+  {
+   "m": "US",
+   "code": "HOOD",
+   "name": "Robinhood Markets",
+   "theme": "코인",
+   "d": "2026-10-28",
+   "note": "3분기 매출 사상 최대지만 암호화폐 매출은 전년 대비 크게 감소(뉴스 보도 약 -55%, 원문 수치는 미확인)하고 EPS 는 추정 하회. 예측시장·구독·순입금은 성장. 등급 B 유지, 코인 약세 지속 여부가 관건",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001783879/000178387926000164/q32026robinhoodexhibit991.htm"
+  },
+  {
+   "m": "US",
+   "code": "ASTS",
+   "name": "AST SpaceMobile",
+   "theme": "우주",
+   "d": "2026-10-28",
+   "note": "브라질 지역 통신사 Brisanet·Unifique·iez! Telecom이 700MHz 대역을 활용한 직접 단말(D2D) 서비스 상업 합의를 발표(10/23). 정식 계약·출시일·요금은 미정. 앞서 Anatel이 추가 S-band 및 700MHz 2차 사용을 승인한 흐름. 현지 사업 확대 신호지만 궤도 위성이 아직 적어 본격 서비스는 2027년 이후로 보임. 스페이스X의 브라질 S-band 허가와 Anatel의 사업자당 1개 블록 제한으로 AST의 S-band 할당 폭이 줄 수 있음",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://teletime.com.br/23/10/2026/operadoras-regionais-fecham-parceria-com-ast-spacemobile-para-d2d/"
+  },
+  {
+   "m": "US",
+   "code": "AMAT",
+   "name": "Applied Materials",
+   "theme": "반도체 전공정",
+   "d": "2026-10-28",
+   "note": "회사가 회계 4분기 실적 발표일을 2026-11-12(목, 장후)로 공지 — 발표 전 단계로 방향성 판단 재료는 아님",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.appliedmaterials.com/us/en/newsroom/press-releases/102226-applied-to-report-fourth-quarter-fiscal-2026-results.html"
+  },
+  {
+   "m": "US",
+   "code": "AAPL",
+   "name": "Apple",
+   "theme": "IT 하드웨어",
+   "d": "2026-10-28",
+   "note": "폴더블 아이폰 듀오 출시 첫날(10/23 전후) 화면이 펼치는 중 갈라졌다는 제보가 이어졌다는 보도. 품질 논란이 반품·보증 비용이나 브랜드 이미지로 번질지는 아직 확인 안 됨. 4분기 실적 발표는 미 태평양 11/2 13:30(한국시간 11/3 새벽)으로 일정 유지. 폴더블 판정 열세·등급 A 유지",
+   "tone": "악재",
+   "scope": "일회성",
+   "u": "https://economist.co.kr/article/view/ecn202610240011"
+  },
+  {
+   "m": "KR",
+   "code": "417200",
+   "name": "LS머트리얼즈",
+   "theme": "2차전지",
+   "d": "2026-10-28",
+   "note": "10/26 보도: 계열 LS에코에너지가 베트남 생산법인을 통해 약 650억원을 투자해 AIDC용 UC 생산설비 구축(LS머트리얼즈 기술 기반 위탁생산). 양산·공급 2027-04 시작, 2030년 매출 약 1,500억원 목표(회사 목표), 추가 수주 시 후속 투자 검토. 판정·등급(C)은 유지 — 납품·수익성 확인 전",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://view.asiae.co.kr/article/2026102610191513541"
+  },
+  {
+   "m": "KR",
+   "code": "373220",
+   "name": "LG에너지솔루션",
+   "theme": "2차전지",
+   "d": "2026-10-28",
+   "note": "에너직스(이스라엘 재생에너지 IPP)와 유럽·북미 ESS 공급 MOU(10/27 보도). 24개월 내 2GWh(유럽 약 1.5GWh, 북미 약 0.5GWh), 최대 4.5GWh까지 검토. 비구속 MOU라 확정 수주는 아니며, 첫 사업은 리투아니아 요나바 320MWh(2027 상업운전 목표)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.biztribune.co.kr/news/articleView.html?idxno=361370"
+  },
+  {
+   "m": "KR",
+   "code": "356860",
+   "name": "티엘비",
+   "theme": "반도체 기판·PCB",
+   "d": "2026-10-28",
+   "note": "정정 — 베트남 1공장은 2024년 10월 가동을 시작해 2분기 손익분기점을 넘어 흑자 전환(이투데이 2026-08-25 보도). 기존 '2분기 말 가동 기대' 기재 오류 수정",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://etoday.co.kr/news/view/2614327"
+  },
+  {
+   "m": "KR",
+   "code": "218410",
+   "name": "RFHIC",
+   "theme": "통신",
+   "d": "2026-10-28",
+   "note": "3분기 잠정 영업이익 217억원(+194%), 매출 711억원(+76%)으로 2분기 부진을 만회. 다음 확인 지점은 레이시온향 이연분 반영 확인과 콜린스 공급계약 이행(2027-02)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://view.asiae.co.kr/article/2026102713340686771"
+  },
+  {
+   "m": "KR",
+   "code": "126340",
+   "name": "비나텍",
+   "theme": "2차전지",
+   "d": "2026-10-28",
+   "note": "10월 19일 대만 ACBEL POLYTECH와 1,230억 1,050만원(계약기간 2026-10-16~2028-02-01), 21일 산미나와 약 1,195억원(~2027-12-23) 데이터센터용 슈퍼커패시터 공급계약 공시 — 두 건 합 약 2,425억원으로 지난해 매출의 약 3배. 한편 10월 26일 LS에코에너지가 베트남에 650억원을 투입해 AIDC용 울트라캐패시터 생산설비를 짓겠다고 발표(양산 2027-04 목표, 2030년 매출 약 1,500억원 목표) — 경쟁 강화 요인. 등급은 적자·화재 복구 확인 전이라 C 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=708210"
+  },
+  {
+   "m": "KR",
+   "code": "034020",
+   "name": "두산에너빌리티",
+   "theme": "원전·SMR",
+   "d": "2026-10-28",
+   "note": "웨스팅하우스 AP1000 기자재 수주 시점이 올해에서 내년으로 미뤄졌다는 보도를 반영해 체크포인트를 지연으로 변경. 연내 수주 가시화 전제는 약해졌고 확정 공시는 확인 안 됨",
+   "tone": "악재",
+   "scope": "일회성",
+   "u": "https://www.fnnews.com/news/202607270811235516"
+  },
+  {
+   "m": "KR",
+   "code": "006400",
+   "name": "삼성SDI",
+   "theme": "2차전지",
+   "d": "2026-10-28",
+   "note": "10/26 미국 AOP에 ESS 1GWh 추가 공급(누적 1.5GWh, 인디애나 공장 생산, 연내 공급). 하반기 미국 ESS 추가 수주 충족. 10월 셀 양산 개시 보도는 아직 없음. 등급 B 유지",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.m-i.kr/news/articleView.html?idxno=2010058"
+  },
   {
    "m": "US",
    "code": "SPCX",
@@ -101,6 +288,18 @@
    "u": "https://www.thestandard.com.hk/innovation/article/334191/Apple-failed-to-make-its-AI-tool-to-comply-to-EU-regulations-EU-Commission-says"
   },
   {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "인터넷",
+   "sector": true,
+   "d": "2026-10-27",
+   "note": "Meta가 AI 인프라 투자용 보통주 공모를 250억달러(4000만주)로 늘림 - 대형 인터넷 업체의 AI 투자 자금조달 확대",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001326801/000119312526432549/d382225dfwp.htm"
+  },
+  {
    "m": "KR",
    "code": "373220",
    "name": "LG에너지솔루션",
@@ -154,6 +353,18 @@
    "tone": "중립",
    "scope": "일회성",
    "u": "https://www.sec.gov/Archives/edgar/data/0002120882/000119312526420934/d413172d6k.htm"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "2차전지",
+   "sector": true,
+   "d": "2026-10-27",
+   "note": "LG에너지솔루션이 에너직스와 24개월 내 유럽·북미 2GWh ESS 공급 협력 MOU(법적 구속력 없음, 최대 4.5GWh 검토)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.thelec.kr/news/articleView.html?idxno=64319"
   },
   {
    "m": "US",
@@ -275,6 +486,18 @@
    "tone": "중립",
    "scope": "구조적",
    "u": "https://www.koreancenter.or.kr/news/articleView.html?idxno=1426053"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "2차전지",
+   "sector": true,
+   "d": "2026-10-26",
+   "note": "삼성SDI가 미국 AOP와 1GWh ESS 추가 공급 계약, 누적 1.5GWh, 인디애나 공장 생산·연내 공급",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://m.sedaily.com/article/20106051"
   },
   {
    "m": "US",
@@ -652,6 +875,30 @@
    "tone": "중립",
    "scope": "구조적",
    "u": "https://www.benzinga.com/markets/earnings/26/10/62552114/western-digital-price-growth-to-cool-storage-demand-ai-inference-robotic"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "우주",
+   "sector": true,
+   "d": "2026-10-23",
+   "note": "브라질 지역 통신사 3곳이 AST SpaceMobile과 700MHz로 위성-휴대폰 직접통신 제휴(최종 계약·요금·출시일 미정, 시험 11월 예정)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://teletime.com.br/23/10/2026/operadoras-regionais-fecham-parceria-com-ast-spacemobile-para-d2d/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "보안 SW",
+   "sector": true,
+   "d": "2026-10-23",
+   "note": "PHP 치명 취약점 2건에 미 당국이 전 조직 즉시 패치 또는 시스템 차단을 권고, 보안 점검 수요 부각",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://propakistani.pk/2026/10/23/nsa-tells-website-owners-to-update-immediately-or-shut-down-their-sites/"
   },
   {
    "m": "US",
@@ -1109,6 +1356,18 @@
    "m": "KR",
    "code": null,
    "name": "섹터 전체",
+   "theme": "메모리",
+   "sector": true,
+   "d": "2026-10-21",
+   "note": "10월 1~20일 반도체 수출 275억달러, 전년 대비 222.5% 증가, 전체 수출 비중 44.7%로 같은 기간 기준 역대 최대.",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.specialtimes.co.kr/news/articleView.html?idxno=476618"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "광통신",
    "sector": true,
    "d": "2026-10-21",
@@ -1172,6 +1431,30 @@
    "tone": "중립",
    "scope": "일회성",
    "u": "https://www.sec.gov/Archives/edgar/data/0001467858/000146785826000056/gmq32026pressreleaseandfin.htm"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "자동차",
+   "sector": true,
+   "d": "2026-10-20",
+   "note": "GM 3분기 조정 EBIT 41억 달러(+21.6%), 북미 +43.4%, 연간 EBIT 목표 145~155억 달러로 좁힘, 자사주 200억 달러 승인",
+   "tone": "호재",
+   "scope": "일회성",
+   "u": "https://www.dbusiness.com/daily-news/general-motors-reports-50b-in-q3-revenue-4-1b-in-ebit/"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "메모리",
+   "sector": true,
+   "d": "2026-10-20",
+   "note": "TrendForce가 4Q26 DRAM 계약가를 전분기 대비 약 20% 상승으로 전망(요약 출처, 9월 말 전망은 일반 DRAM +10~15%)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.stockhub.kr/en/news/news_b7244c205001"
   },
   {
    "m": "KR",
@@ -1251,6 +1534,18 @@
    "tone": "호재",
    "scope": "구조적",
    "u": "https://ceoscoredaily.com/page/view/2026101917013121495"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "전자·부품",
+   "sector": true,
+   "d": "2026-10-19",
+   "note": "3분기 삼성전기는 AI 서버용 MLCC·FC-BGA 호조로 영업이익 큰 폭 증가 전망, LG이노텍은 환율 부담에 아이폰 효과 제한적이라는 분석(부품 내 양극화)",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://m.ceoscoredaily.com/page/view/2026101917013121495"
   },
   {
    "m": "US",
@@ -1409,6 +1704,18 @@
    "u": "https://www.forbes.com/sites/giacomotognini/2026/10/16/why-debt-laden-neoclouds-could-become-a-trillion-dollar-wework-20/"
   },
   {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "네오클라우드",
+   "sector": true,
+   "d": "2026-10-16",
+   "note": "코어위브 부채 우려(채권 수익률 15% 안팎, 대규모 부채·리스)가 네비우스 등 업종 전반으로 번짐",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.tikr.com/blog/nebius-stock-fell-12-in-a-day-as-coreweaves-debt-scare-spread-heres-why-its-balance-sheet-isnt-coreweaves-yet"
+  },
+  {
    "m": "KR",
    "code": null,
    "name": "섹터 전체",
@@ -1537,6 +1844,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "IT 하드웨어",
+   "sector": true,
+   "d": "2026-10-15",
+   "note": "스마트폰용 LPDRAM·NAND 계약가가 계속 오르고 있어 세트 업체 원가 부담이 이어진다.",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.trendforce.com/research/download/RP261015IW"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "AI 반도체",
    "sector": true,
    "d": "2026-10-15",
@@ -1557,6 +1876,18 @@
    "u": "https://www.advanced-television.com/2026/06/24/fccs-aws-3-auction-wraps-at-3-5bn/"
   },
   {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "K뷰티",
+   "sector": true,
+   "d": "2026-10-15",
+   "note": "EU PPWR 8월 본격 적용으로 포장 적합성 증빙·재설계 부담이 K뷰티 수출기업에 커지는 중",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://www.cosmorning.com/news/article.html?no=53355"
+  },
+  {
    "m": "US",
    "code": null,
    "name": "섹터 전체",
@@ -1567,6 +1898,18 @@
    "tone": "중립",
    "scope": "구조적",
    "u": "https://www.fxstreet.com/analysis/chinas-rare-earth-leverage-has-an-expiration-date-november-10-heres-what-beijing-is-deciding-202610141348"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "우주",
+   "sector": true,
+   "d": "2026-10-14",
+   "note": "Rocket Lab, Neutron 첫 발사를 2027년으로 연기(1단 추진제 탱크 돔 제조 문제) — 단기 발사 여력 우려 부각",
+   "tone": "악재",
+   "scope": "일회성",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-provides-update-neutron-development-and-adjusts"
   },
   {
    "m": "US",
@@ -1603,6 +1946,18 @@
    "tone": "악재",
    "scope": "구조적",
    "u": "https://www.cnbc.com/2026/10/14/coreweave-stock-bond-yields-ai-debt.html"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "통신",
+   "sector": true,
+   "d": "2026-10-14",
+   "note": "통신3사 설비투자가 2년 새 21.5% 감소, 올 상반기도 7%대 축소 — 국내 통신장비 발주 환경 약세 지속",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://newstomato.com/ReadNews.aspx?no=1316168"
   },
   {
    "m": "US",
@@ -1737,6 +2092,18 @@
    "u": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610071013212100713"
   },
   {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "반도체 후공정",
+   "sector": true,
+   "d": "2026-10-08",
+   "note": "삼성전자의 HBM 중심 후공정 재편으로 테스트 장비사 수주 확대, 범용 메모리 테스터 투자는 내년 하반기부터 실적 반영 전망",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://dealsite.co.kr/articles/170288"
+  },
+  {
    "m": "US",
    "code": null,
    "name": "섹터 전체",
@@ -1800,6 +2167,18 @@
    "m": "US",
    "code": null,
    "name": "섹터 전체",
+   "theme": "코인",
+   "sector": true,
+   "d": "2026-10-05",
+   "note": "스트래티지가 한 주 비트코인 334개만 매입하고 우선주 STRC를 약 1.76억달러 환매, 보유 848,000 BTC (자금 조달이 비트코인 매수보다 우선주 방어로 쏠림)",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://cointelegraph.com/news/strategy-848k-bitcoin-strc-buybacks-outpace-btc-buys"
+  },
+  {
+   "m": "US",
+   "code": null,
+   "name": "섹터 전체",
    "theme": "에너지",
    "sector": true,
    "d": "2026-10-05",
@@ -1819,6 +2198,30 @@
    "tone": "중립",
    "scope": "일회성",
    "u": "https://nairametrics.com/2026/10/05/opec-keeps-november-oil-production-unchanged-at-31-01-million-bpd/"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "K뷰티",
+   "sector": true,
+   "d": "2026-10-02",
+   "note": "9월 화장품 수출 월간 역대 최대(약 15.1억달러, +31.4%), 11개월 연속 증가",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://cosinkorea.com/news/article.html?no=58422"
+  },
+  {
+   "m": "KR",
+   "code": null,
+   "name": "섹터 전체",
+   "theme": "제약·바이오",
+   "sector": true,
+   "d": "2026-09-30",
+   "note": "10월부터 다음 해 1월까지 기술이전 거래가 집중되는 패턴이 반복돼 올해도 연간 규모가 30조원을 넘을지가 관건",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.mt.co.kr/article/2026093011101987882"
   },
   {
    "m": "KR",
