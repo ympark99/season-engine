@@ -3,7 +3,7 @@
   "code": "COHR",
   "name": "Coherent",
   "theme": "광통신·네트워크",
-  "at": "2026-10-14",
+  "at": "2026-10-29",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "AI 데이터센터 광트랜시버·InP 레이저 수요로 데이터센터·통신 매출이 빠르게 늘지만, 트랜시버 순위는 중국 업체에 밀렸고 InP 증설과 마진 회복이 관건이다. 다음 분기에는 1분기 FY2027 실적(가이던스 22억~24억 달러)과 CPO 매출 시작 여부를 확인해야 한다.",
@@ -127,18 +127,24 @@
     {
       "id": "q1fy27",
       "what": "1분기 FY2027 실적 — 가이던스 22억~24억 달러, 총마진 39.5~41.5%",
-      "d": "2026-11",
+      "d": "2026-11-04",
       "kind": "실적",
       "status": "예정",
-      "conf": "추정",
+      "conf": "공시",
       "src": [
-        0
+        0,
+        12
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "정확한 발표일은 미확정(11월 초중순 추정)"
+        },
+        {
+          "d": "2026-10-29",
+          "s": "예정",
+          "note": "회사 공지로 발표일 확정: 11-04 미국 장 마감 후(기존 11월 중 추정). 가이던스 22억~24억 달러"
         }
       ]
     },
@@ -147,7 +153,7 @@
       "what": "CPO 매출 기여 시작 (FY2027 2분기)",
       "d": "2026-Q4",
       "kind": "출시",
-      "status": "예정",
+      "status": "진행",
       "conf": "보도",
       "src": [
         1,
@@ -158,6 +164,11 @@
           "d": "2026-10-14",
           "s": "예정",
           "note": "경영진: CPO 지연 없음, 2분기부터 기여 예상"
+        },
+        {
+          "d": "2026-10-29",
+          "s": "진행",
+          "note": "생산 웨이퍼 출하 시작(회사 설명). 매출 기여는 FY27 2분기(10~12월)부터 예상, 지연 언급 없음"
         }
       ]
     },
@@ -272,6 +283,15 @@
   ],
   "updates": [
     {
+      "d": "2026-10-29",
+      "note": "FY27 1분기 실적 발표 2026-11-04(미국 장 마감 후) 회사 공지. 가이던스 매출 22억~24억 달러, non-GAAP EPS 1.85~2.05달러.",
+      "src": [
+        12
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
+    {
       "d": "2026-10-14",
       "note": "전체 조사 — AI 광트랜시버 수요로 성장 가속, InP 증설·CPO 시작·FCC 규정이 다음 확인 지점",
       "src": [
@@ -341,6 +361,11 @@
       "t": "Coherent & NVIDIA Break Ground at Texas Semiconductor Site",
       "u": "https://manufacturingdigital.com/news/coherent-nvidia-break-ground-at-texas-semiconductor-site",
       "d": "2026"
+    },
+    {
+      "t": "Coherent Corp. Announces Timing of FY2027 First Quarter Earnings Release",
+      "u": "https://finviz.com/news/402637/coherent-corp-announces-timing-of-fy2027-first-quarter-earnings-release",
+      "d": "2026-10-14"
     }
   ]
 }
