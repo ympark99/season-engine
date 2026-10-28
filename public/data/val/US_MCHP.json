@@ -2,9 +2,9 @@
  "m": "US",
  "code": "MCHP",
  "name": "MICROCHIP TECHNOLOGY",
- "at": "2026-10-20",
+ "at": "2026-10-29",
  "by": "Claude 정기 조사",
- "basis": "FY27 1분기 실적(2026-08-06) 뒤, 2분기 가이던스 반영. 주식보상 장기 비율 재조사. 신사업 점검 추가",
+ "basis": "FY27 1분기 실적(2026-08-06)·2분기 가이던스 기준 유지. 업종 선행 지표 TI 3분기 실적(2026-10-21) 확인 — 자사 2분기 실적은 11월 초 예정이라 아직 미발표",
  "type": "cyc",
  "typeWhy": "아날로그·MCU는 재고 사이클로 매출·마진이 크게 출렁임(재고일수 피크 266일 → 175일, 2분기 전 마진 바닥 경험) — 자동 분류(고성장)는 단기 회복 성장률에 끌린 것",
  "mid": {
@@ -159,6 +159,23 @@
     8,
     9
    ]
+  },
+  {
+   "k": "업종 선행 지표",
+   "v": "TI 3분기 매출 60.6억$(+28% YoY), 아날로그 +32%, 4분기 가이던스 58~63억$ — 아날로그 회복이 이어지는 중. MCHP 자체 실적은 아니라 시나리오 확률은 바꾸지 않음",
+   "conf": "공시",
+   "src": [
+    10
+   ]
+  },
+  {
+   "k": "다음 실적",
+   "v": "FY27 2분기 실적은 2026-11-04~05경으로 추정(회사 공식 일정 미확인). 가이던스 매출 15.89억~16.18억$, 영업이익률 38.5~39.5%",
+   "conf": "추정",
+   "src": [
+    11,
+    0
+   ]
   }
  ],
  "sources": [
@@ -211,11 +228,21 @@
    "t": "Microchip: PCIe Gen6 Design Wins Double As Data Center Momentum Builds",
    "u": "https://pulse2.com/microchip-pcie-gen6-design-wins-double-as-data-center-momentum-builds/",
    "d": "2026-08"
+  },
+  {
+   "t": "TI reports third quarter 2026 financial results and shareholder returns",
+   "u": "https://investor.ti.com/news-releases/news-release-details/ti-reports-third-quarter-2026-financial-results-and-shareholder",
+   "d": "2026-10-21"
+  },
+  {
+   "t": "Investor Signals — Microchip 예상 실적일",
+   "u": "https://www.investorsignals.com/?p=51288",
+   "d": "2026"
   }
  ],
  "sbc": 3.5,
  "newBiz": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "items": [
    {
     "name": "데이터센터 PCIe Gen 6 스위치·리타이머",
@@ -235,6 +262,44 @@
     "src": [
      8
     ]
+   }
+  ]
+ },
+ "expect": {
+  "for": "FY27 2분기 실적",
+  "due": "2026-11",
+  "items": [
+   {
+    "k": "매출",
+    "u": "M$",
+    "bull": 1650,
+    "base": 1604,
+    "bear": 1570,
+    "why": "가이던스 15.89억~16.18억$ 중간값이 기본, 상단 초과가 낙관, 하단 부근이 비관"
+   },
+   {
+    "k": "비GAAP 매출총이익률",
+    "u": "%",
+    "bull": 67.5,
+    "base": 66.5,
+    "bear": 65.5,
+    "why": "가이던스 66~67%, 가격 인상 효과가 크면 상단 초과"
+   },
+   {
+    "k": "비GAAP 영업이익률",
+    "u": "%",
+    "bull": 40.0,
+    "base": 39.0,
+    "bear": 38.0,
+    "why": "가이던스 38.5~39.5%"
+   },
+   {
+    "k": "비GAAP EPS",
+    "u": "$",
+    "bull": 0.97,
+    "base": 0.93,
+    "bear": 0.9,
+    "why": "가이던스 0.91~0.95$"
    }
   ]
  }
