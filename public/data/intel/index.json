@@ -4566,6 +4566,15 @@
   "refreshDays": 7,
   "runs": [
    {
+    "d": "2026-10-29",
+    "targets": 93,
+    "newN": 1,
+    "changed": 20,
+    "deep": 16,
+    "full": 0,
+    "sectors": 38
+   },
+   {
     "d": "2026-10-28",
     "targets": 92,
     "newN": 0,
