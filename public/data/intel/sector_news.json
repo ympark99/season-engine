@@ -3,6 +3,83 @@
  "items": [
   {
    "m": "US",
+   "code": "TSLA",
+   "name": "Tesla",
+   "theme": "자동차",
+   "d": "2026-10-29",
+   "note": "3분기 GAAP 영업이익 7억 1,800만달러로 전년 동기 대비 56% 감소, 영업이익률 5.8%→2.6%. 영업비용은 AI 연구개발·주식보상 증가로 39% 늘어남. EPS는 예상을 웃돌았음. 로보택시 매출·이익은 별도 공개되지 않음. 고객 차량 무감독 FSD 첫 출시 목표는 2027년 2분기로 보도(로보택시 운영 지역 안에서만). 수익성 열세 판정·등급 B는 유지",
+   "tone": "악재",
+   "scope": "구조적",
+   "u": "https://vestedfinance.com/blog/us-stocks/tesla-q3-earnings-2026/"
+  },
+  {
+   "m": "US",
+   "code": "TER",
+   "name": "Teradyne",
+   "theme": "반도체 후공정",
+   "d": "2026-10-29",
+   "note": "3분기 매출 13.06억$(+70% YoY), 비GAAP EPS 2.29$로 컨센서스(매출 12.68억$, EPS 2.04$)와 가이던스 상단을 웃돌았고 로봇 부문도 흑자 보도. 다만 4분기 이익 전망이 기대에 못 미쳐 시간외 하락. 4분기 매출 가이던스 12.5~13.5억$",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000097210/000119312526434981/ter-ex99_1.htm"
+  },
+  {
+   "m": "US",
+   "code": "STX",
+   "name": "Seagate Technology",
+   "theme": "저장장치",
+   "d": "2026-10-29",
+   "note": "2027 회계 1분기 실적이 회사 목표를 상회(매출 42.33억달러·비GAAP EPS 7.68)하고, 12월 분기 목표로 매출 48억±1억달러·EPS 9.20±0.20달러 제시. 직전 분기 목표 대비 상향 폭이 커 수익성 개선이 이어질 신호. 등급 A 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001137789/000113778926000300/stxq12027pressreleasefinan.htm"
+  },
+  {
+   "m": "US",
+   "code": "ORCL",
+   "name": "Oracle",
+   "theme": "네오클라우드",
+   "d": "2026-10-29",
+   "note": "투자자의 날(10/28) 개최: 목표로 FY29 잉여현금흐름 300억달러 이상, FY30 매출 2,250억달러 이상(FY26~30 매출 연평균 35% 이상), 잉여현금흐름 플러스 전환은 FY28 하반기, 설비투자는 FY27~28 정점 후 감소 제시. 모두 회사 목표이며 현재 잉여현금흐름은 적자라 등급(B)은 유지",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526435853/d75538dex991.htm"
+  },
+  {
+   "m": "US",
+   "code": "NOW",
+   "name": "ServiceNow",
+   "theme": "소프트웨어",
+   "d": "2026-10-29",
+   "note": "3분기 매출 41.06억달러(+20.5%)·구독매출 39.88억달러(+21%)로 예상을 소폭 웃돌고 cRPO 136.5억달러(+20.5%), 연간 구독매출 전망 157.8~157.9억달러로 상향. 비GAAP 영업이익률 전망 31.5% 유지, 4분기 cRPO 성장률 전망은 18.5%로 둔화",
+   "tone": "중립",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm"
+  },
+  {
+   "m": "US",
+   "code": "META",
+   "name": "Meta Platforms",
+   "theme": "인터넷",
+   "d": "2026-10-29",
+   "note": "메타가 상업 약관(Commercial Terms·Self-Serve Ad Terms) 발효를 10/30에서 11/20로 미뤘다. 퍼블리셔들의 크롤링·학습 사용 조항 반발과 EU·영국 당국 제기 이후이며, 문구는 아직 수정 확정 전이다",
+   "tone": "중립",
+   "scope": "일회성",
+   "u": "https://www.niemanlab.org/2026/10/meta-delays-rollout-of-terms-that-would-allow-broad-scraping-of-news-sites-legal-experts-are-still-skeptical/"
+  },
+  {
+   "m": "US",
+   "code": "APH",
+   "name": "Amphenol",
+   "theme": "광통신·네트워크",
+   "d": "2026-10-29",
+   "note": "3분기 매출 102억달러(+65%, 유기 +37%)로 가이던스 93~94억달러 상회, 역대 최대. 회사는 AI 데이터콤 수요와 인수 효과를 이유로 설명. 분기 배당 20% 인상(0.15달러), 2027-01-01부터 40억달러 자사주 매입 승인. 경쟁 판정은 그대로, 등급 A 유지(가이던스 상회로 모멘텀 확인)",
+   "tone": "호재",
+   "scope": "구조적",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000820313/000110465926119421/aph-ex99d1.htm"
+  },
+  {
+   "m": "US",
    "code": "VICR",
    "name": "Vicor",
    "theme": "기타",

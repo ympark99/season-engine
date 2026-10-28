@@ -3,7 +3,7 @@
   "code": "META",
   "name": "Meta Platforms",
   "theme": "인터넷",
-  "at": "2026-10-27",
+  "at": "2026-10-29",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "광고 매출은 구글을 넘어서는 흐름(전망)이고 스마트 글래스는 선두지만, AI 모델은 챗GPT·제미나이보다 이용 기반이 약하고 투자·소송 비용 부담이 커졌다. 다음 분기 관건은 10월 말 3분기 실적의 지출 가이던스와 AI 투자 대비 이익 방어.",
@@ -159,6 +159,11 @@
           "d": "2026-10-14",
           "s": "진행",
           "note": "1월 FTC 항소 방침 발표 이후 진행 상황은 확인 안 됨, 일정 미확정"
+        },
+        {
+          "d": "2026-10-29",
+          "s": "진행",
+          "note": "D.C. 항소법원 계류 중, 기일·판결 미확인(보도 기준 최근 서면은 2026-05)"
         }
       ]
     },
@@ -280,6 +285,24 @@
           "note": "10/21 발표, 2027년 1월 시행 예정(보도)"
         }
       ]
+    },
+    {
+      "id": "commercial_terms",
+      "what": "메타 상업 약관(크롤링·학습 사용 조항) 발효",
+      "d": "2026-11-20",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        17
+      ],
+      "log": [
+        {
+          "d": "2026-10-29",
+          "s": "예정",
+          "note": "발효일 10/30에서 11/20로 연기, 문구 수정 확정 전(보도)"
+        }
+      ]
     }
   ],
   "metrics": [
@@ -333,6 +356,15 @@
     }
   ],
   "updates": [
+    {
+      "d": "2026-10-29",
+      "note": "메타가 상업 약관(Commercial Terms·Self-Serve Ad Terms) 발효를 10/30에서 11/20로 미뤘다. 퍼블리셔들의 크롤링·학습 사용 조항 반발과 EU·영국 당국 제기 이후이며, 문구는 아직 수정 확정 전이다",
+      "src": [
+        17
+      ],
+      "tone": "중립",
+      "scope": "일회성"
+    },
     {
       "d": "2026-10-27",
       "note": "메타가 AI 투자 재원 확보용 무의결권 Class C 주식 신설 계획을 발표(2027년 1월 시행 예정). 창업자 의결권을 유지한 채 증자 여력을 만드는 구조. 3분기 잉여현금흐름 적자 전환과 맞물려 자금 조달 확대 신호",
@@ -463,6 +495,11 @@
       "t": "Meta Q3 실적 발표 후 무의결권 Class C 주식 신설 보도 (Stocktwits)",
       "u": "https://stocktwits.com/news-articles/markets/equity/meta-stock-jumps-3-after-hours-after-q3-revenue-beats-expectations-with-a-narrowed-ai-capex-outlook-and-new-non-voting-class-c-stock/cZxMhJJRBv6",
       "d": "2026-10-21"
+    },
+    {
+      "t": "Nieman Lab: Meta delays rollout of terms that would allow broad scraping of news sites",
+      "u": "https://www.niemanlab.org/2026/10/meta-delays-rollout-of-terms-that-would-allow-broad-scraping-of-news-sites-legal-experts-are-still-skeptical/",
+      "d": "2026-10-29"
     }
   ]
 }
