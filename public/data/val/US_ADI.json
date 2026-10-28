@@ -2,9 +2,9 @@
  "m": "US",
  "code": "ADI",
  "name": "Analog Devices",
- "at": "2026-10-20",
+ "at": "2026-10-29",
  "by": "Claude 정기 조사",
- "basis": "FY26 3분기 실적(2026-08-19) 뒤, 4분기 가이던스 반영, 신사업 점검 추가",
+ "basis": "FY26 3분기 실적(2026-08-19) 뒤, 4분기 가이던스 반영 · 경쟁사 TI 3분기 실적(2026-10-21) 업황 확인",
  "mid": {
   "om": 45,
   "why": "조정 영업이익률이 FY24 40.9%, FY25 41.9%(재고조정 구간 포함)에서 FY26 4분기 가이던스 52%까지 올라왔다. 업황 정점 수준은 유지되기 어렵다고 보고 바닥과 현재 사이 중간인 45%를 성숙 마진으로 가정(서버 자동 39.3%는 FY24~25 실적보다 낮음)",
@@ -149,6 +149,21 @@
     5,
     6
    ]
+  },
+  {
+   "k": "다음 실적",
+   "v": "FY26 4분기 실적은 2026-11-24 발표 예정(회사 공지). 경쟁사 TI 3분기(매출 +28%·아날로그 +32%·산업 +40%대)가 업황 회복을 확인해 기존 가정 유지",
+   "conf": "공시",
+   "src": [
+    0,
+    7
+   ]
+  },
+  {
+   "k": "시장 내재 기대",
+   "v": "낙관 적정가가 현재가의 약 79%라 50% 미만 조건은 아님. 역DCF상 지금 주가는 10년 매출 연 19.3% 성장과 마진 45% 복귀를 전제 — 데이터센터 광·전력 확대는 일부만 확인(신사업 항목 참고)",
+   "conf": "추정",
+   "src": []
   }
  ],
  "sources": [
@@ -186,6 +201,16 @@
    "t": "Earnings call transcript: Analog Devices tops Q3 2026 estimates on record sales",
    "u": "https://www.investing.com/news/transcripts/earnings-call-transcript-analog-devices-tops-q3-2026-estimates-on-record-sales-93CH-4867836",
    "d": "2026-08-19"
+  },
+  {
+   "t": "Analog Devices to Report Fourth Quarter Fiscal Year 2026 Financial Results on Tuesday, November 24, 2026",
+   "u": "https://www.analog.com/cn/newsroom/press-releases/2026/10-22-2026-adi-report-4q-fy2026-financial-results.html",
+   "d": "2026-10-22"
+  },
+  {
+   "t": "Analog Devices beats estimates, guides above expectations",
+   "u": "https://www.streetinsider.com/General+News/Analog+Devices+beats+estimates%2C+guides+above+expectations/26525204.html",
+   "d": "2026-05-20"
   }
  ],
  "newBiz": {
@@ -209,6 +234,56 @@
     "src": [
      6
     ]
+   }
+  ]
+ },
+ "review": {
+  "for": "2026년 3분기 실적",
+  "at": "2026-10-29",
+  "verdict": "상회",
+  "items": [
+   {
+    "k": "매출",
+    "u": "M$",
+    "hit": "상회",
+    "actual": 4022
+   },
+   {
+    "k": "조정 영업이익률",
+    "u": "%",
+    "hit": "상회",
+    "actual": 50.0
+   }
+  ],
+  "note": "3분기 매출 40.2억$는 5월 가이던스(38~40억$) 상단을 넘었고 조정 영업이익률 50.0%도 가이던스 약 49%를 웃돌아 기본 시나리오보다 낙관 쪽에 가까웠다. 이미 8월 조사에서 반영했고, TI 3분기가 업황 회복을 재확인해 이번에는 mid.om 45%와 시나리오 확률을 바꾸지 않았다. 마진 가이던스는 보도 확인이라 회사 자료로 재확인 필요."
+ },
+ "expect": {
+  "for": "2026년 4분기 실적",
+  "due": "2026-11-24",
+  "items": [
+   {
+    "k": "매출",
+    "u": "M$",
+    "bull": 4400,
+    "base": 4300,
+    "bear": 4200,
+    "why": "회사 가이던스 43억±1억$"
+   },
+   {
+    "k": "조정 영업이익률",
+    "u": "%",
+    "bull": 53,
+    "base": 52,
+    "bear": 51,
+    "why": "가이던스 약 52%±1%p"
+   },
+   {
+    "k": "조정 EPS",
+    "u": "$",
+    "bull": 4.01,
+    "base": 3.86,
+    "bear": 3.71,
+    "why": "가이던스 3.86±0.15$"
    }
   ]
  }
