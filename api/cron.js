@@ -85,7 +85,7 @@ export default async function handler(req, res) {
       if (!(await store.setNX('lock:earn', 1, 290))) return send(res, 200, { busy: true });
       try {
         const cal = await loadCalendar({ force: true }), dg = digest(cal, await store.listAll()), rec = await markEarners(dg);
-        const out = { asof: dg.asof, calError: dg.error, reported: dg.earnings.mineReported.map(x => ({ m: x.m, code: x.code, name: x.name, date: x.date })), unmatched: dg.unmatched, aliasMissing: dg.aliasMissing };
+        const out = { asof: dg.asof, calError: dg.error, reported: dg.earnings.mineReported.map(x => ({ m: x.m, code: x.code, name: x.name, date: x.date })) };
         const ms = req.query.m === 'KR' || req.query.m === 'US' ? [req.query.m] : ['KR', 'US'];
         for (const m of ms) if (Object.keys(rec[m]).length) out[m] = await refreshEarners(m, ms.length > 1 ? 80000 : 150000);
         await store.set('cron:earn', { at: new Date().toISOString(), ...out }).catch(() => {});

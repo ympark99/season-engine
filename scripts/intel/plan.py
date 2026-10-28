@@ -173,7 +173,7 @@ if cal:
             val_due.append({**{kk: e[kk] for kk in ('m', 'code', 'name', 'theme')}, 'why': why, 'earn': {kk: e.get(kk) for kk in EP}})
             vkeys.add(k)
         cal_hit.append(f"{e['m']}:{e['code']}")
-    json.dump({'at': cal.get('at'), 'asof': cal.get('asof'), **cal_earn, 'unmatched': cal.get('unmatched'), 'aliasMissing': cal.get('aliasMissing')}, open(f'{W}/cal.json', 'w'), ensure_ascii=False, indent=1)
+    json.dump({'at': cal.get('at'), 'asof': cal.get('asof'), **cal_earn}, open(f'{W}/cal.json', 'w'), ensure_ascii=False, indent=1)
     json.dump({'at': cal.get('at'), 'asof': cal.get('asof'), **cal['macro'], 'holidays': cal.get('holidays')}, open(f'{W}/cal_macro.json', 'w'), ensure_ascii=False, indent=1)
 else:
     json.dump({'reported': [], 'soon': [], 'error': str(cal_err)}, open(f'{W}/cal.json', 'w'))
@@ -206,7 +206,7 @@ print(f'밸류에이션 조사(5-1번) {len(val_due)}종목 (파일 없는 기�
 if cal:
     cm = json.load(open(f'{W}/cal_macro.json'))
     print(f"일정 캘린더(cal.json): 내 종목 방금 발표 {[(e['m'], e['code'], e['name'], e['date']) for e in cal_earn['reported']]} · 앞으로 7일 {[(e['m'], e['code'], e['date']) for e in cal_earn['soon']]} · 밸류에이션 조사에 올림 {cal_hit}")
-    print(f"매크로(cal_macro.json): 방금 발표 {len(cm['released'])}건 {[(x['title'], x['actual'], x['prev']) for x in cm['released'] if x['major']]} · 앞으로 7일 {len(cm['upcoming'])}건 · 이름 못 맞춘 미국 종목 {cal.get('unmatched')} · 이름표 없는 내 미국 종목 {cal.get('aliasMissing')}")
+    print(f"매크로(cal_macro.json): 방금 발표 {len(cm['released'])}건 {[(x['title'], x['actual'], x['prev']) for x in cm['released'] if x['major']]} · 앞으로 7일 {len(cm['upcoming'])}건")
 else:
     print('일정 캘린더: 못 받음 —', cal_err, '→ 체크포인트 기준으로만 진행')
 print(f'섹터 업황 조사(5-2번) {len(sectors)}개 섹터: sectors.json' if sectors else '섹터 업황 조사(5-2번): 오늘은 조사일(월·수·금)이 아님 — 건너뜀')

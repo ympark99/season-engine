@@ -1730,7 +1730,7 @@ function calBox(){
     +sec('방금 발표된 지표',rel.map(x=>row(x.date.slice(5)+(x.time?' '+x.time:''),`${fl(x.c)} ${esc(x.title)}`,`${mv(x.actual,x.unit)} <span class="muted">(${esc(x.basis||'전기')} ${mv(x.prev,x.unit)})</span>${x.read?` · ${esc(x.read)}`:''}`)),'오늘·어제 발표된 지표 없음')
     +sec('앞으로 7일 주요 지표·휴장',[...up.map(x=>row(x.date.slice(5)+(x.time?' '+x.time:''),`${fl(x.c)} ${esc(x.title)}`,`<span class="muted">${esc(x.basis||'전기')} ${mv(x.prev,x.unit)}</span>`)),
       ...hol.map(x=>row(x.date.slice(5),esc(x.title),`<span class="muted">${esc(x.name)}</span>`))],'주요 지표·휴장 없음');
-  const warn=(C.aliasMissing||[]).length?`<div class="sub" style="margin-top:8px">이름표 없는 내 미국 종목 ${C.aliasMissing.map(esc).join(', ')} — lib/calalias.js 에 한글 이름을 추가해야 실적 발표를 잡아.</div>`:'';
+  const warn='';
   return `<div class="box" style="margin-top:14px"><h3>일정 · 발표</h3><div class="sub">기준 ${esc(C.asof)}${C.at?` · 캘린더 ${esc(C.at.slice(5,16).replace('T',' '))} UTC`:''}${C.error?` · <span class="warn">${esc(C.error)}</span>`:''} · 시각은 한국시간. 실적을 낸 내 종목은 재무·적정가를 바로 다시 계산해.</div><div class="feed calfeed">${html}</div>${warn}</div>`;
 }
 function renderMacro(){
