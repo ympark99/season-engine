@@ -4,7 +4,7 @@
   "name": "두산"
  },
  "KR:000660": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "SK하이닉스"
  },
  "KR:000990": {
@@ -24,7 +24,7 @@
   "name": "삼성SDI"
  },
  "KR:009150": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "삼성전기"
  },
  "KR:010140": {
@@ -34,6 +34,10 @@
  "KR:011070": {
   "at": "2026-10-20",
   "name": "LG이노텍"
+ },
+ "KR:028050": {
+  "at": "2026-10-29",
+  "name": "삼성E&A"
  },
  "KR:034020": {
   "at": "2026-10-20",
@@ -59,6 +63,10 @@
   "at": "2026-10-20",
   "name": "한화엔진"
  },
+ "KR:108490": {
+  "at": "2026-10-29",
+  "name": "로보티즈"
+ },
  "KR:126340": {
   "at": "2026-10-20",
   "name": "비나텍"
@@ -76,7 +84,7 @@
   "name": "휴젤"
  },
  "KR:218410": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "RFHIC"
  },
  "KR:240810": {
@@ -104,7 +112,7 @@
   "name": "RF머트리얼즈"
  },
  "KR:329180": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "HD현대중공업"
  },
  "KR:356860": {
@@ -140,7 +148,7 @@
   "name": "APPLE INC"
  },
  "US:ADI": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "Analog Devices"
  },
  "US:ALAB": {
@@ -164,7 +172,7 @@
   "name": "ARISTA NETWORKS INC"
  },
  "US:APH": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "AMPHENOL CORP"
  },
  "US:ARM": {
@@ -180,7 +188,7 @@
   "name": "AXT INC"
  },
  "US:BE": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "Bloom Energy"
  },
  "US:CIEN": {
@@ -220,7 +228,7 @@
   "name": "FORGENT POWER SOLUTIONS INC"
  },
  "US:GOOGL": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "Alphabet"
  },
  "US:HPE": {
@@ -235,16 +243,20 @@
   "at": "2026-10-20",
   "name": "IREN LIMITED"
  },
+ "US:KEYS": {
+  "at": "2026-10-29",
+  "name": "KEYSIGHT TECHNOLOGIES INC"
+ },
  "US:LITE": {
   "at": "2026-10-20",
   "name": "Lumentum"
  },
  "US:MCHP": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "MICROCHIP TECHNOLOGY"
  },
  "US:META": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "META PLATFORMS INC"
  },
  "US:MRNA": {
@@ -264,7 +276,7 @@
   "name": "Micron Technology"
  },
  "US:MXL": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "MAXLINEAR INC"
  },
  "US:NBIS": {
@@ -276,7 +288,7 @@
   "name": "NIKE INC"
  },
  "US:NOW": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "ServiceNow"
  },
  "US:NVDA": {
@@ -312,7 +324,7 @@
   "name": "SNOWFLAKE INC"
  },
  "US:SPCX": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "SPACE EXPLORATION TECHNOLOGIES CORP"
  },
  "US:STM": {
@@ -320,7 +332,7 @@
   "name": "STMICROELECTRONICS"
  },
  "US:STX": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "SEAGATE TECHNOLOGY HOLDINGS PLC"
  },
  "US:TEAM": {
@@ -332,11 +344,11 @@
   "name": "TEMPUS AI INC"
  },
  "US:TER": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "TERADYNE INC"
  },
  "US:TSLA": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "Tesla"
  },
  "US:UUUU": {
@@ -348,7 +360,7 @@
   "name": "VICOR CORP"
  },
  "US:VLO": {
-  "at": "2026-10-20",
+  "at": "2026-10-29",
   "name": "Valero Energy"
  }
 }
