@@ -1,0 +1,262 @@
+{
+ "m": "US",
+ "code": "KEYS",
+ "name": "KEYSIGHT TECHNOLOGIES INC",
+ "at": "2026-10-29",
+ "by": "Claude 정기 조사",
+ "basis": "FY2026 3분기 실적(2026-08-18) 뒤 — 4분기 가이던스 매출 19.3억~19.5억$ 반영",
+ "mid": {
+  "om": 31,
+  "why": "회사 장기 지속 가능 영업이익률 목표 31~32%(비GAAP). 3분기 33.2%는 목표 상회지만 일회성 관세 효과·AI 수요 호조가 겹친 값이라 목표 하단으로 수렴 가정",
+  "conf": "추정",
+  "src": [
+   0,
+   3
+  ]
+ },
+ "capexR": 2.2,
+ "tax": null,
+ "g": null,
+ "wacc": null,
+ "scen": {
+  "bull": {
+   "p": 20,
+   "why": "AI 데이터센터 1.6T 유선 테스트 수요가 FY29~30까지 이어지고 6G 표준(2029-03 목표) 전 테스트 투자가 겹쳐 두 자릿수 성장·마진 40% 안팎 유지",
+   "g": [
+    null,
+    null,
+    null,
+    11,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    42,
+    41,
+    40,
+    38,
+    36,
+    35,
+    34
+   ]
+  },
+  "base": {
+   "p": 55,
+   "why": "공급 제약이 풀리며 백로그가 매출로 전환된 뒤 회사 장기 성장 5~7%대로 정상화, 마진은 목표 31~32%로 수렴",
+   "g": [
+    null,
+    null,
+    null,
+    7,
+    6,
+    5.5,
+    5,
+    4.5,
+    4,
+    3.5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    36,
+    34.5,
+    33,
+    32,
+    31.5,
+    31,
+    31
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "AI 설비투자 소화기에 유선 수주가 꺾이고 Viavi 등 경쟁 심화 + 부품 공급 제약 장기화로 FY29 성장 정체, 마진 20%대 후반으로 하락",
+   "g": [
+    null,
+    null,
+    null,
+    2,
+    0,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    33,
+    30,
+    29,
+    28,
+    28,
+    27,
+    27
+   ]
+  }
+ },
+ "newBiz": {
+  "at": "2026-10-29",
+  "items": [
+   {
+    "name": "AI 데이터센터 1.6T 이더넷·AI 워크로드 에뮬레이션 플랫폼(AresONE 1600GE 등)",
+    "p": 60,
+    "why": "3분기 유선 매출이 처음 무선 추월, 상업통신 매출 +56%. 성공 조건: 1.6T 전환 속도와 Viavi(Spirent 고속 이더넷 인수)와의 경쟁. 기존 본업 확장이라 base 성장에 일부, 초과분은 bull 에만 반영",
+    "conf": "공시",
+    "src": [
+     0,
+     1
+    ]
+   },
+   {
+    "name": "6G 표준화 대비 테스트(pre-6G 상호운용·채널 모델링)",
+    "p": 35,
+    "why": "3GPP 첫 6G 표준 목표 2029-03. 표준 확정 전 R&D 테스트 수요가 FY28~30에 몰릴 수 있으나 규모 미공시라 bull 에만 반영",
+    "conf": "보도",
+    "src": [
+     1
+    ]
+   }
+  ]
+ },
+ "facts": [
+  {
+   "k": "가이던스",
+   "v": "FY26 4분기 매출 19.3억~19.5억$(+약 37%), 비GAAP EPS 3.34~3.40$, FY26 매출 +약 32%. 3분기 수주 20.91억$(+56%)로 2분기 연속 20억$ 초과, 4분기 수주는 3분기보다 소폭 증가 예상",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "장기 목표",
+   "v": "지속 가능 유기 성장 연 5~7%, 장기 영업이익률 31~32%(3분기 33.2%는 목표 상회). 목표이지 보장 아님",
+   "conf": "공시",
+   "src": [
+    3,
+    4,
+    0
+   ]
+  },
+  {
+   "k": "공급 제약",
+   "v": "부품 공급이 향후 몇 분기 매출 전환의 제약(governor)이 될 것이라고 경영진 언급. 공급 계획 18개월 초과 확대·2차 공급처·제품 재설계로 대응. 일회성 관세 효과는 FY27 재발하지 않을 것",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "고객 집중도",
+   "v": "하이퍼스케일러 직접 매출 약 10%(간접 영향 더 큼). 소프트웨어·서비스 약 33%, 연간 반복 매출 24%",
+   "conf": "보도",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "설비투자",
+   "v": "FY26 설비투자 약 1.6억$ 예상(FY25 1.27억$) — 매출 대비 약 2.2%",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "FY25 주식보상 1.62억$ ÷ 매출 53.7억$ ≈ 3.0%(FY24 1.37억$). 서버가 컨센서스를 주식보상 포함 기준으로 보아 inp.sbc 가 비어 있어 sbc 는 넣지 않음",
+   "conf": "공시",
+   "src": [
+    2
+   ]
+  },
+  {
+   "k": "컨센서스 마진 주의",
+   "v": "서버 컨센서스 영업이익률 FY27 36.9%·FY28 38.4% 는 회사 장기 목표 31~32% 보다 높음 — base 는 FY29부터 36%→31% 로 수렴시킴",
+   "conf": "추정",
+   "src": [
+    3
+   ]
+  }
+ ],
+ "expect": {
+  "for": "2026년 4분기 실적",
+  "due": "2026-11",
+  "items": [
+   {
+    "k": "매출",
+    "u": "M$",
+    "bull": 1975,
+    "base": 1945,
+    "bear": 1925,
+    "why": "가이던스 19.3억~19.5억$ 상단 초과 / 중간 / 하단"
+   },
+   {
+    "k": "비GAAP EPS",
+    "u": "$",
+    "bull": 3.5,
+    "base": 3.4,
+    "bear": 3.32,
+    "why": "가이던스 3.34~3.40$"
+   },
+   {
+    "k": "수주",
+    "u": "M$",
+    "bull": 2300,
+    "base": 2150,
+    "bear": 1950,
+    "why": "경영진 기본안: 3분기(20.91억$)보다 소폭 증가"
+   },
+   {
+    "k": "비GAAP 영업이익률",
+    "u": "%",
+    "bull": 35,
+    "base": 33.5,
+    "bear": 32,
+    "why": "3분기 33.2%, 장기 목표 31~32%"
+   }
+  ]
+ },
+ "sources": [
+  {
+   "t": "Keysight Technologies Reports Third Quarter 2026 Results (8-K Ex.99.1)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0001601046/000160104626000029/exhibit991-q326pressrelease.htm",
+   "d": "2026-08-18"
+  },
+  {
+   "t": "Keysight Q3 2026 Earnings Call Transcript",
+   "u": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "d": "2026-08-18"
+  },
+  {
+   "t": "Keysight Technologies Form 10-K (FY2025, 2025-10-31)",
+   "u": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000127/keys-20251031.htm",
+   "d": "2025-12"
+  },
+  {
+   "t": "Keysight Investor Relations - Why Keysight (장기 모델)",
+   "u": "https://investor.keysight.com/investor-relations/why-keysight/default.aspx",
+   "d": "2026-10"
+  },
+  {
+   "t": "Keysight Technologies Hosts 2023 Investor Day",
+   "u": "https://s22.q4cdn.com/444849635/files/doc_news/Keysight-Technologies-Hosts-2023-Investor-Day-2023.pdf",
+   "d": "2023-03-07"
+  },
+  {
+   "t": "Keysight Q3 FY2026 Prepared Remarks",
+   "u": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "d": "2026-08-18"
+  }
+ ]
+}
