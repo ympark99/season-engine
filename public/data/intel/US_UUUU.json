@@ -3,7 +3,7 @@
   "code": "UUUU",
   "name": "Energy Fuels",
   "theme": "희토류",
-  "at": "2026-10-28",
+  "at": "2026-10-30",
   "full": "2026-10-14",
   "by": "Claude 정기 조사",
   "position": "우라늄 매출이 거의 전부인 상태에서 희토류는 NdPr 상업 생산 가능·터븀 파일럿 단계이며, ASM 인수를 마치고 VAC(자석) 인수를 앞둔 '광산-자석' 통합 전략을 진행 중이다. 다음 분기 관건은 Donald 프로젝트 최종투자결정(FID)과 VAC 인수 승인 진행, 11월 3분기 실적.",
@@ -141,18 +141,24 @@
     {
       "id": "q3_earn",
       "what": "3분기 실적 발표 (우라늄 매출·희토류 진척)",
-      "d": "2026-11",
+      "d": "2026-11-03",
       "kind": "실적",
       "status": "예정",
       "conf": "추정",
       "src": [
-        0
+        0,
+        16
       ],
       "log": [
         {
           "d": "2026-10-14",
           "s": "예정",
           "note": "전년도 3분기 실적은 11월 초 발표 — 올해 날짜는 미확정"
+        },
+        {
+          "d": "2026-10-30",
+          "s": "예정",
+          "note": "발표일 2026-11-03 장 마감 후 확정(일정 캘린더 기준, 종전 2026-11 추정에서 변경). 우라늄 매출·희토류 진척 확인 예정"
         }
       ]
     },
@@ -438,6 +444,11 @@
       "t": "Donald Rare Earth and Mineral Sands Project Achieves Major Government Financing Milestone",
       "u": "https://investors.energyfuels.com/2026-10-26-Donald-Rare-Earth-and-Mineral-Sands-Project-Achieves-Major-Government-Financing-Milestone",
       "d": "2026-10-26"
+    },
+    {
+      "t": "Energy Fuels 투자자 뉴스 페이지 (3분기 실적 발표일 일정 캘린더 기준)",
+      "u": "https://investors.energyfuels.com/news-releases",
+      "d": "2026-10-30"
     }
   ]
 }
