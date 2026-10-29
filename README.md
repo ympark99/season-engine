@@ -46,7 +46,7 @@ KIS_APP_KEY=.. KIS_APP_SECRET=.. ADMIN_TOKEN=dev STORE_FILE=/tmp/store.json node
 ## 일정 캘린더 (실적·매크로)
 - `GET /api/cron?op=cal` — 오늘·어제 실적을 발표한 내 종목(`earnings.mineReported`, EPS·매출·영업이익 실제 vs 예상), 앞으로 7일 발표 예정(`mineSoon`), 방금 발표된 매크로 지표(전기 대비 해석 `read`)와 앞으로 7일 일정·휴장. 3시간 안에 받았으면 저장본, 관리자가 `&refresh=1` 이면 새로 받음. 화면 '매크로' 섹션 맨 위 '일정 · 발표' 카드가 이걸 쓴다.
 - `op=earn` 크론 (국내 평일 16:30 KST, 미국 08:30·00:30 KST) — 내 종목이 발표했으면 발표 3시간 뒤부터 재무(+미국 컨센서스)를 7일 주기를 기다리지 않고 다시 받고, 점수·적정가를 다시 계산한다. 이미 발표 뒤에 받은 종목은 건너뛴다.
-- 정기 조사(`scripts/intel/plan.py`) — 캘린더로 확인된 발표(숫자가 채워진 날)는 체크포인트가 '완료'로 바뀌길 기다리지 않고 그날 `val.json` 에 올려 밸류에이션 가정을 다시 조사한다(`earn` 에 실제·예상 숫자). 매크로는 `cal_macro.json` 으로 매크로 갱신 작업(`prompts/macro_cal.txt`)에 준다.
+- 정기 조사(`scripts/intel/plan.py`) — 실적 체크포인트 날짜가 지났으면 '완료' 처리 전이어도 같은 실행에서 `val.json` 에 올리고(캘린더가 못 잡는 종목·정기 조사 순서 때문에 하루 늦는 경우 대비), 캘린더로 확인된 발표(숫자가 채워진 날)는 체크포인트가 '완료'로 바뀌길 기다리지 않고 그날 `val.json` 에 올려 밸류에이션 가정을 다시 조사한다(`earn` 에 실제·예상 숫자). 매크로는 `cal_macro.json` 으로 매크로 갱신 작업(`prompts/macro_cal.txt`)에 준다.
 - 시험: `node --test test/calendar.test.mjs`
 
 ## 뉴스 조회 (조사 토큰 절감)

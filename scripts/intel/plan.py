@@ -76,7 +76,7 @@ json.dump(new, open(f'{W}/new.json', 'w'), ensure_ascii=False)
 json.dump(due, open(f'{W}/due.json', 'w'), ensure_ascii=False)
 os.makedirs(f'{W}/res', exist_ok=True)
 
-# 5-1. 밸류에이션 가정 조사 대상 — 신규 · 실적 발표 체크포인트 완료 뒤 · 120일 경과 · 파일 없는 기존 종목(하루 VAL_BACKFILL 개)
+# 5-1. 밸류에이션 가정 조사 대상 — 신규 · 실적 발표 체크포인트 완료 뒤 · 실적 체크포인트 날짜가 지난 뒤(완료 처리 전이어도) · 120일 경과 · 파일 없는 기존 종목(하루 VAL_BACKFILL 개)
 VD = os.path.join(REPO, 'public/data/val')
 VAL_NA = {'은행·금융지주', '은행', '증권', '증권·운용', '보험', '리츠', '코인', '지주'}
 VAL_STALE, VAL_BACKFILL, VAL_NEW_DAYS = 120, 15, 3
@@ -100,6 +100,24 @@ def earn_done(m, c):
     return best
 
 
+def earn_passed(m, c):
+    """경쟁·기술 파일에서 실적 체크포인트 날짜(d, YYYY-MM-DD)가 오늘(KST) 이전으로 지난 가장 늦은 날짜 — 체크포인트가 아직 '완료'가 아니어도 센다.
+    정기 조사는 plan.py(대상 선정) → 매일 확인(체크포인트를 완료로 바꿈) 순서라서, 완료만 보면 밸류에이션이 하루 늦다 (BE: 10-22 장 마감 후 발표 → 10-23 아침 실행에서 완료 처리 → 밸류에이션은 다음 실행).
+    발표 다음 날 아침(KST)에는 미국 장 마감 뒤·장 전 발표도 이미 나와 있으니 d < 오늘 이면 발표된 것으로 본다. 지연·취소는 뺀다(날짜가 바뀌면 그 날짜가 지난 뒤)."""
+    try:
+        d = json.load(open(os.path.join(D, f'{m}_{c}.json')))
+    except Exception:
+        return None
+    best = None
+    for cp in d.get('checkpoints', []):
+        x = cp.get('d')
+        if cp.get('kind') != '실적' or cp.get('status') in ('지연', '취소') or not (x and re.match(r'^\d{4}-\d{2}-\d{2}$', x)) or x >= today:
+            continue
+        if best is None or x > best:
+            best = x
+    return best
+
+
 val_due, backfill = [], []
 for x in targets:
     if x['theme'] in VAL_NA:
@@ -119,9 +137,11 @@ for x in targets:
     elif not at:
         backfill.append({**x, 'why': '파일 없음'})
     else:
-        e = earn_done(x['m'], x['code'])
+        e, ep = earn_done(x['m'], x['code']), earn_passed(x['m'], x['code'])
         if e and e > at:
             val_due.append({**x, 'why': f'실적 발표 완료 {e} 뒤'})
+        elif ep and ep > at:
+            val_due.append({**x, 'why': f'실적 발표일 {ep} 지남 (체크포인트 완료 처리 전 — 발표 숫자는 검색으로 확인)'})
         elif (t0 - datetime.date.fromisoformat(at)).days >= VAL_STALE:
             val_due.append({**x, 'why': f'{VAL_STALE}일 경과'})
         elif not nb:
