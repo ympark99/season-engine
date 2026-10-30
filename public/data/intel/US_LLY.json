@@ -1,0 +1,373 @@
+{
+  "m": "US",
+  "code": "LLY",
+  "name": "ELI LILLY AND COMPANY",
+  "theme": "제약·바이오",
+  "at": "2026-10-31",
+  "full": "2026-10-31",
+  "by": "Claude 정기 조사",
+  "position": "티르제파타이드(마운자로·젭바운드)로 미국 비만·당뇨 인크레틴 시장 점유율 약 60%를 쥔 1위이고 3분기 매출이 39% 늘어 노보 노디스크와 격차를 벌리는 중이다. 다만 경구제(파운다요)는 노보 위고비 알약에 뒤처져 있고, 다음 분기 관건은 가격 인하를 물량으로 계속 상쇄하는지와 노보 카그리세마 FDA 판단·레타트루타이드 허가 신청 준비다.",
+  "grade": {
+    "g": "A",
+    "label": "경쟁력 우위",
+    "why": "주사제 점유율 약 60%·3분기 매출 +39%·연간 가이던스 910~920억달러로 상향, 레타트루타이드가 오젬픽 직접 비교 3상에서 우위로 차세대까지 선두. 다만 경구제는 위고비 알약에 열세이고 미국 실현가격 −7%·해외 −29%로 가격 압박이 크며 점유율이 독점 수준은 아니어서 S 는 아님"
+  },
+  "peers": [
+    {
+      "name": "Novo Nordisk",
+      "m": "US",
+      "code": "NVO"
+    },
+    {
+      "name": "Amgen",
+      "m": "US",
+      "code": "AMGN"
+    },
+    {
+      "name": "Pfizer",
+      "m": "US",
+      "code": "PFE"
+    },
+    {
+      "name": "AstraZeneca",
+      "m": "US",
+      "code": "AZN"
+    },
+    {
+      "name": "Biogen(·Eisai 레켐비)",
+      "m": "US",
+      "code": "BIIB"
+    }
+  ],
+  "axes": [
+    {
+      "k": "주사형 인크레틴 점유율",
+      "me": "마운자로 3분기 107억달러(+65%)·젭바운드 54억달러(+49%), 미국 비만·당뇨 시장 점유율 60.5%(2025년 4분기 말)",
+      "vs": "노보 노디스크 약 39%, 미국 당뇨 매출 −19%(2026년 1분기)",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        0,
+        2,
+        7
+      ]
+    },
+    {
+      "k": "경구 GLP-1",
+      "me": "파운다요 2026-04-01 비만 승인, 식사 제한 없음, 3분기 매출 1.84억달러·주간 처방 3.4만건(8월)",
+      "vs": "노보 위고비 알약 2025-12 승인·선출시로 처방 선두",
+      "verdict": "열세",
+      "conf": "보도",
+      "src": [
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "k": "차세대 비만 파이프라인",
+      "me": "레타트루타이드 3상 체중 −22.6%(TRIUMPH-3), 오젬픽 2mg 직접 비교 체중 −20~21% vs −9%; 엘로랄린타이드 계열 3상 착수 예정",
+      "vs": "카그리세마 84주 −23%, 암젠 마리타이드 2상 약 −20%, 화이자(멧세라) 3상 진행",
+      "verdict": "우위",
+      "conf": "보도",
+      "src": [
+        5,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "k": "실적 모멘텀",
+      "me": "3분기 매출 244억달러(+39%), 2026년 매출 가이던스 910~920억달러로 상향",
+      "vs": "노보 2026년 조정 매출 성장 전망 −5~−13%(고정환율)",
+      "verdict": "우위",
+      "conf": "공시",
+      "src": [
+        0,
+        7
+      ]
+    },
+    {
+      "k": "가격·접근성",
+      "me": "미국 실현가격 −7%·해외 −29%를 물량(+41%·+76%)으로 상쇄; 메디케어 Bridge($50 본인부담)에 젭바운드·파운다요 포함",
+      "vs": "노보도 같은 정부 가격 합의·Bridge 대상(위고비 주사·알약)",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        11
+      ]
+    },
+    {
+      "k": "알츠하이머 항아밀로이드",
+      "me": "키선라 3분기 1.93억달러(+175%), 회사는 미국 처방 절반 이상이라고 주장",
+      "vs": "에자이·바이오젠 레켐비, 2025년 4분기 점유율 60% 이상이라고 주장·자가주사 Iqlik 출시",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        0,
+        12
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "q3_2026",
+      "what": "2026년 3분기 실적 발표 — 매출 244억달러(+39%), 연간 매출 가이던스 910~920억달러로 상향, EPS 가이던스는 인수 IPR&D 비용으로 하향",
+      "d": "2026-10-29",
+      "kind": "실적",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-29",
+          "s": "완료",
+          "note": "매출 가이던스 850~870억→910~920억달러, 비GAAP EPS 35.00~36.00달러"
+        }
+      ]
+    },
+    {
+      "id": "reta_transcend_t2d2",
+      "what": "레타트루타이드 vs 오젬픽 2mg 직접 비교 3상(TRANSCEND-T2D-2) 톱라인",
+      "d": "2026-10-28",
+      "kind": "임상",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-28",
+          "s": "완료",
+          "note": "80주 A1C −2.2 vs −1.8, 체중 −20~21% vs −9%; 이상반응 중단율은 더 높음"
+        }
+      ]
+    },
+    {
+      "id": "cagrisema_fda",
+      "what": "경쟁사 노보 카그리세마 비만 FDA 판단(공식 PDUFA 날짜 미공개, 연말~연초 전망)",
+      "d": "2026-Q4",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        8,
+        9
+      ],
+      "log": [
+        {
+          "d": "2026-10-31",
+          "s": "예정",
+          "note": "2025-12 제출, 4분기 판단 보도 — 해 넘길 가능성도 보도"
+        }
+      ]
+    },
+    {
+      "id": "elora_tzp_ph3",
+      "what": "EloraTZP(엘로랄린타이드+티르제파타이드) 3상 시작",
+      "d": "2026-Q4",
+      "kind": "임상",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-29",
+          "s": "예정",
+          "note": "3분기 실적 발표에서 4분기 3상 착수 계획"
+        }
+      ]
+    },
+    {
+      "id": "foundayo_nice",
+      "what": "영국 NICE 파운다요 평가",
+      "d": "2026-11-18",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        13
+      ],
+      "log": [
+        {
+          "d": "2026-08-10",
+          "s": "예정",
+          "note": "MHRA 비만·2형당뇨 승인 후 NICE 평가 일정"
+        }
+      ]
+    },
+    {
+      "id": "q4_2026",
+      "what": "2026년 4분기 실적·2027년 가이던스",
+      "d": "2027-02-04",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        14
+      ],
+      "log": [
+        {
+          "d": "2026-10-31",
+          "s": "예정",
+          "note": "외부 일정표 기준, 회사 확정 전"
+        }
+      ]
+    },
+    {
+      "id": "reta_us_filing",
+      "what": "레타트루타이드 미국 허가 신청(비만·수면무호흡·무릎 골관절염 통증)",
+      "d": "2027-Q1",
+      "kind": "규제",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-07-23",
+          "s": "예정",
+          "note": "TRIUMPH-2·3 결과 후 2027년 1분기 제출 계획"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "k": "3분기 매출",
+      "v": "244억달러 (+39%)",
+      "asof": "2026-Q3",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "마운자로 / 젭바운드 3분기 매출",
+      "v": "107억달러 (+65%) / 54억달러 (+49%)",
+      "asof": "2026-Q3",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "파운다요 3분기 매출",
+      "v": "1.84억달러 (연초 누적 2.81억달러)",
+      "asof": "2026-Q3",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "2026년 매출 가이던스",
+      "v": "910~920억달러 (종전 850~870억달러)",
+      "asof": "2026-10-29",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "미국 비만·당뇨 시장 점유율",
+      "v": "60.5% (노보 약 39%)",
+      "asof": "2025-Q4",
+      "src": [
+        2
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "d": "2026-10-31",
+      "note": "전체 조사 — 주사제 점유율·매출 모멘텀은 압도적 선두(A), 경구제는 노보에 열세; 카그리세마 FDA 판단·레타트루타이드 2027년 1분기 신청이 다음 관건",
+      "src": [
+        0,
+        6
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Lilly Reports Third-Quarter 2026 Financial Results (Form 8-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm",
+      "d": "2026-10-29"
+    },
+    {
+      "t": "FDA approves orforglipron, an oral GLP-1 for adults with obesity",
+      "u": "https://www.healio.com/news/endocrinology/20260401/fda-approves-orforglipron-an-oral-glp1-for-adults-with-obesity",
+      "d": "2026-04-01"
+    },
+    {
+      "t": "Eli Lilly's weight-loss growth is only getting started as Novo Nordisk braces for a decline in 2026",
+      "u": "https://thenightly.com.au/business/eli-lillys-weight-loss-growth-is-only-getting-started-as-novo-nordisk-braces-for-a-decline-in-2026-c-21541790",
+      "d": "2026-02"
+    },
+    {
+      "t": "Eli Lilly's Foundayo prescriptions rise as Novo Nordisk's Wegovy pill maintains lead",
+      "u": "https://hlth.com/insights/news/eli-lilly-s-foundayo-prescriptions-rise-as-novo-nordisk-s-wegovy-pill-maintains-lead",
+      "d": "2026-08-10"
+    },
+    {
+      "t": "Lilly's new obesity pill off to slow start in race with Novo",
+      "u": "https://www.bloomberg.com/news/articles/2026-04-24/lilly-s-new-obesity-pill-off-to-slow-start-in-race-with-novo",
+      "d": "2026-04-24"
+    },
+    {
+      "t": "Retatrutide meets phase 3 weight loss endpoints in 2 obesity trials",
+      "u": "https://www.hcplive.com/view/retatrutide-meets-phase-3-weight-loss-endpoints-in-2-obesity-trials",
+      "d": "2026-07-23"
+    },
+    {
+      "t": "Retatrutide tops semaglutide on A1C, weight in head-to-head trial",
+      "u": "https://www.ajmc.com/view/retatrutide-tops-semaglutide-on-a1c-weight-in-head-to-head-trial",
+      "d": "2026-10-28"
+    },
+    {
+      "t": "Novo Nordisk Q1 2026 financial report (Form 6-K)",
+      "u": "https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000018/caq12026.htm",
+      "d": "2026-05"
+    },
+    {
+      "t": "Novo Nordisk Aktie: CagriSema-Entscheid im Q4 2026",
+      "u": "https://www.boerse-express.com/news/articles/novo-nordisk-aktie-cagrisema-entscheid-im-q4-2026-922394",
+      "d": "2026"
+    },
+    {
+      "t": "Can CagriSema help Novo Nordisk close the gap with LLY in obesity?",
+      "u": "https://www.zacks.com/stock/news/2982542/can-cagrisema-help-novo-nordisk-close-the-gap-with-lly-in-obesity",
+      "d": "2026"
+    },
+    {
+      "t": "Could Pfizer ultimately be the biggest winner in the $100 billion weight-loss market?",
+      "u": "https://www.fool.com/investing/2026/07/20/could-pfizer-ultimately-be-the-biggest-winner-in-t/",
+      "d": "2026-07-20"
+    },
+    {
+      "t": "What Medicare's temporary program covering GLP-1s for obesity means for beneficiaries",
+      "u": "https://kff.org/quick-take/what-medicares-temporary-program-covering-glp-1s-for-obesity-means-for-beneficiaries",
+      "d": "2026"
+    },
+    {
+      "t": "Biogen, Eisai's Leqembi sees momentum, sales grow 74 percent",
+      "u": "https://precisionmedicineonline.com/business-news/biogen-eisais-leqembi-sees-momentum-sales-grow-74-percent",
+      "d": "2026"
+    },
+    {
+      "t": "Eli Lilly's Foundayo wins UK approval",
+      "u": "https://www.nasdaq.com/articles/eli-lillys-foundayo-wins-uk-approval",
+      "d": "2026-08"
+    },
+    {
+      "t": "Eli Lilly and Co — company info / key dates",
+      "u": "https://www.ajbell.co.uk/market-research/sub/NYSE:LLY/company-info",
+      "d": "2026-10"
+    }
+  ]
+}
