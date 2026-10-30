@@ -1,0 +1,275 @@
+{
+ "m": "US",
+ "code": "LLY",
+ "name": "ELI LILLY AND COMPANY",
+ "at": "2026-10-31",
+ "by": "Claude 정기 조사",
+ "basis": "2026년 3분기 실적(2026-10-29) 뒤 — 연간 매출 가이던스 910~920억달러로 상향",
+ "mid": {
+  "om": 40,
+  "why": "지금 영업이익률(컨센서스 54~56%)은 인크레틴 독점적 위치와 규모 효과 덕. 가격 인하(2026년 글로벌 가격 한 자릿수 후반~두 자릿수 하락 가이던스)와 경쟁 신약(카그리세마·경구제)으로 장기에는 대형 제약 성숙 마진(30%대 중후반)과 지금 사이 쪽으로 내려온다고 가정(판단)",
+  "conf": "추정",
+  "src": [
+   0,
+   2,
+   3
+  ]
+ },
+ "capexR": null,
+ "tax": 20,
+ "g": null,
+ "wacc": null,
+ "netCash": null,
+ "debt": null,
+ "scen": {
+  "bull": {
+   "p": 20,
+   "why": "레타트루타이드 허가·출시, 경구 파운다요 점유 회복, 키선라 확대로 FY29~31 성장이 두 자릿수 유지되고 가격 하락이 물량으로 상쇄되어 마진 50%대 중반 유지",
+   "g": [
+    null,
+    null,
+    null,
+    12,
+    10,
+    8,
+    6,
+    5,
+    4
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    57,
+    57,
+    56,
+    55,
+    54,
+    52
+   ]
+  },
+  "base": {
+   "p": 55,
+   "why": "컨센서스 성장이 FY28 이후 한 자릿수로 둔화, 가격 압박과 경쟁으로 마진이 서서히 40% 초반으로 내려옴",
+   "g": [
+    null,
+    null,
+    null,
+    9,
+    7,
+    5,
+    4,
+    3,
+    3
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    54,
+    51,
+    48,
+    45,
+    43,
+    41
+   ]
+  },
+  "bear": {
+   "p": 25,
+   "why": "노보 카그리세마·경구제와 정부 가격 합의로 실현가격이 계속 하락, 성장 정체 + R&D·판촉비 증가로 마진이 30%대로 하락",
+   "g": [
+    null,
+    null,
+    null,
+    3,
+    0,
+    -3,
+    -5,
+    -5,
+    -5
+   ],
+   "om": [
+    null,
+    null,
+    null,
+    48,
+    43,
+    38,
+    34,
+    32,
+    30
+   ]
+  }
+ },
+ "facts": [
+  {
+   "k": "가이던스",
+   "v": "2026년 매출 910~920억달러(직전 850~870억), 비GAAP EPS 35.00~36.00달러(인수 IPR&D 비용 반영), 세율 19~20%",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "마진",
+   "v": "회사 정의 '성과 마진'(매출총이익−R&D−판촉·관리비 ÷ 매출) 2026년 52.0~52.5%(직전 49.0~50.5%). 영업이익률 가이던스는 아님. 3분기 R&D 42억달러(매출의 17%), 판촉·관리비 31억달러(+14%)",
+   "conf": "공시",
+   "src": [
+    0
+   ]
+  },
+  {
+   "k": "설비투자",
+   "v": "2025년 설비투자 약 78억달러(2024년 51억달러), 10-K는 가까운 시일 내 의미 있게 늘 것이라고 서술. 2020년 이후 미국 신규 공장 10곳 발표(3분기 리치먼드·휴스턴 착공). 2026년 설비투자 금액 가이던스는 확인 못함",
+   "conf": "공시",
+   "src": [
+    0,
+    1
+   ]
+  },
+  {
+   "k": "가격 압박",
+   "v": "2026년 초 글로벌 가격 한 자릿수 후반~두 자릿수 하락을 전망했고 1분기엔 물량 +65%가 가격 −13%를 상쇄. 3분기도 미국 실현가격 −7%·해외 −29%를 물량이 상쇄(인텔 파일 기준)",
+   "conf": "보도",
+   "src": [
+    2,
+    3
+   ]
+  },
+  {
+   "k": "주식보상",
+   "v": "2025년 주식보상 약 6.3억달러 ÷ 매출 652억달러 ≈ 1.0%로 매우 작음(집계 사이트 수치, 10-K 본문 미확인). 응답 inp.sbc 가 없어(서버가 조정 기준으로 보지 않음) sbc 값은 넣지 않음",
+   "conf": "추정",
+   "src": [
+    1
+   ]
+  },
+  {
+   "k": "사업 집중도",
+   "v": "마운자로 229.7억달러+젭바운드 135.4억달러 = 2025년 매출 652억달러의 약 56%. 수주잔고·장기공급계약 비중은 제약 특성상 공시 없음",
+   "conf": "공시",
+   "src": [
+    1,
+    2
+   ]
+  },
+  {
+   "k": "공급·경쟁",
+   "v": "노보 카그리세마 FDA 판단 2026년 4분기~연초 전망, 경구제는 위고비 알약이 처방 선두. 레타트루타이드는 오젬픽 직접 비교 3상에서 체중 −20~21% vs −9%",
+   "conf": "보도",
+   "src": [
+    4,
+    5,
+    6
+   ]
+  }
+ ],
+ "newBiz": {
+  "at": "2026-10-31",
+  "items": [
+   {
+    "name": "레타트루타이드(3중 작용 비만·당뇨 주사)",
+    "p": 60,
+    "why": "3상 연속 성공, 미국 허가 신청 2027년 1분기 예정. 성공하면 마운자로 이후 차세대 주력이나 중단율이 높은 점이 변수. bull 경로에만 반영",
+    "conf": "보도",
+    "src": [
+     4
+    ]
+   },
+   {
+    "name": "파운다요(경구 오포글리프론)",
+    "p": 40,
+    "why": "2026-04 비만 승인, 3분기 매출 1.84억달러로 위고비 알약에 뒤처진 출발. 점유율 회복 여부가 성공 조건. bull 에만 반영",
+    "conf": "보도",
+    "src": [
+     0,
+     5
+    ]
+   },
+   {
+    "name": "엘로랄린타이드+티르제파타이드 병용(EloraTZP)",
+    "p": 25,
+    "why": "2상 결과 후 2026년 4분기 3상 착수 예정, 성공해도 2030년대 매출이라 가치 불확실",
+    "conf": "공시",
+    "src": [
+     0
+    ]
+   }
+  ]
+ },
+ "expect": {
+  "for": "2026년 4분기 실적",
+  "due": "2027-02",
+  "items": [
+   {
+    "k": "2026년 연간 매출",
+    "u": "M$",
+    "bull": 93000,
+    "base": 91500,
+    "bear": 90000,
+    "why": "회사 가이던스 910~920억달러 중간 부근 기준; 낙관은 상단 초과, 비관은 하단 부근"
+   },
+   {
+    "k": "2026년 비GAAP EPS",
+    "u": "$",
+    "bull": 36.2,
+    "base": 35.5,
+    "bear": 34.8,
+    "why": "가이던스 35.00~36.00달러 기준"
+   },
+   {
+    "k": "2026년 성과 마진",
+    "u": "%",
+    "bull": 53,
+    "base": 52.2,
+    "bear": 51.5,
+    "why": "가이던스 52.0~52.5% 기준"
+   },
+   {
+    "k": "2027년 매출 가이던스 중간값",
+    "u": "M$",
+    "bull": 118000,
+    "base": 108000,
+    "bear": 100000,
+    "why": "컨센서스 2027년 매출 1,020~1,110억달러 범위 기준, 가격 하락 상쇄 여부에 좌우"
+   }
+  ]
+ },
+ "sources": [
+  {
+   "t": "Lilly Reports Third-Quarter 2026 Financial Results (Form 8-K)",
+   "u": "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000104/q326lillysalesandearningsp.htm",
+   "d": "2026-10-29"
+  },
+  {
+   "t": "Eli Lilly Form 10-K FY2025",
+   "u": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm",
+   "d": "2026-02"
+  },
+  {
+   "t": "Lilly Stock Jumps After Q4 Earnings Beat and Strong 2026 Guidance",
+   "u": "https://finviz.com/news/299737/lilly-stock-jumps-after-q4-earnings-beat-and-strong-2026-guidance",
+   "d": "2026-02"
+  },
+  {
+   "t": "Eli Lilly earnings: Mounjaro/Zepbound's massive volume growth more than counters price pressure",
+   "u": "https://www.morningstar.com/stocks/eli-lilly-earnings-mounjarozepbounds-massive-volume-growth-more-than-counters-price-pressure",
+   "d": "2026"
+  },
+  {
+   "t": "Retatrutide tops semaglutide on A1C, weight in head-to-head trial",
+   "u": "https://www.ajmc.com/view/retatrutide-tops-semaglutide-on-a1c-weight-in-head-to-head-trial",
+   "d": "2026-10-28"
+  },
+  {
+   "t": "Eli Lilly's Foundayo prescriptions rise as Novo Nordisk's Wegovy pill maintains lead",
+   "u": "https://hlth.com/insights/news/eli-lilly-s-foundayo-prescriptions-rise-as-novo-nordisk-s-wegovy-pill-maintains-lead",
+   "d": "2026-08-10"
+  },
+  {
+   "t": "Can CagriSema help Novo Nordisk close the gap with LLY in obesity?",
+   "u": "https://www.zacks.com/stock/news/2982542/can-cagrisema-help-novo-nordisk-close-the-gap-with-lly-in-obesity",
+   "d": "2026"
+  }
+ ]
+}

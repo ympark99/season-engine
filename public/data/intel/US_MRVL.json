@@ -1,66 +1,332 @@
 {
-  "m": "US", "code": "MRVL", "name": "Marvell Technology", "theme": "AI 반도체",
-  "at": "2026-10-14", "full": "2026-10-14", "by": "Claude 정기 조사",
+  "m": "US",
+  "code": "MRVL",
+  "name": "Marvell Technology",
+  "theme": "AI 반도체",
+  "at": "2026-10-31",
+  "full": "2026-10-14",
+  "by": "Claude 정기 조사",
   "position": "맞춤형 AI 반도체(ASIC)와 데이터센터 연결 칩에서 브로드컴에 이은 2위권이며, 구글과의 확대 계약으로 고객 기반을 넓히는 중이다. 다음 분기 관건은 3분기(가이던스 매출 31.5억달러) 달성과 하반기 맞춤형 칩 램프가 일정대로 붙는지.",
-  "grade": { "g": "B", "label": "경쟁력 양호",
-    "why": "데이터센터 매출이 전년 대비 46% 늘고 구글 계약·광 인터커넥트 인수로 성장 경로는 넓어졌다. 다만 맞춤형 칩은 브로드컴이 압도적 1위로 알려져 있고, 광 DSP는 브로드컴·크레도와 경쟁이 거세며 특정 대형 고객 의존이 커지는 중" },
+  "grade": {
+    "g": "B",
+    "label": "경쟁력 양호",
+    "why": "데이터센터 매출이 전년 대비 46% 늘고 구글 계약·광 인터커넥트 인수로 성장 경로는 넓어졌다. 다만 맞춤형 칩은 브로드컴이 압도적 1위로 알려져 있고, 광 DSP는 브로드컴·크레도와 경쟁이 거세며 특정 대형 고객 의존이 커지는 중"
+  },
   "peers": [
-    { "name": "Broadcom", "m": "US", "code": "AVGO" },
-    { "name": "Credo Technology", "m": "US", "code": "CRDO" },
-    { "name": "NVIDIA", "m": "US", "code": "NVDA" },
-    { "name": "Alchip", "m": null, "code": null },
-    { "name": "MediaTek", "m": null, "code": null }
+    {
+      "name": "Broadcom",
+      "m": "US",
+      "code": "AVGO"
+    },
+    {
+      "name": "Credo Technology",
+      "m": "US",
+      "code": "CRDO"
+    },
+    {
+      "name": "NVIDIA",
+      "m": "US",
+      "code": "NVDA"
+    },
+    {
+      "name": "Alchip",
+      "m": null,
+      "code": null
+    },
+    {
+      "name": "MediaTek",
+      "m": null,
+      "code": null
+    }
   ],
   "axes": [
-    { "k": "맞춤형 AI 칩(ASIC) 점유", "me": "아마존 Trainium·마이크로소프트 Maia 프로그램 참여, 구글과 맞춤형 실리콘 계약 확대. 2026년 AI ASIC 매출 최대 110억달러 보도",
+    {
+      "k": "맞춤형 AI 칩(ASIC) 점유",
+      "me": "아마존 Trainium·마이크로소프트 Maia 프로그램 참여, 구글과 맞춤형 실리콘 계약 확대. 2026년 AI ASIC 매출 최대 110억달러 보도",
       "vs": "브로드컴과 둘이 맞춤형 AI ASIC 설계 시장의 약 95%라는 추정, 브로드컴이 약 70%라는 2차 인용 수치. 브로드컴은 AI 수주잔고 730억달러",
-      "verdict": "열세", "conf": "추정", "src": [1, 2] },
-    { "k": "광 DSP·인터커넥트", "me": "1.6T(레인당 200G) PAM4 DSP 대량 출하, 레인당 400G 개발, 코히어런트 DSP(Electra·Libra) 2026년 하반기 샘플 예정",
+      "verdict": "열세",
+      "conf": "추정",
+      "src": [
+        1,
+        2
+      ]
+    },
+    {
+      "k": "광 DSP·인터커넥트",
+      "me": "1.6T(레인당 200G) PAM4 DSP 대량 출하, 레인당 400G 개발, 코히어런트 DSP(Electra·Libra) 2026년 하반기 샘플 예정, 2026-10-13 3.2T 리타이머·2세대 1.6T AEC DSP 출시 발표",
       "vs": "브로드컴 3nm 400G/레인 DSP 샘플링 중, 크레도 1.6T 저전력 DSP 출시",
-      "verdict": "선두권", "conf": "보도", "src": [3] },
-    { "k": "스케일업 광 연결 (Celestial AI)", "me": "2026-02 Celestial AI 인수 완료(32.5억달러 보도), 포토닉 패브릭 확보. 첫 매출은 회계연도 2028 하반기로 보도",
+      "verdict": "선두권",
+      "conf": "보도",
+      "src": [
+        3,
+        8
+      ]
+    },
+    {
+      "k": "스케일업 광 연결 (Celestial AI)",
+      "me": "2026-02 Celestial AI 인수 완료(32.5억달러 보도), 포토닉 패브릭 확보. 첫 매출은 회계연도 2028 하반기로 보도",
       "vs": "경쟁사의 동급 상용 제품 비교 자료는 확인 안 됨",
-      "verdict": "불확실", "conf": "보도", "src": [4] },
-    { "k": "고객 확장 (구글)", "me": "2026-07-29 구글과 맞춤형 실리콘 상업 계약. 워런트 최대 약 5,897만주(행사가 206.58달러), 누적 구매 조건부 베스팅",
+      "verdict": "불확실",
+      "conf": "보도",
+      "src": [
+        4
+      ]
+    },
+    {
+      "k": "고객 확장 (구글)",
+      "me": "2026-07-29 구글과 맞춤형 실리콘 상업 계약. 워런트 최대 약 5,897만주(행사가 206.58달러), 누적 구매 조건부 베스팅",
       "vs": "구글은 브로드컴과도 TPU 장기 계약 유지. 브로드컴 대체가 아닌 파이 확대라는 해석",
-      "verdict": "동등", "conf": "공시", "src": [5] },
-    { "k": "실적 모멘텀", "me": "2분기 매출 27.39억달러(+37%), 데이터센터 21.7억달러(+46%), 3분기 매출 가이던스 31.5억달러 ±5%",
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        5
+      ]
+    },
+    {
+      "k": "실적 모멘텀",
+      "me": "2분기 매출 27.39억달러(+37%), 데이터센터 21.7억달러(+46%), 3분기 매출 가이던스 31.5억달러 ±5%",
       "vs": "브로드컴 AI 반도체 매출은 2027년 1,000억달러 초과 시야라고 회사 측 언급(보도)",
-      "verdict": "동등", "conf": "공시", "src": [0, 2] }
+      "verdict": "동등",
+      "conf": "공시",
+      "src": [
+        0,
+        2
+      ]
+    }
   ],
   "checkpoints": [
-    { "id": "q3_earn", "what": "3분기(회계연도 2027) 실적 — 가이던스 매출 31.5억달러 ±5% 달성 여부", "d": "2026-Q4", "kind": "실적", "status": "예정", "conf": "공시", "src": [0],
-      "log": [ { "d": "2026-10-14", "s": "예정", "note": "발표일 미확정. 직전 분기는 8월 27일 발표였으므로 11월 말~12월 초로 추정" } ] },
-    { "id": "custom_h2", "what": "맞춤형 실리콘 하반기 본격 램프", "d": "2027-01", "kind": "양산", "status": "진행", "conf": "보도", "src": [0],
-      "log": [ { "d": "2026-08-27", "s": "진행", "note": "2분기 콜: 맞춤형 칩 하반기 의미 있는 램프 언급" } ] },
-    { "id": "coherent_dsp", "what": "코히어런트 DSP(Electra·Libra) 샘플링 시작", "d": "2026-Q4", "kind": "출시", "status": "예정", "conf": "보도", "src": [3],
-      "log": [ { "d": "2026-10-14", "s": "예정", "note": "2026년 하반기 샘플 예정 보도, 시작 발표는 확인 안 됨" } ] },
-    { "id": "q4_earn", "what": "4분기(회계연도 2027) 실적 및 회계연도 2028 가이던스 확인", "d": "2027-Q1", "kind": "실적", "status": "예정", "conf": "추정", "src": [0],
-      "log": [ { "d": "2026-10-14", "s": "예정", "note": "회사 목표: 회계연도 2027 매출 약 120억달러, 2028 약 180억달러(투자자의 날 이후 약 200억달러 보도)" } ] },
-    { "id": "celestial_rev", "what": "Celestial AI 포토닉 패브릭 첫 매출 (회계연도 2028 하반기)", "d": "2027-Q4", "kind": "출시", "status": "예정", "conf": "보도", "src": [4],
-      "log": [ { "d": "2026-10-14", "s": "예정", "note": "2차 보도 기준, 공시 원문 확인 필요" } ] },
-    { "id": "investor_day", "what": "투자자의 날 — 회계연도 2031 매출 700억~900억달러 목표 제시", "d": "2026-10-06", "kind": "기타", "status": "완료", "conf": "보도", "src": [6],
-      "log": [ { "d": "2026-10-06", "s": "완료", "note": "장기 목표 발표, 주가 약 8% 상승 보도. 1개 매체 의존" } ] },
-    { "id": "google_deal", "what": "구글 맞춤형 실리콘 상업 계약·워런트 발표", "d": "2026-07-29", "kind": "수주", "status": "완료", "conf": "공시", "src": [5],
-      "log": [ { "d": "2026-07-29", "s": "완료", "note": "누적 구매액에 따라 워런트 베스팅, 1,200억달러는 전량 베스팅 기준 구매액" } ] }
+    {
+      "id": "q3_earn",
+      "what": "3분기(회계연도 2027) 실적 — 가이던스 매출 31.5억달러 ±5% 달성 여부",
+      "d": "2026-Q4",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "공시",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "발표일 미확정. 직전 분기는 8월 27일 발표였으므로 11월 말~12월 초로 추정"
+        },
+        {
+          "d": "2026-10-31",
+          "s": "예정",
+          "note": "발표일 아직 미공시 확인"
+        }
+      ]
+    },
+    {
+      "id": "custom_h2",
+      "what": "맞춤형 실리콘 하반기 본격 램프",
+      "d": "2027-01",
+      "kind": "양산",
+      "status": "진행",
+      "conf": "보도",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-08-27",
+          "s": "진행",
+          "note": "2분기 콜: 맞춤형 칩 하반기 의미 있는 램프 언급"
+        }
+      ]
+    },
+    {
+      "id": "coherent_dsp",
+      "what": "코히어런트 DSP(Electra·Libra) 샘플링 시작",
+      "d": "2026-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        3
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2026년 하반기 샘플 예정 보도, 시작 발표는 확인 안 됨"
+        }
+      ]
+    },
+    {
+      "id": "q4_earn",
+      "what": "4분기(회계연도 2027) 실적 및 회계연도 2028 가이던스 확인",
+      "d": "2027-Q1",
+      "kind": "실적",
+      "status": "예정",
+      "conf": "추정",
+      "src": [
+        0
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "회사 목표: 회계연도 2027 매출 약 120억달러, 2028 약 180억달러(투자자의 날 이후 약 200억달러 보도)"
+        }
+      ]
+    },
+    {
+      "id": "celestial_rev",
+      "what": "Celestial AI 포토닉 패브릭 첫 매출 (회계연도 2028 하반기)",
+      "d": "2027-Q4",
+      "kind": "출시",
+      "status": "예정",
+      "conf": "보도",
+      "src": [
+        4
+      ],
+      "log": [
+        {
+          "d": "2026-10-14",
+          "s": "예정",
+          "note": "2차 보도 기준, 공시 원문 확인 필요"
+        }
+      ]
+    },
+    {
+      "id": "investor_day",
+      "what": "투자자의 날 — 회계연도 2031 매출 700억~900억달러 목표 제시",
+      "d": "2026-10-06",
+      "kind": "기타",
+      "status": "완료",
+      "conf": "보도",
+      "src": [
+        6
+      ],
+      "log": [
+        {
+          "d": "2026-10-06",
+          "s": "완료",
+          "note": "장기 목표 발표, 주가 약 8% 상승 보도. 1개 매체 의존"
+        }
+      ]
+    },
+    {
+      "id": "google_deal",
+      "what": "구글 맞춤형 실리콘 상업 계약·워런트 발표",
+      "d": "2026-07-29",
+      "kind": "수주",
+      "status": "완료",
+      "conf": "공시",
+      "src": [
+        5
+      ],
+      "log": [
+        {
+          "d": "2026-07-29",
+          "s": "완료",
+          "note": "누적 구매액에 따라 워런트 베스팅, 1,200억달러는 전량 베스팅 기준 구매액"
+        }
+      ]
+    }
   ],
   "metrics": [
-    { "k": "2분기 매출", "v": "27.39억달러 (+37% YoY)", "asof": "2026-08", "src": [0] },
-    { "k": "데이터센터 매출", "v": "21.7억달러 (+46%, 비중 79%)", "asof": "2026-08", "src": [0] },
-    { "k": "3분기 매출 가이던스", "v": "31.5억달러 ±5%, 비GAAP EPS 1.10달러 ±0.05", "asof": "2026-08", "src": [0, 7] },
-    { "k": "회계연도 2031 매출 목표", "v": "700억~900억달러 (회사 목표)", "asof": "2026-10", "src": [6] }
+    {
+      "k": "2분기 매출",
+      "v": "27.39억달러 (+37% YoY)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "데이터센터 매출",
+      "v": "21.7억달러 (+46%, 비중 79%)",
+      "asof": "2026-08",
+      "src": [
+        0
+      ]
+    },
+    {
+      "k": "3분기 매출 가이던스",
+      "v": "31.5억달러 ±5%, 비GAAP EPS 1.10달러 ±0.05",
+      "asof": "2026-08",
+      "src": [
+        0,
+        7
+      ]
+    },
+    {
+      "k": "회계연도 2031 매출 목표",
+      "v": "700억~900억달러 (회사 목표)",
+      "asof": "2026-10",
+      "src": [
+        6
+      ]
+    }
   ],
   "updates": [
-    { "d": "2026-10-14", "note": "전체 조사 — 구글 계약과 투자자의 날 목표로 성장 경로는 넓어졌으나 맞춤형 칩 1위 브로드컴과의 격차와 3분기 실적이 다음 확인 지점", "src": [0, 5, 6] }
+    {
+      "d": "2026-10-31",
+      "note": "3.2T 프로토콜 인지형 리타이머와 2세대 1.6T AEC DSP 출시 발표(10월 13일). 데이터센터 연결 칩 제품 라인 확대 소식이며 실적 영향은 확인 안 됨",
+      "src": [
+        8
+      ],
+      "tone": "호재",
+      "scope": "일회성"
+    },
+    {
+      "d": "2026-10-14",
+      "note": "전체 조사 — 구글 계약과 투자자의 날 목표로 성장 경로는 넓어졌으나 맞춤형 칩 1위 브로드컴과의 격차와 3분기 실적이 다음 확인 지점",
+      "src": [
+        0,
+        5,
+        6
+      ]
+    }
   ],
   "sources": [
-    { "t": "Marvell Q2 FY 2027: Connectivity and Custom Silicon Fuel AI Growth", "u": "https://futurumgroup.com/insights/marvell-q2-fy-2027-connectivity-and-custom-silicon-fuel-ai-growth/", "d": "2026-08" },
-    { "t": "The custom AI ASIC state of play (May 2026)", "u": "https://tomshardware.com/tech-industry/semiconductors/custom-ai-asics-examined-from-broadcom-to-mtia", "d": "2026-05" },
-    { "t": "Broadcom vs Marvell: Custom AI Silicon Battle 2026", "u": "https://www.heygotrade.com/en/blog/broadcom-vs-marvell-custom-ai-silicon-battle-2026/", "d": "2026" },
-    { "t": "Broadcom's DSP Launch Intensifies the AI Optics Race with Marvell", "u": "https://futurumgroup.com/insights/broadcoms-dsp-launch-intensifies-the-ai-optics-race-with-marvell/", "d": "2026-03" },
-    { "t": "Marvell completes acquisition of Celestial AI", "u": "https://www.marvell.com/company/newsroom/marvell-completes-acquisition-of-celestial-ai.html", "d": "2026-02-02" },
-    { "t": "Marvell hands Google a $12.2bn share option in a custom-chip deal", "u": "https://thenextweb.com/news/marvell-google-12-2bn-warrant-custom-chip-deal", "d": "2026-07" },
-    { "t": "Marvell impresses Wall Street with strong earnings and a much bigger long-term outlook", "u": "https://cryptobriefing.com/marvell-earnings-raises-long-term-outlook/", "d": "2026-10" },
-    { "t": "Marvell Technology fiscal 2Q27 financial results", "u": "https://www.storagenewsletter.com/2026/08/28/marvell-technology-fiscal-2q27-financial-results/", "d": "2026-08-28" }
+    {
+      "t": "Marvell Q2 FY 2027: Connectivity and Custom Silicon Fuel AI Growth",
+      "u": "https://futurumgroup.com/insights/marvell-q2-fy-2027-connectivity-and-custom-silicon-fuel-ai-growth/",
+      "d": "2026-08"
+    },
+    {
+      "t": "The custom AI ASIC state of play (May 2026)",
+      "u": "https://tomshardware.com/tech-industry/semiconductors/custom-ai-asics-examined-from-broadcom-to-mtia",
+      "d": "2026-05"
+    },
+    {
+      "t": "Broadcom vs Marvell: Custom AI Silicon Battle 2026",
+      "u": "https://www.heygotrade.com/en/blog/broadcom-vs-marvell-custom-ai-silicon-battle-2026/",
+      "d": "2026"
+    },
+    {
+      "t": "Broadcom's DSP Launch Intensifies the AI Optics Race with Marvell",
+      "u": "https://futurumgroup.com/insights/broadcoms-dsp-launch-intensifies-the-ai-optics-race-with-marvell/",
+      "d": "2026-03"
+    },
+    {
+      "t": "Marvell completes acquisition of Celestial AI",
+      "u": "https://www.marvell.com/company/newsroom/marvell-completes-acquisition-of-celestial-ai.html",
+      "d": "2026-02-02"
+    },
+    {
+      "t": "Marvell hands Google a $12.2bn share option in a custom-chip deal",
+      "u": "https://thenextweb.com/news/marvell-google-12-2bn-warrant-custom-chip-deal",
+      "d": "2026-07"
+    },
+    {
+      "t": "Marvell impresses Wall Street with strong earnings and a much bigger long-term outlook",
+      "u": "https://cryptobriefing.com/marvell-earnings-raises-long-term-outlook/",
+      "d": "2026-10"
+    },
+    {
+      "t": "Marvell Technology fiscal 2Q27 financial results",
+      "u": "https://www.storagenewsletter.com/2026/08/28/marvell-technology-fiscal-2q27-financial-results/",
+      "d": "2026-08-28"
+    },
+    {
+      "t": "Marvell 보도자료 목록 (2026-10-13 발표)",
+      "u": "https://investor.marvell.com/news-events/press-releases?page=1",
+      "d": "2026-10-13"
+    }
   ]
 }

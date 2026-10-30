@@ -3,7 +3,7 @@
  "code": "RKLB",
  "name": "Rocket Lab",
  "theme": "우주",
- "at": "2026-10-20",
+ "at": "2026-10-31",
  "full": "2026-10-14",
  "by": "Claude 정기 조사",
  "position": "소형 발사 Electron은 올해 17번째 발사까지 이어가며 독주하고 우주선·방산 수주 잔고도 크게 늘었지만, 중형 발사체 Neutron 첫 발사가 10월 14일 회사 공시로 2027년으로 공식 조정돼 SpaceX와의 격차를 줄일 시점이 늦어졌다. 9월 24일 Iridium 주주가 약 80억 달러 인수안을 승인해 위성통신 서비스로 확장이 가까워졌으나 규제 승인과 재무 부담이 남았다. 다음 관건은 3분기 실적(매출 2.5억~2.65억 달러 가이던스) 달성 여부와 Neutron 구체 일정 제시.",
@@ -183,15 +183,20 @@
    "d": "2026-11-09",
    "kind": "실적",
    "status": "예정",
-   "conf": "추정",
+   "conf": "공시",
    "src": [
-    8
+    13
    ],
    "log": [
     {
      "d": "2026-10-14",
      "s": "예정",
      "note": "집계 사이트의 예상일이며 회사 공식 확정은 확인 안 됨"
+    },
+    {
+     "d": "2026-10-31",
+     "s": "예정",
+     "note": "회사 보도자료로 11월 9일(월) 장 마감 후 발표 확정, 콘퍼런스 콜 오후 2시(태평양시)"
     }
    ]
   },
@@ -313,6 +318,15 @@
  ],
  "updates": [
   {
+   "d": "2026-10-31",
+   "note": "10/20 회사 보도자료로 3분기 실적을 11월 9일(월) 미 증시 마감 후 발표한다고 확정, 같은 날 오후 2시(태평양시) 콘퍼런스 콜 예정. 가이던스(매출 2.5억~2.65억 달러)는 그대로이며 11월 9일이 다음 확인 지점. 등급 B 유지",
+   "src": [
+    13
+   ],
+   "tone": "중립",
+   "scope": "일회성"
+  },
+  {
    "d": "2026-10-20",
    "note": "9/24 Iridium 주주총회가 Rocket Lab 인수안을 약 99.6% 찬성으로 승인(주당 현금 27달러+주식, 총 약 80억 달러, 종결 목표 2027년 중반·규제 승인 남음). 위성통신 서비스 확장 기회와 함께 재무 부담·통합 위험이 새 확인 대상. 등급 B 유지",
    "src": [
@@ -406,6 +420,11 @@
    "t": "Iridium Stockholders Clear Rocket Lab Acquisition",
    "u": "https://www.govconwire.com/articles/iridium-stockholders-approve-rocket-lab-acquisition",
    "d": "2026-09"
+  },
+  {
+   "t": "Rocket Lab 3분기 2026 실적 발표일 공지 (회사 보도자료)",
+   "u": "https://investors.rocketlabcorp.com/news-releases/news-release-details/rocket-lab-announces-date-third-quarter-2026-financial-results",
+   "d": "2026-10-20"
   }
  ]
 }

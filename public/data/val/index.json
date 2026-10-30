@@ -32,7 +32,7 @@
   "name": "삼성중공업"
  },
  "KR:011070": {
-  "at": "2026-10-20",
+  "at": "2026-10-31",
   "name": "LG이노텍"
  },
  "KR:028050": {
@@ -46,6 +46,10 @@
  "KR:036930": {
   "at": "2026-10-20",
   "name": "주성엔지니어링"
+ },
+ "KR:042510": {
+  "at": "2026-10-31",
+  "name": "라온시큐어"
  },
  "KR:050890": {
   "at": "2026-10-20",
@@ -164,7 +168,7 @@
   "name": "Advanced Micro Devices"
  },
  "US:AMZN": {
-  "at": "2026-10-20",
+  "at": "2026-10-31",
   "name": "AMAZON COM INC"
  },
  "US:ANET": {
@@ -172,7 +176,7 @@
   "name": "ARISTA NETWORKS INC"
  },
  "US:APH": {
-  "at": "2026-10-29",
+  "at": "2026-10-31",
   "name": "AMPHENOL CORP"
  },
  "US:ARM": {
@@ -236,7 +240,7 @@
   "name": "HEWLETT PACKARD ENTERPRISE CO"
  },
  "US:INTC": {
-  "at": "2026-10-20",
+  "at": "2026-10-31",
   "name": "Intel"
  },
  "US:IREN": {
@@ -250,6 +254,10 @@
  "US:LITE": {
   "at": "2026-10-20",
   "name": "Lumentum"
+ },
+ "US:LLY": {
+  "at": "2026-10-31",
+  "name": "ELI LILLY AND COMPANY"
  },
  "US:MCHP": {
   "at": "2026-10-29",
