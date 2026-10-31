@@ -139,7 +139,7 @@ td.name{max-width:170px;overflow:hidden;text-overflow:ellipsis;text-decoration:u
 .sig.sig-kj{margin:0 6px 0 0;border:1px solid}.sig-kj.k-up{background:#fdecec;color:#b42318;border-color:#f6c9c4}.sig-kj.k-sup{background:#fff6dc;color:#8a6500;border-color:#f1dd9c}.sig-kj.k-dn{background:#e8eefb;color:#1d4fa8;border-color:#c5d4f2}
 .updd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
 .updd h2{font-size:18px;margin:0 0 4px}.updd h3{font-size:14px;margin:16px 0 6px}.updd ul{margin:4px 0 0;padding-left:18px}.updd li{margin:3px 0;font-size:13.5px;line-height:1.55}
-.polbox{margin:8px 0 0;display:grid;grid-template-columns:90px 1fr;gap:8px 12px;font-size:13.5px;line-height:1.65}.polbox dt{font-weight:700;color:var(--ink2)}.polbox dd{margin:0;color:var(--ink)}@media(max-width:600px){.polbox{grid-template-columns:1fr;gap:2px}.polbox dd{margin-bottom:8px}}
+.polbox{margin:8px 0 0;display:grid;grid-template-columns:90px 1fr;gap:8px 12px;font-size:13.5px;line-height:1.65}.polbox dt{font-weight:700;color:var(--ink2)}.polbox dd{margin:0;color:var(--ink)}.polul{margin:2px 0 0;padding-left:18px}.polul li{margin:1px 0}.polul b{color:var(--ink2)}.polfull summary{cursor:pointer;color:var(--muted);font-size:12.5px;margin-top:2px;list-style:none}.polfull summary::-webkit-details-marker{display:none}.polfull summary::after{content:' ▾'}.polfull[open] summary::after{content:' ▴'}.polfull[open] summary{color:var(--ink2)}.polfull p{margin:4px 0 0;color:var(--ink2);font-size:13px}@media(max-width:600px){.polbox{grid-template-columns:1fr;gap:2px}.polbox dd{margin-bottom:8px}}
 .updd .sumt{font-size:14px;line-height:1.65;margin:6px 0 0}.mtag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;margin-right:6px;background:var(--soft);color:var(--ink2)}
 .updd .lst{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}.updd .lst span{white-space:nowrap}
 details.updold>summary{cursor:pointer;font-weight:700;padding:10px 0}
@@ -3044,12 +3044,16 @@ function renderStratDetail(){
   if($('smore'))$('smore').onclick=()=>{state.slim=(state.slim||80)+80;renderStratDetail()};
 }
 /* 업데이트 — 정기 작업 두 개(매크로·매출 흐름도 / 경쟁·기술)가 매일 올리는 요약을 날짜별로 합쳐 보여줌 (미국·한국 한곳에) */
-let UPD=null,UPDPOL=null;
+let UPD=null,UPDPOL=null,UPDKO={};
 async function loadUpd(force){
   if(UPD&&!force){renderUpd();return}
   const get=async f=>{try{const r=await fetch('data/updates/'+f,{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}};
   const [M,I,MAC]=await Promise.all([get('macro.json'),get('intel.json'),(async()=>{try{const r=await fetch('data/macro.json',{cache:'no-store'});return r.ok?await r.json():null}catch(e){return null}})()]);
   UPDPOL=MAC&&(MAC.policy||MAC.risk)?{policy:MAC.policy||{},risk:MAC.risk||null,at:MAC.updatedAt||MAC.asof}:null;
+  /* 영어 키(us_oil_rate_cap 등)를 한글 이름으로 — macro.json 의 감시 지표·범주·폐기 판단 이름에서 뽑음 */
+  UPDKO={};const cut0=s=>String(s||'').replace(/^판단 폐기:\s*/,'').replace(/\s*\([^()]*\)\s*$/,'').trim();
+  for(const x of [...(MAC?.watch||[]),...(MAC?.categories||[])])if(x.key&&x.name)UPDKO[x.key]=cut0(x.name);
+  for(const x of MAC?.retired||[])if(x.key&&x.name&&!UPDKO[x.key])UPDKO[x.key]=/^판단 폐기/.test(x.name)?`‘${cut0(x.name)}’ 판단`:cut0(x.name);
   const by={};for(const x of M?.days||[])(by[x.d]||(by[x.d]={})).macro=x;for(const x of I?.days||[])(by[x.d]||(by[x.d]={})).intel=x;
   const cut=new Date(Date.now()+9*36e5-6*864e5).toISOString().slice(0,10);
   UPD=Object.keys(by).sort().reverse().filter(d=>d>=cut).map(d=>({d,...by[d]}));renderUpd();
@@ -3058,8 +3062,18 @@ function renderUpd(){
   const el=$('updbody');if(!el)return;
   if(!UPD){el.innerHTML='<div class="loading">불러오는 중…</div>';return}
   if(!UPD.length){el.innerHTML='<div class="updd"><h2>업데이트</h2><div class="muted">아직 정기 작업 요약이 없어. 매일 아침 정기 작업이 끝나면 여기에 올라와.</div></div>';return}
-  const KO={us_rate_cap:'미국 금리 상단론',us_ai_profit_doubt:'AI 이익 의구심',us_hike_repricing:'미국 금리인상 재반영',us_funding_first:'미국 조달 우선론',us_twist_steepen:'미국 장단기 스티프닝',kr_foreign_flow_rules:'한국 외국인 수급 규칙',kr_fx_gate:'한국 환율 관문',kr_bok_split:'한국 금통위 의견 분열',us_cpi_sep:'9월 미국 CPI',others_money:'남의 돈',kr_foreign:'외국인 순매수',usdkrw:'원/달러',ust10y:'미 10년물',ust2y:'미 2년물',ust30y:'미 30년물',kospi:'코스피',wti:'WTI',fed_oct:'10월 FOMC 인상 확률',bok_oct:'10월 금통위',kr_semi_export:'반도체 수출'};
-  const ko=t=>String(t).replace(/\b[a-z][a-z0-9]*(?:_[a-z0-9]+)*\b/g,w=>KO[w]||w);
+  const KO={us_rate_cap:'미국 금리 상단론',us_ai_profit_doubt:'AI 이익 의구심',us_hike_repricing:'미국 금리인상 재반영',us_funding_first:'미국 조달 우선론',us_twist_steepen:'미국 장단기 스티프닝',kr_foreign_flow_rules:'한국 외국인 수급 규칙',kr_fx_gate:'한국 환율 관문',kr_bok_split:'한국 금통위 의견 분열',us_cpi_sep:'9월 미국 CPI',others_money:'남의 돈',kr_foreign:'외국인 순매수',usdkrw:'원/달러',ust10y:'미 10년물',ust2y:'미 2년물',ust30y:'미 30년물',kospi:'코스피',wti:'WTI',fed_oct:'10월 FOMC 인상 확률',bok_oct:'10월 금통위',kr_semi_export:'반도체 수출',
+    us_oil_rate_cap:'유가·금리 상한론',us_earnings_cash:'미국 실적·현금흐름 판단',us_ai_capex_return:'AI 캐펙스 회수론',kr_two_stock:'한국 두 종목 동반 상승 판단',kr_6008_hold:'코스피 6,008 저항 판단',kr_thin_bid:'한국 매수 공백 판단',kr_floor_5485:'코스피 5,485 지지 판단',kr_inst:'코스피 기관 순매수',kr_hynix:'SK하이닉스',nasdaq:'나스닥',fed_dec:'12월 FOMC 인상 확률',s2s10:'2년−10년 스프레드',iran_talks:'미−이란 협상',cxmt_ddr5:'CXMT DDR5',own_money:'내 돈(빅테크)',
+    good:'좋음',bad:'나쁨',null:'없음',Under:'비중 축소',Over:'비중 확대',Equal:'중립'};
+  const ko=t=>String(t).replace(/\b(?:[a-z][a-z0-9]*(?:_[a-z0-9]+)*|Under|Over|Equal)\b/g,w=>KO[w]||UPDKO[w]||w);
+  /* 긴 정책 문단 → 핵심 bullet: 문장 단위로 끊고 괄호 속 수치·부연은 빼고, '—' 뒤 결론만 남김. 조건 문장은 '−1 조건: A + B' 꼴로 */
+  const brief=t=>{t=ko(t||'').replace(/되돌림\(([−+]?\d)\)\s*조건/g,'$1 조건').replace(/([−+]?\d)\s*(?:으로|로)\s*(?:되돌리는|올리는|내리는)\s*조건/g,'$1 조건');
+    return t.split(/(?<=[^\d.])\.\s+/).map(s=>{s=s.replace(/\.$/,'').trim();let p;do{p=s;s=s.replace(/\s?\([^()]*\)/g,'')}while(s!==p);
+      if(/ — /.test(s)&&!/조건:/.test(s))s=s.split(' — ').pop();
+      return s.replace(/^틀릴 수 있는 지점:\s*/,'변수: ').replace(/^([−+]?\d)\s*(?:은|는)\s+(.+?)(?:가|이)?\s*함께일 때$/,'$1 조건: $2').replace(/(?<=[^\s(])\+/g,' + ').trim()}).filter(Boolean)};
+  const bl=a=>`<ul class="polul">${a.map(b=>{const m=b.match(/^([^:]{1,24}):\s(.+)$/);return `<li>${m?`<b>${esc(m[1])}:</b> ${esc(m[2])}`:esc(b)}</li>`}).join('')}</ul>`;
+  const full=t=>`<details class="polfull"><summary>전체 보기</summary><p>${esc(ko(t))}</p></details>`;
+  const polDd=t=>t?`${bl(brief(t))}${full(t)}`:'';
   const mt=m=>`<span class="mtag">${m==='KR'?'한국':m==='US'?'미국':'공통'}</span>`;
   const nm=x=>x.code?idSpan(x.m,x.code,x.name):esc(x.name||'');
   const wk='일월화수목금토',dd=d=>{const t=new Date(d+'T00:00:00Z');return `${d.slice(5).replace('-','.')} (${wk[t.getUTCDay()]})`};
@@ -3079,8 +3093,9 @@ function renderUpd(){
       ${ni.length?`<h3>신규 조사 종목 <span class="muted" style="font-weight:400">${ni.length}개</span></h3><div class="lst">${ni.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}
       ${nv.length?`<h3>밸류에이션 가정 조사 종목 <span class="muted" style="font-weight:400">${nv.length}개</span></h3><div class="lst">${nv.map(x=>`<span>${mt(x.m)}${nm(x)}${x.note?` <span class="sub">${esc(x.note)}</span>`:''}</span>`).join('')}</div>`:''}
       ${fl.length?`<h3>매출 흐름도 작성 종목 <span class="muted" style="font-weight:400">${fl.length}개</span></h3><div class="lst">${fl.map(x=>`<span>${mt(x.m)}${nm(x)}</span>`).join('')}</div>`:''}`};
-  const pol=(()=>{const P=UPDPOL;if(!P)return '';const R=P.risk,rows=[['US','미국'],['KR','한국']].filter(([k])=>P.policy[k]).map(([k,l])=>`<dt>${l} 시나리오</dt><dd>${esc(ko(P.policy[k].scenario||''))}</dd><dt>${l} 대응</dt><dd>${esc(ko(P.policy[k].stance||''))}</dd>`).join('');
-    return `<div class="updd"><h2>정책 시나리오${P.at?` <span class="sub" style="font-weight:400">${esc(String(P.at).slice(0,10))} 기준</span>`:''}</h2><dl class="polbox">${R?`<dt>위험도</dt><dd><span class="num">미국 ${rk(R.US)} · 한국 ${rk(R.KR)}</span> <span class="sub">(${esc(R.scale||'')})</span><br>${esc(ko(R.why||''))}</dd>`:''}${rows}</dl></div>`})();
+  const pol=(()=>{const P=UPDPOL;if(!P)return '';const R=P.risk,rows=[['US','미국'],['KR','한국']].filter(([k])=>P.policy[k]).map(([k,l])=>`<dt>${l} 시나리오</dt><dd>${polDd(P.policy[k].scenario)}</dd><dt>${l} 대응</dt><dd>${polDd(P.policy[k].stance)}</dd>`).join('');
+    const rb=R?brief(R.why):[],rk2=rb.filter(b=>/^(미국|한국)\s[−+]?\d/.test(b));
+    return `<div class="updd"><h2>정책 시나리오${P.at?` <span class="sub" style="font-weight:400">${esc(String(P.at).slice(0,10))} 기준</span>`:''}</h2><dl class="polbox">${R?`<dt>위험도</dt><dd><span class="num">미국 ${rk(R.US)} · 한국 ${rk(R.KR)}</span> <span class="sub">(${esc(R.scale||'')})</span>${R.why?`${bl(rk2.length?rk2:rb.slice(0,2))}${full(R.why)}`:''}</dd>`:''}${rows}</dl></div>`})();
   const [first,...rest]=UPD;
   el.innerHTML=`${pol}<div class="updd">${day(first)}</div>${rest.map(x=>`<details class="updold"><summary>${dd(x.d)} 업데이트</summary><div class="updd">${day(x)}</div></details>`).join('')}
     <div class="sub" style="margin:6px 2px 20px">매일 아침 정기 작업 두 개 — '경쟁·기술 갱신'(종목 조사·체크포인트)과 '유닉스 서버 갱신'(매크로·매출 흐름도) — 이 끝나면 그날 요약을 여기에 올려. 최근 7일. 종목을 누르면 상세 화면으로 가. 투자 자문이 아니라 데이터 정리야.</div>`;
